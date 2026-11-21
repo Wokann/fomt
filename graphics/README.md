@@ -22,7 +22,7 @@ Missing resources are built by shared suffix rules in
 apply the standard `gbafix` header/padding operation. They do not read
 baserom or perform post-link resource replacement.
 
-FoMT's native compression is implemented by the C tool `tools/fomt-lz`.
+FoMT's native compression is implemented by the C tool in `tools/fomt-lz/`.
 Source-only encoders use one shared `.lz` recipe with codec parameters as
 target metadata. All four normal ROM dependency graphs now have zero
 `.original.lz` inputs, and the template-rebuild suffix rules are removed.
@@ -276,7 +276,7 @@ They are palette sources, not rendered PNGs: the routine does not prove an OBJ
 layout, BG tilemap, or a final composited image.
 
 JP, US, EU and DE use byte-identical source streams at different physical ROM
-offsets. `tools/fomt_lz.c` compiles the native `.gbapal.lz` streams beside the
+offsets. `tools/fomt-lz/fomt_lz.c` compiles the native `.gbapal.lz` streams beside the
 sources; assembly includes them directly without patching the linked ROM.
 
 ## Map-state native presentation templates

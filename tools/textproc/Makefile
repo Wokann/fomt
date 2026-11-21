@@ -30,4 +30,4 @@ test: $(PROGRAMS)
 	./$(PREPROC_PROGRAM) self-test
 
 clean:
-	$(RM) $(PROGRAMS)
+	$(RM) fomt-text fomt-text.exe fomt-preproc fomt-preproc.exe

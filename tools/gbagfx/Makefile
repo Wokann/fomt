@@ -26,4 +26,4 @@ gbagfx$(EXE): $(SRCS) convert_png.h gfx.h global.h jasc_pal.h lz.h rl.h util.h f
 	$(CC) $(CFLAGS) $(SRCS) -o $@ $(LDFLAGS) $(LIBS)
 
 clean:
-	$(RM) gbagfx gbagfx.exe
+	$(RM) gbagfx gbagfx.exe gbagfx-debug gbagfx-debug.exe

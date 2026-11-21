@@ -33,7 +33,7 @@ includes that stream directly; no post-link ROM patch is involved.
 | `fallback_03.gbapal` | `0x49D0E0` | `0x716F84` | `0x716FE0` | `0x49E020` | `0x94` |
 | `fallback_04.gbapal` | `0x49D214` | `0x7170B8` | `0x717114` | `0x49E154` | `0x94` |
 
-`tools/fomt_lz.c` provides a reusable host-side Raw-LZ3 codec. These five
+`tools/fomt-lz/fomt_lz.c` provides a reusable host-side Raw-LZ3 codec. These five
 rules declare their native ladder and slot size; the tool pads only to that
 slot, rejects overflow, and can decode the output for validation. The source
 asset and the assembled stream are independent of the reference ROM.

@@ -25,8 +25,6 @@ graphics/ui/seasonal_background/shared/nonwinter_tiles.4bpp
 graphics/ui/seasonal_background/winter/winter_tiles.4bpp
 graphics/ui/farm_status/shared/exterior_styles/*/style_*.4bpp
 graphics/ui/clock_font/*/glyph_indices.4bpp
-tools/fomt-lz
-tools/fomt-lz.exe
 graphics/shared_resource_*/full/*.4bpp
 graphics/regional_resource_0875b444/*/full/*.4bpp
 graphics/regional_resource_0872be64/*/full/*.4bpp

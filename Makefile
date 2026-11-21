@@ -70,7 +70,8 @@ GBAFIX := $(GBAFIX_DIR)/gbafix$(EXE)
 # gbagfx's 8x8-tile input without changing the authored PNG workflow.
 GFX_TOOL_DIR := tools/gbagfx
 GFX_TOOL := $(GFX_TOOL_DIR)/gbagfx$(EXE)
-FOMT_LZ_TOOL := tools/fomt-lz$(EXE)
+FOMT_LZ_TOOL_DIR := tools/fomt-lz
+FOMT_LZ_TOOL := $(FOMT_LZ_TOOL_DIR)/fomt-lz$(EXE)
 GFX_TOOL_SOURCES := $(wildcard $(GFX_TOOL_DIR)/*.c $(GFX_TOOL_DIR)/*.h) $(GFX_TOOL_DIR)/Makefile
 SCANINC_DIR := tools/scaninc
 SCANINC := $(SCANINC_DIR)/scaninc$(EXE)
@@ -122,6 +123,9 @@ $(shell mkdir -p $(SUBDIRS))
 
 all: $(ROM)
 
+tools:
+	@$(MAKE) -C tools HOSTCC="$(HOSTCC)"
+
 REGION_TARGETS := jp us eu de
 REGION_COMPARE_TARGETS := $(addprefix compare_,$(REGION_TARGETS))
 REGION_CLEAN_TARGETS := $(addprefix clean_,$(REGION_TARGETS))
@@ -145,7 +149,7 @@ clean_all: $(REGION_CLEAN_TARGETS)
 compare: $(ROM)
 	tr -d '\r' < $(BUILD_NAME).sha1 | sha1sum -c -
 
-.PHONY: all compare clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
+.PHONY: all tools compare clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
         $(REGION_CLEAN_TARGETS) $(LEGACY_REGION_TARGETS)
 
 TEXT_TOOL_DIR := tools/textproc
@@ -237,11 +241,11 @@ $(SCANINC): $(SCANINC_SOURCES)
 $(MARY_TOOL): $(MARY_TOOL_SOURCES)
 	@$(MAKE) -C $(MARY_TOOL_DIR) $(notdir $@)
 
-$(FOMT_LZ_TOOL): tools/fomt_lz.c
-	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
+$(FOMT_LZ_TOOL): $(FOMT_LZ_TOOL_DIR)/fomt_lz.c $(FOMT_LZ_TOOL_DIR)/Makefile
+	@$(MAKE) -C $(FOMT_LZ_TOOL_DIR) HOSTCC="$(HOSTCC)" $(notdir $@)
 
-$(GFX_RANGE_VERIFY): tools/verify_gfx_range.c
-	@$(HOSTCC) -std=c11 -Wall -Wextra -Werror -O2 $< -o $@
+$(GFX_RANGE_VERIFY): tools/verify_gfx_range.c tools/Makefile
+	@$(MAKE) -C tools HOSTCC="$(HOSTCC)" $(notdir $@)
 
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
@@ -540,7 +544,7 @@ clean:
 # discovery. NODEP=1 is available for
 # direct host-tool or resource-only commands, as in pret's Makefile.
 NODEP ?= 0
-RULES_NO_SCAN := clean clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
+RULES_NO_SCAN := tools clean clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
                  $(REGION_CLEAN_TARGETS) $(LEGACY_REGION_TARGETS)
 ifneq ($(NODEP),1)
 ifneq (,$(filter-out $(RULES_NO_SCAN),$(if $(MAKECMDGOALS),$(MAKECMDGOALS),all)))

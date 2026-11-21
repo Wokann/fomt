@@ -21,7 +21,7 @@ in JP, US, EU, and DE and occupy these verified half-open ranges:
 
 `shared/map_data.inc` lists the real ROM order and labels. The ordinary
 Make rules convert seven editable PNG tile sets to `.4bpp`, eleven editable
-JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz` codec to
+JASC palettes to `.gbapal`, and then use the shared `tools/fomt-lz/fomt-lz` codec to
 make the source-adjacent `.lz` files. The other 24 sources are native u16
 `.tilemap` files, preserving tile indices, flip flags, and palette banks.
 All forty-two streams now encode directly from their tile, palette or tilemap
