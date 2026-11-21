@@ -20,7 +20,6 @@
 #include <stl_construct.h>
 #include <stl_tempbuf.h>
 #include <stl_uninitialized.h>
-#include <stl_raw_storage_iter.h>
 
 
 #if defined(__STL_MEMBER_TEMPLATES)
