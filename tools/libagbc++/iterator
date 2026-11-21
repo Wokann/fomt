@@ -27,7 +27,7 @@
 #ifndef __SGI_STL_ITERATOR
 #define __SGI_STL_ITERATOR
 
-#include <cstddef>
+#include <stddef.h>
 #include <stl_config.h>
 #include <stl_relops.h>
 #include <stl_iterator.h>
