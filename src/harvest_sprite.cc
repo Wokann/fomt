@@ -1,6 +1,6 @@
 #include "harvest_sprite.hh"
 
-#include <cstdlib>
+#include <stdlib.h>
 #include <algorithm>
 
 extern template HarvestSpriteWorkTarget const * std::find(

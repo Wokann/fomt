@@ -1,7 +1,7 @@
 #include "cow.hh"
 #include "livestock_day_update_data.hh"
 
-#include <cstdlib>
+#include <stdlib.h>
 
 Cow::Cow(char const * name, ActorLocation const & location, u32 age, u32 days_fed)
     : BarnAnimal(name, location, age, days_fed)

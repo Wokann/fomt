@@ -1,6 +1,6 @@
 #include "livestock.hh"
 
-#include <cstdlib>
+#include <stdlib.h>
 #include <algorithm>
 
 Livestock::Livestock(char const * name, ActorLocation const & location, u32 age, u32 days_fed)

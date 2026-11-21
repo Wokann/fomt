@@ -4,7 +4,7 @@
 #include "prelude.h"
 #include "red_black_tree.hh"
 #include "allocation_failure.hh"
-#include <cstdlib>
+#include <stdlib.h>
 
 // Both lookup records and tree keys store a four-byte-aligned pair of
 // screen coordinates. The final two bytes are padding, not another field.
