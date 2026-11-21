@@ -1,5 +1,4 @@
 #include "prelude.h"
-#include <algorithm>
 
 asm_unified(
     ".text\n"

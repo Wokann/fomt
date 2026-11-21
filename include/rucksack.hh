@@ -4,7 +4,6 @@
 #include "prelude.h"
 
 #include "rucksack_item.hh"
-#include <iterator>
 #include <new>
 
 #include "rucksack_types.hh"

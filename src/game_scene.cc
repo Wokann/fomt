@@ -36,7 +36,6 @@
 #include "font_decimal.hh"
 #include "gbasvc.h"
 #include "gbaio.h"
-#include <iterator>
 
 #include "game_scene.hh"
 #include "game_scene_return.hh"

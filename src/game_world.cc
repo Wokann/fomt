@@ -35,7 +35,6 @@
 #include "font.hh"
 #include "gbasvc.h"
 #include "gbaio.h"
-#include <iterator>
 
 #include "game_scene.hh"
 #include "game_scene_state.hh"
@@ -46,7 +45,6 @@
 #include "npc_collection.hh"
 #include "map_data.hh"
 #include "map_selection.h"
-#include <algorithm>
 #include "world_runtime.hh"
 #include "scene_sprite.hh"
 #include "player_actor.hh"
