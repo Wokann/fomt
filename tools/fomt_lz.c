@@ -55,7 +55,7 @@ enum {
     HUFF_BUILD_EXCHANGE_LAST
 };
 
-static void fail(char const *message)
+static _Noreturn void fail(char const *message)
 {
     fprintf(stderr, "fomt-lz: %s\n", message);
     exit(EXIT_FAILURE);

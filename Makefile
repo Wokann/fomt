@@ -39,6 +39,16 @@ export STRIP := $(PREFIX)strip
 
 ifeq ($(OS),Windows_NT)
   EXE := .exe
+  ifneq (,$(filter UCRT64 CLANGARM64,$(MSYSTEM)))
+    ifeq ($(origin CC),default)
+      export CC := gcc
+    endif
+    HOSTCC ?= $(CC)
+  endif
+  ifeq ($(MSYSTEM),CLANGARM64)
+    # The CLANGARM64 ARM toolchain provides binutils. Use Clang for preprocessing.
+    CPP := clang --target=arm-none-eabi -mcpu=arm7tdmi -E
+  endif
 else
   EXE :=
 endif
@@ -112,31 +122,31 @@ $(shell mkdir -p $(SUBDIRS))
 
 all: $(ROM)
 
-fomt_us:
-	@$(MAKE) GAME_REGION=US GAME_REVISION=0 compare
+REGION_TARGETS := jp us eu de
+REGION_COMPARE_TARGETS := $(addprefix compare_,$(REGION_TARGETS))
+REGION_CLEAN_TARGETS := $(addprefix clean_,$(REGION_TARGETS))
+LEGACY_REGION_TARGETS := $(addprefix fomt_,$(REGION_TARGETS))
 
-fomt_jp:
-	@$(MAKE) GAME_REGION=JP GAME_REVISION=0 compare
+$(REGION_TARGETS):
+	@$(MAKE) REGION=$@ all
 
-fomt_eu:
-	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 compare
+$(REGION_COMPARE_TARGETS): compare_%:
+	@$(MAKE) REGION=$* compare
 
-fomt_de:
-	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 compare
+$(REGION_CLEAN_TARGETS): clean_%:
+	@$(MAKE) REGION=$* clean
 
-# Every regional target builds and verifies its corresponding base ROM.
-compare_eu:
-	@$(MAKE) GAME_REGION=EU GAME_REVISION=0 compare
+$(LEGACY_REGION_TARGETS): fomt_%: compare_%
 
-compare_de:
-	@$(MAKE) GAME_REGION=DE GAME_REVISION=0 compare
+clean_all: $(REGION_CLEAN_TARGETS)
 
-# US and JP targets build and verify their corresponding base ROM.
+# Check the selected build against its original ROM checksum.
 
 compare: $(ROM)
 	tr -d '\r' < $(BUILD_NAME).sha1 | sha1sum -c -
 
-.PHONY: all fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de compare
+.PHONY: all compare clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
+        $(REGION_CLEAN_TARGETS) $(LEGACY_REGION_TARGETS)
 
 TEXT_TOOL_DIR := tools/textproc
 TEXT_TOOL := $(TEXT_TOOL_DIR)/fomt-text$(EXE)
@@ -526,11 +536,12 @@ clean:
 
 .PHONY: clean
 
-# Region wrappers recurse into compare; only the actual build invocation
-# needs compiler/assembler dependency discovery. NODEP=1 is available for
+# Only the actual build invocation needs compiler/assembler dependency
+# discovery. NODEP=1 is available for
 # direct host-tool or resource-only commands, as in pret's Makefile.
 NODEP ?= 0
-RULES_NO_SCAN := clean fomt_us fomt_jp fomt_eu fomt_de compare_eu compare_de
+RULES_NO_SCAN := clean clean_all $(REGION_TARGETS) $(REGION_COMPARE_TARGETS) \
+                 $(REGION_CLEAN_TARGETS) $(LEGACY_REGION_TARGETS)
 ifneq ($(NODEP),1)
 ifneq (,$(filter-out $(RULES_NO_SCAN),$(if $(MAKECMDGOALS),$(MAKECMDGOALS),all)))
 -include $(ALL_DEPS)

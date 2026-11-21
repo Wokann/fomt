@@ -1,9 +1,9 @@
 # Build configuration follows the multi-version structure used by pret/pokeruby.
 
-GAME_REGION ?= US
+GAME_REGION ?= JP
 GAME_REVISION ?= 0
 
-# Backward-compatible spelling used by the first region scaffold.
+# Accept the short REGION option with either lower- or upper-case codes.
 ifneq ($(origin REGION),undefined)
   ifeq ($(REGION),us)
     override GAME_REGION := US
@@ -13,6 +13,8 @@ ifneq ($(origin REGION),undefined)
     override GAME_REGION := EU
   else ifeq ($(REGION),de)
     override GAME_REGION := DE
+  else ifneq (,$(filter JP US EU DE,$(REGION)))
+    override GAME_REGION := $(REGION)
   else
     $(error Unsupported REGION '$(REGION)'; expected us, jp, eu, or de)
   endif
