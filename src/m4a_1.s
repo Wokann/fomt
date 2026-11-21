@@ -1514,10 +1514,10 @@ lt2_ID_NUMBER:      .word ID_NUMBER
 	muls   r0, r3
 	asrs   r0, 14
 	cmp    r0, 0xFF
-	bls    _081DDAE8
+	bls    .LChnVolSetAsm_store_right
 	movs   r0, 0xFF
 
-_081DDAE8:
+.LChnVolSetAsm_store_right:
 	strb   r0, [r4, O_SoundChannel_volume_right]
 	movs   r3, 0x7F
 	subs   r3, r2
@@ -1526,10 +1526,10 @@ _081DDAE8:
 	muls   r0, r3
 	asrs   r0, 14
 	cmp    r0, 0xFF
-	bls    _081DDAFC
+	bls    .LChnVolSetAsm_store_left
 	movs   r0, 0xFF
 
-_081DDAFC:
+.LChnVolSetAsm_store_left:
 	strb   r0, [r4, O_SoundChannel_volume_left]
 	bx     lr
 
