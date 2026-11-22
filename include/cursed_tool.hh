@@ -4,6 +4,8 @@
 #include "prelude.h"
 #include "item.hh"
 
+enum { CURSED_TOOL_COUNT = 6 };
+
 // Saved at GameStateSaveImage +0x3480. The arrays are parallel, not six
 // interleaved records: sickle, hoe, axe, hammer, watering can, fishing rod.
 // Only the eighteen data bytes are initialized; the last two are padding.
@@ -28,12 +30,12 @@ struct CursedToolState
     u8 AttemptChurchRemoval(u32 tool_id);
     u8 AdvanceToolUses(u32 tool_id);
 
-    u8 cursed[6];
-    u8 blessed[6];
-    u8 progress[6];
+    u8 cursed[CURSED_TOOL_COUNT];
+    u8 blessed[CURSED_TOOL_COUNT];
+    u8 progress[CURSED_TOOL_COUNT];
 };
 
-extern u8 const gCursedToolProgressLimits[];
+extern u8 const gCursedToolProgressLimits[CURSED_TOOL_COUNT];
 
 typedef char CursedToolStateSizeCheck[sizeof(CursedToolState) == 0x14 ? 1 : -1];
 typedef char CursedToolStateDataEndCheck[offsetof(CursedToolState, progress) + sizeof(((CursedToolState *) 0)->progress) == 0x12 ? 1 : -1];

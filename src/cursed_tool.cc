@@ -1,10 +1,17 @@
 #include "cursed_tool.hh"
 
-u8 const gCursedToolProgressLimits[] = { 10, 10, 255, 10, 10, 255 };
+u8 const gCursedToolProgressLimits[CURSED_TOOL_COUNT] = {
+    /* ITEM_TOOL_KIND_SICKLE */       10,
+    /* ITEM_TOOL_KIND_HOE */          10,
+    /* ITEM_TOOL_KIND_AXE */          255,
+    /* ITEM_TOOL_KIND_HAMMER */       10,
+    /* ITEM_TOOL_KIND_WATERING_CAN */ 10,
+    /* ITEM_TOOL_KIND_FISHING_ROD */  255,
+};
 
 CursedToolState::CursedToolState()
 {
-    for (u32 i = 0; i < 6; ++i) {
+    for (u32 i = 0; i < CURSED_TOOL_COUNT; ++i) {
         cursed[i] = 0;
         progress[i] = 0;
         blessed[i] = 0;
@@ -28,14 +35,14 @@ bool CursedToolState::IsCursedTool(Tool const & tool) const
 
 u32 CursedToolState::GetToolIndex(u32 tool_id) const
 {
-    u32 result = 1;
+    u32 result = ITEM_TOOL_KIND_HOE;
     switch (tool_id) {
-    case ITEM_TOOL_SICKLE_CURSED: result = 0; break;
-    case ITEM_TOOL_HOE_CURSED: result = 1; break;
-    case ITEM_TOOL_AXE_CURSED: result = 2; break;
-    case ITEM_TOOL_HAMMER_CURSED: result = 3; break;
-    case ITEM_TOOL_WATERING_CAN_CURSED: result = 4; break;
-    case ITEM_TOOL_FISHING_ROD_CURSED: result = 5; break;
+    case ITEM_TOOL_SICKLE_CURSED: result = ITEM_TOOL_KIND_SICKLE; break;
+    case ITEM_TOOL_HOE_CURSED: result = ITEM_TOOL_KIND_HOE; break;
+    case ITEM_TOOL_AXE_CURSED: result = ITEM_TOOL_KIND_AXE; break;
+    case ITEM_TOOL_HAMMER_CURSED: result = ITEM_TOOL_KIND_HAMMER; break;
+    case ITEM_TOOL_WATERING_CAN_CURSED: result = ITEM_TOOL_KIND_WATERING_CAN; break;
+    case ITEM_TOOL_FISHING_ROD_CURSED: result = ITEM_TOOL_KIND_FISHING_ROD; break;
     }
     return result;
 }
@@ -53,19 +60,19 @@ u8 CursedToolState::IsBlessed(u32 tool_id) const
 bool CursedToolState::HaveFoundAllTools() const
 {
     u32 result = 0;
-    i32 value = blessed[1];
+    i32 value = blessed[ITEM_TOOL_KIND_HOE];
     value = -value;
-    if ((-cursed[1] | value) >= 0) goto end;
-    value = blessed[0]; value = -value;
-    if ((-cursed[0] | value) >= 0) goto end;
-    value = blessed[2]; value = -value;
-    if ((-cursed[2] | value) >= 0) goto end;
-    value = blessed[3]; value = -value;
-    if ((-cursed[3] | value) >= 0) goto end;
-    value = blessed[4]; value = -value;
-    if ((-cursed[4] | value) >= 0) goto end;
-    value = blessed[5]; value = -value;
-    result = (u32)(-cursed[5] | value) >> 31;
+    if ((-cursed[ITEM_TOOL_KIND_HOE] | value) >= 0) goto end;
+    value = blessed[ITEM_TOOL_KIND_SICKLE]; value = -value;
+    if ((-cursed[ITEM_TOOL_KIND_SICKLE] | value) >= 0) goto end;
+    value = blessed[ITEM_TOOL_KIND_AXE]; value = -value;
+    if ((-cursed[ITEM_TOOL_KIND_AXE] | value) >= 0) goto end;
+    value = blessed[ITEM_TOOL_KIND_HAMMER]; value = -value;
+    if ((-cursed[ITEM_TOOL_KIND_HAMMER] | value) >= 0) goto end;
+    value = blessed[ITEM_TOOL_KIND_WATERING_CAN]; value = -value;
+    if ((-cursed[ITEM_TOOL_KIND_WATERING_CAN] | value) >= 0) goto end;
+    value = blessed[ITEM_TOOL_KIND_FISHING_ROD]; value = -value;
+    result = (u32)(-cursed[ITEM_TOOL_KIND_FISHING_ROD] | value) >> 31;
 end:
     return result;
 }
@@ -73,12 +80,12 @@ end:
 bool CursedToolState::HaveBlessedAllTools() const
 {
     u32 result = 0;
-    if (blessed[1] == 0) goto end;
-    if (blessed[0] == 0) goto end;
-    if (blessed[2] == 0) goto end;
-    if (blessed[3] == 0) goto end;
-    if (blessed[4] == 0) goto end;
-    result = (u32)-blessed[5] >> 31;
+    if (blessed[ITEM_TOOL_KIND_HOE] == 0) goto end;
+    if (blessed[ITEM_TOOL_KIND_SICKLE] == 0) goto end;
+    if (blessed[ITEM_TOOL_KIND_AXE] == 0) goto end;
+    if (blessed[ITEM_TOOL_KIND_HAMMER] == 0) goto end;
+    if (blessed[ITEM_TOOL_KIND_WATERING_CAN] == 0) goto end;
+    result = (u32)-blessed[ITEM_TOOL_KIND_FISHING_ROD] >> 31;
 end:
     return result;
 }
@@ -114,7 +121,7 @@ u32 CursedToolState::AdvanceProgress(u32 index)
 void CursedToolState::ResetConsecutiveDays(u32 index)
 {
     if (cursed[index] != 0) {
-        if (index == 0 || index == 3)
+        if (index == ITEM_TOOL_KIND_SICKLE || index == ITEM_TOOL_KIND_HAMMER)
             progress[index] = 0;
     }
 }
@@ -124,7 +131,7 @@ u8 CursedToolState::AdvanceEquippedDays(u32 tool_id)
     u8 result = 0;
     u32 index = GetToolIndex(tool_id);
     if (cursed[index] != 0) {
-        if (index == 0 || index == 3)
+        if (index == ITEM_TOOL_KIND_SICKLE || index == ITEM_TOOL_KIND_HAMMER)
             result = AdvanceProgress(index);
     }
     return result;
@@ -135,9 +142,9 @@ u8 CursedToolState::AttemptChurchRemoval(u32 tool_id)
     u32 index = GetToolIndex(tool_id);
     u8 result = 0;
     if (cursed[index] != 0) {
-        if (index == 1 || index == 4)
+        if (index == ITEM_TOOL_KIND_HOE || index == ITEM_TOOL_KIND_WATERING_CAN)
             result = AdvanceProgress(index);
-        if (index == 0 || index == 3)
+        if (index == ITEM_TOOL_KIND_SICKLE || index == ITEM_TOOL_KIND_HAMMER)
             ResetConsecutiveDays(index);
     }
     return result;
@@ -148,7 +155,7 @@ u8 CursedToolState::AdvanceToolUses(u32 tool_id)
     u32 index = GetToolIndex(tool_id);
     u8 result = 0;
     if (cursed[index] != 0) {
-        if (index == 5 || index == 2)
+        if (index == ITEM_TOOL_KIND_FISHING_ROD || index == ITEM_TOOL_KIND_AXE)
             result = AdvanceProgress(index);
     }
     return result;
