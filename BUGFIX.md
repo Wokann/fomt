@@ -26,11 +26,12 @@ make -j16 GAME_REGION=JP all
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、婚期及婚姻条件。 | 8 |
-| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签和显示排版。 | 12 |
+| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 13 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 30 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
+| **合计** | | **136** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -396,6 +397,7 @@ JP交换四次相关消息引用；DE删除三次错误的额外消息。保留�
 | [原文残留ret>／<RET>换行记号](#text-control-literals) | US、EU、DE | 已接入 |
 | [满行后的多余空格覆盖行首](#text-trailing-space) | JP、US、EU、DE | 已接入 |
 | [海外凯生日贺卡签名残留制表字节](#kai-card-tab) | US、EU、DE | 已接入 |
+| [赛马兑奖退出问句的肯否含义反向](#horse-race-prize-exit-prompt) | US、EU、DE | 已接入 |
 
 <a id="wrapping-tool-icons"></a>
 ### 包装画面把升级农具画成基础农具
@@ -651,6 +653,25 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 移除制表前缀，保留原签名缩进。
 
 **相关文件：** [JP](data/text/jp/reference_guide/birthday_card_kai.cc) · [US](data/text/us/reference_guide/birthday_card_kai.cc) · [EU](data/text/eu/reference_guide/birthday_card_kai.cc) · [DE](data/text/de/reference_guide/birthday_card_kai.cc)
+
+<a id="horse-race-prize-exit-prompt"></a>
+### 赛马兑奖退出问句的肯否含义反向
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+在奖品列表按 B 时，JP 问是否不兑换了。US、EU、DE 却问是否兑换。
+
+**判断依据：**
+
+该确认框中选择 Yes／Ja 会退出，No／Nein 回到奖品列表。
+
+**修复方式：**
+
+英文改用 `Not exchange for a prize?`，德文改用 `Nicht gegen Preis tauschen?`，都表示“不兑换奖品吗？”。两句均适配 28 列窗口。
+
+**相关文件：** [分支](src/horse_race_medal_exchange.cc) · [JP](data/text/jp/horse_race_medal_exchange_2.cc) · [US](data/text/us/horse_race_medal_exchange_2.cc) · [EU](data/text/eu/horse_race_medal_exchange_2.cc) · [DE](data/text/de/horse_race_medal_exchange_2.cc)
 
 <a id="category-items"></a>
 ## 道具身份、名称与说明

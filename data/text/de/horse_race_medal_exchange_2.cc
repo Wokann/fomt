@@ -1,7 +1,12 @@
+#include "config.h"
 #include "horse_race_medal_exchange.hh"
 
 char const gText_HorseRace_PrizeExchangePrompt[] =
+#ifdef BUGFIX
+    "Nicht gegen Preis tauschen?";
+#else
     "Gegen Preis tauschen?";
+#endif
 
 char const gText_HorseRace_PrizeExchangeYes[] =
     "Ja";
