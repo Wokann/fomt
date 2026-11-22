@@ -1,3 +1,4 @@
+#include "config.h"
 #include "horse_race.hh"
 
 char const gText_HorseRace_BuyTicketDeclined[] =
@@ -147,7 +148,11 @@ char const gText_HorseRace_TicketControls_ChangeQuantityByTenContinuation[] =
     "  by ten.";
 
 char const gText_HorseRace_TicketControls_MoveCursorToConfirm[] =
+#ifdef BUGFIX
+    "Move the cursor to Enter.";
+#else
     "Move the cursor to OK.";
+#endif
 
 char const gText_HorseRace_TicketControls_Buy[] =
     "Buy with the A Button.";
