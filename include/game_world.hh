@@ -244,6 +244,13 @@ struct GameSceneFarmPlotLocation {
 struct Farm;
 struct FieldItemState;
 struct GameSceneFieldItemToolResult {
+    enum Kind {
+        KIND_BRANCHES = 4,
+        KIND_LARGE_STONE = 6,
+        KIND_STUMP = 7,
+        KIND_HUGE_STONE = 9,
+    };
+
     GameSceneFieldItemToolResult() : removed(false), rejected(true) {}
 
     bool removed;

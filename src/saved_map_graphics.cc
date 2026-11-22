@@ -1,10 +1,11 @@
 #include "saved_map_graphics.hh"
+#include "field_item_data.hh"
 
 FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASONS] = {
-        { 0x00, 0x1A },
-        { 0x1A, 0x3A },
-        { 0x3A, 0x5E },
-        { 0x5E, 0x60 },
+        { FIELD_ITEM_RECORD_SPRING_BEGIN, FIELD_ITEM_RECORD_SUMMER_BEGIN },
+        { FIELD_ITEM_RECORD_SUMMER_BEGIN, FIELD_ITEM_RECORD_FALL_BEGIN },
+        { FIELD_ITEM_RECORD_FALL_BEGIN, FIELD_ITEM_RECORD_WINTER_BEGIN },
+        { FIELD_ITEM_RECORD_WINTER_BEGIN, FIELD_ITEM_RECORD_SHARED_BEGIN },
     };
 
 

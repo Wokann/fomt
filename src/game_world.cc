@@ -114,14 +114,14 @@ EC bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season
     i32 remaining;
     if (hammer) {
         switch (record.kind) {
-        case 0x13: minimum = 2; break;
-        case 0x14: minimum = 7; break;
+        case FIELD_ITEM_LARGE_STONE: minimum = 2; break;
+        case FIELD_ITEM_HUGE_STONE: minimum = 7; break;
         default: goto failure;
         }
     } else {
         switch (record.kind) {
-        case 0x12: break;
-        case 0x15: minimum = 1; break;
+        case FIELD_ITEM_BRANCHES: break;
+        case FIELD_ITEM_STUMP: minimum = 1; break;
         default: goto failure;
         }
     }
@@ -131,9 +131,9 @@ EC bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season
     remaining = power - minimum;
     if (remaining <= 0)
         goto failure;
-    if (record.kind != 0x12)
+    if (record.kind != FIELD_ITEM_BRANCHES)
         items.DecreaseResourceValue(index, remaining);
-    if (record.kind != 0x12 && items.GetResourceValue(index) != 0)
+    if (record.kind != FIELD_ITEM_BRANCHES && items.GetResourceValue(index) != 0)
         goto failure;
 
     items.ClearAvailability(index, season);
@@ -141,19 +141,19 @@ EC bool func_080174C8(Farm & farm, FieldItemState & items, u32 index, i32 season
     result.x = record.x;
     result.y = record.y;
     switch (record.kind) {
-    case 0x15:
+    case FIELD_ITEM_STUMP:
         farm.method_08009B68(6);
-        result.kind = 7;
+        result.kind = GameSceneFieldItemToolResult::KIND_STUMP;
         break;
-    case 0x12:
+    case FIELD_ITEM_BRANCHES:
         farm.method_08009B68(1);
-        result.kind = 4;
+        result.kind = GameSceneFieldItemToolResult::KIND_BRANCHES;
         break;
-    case 0x13:
-        result.kind = 6;
+    case FIELD_ITEM_LARGE_STONE:
+        result.kind = GameSceneFieldItemToolResult::KIND_LARGE_STONE;
         break;
-    case 0x14:
-        result.kind = 9;
+    case FIELD_ITEM_HUGE_STONE:
+        result.kind = GameSceneFieldItemToolResult::KIND_HUGE_STONE;
         break;
     }
     return true;

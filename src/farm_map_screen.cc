@@ -6160,7 +6160,8 @@ inline FarmMapScreenCore::FarmMapScreenCore(GameStateSaveImage * image, SceneTra
     AddFarmMapActor(this, save->wild_dog, 19);
     if (GetCalendarEffectiveSeason(save->clock.calendar) == SEASON_FALL) {
         FieldItemState const & items = save->field_items;
-        for (u32 index = 0x5B; index <= 0x5D; ++index) {
+        for (u32 index = FIELD_ITEM_RECORD_FALL_APPLES_BEGIN;
+            index < FIELD_ITEM_RECORD_FALL_APPLES_END; ++index) {
             if (items.IsAvailable(index, SEASON_FALL)) {
                 FieldItemInstance item = items.GetRecord(index);
                 AddLocationMarker(item.map, item.x + 8, item.y + 8, 17);

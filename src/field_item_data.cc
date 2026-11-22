@@ -1,4 +1,5 @@
 #include "field_item_data.hh"
+#include "fomt_constants.hh"
 
 FieldItemState::FieldItemState() {}
 
@@ -6,21 +7,24 @@ void FieldItemState::Reset()
 {
     for (int i = 0; i <= 6; ++i)
         availability[i].bits = 0xFF;
-    resource_60 = 6;
-    resource_61 = 6;
-    resource_62 = 6;
-    resource_63 = 6;
-    resource_64 = 6;
-    resource_65 = 6;
-    resource_66 = 6;
-    resource_67 = 6;
-    resource_68 = 6;
-    resource_69 = 6;
-    resource_6A = 6;
-    resource_6B = 6;
-    resource_6C = 6;
-    resource_6D = 1;
-    resource_6E = 1;
+
+    const u32 largeStoneOrStumpResource = 6;
+    const u32 hugeStoneResource = 1;
+    resource_60 = largeStoneOrStumpResource;
+    resource_61 = largeStoneOrStumpResource;
+    resource_62 = largeStoneOrStumpResource;
+    resource_63 = largeStoneOrStumpResource;
+    resource_64 = largeStoneOrStumpResource;
+    resource_65 = largeStoneOrStumpResource;
+    resource_66 = largeStoneOrStumpResource;
+    resource_67 = largeStoneOrStumpResource;
+    resource_68 = largeStoneOrStumpResource;
+    resource_69 = largeStoneOrStumpResource;
+    resource_6A = largeStoneOrStumpResource;
+    resource_6B = largeStoneOrStumpResource;
+    resource_6C = largeStoneOrStumpResource;
+    resource_6D = hugeStoneResource;
+    resource_6E = hugeStoneResource;
 }
 
 RucksackItem FieldItemState::PickUp(u32 map, Box const & area, int season)
@@ -31,28 +35,28 @@ RucksackItem FieldItemState::PickUp(u32 map, Box const & area, int season)
         return item;
 
     i32 kind = gFieldItemRecords[index].kind;
-    if (kind > 0x12)
+    if (kind > FIELD_ITEM_BRANCHES)
         return item;
 
-    if (kind <= 0x0D)
+    if (kind <= FIELD_ITEM_APPLE)
     {
         u32 id = ITEM_FOOD_BAMBOO_SHOOT;
         switch (kind)
         {
-        case 0: id = ITEM_FOOD_BAMBOO_SHOOT; break;
-        case 1: id = ITEM_FOOD_WILD_GRAPES; break;
-        case 2: id = ITEM_FOOD_MUSHROOM; break;
-        case 3: id = ITEM_FOOD_POISONOUS_MUSHROOM; break;
-        case 4: id = ITEM_FOOD_TRUFFLE; break;
-        case 5: id = ITEM_FOOD_BLUE_GRASS; break;
-        case 6: id = ITEM_FOOD_GREEN_GRASS; break;
-        case 7: id = ITEM_FOOD_RED_GRASS; break;
-        case 8: id = ITEM_FOOD_YELLOW_GRASS; break;
-        case 9: id = ITEM_FOOD_ORANGE_GRASS; break;
-        case 10: id = ITEM_FOOD_PURPLE_GRASS; break;
-        case 11: id = ITEM_FOOD_INDIGO_GRASS; break;
-        case 12: id = ITEM_FOOD_WHITE_GRASS; break;
-        case 13: id = ITEM_FOOD_APPLE; break;
+        case FIELD_ITEM_BAMBOO_SHOOT: id = ITEM_FOOD_BAMBOO_SHOOT; break;
+        case FIELD_ITEM_WILD_GRAPES: id = ITEM_FOOD_WILD_GRAPES; break;
+        case FIELD_ITEM_MUSHROOM: id = ITEM_FOOD_MUSHROOM; break;
+        case FIELD_ITEM_POISONOUS_MUSHROOM: id = ITEM_FOOD_POISONOUS_MUSHROOM; break;
+        case FIELD_ITEM_TRUFFLE: id = ITEM_FOOD_TRUFFLE; break;
+        case FIELD_ITEM_BLUE_GRASS: id = ITEM_FOOD_BLUE_GRASS; break;
+        case FIELD_ITEM_GREEN_GRASS: id = ITEM_FOOD_GREEN_GRASS; break;
+        case FIELD_ITEM_RED_GRASS: id = ITEM_FOOD_RED_GRASS; break;
+        case FIELD_ITEM_YELLOW_GRASS: id = ITEM_FOOD_YELLOW_GRASS; break;
+        case FIELD_ITEM_ORANGE_GRASS: id = ITEM_FOOD_ORANGE_GRASS; break;
+        case FIELD_ITEM_PURPLE_GRASS: id = ITEM_FOOD_PURPLE_GRASS; break;
+        case FIELD_ITEM_INDIGO_GRASS: id = ITEM_FOOD_INDIGO_GRASS; break;
+        case FIELD_ITEM_WHITE_GRASS: id = ITEM_FOOD_WHITE_GRASS; break;
+        case FIELD_ITEM_APPLE: id = ITEM_FOOD_APPLE; break;
         }
         item = RucksackItem(Food(id));
     }
@@ -61,11 +65,11 @@ RucksackItem FieldItemState::PickUp(u32 map, Box const & area, int season)
         u32 id = ITEM_ARTICLE_FLOWER_MOON_DROP;
         switch (kind)
         {
-        case 0x0E: id = ITEM_ARTICLE_FLOWER_MOON_DROP; break;
-        case 0x0F: id = ITEM_ARTICLE_FLOWER_PINK_CAT; break;
-        case 0x10: id = ITEM_ARTICLE_FLOWER_MAGIC_BLUE; break;
-        case 0x11: id = ITEM_ARTICLE_FLOWER_TOY; break;
-        case 0x12: id = ITEM_ARTICLE_BRANCHES; break;
+        case FIELD_ITEM_MOON_DROP: id = ITEM_ARTICLE_FLOWER_MOON_DROP; break;
+        case FIELD_ITEM_PINK_CAT: id = ITEM_ARTICLE_FLOWER_PINK_CAT; break;
+        case FIELD_ITEM_MAGIC_BLUE: id = ITEM_ARTICLE_FLOWER_MAGIC_BLUE; break;
+        case FIELD_ITEM_TOY: id = ITEM_ARTICLE_FLOWER_TOY; break;
+        case FIELD_ITEM_BRANCHES: id = ITEM_ARTICLE_BRANCHES; break;
         }
         item = RucksackItem(Article(id));
     }
@@ -90,9 +94,9 @@ FieldItemInstance FieldItemState::GetRecord(u32 index) const
     result.y = gFieldItemRecords[index].y;
     switch (result.kind)
     {
-    case 0x13:
-    case 0x15: result.unk_0C = 1; break;
-    case 0x14: result.unk_0C = 2; break;
+    case FIELD_ITEM_LARGE_STONE:
+    case FIELD_ITEM_STUMP: result.unk_0C = 1; break;
+    case FIELD_ITEM_HUGE_STONE: result.unk_0C = 2; break;
     default: result.unk_0C = 0; break;
     }
     return result;
@@ -105,14 +109,14 @@ static inline bool BoxesOverlap(Box const & a, Box const & b)
 
 int FieldItemState::Find(u32 map, Box const & area, int season) const
 {
-    int index = 0;
-    int end = 0x1A;
+    int index = FIELD_ITEM_RECORD_SPRING_BEGIN;
+    int end = FIELD_ITEM_RECORD_SUMMER_BEGIN;
     switch (season)
     {
     case SEASON_SPRING: break;
-    case SEASON_SUMMER: index = 0x1A; end = 0x3A; break;
-    case SEASON_FALL: index = 0x3A; end = 0x5E; break;
-    case SEASON_WINTER: index = 0x5E; end = 0x60; break;
+    case SEASON_SUMMER: index = FIELD_ITEM_RECORD_SUMMER_BEGIN; end = FIELD_ITEM_RECORD_FALL_BEGIN; break;
+    case SEASON_FALL: index = FIELD_ITEM_RECORD_FALL_BEGIN; end = FIELD_ITEM_RECORD_WINTER_BEGIN; break;
+    case SEASON_WINTER: index = FIELD_ITEM_RECORD_WINTER_BEGIN; end = FIELD_ITEM_RECORD_SHARED_BEGIN; break;
     }
     for (; index < end; ++index)
     {
@@ -127,16 +131,16 @@ int FieldItemState::Find(u32 map, Box const & area, int season) const
     }
     if (index == end)
     {
-        index = 0x60;
-        end = 0x74;
+        index = FIELD_ITEM_RECORD_SHARED_BEGIN;
+        end = FIELD_ITEM_RECORD_SHARED_END;
         for (; index < end; ++index)
         {
             if (gFieldItemRecords[index].map == map)
             {
                 int width = 32;
                 int height = 32;
-                if (gFieldItemRecords[index].kind == 0x14) width = 48;
-                if (gFieldItemRecords[index].kind == 0x12)
+                if (gFieldItemRecords[index].kind == FIELD_ITEM_HUGE_STONE) width = 48;
+                if (gFieldItemRecords[index].kind == FIELD_ITEM_BRANCHES)
                 {
                     height = 16;
                     width = 16;
@@ -158,17 +162,22 @@ int FieldItemState::Find(u32 map, Box const & area, int season) const
 
 u32 FieldItemState::GetAvailabilityIndex(u32 index, int season) const
 {
-    if (index <= 0x5F)
+    if (index < FIELD_ITEM_RECORD_SHARED_BEGIN)
     {
         switch (season)
         {
         case SEASON_SPRING: break;
-        case SEASON_SUMMER: index -= 0x1A; break;
-        case SEASON_FALL: index -= 0x3A; break;
-        case SEASON_WINTER: index -= 0x5E; break;
+        case SEASON_SUMMER: index -= FIELD_ITEM_RECORD_SUMMER_BEGIN; break;
+        case SEASON_FALL: index -= FIELD_ITEM_RECORD_FALL_BEGIN; break;
+        case SEASON_WINTER: index -= FIELD_ITEM_RECORD_WINTER_BEGIN; break;
         }
     }
-    else index -= 0x3C;
+    else
+    {
+        // The shared bits start after the largest seasonal range (fall).
+        const u32 sharedBitBegin = FIELD_ITEM_RECORD_WINTER_BEGIN - FIELD_ITEM_RECORD_FALL_BEGIN;
+        index -= FIELD_ITEM_RECORD_SHARED_BEGIN - sharedBitBegin;
+    }
     return index;
 }
 
@@ -181,7 +190,7 @@ bool FieldItemState::IsAvailable(u32 index, int season) const
 u32 FieldItemState::GetResourceValue(u32 index) const
 {
     u32 value = 0;
-    if (index > 0x5F)
+    if (index >= FIELD_ITEM_RECORD_SHARED_BEGIN)
     {
         switch (index)
         {
@@ -207,7 +216,7 @@ u32 FieldItemState::GetResourceValue(u32 index) const
 
 void FieldItemState::DecreaseResourceValue(u32 index, i32 amount)
 {
-    if (index > 0x5F)
+    if (index >= FIELD_ITEM_RECORD_SHARED_BEGIN)
     {
         switch (index)
         {
@@ -320,123 +329,137 @@ void FieldItemState::DecreaseResourceValue(u32 index, i32 amount)
     }
 }
 
-// Records 0x00-0x5F follow the spring/summer/fall/winter ranges.
-// Find also scans the shared trailing range 0x60-0x73.
+// Use the same pixel-axis notation as Mary scripts in this table.
+#define X(value) (value)
+#define Y(value) (value)
+
 FieldItemRecord const gFieldItemRecords[] = {
-    /* 0x00 */ { 0x0E, 0x00,  232, 136 },
-    /* 0x01 */ { 0x0E, 0x00,  248, 168 },
-    /* 0x02 */ { 0x0E, 0x00,  248, 200 },
-    /* 0x03 */ { 0x0E, 0x00,  264, 232 },
-    /* 0x04 */ { 0x0E, 0x00,  280, 216 },
-    /* 0x05 */ { 0x0E, 0x00,  736, 336 },
-    /* 0x06 */ { 0x0E, 0x00,  720, 352 },
-    /* 0x07 */ { 0x0E, 0x00,  736, 384 },
-    /* 0x08 */ { 0x0E, 0x03,  464,  96 },
-    /* 0x09 */ { 0x0E, 0x03,  384, 240 },
-    /* 0x0A */ { 0x11, 0x00,  304, 232 },
-    /* 0x0B */ { 0x11, 0x00,  336, 248 },
-    /* 0x0C */ { 0x11, 0x00,  368, 232 },
-    /* 0x0D */ { 0x11, 0x00,  728, 304 },
-    /* 0x0E */ { 0x11, 0x00,  736, 408 },
-    /* 0x0F */ { 0x11, 0x00,  704, 312 },
-    /* 0x10 */ { 0x00, 0x00,  184, 536 },
-    /* 0x11 */ { 0x00, 0x00,  224, 568 },
-    /* 0x12 */ { 0x00, 0x00,  488, 616 },
-    /* 0x13 */ { 0x08, 0x01,   48, 240 },
-    /* 0x14 */ { 0x08, 0x01,  248, 184 },
-    /* 0x15 */ { 0x09, 0x01,   48, 448 },
-    /* 0x16 */ { 0x09, 0x01,  240, 344 },
-    /* 0x17 */ { 0x05, 0x00, 1080, 528 },
-    /* 0x18 */ { 0x05, 0x03,  304,  72 },
-    /* 0x19 */ { 0x05, 0x03,  504,  96 },
-    /* 0x1A */ { 0x01, 0x00,  192, 464 },
-    /* 0x1B */ { 0x01, 0x03,  304,  32 },
-    /* 0x1C */ { 0x05, 0x00, 1080, 528 },
-    /* 0x1D */ { 0x05, 0x03,  304,  72 },
-    /* 0x1E */ { 0x05, 0x03,  504,  96 },
-    /* 0x1F */ { 0x06, 0x00,  152, 496 },
-    /* 0x20 */ { 0x06, 0x00,  424, 608 },
-    /* 0x21 */ { 0x06, 0x00, 1112, 416 },
-    /* 0x22 */ { 0x07, 0x00,  632, 608 },
-    /* 0x23 */ { 0x07, 0x00,  912, 360 },
-    /* 0x24 */ { 0x07, 0x00, 1048, 424 },
-    /* 0x25 */ { 0x07, 0x03,  704, 144 },
-    /* 0x26 */ { 0x07, 0x05, 1064, 112 },
-    /* 0x27 */ { 0x0F, 0x00,  232, 512 },
-    /* 0x28 */ { 0x0F, 0x00,  248, 136 },
-    /* 0x29 */ { 0x0F, 0x00,  248, 184 },
-    /* 0x2A */ { 0x0F, 0x00,  264, 216 },
-    /* 0x2B */ { 0x0F, 0x00,  280, 200 },
-    /* 0x2C */ { 0x0F, 0x00,  312, 216 },
-    /* 0x2D */ { 0x0F, 0x00,  312, 192 },
-    /* 0x2E */ { 0x0F, 0x00,  336, 232 },
-    /* 0x2F */ { 0x0F, 0x00,  352, 248 },
-    /* 0x30 */ { 0x0F, 0x00,  696, 288 },
-    /* 0x31 */ { 0x0F, 0x00,  728, 320 },
-    /* 0x32 */ { 0x0F, 0x00,  736, 360 },
-    /* 0x33 */ { 0x0F, 0x00,  736, 424 },
-    /* 0x34 */ { 0x0F, 0x00, 1024, 568 },
-    /* 0x35 */ { 0x0F, 0x00, 1064, 512 },
-    /* 0x36 */ { 0x0A, 0x01,   48, 496 },
-    /* 0x37 */ { 0x0A, 0x01,   88, 568 },
-    /* 0x38 */ { 0x0A, 0x01,  168, 568 },
-    /* 0x39 */ { 0x0A, 0x01,  184, 456 },
-    /* 0x3A */ { 0x02, 0x00,  664,  48 },
-    /* 0x3B */ { 0x02, 0x03,  424,  88 },
-    /* 0x3C */ { 0x02, 0x04,   56, 288 },
-    /* 0x3D */ { 0x04, 0x00,  256, 312 },
-    /* 0x3E */ { 0x04, 0x04,  320, 160 },
-    /* 0x3F */ { 0x04, 0x04,  136,  40 },
-    /* 0x40 */ { 0x03, 0x03,  768, 160 },
-    /* 0x41 */ { 0x03, 0x04,   32, 128 },
-    /* 0x42 */ { 0x06, 0x00,  152, 496 },
-    /* 0x43 */ { 0x06, 0x00,  424, 608 },
-    /* 0x44 */ { 0x06, 0x00, 1112, 416 },
-    /* 0x45 */ { 0x07, 0x00,  632, 608 },
-    /* 0x46 */ { 0x07, 0x00,  912, 360 },
-    /* 0x47 */ { 0x07, 0x00, 1048, 424 },
-    /* 0x48 */ { 0x07, 0x03,  704, 144 },
-    /* 0x49 */ { 0x07, 0x05, 1064, 112 },
-    /* 0x4A */ { 0x10, 0x00,  256,  48 },
-    /* 0x4B */ { 0x10, 0x00,  232, 112 },
-    /* 0x4C */ { 0x10, 0x00,  208, 192 },
-    /* 0x4D */ { 0x10, 0x00,  216, 216 },
-    /* 0x4E */ { 0x10, 0x00,  320, 248 },
-    /* 0x4F */ { 0x10, 0x00,  368, 208 },
-    /* 0x50 */ { 0x10, 0x00,  384, 224 },
-    /* 0x51 */ { 0x10, 0x00,  400, 192 },
-    /* 0x52 */ { 0x10, 0x00,  424, 192 },
-    /* 0x53 */ { 0x10, 0x00,  592,  48 },
-    /* 0x54 */ { 0x10, 0x00,  624,  88 },
-    /* 0x55 */ { 0x10, 0x00,  672, 152 },
-    /* 0x56 */ { 0x10, 0x00,  624, 208 },
-    /* 0x57 */ { 0x10, 0x03,  232, 240 },
-    /* 0x58 */ { 0x10, 0x03,  264, 160 },
-    /* 0x59 */ { 0x0B, 0x01,  232, 160 },
-    /* 0x5A */ { 0x0B, 0x01,   48, 392 },
-    /* 0x5B */ { 0x0D, 0x02,   96, 376 },
-    /* 0x5C */ { 0x0D, 0x02,  126, 392 },
-    /* 0x5D */ { 0x0D, 0x02,  156, 376 },
-    /* 0x5E */ { 0x0C, 0x03,  720,  24 },
-    /* 0x5F */ { 0x0C, 0x04,   72,  96 },
-    /* 0x60 */ { 0x13, 0x00,  440, 176 },
-    /* 0x61 */ { 0x13, 0x00,   64, 328 },
-    /* 0x62 */ { 0x13, 0x00,    8, 488 },
-    /* 0x63 */ { 0x13, 0x00,  376, 744 },
-    /* 0x64 */ { 0x13, 0x00,  720, 440 },
-    /* 0x65 */ { 0x15, 0x00, 1088, 488 },
-    /* 0x66 */ { 0x15, 0x00, 1032, 528 },
-    /* 0x67 */ { 0x15, 0x00,  392, 592 },
-    /* 0x68 */ { 0x15, 0x03,  272, 216 },
-    /* 0x69 */ { 0x15, 0x03,  288, 152 },
-    /* 0x6A */ { 0x15, 0x03,  408, 120 },
-    /* 0x6B */ { 0x15, 0x03,  488, 120 },
-    /* 0x6C */ { 0x15, 0x03,  448, 192 },
-    /* 0x6D */ { 0x14, 0x00,  264, 328 },
-    /* 0x6E */ { 0x14, 0x00,  640, 664 },
-    /* 0x6F */ { 0x12, 0x03,  360,  56 },
-    /* 0x70 */ { 0x12, 0x03,  584,  72 },
-    /* 0x71 */ { 0x12, 0x03,  736, 112 },
-    /* 0x72 */ { 0x12, 0x00,  648,  64 },
-    /* 0x73 */ { 0x12, 0x00,  576, 592 },
+    // Spring
+    /* 0x00 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 232), Y(136) },
+    /* 0x01 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 248), Y(168) },
+    /* 0x02 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 248), Y(200) },
+    /* 0x03 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 264), Y(232) },
+    /* 0x04 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 280), Y(216) },
+    /* 0x05 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 736), Y(336) },
+    /* 0x06 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 720), Y(352) },
+    /* 0x07 */ { FIELD_ITEM_MOON_DROP,          MAP_MOTHERS_HILL_MIDDLE, X( 736), Y(384) },
+    /* 0x08 */ { FIELD_ITEM_MOON_DROP,          MAP_FOREST,              X( 464), Y( 96) },
+    /* 0x09 */ { FIELD_ITEM_MOON_DROP,          MAP_FOREST,              X( 384), Y(240) },
+    /* 0x0A */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 304), Y(232) },
+    /* 0x0B */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 336), Y(248) },
+    /* 0x0C */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 368), Y(232) },
+    /* 0x0D */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 728), Y(304) },
+    /* 0x0E */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 736), Y(408) },
+    /* 0x0F */ { FIELD_ITEM_TOY,                MAP_MOTHERS_HILL_MIDDLE, X( 704), Y(312) },
+    /* 0x10 */ { FIELD_ITEM_BAMBOO_SHOOT,       MAP_MOTHERS_HILL_MIDDLE, X( 184), Y(536) },
+    /* 0x11 */ { FIELD_ITEM_BAMBOO_SHOOT,       MAP_MOTHERS_HILL_MIDDLE, X( 224), Y(568) },
+    /* 0x12 */ { FIELD_ITEM_BAMBOO_SHOOT,       MAP_MOTHERS_HILL_MIDDLE, X( 488), Y(616) },
+    /* 0x13 */ { FIELD_ITEM_YELLOW_GRASS,       MAP_MINERAL_BEACH,       X(  48), Y(240) },
+    /* 0x14 */ { FIELD_ITEM_YELLOW_GRASS,       MAP_MINERAL_BEACH,       X( 248), Y(184) },
+    /* 0x15 */ { FIELD_ITEM_ORANGE_GRASS,       MAP_MINERAL_BEACH,       X(  48), Y(448) },
+    /* 0x16 */ { FIELD_ITEM_ORANGE_GRASS,       MAP_MINERAL_BEACH,       X( 240), Y(344) },
+    /* 0x17 */ { FIELD_ITEM_BLUE_GRASS,         MAP_MOTHERS_HILL_MIDDLE, X(1080), Y(528) },
+    /* 0x18 */ { FIELD_ITEM_BLUE_GRASS,         MAP_FOREST,              X( 304), Y( 72) },
+    /* 0x19 */ { FIELD_ITEM_BLUE_GRASS,         MAP_FOREST,              X( 504), Y( 96) },
+
+    // Summer
+    /* 0x1A */ { FIELD_ITEM_WILD_GRAPES,        MAP_MOTHERS_HILL_MIDDLE, X( 192), Y(464) },
+    /* 0x1B */ { FIELD_ITEM_WILD_GRAPES,        MAP_FOREST,              X( 304), Y( 32) },
+    /* 0x1C */ { FIELD_ITEM_BLUE_GRASS,         MAP_MOTHERS_HILL_MIDDLE, X(1080), Y(528) },
+    /* 0x1D */ { FIELD_ITEM_BLUE_GRASS,         MAP_FOREST,              X( 304), Y( 72) },
+    /* 0x1E */ { FIELD_ITEM_BLUE_GRASS,         MAP_FOREST,              X( 504), Y( 96) },
+    /* 0x1F */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X( 152), Y(496) },
+    /* 0x20 */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X( 424), Y(608) },
+    /* 0x21 */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X(1112), Y(416) },
+    /* 0x22 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X( 632), Y(608) },
+    /* 0x23 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X( 912), Y(360) },
+    /* 0x24 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X(1048), Y(424) },
+    /* 0x25 */ { FIELD_ITEM_RED_GRASS,          MAP_FOREST,              X( 704), Y(144) },
+    /* 0x26 */ { FIELD_ITEM_RED_GRASS,          MAP_NORTH_SIDE_TOWN,     X(1064), Y(112) },
+    /* 0x27 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 232), Y(512) },
+    /* 0x28 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 248), Y(136) },
+    /* 0x29 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 248), Y(184) },
+    /* 0x2A */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 264), Y(216) },
+    /* 0x2B */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 280), Y(200) },
+    /* 0x2C */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 312), Y(216) },
+    /* 0x2D */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 312), Y(192) },
+    /* 0x2E */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 336), Y(232) },
+    /* 0x2F */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 352), Y(248) },
+    /* 0x30 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 696), Y(288) },
+    /* 0x31 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 728), Y(320) },
+    /* 0x32 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 736), Y(360) },
+    /* 0x33 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X( 736), Y(424) },
+    /* 0x34 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X(1024), Y(568) },
+    /* 0x35 */ { FIELD_ITEM_PINK_CAT,           MAP_MOTHERS_HILL_MIDDLE, X(1064), Y(512) },
+    /* 0x36 */ { FIELD_ITEM_PURPLE_GRASS,       MAP_MINERAL_BEACH,       X(  48), Y(496) },
+    /* 0x37 */ { FIELD_ITEM_PURPLE_GRASS,       MAP_MINERAL_BEACH,       X(  88), Y(568) },
+    /* 0x38 */ { FIELD_ITEM_PURPLE_GRASS,       MAP_MINERAL_BEACH,       X( 168), Y(568) },
+    /* 0x39 */ { FIELD_ITEM_PURPLE_GRASS,       MAP_MINERAL_BEACH,       X( 184), Y(456) },
+
+    // Fall
+    /* 0x3A */ { FIELD_ITEM_MUSHROOM,           MAP_MOTHERS_HILL_MIDDLE, X( 664), Y( 48) },
+    /* 0x3B */ { FIELD_ITEM_MUSHROOM,           MAP_FOREST,              X( 424), Y( 88) },
+    /* 0x3C */ { FIELD_ITEM_MUSHROOM,           MAP_BEHIND_CHURCH,       X(  56), Y(288) },
+    /* 0x3D */ { FIELD_ITEM_TRUFFLE,            MAP_MOTHERS_HILL_MIDDLE, X( 256), Y(312) },
+    /* 0x3E */ { FIELD_ITEM_TRUFFLE,            MAP_BEHIND_CHURCH,       X( 320), Y(160) },
+    /* 0x3F */ { FIELD_ITEM_TRUFFLE,            MAP_BEHIND_CHURCH,       X( 136), Y( 40) },
+    /* 0x40 */ { FIELD_ITEM_POISONOUS_MUSHROOM, MAP_FOREST,              X( 768), Y(160) },
+    /* 0x41 */ { FIELD_ITEM_POISONOUS_MUSHROOM, MAP_BEHIND_CHURCH,       X(  32), Y(128) },
+    /* 0x42 */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X( 152), Y(496) },
+    /* 0x43 */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X( 424), Y(608) },
+    /* 0x44 */ { FIELD_ITEM_GREEN_GRASS,        MAP_MOTHERS_HILL_MIDDLE, X(1112), Y(416) },
+    /* 0x45 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X( 632), Y(608) },
+    /* 0x46 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X( 912), Y(360) },
+    /* 0x47 */ { FIELD_ITEM_RED_GRASS,          MAP_MOTHERS_HILL_MIDDLE, X(1048), Y(424) },
+    /* 0x48 */ { FIELD_ITEM_RED_GRASS,          MAP_FOREST,              X( 704), Y(144) },
+    /* 0x49 */ { FIELD_ITEM_RED_GRASS,          MAP_NORTH_SIDE_TOWN,     X(1064), Y(112) },
+    /* 0x4A */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 256), Y( 48) },
+    /* 0x4B */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 232), Y(112) },
+    /* 0x4C */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 208), Y(192) },
+    /* 0x4D */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 216), Y(216) },
+    /* 0x4E */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 320), Y(248) },
+    /* 0x4F */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 368), Y(208) },
+    /* 0x50 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 384), Y(224) },
+    /* 0x51 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 400), Y(192) },
+    /* 0x52 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 424), Y(192) },
+    /* 0x53 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 592), Y( 48) },
+    /* 0x54 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 624), Y( 88) },
+    /* 0x55 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 672), Y(152) },
+    /* 0x56 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_MOTHERS_HILL_MIDDLE, X( 624), Y(208) },
+    /* 0x57 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_FOREST,              X( 232), Y(240) },
+    /* 0x58 */ { FIELD_ITEM_MAGIC_BLUE,         MAP_FOREST,              X( 264), Y(160) },
+    /* 0x59 */ { FIELD_ITEM_INDIGO_GRASS,       MAP_MINERAL_BEACH,       X( 232), Y(160) },
+    /* 0x5A */ { FIELD_ITEM_INDIGO_GRASS,       MAP_MINERAL_BEACH,       X(  48), Y(392) },
+    /* 0x5B */ { FIELD_ITEM_APPLE,              MAP_FARM,                X(  96), Y(376) },
+    /* 0x5C */ { FIELD_ITEM_APPLE,              MAP_FARM,                X( 126), Y(392) },
+    /* 0x5D */ { FIELD_ITEM_APPLE,              MAP_FARM,                X( 156), Y(376) },
+
+    // Winter
+    /* 0x5E */ { FIELD_ITEM_WHITE_GRASS,        MAP_FOREST,              X( 720), Y( 24) },
+    /* 0x5F */ { FIELD_ITEM_WHITE_GRASS,        MAP_BEHIND_CHURCH,       X(  72), Y( 96) },
+
+    // Shared across seasons
+    /* 0x60 */ { FIELD_ITEM_LARGE_STONE,        MAP_MOTHERS_HILL_MIDDLE, X( 440), Y(176) },
+    /* 0x61 */ { FIELD_ITEM_LARGE_STONE,        MAP_MOTHERS_HILL_MIDDLE, X(  64), Y(328) },
+    /* 0x62 */ { FIELD_ITEM_LARGE_STONE,        MAP_MOTHERS_HILL_MIDDLE, X(   8), Y(488) },
+    /* 0x63 */ { FIELD_ITEM_LARGE_STONE,        MAP_MOTHERS_HILL_MIDDLE, X( 376), Y(744) },
+    /* 0x64 */ { FIELD_ITEM_LARGE_STONE,        MAP_MOTHERS_HILL_MIDDLE, X( 720), Y(440) },
+    /* 0x65 */ { FIELD_ITEM_STUMP,              MAP_MOTHERS_HILL_MIDDLE, X(1088), Y(488) },
+    /* 0x66 */ { FIELD_ITEM_STUMP,              MAP_MOTHERS_HILL_MIDDLE, X(1032), Y(528) },
+    /* 0x67 */ { FIELD_ITEM_STUMP,              MAP_MOTHERS_HILL_MIDDLE, X( 392), Y(592) },
+    /* 0x68 */ { FIELD_ITEM_STUMP,              MAP_FOREST,              X( 272), Y(216) },
+    /* 0x69 */ { FIELD_ITEM_STUMP,              MAP_FOREST,              X( 288), Y(152) },
+    /* 0x6A */ { FIELD_ITEM_STUMP,              MAP_FOREST,              X( 408), Y(120) },
+    /* 0x6B */ { FIELD_ITEM_STUMP,              MAP_FOREST,              X( 488), Y(120) },
+    /* 0x6C */ { FIELD_ITEM_STUMP,              MAP_FOREST,              X( 448), Y(192) },
+    /* 0x6D */ { FIELD_ITEM_HUGE_STONE,         MAP_MOTHERS_HILL_MIDDLE, X( 264), Y(328) },
+    /* 0x6E */ { FIELD_ITEM_HUGE_STONE,         MAP_MOTHERS_HILL_MIDDLE, X( 640), Y(664) },
+    /* 0x6F */ { FIELD_ITEM_BRANCHES,           MAP_FOREST,              X( 360), Y( 56) },
+    /* 0x70 */ { FIELD_ITEM_BRANCHES,           MAP_FOREST,              X( 584), Y( 72) },
+    /* 0x71 */ { FIELD_ITEM_BRANCHES,           MAP_FOREST,              X( 736), Y(112) },
+    /* 0x72 */ { FIELD_ITEM_BRANCHES,           MAP_MOTHERS_HILL_MIDDLE, X( 648), Y( 64) },
+    /* 0x73 */ { FIELD_ITEM_BRANCHES,           MAP_MOTHERS_HILL_MIDDLE, X( 576), Y(592) },
 };
+
+#undef Y
+#undef X
