@@ -1066,28 +1066,28 @@ gUnk_MapDataResource_361:
 gUnk_MapDataResource_362:
     .incbin "graphics/maps/shared/map_60/layer_5.tilemap.lz"
 
-    .global gMineFloorCellType0Tilemap
-gMineFloorCellType0Tilemap:
+    .global gMineFloorSoilTilemap
+gMineFloorSoilTilemap:
     .hword 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF
 
-    .global gMineFloorCellType1Tilemap
-gMineFloorCellType1Tilemap:
+    .global gMineFloorDugSoilTilemap
+gMineFloorDugSoilTilemap:
     .hword 0x03FF, 0x03FF, 0x60AA, 0x60AB, 0x60AC, 0x60AD
 
-    .global gMineFloorCellType2Tilemap
-gMineFloorCellType2Tilemap:
+    .global gMineFloorDownLadderTilemap
+gMineFloorDownLadderTilemap:
     .hword 0x03FF, 0x03FF, 0x20B4, 0x20B5, 0x20B6, 0x20B7
 
-    .global gMineFloorCellType3Tilemap
-gMineFloorCellType3Tilemap:
+    .global gMineFloorUpLadderTilemap
+gMineFloorUpLadderTilemap:
     .hword 0x03FF, 0x03FF, 0x20B0, 0x20B1, 0x20B2, 0x20B3
 
     @ The following raw range also contains the still-undecoded Intro Scene
     @ unpack inputs. Keep the raw payloads intact, but expose their native
     @ boundaries directly so the C++ pointer table has real relocations.
 jp_data_08462550_start:
-    .global gMineFloorCellType4Tilemap
-gMineFloorCellType4Tilemap:
+    .global gMineFloorRockTilemap
+gMineFloorRockTilemap:
     .hword 0x03FF, 0x03FF, 0x70B8, 0x70B9, 0x70BA, 0x70BB
     .global gUnk_MapDataResource_365
 gUnk_MapDataResource_365:
@@ -10312,20 +10312,20 @@ gUnk_MapDataResource_361:
 	.global gUnk_MapDataResource_362
 gUnk_MapDataResource_362:
     .incbin "graphics/maps/shared/map_60/layer_5.tilemap.lz"
-	.global gMineFloorCellType0Tilemap
-gMineFloorCellType0Tilemap:
+	.global gMineFloorSoilTilemap
+gMineFloorSoilTilemap:
     .hword 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF
-	.global gMineFloorCellType1Tilemap
-gMineFloorCellType1Tilemap:
+	.global gMineFloorDugSoilTilemap
+gMineFloorDugSoilTilemap:
     .hword 0x03FF, 0x03FF, 0x60AA, 0x60AB, 0x60AC, 0x60AD
-	.global gMineFloorCellType2Tilemap
-gMineFloorCellType2Tilemap:
+	.global gMineFloorDownLadderTilemap
+gMineFloorDownLadderTilemap:
     .hword 0x03FF, 0x03FF, 0x20B4, 0x20B5, 0x20B6, 0x20B7
-	.global gMineFloorCellType3Tilemap
-gMineFloorCellType3Tilemap:
+	.global gMineFloorUpLadderTilemap
+gMineFloorUpLadderTilemap:
     .hword 0x03FF, 0x03FF, 0x20B0, 0x20B1, 0x20B2, 0x20B3
-	.global gMineFloorCellType4Tilemap
-gMineFloorCellType4Tilemap:
+	.global gMineFloorRockTilemap
+gMineFloorRockTilemap:
     .hword 0x03FF, 0x03FF, 0x70B8, 0x70B9, 0x70BA, 0x70BB
 	.global gUnk_MapDataResource_365
 gUnk_MapDataResource_365:
@@ -19693,19 +19693,19 @@ gUnk_MapDataResource_361:
 gUnk_MapDataResource_362:
     .incbin "graphics/maps/shared/map_60/layer_5.tilemap.lz"
 
-	non_de_asset_label gMineFloorCellType0Tilemap
+	non_de_asset_label gMineFloorSoilTilemap
     .hword 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF, 0x03FF
 
-	non_de_asset_label gMineFloorCellType1Tilemap
+	non_de_asset_label gMineFloorDugSoilTilemap
     .hword 0x03FF, 0x03FF, 0x60AA, 0x60AB, 0x60AC, 0x60AD
 
-	non_de_asset_label gMineFloorCellType2Tilemap
+	non_de_asset_label gMineFloorDownLadderTilemap
     .hword 0x03FF, 0x03FF, 0x20B4, 0x20B5, 0x20B6, 0x20B7
 
-	non_de_asset_label gMineFloorCellType3Tilemap
+	non_de_asset_label gMineFloorUpLadderTilemap
     .hword 0x03FF, 0x03FF, 0x20B0, 0x20B1, 0x20B2, 0x20B3
 
-	non_de_asset_label gMineFloorCellType4Tilemap
+	non_de_asset_label gMineFloorRockTilemap
     .hword 0x03FF, 0x03FF, 0x70B8, 0x70B9, 0x70BA, 0x70BB
 	    .global gUnk_MapDataResource_365
 gUnk_MapDataResource_365:

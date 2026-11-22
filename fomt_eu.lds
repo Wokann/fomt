@@ -615,6 +615,7 @@ SECTIONS
         src/event_state.o(.rodata);
         src/fishing_results_data.o(.rodata);
         src/mine_floor.o(.rodata);
+        src/mine_floor_items.o(.rodata);
         src/harvest_sprite.o(.rodata);
         src/character_names_empty.o(.rodata);
         src/bachelorette.o(.rodata);

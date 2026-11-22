@@ -9,6 +9,7 @@
 #include "fomt_constants.hh"
 #include "map_data.hh"
 #include "item.hh"
+#include "mine_item_codes.h"
 #include <stdlib.h>
 #include "game_state.hh"
 #include "entity_ui.hh"
@@ -38,6 +39,50 @@ inline void PlayerSpriteSlots::Push(PlayerSpriteSlot const & slot)
 
 #include FOMT_TEXT_INCLUDE(player_actor.cc)
 
+
+// Keep the native jump table in the order of its shared mine codes.
+#define MINE_REWARD_CASE(table, code, target) \
+    "    .if (. - " #table ") != (" STRINGIFY(code) " * 4)\n" \
+    "    .error \"Mine reward jump table is out of order\"\n" \
+    "    .endif\n" \
+    "    .word " #target "\n"
+
+// Use the same item enums as C++. agbcp's %a prints an assembler expression
+// without the Thumb immediate prefix, and .equ emits no code or data.
+#define DEFINE_MINE_REWARD_ID(id) asm volatile (".equ .L" #id ", %a0" : : "i" (id))
+#define DEFINE_MINE_REWARD_IDS() \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_SICKLE_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_HOE_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_AXE_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_HAMMER_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_WATERING_CAN_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_FISHING_ROD_CURSED); \
+    DEFINE_MINE_REWARD_ID(ITEM_TOOL_TELEPORT_STONE); \
+    DEFINE_MINE_REWARD_ID(ITEM_FOOD_BLACK_GRASS); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_JUNK_ORE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_COPPER); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_SILVER); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_GOLD); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_MYSTRILE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_ORICHALC); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_ADAMANTITE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_MOON_STONE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_SAND_ROSE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_PINK_DIAMOND); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_ALEXANDRITE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_MYTHIC_STONE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_DIAMOND); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_EMERALD); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_RUBY); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_TOPAZ); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_PERIDOT); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_FLUORITE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_AGATE); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_AMETHYST); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_HARVEST_GODDESS_JEWEL); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_KAPPA_JEWEL); \
+    DEFINE_MINE_REWARD_ID(ITEM_ARTICLE_LITHOGRAPH); \
+    DEFINE_MINE_REWARD_ID(AUDIO_SFX_ITEM_OBTAINED)
 
 // This contiguous block immediately precedes the existing Entity-UI data.
 // Native callers establish the widths and offsets below; unresolved fields keep
@@ -3686,13 +3731,17 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .global func_080258F8\n"
-    "    .thumb_func\n"
-    "func_080258F8: @ 0x08025B64\n"
+);
+
+#if defined(REGION_JP)
+extern "C" NAKED void GivePlayerMineItem(PlayerActor *, u32)
+{
+    DEFINE_MINE_REWARD_IDS();
+    asm_unified(
     "    push {r4, r5, r6, lr}\n"
     "    sub sp, #0x28\n"
     "    adds r6, r0, #0\n"
-    "    cmp r1, #0x22\n"
+    "    cmp r1, #" STRINGIFY(MINE_ITEM_LITHOGRAPH) "\n"
     "    bhi .Ljp_0802599C\n"
     "    lsls r0, r1, #2\n"
     "    ldr r1, .Ljp_0802590C @ =.Ljp_08025910\n"
@@ -3702,41 +3751,41 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_0802590C: .word .Ljp_08025910\n"
     ".Ljp_08025910: @ jump table\n"
-    "    .word .Ljp_0802599C @ case 0\n"
-    "    .word .Ljp_0802599C @ case 1\n"
-    "    .word .Ljp_08025A46 @ case 2\n"
-    "    .word .Ljp_080259A6 @ case 3\n"
-    "    .word .Ljp_080259B4 @ case 4\n"
-    "    .word .Ljp_080259BC @ case 5\n"
-    "    .word .Ljp_080259C6 @ case 6\n"
-    "    .word .Ljp_080259D0 @ case 7\n"
-    "    .word .Ljp_080259DA @ case 8\n"
-    "    .word .Ljp_080259E2 @ case 9\n"
-    "    .word .Ljp_080259FC @ case 10\n"
-    "    .word .Ljp_08025A62 @ case 11\n"
-    "    .word .Ljp_08025A8C @ case 12\n"
-    "    .word .Ljp_08025A98 @ case 13\n"
-    "    .word .Ljp_08025AA2 @ case 14\n"
-    "    .word .Ljp_08025AAE @ case 15\n"
-    "    .word .Ljp_08025ABA @ case 16\n"
-    "    .word .Ljp_08025AC6 @ case 17\n"
-    "    .word .Ljp_08025AD0 @ case 18\n"
-    "    .word .Ljp_08025ADC @ case 19\n"
-    "    .word .Ljp_08025AE8 @ case 20\n"
-    "    .word .Ljp_08025AF4 @ case 21\n"
-    "    .word .Ljp_08025AFE @ case 22\n"
-    "    .word .Ljp_08025B0A @ case 23\n"
-    "    .word .Ljp_08025B16 @ case 24\n"
-    "    .word .Ljp_08025B22 @ case 25\n"
-    "    .word .Ljp_08025B2C @ case 26\n"
-    "    .word .Ljp_08025B38 @ case 27\n"
-    "    .word .Ljp_08025B44 @ case 28\n"
-    "    .word .Ljp_08025B50 @ case 29\n"
-    "    .word .Ljp_08025B5A @ case 30\n"
-    "    .word .Ljp_08025B66 @ case 31\n"
-    "    .word .Ljp_08025B72 @ case 32\n"
-    "    .word .Ljp_08025B7E @ case 33\n"
-    "    .word .Ljp_08025BA0 @ case 34\n"
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_NONE, .Ljp_0802599C)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_DOWN_LADDER, .Ljp_0802599C)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_MONEY, .Ljp_08025A46)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_POWER_BERRY, .Ljp_080259A6)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_SICKLE_CURSED, .Ljp_080259B4)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_HOE_CURSED, .Ljp_080259BC)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_AXE_CURSED, .Ljp_080259C6)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_HAMMER_CURSED, .Ljp_080259D0)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_WATERING_CAN_CURSED, .Ljp_080259DA)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_FISHING_ROD_CURSED, .Ljp_080259E2)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_TELEPORT_STONE, .Ljp_080259FC)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_BLACK_GRASS, .Ljp_08025A62)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_JUNK_ORE, .Ljp_08025A8C)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_COPPER, .Ljp_08025A98)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_SILVER, .Ljp_08025AA2)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_GOLD, .Ljp_08025AAE)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_MYSTRILE, .Ljp_08025ABA)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_ORICHALC, .Ljp_08025AC6)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_ADAMANTITE, .Ljp_08025AD0)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_MOON_STONE, .Ljp_08025ADC)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_SAND_ROSE, .Ljp_08025AE8)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_PINK_DIAMOND, .Ljp_08025AF4)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_ALEXANDRITE, .Ljp_08025AFE)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_MYTHIC_STONE, .Ljp_08025B0A)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_DIAMOND, .Ljp_08025B16)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_EMERALD, .Ljp_08025B22)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_RUBY, .Ljp_08025B2C)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_TOPAZ, .Ljp_08025B38)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_PERIDOT, .Ljp_08025B44)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_FLUORITE, .Ljp_08025B50)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_AGATE, .Ljp_08025B5A)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_AMETHYST, .Ljp_08025B66)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_HARVEST_GODDESS_JEWEL, .Ljp_08025B72)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_KAPPA_JEWEL, .Ljp_08025B7E)
+    MINE_REWARD_CASE(.Ljp_08025910, MINE_ITEM_LITHOGRAPH, .Ljp_08025BA0)
     ".Ljp_0802599C:\n"
     "    adds r1, r6, #0\n"
     "    adds r1, #0x3c\n"
@@ -3746,48 +3795,48 @@ asm_unified(
     ".Ljp_080259A6:\n"
     "    ldr r0, [r6, #0x14]\n"
     "    adds r0, #0x80\n"
-    "    ldr r1, [r0]\n"
+    "    ldr r1, [r0] @ PlayerActor::ObtainPowerBerry\n"
     "    adds r0, r6, #0\n"
     "    bl _call_via_r1\n"
     "    b .Ljp_08025BC2\n"
     ".Ljp_080259B4:\n"
     "    add r4, sp, #8\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #5\n"
+    "    movs r1, #.LITEM_TOOL_SICKLE_CURSED\n"
     "    b .Ljp_080259EA\n"
     ".Ljp_080259BC:\n"
     "    mov r4, sp\n"
     "    adds r4, #9\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0xd\n"
+    "    movs r1, #.LITEM_TOOL_HOE_CURSED\n"
     "    b .Ljp_080259EA\n"
     ".Ljp_080259C6:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xa\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x15\n"
+    "    movs r1, #.LITEM_TOOL_AXE_CURSED\n"
     "    b .Ljp_080259EA\n"
     ".Ljp_080259D0:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xb\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1d\n"
+    "    movs r1, #.LITEM_TOOL_HAMMER_CURSED\n"
     "    b .Ljp_080259EA\n"
     ".Ljp_080259DA:\n"
     "    add r4, sp, #0xc\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x25\n"
+    "    movs r1, #.LITEM_TOOL_WATERING_CAN_CURSED\n"
     "    b .Ljp_080259EA\n"
     ".Ljp_080259E2:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xd\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x2d\n"
+    "    movs r1, #.LITEM_TOOL_FISHING_ROD_CURSED\n"
     ".Ljp_080259EA:\n"
     "    bl __4ToolUi\n"
     "    adds r0, r6, #0\n"
     "    adds r1, r4, #0\n"
-    "    bl func_08026FA0\n"
+    "    bl GivePlayerTool\n"
     "    b .Ljp_08025BC2\n"
     ".Ljp_080259F8:\n"
     "    ldr r0, [r4]\n"
@@ -3796,11 +3845,11 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0xe\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x4d\n"
+    "    movs r1, #.LITEM_TOOL_TELEPORT_STONE\n"
     "    bl __4ToolUi\n"
     "    adds r0, r6, #0\n"
     "    adds r1, r4, #0\n"
-    "    bl func_08026FA0\n"
+    "    bl GivePlayerTool\n"
     "    ldr r0, [r6]\n"
     "    ldr r1, [r0]\n"
     "    movs r2, #0xa6\n"
@@ -3825,7 +3874,7 @@ asm_unified(
     "    subs r0, r5, #4\n"
     "    ldr r0, [r0]\n"
     ".Ljp_08025A3E:\n"
-    "    movs r1, #0xb6\n"
+    "    movs r1, #.LAUDIO_SFX_ITEM_OBTAINED\n"
     "    bl Start__23HardwareMusicPlayerSlotUs\n"
     "    b .Ljp_08025BC2\n"
     ".Ljp_08025A46:\n"
@@ -3840,13 +3889,13 @@ asm_unified(
     "    subs r1, r0, r1\n"
     "    adds r1, #5\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080274B0\n"
+    "    bl GivePlayerMoney\n"
     "    b .Ljp_08025BC2\n"
     ".Ljp_08025A62:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #4\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x36\n"
+    "    movs r1, #.LITEM_FOOD_BLACK_GRASS\n"
     "    bl __4FoodUi\n"
     "    ldrb r1, [r4]\n"
     "    mov r0, sp\n"
@@ -3867,148 +3916,148 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0xf\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x11\n"
+    "    movs r1, #.LITEM_ARTICLE_JUNK_ORE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025A98:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x10\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x12\n"
+    "    movs r1, #.LITEM_ARTICLE_COPPER\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AA2:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x11\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x13\n"
+    "    movs r1, #.LITEM_ARTICLE_SILVER\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AAE:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x12\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x14\n"
+    "    movs r1, #.LITEM_ARTICLE_GOLD\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025ABA:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x13\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x15\n"
+    "    movs r1, #.LITEM_ARTICLE_MYSTRILE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AC6:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x14\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x16\n"
+    "    movs r1, #.LITEM_ARTICLE_ORICHALC\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AD0:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x15\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x17\n"
+    "    movs r1, #.LITEM_ARTICLE_ADAMANTITE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025ADC:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x16\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x18\n"
+    "    movs r1, #.LITEM_ARTICLE_MOON_STONE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AE8:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x17\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x19\n"
+    "    movs r1, #.LITEM_ARTICLE_SAND_ROSE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AF4:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x18\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1a\n"
+    "    movs r1, #.LITEM_ARTICLE_PINK_DIAMOND\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025AFE:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x19\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1b\n"
+    "    movs r1, #.LITEM_ARTICLE_ALEXANDRITE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B0A:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1a\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1c\n"
+    "    movs r1, #.LITEM_ARTICLE_MYTHIC_STONE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B16:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1b\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1d\n"
+    "    movs r1, #.LITEM_ARTICLE_DIAMOND\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B22:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x1c\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1e\n"
+    "    movs r1, #.LITEM_ARTICLE_EMERALD\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B2C:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1d\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1f\n"
+    "    movs r1, #.LITEM_ARTICLE_RUBY\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B38:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1e\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x20\n"
+    "    movs r1, #.LITEM_ARTICLE_TOPAZ\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B44:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1f\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x21\n"
+    "    movs r1, #.LITEM_ARTICLE_PERIDOT\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B50:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x20\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x22\n"
+    "    movs r1, #.LITEM_ARTICLE_FLUORITE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B5A:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x21\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x23\n"
+    "    movs r1, #.LITEM_ARTICLE_AGATE\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B66:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x22\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x24\n"
+    "    movs r1, #.LITEM_ARTICLE_AMETHYST\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B72:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x23\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x25\n"
+    "    movs r1, #.LITEM_ARTICLE_HARVEST_GODDESS_JEWEL\n"
     "    b .Ljp_08025B86\n"
     ".Ljp_08025B7E:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x24\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x26\n"
+    "    movs r1, #.LITEM_ARTICLE_KAPPA_JEWEL\n"
     ".Ljp_08025B86:\n"
     "    bl __7ArticleUi\n"
     "    ldrb r1, [r4]\n"
@@ -4026,7 +4075,7 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0x25\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x33\n"
+    "    movs r1, #.LITEM_ARTICLE_LITHOGRAPH\n"
     "    bl __7ArticleUi\n"
     "    ldrb r1, [r4]\n"
     "    mov r0, sp\n"
@@ -4041,6 +4090,11 @@ asm_unified(
     "    pop {r4, r5, r6}\n"
     "    pop {r0}\n"
     "    bx r0\n"
+    );
+}
+#endif
+
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global func_08025BCC\n"
@@ -6561,9 +6615,9 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    "    .global func_08026FA0\n"
+    "    .global GivePlayerTool\n"
     "    .thumb_func\n"
-    "func_08026FA0: @ 0x08026FA0\n"
+    "GivePlayerTool:\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    mov r7, sb\n"
     "    mov r6, r8\n"
@@ -7184,9 +7238,9 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .global func_080274B0\n"
+    "    .global GivePlayerMoney\n"
     "    .thumb_func\n"
-    "func_080274B0: @ 0x080274B0\n"
+    "GivePlayerMoney:\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    sub sp, #8\n"
     "    adds r6, r0, #0\n"
@@ -15478,12 +15532,17 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    thumb_func_start func_08025B64\n"
-    "func_08025B64: @ 0x08025B64\n"
+);
+
+#if !defined(REGION_JP)
+extern "C" NAKED void GivePlayerMineItem(PlayerActor *, u32)
+{
+    DEFINE_MINE_REWARD_IDS();
+    asm_unified(
     "    push {r4, r5, r6, lr}\n"
     "    sub sp, #0x28\n"
     "    adds r6, r0, #0\n"
-    "    cmp r1, #0x22\n"
+    "    cmp r1, #" STRINGIFY(MINE_ITEM_LITHOGRAPH) "\n"
     "    bhi .L08025C08\n"
     "    lsls r0, r1, #2\n"
     "    ldr r1, .L08025B78 @ =.L08025B7C\n"
@@ -15493,41 +15552,41 @@ asm_unified(
     "    .align 2, 0\n"
     ".L08025B78: .word .L08025B7C\n"
     ".L08025B7C: @ jump table\n"
-    "    .word .L08025C08 @ case 0\n"
-    "    .word .L08025C08 @ case 1\n"
-    "    .word .L08025CB2 @ case 2\n"
-    "    .word .L08025C12 @ case 3\n"
-    "    .word .L08025C20 @ case 4\n"
-    "    .word .L08025C28 @ case 5\n"
-    "    .word .L08025C32 @ case 6\n"
-    "    .word .L08025C3C @ case 7\n"
-    "    .word .L08025C46 @ case 8\n"
-    "    .word .L08025C4E @ case 9\n"
-    "    .word .L08025C68 @ case 10\n"
-    "    .word .L08025CCE @ case 11\n"
-    "    .word .L08025CF8 @ case 12\n"
-    "    .word .L08025D04 @ case 13\n"
-    "    .word .L08025D0E @ case 14\n"
-    "    .word .L08025D1A @ case 15\n"
-    "    .word .L08025D26 @ case 16\n"
-    "    .word .L08025D32 @ case 17\n"
-    "    .word .L08025D3C @ case 18\n"
-    "    .word .L08025D48 @ case 19\n"
-    "    .word .L08025D54 @ case 20\n"
-    "    .word .L08025D60 @ case 21\n"
-    "    .word .L08025D6A @ case 22\n"
-    "    .word .L08025D76 @ case 23\n"
-    "    .word .L08025D82 @ case 24\n"
-    "    .word .L08025D8E @ case 25\n"
-    "    .word .L08025D98 @ case 26\n"
-    "    .word .L08025DA4 @ case 27\n"
-    "    .word .L08025DB0 @ case 28\n"
-    "    .word .L08025DBC @ case 29\n"
-    "    .word .L08025DC6 @ case 30\n"
-    "    .word .L08025DD2 @ case 31\n"
-    "    .word .L08025DDE @ case 32\n"
-    "    .word .L08025DEA @ case 33\n"
-    "    .word .L08025E0C @ case 34\n"
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_NONE, .L08025C08)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_DOWN_LADDER, .L08025C08)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_MONEY, .L08025CB2)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_POWER_BERRY, .L08025C12)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_SICKLE_CURSED, .L08025C20)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_HOE_CURSED, .L08025C28)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_AXE_CURSED, .L08025C32)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_HAMMER_CURSED, .L08025C3C)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_WATERING_CAN_CURSED, .L08025C46)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_FISHING_ROD_CURSED, .L08025C4E)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_TELEPORT_STONE, .L08025C68)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_BLACK_GRASS, .L08025CCE)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_JUNK_ORE, .L08025CF8)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_COPPER, .L08025D04)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_SILVER, .L08025D0E)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_GOLD, .L08025D1A)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_MYSTRILE, .L08025D26)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_ORICHALC, .L08025D32)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_ADAMANTITE, .L08025D3C)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_MOON_STONE, .L08025D48)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_SAND_ROSE, .L08025D54)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_PINK_DIAMOND, .L08025D60)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_ALEXANDRITE, .L08025D6A)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_MYTHIC_STONE, .L08025D76)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_DIAMOND, .L08025D82)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_EMERALD, .L08025D8E)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_RUBY, .L08025D98)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_TOPAZ, .L08025DA4)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_PERIDOT, .L08025DB0)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_FLUORITE, .L08025DBC)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_AGATE, .L08025DC6)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_AMETHYST, .L08025DD2)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_HARVEST_GODDESS_JEWEL, .L08025DDE)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_KAPPA_JEWEL, .L08025DEA)
+    MINE_REWARD_CASE(.L08025B7C, MINE_ITEM_LITHOGRAPH, .L08025E0C)
     ".L08025C08:\n"
     "    adds r1, r6, #0\n"
     "    adds r1, #0x3c\n"
@@ -15537,48 +15596,48 @@ asm_unified(
     ".L08025C12:\n"
     "    ldr r0, [r6, #0x14]\n"
     "    adds r0, #0x80\n"
-    "    ldr r1, [r0]\n"
+    "    ldr r1, [r0] @ PlayerActor::ObtainPowerBerry\n"
     "    adds r0, r6, #0\n"
     "    bl _call_via_r1\n"
     "    b .L08025E2E\n"
     ".L08025C20:\n"
     "    add r4, sp, #8\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #5\n"
+    "    movs r1, #.LITEM_TOOL_SICKLE_CURSED\n"
     "    b .L08025C56\n"
     ".L08025C28:\n"
     "    mov r4, sp\n"
     "    adds r4, #9\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0xd\n"
+    "    movs r1, #.LITEM_TOOL_HOE_CURSED\n"
     "    b .L08025C56\n"
     ".L08025C32:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xa\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x15\n"
+    "    movs r1, #.LITEM_TOOL_AXE_CURSED\n"
     "    b .L08025C56\n"
     ".L08025C3C:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xb\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1d\n"
+    "    movs r1, #.LITEM_TOOL_HAMMER_CURSED\n"
     "    b .L08025C56\n"
     ".L08025C46:\n"
     "    add r4, sp, #0xc\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x25\n"
+    "    movs r1, #.LITEM_TOOL_WATERING_CAN_CURSED\n"
     "    b .L08025C56\n"
     ".L08025C4E:\n"
     "    mov r4, sp\n"
     "    adds r4, #0xd\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x2d\n"
+    "    movs r1, #.LITEM_TOOL_FISHING_ROD_CURSED\n"
     ".L08025C56:\n"
     "    bl __4ToolUi\n"
     "    adds r0, r6, #0\n"
     "    adds r1, r4, #0\n"
-    "    bl func_0802720C\n"
+    "    bl GivePlayerTool\n"
     "    b .L08025E2E\n"
     ".L08025C64:\n"
     "    ldr r0, [r4]\n"
@@ -15587,11 +15646,11 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0xe\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x4d\n"
+    "    movs r1, #.LITEM_TOOL_TELEPORT_STONE\n"
     "    bl __4ToolUi\n"
     "    adds r0, r6, #0\n"
     "    adds r1, r4, #0\n"
-    "    bl func_0802720C\n"
+    "    bl GivePlayerTool\n"
     "    ldr r0, [r6]\n"
     "    ldr r1, [r0]\n"
     "    movs r2, #0xa6\n"
@@ -15616,7 +15675,7 @@ asm_unified(
     "    subs r0, r5, #4\n"
     "    ldr r0, [r0]\n"
     ".L08025CAA:\n"
-    "    movs r1, #0xb6\n"
+    "    movs r1, #.LAUDIO_SFX_ITEM_OBTAINED\n"
     "    bl Start__23HardwareMusicPlayerSlotUs\n"
     "    b .L08025E2E\n"
     ".L08025CB2:\n"
@@ -15631,13 +15690,13 @@ asm_unified(
     "    subs r1, r0, r1\n"
     "    adds r1, #5\n"
     "    adds r0, r6, #0\n"
-    "    bl func_0802771C\n"
+    "    bl GivePlayerMoney\n"
     "    b .L08025E2E\n"
     ".L08025CCE:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #4\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x36\n"
+    "    movs r1, #.LITEM_FOOD_BLACK_GRASS\n"
     "    bl __4FoodUi\n"
     "    ldrb r1, [r4]\n"
     "    mov r0, sp\n"
@@ -15658,148 +15717,148 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0xf\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x11\n"
+    "    movs r1, #.LITEM_ARTICLE_JUNK_ORE\n"
     "    b .L08025DF2\n"
     ".L08025D04:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x10\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x12\n"
+    "    movs r1, #.LITEM_ARTICLE_COPPER\n"
     "    b .L08025DF2\n"
     ".L08025D0E:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x11\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x13\n"
+    "    movs r1, #.LITEM_ARTICLE_SILVER\n"
     "    b .L08025DF2\n"
     ".L08025D1A:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x12\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x14\n"
+    "    movs r1, #.LITEM_ARTICLE_GOLD\n"
     "    b .L08025DF2\n"
     ".L08025D26:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x13\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x15\n"
+    "    movs r1, #.LITEM_ARTICLE_MYSTRILE\n"
     "    b .L08025DF2\n"
     ".L08025D32:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x14\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x16\n"
+    "    movs r1, #.LITEM_ARTICLE_ORICHALC\n"
     "    b .L08025DF2\n"
     ".L08025D3C:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x15\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x17\n"
+    "    movs r1, #.LITEM_ARTICLE_ADAMANTITE\n"
     "    b .L08025DF2\n"
     ".L08025D48:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x16\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x18\n"
+    "    movs r1, #.LITEM_ARTICLE_MOON_STONE\n"
     "    b .L08025DF2\n"
     ".L08025D54:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x17\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x19\n"
+    "    movs r1, #.LITEM_ARTICLE_SAND_ROSE\n"
     "    b .L08025DF2\n"
     ".L08025D60:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x18\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1a\n"
+    "    movs r1, #.LITEM_ARTICLE_PINK_DIAMOND\n"
     "    b .L08025DF2\n"
     ".L08025D6A:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x19\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1b\n"
+    "    movs r1, #.LITEM_ARTICLE_ALEXANDRITE\n"
     "    b .L08025DF2\n"
     ".L08025D76:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1a\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1c\n"
+    "    movs r1, #.LITEM_ARTICLE_MYTHIC_STONE\n"
     "    b .L08025DF2\n"
     ".L08025D82:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1b\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1d\n"
+    "    movs r1, #.LITEM_ARTICLE_DIAMOND\n"
     "    b .L08025DF2\n"
     ".L08025D8E:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x1c\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1e\n"
+    "    movs r1, #.LITEM_ARTICLE_EMERALD\n"
     "    b .L08025DF2\n"
     ".L08025D98:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1d\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x1f\n"
+    "    movs r1, #.LITEM_ARTICLE_RUBY\n"
     "    b .L08025DF2\n"
     ".L08025DA4:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1e\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x20\n"
+    "    movs r1, #.LITEM_ARTICLE_TOPAZ\n"
     "    b .L08025DF2\n"
     ".L08025DB0:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x1f\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x21\n"
+    "    movs r1, #.LITEM_ARTICLE_PERIDOT\n"
     "    b .L08025DF2\n"
     ".L08025DBC:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x20\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x22\n"
+    "    movs r1, #.LITEM_ARTICLE_FLUORITE\n"
     "    b .L08025DF2\n"
     ".L08025DC6:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x21\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x23\n"
+    "    movs r1, #.LITEM_ARTICLE_AGATE\n"
     "    b .L08025DF2\n"
     ".L08025DD2:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x22\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x24\n"
+    "    movs r1, #.LITEM_ARTICLE_AMETHYST\n"
     "    b .L08025DF2\n"
     ".L08025DDE:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    mov r4, sp\n"
     "    adds r4, #0x23\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x25\n"
+    "    movs r1, #.LITEM_ARTICLE_HARVEST_GODDESS_JEWEL\n"
     "    b .L08025DF2\n"
     ".L08025DEA:\n"
     "    ldr r5, [r6, #0x14]\n"
     "    add r4, sp, #0x24\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x26\n"
+    "    movs r1, #.LITEM_ARTICLE_KAPPA_JEWEL\n"
     ".L08025DF2:\n"
     "    bl __7ArticleUi\n"
     "    ldrb r1, [r4]\n"
@@ -15817,7 +15876,7 @@ asm_unified(
     "    mov r4, sp\n"
     "    adds r4, #0x25\n"
     "    adds r0, r4, #0\n"
-    "    movs r1, #0x33\n"
+    "    movs r1, #.LITEM_ARTICLE_LITHOGRAPH\n"
     "    bl __7ArticleUi\n"
     "    ldrb r1, [r4]\n"
     "    mov r0, sp\n"
@@ -15832,6 +15891,11 @@ asm_unified(
     "    pop {r4, r5, r6}\n"
     "    pop {r0}\n"
     "    bx r0\n"
+    );
+}
+#endif
+
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_08025E38\n"
@@ -18347,8 +18411,8 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start func_0802720C\n"
-    "func_0802720C: @ 0x0802720C\n"
+    "    thumb_func_start GivePlayerTool\n"
+    "GivePlayerTool:\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    mov r7, sb\n"
     "    mov r6, r8\n"
@@ -18970,8 +19034,8 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start func_0802771C\n"
-    "func_0802771C: @ 0x0802771C\n"
+    "    thumb_func_start GivePlayerMoney\n"
+    "GivePlayerMoney:\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    sub sp, #8\n"
     "    adds r6, r0, #0\n"
@@ -25330,6 +25394,10 @@ asm_unified(
     "    .endif\n"
 );
 
+#undef DEFINE_MINE_REWARD_IDS
+#undef DEFINE_MINE_REWARD_ID
+#undef MINE_REWARD_CASE
+
 
 
 u32 PlayerActor::GetMaxWateringCanCapacity() const
@@ -25845,10 +25913,10 @@ void CheckPlayerCollectionEvents(PlayerActor const & player)
             }
         }
         if (all_shipped
-            && player.save_image->mine_floor.GetFlag10()
-            && player.save_image->mine_floor.GetFlag11()
+            && player.save_image->mine_floor.HasFoundSpringMinePowerBerry()
+            && player.save_image->mine_floor.HasFoundLithograph()
             && player.save_image->mine_floor.CountHarvestGoddessJewels()
-            && player.save_image->mine_floor.GetFlag12()) {
+            && player.save_image->mine_floor.HasFoundTeleportStone()) {
             player.game_object->QueueScript(GameSceneScriptRequest(
                 EventScript_AchievementEvent_SpringMine_CollectedEveryItem, 0), 0);
         }
@@ -25863,7 +25931,7 @@ void CheckPlayerCollectionEvents(PlayerActor const & player)
         }
         if (all_shipped
             && player.save_image->cursed_tools.HaveFoundAllTools()
-            && player.save_image->mine_floor.GetFlag0()
+            && player.save_image->mine_floor.HasFoundLakeMinePowerBerry()
             && player.save_image->mine_floor.CountKappaJewels()) {
             player.game_object->QueueScript(GameSceneScriptRequest(
                 EventScript_AchievementEvent_LakeMine_CollectedEveryItem, 0), 0);
@@ -36454,7 +36522,7 @@ asm_unified(
     ".Ljp_080300E0:\n"
     "    ldr r1, [r4]\n"
     "    mov r0, sl\n"
-    "    bl func_080258F8\n"
+    "    bl GivePlayerMineItem\n"
     "    bl .Ljp_08031CA2\n"
     "    .align 2, 0\n"
     ".Ljp_080300EC: .word 0x000003FF\n"
@@ -38698,7 +38766,7 @@ asm_unified(
     "    beq .Ljp_08031264\n"
     "    adds r1, r0, #0\n"
     "    mov r0, sl\n"
-    "    bl func_080274B0\n"
+    "    bl GivePlayerMoney\n"
     "    b .Ljp_08031268\n"
     ".Ljp_08031264:\n"
     "    ldr r6, [sp, #0x13c]\n"
@@ -48386,7 +48454,7 @@ asm_unified(
     ".L0803034C:\n"
     "    ldr r1, [r4]\n"
     "    mov r0, sl\n"
-    "    bl func_08025B64\n"
+    "    bl GivePlayerMineItem\n"
     "    bl .L08031F0E\n"
     "    .align 2, 0\n"
     ".L08030358: .word 0x000003FF\n"
@@ -50630,7 +50698,7 @@ asm_unified(
     "    beq .L080314D0\n"
     "    adds r1, r0, #0\n"
     "    mov r0, sl\n"
-    "    bl func_0802771C\n"
+    "    bl GivePlayerMoney\n"
     "    b .L080314D4\n"
     ".L080314D0:\n"
     "    ldr r6, [sp, #0x13c]\n"

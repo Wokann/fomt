@@ -1,187 +1,75 @@
 #include "time_of_day.hh"
 #include "mine_floor.hh"
+#include "mine_floor_items.h"
+#include "mine_weight_rows.h"
+#include "mine_item_codes.h"
 #include "game_state.hh"
 #include "random.hh"
 #include "unknown_inlines.hh"
 
-// Lake-mine buried-item codes and the matching per-floor weight rows.
-extern "C" u32 const gLakeMineBuriedItemCodes[] = {
-    1, 2, 4, 5, 6, 7, 8, 9, 11, 3,
+enum MineLayoutKind {
+    MINE_LAYOUT_TOP_FLOOR = 0,
+    MINE_LAYOUT_LARGE = 1,
+    MINE_LAYOUT_MEDIUM = 2,
+    MINE_LAYOUT_SMALL = 3,
+    MINE_LAYOUT_LAKE_B9 = 4,
 };
 
-// Each weight column corresponds to gLakeMineBuriedItemCodes. The
-// floor-group selector distinguishes the cursed-tool floors explicitly.
-extern "C" u8 const gLakeMineBuriedItemWeights[][10] = {
-    { 0x19, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x19, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x17, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x15, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x15, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x13, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x11, 0x00 },
-    { 0x14, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00 },
-    { 0x0A, 0x28, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0F, 0x00 },
-    { 0x14, 0x2D, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
-    { 0x1E, 0x4B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x04, 0x32 },
-    { 0x14, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x00 },
-    { 0x1E, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x0A, 0x00 },
-    { 0x14, 0x37, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x12, 0x00 },
-    { 0x1E, 0x37, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x08, 0x00 },
-    { 0x14, 0x3C, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x10, 0x00 },
-    { 0x1E, 0x3C, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x08, 0x00 },
-    { 0x14, 0x41, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0E, 0x00 },
-    { 0x1E, 0x41, 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x06, 0x00 },
-    { 0x14, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0C, 0x00 },
-    { 0x1E, 0x46, 0x00, 0x00, 0x00, 0x00, 0x01, 0x00, 0x06, 0x00 },
-    { 0x14, 0x4B, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
-    { 0x1E, 0x2D, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
-    { 0x0F, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
-    { 0x00, 0x50, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00 },
+enum {
+    MINE_DEFAULT_WIDTH = 13,
+    MINE_DEFAULT_HEIGHT = 6,
+    MINE_MEDIUM_HEIGHT = 14,
+    MINE_LARGE_FLOOR_INTERVAL = 5,
+    MINE_MEDIUM_FLOOR_INTERVAL = 3,
+    MINE_TOP_FLOOR_ROCK_TARGET = 20,
+    MINE_LARGE_FLOOR_ROCK_TARGET = 300,
+    MINE_MEDIUM_FLOOR_ROCK_TARGET = 100,
+    MINE_SMALL_FLOOR_ROCK_TARGET = 30,
+    MINE_LAKE_B9_ROCK_TARGET = 40,
+    MINE_ROCK_PLACEMENT_ATTEMPTS = 9,
 };
 
-// Lake-mine rock item codes; each following weight row has one column
-// per code. Codes remain native mine-domain values, not global item IDs.
-extern "C" u32 const gLakeMineRockItemCodes[] = {
-    0x21, 0x0C, 0x15, 0x16, 0x13, 0x14, 0x18,
-    0x19, 0x1A, 0x1B, 0x1C, 0x1D, 0x1E, 0x1F,
+enum {
+    MINE_EXCLUDED_POSITION_COUNT = 12,
+    MINE_FIRST_TILE_COLUMN = 2,
+    MINE_FIRST_TILE_ROW = 7,
+    MINE_TILES_PER_CELL_SHIFT = 1,
+    MINE_INVALID_CELL_COORDINATE = 0xFF,
 };
 
-// GetLakeRockTableIndex selects one fourteen-column row. Columns follow
-// gLakeMineRockItemCodes; these are weights in the native item domain.
-extern "C" u8 const gLakeMineRockItemWeights[][14] = {
-    { 0x01, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x05, 0x0A, 0x14, 0x1E },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x01, 0x0A, 0x14, 0x1E, 0x32 },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x01, 0x05, 0x14, 0x1E, 0x32, 0x1E },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x0A, 0x1E, 0x32, 0x1E, 0x14 },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x14, 0x32, 0x1E, 0x14, 0x0A },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x32, 0x14, 0x0A, 0x05, 0x01 },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x1E, 0x0A, 0x05, 0x01, 0x01 },
-    { 0x00, 0x46, 0x00, 0x00, 0x19, 0x00, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 },
-    { 0x00, 0x46, 0x00, 0x00, 0x00, 0x19, 0x00, 0x00, 0x01, 0x01, 0x01, 0x01, 0x01, 0x01 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x05, 0x00, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x03, 0x05, 0x14, 0x1E, 0x32, 0x46 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x05, 0x0A, 0x1E, 0x32, 0x46, 0x32 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x14, 0x32, 0x46, 0x32, 0x1E },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x1E, 0x46, 0x32, 0x1E, 0x14 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x46, 0x1E, 0x14, 0x0A, 0x05 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x46, 0x32, 0x14, 0x0A, 0x05, 0x03 },
-    { 0x00, 0x32, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03 },
-    { 0x00, 0x32, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x00, 0x03, 0x03, 0x03, 0x03, 0x03, 0x03 },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x0A, 0x14, 0x1E, 0x5A },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x14, 0x1E, 0x5A, 0x1E },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x1E, 0x5A, 0x1E, 0x14 },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x14, 0x5A, 0x1E, 0x14, 0x0A },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x5A, 0x14, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x5A, 0x1E, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x14, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x14, 0x00, 0x00, 0x00, 0x1E, 0x00, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x14, 0x01, 0x00, 0x00, 0x00, 0x14, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x01, 0x14, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x00, 0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x14, 0x1E, 0x32, 0x5A },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x1E, 0x32, 0x5A, 0x32 },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x14, 0x32, 0x5A, 0x32, 0x1E },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x1E, 0x5A, 0x32, 0x1E, 0x14 },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x5A, 0x1E, 0x14, 0x0A, 0x0A },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x5A, 0x32, 0x14, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x0A, 0x00, 0x00, 0x32, 0x00, 0x00, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x0A, 0x00, 0x00, 0x00, 0x32, 0x00, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x0A, 0x01, 0x00, 0x00, 0x00, 0x32, 0x00, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x02, 0x0A, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x0A, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x1E, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x1E, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x32, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x46, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x0A, 0x32, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x14, 0x1E, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x32, 0x00, 0x1E, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x00, 0x00, 0x00, 0x32, 0x32, 0x0A, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x46, 0x0A, 0x14, 0x14, 0x14, 0x14, 0x14, 0x14 },
-    { 0x00, 0x00, 0x01, 0x01, 0x00, 0x00, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E, 0x1E },
-    { 0x32, 0x00, 0x01, 0x01, 0x0A, 0x0A, 0x32, 0x32, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A, 0x0A },
+enum {
+    MINE_SOIL_RANDOM_SHIFT = 4,
+    MINE_ROCK_RANDOM_SHIFT = 8,
+    MINE_POSITION_RANDOM_SHIFT = 8,
+    MINE_WEIGHT_DRAW_MASK = 0xFF,
+    MINE_NEIGHBOR_NEGATIVE = 1,
+    MINE_NEIGHBOR_HORIZONTAL = 2,
+    MINE_NEIGHBOR_DIRECTION_MASK = MINE_NEIGHBOR_NEGATIVE | MINE_NEIGHBOR_HORIZONTAL,
 };
 
-// Spring-mine buried-item codes, followed by their per-floor-group weights.
-extern "C" u32 const gSpringMineBuriedItemCodes[] = {
-    1, 2, 11, 3, 34,
-};
-
-// GetSpringBuriedItemTableIndex selects a row with one column per code.
-extern "C" u8 const gSpringMineBuriedItemWeights[][5] = {
-    { 0x32, 0x28, 0x05, 0x00, 0x00 },
-    { 0x32, 0x28, 0x0A, 0x00, 0x00 },
-    { 0x19, 0x32, 0x0A, 0x00, 0x00 },
-    { 0x19, 0x32, 0x0F, 0x00, 0x00 },
-    { 0x19, 0x3C, 0x0F, 0x00, 0x00 },
-    { 0x19, 0x3C, 0x14, 0x00, 0x00 },
-    { 0x19, 0x46, 0x14, 0x00, 0x00 },
-    { 0x19, 0x46, 0x19, 0x32, 0x00 },
-    { 0x19, 0x50, 0x00, 0x00, 0x00 },
-    { 0x19, 0x50, 0x00, 0x00, 0x00 },
-    { 0x19, 0x5A, 0x00, 0x00, 0x00 },
-    { 0x19, 0x5A, 0x00, 0x00, 0x00 },
-    { 0x19, 0x63, 0x00, 0x00, 0x00 },
-    { 0x19, 0x63, 0x0A, 0x00, 0x00 },
-    { 0x00, 0x63, 0x63, 0x00, 0x32 },
-};
-
-// Spring-mine rock item codes, in the column order of the following rows.
-extern "C" u32 const gSpringMineRockItemCodes[] = {
-    0x0A, 0x20, 0x0C, 0x0D, 0x0E,
-    0x0F, 0x10, 0x11, 0x12, 0x17,
-};
-
-// The native spring-mine rock selector yields the row index (0..20).
-extern "C" u8 const gSpringMineRockItemWeights[][10] = {
-    { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x28, 0x32, 0x19, 0x19, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x28, 0x32, 0x19, 0x19, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x1E, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x1E, 0x32, 0x32, 0x19, 0x19, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x14, 0x32, 0x32, 0x19, 0x19, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x14, 0x32, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x0A, 0x32, 0x32, 0x32, 0x19, 0x00, 0x00, 0x00 },
-    { 0x00, 0x00, 0x0A, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x00 },
-    { 0x00, 0x00, 0x05, 0x32, 0x32, 0x32, 0x32, 0x19, 0x19, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x32, 0x32, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x32, 0x32, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x32, 0x32, 0x00 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x00 },
-    { 0x00, 0x0A, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x01 },
-    { 0x00, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x01 },
-    { 0x32, 0x00, 0x05, 0x19, 0x19, 0x19, 0x19, 0x19, 0x19, 0x01 },
-};
-
-// Independent original runtime literal; natural emission remains unresolved.
-
+enum { TELEPORT_STONE_FIRST_YEAR = 3 };
 
 // Initializing the 22 known flags preserves the two unknown upper bits at
 // +0x626 and the padding at +0x627. Every cell's three fields are cleared.
 MineFloorState::MineFloorState()
-    : layout_kind(0),
-      flag_624_0(false), flag_624_1(false), flag_624_2(false), flag_624_3(false),
-      flag_624_4(false), flag_624_5(false), flag_624_6(false), flag_624_7(false),
-      flag_625_0(false), flag_625_1(false), flag_625_2(false), flag_625_3(false),
-      flag_625_4(false), flag_625_5(false), flag_625_6(false), flag_625_7(false),
-      flag_626_0(false), flag_626_1(false), flag_626_2(false),
-      flag_626_3(false), flag_626_4(false), flag_626_5(false)
+    : layout_kind(MINE_LAYOUT_TOP_FLOOR),
+      found_lake_mine_power_berry(false), found_kappa_jewel_floor_0(false),
+      found_kappa_jewel_b40(false), found_kappa_jewel_b60(false),
+      found_kappa_jewel_b80(false), found_kappa_jewel_b120(false),
+      found_kappa_jewel_b140(false), found_kappa_jewel_b160(false),
+      found_kappa_jewel_b180(false), found_kappa_jewel_b255(false),
+      found_spring_mine_power_berry(false), found_lithograph(false),
+      found_teleport_stone(false), found_goddess_jewel_b60(false),
+      found_goddess_jewel_b102(false), found_goddess_jewel_b123(false),
+      found_goddess_jewel_b152(false), found_goddess_jewel_b155(false),
+      found_goddess_jewel_b171(false), found_goddess_jewel_b190(false),
+      found_goddess_jewel_b202(false), found_goddess_jewel_b222(false)
 {
-    for (u32 row = 0; row < 28; ++row) {
-        for (u32 column = 0; column < 28; ++column) {
-            cells[row][column].type = 0;
-            cells[row][column].rock_item = 0;
-            cells[row][column].buried_item = 0;
+    for (u32 row = 0; row < ARRAY_COUNT(cells); ++row) {
+        for (u32 column = 0; column < ARRAY_COUNT(cells[row]); ++column) {
+            cells[row][column].type = MINE_CELL_SOIL;
+            cells[row][column].rock_item = MINE_ITEM_NONE;
+            cells[row][column].buried_item = MINE_ITEM_NONE;
         }
     }
 }
@@ -190,71 +78,76 @@ MineFloorPosition MineFloorState::GenerateLayout(MaryMineKind mine_kind,
     u32 floor, MineFloorPosition const * input, u32 count)
 {
     MineFloorPosition result;
-    MineFloorPosition excluded[12];
-    for (u32 row = 0; row < 28; ++row) {
-        for (u32 column = 0; column < 28; ++column) {
-            cells[row][column].type = 0;
-            cells[row][column].rock_item = 0;
-            cells[row][column].buried_item = 0;
+    MineFloorPosition excluded[MINE_EXCLUDED_POSITION_COUNT];
+    for (u32 row = 0; row < ARRAY_COUNT(cells); ++row) {
+        for (u32 column = 0; column < ARRAY_COUNT(cells[row]); ++column) {
+            cells[row][column].type = MINE_CELL_SOIL;
+            cells[row][column].rock_item = MINE_ITEM_NONE;
+            cells[row][column].buried_item = MINE_ITEM_NONE;
         }
     }
     if (input != 0) {
         for (u32 index = 0; index < count; ++index)
             excluded[index] = input[index];
     }
-    for (i32 index = 0; index < 12; ++index) {
-        if (static_cast<u8>(excluded[index].column - 2) > 55)
-            excluded[index].column = 0xFF;
+    // The exclusions arrive in map tiles. Convert in-bounds coordinates into mine cells.
+    for (i32 index = 0; index < MINE_EXCLUDED_POSITION_COUNT; ++index) {
+        if (static_cast<u8>(excluded[index].column - MINE_FIRST_TILE_COLUMN)
+            > (ARRAY_COUNT(cells[0]) << MINE_TILES_PER_CELL_SHIFT) - 1)
+            excluded[index].column = MINE_INVALID_CELL_COORDINATE;
         else
-            excluded[index].column = (excluded[index].column - 2) >> 1;
-        if (static_cast<u8>(excluded[index].row - 7) > 55)
-            excluded[index].row = 0xFF;
+            excluded[index].column = (excluded[index].column - MINE_FIRST_TILE_COLUMN) >> MINE_TILES_PER_CELL_SHIFT;
+        if (static_cast<u8>(excluded[index].row - MINE_FIRST_TILE_ROW)
+            > (ARRAY_COUNT(cells) << MINE_TILES_PER_CELL_SHIFT) - 1)
+            excluded[index].row = MINE_INVALID_CELL_COORDINATE;
         else
-            excluded[index].row = (excluded[index].row - 7) >> 1;
+            excluded[index].row = (excluded[index].row - MINE_FIRST_TILE_ROW) >> MINE_TILES_PER_CELL_SHIFT;
     }
-    i32 rocks;
+    i32 rock_target;
     if (floor == 0) {
-        layout_kind = 0;
-        rocks = 20;
+        layout_kind = MINE_LAYOUT_TOP_FLOOR;
+        rock_target = MINE_TOP_FLOOR_ROCK_TARGET;
     } else if (floor == 9 && mine_kind == MINE_LAKE) {
-        layout_kind = 4;
-        rocks = 40;
-    } else if (floor % 5 == 0) {
-        layout_kind = 1;
-        rocks = 300;
-    } else if (floor % 3 == 0) {
-        layout_kind = 2;
-        rocks = 100;
+        layout_kind = MINE_LAYOUT_LAKE_B9;
+        rock_target = MINE_LAKE_B9_ROCK_TARGET;
+    } else if (floor % MINE_LARGE_FLOOR_INTERVAL == 0) {
+        layout_kind = MINE_LAYOUT_LARGE;
+        rock_target = MINE_LARGE_FLOOR_ROCK_TARGET;
+    } else if (floor % MINE_MEDIUM_FLOOR_INTERVAL == 0) {
+        layout_kind = MINE_LAYOUT_MEDIUM;
+        rock_target = MINE_MEDIUM_FLOOR_ROCK_TARGET;
     } else {
-        layout_kind = 3;
-        rocks = 30;
+        layout_kind = MINE_LAYOUT_SMALL;
+        rock_target = MINE_SMALL_FLOOR_ROCK_TARGET;
     }
     if (floor != 0) {
-        i32 column = (rand() >> 8) % (GetWidth() - 2) + 1;
-        i32 row = (rand() >> 8) % (GetHeight() - 2) + 1;
-        cells[row][column].type = 3;
-        i32 const direction = (rand() >> 8) & 3;
-        if (direction & 2) {
-            if (direction & 1)
+        // Place the up ladder inside the border, then pick a cardinal neighbor.
+        i32 column = (rand() >> MINE_POSITION_RANDOM_SHIFT) % (GetWidth() - 2) + 1;
+        i32 row = (rand() >> MINE_POSITION_RANDOM_SHIFT) % (GetHeight() - 2) + 1;
+        cells[row][column].type = MINE_CELL_UP_LADDER;
+        i32 const direction = (rand() >> MINE_POSITION_RANDOM_SHIFT) & MINE_NEIGHBOR_DIRECTION_MASK;
+        if (direction & MINE_NEIGHBOR_HORIZONTAL) {
+            if (direction & MINE_NEIGHBOR_NEGATIVE)
                 --column;
             else
                 ++column;
         } else {
-            if (direction & 1)
+            if (direction & MINE_NEIGHBOR_NEGATIVE)
                 --row;
             else
                 ++row;
         }
         result.column = column;
         result.row = row;
-        cells[result.row][result.column].type = 1;
+        // Temporarily leave this cell eligible for buried items and reserve it from rocks.
+        cells[result.row][result.column].type = MINE_CELL_DUG_SOIL;
     }
     if (mine_kind == MINE_SPRING)
-        PlaceSpringMineItems(floor, rocks, excluded);
+        PlaceSpringMineItems(floor, rock_target, excluded);
     else
-        PlaceLakeMineItems(floor, rocks, excluded);
+        PlaceLakeMineItems(floor, rock_target, excluded);
     if (floor != 0)
-        cells[result.row][result.column].type = 0;
+        cells[result.row][result.column].type = MINE_CELL_SOIL;
     return result;
 }
 
@@ -263,8 +156,8 @@ void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
 {
     u32 const width = GetWidth();
     u32 const height = GetHeight();
-    u32 table = GetSpringBuriedItemTableIndex(floor);
-    i32 const random_start = rand() >> 4;
+    u32 weight_row = GetSpringBuriedItemTableIndex(floor);
+    i32 const random_start = rand() >> MINE_SOIL_RANDOM_SHIFT;
     u32 const first = random_start % (height * width);
     for (u32 visit = 0; visit < (height * width); ++visit) {
         u32 index = first + visit;
@@ -273,13 +166,13 @@ void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
         i32 const column = index % width;
         i32 const row = index / width;
         i32 const type = cells[row][column].type;
-        if (type <= 1) {
-            i32 random = (rand() >> 4) & 0xFF;
-            for (i32 item_index = 0; item_index < 5; ++item_index) {
-                if (gSpringMineBuriedItemWeights[table][item_index] != 0) {
-                    if (random < gSpringMineBuriedItemWeights[table][item_index]) {
+        if (type <= MINE_CELL_DUG_SOIL) {
+            i32 roll = (rand() >> MINE_SOIL_RANDOM_SHIFT) & MINE_WEIGHT_DRAW_MASK;
+            for (i32 item_index = 0; item_index < static_cast<i32>(sizeof(SpringMineBuriedWeightRow)); ++item_index) {
+                if (gSpringMineBuriedItemWeights.bytes[weight_row][item_index] != 0) {
+                    if (roll < gSpringMineBuriedItemWeights.bytes[weight_row][item_index]) {
                         u32 item = gSpringMineBuriedItemCodes[item_index];
-                        if (item == 1) {
+                        if (item == MINE_ITEM_DOWN_LADDER) {
                             if (row != 0 && row < height - 1
                                 && column != 0 && column < width - 1) {
                                 for (i32 near_row = row - 1; near_row < row + 2; ++near_row) {
@@ -289,54 +182,54 @@ void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
                                         // Preserve the native conjunction, not an intended bounds fix.
                                         if (near_column < 0 && near_column >= static_cast<i32>(width))
                                             continue;
-                                        if (cells[near_row][near_column].type == 3) {
-                                            item = 0;
+                                        if (cells[near_row][near_column].type == MINE_CELL_UP_LADDER) {
+                                            item = MINE_ITEM_NONE;
                                             break;
                                         }
                                     }
-                                    if (item == 0)
+                                    if (item == MINE_ITEM_NONE)
                                         break;
                                 }
                             } else {
-                                item = 0;
+                                item = MINE_ITEM_NONE;
                             }
                         }
                         cells[row][column].buried_item = item;
                         break;
                     }
-                    random -= gSpringMineBuriedItemWeights[table][item_index];
-                    if (random < 0)
+                    roll -= gSpringMineBuriedItemWeights.bytes[weight_row][item_index];
+                    if (roll < 0)
                         break;
                 }
             }
         }
     }
 
-    table = GetSpringRockTableIndex(floor);
+    weight_row = GetSpringRockTableIndex(floor);
     for (; rock_count > 0; --rock_count) {
         bool placed = false;
-        for (i32 attempts = 1; attempts <= 9; ++attempts) {
-            i32 const column = (rand() >> 8) % width;
-            i32 const row = (rand() >> 8) % height;
-            if (cells[row][column].type == 0) {
+        for (i32 attempts = 1; attempts <= MINE_ROCK_PLACEMENT_ATTEMPTS; ++attempts) {
+            i32 const column = (rand() >> MINE_POSITION_RANDOM_SHIFT) % width;
+            i32 const row = (rand() >> MINE_POSITION_RANDOM_SHIFT) % height;
+            if (cells[row][column].type == MINE_CELL_SOIL) {
                 placed = true;
-                for (i32 index = 0; index < 12; ++index) {
+                for (i32 index = 0; index < MINE_EXCLUDED_POSITION_COUNT; ++index) {
                     if (excluded[index].column == column && excluded[index].row == row) {
                         placed = false;
                         break;
                     }
                 }
                 if (placed == true) {
-                    cells[row][column].type = 4;
-                    i32 random = (rand() >> 8) & 0xFF;
-                    for (i32 item_index = 0; item_index < 10; ++item_index) {
-                        if (gSpringMineRockItemWeights[table][item_index] != 0) {
-                            if (random < gSpringMineRockItemWeights[table][item_index]) {
+                    cells[row][column].type = MINE_CELL_ROCK;
+                    i32 roll = (rand() >> MINE_ROCK_RANDOM_SHIFT) & MINE_WEIGHT_DRAW_MASK;
+                    for (i32 item_index = 0; item_index < static_cast<i32>(sizeof(SpringMineRockWeightRow)); ++item_index) {
+                        if (gSpringMineRockItemWeights.bytes[weight_row][item_index] != 0) {
+                            if (roll < gSpringMineRockItemWeights.bytes[weight_row][item_index]) {
                                 cells[row][column].rock_item = gSpringMineRockItemCodes[item_index];
                                 break;
                             }
-                            random -= gSpringMineRockItemWeights[table][item_index];
-                            if (random < 0)
+                            roll -= gSpringMineRockItemWeights.bytes[weight_row][item_index];
+                            if (roll < 0)
                                 break;
                         }
                     }
@@ -348,51 +241,51 @@ void MineFloorState::PlaceSpringMineItems(u32 floor, i32 rock_count,
     }
 }
 
-u32 MineFloorState::GetSpringBuriedItemTableIndex(u32 value) const
+u32 MineFloorState::GetSpringBuriedItemTableIndex(u32 floor) const
 {
-    u32 result = 0;
+    u32 result = SPRING_BURIED_ROW_ENTRY;
 
-    if (value != 0)
+    if (floor != 0)
     {
-        if (value <= 9)
+        if (floor <= 9)
         {
-            result = 1;
+            result = SPRING_BURIED_ROW_B1_B9;
         }
-        else if (value <= 0x63)
+        else if (floor <= 99)
         {
-            result = 2;
-            u32 next = 0x14;
-            if (value >= next)
+            result = SPRING_BURIED_ROW_B10_B19;
+            u32 next = 20;
+            if (floor >= next)
             {
                 do
                 {
                     ++result;
-                    next += 0x14;
-                } while (next <= 0x63 && value >= next);
+                    next += 20;
+                } while (next <= 99 && floor >= next);
             }
         }
-        else if (value == 0x64)
+        else if (floor == 100)
         {
-            result = 7;
+            result = SPRING_BURIED_ROW_B100;
         }
-        else if (value <= 0xF9)
+        else if (floor <= 249)
         {
-            result = 8;
-            u32 next = 0x82;
-            if (value >= next)
+            result = SPRING_BURIED_ROW_B101_B129;
+            u32 next = 130;
+            if (floor >= next)
             {
                 do
                 {
                     ++result;
-                    next += 0x1E;
-                } while (next <= 0xF9 && value >= next);
+                    next += 30;
+                } while (next <= 249 && floor >= next);
             }
         }
         else
         {
-            result = 0xE;
-            if (value <= 0xFE)
-                result = 0xD;
+            result = SPRING_BURIED_ROW_B255;
+            if (floor <= 254)
+                result = SPRING_BURIED_ROW_B250_B254;
         }
     }
 
@@ -404,9 +297,9 @@ u32 MineFloorState::GetSpringRockTableIndex(u32 floor) const
 {
     u32 result;
     switch (floor) {
-    case 20: result = 12; break;
-    case 30: result = 14; break;
-    case 40: result = 16; break;
+    case 20: result = SPRING_ROCK_ROW_B20; break;
+    case 30: result = SPRING_ROCK_ROW_B30; break;
+    case 40: result = SPRING_ROCK_ROW_B40; break;
     case 60:
     case 102:
     case 123:
@@ -416,20 +309,20 @@ u32 MineFloorState::GetSpringRockTableIndex(u32 floor) const
     case 190:
     case 202:
     case 222:
-        result = 18; break;
-    case 255: result = 20; break;
+        result = SPRING_ROCK_ROW_GODDESS_JEWEL_FLOORS; break;
+    case 255: result = SPRING_ROCK_ROW_B255; break;
     default:
         result = floor;
         if (floor > 10) {
-            result = 11;
+            result = SPRING_ROCK_ROW_B11_B19;
             if (floor > 19) {
-                result = 13;
+                result = SPRING_ROCK_ROW_B21_B29;
                 if (floor > 29) {
-                    result = 15;
+                    result = SPRING_ROCK_ROW_B31_B39;
                     if (floor > 39) {
-                        result = 19;
+                        result = SPRING_ROCK_ROW_B231_B254;
                         if (floor <= 230)
-                            result = 17;
+                            result = SPRING_ROCK_ROW_B41_B230;
                     }
                 }
             }
@@ -444,8 +337,8 @@ void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
 {
     u32 const width = GetWidth();
     u32 const height = GetHeight();
-    u32 table = GetLakeBuriedItemTableIndex(floor);
-    i32 const random_start = rand() >> 4;
+    u32 weight_row = GetLakeBuriedItemTableIndex(floor);
+    i32 const random_start = rand() >> MINE_SOIL_RANDOM_SHIFT;
     u32 const first = random_start % (height * width);
     for (u32 visit = 0; visit < (height * width); ++visit) {
         u32 index = first + visit;
@@ -454,13 +347,13 @@ void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
         i32 const column = index % width;
         i32 const row = index / width;
         i32 const type = cells[row][column].type;
-        if (type <= 1) {
-            i32 random = (rand() >> 4) & 0xFF;
-            for (i32 item_index = 0; item_index < 10; ++item_index) {
-                if (gLakeMineBuriedItemWeights[table][item_index] != 0) {
-                    if (random < gLakeMineBuriedItemWeights[table][item_index]) {
+        if (type <= MINE_CELL_DUG_SOIL) {
+            i32 roll = (rand() >> MINE_SOIL_RANDOM_SHIFT) & MINE_WEIGHT_DRAW_MASK;
+            for (i32 item_index = 0; item_index < static_cast<i32>(sizeof(LakeMineBuriedWeightRow)); ++item_index) {
+                if (gLakeMineBuriedItemWeights.bytes[weight_row][item_index] != 0) {
+                    if (roll < gLakeMineBuriedItemWeights.bytes[weight_row][item_index]) {
                         u32 item = gLakeMineBuriedItemCodes[item_index];
-                        if (item == 1) {
+                        if (item == MINE_ITEM_DOWN_LADDER) {
                             if (row != 0 && row < height - 1
                                 && column != 0 && column < width - 1) {
                                 for (i32 near_row = row - 1; near_row < row + 2; ++near_row) {
@@ -470,54 +363,54 @@ void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
                                         // Preserve the native conjunction, not an intended bounds fix.
                                         if (near_column < 0 && near_column >= static_cast<i32>(width))
                                             continue;
-                                        if (cells[near_row][near_column].type == 3) {
-                                            item = 0;
+                                        if (cells[near_row][near_column].type == MINE_CELL_UP_LADDER) {
+                                            item = MINE_ITEM_NONE;
                                             break;
                                         }
                                     }
-                                    if (item == 0)
+                                    if (item == MINE_ITEM_NONE)
                                         break;
                                 }
                             } else {
-                                item = 0;
+                                item = MINE_ITEM_NONE;
                             }
                         }
                         cells[row][column].buried_item = item;
                         break;
                     }
-                    random -= gLakeMineBuriedItemWeights[table][item_index];
-                    if (random < 0)
+                    roll -= gLakeMineBuriedItemWeights.bytes[weight_row][item_index];
+                    if (roll < 0)
                         break;
                 }
             }
         }
     }
 
-    table = GetLakeRockTableIndex(floor);
+    weight_row = GetLakeRockTableIndex(floor);
     for (; rock_count > 0; --rock_count) {
         bool placed = false;
-        for (i32 attempts = 1; attempts <= 9; ++attempts) {
-            i32 const column = (rand() >> 8) % width;
-            i32 const row = (rand() >> 8) % height;
-            if (cells[row][column].type == 0) {
+        for (i32 attempts = 1; attempts <= MINE_ROCK_PLACEMENT_ATTEMPTS; ++attempts) {
+            i32 const column = (rand() >> MINE_POSITION_RANDOM_SHIFT) % width;
+            i32 const row = (rand() >> MINE_POSITION_RANDOM_SHIFT) % height;
+            if (cells[row][column].type == MINE_CELL_SOIL) {
                 placed = true;
-                for (i32 index = 0; index < 12; ++index) {
+                for (i32 index = 0; index < MINE_EXCLUDED_POSITION_COUNT; ++index) {
                     if (excluded[index].column == column && excluded[index].row == row) {
                         placed = false;
                         break;
                     }
                 }
                 if (placed == true) {
-                    cells[row][column].type = 4;
-                    i32 random = (rand() >> 8) & 0xFF;
-                    for (i32 item_index = 0; item_index < 14; ++item_index) {
-                        if (gLakeMineRockItemWeights[table][item_index] != 0) {
-                            if (random < gLakeMineRockItemWeights[table][item_index]) {
+                    cells[row][column].type = MINE_CELL_ROCK;
+                    i32 roll = (rand() >> MINE_ROCK_RANDOM_SHIFT) & MINE_WEIGHT_DRAW_MASK;
+                    for (i32 item_index = 0; item_index < static_cast<i32>(sizeof(LakeMineRockWeightRow)); ++item_index) {
+                        if (gLakeMineRockItemWeights.bytes[weight_row][item_index] != 0) {
+                            if (roll < gLakeMineRockItemWeights.bytes[weight_row][item_index]) {
                                 cells[row][column].rock_item = gLakeMineRockItemCodes[item_index];
                                 break;
                             }
-                            random -= gLakeMineRockItemWeights[table][item_index];
-                            if (random < 0)
+                            roll -= gLakeMineRockItemWeights.bytes[weight_row][item_index];
+                            if (roll < 0)
                                 break;
                         }
                     }
@@ -529,88 +422,75 @@ void MineFloorState::PlaceLakeMineItems(u32 floor, i32 rock_count,
     }
 }
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "\n"
-    "    @ Only the lake buried-item row selector remains native.\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start GetLakeBuriedItemTableIndex__C14MineFloorStateUi\n"
-    "GetLakeBuriedItemTableIndex__C14MineFloorStateUi: @ 0x0809D79C\n"
-    "    push {lr}\n"
-    "    adds r0, r1, #0\n"
-    "    cmp r0, #9\n"
-    "    bls .L0809D7D2\n"
-    "    movs r0, #0x19\n"
-    "    cmp r1, #0xff\n"
-    "    beq .L0809D7D2\n"
-    "    movs r0, #0x18\n"
-    "    cmp r1, #0x4f\n"
-    "    bhi .L0809D7D2\n"
-    "    movs r0, #0xa\n"
-    "    movs r2, #0x13\n"
-    "    cmp r1, #0x13\n"
-    "    blo .L0809D7D2\n"
-    "    cmp r1, #0x13\n"
-    "    bne .L0809D7C0\n"
-    "    movs r0, #0xb\n"
-    "    b .L0809D7D2\n"
-    ".L0809D7C0:\n"
-    "    adds r0, #2\n"
-    "    adds r2, #0xa\n"
-    "    cmp r2, #0x4f\n"
-    "    bhi .L0809D7D2\n"
-    "    cmp r1, r2\n"
-    "    blo .L0809D7D2\n"
-    "    cmp r1, r2\n"
-    "    bne .L0809D7C0\n"
-    "    adds r0, #1\n"
-    ".L0809D7D2:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
-
-u32 MineFloorState::GetLakeRockTableIndex(u32 value) const
+u32 MineFloorState::GetLakeBuriedItemTableIndex(u32 floor) const
 {
-    switch (value)
+    u32 row;
+    do {
+        row = floor;
+        if (floor <= 9)
+            break;
+
+        row = LAKE_BURIED_ROW_B255;
+        if (floor == 255)
+            break;
+
+        row = LAKE_BURIED_ROW_B80_B254;
+        if (floor > 79)
+            break;
+
+        row = LAKE_BURIED_ROW_B10_B18;
+        for (u32 bound = 19; bound <= 79 && floor >= bound; bound += 10) {
+            if (floor == bound) {
+                ++row;
+                break;
+            }
+            row += 2;
+        }
+    } while (false);
+
+    return row;
+}
+
+u32 MineFloorState::GetLakeRockTableIndex(u32 floor) const
+{
+    switch (floor)
     {
-    case 0xFF:
-        return 0x37;
-    case 0x1E:
-    case 0x46:
-    case 0x5A:
-        return 0x1E;
-    case 0x28:
-    case 0x3C:
-    case 0x50:
-        return 0x1F;
-    case 0x32:
-    case 0x64:
-    case 0x96:
-    case 0xC8:
-        return 0x20;
-    case 0x6E:
-    case 0x82:
-    case 0xAA:
-    case 0xBE:
-        return 0x2A;
-    case 0x78:
-    case 0x8C:
-    case 0xA0:
-    case 0xB4:
-        return 0x2B;
+    case 255:
+        return LAKE_ROCK_ROW_B255;
+    case 30:
+    case 70:
+    case 90:
+        return LAKE_ROCK_ROW_B30_B70_B90;
+    case 40:
+    case 60:
+    case 80:
+        return LAKE_ROCK_ROW_B40_B60_B80;
+    case 50:
+    case 100:
+    case 150:
+    case 200:
+        return LAKE_ROCK_ROW_B50_B100_B150_B200;
+    case 110:
+    case 130:
+    case 170:
+    case 190:
+        return LAKE_ROCK_ROW_B110_B130_B170_B190;
+    case 120:
+    case 140:
+    case 160:
+    case 180:
+        return LAKE_ROCK_ROW_SHARED_TENS_AFTER_B100;
     }
 
-    if (value <= 0x14)
-        return value;
-    if (value > 0xFA)
-        return 0x36;
-    if (value <= 0x63)
-        return value % 10 + 0x14;
-    if (value > 0xC7)
-        return value % 10 + 0x2B;
-    return value % 10 + 0x20;
+    if (floor <= 20)
+        return floor;
+    if (floor > 250)
+        return LAKE_ROCK_ROW_B251_B254;
+    if (floor <= 99)
+        return floor % 10 + LAKE_ROCK_ROW_B20;
+    if (floor > 199)
+        return floor % 10 + LAKE_ROCK_ROW_SHARED_TENS_AFTER_B100;
+    return floor % 10 + LAKE_ROCK_ROW_B50_B100_B150_B200;
 }
 
 u32 MineFloorState::GetLayoutKind() const
@@ -620,22 +500,22 @@ u32 MineFloorState::GetLayoutKind() const
 
 u32 MineFloorState::GetWidth() const
 {
-    u32 result = 13;
+    u32 result = MINE_DEFAULT_WIDTH;
 
-    if (layout_kind == 1)
-        result = 28;
+    if (layout_kind == MINE_LAYOUT_LARGE)
+        result = ARRAY_COUNT(cells[0]);
 
     return result;
 }
 
 u32 MineFloorState::GetHeight() const
 {
-    u32 result = 6;
+    u32 result = MINE_DEFAULT_HEIGHT;
 
-    if (layout_kind == 1)
-        result = 28;
-    else if (layout_kind == 2)
-        result = 14;
+    if (layout_kind == MINE_LAYOUT_LARGE)
+        result = ARRAY_COUNT(cells);
+    else if (layout_kind == MINE_LAYOUT_MEDIUM)
+        result = MINE_MEDIUM_HEIGHT;
 
     return result;
 }
@@ -647,33 +527,33 @@ u32 MineFloorState::GetCellType(u32 column, u32 row) const
 
 u32 MineFloorState::DigSoil(u32 column, u32 row, GameStateSaveImage & game)
 {
-    u32 result = 0;
-    if (cells[row][column].type == 0) {
+    u32 result = MINE_ITEM_NONE;
+    if (cells[row][column].type == MINE_CELL_SOIL) {
         result = ProcessItemCode(cells[row][column].buried_item, game);
-        if (result == 1) {
-            cells[row][column].type = 2;
-            result = 0;
+        if (result == MINE_ITEM_DOWN_LADDER) {
+            cells[row][column].type = MINE_CELL_DOWN_LADDER;
+            result = MINE_ITEM_NONE;
             for (i32 clear_row = 0; clear_row < static_cast<i32>(GetHeight()); ++clear_row) {
                 for (i32 clear_column = 0; clear_column < static_cast<i32>(GetWidth()); ++clear_column) {
-                    if (cells[clear_row][clear_column].buried_item == 1)
-                        cells[clear_row][clear_column].buried_item = 0;
+                    if (cells[clear_row][clear_column].buried_item == MINE_ITEM_DOWN_LADDER)
+                        cells[clear_row][clear_column].buried_item = MINE_ITEM_NONE;
                 }
             }
         } else {
-            cells[row][column].type = 1;
+            cells[row][column].type = MINE_CELL_DUG_SOIL;
         }
-        cells[row][column].buried_item = 0;
+        cells[row][column].buried_item = MINE_ITEM_NONE;
     }
     return result;
 }
 
 u32 MineFloorState::BreakRock(u32 column, u32 row, GameStateSaveImage & game)
 {
-    u32 result = 0;
-    if (cells[row][column].type == 4) {
+    u32 result = MINE_ITEM_NONE;
+    if (cells[row][column].type == MINE_CELL_ROCK) {
         result = ProcessItemCode(cells[row][column].rock_item, game);
-        cells[row][column].type = 0;
-        cells[row][column].rock_item = 0;
+        cells[row][column].type = MINE_CELL_SOIL;
+        cells[row][column].rock_item = MINE_ITEM_NONE;
     }
     return result;
 }
@@ -684,27 +564,27 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
     bool collection_blocked;
     i32 floor;
     switch (code) {
-    case 3:
+    case MINE_ITEM_POWER_BERRY:
         if (game.farmer.GetLocation().map <= static_cast<i32>(MAP_SPRING_MINE_FLOOR_255)) {
-            if (flag_625_2 == false) {
-                flag_625_2 = true;
+            if (found_spring_mine_power_berry == false) {
+                found_spring_mine_power_berry = true;
             } else {
-                code = 0;
+                code = MINE_ITEM_NONE;
             }
         } else {
-            if (flag_624_0 == false) {
-                flag_624_0 = true;
+            if (found_lake_mine_power_berry == false) {
+                found_lake_mine_power_berry = true;
             } else {
-                code = 0;
+                code = MINE_ITEM_NONE;
             }
         }
         break;
-    case 4:
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9: {
+    case MINE_ITEM_SICKLE_CURSED:
+    case MINE_ITEM_HOE_CURSED:
+    case MINE_ITEM_AXE_CURSED:
+    case MINE_ITEM_HAMMER_CURSED:
+    case MINE_ITEM_WATERING_CAN_CURSED:
+    case MINE_ITEM_FISHING_ROD_CURSED: {
         bool blocked = false;
         if (game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
             blocked = true;
@@ -713,26 +593,26 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
         if (HasCursedTool(code, game))
             blocked = true;
         if (blocked == true) {
-            code = 0;
+            code = MINE_ITEM_NONE;
         } else {
             u32 tool = ITEM_TOOL_NONE;
             switch (code) {
-            case 4:
+            case MINE_ITEM_SICKLE_CURSED:
                 tool = ITEM_TOOL_SICKLE_CURSED;
                 break;
-            case 5:
+            case MINE_ITEM_HOE_CURSED:
                 tool = ITEM_TOOL_HOE_CURSED;
                 break;
-            case 6:
+            case MINE_ITEM_AXE_CURSED:
                 tool = ITEM_TOOL_AXE_CURSED;
                 break;
-            case 7:
+            case MINE_ITEM_HAMMER_CURSED:
                 tool = ITEM_TOOL_HAMMER_CURSED;
                 break;
-            case 8:
+            case MINE_ITEM_WATERING_CAN_CURSED:
                 tool = ITEM_TOOL_WATERING_CAN_CURSED;
                 break;
-            case 9:
+            case MINE_ITEM_FISHING_ROD_CURSED:
                 tool = ITEM_TOOL_FISHING_ROD_CURSED;
                 break;
             }
@@ -741,33 +621,34 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
         }
         break;
     }
-    case 10: {
+    case MINE_ITEM_TELEPORT_STONE: {
         bool blocked = false;
-        if (game.clock.calendar.GetYear(200) <= 2)
+        if (game.clock.calendar.GetYear(200) < TELEPORT_STONE_FIRST_YEAR)
             blocked = true;
-        if (flag_625_4 == true)
+        if (found_teleport_stone == true)
             blocked = true;
         if (game.farmer.rucksack.GetFirstFreeToolSlot() == static_cast<u32>(-1))
             blocked = true;
         if (blocked)
-            code = 0;
+            code = MINE_ITEM_NONE;
         else
-            flag_625_4 = true;
+            found_teleport_stone = true;
         break;
     }
-    case 23: {
+    case MINE_ITEM_MYTHIC_STONE: {
         bool blocked = false;
         if (!game.cursed_tools.HaveBlessedAllTools())
             blocked = true;
-        for (i32 group = 4; group <= 9; ++group) {
+        for (i32 group = MINE_ITEM_SICKLE_CURSED;
+             group <= MINE_ITEM_FISHING_ROD_CURSED; ++group) {
             if (HasCursedTool(group, game))
                 blocked = true;
         }
         if (blocked == true)
-            code = 0;
+            code = MINE_ITEM_NONE;
         break;
     }
-    case 32: {
+    case MINE_ITEM_HARVEST_GODDESS_JEWEL: {
         collection_blocked = false;
         if (game.farm.farm_house.GetShelf() == 0)
             collection_blocked = true;
@@ -778,64 +659,64 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
             floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_SPRING_MINE_FLOOR_0);
             switch (floor) {
             case 60:
-                if (flag_625_5 == false) {
-                    flag_625_5 = true;
+                if (found_goddess_jewel_b60 == false) {
+                    found_goddess_jewel_b60 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 102:
-                if (flag_625_6 == false) {
-                    flag_625_6 = true;
+                if (found_goddess_jewel_b102 == false) {
+                    found_goddess_jewel_b102 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 123:
-                if (flag_625_7 == false) {
-                    flag_625_7 = true;
+                if (found_goddess_jewel_b123 == false) {
+                    found_goddess_jewel_b123 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 152:
-                if (flag_626_0 == false) {
-                    flag_626_0 = true;
+                if (found_goddess_jewel_b152 == false) {
+                    found_goddess_jewel_b152 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 155:
-                if (flag_626_1 == false) {
-                    flag_626_1 = true;
+                if (found_goddess_jewel_b155 == false) {
+                    found_goddess_jewel_b155 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 171:
-                if (flag_626_2 == false) {
-                    flag_626_2 = true;
+                if (found_goddess_jewel_b171 == false) {
+                    found_goddess_jewel_b171 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 190:
-                if (flag_626_3 == false) {
-                    flag_626_3 = true;
+                if (found_goddess_jewel_b190 == false) {
+                    found_goddess_jewel_b190 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 202:
-                if (flag_626_4 == false) {
-                    flag_626_4 = true;
+                if (found_goddess_jewel_b202 == false) {
+                    found_goddess_jewel_b202 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 222:
-                if (flag_626_5 == false) {
-                    flag_626_5 = true;
+                if (found_goddess_jewel_b222 == false) {
+                    found_goddess_jewel_b222 = true;
                 } else {
                     collection_blocked = true;
                 }
@@ -846,10 +727,10 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
             }
         }
         if (collection_blocked == true)
-            code = 0;
+            code = MINE_ITEM_NONE;
         break;
     }
-    case 33: {
+    case MINE_ITEM_KAPPA_JEWEL: {
         collection_blocked = false;
         if (game.farm.farm_house.GetShelf() == 0)
             collection_blocked = true;
@@ -860,64 +741,64 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
             floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_LAKE_MINE_FLOOR_0);
             switch (floor) {
             case 0:
-                if (flag_624_1 == false) {
-                    flag_624_1 = true;
+                if (found_kappa_jewel_floor_0 == false) {
+                    found_kappa_jewel_floor_0 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 40:
-                if (flag_624_2 == false) {
-                    flag_624_2 = true;
+                if (found_kappa_jewel_b40 == false) {
+                    found_kappa_jewel_b40 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 60:
-                if (flag_624_3 == false) {
-                    flag_624_3 = true;
+                if (found_kappa_jewel_b60 == false) {
+                    found_kappa_jewel_b60 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 80:
-                if (flag_624_4 == false) {
-                    flag_624_4 = true;
+                if (found_kappa_jewel_b80 == false) {
+                    found_kappa_jewel_b80 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 120:
-                if (flag_624_5 == false) {
-                    flag_624_5 = true;
+                if (found_kappa_jewel_b120 == false) {
+                    found_kappa_jewel_b120 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 140:
-                if (flag_624_6 == false) {
-                    flag_624_6 = true;
+                if (found_kappa_jewel_b140 == false) {
+                    found_kappa_jewel_b140 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 160:
-                if (flag_624_7 == false) {
-                    flag_624_7 = true;
+                if (found_kappa_jewel_b160 == false) {
+                    found_kappa_jewel_b160 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 180:
-                if (flag_625_0 == false) {
-                    flag_625_0 = true;
+                if (found_kappa_jewel_b180 == false) {
+                    found_kappa_jewel_b180 = true;
                 } else {
                     collection_blocked = true;
                 }
                 break;
             case 255:
-                if (flag_625_1 == false) {
-                    flag_625_1 = true;
+                if (found_kappa_jewel_b255 == false) {
+                    found_kappa_jewel_b255 = true;
                 } else {
                     collection_blocked = true;
                 }
@@ -928,81 +809,81 @@ u32 MineFloorState::ProcessItemCode(u32 code, GameStateSaveImage & game)
             }
         }
         if (collection_blocked == true)
-            code = 0;
+            code = MINE_ITEM_NONE;
         break;
     }
-    case 34:
-        if (flag_625_3 == false) {
-            flag_625_3 = true;
+    case MINE_ITEM_LITHOGRAPH:
+        if (found_lithograph == false) {
+            found_lithograph = true;
         } else {
-            code = 0;
+            code = MINE_ITEM_NONE;
         }
         break;
     }
     return code;
 }
 
-bool MineFloorState::HasCursedTool(u32 group, GameStateSaveImage const & game) const
+bool MineFloorState::HasCursedTool(u32 mine_item_code, GameStateSaveImage const & game) const
 {
-    bool available = false;
-    i32 type = ITEM_TOOL_NONE;
-    switch (group) {
-    case 4: type = ITEM_TOOL_SICKLE_CURSED; break;
-    case 5: type = ITEM_TOOL_HOE_CURSED; break;
-    case 6: type = ITEM_TOOL_AXE_CURSED; break;
-    case 7: type = ITEM_TOOL_HAMMER_CURSED; break;
-    case 8: type = ITEM_TOOL_WATERING_CAN_CURSED; break;
-    case 9: type = ITEM_TOOL_FISHING_ROD_CURSED; break;
+    bool found = false;
+    i32 tool_id = ITEM_TOOL_NONE;
+    switch (mine_item_code) {
+    case MINE_ITEM_SICKLE_CURSED: tool_id = ITEM_TOOL_SICKLE_CURSED; break;
+    case MINE_ITEM_HOE_CURSED: tool_id = ITEM_TOOL_HOE_CURSED; break;
+    case MINE_ITEM_AXE_CURSED: tool_id = ITEM_TOOL_AXE_CURSED; break;
+    case MINE_ITEM_HAMMER_CURSED: tool_id = ITEM_TOOL_HAMMER_CURSED; break;
+    case MINE_ITEM_WATERING_CAN_CURSED: tool_id = ITEM_TOOL_WATERING_CAN_CURSED; break;
+    case MINE_ITEM_FISHING_ROD_CURSED: tool_id = ITEM_TOOL_FISHING_ROD_CURSED; break;
     }
-    if (type <= ITEM_TOOL_GEM_TRUTH) {
-        if (game.farmer.rucksack.GetFirstSlotWithTool(type) != static_cast<u32>(-1))
-            available = true;
-        if (game.farm.farm_house.tool_chest.GetFirstSlotWith(type) != static_cast<u32>(-1))
-            available = true;
+    if (tool_id < ITEM_TOOL_NONE) {
+        if (game.farmer.rucksack.GetFirstSlotWithTool(tool_id) != static_cast<u32>(-1))
+            found = true;
+        if (game.farm.farm_house.tool_chest.GetFirstSlotWith(tool_id) != static_cast<u32>(-1))
+            found = true;
     }
-    return available;
+    return found;
 }
 
 u8 MineFloorState::CountHarvestGoddessJewels() const
 {
-    u8 result = flag_625_5;
-    if (flag_625_6)
+    u8 result = found_goddess_jewel_b60;
+    if (found_goddess_jewel_b102)
         ++result;
-    if (flag_625_7)
+    if (found_goddess_jewel_b123)
         ++result;
-    if (flag_626_0)
+    if (found_goddess_jewel_b152)
         ++result;
-    if (flag_626_1)
+    if (found_goddess_jewel_b155)
         ++result;
-    if (flag_626_2)
+    if (found_goddess_jewel_b171)
         ++result;
-    if (flag_626_3)
+    if (found_goddess_jewel_b190)
         ++result;
-    if (flag_626_4)
+    if (found_goddess_jewel_b202)
         ++result;
-    if (flag_626_5)
+    if (found_goddess_jewel_b222)
         ++result;
     return result;
 }
 
 u8 MineFloorState::CountKappaJewels() const
 {
-    u8 result = flag_624_1;
-    if (flag_624_2)
+    u8 result = found_kappa_jewel_floor_0;
+    if (found_kappa_jewel_b40)
         ++result;
-    if (flag_624_3)
+    if (found_kappa_jewel_b60)
         ++result;
-    if (flag_624_4)
+    if (found_kappa_jewel_b80)
         ++result;
-    if (flag_624_5)
+    if (found_kappa_jewel_b120)
         ++result;
-    if (flag_624_6)
+    if (found_kappa_jewel_b140)
         ++result;
-    if (flag_624_7)
+    if (found_kappa_jewel_b160)
         ++result;
-    if (flag_625_0)
+    if (found_kappa_jewel_b180)
         ++result;
-    if (flag_625_1)
+    if (found_kappa_jewel_b255)
         ++result;
     return result;
 }
@@ -1017,24 +898,24 @@ u16 const * MineFloorState::GetCellTilemap(u32 column, u32 row) const
 
     switch ((static_cast<u32>(value) << 28) >> 28)
     {
-    case 0:
-        return gMineFloorCellType0Tilemap;
-    case 1:
-        return gMineFloorCellType1Tilemap;
-    case 2:
-        return gMineFloorCellType2Tilemap;
-    case 3:
-        return gMineFloorCellType3Tilemap;
-    case 4:
-        return gMineFloorCellType4Tilemap;
+    case MINE_CELL_SOIL:
+        return gMineFloorSoilTilemap;
+    case MINE_CELL_DUG_SOIL:
+        return gMineFloorDugSoilTilemap;
+    case MINE_CELL_DOWN_LADDER:
+        return gMineFloorDownLadderTilemap;
+    case MINE_CELL_UP_LADDER:
+        return gMineFloorUpLadderTilemap;
+    case MINE_CELL_ROCK:
+        return gMineFloorRockTilemap;
     default:
         return 0;
     }
 }
 
-// Accumulate both six-bit cell values into the supplied counters. The
-// original neither clears the counters nor checks byte overflow.
-void MineFloorState::CountCellValues(u8 * counts) const
+// Accumulate rock and buried item codes, including MINE_ITEM_NONE. The
+// original updates the supplied byte counters without clearing them.
+void MineFloorState::AccumulateCellItemCounts(u8 * counts) const
 {
     for (u32 row = 0; row < GetHeight(); ++row) {
         for (u32 column = 0; column < GetWidth(); ++column) {
@@ -1044,24 +925,24 @@ void MineFloorState::CountCellValues(u8 * counts) const
     }
 }
 
-bool MineFloorState::GetFlag0() const
+bool MineFloorState::HasFoundLakeMinePowerBerry() const
 {
-    return flag_624_0;
+    return found_lake_mine_power_berry;
 }
 
-bool MineFloorState::GetFlag10() const
+bool MineFloorState::HasFoundSpringMinePowerBerry() const
 {
-    return flag_625_2;
+    return found_spring_mine_power_berry;
 }
 
-bool MineFloorState::GetFlag11() const
+bool MineFloorState::HasFoundLithograph() const
 {
-    return flag_625_3;
+    return found_lithograph;
 }
 
-bool MineFloorState::GetFlag12() const
+bool MineFloorState::HasFoundTeleportStone() const
 {
-    return flag_625_4;
+    return found_teleport_stone;
 }
 
 // Preserve the native copy counts, including the unvalidated spring-table
@@ -1072,19 +953,19 @@ void MineFloorState::CopyCurrentItemWeights(u8 * weights, GameStateSaveImage con
         u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_LAKE_MINE_FLOOR_0);
         u32 index = GetLakeBuriedItemTableIndex(floor);
         for (i32 i = 0; i < 5; ++i)
-            weights[gLakeMineBuriedItemCodes[i]] = gLakeMineBuriedItemWeights[index][i];
+            weights[gLakeMineBuriedItemCodes[i]] = gLakeMineBuriedItemWeights.bytes[index][i];
 
         index = GetLakeRockTableIndex(floor);
         for (i32 i = 0; i < 10; ++i)
-            weights[gLakeMineRockItemCodes[i]] = gLakeMineRockItemWeights[index][i];
+            weights[gLakeMineRockItemCodes[i]] = gLakeMineRockItemWeights.bytes[index][i];
     } else {
         u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_SPRING_MINE_FLOOR_0);
         u32 index = GetSpringBuriedItemTableIndex(floor);
         for (i32 i = 0; i < 10; ++i)
-            weights[gSpringMineBuriedItemCodes[i]] = gSpringMineBuriedItemWeights[index][i];
+            weights[gSpringMineBuriedItemCodes[i]] = gSpringMineBuriedItemWeights.bytes[index][i];
 
         index = GetSpringRockTableIndex(floor);
         for (i32 i = 0; i < 14; ++i)
-            weights[gSpringMineRockItemCodes[i]] = gSpringMineRockItemWeights[index][i];
+            weights[gSpringMineRockItemCodes[i]] = gSpringMineRockItemWeights.bytes[index][i];
     }
 }

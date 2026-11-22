@@ -1,3 +1,15 @@
+## 矿洞掉落数据与湖矿埋藏行选择（2026-11-22）
+
+[矿洞结果码](include/mine_item_codes.h)的 0–34 取自原版格子表、掘土与砸石的返回值，以及
+玩家领奖分派。[掉落数据](src/mine_floor_items.c)的 8 张表维持原 ROM 顺序，4 套权重共
+118 行，各行和字段都用指定初始化。权重选择器与表初始化共用[行号](include/mine_weight_rows.h)，
+[紧凑结构体与其只读字节视图](include/mine_floor_items.h)共用同一份存储。正常生成按本矿的表宽抽样。
+`CopyCurrentItemWeights` 原版按另一座矿的列数复制，湖矿漏列，泉矿多读。保留该行为和原表的紧邻关系。
+
+[矿洞实现](src/mine_floor.cc)最后一段汇编是湖矿埋藏权重行选择器。现在 60 字节全部由同一份 C++ 生成，
+包含原有对齐，文件已无内联汇编。JP、US、EU、DE 的 `make -j16 REGION=<region> compare`、独立整版
+逐字节比较与 SHA-1 均通过。
+
 ## 婚期、动物照料记录与料理材料说明
 
 ### 婚期事件
