@@ -25,13 +25,13 @@ make -j16 GAME_REGION=JP all
 | 分类 | 内容 | 条目数 |
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
-| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、婚期及婚姻条件。 | 8 |
+| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 9 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 30 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **137** |
+| **合计** | | **138** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -221,6 +221,7 @@ JP、US、EU 在春 19 日消息后结束该分支。
 | [婚期未完整避开双方生日及节日事件](#jp-wedding-birthdays) | JP | 已接入 |
 | [玩家已娶别人仍显示琳的爱心](#ann-heart) | 四版 | 已接入 |
 | [JP及DE卡莲婚后询问玩家婚姻状态错误](#audit-a09) | JP、DE | 已接入 |
+| [杂货店咖喱粉货架报价错误](#curry-powder-price) | US、EU、DE | 已接入 |
 
 <a id="fish-prices"></a>
 ### 小鱼与大鱼出货价倒置
@@ -379,6 +380,25 @@ US／EU在实际玩家已婚条件下询问婚后生活，未婚时劝婚。
 JP交换四次相关消息引用；DE删除三次错误的额外消息。保留婚礼完成、地点、天气、首谈／复谈条件及其余有效台词。 BUGFIX关闭时保留原文本及引用。
 
 **相关文件：** [JP 条件](data/scripts/jp/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+
+<a id="curry-powder-price"></a>
+### 杂货店咖喱粉货架报价错误
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+调查杂货店咖喱粉货架时，海外台词报每份 100 G，JP 报 50 G。
+
+**判断依据：**
+
+杂货店实际每份收取 50 G。海外三个版本的购物教学也都报 50 G。
+
+**修复方式：**
+
+沿用各版购物教学的价格，将货架台词中的 100 G 改为 50 G。
+
+**相关文件：** [实际购买](src/scene_supermarket.cc) · [US](data/scripts/us/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [EU](data/scripts/eu/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [DE](data/scripts/de/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [购物教学](data/scripts/us/EventScript_TutorialEvent_Shopping_BuyItemsAtStoreCounter.mary.c)
 
 <a id="category-interface"></a>
 ## 菜单选项、记录与显示

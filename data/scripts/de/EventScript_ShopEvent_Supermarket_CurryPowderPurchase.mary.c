@@ -7,7 +7,11 @@ mary_text_table
 {
     const char gText_ShopEvent_Supermarket_CurryPowderPurchase_WelcomeCurryPowderIs100GEach[] =
         "Willkommen!\r\n"
+#ifdef BUGFIX
+        "Currypulver zu je 50G.\r\n"
+#else
         "Currypulver zu je 100G.\r\n"
+#endif
         "Wie viele möchtest du?{Press}\p";
 
     const char gText_ShopEvent_Supermarket_CurryPowderPurchase_TooBadButYourHandsAre[] =
