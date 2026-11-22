@@ -194,21 +194,21 @@ u32 FieldItemState::GetResourceValue(u32 index) const
     {
         switch (index)
         {
-        case 0x60: value = resource_60; break;
-        case 0x61: value = resource_61; break;
-        case 0x62: value = resource_62; break;
-        case 0x63: value = resource_63; break;
-        case 0x64: value = resource_64; break;
-        case 0x65: value = resource_65; break;
-        case 0x66: value = resource_66; break;
-        case 0x67: value = resource_67; break;
-        case 0x68: value = resource_68; break;
-        case 0x69: value = resource_69; break;
-        case 0x6A: value = resource_6A; break;
-        case 0x6B: value = resource_6B; break;
-        case 0x6C: value = resource_6C; break;
-        case 0x6D: value = resource_6D; break;
-        case 0x6E: value = resource_6E; break;
+        case FIELD_ITEM_SHARED_SLOT_00: value = resource_60; break;
+        case FIELD_ITEM_SHARED_SLOT_01: value = resource_61; break;
+        case FIELD_ITEM_SHARED_SLOT_02: value = resource_62; break;
+        case FIELD_ITEM_SHARED_SLOT_03: value = resource_63; break;
+        case FIELD_ITEM_SHARED_SLOT_04: value = resource_64; break;
+        case FIELD_ITEM_SHARED_SLOT_05: value = resource_65; break;
+        case FIELD_ITEM_SHARED_SLOT_06: value = resource_66; break;
+        case FIELD_ITEM_SHARED_SLOT_07: value = resource_67; break;
+        case FIELD_ITEM_SHARED_SLOT_08: value = resource_68; break;
+        case FIELD_ITEM_SHARED_SLOT_09: value = resource_69; break;
+        case FIELD_ITEM_SHARED_SLOT_10: value = resource_6A; break;
+        case FIELD_ITEM_SHARED_SLOT_11: value = resource_6B; break;
+        case FIELD_ITEM_SHARED_SLOT_12: value = resource_6C; break;
+        case FIELD_ITEM_SHARED_SLOT_13: value = resource_6D; break;
+        case FIELD_ITEM_SHARED_SLOT_14: value = resource_6E; break;
         }
     }
     return value;
@@ -220,105 +220,105 @@ void FieldItemState::DecreaseResourceValue(u32 index, i32 amount)
     {
         switch (index)
         {
-        case 0x60: {
+        case FIELD_ITEM_SHARED_SLOT_00: {
             i32 value = resource_60 - amount;
             if (value < 0)
                 value = 0;
             resource_60 = value;
             break;
         }
-        case 0x61: {
+        case FIELD_ITEM_SHARED_SLOT_01: {
             i32 value = resource_61 - amount;
             if (value < 0)
                 value = 0;
             resource_61 = value;
             break;
         }
-        case 0x62: {
+        case FIELD_ITEM_SHARED_SLOT_02: {
             i32 value = resource_62 - amount;
             if (value < 0)
                 value = 0;
             resource_62 = value;
             break;
         }
-        case 0x63: {
+        case FIELD_ITEM_SHARED_SLOT_03: {
             i32 value = resource_63 - amount;
             if (value < 0)
                 value = 0;
             resource_63 = value;
             break;
         }
-        case 0x64: {
+        case FIELD_ITEM_SHARED_SLOT_04: {
             i32 value = resource_64 - amount;
             if (value < 0)
                 value = 0;
             resource_64 = value;
             break;
         }
-        case 0x65: {
+        case FIELD_ITEM_SHARED_SLOT_05: {
             i32 value = resource_65 - amount;
             if (value < 0)
                 value = 0;
             resource_65 = value;
             break;
         }
-        case 0x66: {
+        case FIELD_ITEM_SHARED_SLOT_06: {
             i32 value = resource_66 - amount;
             if (value < 0)
                 value = 0;
             resource_66 = value;
             break;
         }
-        case 0x67: {
+        case FIELD_ITEM_SHARED_SLOT_07: {
             i32 value = resource_67 - amount;
             if (value < 0)
                 value = 0;
             resource_67 = value;
             break;
         }
-        case 0x68: {
+        case FIELD_ITEM_SHARED_SLOT_08: {
             i32 value = resource_68 - amount;
             if (value < 0)
                 value = 0;
             resource_68 = value;
             break;
         }
-        case 0x69: {
+        case FIELD_ITEM_SHARED_SLOT_09: {
             i32 value = resource_69 - amount;
             if (value < 0)
                 value = 0;
             resource_69 = value;
             break;
         }
-        case 0x6A: {
+        case FIELD_ITEM_SHARED_SLOT_10: {
             i32 value = resource_6A - amount;
             if (value < 0)
                 value = 0;
             resource_6A = value;
             break;
         }
-        case 0x6B: {
+        case FIELD_ITEM_SHARED_SLOT_11: {
             i32 value = resource_6B - amount;
             if (value < 0)
                 value = 0;
             resource_6B = value;
             break;
         }
-        case 0x6C: {
+        case FIELD_ITEM_SHARED_SLOT_12: {
             i32 value = resource_6C - amount;
             if (value < 0)
                 value = 0;
             resource_6C = value;
             break;
         }
-        case 0x6D: {
+        case FIELD_ITEM_SHARED_SLOT_13: {
             i32 value = resource_6D - amount;
             if (value < 0)
                 value = 0;
             resource_6D = value;
             break;
         }
-        case 0x6E: {
+        case FIELD_ITEM_SHARED_SLOT_14: {
             i32 value = resource_6E - amount;
             if (value < 0)
                 value = 0;
