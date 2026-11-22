@@ -1,3 +1,4 @@
+#include "config.h"
 #include "time_of_day.hh"
 #include "mine_floor.hh"
 #include "mine_floor_items.h"
@@ -945,27 +946,42 @@ bool MineFloorState::HasFoundTeleportStone() const
     return found_teleport_stone;
 }
 
-// Preserve the native copy counts, including the unvalidated spring-table
-// overruns. This method neither clears weights nor validates destination IDs.
+// The original uses the other mine's column counts.
+#ifdef BUGFIX
+#define BURIED_WEIGHT_COPY_COUNT(mine) ((mine) == MINE_LAKE ? 10 : 5)
+#define ROCK_WEIGHT_COPY_COUNT(mine) ((mine) == MINE_LAKE ? 14 : 10)
+#else
+#define BURIED_WEIGHT_COPY_COUNT(mine) ((mine) == MINE_LAKE ? 5 : 10)
+#define ROCK_WEIGHT_COPY_COUNT(mine) ((mine) == MINE_LAKE ? 10 : 14)
+#endif
+
 void MineFloorState::CopyCurrentItemWeights(u8 * weights, GameStateSaveImage const & game) const
 {
+#ifdef BUGFIX
+    // The highest bit of the 10-bit map ID is set in deep lake mine floors.
+    if (game.farmer.GetLocation().map > static_cast<u32>(MAP_SPRING_MINE_FLOOR_255)) {
+#else
     if (game.farmer.GetLocation().map > static_cast<i32>(MAP_SPRING_MINE_FLOOR_255)) {
+#endif
         u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_LAKE_MINE_FLOOR_0);
         u32 index = GetLakeBuriedItemTableIndex(floor);
-        for (i32 i = 0; i < 5; ++i)
+        for (i32 i = 0; i < BURIED_WEIGHT_COPY_COUNT(MINE_LAKE); ++i)
             weights[gLakeMineBuriedItemCodes[i]] = gLakeMineBuriedItemWeights.bytes[index][i];
 
         index = GetLakeRockTableIndex(floor);
-        for (i32 i = 0; i < 10; ++i)
+        for (i32 i = 0; i < ROCK_WEIGHT_COPY_COUNT(MINE_LAKE); ++i)
             weights[gLakeMineRockItemCodes[i]] = gLakeMineRockItemWeights.bytes[index][i];
     } else {
         u32 floor = game.farmer.GetLocation().map - static_cast<i32>(MAP_SPRING_MINE_FLOOR_0);
         u32 index = GetSpringBuriedItemTableIndex(floor);
-        for (i32 i = 0; i < 10; ++i)
+        for (i32 i = 0; i < BURIED_WEIGHT_COPY_COUNT(MINE_SPRING); ++i)
             weights[gSpringMineBuriedItemCodes[i]] = gSpringMineBuriedItemWeights.bytes[index][i];
 
         index = GetSpringRockTableIndex(floor);
-        for (i32 i = 0; i < 14; ++i)
+        for (i32 i = 0; i < ROCK_WEIGHT_COPY_COUNT(MINE_SPRING); ++i)
             weights[gSpringMineRockItemCodes[i]] = gSpringMineRockItemWeights.bytes[index][i];
     }
 }
+
+#undef BURIED_WEIGHT_COPY_COUNT
+#undef ROCK_WEIGHT_COPY_COUNT

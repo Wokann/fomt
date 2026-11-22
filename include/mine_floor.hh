@@ -61,9 +61,8 @@ struct MineFloorState
     u8 CountKappaJewels() const;
     u16 const * GetCellTilemap(u32 column, u32 row) const;
     void AccumulateCellItemCounts(u8 * counts) const;
-    // Native unchecked counts: lake buried/rock 5/10, spring 10/14, even
-    // when these exceed a named table's length. No clearing, destination-ID
-    // bounds check or mine-map validation is added to this original behavior.
+    // BUGFIX corrects the mine selection and fixed copy counts.
+    // The caller supplies a mine location and a buffer indexed by mine-local item code.
     void CopyCurrentItemWeights(u8 * weights, GameStateSaveImage const & game) const;
     bool HasFoundLakeMinePowerBerry() const;
     bool HasFoundSpringMinePowerBerry() const;

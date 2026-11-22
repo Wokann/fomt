@@ -4,7 +4,7 @@
 玩家领奖分派。[掉落数据](src/mine_floor_items.c)的 8 张表维持原 ROM 顺序，4 套权重共
 118 行，各行和字段都用指定初始化。权重选择器与表初始化共用[行号](include/mine_weight_rows.h)，
 [紧凑结构体与其只读字节视图](include/mine_floor_items.h)共用同一份存储。正常生成按本矿的表宽抽样。
-`CopyCurrentItemWeights` 原版按另一座矿的列数复制，湖矿漏列，泉矿多读。保留该行为和原表的紧邻关系。
+`CopyCurrentItemWeights` 原版把湖矿和泉矿的复制列数互换，并因有符号地图编号比较将湖矿 B204–B255 误判为泉矿。默认构建保留原行为及表布局，启用 [BUGFIX](BUGFIX.md#mine-item-weight-copy-bounds) 后使用无符号比较判断矿种，并采用正确的固定复制列数。
 
 [矿洞实现](src/mine_floor.cc)最后一段汇编是湖矿埋藏权重行选择器。现在 60 字节全部由同一份 C++ 生成，
 包含原有对齐，文件已无内联汇编。JP、US、EU、DE 的 `make -j16 REGION=<region> compare`、独立整版
