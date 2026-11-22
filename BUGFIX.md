@@ -26,12 +26,12 @@ make -j16 GAME_REGION=JP all
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
-| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
+| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 15 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 35 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 22 |
-| **合计** | | **147** |
+| **合计** | | **148** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -463,6 +463,7 @@ JP 同时采用海外版的入冬重置和冬季停长逻辑。
 | [海外凯生日贺卡签名残留制表字节](#kai-card-tab) | US、EU、DE | 已接入 |
 | [赛马兑奖退出问句的肯否含义反向](#horse-race-prize-exit-prompt) | US、EU、DE | 已接入 |
 | [赛马购票帮助指向不存在的 OK 选项](#horse-race-ticket-confirm-help) | US、EU、DE | 已接入 |
+| [鸡祭出界警告多出否定词](#chicken-festival-ring-warning) | US、EU | 已接入 |
 
 <a id="wrapping-tool-icons"></a>
 ### 包装画面把升级农具画成基础农具
@@ -756,6 +757,25 @@ US、EU 的第五项为 `Enter`（确认），DE 为 `Mitmach.`（参加）。�
 帮助改用实际显示的选项名称，德文沿用 `Mitmach.` 自带的句点。
 
 **相关文件：** [菜单和帮助入口](src/horse_race.cc) · [US](data/text/us/horse_race_2.cc) · [EU](data/text/eu/horse_race_2.cc) · [DE](data/text/de/horse_race_2.cc)
+
+<a id="chicken-festival-ring-warning"></a>
+### 鸡祭出界警告多出否定词
+
+**受影响版本：** US、EU。
+
+**原版内容与差异：**
+
+英文鸡祭开场玩法说明连续写了两个 `not`（不）。
+
+**判断依据：**
+
+JP 和 DE 都提醒玩家助威时小心别把自家的鸡赶出擂台。英文多出的否定词使警告反向。
+
+**修复方式：**
+
+删除第二行开头多出的 `not `，保留后续台词、换页和按键等待。
+
+**相关文件：** [讲解流程](src/scene_chicken_festival.cc) · [JP](data/text/jp/scene_chicken_festival_2.cc) · [US](data/text/us/scene_chicken_festival_2.cc) · [EU](data/text/eu/scene_chicken_festival_2.cc) · [DE](data/text/de/scene_chicken_festival_2.cc)
 
 <a id="category-items"></a>
 ## 道具身份、名称与说明

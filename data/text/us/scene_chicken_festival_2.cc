@@ -1,3 +1,4 @@
+#include "config.h"
 #include "scene_chicken_festival.hh"
 
 
@@ -39,7 +40,11 @@ char const gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement[] =
 char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge[] =
     "\p"
     "However, be careful not\r\n"
+#ifdef BUGFIX
+    "to run your own{Press}";
+#else
     "not to run your own{Press}";
+#endif
 
 char const gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing[] =
     "\p"
