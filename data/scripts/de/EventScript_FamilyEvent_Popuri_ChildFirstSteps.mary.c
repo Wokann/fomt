@@ -23,6 +23,12 @@ mary_text_table
         "Er kann seit heute \r\n"
         "morgen laufen!\r\n"
         "Ich habe fast geweint!{Press}";
+
+#ifdef BUGFIX
+    const char gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriMarvelsAtChildGrowingQuickly[] =
+        "Er wird einfach so\r\n"
+        "schnell groß!{Press}";
+#endif
 };
 
 void EventScript_FamilyEvent_Popuri_ChildFirstSteps(void)
@@ -96,7 +102,11 @@ void EventScript_FamilyEvent_Popuri_ChildFirstSteps(void)
     SetTalkNameplateCharacter(CHARACTER_POPURI);
     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
     ShowTalkHeartIndicator(CHARACTER_POPURI);
+#ifdef BUGFIX
+    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriMarvelsAtChildGrowingQuickly);
+#else
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingAndCelebratesGrowth);
+#endif
     TalkClose();
     MarkNpcSpokenTo(CHARACTER_POPURI);
     MarkNpcSpokenTo(CHARACTER_CHILD);

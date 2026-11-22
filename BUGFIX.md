@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 34 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 35 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **145** |
+| **合计** | | **146** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1290,6 +1290,7 @@ US／EU 分别写 eated、Pinapple
 | [人物和物件名称的英文拼写错误](#english-spelling) | US、EU | 已接入 |
 | [玩家拒绝采葡萄时杜克向未到场的克里夫讲话](#winery-job-decline-duke-dialogue) | US、EU、DE | 已接入 |
 | [德版珀布利谈新生儿时多播一条英文](#de-popuri-newborn-dialogue) | DE | 已接入 |
+| [德版珀布利在孩子学步事件中重复同一句](#de-popuri-child-first-steps) | DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2020,6 +2021,25 @@ JP、US、EU 在对应分支只说一次孩子可爱。DE 已有与场景对应�
 移除多余的英文文本和播放调用，保留 `Ahhh....Er ist sooo süß!`（啊……他真可爱！）。
 
 **相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [US 对照](data/scripts/us/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
+
+<a id="de-popuri-child-first-steps"></a>
+### 德版珀布利在孩子学步事件中重复同一句
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+孩子第一次走路的事件中，德版连续两次调用珀布利说明孩子今早开始走路、自己差点哭出来的对话。
+
+**判断依据：**
+
+JP、US、EU 的第二句感叹孩子长得很快，本作德版玛丽的育儿日常对话有同义句。
+
+**修复方式：**
+
+保留学步第一句，第二次调用改为珀布利的独立对话 `Er wird einfach so schnell groß!`（他长得真快呀！）。
+
+**相关文件：** [珀布利学步事件](data/scripts/de/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [玛丽的德语原句](data/scripts/de/EventScript_NPCEvent_Mary_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [US 对照](data/scripts/us/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明
