@@ -25,13 +25,13 @@ make -j16 GAME_REGION=JP all
 | 分类 | 内容 | 条目数 |
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
-| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 9 |
+| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 10 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 30 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **138** |
+| **合计** | | **139** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -222,6 +222,7 @@ JP、US、EU 在春 19 日消息后结束该分支。
 | [玩家已娶别人仍显示琳的爱心](#ann-heart) | 四版 | 已接入 |
 | [JP及DE卡莲婚后询问玩家婚姻状态错误](#audit-a09) | JP、DE | 已接入 |
 | [杂货店咖喱粉货架报价错误](#curry-powder-price) | US、EU、DE | 已接入 |
+| [湖矿 B201–B250 的整十层选错岩石权重](#lake-mine-decade-rock-weights) | 四版 | 已接入 |
 
 <a id="fish-prices"></a>
 ### 小鱼与大鱼出货价倒置
@@ -399,6 +400,29 @@ JP交换四次相关消息引用；DE删除三次错误的额外消息。保留�
 沿用各版购物教学的价格，将货架台词中的 100 G 改为 50 G。
 
 **相关文件：** [实际购买](src/scene_supermarket.cc) · [US](data/scripts/us/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [EU](data/scripts/eu/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [DE](data/scripts/de/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [购物教学](data/scripts/us/EventScript_TutorialEvent_Shopping_BuyItemsAtStoreCounter.mary.c)
+
+<a id="lake-mine-decade-rock-weights"></a>
+### 湖矿 B201–B250 的整十层选错岩石权重
+
+**受影响版本：** 四版。
+
+**原版内容与差异：**
+
+四版 GBA 发行版在 B210、B220、B230、B240、B250 均选岩石权重表索引 43。该行的亚历山大石和粉红钻石权重均为 0，B210 的埋藏表也没有亚历山大石。女版 JP（选择器 `0x080A23A0`）与 US（`0x080A2960`）在这五层也都返回 43。所核六份 GBA ROM 的岩石权重表完全相同，共 56 行，每行 14 字节。
+
+**判断依据：**
+
+逐层核对 GBA 四版从入口（0）到 B255 的 256 个选择结果，56 行中只有索引 53 从未被选中。B201–B250 中，末位 1–9 的楼层依次对应索引 44–52。索引 43 原用于 B120、B140、B160、B180，索引 54 和 55 分别用于 B251–B254 和 B255。索引 53 的位置正好对应这五个整十层，且亚历山大石和粉红钻石的权重各为 1。
+
+GBA 四版《矿场研究》第 8 集都报告在湖矿 B210 发现亚历山大石，PC 重制版的同集英文文本也保留了这条报告。PC 重制版的岩石表确认这五层均可产出两种宝石。RanchStory 转引角川 2019 年官方完全指南，将两种宝石在这五层的掉落率各列为 0.8%，日本玩家的逐层游玩记录也列出相同分布。[RanchStory 湖矿表](https://wiki.ranchstory.farm/index.php/Lake_Mine_%28Story_of_Seasons%3A_Friends_of_Mineral_Town%29) · [日本玩家逐层游玩记录](https://yoshinoso.com/articles/bokumonosmt-play-0034/)
+
+GBA 时期的两份民间攻略记载有别。2007 年中文攻略把两种宝石都列入这五层，2004 年英文采矿 FAQ 的亚历山大石楼层则与所核发行版相符。[2007 年中文攻略](https://pr055.pixnet.net/blog/posts/1006209534) · [2004 年英文采矿 FAQ](https://gamefaqs.gamespot.com/gba/589702-harvest-moon-friends-of-mineral-town/faqs/28178)
+
+**修复方式：**
+
+让 B210、B220、B230、B240、B250 使用 GBA 原有的索引 53，两种宝石在该行的取样率各为 1/256。
+
+**相关文件：** [岩石权重选择](src/mine_floor.cc) · [权重行索引](include/mine_weight_rows.h) · [权重表](src/mine_floor_items.c) · 矿场研究第 8 集（[JP](data/scripts/jp/EventScript_TV_MineResearchGroup.mary.c) · [US](data/scripts/us/EventScript_TV_MineResearchGroup.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineResearchGroup.mary.c) · [DE](data/scripts/de/EventScript_TV_MineResearchGroup.mary.c)）
 
 <a id="category-interface"></a>
 ## 菜单选项、记录与显示

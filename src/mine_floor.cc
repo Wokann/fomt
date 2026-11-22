@@ -480,7 +480,16 @@ u32 MineFloorState::GetLakeRockTableIndex(u32 floor) const
     case 140:
     case 160:
     case 180:
-        return LAKE_ROCK_ROW_SHARED_TENS_AFTER_B100;
+        return LAKE_ROCK_ROW_B120_B140_B160_B180;
+#ifdef BUGFIX
+    // Retail sends these floors to the same row as B120.
+    case 210:
+    case 220:
+    case 230:
+    case 240:
+    case 250:
+        return LAKE_ROCK_ROW_B210_B220_B230_B240_B250;
+#endif
     }
 
     if (floor <= 20)
@@ -490,7 +499,7 @@ u32 MineFloorState::GetLakeRockTableIndex(u32 floor) const
     if (floor <= 99)
         return floor % 10 + LAKE_ROCK_ROW_B20;
     if (floor > 199)
-        return floor % 10 + LAKE_ROCK_ROW_SHARED_TENS_AFTER_B100;
+        return floor % 10 + LAKE_ROCK_ROW_B120_B140_B160_B180;
     return floor % 10 + LAKE_ROCK_ROW_B50_B100_B150_B200;
 }
 

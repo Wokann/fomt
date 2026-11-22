@@ -1048,8 +1048,7 @@ LakeMineRockWeightTable const gLakeMineRockItemWeights = {
             .agate        = 10,
             .amethyst     = 10,
         },
-    // Shared by B120, B140, B160, B180 and the multiples of ten from B210 to B250.
-        [LAKE_ROCK_ROW_SHARED_TENS_AFTER_B100] = {
+        [LAKE_ROCK_ROW_B120_B140_B160_B180] = {
             .kappa_jewel  =  2,
             .junk_ore     = 10,
             .pink_diamond =  0,
@@ -1209,8 +1208,7 @@ LakeMineRockWeightTable const gLakeMineRockItemWeights = {
             .agate        = 20,
             .amethyst     = 20,
         },
-    // The selector never returns this original row.
-        [LAKE_ROCK_ROW_UNUSED_53] = {
+        [LAKE_ROCK_ROW_B210_B220_B230_B240_B250] = {
             .kappa_jewel  =  0,
             .junk_ore     =  0,
             .pink_diamond =  1,
