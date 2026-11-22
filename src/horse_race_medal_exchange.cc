@@ -15,6 +15,8 @@
 #include <new>
 #include <string.h>
 
+enum { HORSE_RACE_PRIZE_ROW_HEIGHT = 16 };
+
 static inline u32 PrizeTileIndex(ObjTileCollectionEntry & entry)
 {
     return GetObjTileIndex(&entry, entry.handle);
@@ -49,7 +51,7 @@ HorseRaceMedalExchangeCore::HorseRaceMedalExchangeCore(GameStateSaveImage * imag
       arrow_tiles(4), arrow_palette(), cursor_tiles(2), cursor_palette()
 {
     HorseRacePrizeTextVariables & variables = text_variables;
-    variables.prize_index = 0;
+    variables.prize_index = HORSE_RACE_PRIZE_JEWEL_OF_TRUTH;
     medals = save->horse_race.medals;
     if (medals > 99999)
         medals = 99999;
@@ -64,18 +66,18 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
     display->SetBlendControl(display_value);
     HardwareBlendOwner blend(new HardwareBlendObject(
         GetHardwareDisplayState(reinterpret_cast<void * const *>(this))));
-    ui_state.value->ShowPortrait(117);
-    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(visible_prize_ids)); ++index)
-        visible_prize_ids[index] = index;
+    ui_state.value->ShowPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
+    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(menu_prize_ids)); ++index)
+        menu_prize_ids[index] = index;
     if (save->horse_race.jewel_of_truth_redeemed)
-        visible_prize_ids[0] = 10;
+        menu_prize_ids[HORSE_RACE_PRIZE_JEWEL_OF_TRUTH] = HORSE_RACE_PRIZE_DRESS;
     if (save->horse_race.power_berry_redeemed)
-        visible_prize_ids[1] = 11;
+        menu_prize_ids[HORSE_RACE_PRIZE_POWER_BERRY] = HORSE_RACE_PRIZE_PERFUME;
     InitializeHorseRacePrizeGraphics(this);
     InitializeHorseRacePrizeCatalogGraphics(this);
     selection = 0;
     first_visible_row = 0;
-    selected_prize = 0;
+    selected_prize = HORSE_RACE_PRIZE_JEWEL_OF_TRUTH;
     dialogue_state = 2;
     phase = 0;
     {
@@ -99,7 +101,7 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
             // Sequence the field update before the common assignment in C++98.
             if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(this)) & DPAD_UP))
             {
-                music_2.Start(0xCB);
+                music_2.Start(AUDIO_SFX_MENU_CURSOR);
                 selection = selection > 0 ? (--selection, selection) : 0;
                 if (selection < first_visible_row)
                 {
@@ -109,9 +111,10 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
             }
             else if (static_cast<u8>(GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(this)) & DPAD_DOWN))
             {
-                music_2.Start(0xCB);
-                selection = selection < 9 ? (++selection, selection) : 9;
-                if (selection - first_visible_row > 7)
+                music_2.Start(AUDIO_SFX_MENU_CURSOR);
+                selection = selection < HORSE_RACE_PRIZE_MENU_COUNT - 1
+                    ? (++selection, selection) : HORSE_RACE_PRIZE_MENU_COUNT - 1;
+                if (selection - first_visible_row > HORSE_RACE_PRIZE_VISIBLE_ROWS - 1)
                 {
                     ++first_visible_row;
                     phase = 6;
@@ -119,9 +122,9 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
             }
             else if (static_cast<u8>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(this)) & A_BUTTON))
             {
-                music_2.Start(0xC5);
+                music_2.Start(AUDIO_SFX_MENU_CONFIRM);
                 dialogue_state = 0;
-                selected_prize = visible_prize_ids[selection];
+                selected_prize = menu_prize_ids[selection];
                 if (gHorseRacePrizeCatalog[selected_prize].medal_cost <= medals)
                 {
                     text_variables.prize_index = selected_prize;
@@ -132,7 +135,7 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
             }
             else if (static_cast<u8>(GetHardwarePressedKeys(reinterpret_cast<void * const *>(this)) & B_BUTTON))
             {
-                music_2.Start(0xC6);
+                music_2.Start(AUDIO_SFX_MENU_CANCEL);
                 dialogue_state = 0;
                 phase = 2;
             }
@@ -150,12 +153,12 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
             break;
         case 5:
             scroll_y -= 4;
-            if ((scroll_y & 15) == 0)
+            if ((scroll_y & (HORSE_RACE_PRIZE_ROW_HEIGHT - 1)) == 0)
                 phase = 1;
             break;
         case 6:
             scroll_y += 4;
-            if ((scroll_y & 15) == 0)
+            if ((scroll_y & (HORSE_RACE_PRIZE_ROW_HEIGHT - 1)) == 0)
                 phase = 1;
             break;
         case 7:
@@ -171,17 +174,17 @@ SceneTransitionOwner HorseRaceMedalExchangeCore::Run()
                 {
                     switch (selected_prize)
                     {
-                    case 1:
+                    case HORSE_RACE_PRIZE_POWER_BERRY:
                         func_0800EAFC(save->farmer);
                         save->horse_race.power_berry_redeemed = true;
                         func_0800F510(&save->farmer.held_item, 351);
                         break;
-                    case 8:
+                    case HORSE_RACE_PRIZE_TRUFFLE:
                     {
-                        Food food(gHorseRacePrizeItemIds[8]);
+                        Food food(gHorseRacePrizeItemIds[HORSE_RACE_PRIZE_TRUFFLE]);
                         func_0800F3B0(&save->farmer.held_item, food);
                     } break;
-                    case 0:
+                    case HORSE_RACE_PRIZE_JEWEL_OF_TRUTH:
                         save->horse_race.jewel_of_truth_redeemed = true;
                         ++save->event_state.jewels_of_truth_found_count;
                         save->event_state.jewel_of_truth_from_festival_horse_race_prize_exchange_collected = true;
@@ -331,19 +334,19 @@ void UpdateHorseRacePrizeDialogue(HorseRaceMedalExchangeCore * core)
 
 #include FOMT_TEXT_INCLUDE(horse_race_medal_exchange_1.cc)
 
-u16 const gHorseRacePrizeItemIds[] = {
-    ITEM_ARTICLE_JEWEL_OF_TRUTH,
-    ITEM_ARTICLE_FLOWER_MOON_DROP, // Native unused slot; Power Berry has its own branch.
-    ITEM_ARTICLE_FACIAL_PACK,
-    ITEM_ARTICLE_SKIN_LOTION,
-    ITEM_ARTICLE_SUNBLOCK,
-    ITEM_ARTICLE_NECKLACE,
-    ITEM_ARTICLE_BROOCH,
-    ITEM_ARTICLE_DIAMOND,
-    ITEM_FOOD_TRUFFLE, // The sole food prize; all remaining items are articles.
-    ITEM_ARTICLE_ADAMANTITE,
-    ITEM_ARTICLE_DRESS,
-    ITEM_ARTICLE_PERFUME,
+u16 const gHorseRacePrizeItemIds[HORSE_RACE_PRIZE_COUNT] = {
+    /* HORSE_RACE_PRIZE_JEWEL_OF_TRUTH */ ITEM_ARTICLE_JEWEL_OF_TRUTH,
+    /* HORSE_RACE_PRIZE_POWER_BERRY */    ITEM_ARTICLE_FLOWER_MOON_DROP,
+    /* HORSE_RACE_PRIZE_FACIAL_PACK */    ITEM_ARTICLE_FACIAL_PACK,
+    /* HORSE_RACE_PRIZE_SKIN_LOTION */    ITEM_ARTICLE_SKIN_LOTION,
+    /* HORSE_RACE_PRIZE_SUNBLOCK */       ITEM_ARTICLE_SUNBLOCK,
+    /* HORSE_RACE_PRIZE_NECKLACE */       ITEM_ARTICLE_NECKLACE,
+    /* HORSE_RACE_PRIZE_BROOCH */         ITEM_ARTICLE_BROOCH,
+    /* HORSE_RACE_PRIZE_DIAMOND */        ITEM_ARTICLE_DIAMOND,
+    /* HORSE_RACE_PRIZE_TRUFFLE */        ITEM_FOOD_TRUFFLE,
+    /* HORSE_RACE_PRIZE_ADAMANTITE */     ITEM_ARTICLE_ADAMANTITE,
+    /* HORSE_RACE_PRIZE_DRESS */          ITEM_ARTICLE_DRESS,
+    /* HORSE_RACE_PRIZE_PERFUME */        ITEM_ARTICLE_PERFUME,
 };
 
 #include FOMT_TEXT_INCLUDE(horse_race_medal_exchange_2.cc)
@@ -409,17 +412,17 @@ void InitializeHorseRacePrizeCatalogGraphics(HorseRaceMedalExchangeCore * core)
     CopyHardwareDma3(group.tiles.GetData(),
         reinterpret_cast<void *>(OBJ_VRAM0 + PrizeTileIndex(core->cursor_tiles) * TILE_SIZE_4BPP), group.tiles.GetByteCount());
     NewGameTextTileBuffer<14> name;
-    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(core->visible_prize_ids)); ++index)
+    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(core->menu_prize_ids)); ++index)
     {
         name.Clear();
         name.DrawStringExt(0, 0,
-            gHorseRacePrizeCatalog[core->visible_prize_ids[index]].name, 0, 1);
+            gHorseRacePrizeCatalog[core->menu_prize_ids[index]].name, 0, 1);
         CopyHardwareDma3(name.tiles,
             reinterpret_cast<void *>(BG_VRAM + 0x2800 + index * sizeof(name.tiles)), sizeof(name.tiles));
     }
     FillHardwareDma3(0xFFFFFFFF, core->name_tilemap, sizeof(core->name_tilemap));
     u16 first_tile = 0x2140;
-    for (i32 row = 0; row < static_cast<i32>(ARRAY_COUNT(core->visible_prize_ids)); ++row)
+    for (i32 row = 0; row < static_cast<i32>(ARRAY_COUNT(core->menu_prize_ids)); ++row)
     {
         for (i32 column = 0; column < 14; ++column)
         {
@@ -434,14 +437,14 @@ void InitializeHorseRacePrizeCatalogGraphics(HorseRaceMedalExchangeCore * core)
 void BuildHorseRacePrizeGlyphs(HorseRaceMedalExchangeCore * core)
 {
     core->glyph_count = 0;
-    for (i32 row = 0; row < static_cast<i32>(ARRAY_COUNT(core->visible_prize_ids)); ++row)
+    for (i32 row = 0; row < static_cast<i32>(ARRAY_COUNT(core->menu_prize_ids)); ++row)
     {
-        i32 y = row * 16;
+        i32 y = row * HORSE_RACE_PRIZE_ROW_HEIGHT;
         i32 scroll_offset = core->scroll_y;
         scroll_offset -= 32;
         y -= scroll_offset;
         AppendHorseRacePrizeNumber(core, 144, y, 3,
-            gHorseRacePrizeCatalog[core->visible_prize_ids[row]].medal_cost, 4, 10);
+            gHorseRacePrizeCatalog[core->menu_prize_ids[row]].medal_cost, 4, 10);
     }
     for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(gHorseRacePrizeExchangeCharacterCodes)) - 13; ++index)
         AppendHorseRacePrizeGlyph(core, 8 + index * (UiSpriteGlyphBuffer::TileWidth * 8), 4, index + 13, 1);
@@ -512,7 +515,8 @@ void RenderHorseRacePrizeSprites(HorseRaceMedalExchangeCore * core)
         group = PrizeSpriteGroup(core->cursor.resource);
         parameters = core->cursor.parameters;
         parameters.x = 12;
-        parameters.y = core->selection * 16 - static_cast<i16>(core->first_visible_row * 16 - 40);
+        parameters.y = core->selection * HORSE_RACE_PRIZE_ROW_HEIGHT -
+            static_cast<i16>(core->first_visible_row * HORSE_RACE_PRIZE_ROW_HEIGHT - 40);
         parameters.tile_offset = PrizeTileIndex(core->cursor_tiles);
         parameters.palette_offset = PrizePaletteBank(core->cursor_palette);
         parameters.priority = 2;
@@ -535,7 +539,8 @@ void RenderHorseRacePrizeSprites(HorseRaceMedalExchangeCore * core)
         HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(core));
         DrawIndexedResourceSprites(sprites, group.sprites.Data(), group.sprites.Count(), &parameters);
     }
-    if (core->scroll_y <= 31)
+    if (core->scroll_y <= (HORSE_RACE_PRIZE_MENU_COUNT - HORSE_RACE_PRIZE_VISIBLE_ROWS) *
+            HORSE_RACE_PRIZE_ROW_HEIGHT - 1)
     {
         UpdateIndexedResourceHandle(&core->down_arrow.resource);
         group = PrizeSpriteGroup(core->down_arrow.resource);

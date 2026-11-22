@@ -11,6 +11,27 @@
 
 struct GameStateSaveImage;
 
+enum HorseRacePrizeId {
+    HORSE_RACE_PRIZE_JEWEL_OF_TRUTH = 0,
+    HORSE_RACE_PRIZE_POWER_BERRY = 1,
+    HORSE_RACE_PRIZE_FACIAL_PACK = 2,
+    HORSE_RACE_PRIZE_SKIN_LOTION = 3,
+    HORSE_RACE_PRIZE_SUNBLOCK = 4,
+    HORSE_RACE_PRIZE_NECKLACE = 5,
+    HORSE_RACE_PRIZE_BROOCH = 6,
+    HORSE_RACE_PRIZE_DIAMOND = 7,
+    HORSE_RACE_PRIZE_TRUFFLE = 8,
+    HORSE_RACE_PRIZE_ADAMANTITE = 9,
+    HORSE_RACE_PRIZE_DRESS = 10,
+    HORSE_RACE_PRIZE_PERFUME = 11,
+    HORSE_RACE_PRIZE_COUNT
+};
+
+enum {
+    HORSE_RACE_PRIZE_MENU_COUNT = HORSE_RACE_PRIZE_ADAMANTITE + 1,
+    HORSE_RACE_PRIZE_VISIBLE_ROWS = 8
+};
+
 // The prize name is an inline field in the original 20-byte catalog entry,
 // followed by the medal cost.  It is not a pointer to separately stored text.
 struct HorseRacePrize {
@@ -20,7 +41,7 @@ struct HorseRacePrize {
 
 typedef char HorseRacePrizeRecordSizeCheck[sizeof(HorseRacePrize) == 20 ? 1 : -1];
 
-extern HorseRacePrize const gHorseRacePrizeCatalog[];
+extern HorseRacePrize const gHorseRacePrizeCatalog[HORSE_RACE_PRIZE_COUNT];
 extern char const gText_HorseRace_PrizeExchangePrompt[];
 extern char const gText_HorseRace_PrizeExchangeYes[];
 extern char const gText_HorseRace_PrizeExchangeNo[];
@@ -33,7 +54,7 @@ extern u16 const gHorseRacePrizeExchangeCharacterCodes[];
 // One entry per gHorseRacePrizeCatalog entry. The native path distinguishes
 // Article and Food values itself; the Power Berry slot retains its unused
 // ITEM_ARTICLE_FLOWER_MOON_DROP placeholder because it has a dedicated branch.
-extern u16 const gHorseRacePrizeItemIds[];
+extern u16 const gHorseRacePrizeItemIds[HORSE_RACE_PRIZE_COUNT];
 struct HorseRacePrizeSpriteState {
     HorseRacePrizeSpriteState(IndexedResourceProvider * provider, u32 index)
         : resource(provider, index, 256), parameters(), unk_30(0) {}
@@ -111,7 +132,7 @@ struct HorseRaceMedalExchangeCore : HardwareContext {
     i16 phase;
     i16 dialogue_state;
     i16 dialogue_choice;
-    u8 visible_prize_ids[10];
+    u8 menu_prize_ids[HORSE_RACE_PRIZE_MENU_COUNT];
     HorseRacePrizeTextVariables text_variables;
 };
 
@@ -161,7 +182,7 @@ typedef char HorseRacePrizeTilemapCheck[offsetof(HorseRaceMedalExchangeCore, nam
 typedef char HorseRacePrizeMedalsCheck[offsetof(HorseRaceMedalExchangeCore, medals) == 0xAD0 ? 1 : -1];
 typedef char HorseRacePrizeSelectionCheck[offsetof(HorseRaceMedalExchangeCore, selection) == 0xAD4 ? 1 : -1];
 typedef char HorseRacePrizePhaseCheck[offsetof(HorseRaceMedalExchangeCore, phase) == 0xADA ? 1 : -1];
-typedef char HorseRacePrizeVisibleIdsCheck[offsetof(HorseRaceMedalExchangeCore, visible_prize_ids) == 0xAE0 ? 1 : -1];
+typedef char HorseRacePrizeMenuIdsCheck[offsetof(HorseRaceMedalExchangeCore, menu_prize_ids) == 0xAE0 ? 1 : -1];
 
 extern u8 const gUnk_08527094[];
 
