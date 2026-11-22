@@ -72,12 +72,20 @@ mary_text_table
         "This is all thanks to you, \r\n"
         "{Player}. {Press}";
 
-    const char gText_NPCEvent_Cliff_PermanentWineryJob_DukeWelcomesCliffToWinery[] =
+    const char gText_NPCEvent_Cliff_PermanentWineryJob_DukeSaysNoNeedToApologizeAndReturnsToWork[] =
+#ifdef BUGFIX
+        // Restore Duke's reply when the player declines and Cliff is absent.
+        "There's no need to\r\n"
+        "apologize. I know you have\r\n"
+        "your own work.{Press}\p"
+        "I'll just do what I can.{Press}";
+#else
         "I'm glad to have you \r\n"
         "with us, Cliff.{Press}\p"
         "Now, let me show you how\r\n"
         "some other things are \r\n"
         "done around here...{Press}";
+#endif
 
     const char gText_NPCEvent_Cliff_PermanentWineryJob_DukeReturnsEveryoneToWork[] =
         "Back to work, I guess!{Press}";
@@ -378,7 +386,7 @@ void EventScript_NPCEvent_Cliff_PermanentWineryJob(void)
                 TalkOpen();
                 SetTalkPortrait(TALK_PORTRAIT_DUKE_NORMAL);
                 SetTalkNameplateCharacter(CHARACTER_DUKE);
-                TalkMessage(gText_NPCEvent_Cliff_PermanentWineryJob_DukeWelcomesCliffToWinery);
+                TalkMessage(gText_NPCEvent_Cliff_PermanentWineryJob_DukeSaysNoNeedToApologizeAndReturnsToWork);
                 TalkClose();
                 FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                 TalkOpen();
