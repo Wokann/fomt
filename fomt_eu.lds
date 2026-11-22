@@ -620,7 +620,7 @@ SECTIONS
         src/character_names_empty.o(.rodata);
         src/bachelorette.o(.rodata);
         src/npc_collection.o(.rodata);
-        src/field_item_data.o(.rodata);
+        src/field_item_records.o(.rodata);
         src/scene_calendar_core.o(.rodata);
         src/scene_calendar.o(.rodata);
         src/scene_minigames.o(.rodata);

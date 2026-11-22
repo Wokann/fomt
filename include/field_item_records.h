@@ -1,0 +1,179 @@
+#ifndef FIELD_ITEM_RECORDS_H
+#define FIELD_ITEM_RECORDS_H
+
+#include "prelude.h"
+
+enum FieldItemKind
+{
+    FIELD_ITEM_BAMBOO_SHOOT = 0x00,
+    FIELD_ITEM_WILD_GRAPES = 0x01,
+    FIELD_ITEM_MUSHROOM = 0x02,
+    FIELD_ITEM_POISONOUS_MUSHROOM = 0x03,
+    FIELD_ITEM_TRUFFLE = 0x04,
+    FIELD_ITEM_BLUE_GRASS = 0x05,
+    FIELD_ITEM_GREEN_GRASS = 0x06,
+    FIELD_ITEM_RED_GRASS = 0x07,
+    FIELD_ITEM_YELLOW_GRASS = 0x08,
+    FIELD_ITEM_ORANGE_GRASS = 0x09,
+    FIELD_ITEM_PURPLE_GRASS = 0x0A,
+    FIELD_ITEM_INDIGO_GRASS = 0x0B,
+    FIELD_ITEM_WHITE_GRASS = 0x0C,
+    FIELD_ITEM_APPLE = 0x0D,
+    FIELD_ITEM_MOON_DROP = 0x0E,
+    FIELD_ITEM_PINK_CAT = 0x0F,
+    FIELD_ITEM_MAGIC_BLUE = 0x10,
+    FIELD_ITEM_TOY = 0x11,
+    FIELD_ITEM_BRANCHES = 0x12,
+    FIELD_ITEM_LARGE_STONE = 0x13,
+    FIELD_ITEM_HUGE_STONE = 0x14,
+    FIELD_ITEM_STUMP = 0x15,
+};
+
+// Keep these slot values and range endpoints in sync with gFieldItemRecords when adding or removing rows.
+// END is exclusive. Slot values also determine the saved availability and resource indices.
+#define FIELD_ITEM_RECORD_SPRING_BEGIN      0x00                                       /* 0x00 */
+#define FIELD_ITEM_SPRING_SLOT_00           FIELD_ITEM_RECORD_SPRING_BEGIN             /* 0x00 */
+#define FIELD_ITEM_SPRING_SLOT_01           (FIELD_ITEM_RECORD_SPRING_BEGIN + 1)       /* 0x01 */
+#define FIELD_ITEM_SPRING_SLOT_02           (FIELD_ITEM_RECORD_SPRING_BEGIN + 2)       /* 0x02 */
+#define FIELD_ITEM_SPRING_SLOT_03           (FIELD_ITEM_RECORD_SPRING_BEGIN + 3)       /* 0x03 */
+#define FIELD_ITEM_SPRING_SLOT_04           (FIELD_ITEM_RECORD_SPRING_BEGIN + 4)       /* 0x04 */
+#define FIELD_ITEM_SPRING_SLOT_05           (FIELD_ITEM_RECORD_SPRING_BEGIN + 5)       /* 0x05 */
+#define FIELD_ITEM_SPRING_SLOT_06           (FIELD_ITEM_RECORD_SPRING_BEGIN + 6)       /* 0x06 */
+#define FIELD_ITEM_SPRING_SLOT_07           (FIELD_ITEM_RECORD_SPRING_BEGIN + 7)       /* 0x07 */
+#define FIELD_ITEM_SPRING_SLOT_08           (FIELD_ITEM_RECORD_SPRING_BEGIN + 8)       /* 0x08 */
+#define FIELD_ITEM_SPRING_SLOT_09           (FIELD_ITEM_RECORD_SPRING_BEGIN + 9)       /* 0x09 */
+#define FIELD_ITEM_SPRING_SLOT_10           (FIELD_ITEM_RECORD_SPRING_BEGIN + 10)      /* 0x0A */
+#define FIELD_ITEM_SPRING_SLOT_11           (FIELD_ITEM_RECORD_SPRING_BEGIN + 11)      /* 0x0B */
+#define FIELD_ITEM_SPRING_SLOT_12           (FIELD_ITEM_RECORD_SPRING_BEGIN + 12)      /* 0x0C */
+#define FIELD_ITEM_SPRING_SLOT_13           (FIELD_ITEM_RECORD_SPRING_BEGIN + 13)      /* 0x0D */
+#define FIELD_ITEM_SPRING_SLOT_14           (FIELD_ITEM_RECORD_SPRING_BEGIN + 14)      /* 0x0E */
+#define FIELD_ITEM_SPRING_SLOT_15           (FIELD_ITEM_RECORD_SPRING_BEGIN + 15)      /* 0x0F */
+#define FIELD_ITEM_SPRING_SLOT_16           (FIELD_ITEM_RECORD_SPRING_BEGIN + 16)      /* 0x10 */
+#define FIELD_ITEM_SPRING_SLOT_17           (FIELD_ITEM_RECORD_SPRING_BEGIN + 17)      /* 0x11 */
+#define FIELD_ITEM_SPRING_SLOT_18           (FIELD_ITEM_RECORD_SPRING_BEGIN + 18)      /* 0x12 */
+#define FIELD_ITEM_SPRING_SLOT_19           (FIELD_ITEM_RECORD_SPRING_BEGIN + 19)      /* 0x13 */
+#define FIELD_ITEM_SPRING_SLOT_20           (FIELD_ITEM_RECORD_SPRING_BEGIN + 20)      /* 0x14 */
+#define FIELD_ITEM_SPRING_SLOT_21           (FIELD_ITEM_RECORD_SPRING_BEGIN + 21)      /* 0x15 */
+#define FIELD_ITEM_SPRING_SLOT_22           (FIELD_ITEM_RECORD_SPRING_BEGIN + 22)      /* 0x16 */
+#define FIELD_ITEM_SPRING_SLOT_23           (FIELD_ITEM_RECORD_SPRING_BEGIN + 23)      /* 0x17 */
+#define FIELD_ITEM_SPRING_SLOT_24           (FIELD_ITEM_RECORD_SPRING_BEGIN + 24)      /* 0x18 */
+#define FIELD_ITEM_SPRING_SLOT_25           (FIELD_ITEM_RECORD_SPRING_BEGIN + 25)      /* 0x19 */
+#define FIELD_ITEM_RECORD_SPRING_END        (FIELD_ITEM_RECORD_SPRING_BEGIN + 26)      /* 0x1A */
+
+#define FIELD_ITEM_RECORD_SUMMER_BEGIN      0x1A                                       /* 0x1A */
+#define FIELD_ITEM_SUMMER_SLOT_00           FIELD_ITEM_RECORD_SUMMER_BEGIN             /* 0x1A */
+#define FIELD_ITEM_SUMMER_SLOT_01           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 1)       /* 0x1B */
+#define FIELD_ITEM_SUMMER_SLOT_02           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 2)       /* 0x1C */
+#define FIELD_ITEM_SUMMER_SLOT_03           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 3)       /* 0x1D */
+#define FIELD_ITEM_SUMMER_SLOT_04           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 4)       /* 0x1E */
+#define FIELD_ITEM_SUMMER_SLOT_05           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 5)       /* 0x1F */
+#define FIELD_ITEM_SUMMER_SLOT_06           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 6)       /* 0x20 */
+#define FIELD_ITEM_SUMMER_SLOT_07           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 7)       /* 0x21 */
+#define FIELD_ITEM_SUMMER_SLOT_08           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 8)       /* 0x22 */
+#define FIELD_ITEM_SUMMER_SLOT_09           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 9)       /* 0x23 */
+#define FIELD_ITEM_SUMMER_SLOT_10           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 10)      /* 0x24 */
+#define FIELD_ITEM_SUMMER_SLOT_11           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 11)      /* 0x25 */
+#define FIELD_ITEM_SUMMER_SLOT_12           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 12)      /* 0x26 */
+#define FIELD_ITEM_SUMMER_SLOT_13           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 13)      /* 0x27 */
+#define FIELD_ITEM_SUMMER_SLOT_14           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 14)      /* 0x28 */
+#define FIELD_ITEM_SUMMER_SLOT_15           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 15)      /* 0x29 */
+#define FIELD_ITEM_SUMMER_SLOT_16           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 16)      /* 0x2A */
+#define FIELD_ITEM_SUMMER_SLOT_17           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 17)      /* 0x2B */
+#define FIELD_ITEM_SUMMER_SLOT_18           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 18)      /* 0x2C */
+#define FIELD_ITEM_SUMMER_SLOT_19           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 19)      /* 0x2D */
+#define FIELD_ITEM_SUMMER_SLOT_20           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 20)      /* 0x2E */
+#define FIELD_ITEM_SUMMER_SLOT_21           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 21)      /* 0x2F */
+#define FIELD_ITEM_SUMMER_SLOT_22           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 22)      /* 0x30 */
+#define FIELD_ITEM_SUMMER_SLOT_23           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 23)      /* 0x31 */
+#define FIELD_ITEM_SUMMER_SLOT_24           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 24)      /* 0x32 */
+#define FIELD_ITEM_SUMMER_SLOT_25           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 25)      /* 0x33 */
+#define FIELD_ITEM_SUMMER_SLOT_26           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 26)      /* 0x34 */
+#define FIELD_ITEM_SUMMER_SLOT_27           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 27)      /* 0x35 */
+#define FIELD_ITEM_SUMMER_SLOT_28           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 28)      /* 0x36 */
+#define FIELD_ITEM_SUMMER_SLOT_29           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 29)      /* 0x37 */
+#define FIELD_ITEM_SUMMER_SLOT_30           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 30)      /* 0x38 */
+#define FIELD_ITEM_SUMMER_SLOT_31           (FIELD_ITEM_RECORD_SUMMER_BEGIN + 31)      /* 0x39 */
+#define FIELD_ITEM_RECORD_SUMMER_END        (FIELD_ITEM_RECORD_SUMMER_BEGIN + 32)      /* 0x3A */
+
+#define FIELD_ITEM_RECORD_FALL_BEGIN        0x3A                                       /* 0x3A */
+#define FIELD_ITEM_FALL_SLOT_00             FIELD_ITEM_RECORD_FALL_BEGIN               /* 0x3A */
+#define FIELD_ITEM_FALL_SLOT_01             (FIELD_ITEM_RECORD_FALL_BEGIN + 1)         /* 0x3B */
+#define FIELD_ITEM_FALL_SLOT_02             (FIELD_ITEM_RECORD_FALL_BEGIN + 2)         /* 0x3C */
+#define FIELD_ITEM_FALL_SLOT_03             (FIELD_ITEM_RECORD_FALL_BEGIN + 3)         /* 0x3D */
+#define FIELD_ITEM_FALL_SLOT_04             (FIELD_ITEM_RECORD_FALL_BEGIN + 4)         /* 0x3E */
+#define FIELD_ITEM_FALL_SLOT_05             (FIELD_ITEM_RECORD_FALL_BEGIN + 5)         /* 0x3F */
+#define FIELD_ITEM_FALL_SLOT_06             (FIELD_ITEM_RECORD_FALL_BEGIN + 6)         /* 0x40 */
+#define FIELD_ITEM_FALL_SLOT_07             (FIELD_ITEM_RECORD_FALL_BEGIN + 7)         /* 0x41 */
+#define FIELD_ITEM_FALL_SLOT_08             (FIELD_ITEM_RECORD_FALL_BEGIN + 8)         /* 0x42 */
+#define FIELD_ITEM_FALL_SLOT_09             (FIELD_ITEM_RECORD_FALL_BEGIN + 9)         /* 0x43 */
+#define FIELD_ITEM_FALL_SLOT_10             (FIELD_ITEM_RECORD_FALL_BEGIN + 10)        /* 0x44 */
+#define FIELD_ITEM_FALL_SLOT_11             (FIELD_ITEM_RECORD_FALL_BEGIN + 11)        /* 0x45 */
+#define FIELD_ITEM_FALL_SLOT_12             (FIELD_ITEM_RECORD_FALL_BEGIN + 12)        /* 0x46 */
+#define FIELD_ITEM_FALL_SLOT_13             (FIELD_ITEM_RECORD_FALL_BEGIN + 13)        /* 0x47 */
+#define FIELD_ITEM_FALL_SLOT_14             (FIELD_ITEM_RECORD_FALL_BEGIN + 14)        /* 0x48 */
+#define FIELD_ITEM_FALL_SLOT_15             (FIELD_ITEM_RECORD_FALL_BEGIN + 15)        /* 0x49 */
+#define FIELD_ITEM_FALL_SLOT_16             (FIELD_ITEM_RECORD_FALL_BEGIN + 16)        /* 0x4A */
+#define FIELD_ITEM_FALL_SLOT_17             (FIELD_ITEM_RECORD_FALL_BEGIN + 17)        /* 0x4B */
+#define FIELD_ITEM_FALL_SLOT_18             (FIELD_ITEM_RECORD_FALL_BEGIN + 18)        /* 0x4C */
+#define FIELD_ITEM_FALL_SLOT_19             (FIELD_ITEM_RECORD_FALL_BEGIN + 19)        /* 0x4D */
+#define FIELD_ITEM_FALL_SLOT_20             (FIELD_ITEM_RECORD_FALL_BEGIN + 20)        /* 0x4E */
+#define FIELD_ITEM_FALL_SLOT_21             (FIELD_ITEM_RECORD_FALL_BEGIN + 21)        /* 0x4F */
+#define FIELD_ITEM_FALL_SLOT_22             (FIELD_ITEM_RECORD_FALL_BEGIN + 22)        /* 0x50 */
+#define FIELD_ITEM_FALL_SLOT_23             (FIELD_ITEM_RECORD_FALL_BEGIN + 23)        /* 0x51 */
+#define FIELD_ITEM_FALL_SLOT_24             (FIELD_ITEM_RECORD_FALL_BEGIN + 24)        /* 0x52 */
+#define FIELD_ITEM_FALL_SLOT_25             (FIELD_ITEM_RECORD_FALL_BEGIN + 25)        /* 0x53 */
+#define FIELD_ITEM_FALL_SLOT_26             (FIELD_ITEM_RECORD_FALL_BEGIN + 26)        /* 0x54 */
+#define FIELD_ITEM_FALL_SLOT_27             (FIELD_ITEM_RECORD_FALL_BEGIN + 27)        /* 0x55 */
+#define FIELD_ITEM_FALL_SLOT_28             (FIELD_ITEM_RECORD_FALL_BEGIN + 28)        /* 0x56 */
+#define FIELD_ITEM_FALL_SLOT_29             (FIELD_ITEM_RECORD_FALL_BEGIN + 29)        /* 0x57 */
+#define FIELD_ITEM_FALL_SLOT_30             (FIELD_ITEM_RECORD_FALL_BEGIN + 30)        /* 0x58 */
+#define FIELD_ITEM_FALL_SLOT_31             (FIELD_ITEM_RECORD_FALL_BEGIN + 31)        /* 0x59 */
+#define FIELD_ITEM_FALL_SLOT_32             (FIELD_ITEM_RECORD_FALL_BEGIN + 32)        /* 0x5A */
+#define FIELD_ITEM_RECORD_FALL_APPLES_BEGIN FIELD_ITEM_FALL_SLOT_33                    /* 0x5B */
+#define FIELD_ITEM_FALL_SLOT_33             (FIELD_ITEM_RECORD_FALL_BEGIN + 33)        /* 0x5B */
+#define FIELD_ITEM_FALL_SLOT_34             (FIELD_ITEM_RECORD_FALL_BEGIN + 34)        /* 0x5C */
+#define FIELD_ITEM_FALL_SLOT_35             (FIELD_ITEM_RECORD_FALL_BEGIN + 35)        /* 0x5D */
+#define FIELD_ITEM_RECORD_FALL_APPLES_END   (FIELD_ITEM_RECORD_FALL_APPLES_BEGIN + 3)  /* 0x5E */
+#define FIELD_ITEM_RECORD_FALL_END          (FIELD_ITEM_RECORD_FALL_BEGIN + 36)        /* 0x5E */
+
+#define FIELD_ITEM_RECORD_WINTER_BEGIN      0x5E                                       /* 0x5E */
+#define FIELD_ITEM_WINTER_SLOT_00           FIELD_ITEM_RECORD_WINTER_BEGIN             /* 0x5E */
+#define FIELD_ITEM_WINTER_SLOT_01           (FIELD_ITEM_RECORD_WINTER_BEGIN + 1)       /* 0x5F */
+#define FIELD_ITEM_RECORD_WINTER_END        (FIELD_ITEM_RECORD_WINTER_BEGIN + 2)       /* 0x60 */
+
+#define FIELD_ITEM_RECORD_SHARED_BEGIN      0x60                                       /* 0x60 */
+#define FIELD_ITEM_SHARED_SLOT_00           FIELD_ITEM_RECORD_SHARED_BEGIN             /* 0x60 */
+#define FIELD_ITEM_SHARED_SLOT_01           (FIELD_ITEM_RECORD_SHARED_BEGIN + 1)       /* 0x61 */
+#define FIELD_ITEM_SHARED_SLOT_02           (FIELD_ITEM_RECORD_SHARED_BEGIN + 2)       /* 0x62 */
+#define FIELD_ITEM_SHARED_SLOT_03           (FIELD_ITEM_RECORD_SHARED_BEGIN + 3)       /* 0x63 */
+#define FIELD_ITEM_SHARED_SLOT_04           (FIELD_ITEM_RECORD_SHARED_BEGIN + 4)       /* 0x64 */
+#define FIELD_ITEM_SHARED_SLOT_05           (FIELD_ITEM_RECORD_SHARED_BEGIN + 5)       /* 0x65 */
+#define FIELD_ITEM_SHARED_SLOT_06           (FIELD_ITEM_RECORD_SHARED_BEGIN + 6)       /* 0x66 */
+#define FIELD_ITEM_SHARED_SLOT_07           (FIELD_ITEM_RECORD_SHARED_BEGIN + 7)       /* 0x67 */
+#define FIELD_ITEM_SHARED_SLOT_08           (FIELD_ITEM_RECORD_SHARED_BEGIN + 8)       /* 0x68 */
+#define FIELD_ITEM_SHARED_SLOT_09           (FIELD_ITEM_RECORD_SHARED_BEGIN + 9)       /* 0x69 */
+#define FIELD_ITEM_SHARED_SLOT_10           (FIELD_ITEM_RECORD_SHARED_BEGIN + 10)      /* 0x6A */
+#define FIELD_ITEM_SHARED_SLOT_11           (FIELD_ITEM_RECORD_SHARED_BEGIN + 11)      /* 0x6B */
+#define FIELD_ITEM_SHARED_SLOT_12           (FIELD_ITEM_RECORD_SHARED_BEGIN + 12)      /* 0x6C */
+#define FIELD_ITEM_SHARED_SLOT_13           (FIELD_ITEM_RECORD_SHARED_BEGIN + 13)      /* 0x6D */
+#define FIELD_ITEM_SHARED_SLOT_14           (FIELD_ITEM_RECORD_SHARED_BEGIN + 14)      /* 0x6E */
+#define FIELD_ITEM_SHARED_SLOT_15           (FIELD_ITEM_RECORD_SHARED_BEGIN + 15)      /* 0x6F */
+#define FIELD_ITEM_SHARED_SLOT_16           (FIELD_ITEM_RECORD_SHARED_BEGIN + 16)      /* 0x70 */
+#define FIELD_ITEM_SHARED_SLOT_17           (FIELD_ITEM_RECORD_SHARED_BEGIN + 17)      /* 0x71 */
+#define FIELD_ITEM_SHARED_SLOT_18           (FIELD_ITEM_RECORD_SHARED_BEGIN + 18)      /* 0x72 */
+#define FIELD_ITEM_SHARED_SLOT_19           (FIELD_ITEM_RECORD_SHARED_BEGIN + 19)      /* 0x73 */
+#define FIELD_ITEM_RECORD_SHARED_END        (FIELD_ITEM_RECORD_SHARED_BEGIN + 20)      /* 0x74 */
+
+typedef struct FieldItemRecord
+{
+    i32 kind;
+    u32 map;
+    i16 x;
+    i16 y;
+} FieldItemRecord;
+
+EXTERN_C
+extern FieldItemRecord const gFieldItemRecords[];
+EXTERN_C_END
+
+#endif // FIELD_ITEM_RECORDS_H
