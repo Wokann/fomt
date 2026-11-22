@@ -25,13 +25,13 @@ make -j16 GAME_REGION=JP all
 | 分类 | 内容 | 条目数 |
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
-| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 10 |
+| [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **142** |
+| **合计** | | **143** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -223,6 +223,7 @@ JP、US、EU 在春 19 日消息后结束该分支。
 | [JP及DE卡莲婚后询问玩家婚姻状态错误](#audit-a09) | JP、DE | 已接入 |
 | [杂货店咖喱粉货架报价错误](#curry-powder-price) | US、EU、DE | 已接入 |
 | [湖矿 B201–B250 的整十层选错岩石权重](#lake-mine-decade-rock-weights) | 四版 | 已接入 |
+| [日版牧草在冬季继续生长](#jp-winter-grass-growth) | JP | 已接入 |
 
 <a id="fish-prices"></a>
 ### 小鱼与大鱼出货价倒置
@@ -423,6 +424,25 @@ GBA 时期的两份民间攻略记载有别。2007 年中文攻略把两种宝�
 让 B210、B220、B230、B240、B250 使用 GBA 原有的索引 53，两种宝石在该行的取样率各为 1/256。
 
 **相关文件：** [岩石权重选择](src/mine_floor.cc) · [权重行索引](include/mine_weight_rows.h) · [权重表](src/mine_floor_items.c) · 矿场研究第 8 集（[JP](data/scripts/jp/EventScript_TV_MineResearchGroup.mary.c) · [US](data/scripts/us/EventScript_TV_MineResearchGroup.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineResearchGroup.mary.c) · [DE](data/scripts/de/EventScript_TV_MineResearchGroup.mary.c)）
+
+<a id="jp-winter-grass-growth"></a>
+### 日版牧草在冬季继续生长
+
+**受影响版本：** JP。
+
+**原版内容与差异：**
+
+JP 入冬时保留牧草原有生长阶段及计数，未成熟的牧草在冬季仍推进。US、EU、DE 入冬时把现有牧草置为阶段 7、计数 0，冬季暂停推进。
+
+**判断依据：**
+
+JP 秋 23 日农舍入门节目说牧草冬季埋在雪下，到春天才重新生长。海外节目和重制版节目也支持冬季停长。两处田地更新共同决定冬季牧草的状态。
+
+**修复方式：**
+
+JP 同时采用海外版的入冬重置和冬季停长逻辑。
+
+**相关文件：** [田地每日与换季更新](src/field.cc) · [JP 秋 23 日节目](data/scripts/jp/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [地区差异](REGIONAL_DIFFERENCES.md)
 
 <a id="category-interface"></a>
 ## 菜单选项、记录与显示
