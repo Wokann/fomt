@@ -116,7 +116,11 @@ MAIN
     "Wird einmalig geerntet."
     ""
     "☆Rotes Magisches Gras"
+#ifdef BUGFIX
+    "Tage:   3   3    2   2 "
+#else
     "Tage:   3   2    2   2 "
+#endif
     "Samen→X→Y→Z→Blüte"
     "Wird einmalig geerntet."
     ""

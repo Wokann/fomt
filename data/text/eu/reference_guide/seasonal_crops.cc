@@ -114,7 +114,11 @@ MAIN
     "Can only harvest once."
     ""
     "☆Magic Red Grass"
+#ifdef BUGFIX
+    "Days: 3   3    2   2 "
+#else
     "Days: 3   2    2   2 "
+#endif
     "Seeds→X→Y→Z→Flowers"
     "Can only harvest once."
     ""
