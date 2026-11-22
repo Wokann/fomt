@@ -29,9 +29,9 @@ make -j16 GAME_REGION=JP all
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
-| [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 30 |
+| [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 31 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **139** |
+| **合计** | | **140** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1996,6 +1996,7 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 | [DE：酱油名称出现错误字符](#audit-f04) | DE | 已接入 |
 | [酒庄告示休息日错误](#winery-day-off) | US、EU、DE | 已接入 |
 | [巨石说明把五级锤条件写成玩家当前等级](#huge-stone-description) | US、EU、DE | 已接入 |
+| [出货价格指南的黄玉与红宝石价格错误](#guide-topaz-ruby-prices) | 四版 | 已接入 |
 
 <a id="audit-b01"></a>
 ### 出荷价格指南：按道具名称列出三个品质的鸡蛋并修正海外胡萝卜价格
@@ -2706,6 +2707,25 @@ JP是“即使LV5也无法击碎”；这个调查说明不等于已检查玩家
 保留原石头名称、三行结构及等待位置，改为即使五级锤也无法击碎。
 
 **相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c)
+
+<a id="guide-topaz-ruby-prices"></a>
+### 出货价格指南的黄玉与红宝石价格错误
+
+**受影响版本：** 四版。
+
+**原版内容与差异：**
+
+《出货价格》的矿石栏把黄玉写为 75 G、红宝石写为 78 G。
+
+**判断依据：**
+
+四版物品表和出货箱实际采用的价格为黄玉 70 G、红宝石 75 G。
+
+**修复方式：**
+
+把指南中的两个数字改为实际出货价，沿用各版排版。
+
+**相关文件：** [物品价格](src/item.cc) · [出货结算](src/shipping_bin.cc) · [JP](data/text/jp/reference_guide/sell_price.cc) · [US](data/text/us/reference_guide/sell_price.cc) · [EU](data/text/eu/reference_guide/sell_price.cc) · [DE](data/text/de/reference_guide/sell_price.cc)
 
 <a id="category-television"></a>
 ## 电视节目内容

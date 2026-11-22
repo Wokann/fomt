@@ -87,8 +87,14 @@ MAIN
     "Achat              62G"
     "Fluorit            65G"
     "Peridot            68G"
+// The item tables price topaz at 70G and ruby at 75G.
+#ifdef BUGFIX
+    "Topas              70G"
+    "Rubin              75G"
+#else
     "Topas              75G"
     "Rubin              78G"
+#endif
     "Smaragd            80G"
     "Diamant            100G"
     "Mondstein          55G"

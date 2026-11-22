@@ -82,8 +82,14 @@ MAIN
     "めのう　　　　　　　　６２Ｇ"
     "螢石　　　　　　　　　６５Ｇ"
     "ペリドット　　　　　　６８Ｇ"
+// The item tables price topaz at 70G and ruby at 75G.
+#ifdef BUGFIX
+    "トパーズ　　　　　　　７０Ｇ"
+    "ルビー　　　　　　　　７５Ｇ"
+#else
     "トパーズ　　　　　　　７５Ｇ"
     "ルビー　　　　　　　　７８Ｇ"
+#endif
     "エメラルド　　　　　　８０Ｇ"
     "ダイヤモンド　　　　１００Ｇ"
     "ムーンストーン　　　　５５Ｇ"
