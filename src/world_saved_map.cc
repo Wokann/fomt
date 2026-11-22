@@ -9014,171 +9014,60 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    "thumb_func_start func_080AACB8\n"
-    "func_080AACB8:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, r8\n"
-    "push {r7}\n"
-    "sub sp, #0x10\n"
-    "adds r5, r0, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "adds r0, #0x10\n"
-    "bl GetCalendarEffectiveSeason\n"
-    "mov r8, r0\n"
-    "ldr r0, [r5, #4]\n"
-    "cmp r0, #0xf\n"
-    "bhi .Lgame_map_after_flag_updates_0492\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lgame_map_after_flag_updates_03f0\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lgame_map_after_flag_updates_03f0: .word .Lgame_map_after_flag_updates_03f4\n"
-    ".Lgame_map_after_flag_updates_03f4:\n"
-    ".word .Lgame_map_after_flag_updates_047e\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0452\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0448\n"
-    ".word .Lgame_map_after_flag_updates_0492\n"
-    ".word .Lgame_map_after_flag_updates_0464\n"
-    ".word .Lgame_map_after_flag_updates_046e\n"
-    ".word .Lgame_map_after_flag_updates_0464\n"
-    ".word .Lgame_map_after_flag_updates_046e\n"
-    ".word .Lgame_map_after_flag_updates_0434\n"
-    ".word .Lgame_map_after_flag_updates_043e\n"
-    ".Lgame_map_after_flag_updates_0434:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0xf2\n"
-    "lsls r1, r1, #2\n"
-    "b .Lgame_map_after_flag_updates_0476\n"
-    ".Lgame_map_after_flag_updates_043e:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0xf9\n"
-    "lsls r1, r1, #2\n"
-    "b .Lgame_map_after_flag_updates_0476\n"
-    ".Lgame_map_after_flag_updates_0448:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0xb0\n"
-    "lsls r1, r1, #2\n"
-    "b .Lgame_map_after_flag_updates_0476\n"
-    ".Lgame_map_after_flag_updates_0452:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "ldr r1, .Lgame_map_after_flag_updates_0460\n"
-    "movs r2, #0xc\n"
-    "bl ResetSavedMapTree\n"
-    "b .Lgame_map_after_flag_updates_04a0\n"
-    ".align 2, 0\n"
-    ".Lgame_map_after_flag_updates_0460: .word 0x000003E6\n"
-    ".Lgame_map_after_flag_updates_0464:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0xf8\n"
-    "lsls r1, r1, #2\n"
-    "b .Lgame_map_after_flag_updates_0476\n"
-    ".Lgame_map_after_flag_updates_046e:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0xad\n"
-    "lsls r1, r1, #2\n"
-    ".Lgame_map_after_flag_updates_0476:\n"
-    "movs r2, #9\n"
-    "bl ResetSavedMapTree\n"
-    "b .Lgame_map_after_flag_updates_04a0\n"
-    ".Lgame_map_after_flag_updates_047e:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0\n"
-    "movs r2, #0\n"
-    "bl ResetSavedMapTree\n"
-    "mov r0, r8\n"
-    "cmp r0, #2\n"
-    "beq .Lgame_map_after_flag_updates_04a0\n"
-    "b .Lgame_map_after_flag_updates_0510\n"
-    ".Lgame_map_after_flag_updates_0492:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x9c\n"
-    "movs r1, #0\n"
-    "movs r2, #0\n"
-    "bl ResetSavedMapTree\n"
-    "b .Lgame_map_after_flag_updates_0510\n"
-    ".Lgame_map_after_flag_updates_04a0:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lgame_map_after_flag_updates_051c\n"
-    "adds r6, r0, r1\n"
-    "ldr r0, .Lgame_map_after_flag_updates_0520\n"
-    "mov r2, r8\n"
-    "lsls r1, r2, #1\n"
-    "adds r2, r1, r0\n"
-    "adds r0, #1\n"
-    "adds r1, r1, r0\n"
-    "ldrb r7, [r1]\n"
-    "ldrb r4, [r2]\n"
-    "cmp r4, r7\n"
-    "bhs .Lgame_map_after_flag_updates_04e6\n"
-    ".Lgame_map_after_flag_updates_04be:\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r4, #0\n"
-    "mov r2, r8\n"
-    "bl IsAvailable__C14FieldItemStateUii\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lgame_map_after_flag_updates_04e0\n"
-    "mov r0, sp\n"
-    "adds r1, r6, #0\n"
-    "adds r2, r4, #0\n"
-    "bl GetRecord__C14FieldItemStateUi\n"
-    "adds r0, r5, #0\n"
-    "mov r1, sp\n"
-    "bl func_080AA9C8\n"
-    ".Lgame_map_after_flag_updates_04e0:\n"
-    "adds r4, #1\n"
-    "cmp r4, r7\n"
-    "blo .Lgame_map_after_flag_updates_04be\n"
-    ".Lgame_map_after_flag_updates_04e6:\n"
-    "movs r4, #0x60\n"
-    ".Lgame_map_after_flag_updates_04e8:\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r4, #0\n"
-    "mov r2, r8\n"
-    "bl IsAvailable__C14FieldItemStateUii\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lgame_map_after_flag_updates_050a\n"
-    "mov r0, sp\n"
-    "adds r1, r6, #0\n"
-    "adds r2, r4, #0\n"
-    "bl GetRecord__C14FieldItemStateUi\n"
-    "adds r0, r5, #0\n"
-    "mov r1, sp\n"
-    "bl func_080AA9C8\n"
-    ".Lgame_map_after_flag_updates_050a:\n"
-    "adds r4, #1\n"
-    "cmp r4, #0x73\n"
-    "bls .Lgame_map_after_flag_updates_04e8\n"
-    ".Lgame_map_after_flag_updates_0510:\n"
-    "add sp, #0x10\n"
-    "pop {r3}\n"
-    "mov r8, r3\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lgame_map_after_flag_updates_051c: .word 0x000034C8\n"
-    ".Lgame_map_after_flag_updates_0520: .word gFieldRenderSeasonalRecordRanges\n"
 );
+
+EC void func_080AA9C8(GameSceneSavedMap * map, FieldItemInstance const * item);
+
+EC void func_080AACB8(GameSceneSavedMap * map)
+{
+    i32 season = GetCalendarEffectiveSeason(map->save->clock.calendar);
+    switch (map->map_data_id) {
+    case 14: // Mother's Hill, outside winter
+        ResetSavedMapTree(&map->saved_tree, 0x3C8, 9);
+        break;
+    case 15: // Mother's Hill, winter
+        ResetSavedMapTree(&map->saved_tree, 0x3E4, 9);
+        break;
+    case 8: // Mineral Beach, outside winter
+        ResetSavedMapTree(&map->saved_tree, 0x2C0, 9);
+        break;
+    case 4: // North Side of Town, outside winter
+        ResetSavedMapTree(&map->saved_tree, 0x3E6, 12);
+        break;
+    case 10: // Behind the Church, outside winter
+    case 12: // Forest, outside winter
+        ResetSavedMapTree(&map->saved_tree, 0x3E0, 9);
+        break;
+    case 11: // Behind the Church, winter
+    case 13: // Forest, winter
+        ResetSavedMapTree(&map->saved_tree, 0x2B4, 9);
+        break;
+    case 0: // Farm, outside winter
+        ResetSavedMapTree(&map->saved_tree, 0, 0);
+        if (season == SEASON_FALL)
+            break;
+        return;
+    default:
+        ResetSavedMapTree(&map->saved_tree, 0, 0);
+        return;
+    }
+
+    FieldItemState const & items = map->save->field_items;
+    u32 first = gFieldRenderSeasonalRecordRanges[season].first_record_index;
+    u32 end = gFieldRenderSeasonalRecordRanges[season].past_last_record_index;
+    for (u32 index = first; index < end; ++index) {
+        if (items.IsAvailable(index, season)) {
+            FieldItemInstance item = items.GetRecord(index);
+            func_080AA9C8(map, &item);
+        }
+    }
+    for (u32 index = FIELD_ITEM_RECORD_SHARED_BEGIN; index < FIELD_ITEM_RECORD_SHARED_END; ++index) {
+        if (items.IsAvailable(index, season)) {
+            FieldItemInstance item = items.GetRecord(index);
+            func_080AA9C8(map, &item);
+        }
+    }
+}
 
 EC void ResetSavedMapTree(SavedMapTree * tree, u32 first_tile_index, u32 first_palette_index)
 {
