@@ -30,8 +30,8 @@ make -j16 GAME_REGION=JP all
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 35 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **146** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 22 |
+| **合计** | | **147** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -2873,6 +2873,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [鱼王条件被译成“这条鱼适合做哪些菜”](#audit-e18) | US、EU、DE | 已接入 |
 | [料理对决第2集把糖译成盐](#audit-e19) | US、EU、DE | 已接入 |
 | [英文电视台词残留日文助词](#tv-japanese-particles) | US、EU | 已接入 |
+| [德版别墅春季雨天预报把明天说成今天](#de-villa-tv-spring-rain) | DE | 已接入 |
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误
@@ -3335,3 +3336,22 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 只移除已经确认混入英文的は／に，不改节目分派。
 
 **相关文件：** [JP](data/scripts/jp/EventScript_TV_F314MGrandPrix.mary.c) · [US](data/scripts/us/EventScript_TV_F314MGrandPrix.mary.c) · [EU](data/scripts/eu/EventScript_TV_F314MGrandPrix.mary.c) · [DE](data/scripts/de/EventScript_TV_F314MGrandPrix.mary.c) · [JP](data/scripts/jp/EventScript_TV_StEmeraldAcademy.mary.c) · [US](data/scripts/us/EventScript_TV_StEmeraldAcademy.mary.c) · [EU](data/scripts/eu/EventScript_TV_StEmeraldAcademy.mary.c) · [DE](data/scripts/de/EventScript_TV_StEmeraldAcademy.mary.c)
+
+<a id="de-villa-tv-spring-rain"></a>
+### 德版别墅春季雨天预报把明天说成今天
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+镇上别墅电视的春季雨天预报以 `Das Wetter von heute!`（今天的天气！）开头。其他三版均说明是明天的天气。
+
+**判断依据：**
+
+该频道读取明日天气。德版同一节目相邻的春季晴天预报使用 `Hier das Wetter für morgen!`（这是明天的天气预报！）。
+
+**修复方式：**
+
+用相邻预报的首句替换德版雨天首句。
+
+**相关文件：** [别墅电视入口](src/map_terrain.cc) · [DE](data/scripts/de/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [JP 对照](data/scripts/jp/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [US 对照](data/scripts/us/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c)

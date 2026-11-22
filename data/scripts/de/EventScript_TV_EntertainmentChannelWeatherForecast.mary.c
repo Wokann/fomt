@@ -37,7 +37,11 @@ mary_text_table
         "Region. {Press}";
 
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain[] =
+#ifdef BUGFIX
+        "Hier das Wetter für morgen!\r\n"
+#else
         "Das Wetter von heute!\r\n"
+#endif
         "Regen den ganzen Tag! \r\n"
         "Zu schade!{Press}";
 
