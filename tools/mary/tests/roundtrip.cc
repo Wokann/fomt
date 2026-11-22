@@ -1,6 +1,7 @@
 #include "ast.hh"
 #include "bytecode.hh"
 #include "decompiler.hh"
+#include "driver.hh"
 #include "legacy.hh"
 #include "low_level.hh"
 #include "mary_c.hh"
@@ -132,6 +133,44 @@ invalid
     rejects([] { decode_script(Bytes{'R', 'I', 'F', 'F'}); }, "truncated RIFF accepted");
 }
 
+void source_mapping()
+{
+    Options options;
+    options.define("MARY_FOMT_JP");
+    auto source = std::string(R"(#include "test.mary.h"
+#if defined(REGION_JP)
+#define THRESHOLD 12
+#else
+#define THRESHOLD 24
+#endif
+mary_script(4) void Preview(void)
+{
+    int hour = 15;
+    if (hour > THRESHOLD)
+    {
+        return;
+    }
+}
+)");
+    (void)extract_includes(source);
+    const auto script = parse_mary_c(source, options, {}, nullptr, nullptr).at(0).script;
+    std::vector<CodeSource> locations;
+    const auto encoded = encode_script(script, &locations);
+    require(encoded == encode_script(script), "source mapping changed RIFF bytes");
+    const auto branch = std::find_if(locations.begin(), locations.end(), [](const CodeSource &entry)
+    {
+        return entry.condition_start != SIZE_MAX;
+    });
+    require(branch != locations.end() && branch->line == 10 && !branch->jump_on_true,
+        "source condition lost its line around an include and a regional macro");
+    require(branch->condition_start < branch->pc && encoded.at(24 + branch->pc) == 0x1b,
+        "source condition points outside its generated BEQ");
+    require(std::any_of(locations.begin(), locations.end(), [&](const CodeSource &entry)
+    {
+        return entry.pc == branch->condition_start && entry.line == branch->line;
+    }), "condition entry PC is missing its source line");
+}
+
 void put_word(Bytes &rom, std::size_t at, std::uint32_t value)
 {
     for (unsigned n = 0; n < 4; ++n)
@@ -186,8 +225,9 @@ int main()
     {
         preprocessing_and_encoding();
         source_roundtrip();
+        source_mapping();
         import_boundaries();
-        std::cout << "Source round trips, regional preprocessing, and import boundaries passed.\n";
+        std::cout << "Source round trips, source mapping, regional preprocessing, and import boundaries passed.\n";
     }
     catch (const std::exception &error)
     {

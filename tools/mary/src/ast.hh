@@ -59,6 +59,8 @@ struct Statement
     std::size_t switch_id = 0;
     bool compact = false;
     Script raw_ir;
+    std::size_t source_line = 0;
+    std::size_t condition_line = 0;
 };
 
 struct SwitchCase

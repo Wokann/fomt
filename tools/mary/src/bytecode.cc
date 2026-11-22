@@ -158,7 +158,7 @@ std::uint32_t read_u32(const Bytes &data, std::size_t offset)
     return value;
 }
 
-Bytes encode_script(const Script &script)
+Bytes encode_script(const Script &script, std::vector<CodeSource> *source_map)
 {
     validate(script);
     Bytes out;
@@ -169,6 +169,12 @@ Bytes encode_script(const Script &script)
     word(out, 0);
     word(out, 0);
     const auto code_start = out.size();
+    std::vector<std::size_t> source_offsets;
+    if (source_map)
+    {
+        source_map->clear();
+        source_offsets.reserve(script.instructions.size());
+    }
     std::map<Integer, std::size_t> labels;
     std::vector<std::pair<std::size_t, Integer>> patches;
     std::vector<std::vector<Case>> tables;
@@ -177,6 +183,13 @@ Bytes encode_script(const Script &script)
             tables.resize(std::max(tables.size(), std::size_t(ins.argument) + 1));
     for (auto &ins : script.instructions)
     {
+        if (source_map)
+        {
+            const auto pc = out.size() - code_start;
+            source_offsets.push_back(pc);
+            if (ins.source_line && ins.op != Op::Label && ins.op != Op::Case)
+                source_map->push_back({ pc, ins.source_line, ins.condition_start, ins.jump_on_true });
+        }
         if (ins.op == Op::Label)
         {
             labels[ins.argument] = out.size() - code_start;
@@ -224,6 +237,10 @@ Bytes encode_script(const Script &script)
             }
         }
     }
+    if (source_map)
+        for (auto &location : *source_map)
+            if (location.condition_start != SIZE_MAX)
+                location.condition_start = source_offsets.at(location.condition_start);
     for (auto &entry : patches)
         patch(out, entry.first, size32(labels.at(entry.second)));
     out.push_back(0x20);

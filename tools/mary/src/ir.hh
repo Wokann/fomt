@@ -1,6 +1,7 @@
 #ifndef MARY_IR_HH
 #define MARY_IR_HH
 
+#include <cstddef>
 #include <cstdint>
 #include <vector>
 
@@ -56,6 +57,10 @@ struct Instruction
     Integer argument = 0;
     Integer case_value = 0;
     bool default_case = false;
+    std::size_t source_line = 0;
+    // Instruction index where evaluation of a source-level condition starts.
+    std::size_t condition_start = SIZE_MAX;
+    bool jump_on_true = false;
 };
 
 struct Script

@@ -79,6 +79,7 @@ Arguments arguments(const std::vector<std::string> &input)
                                         "charmap",
                                         "library",
                                         "script-table",
+                                        "source-map",
                                         "constants",
                                         "symbols",
                                         "text-names",
@@ -161,6 +162,8 @@ void help()
            "mary generate-symbols fomt-jp fomt-us fomt-eu fomt-de mfomt-jp mfomt-us output-dir\n\n"
            "Common: --charmap path, -D NAME[=VALUE], --constants path, --script-table path.\n"
            "Compile: --print-ir adds an instruction listing to C-array output.\n"
+           "  --source-map FILE with --mary-c --binary writes line and condition metadata.\n"
+           "  Use --source-map - to write this metadata to stderr.\n"
            "Decompile: --mary-c selects .mary.c; --print-ir adds a listing.\n"
            "  Default: neutral script/variable/callable IDs, with lossless numbered IR\n"
            "  when callable shapes are unavailable. --library explicitly supplies shapes.\n"
@@ -218,6 +221,74 @@ std::string ir_comment(const Script &script, const Charmap *map)
 {
     return "/* Script instructions and strings (IR):\n" + format_ir(script, 1, map) + "*/\n";
 }
+
+void write_source_map(const fs::path &path, const NamedScript &script,
+                      const ConstScope &scope, const Charmap *map,
+                      const std::vector<CodeSource> &locations)
+{
+    const auto type_name = [](const ValueType &type) -> std::string
+    {
+        switch (type.kind)
+        {
+            case ValueType::Undefined: return "void";
+            case ValueType::Integer: return "int";
+            case ValueType::String: return "const char*";
+            case ValueType::User: return type.name;
+        }
+        throw std::runtime_error("invalid callable type");
+    };
+    std::ostringstream out;
+    out << "MARY-SOURCE-MAP\t1\t" << script.id << '\t' << script.name << '\n';
+    for (const auto &location : locations)
+    {
+        out << "code\t" << location.pc << '\t' << location.line;
+        if (location.condition_start != SIZE_MAX)
+            out << '\t' << location.condition_start << '\t' << location.jump_on_true;
+        out << '\n';
+    }
+    for (const auto &entry : scope.callables)
+    {
+        const auto &call = entry.second;
+        out << "call\t" << call.id << '\t' << entry.first << '\t' << call.is_function() << '\t';
+        for (const auto &type : call.parameters)
+            out << (type.kind == ValueType::String ? 's' : 'i');
+        out << '\t' << type_name(call.return_type);
+        for (const auto &type : call.parameters)
+            out << '\t' << type_name(type);
+        out << '\n';
+    }
+    for (const auto &entry : scope.constants)
+        if (entry.first.compare(0, 4, "VAR_") == 0 ||
+            entry.first.compare(0, 10, "AUDIO_BGM_") == 0)
+            if (const auto *value = std::get_if<Integer>(&entry.second))
+                out << (entry.first.compare(0, 4, "VAR_") == 0 ? "var\t" : "bgm\t")
+                    << *value << '\t' << entry.first << '\n';
+    for (std::size_t id = 0; id < script.script.strings.size(); ++id)
+    {
+        const auto &bytes = script.script.strings[id];
+        out << "text\t" << id << '\t';
+        for (std::size_t at = 0; at < bytes.size();)
+        {
+            std::string text;
+            const auto decoded = map ? map->decode_one(bytes, at) : std::nullopt;
+            if (decoded)
+            {
+                text = decoded->second;
+                at += decoded->first;
+            }
+            else
+                text = "{0x" + hex(bytes[at++], 2) + "}";
+            for (unsigned char ch : text)
+                out << hex(ch, 2);
+        }
+        out << '\n';
+    }
+    if (path == fs::path("-"))
+        std::cerr << out.str();
+    else
+        write_text(path, out.str());
+}
+
 void compile(const Arguments &args)
 {
     if (args.positional.size() > 1)
@@ -234,6 +305,10 @@ void compile(const Arguments &args)
     }
     auto opts = args.flag("mary-c") ? source_options(args.defines, source) : options(args.defines);
     auto map = charmap(args, opts);
+    const auto source_map = args.path("source-map");
+    if (source_map && (!args.flag("mary-c") || !args.flag("binary")))
+        throw std::runtime_error("--source-map requires --mary-c --binary");
+    std::optional<ConstScope> debug_scope;
     std::vector<NamedScript> scripts;
     if (args.flag("mary-c"))
     {
@@ -276,6 +351,8 @@ void compile(const Arguments &args)
             table = parse_script_table(read_text(resolve(*script_table)), opts);
         scripts =
             parse_mary_c(source, opts, scope, table ? &*table : nullptr, map ? &*map : nullptr);
+        if (source_map)
+            debug_scope = std::move(scope);
     }
     else
     {
@@ -288,7 +365,11 @@ void compile(const Arguments &args)
     {
         if (scripts.size() != 1)
             throw std::runtime_error("binary output requires exactly one script");
-        output(args, encode_script(scripts[0].script));
+        std::vector<CodeSource> locations;
+        const auto bytes = encode_script(scripts[0].script, source_map ? &locations : nullptr);
+        if (source_map)
+            write_source_map(*source_map, scripts[0], *debug_scope, map ? &*map : nullptr, locations);
+        output(args, bytes);
         return;
     }
     std::ostringstream out;

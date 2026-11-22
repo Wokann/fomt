@@ -288,6 +288,14 @@ class Parser
 
     Statement stmt()
     {
+        const auto line = tokens.peek().line;
+        auto result = statement();
+        result.source_line = line;
+        return result;
+    }
+
+    Statement statement()
+    {
         if (tokens.eat("mary_ir"))
         {
             Statement result;
@@ -331,6 +339,7 @@ class Parser
             controls.push_back(false);
             result.body = block();
             controls.pop_back();
+            result.condition_line = tokens.peek().line;
             tokens.require("while");
             result.expression = parenthesized();
             tokens.require(";");
@@ -341,11 +350,16 @@ class Parser
             constants.emplace_back();
             result.kind = Statement::For;
             tokens.require("(");
+            const auto init_line = tokens.peek().line;
             result.clauses.push_back(tokens.eat("int") ? declarations(false) : simple());
+            result.clauses.back().source_line = init_line;
             tokens.require(";");
+            result.condition_line = tokens.peek().line;
             result.expression = expression();
             tokens.require(";");
+            const auto update_line = tokens.peek().line;
             result.clauses.push_back(simple());
+            result.clauses.back().source_line = update_line;
             tokens.require(")");
             controls.push_back(false);
             result.body = block();

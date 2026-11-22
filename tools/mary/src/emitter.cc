@@ -90,6 +90,7 @@ struct Emitter
     Script result;
     Integer label_counter = 0;
     std::vector<Integer> switch_breaks;
+    std::size_t source_line = 0;
 
     [[noreturn]] void fail(const std::string &message)
     {
@@ -103,7 +104,7 @@ struct Emitter
     {
         if (op == Op::PushInt && !encodable_integer(argument))
             fail("integer exceeds VM value range");
-        result.instructions.push_back({ op, argument });
+        result.instructions.push_back({ op, argument, 0, false, source_line });
     }
     Integer string_id(const Bytes &bytes)
     {
@@ -252,7 +253,29 @@ struct Emitter
         for (auto &statement : statements)
             stmt(statement, scope);
     }
+    void condition(const Statement &s, const BlockScope &scope, Op jump, Integer target)
+    {
+        const auto saved = source_line;
+        if (s.condition_line)
+            source_line = s.condition_line;
+        const auto start = result.instructions.size();
+        expression(s.expression, scope);
+        ins(jump, target);
+        result.instructions.back().condition_start = start;
+        result.instructions.back().jump_on_true = jump == Op::Bne;
+        source_line = saved;
+    }
+
     void stmt(const Statement &s, BlockScope &scope)
+    {
+        const auto saved = source_line;
+        if (s.source_line)
+            source_line = s.source_line;
+        statement(s, scope);
+        source_line = saved;
+    }
+
+    void statement(const Statement &s, BlockScope &scope)
     {
         switch (s.kind)
         {
@@ -310,8 +333,7 @@ struct Emitter
             case Statement::If:
             {
                 auto next = label();
-                expression(s.expression, scope);
-                ins(Op::Beq, next);
+                condition(s, scope, Op::Beq, next);
                 block(s.body, scope);
                 ins(Op::Label, next);
                 break;
@@ -319,8 +341,7 @@ struct Emitter
             case Statement::IfElse:
             {
                 auto otherwise = label(), next = label();
-                expression(s.expression, scope);
-                ins(Op::Beq, otherwise);
+                condition(s, scope, Op::Beq, otherwise);
                 block(s.body, scope);
                 ins(Op::Jmp, next);
                 ins(Op::Label, otherwise);
@@ -334,8 +355,7 @@ struct Emitter
                 auto begin = label(), tail = label(), body = label(), next = label();
                 stmt(s.clauses.at(0), loop);
                 ins(Op::Label, begin);
-                expression(s.expression, loop);
-                ins(Op::Bne, body);
+                condition(s, loop, Op::Bne, body);
                 ins(Op::Jmp, next);
                 ins(Op::Label, tail);
                 stmt(s.clauses.at(1), loop);
@@ -351,8 +371,7 @@ struct Emitter
                 auto begin = label();
                 ins(Op::Label, begin);
                 block(s.body, scope);
-                expression(s.expression, scope);
-                ins(Op::Bne, begin);
+                condition(s, scope, Op::Bne, begin);
                 break;
             }
             case Statement::Switch:
