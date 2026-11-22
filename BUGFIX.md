@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 33 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 34 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **144** |
+| **合计** | | **145** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1289,6 +1289,7 @@ US／EU 分别写 eated、Pinapple
 | [扎克牧场生活夸奖残留日文](#zack-untranslated) | US、EU | 已接入 |
 | [人物和物件名称的英文拼写错误](#english-spelling) | US、EU | 已接入 |
 | [玩家拒绝采葡萄时杜克向未到场的克里夫讲话](#winery-job-decline-duke-dialogue) | US、EU、DE | 已接入 |
+| [德版珀布利谈新生儿时多播一条英文](#de-popuri-newborn-dialogue) | DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2000,6 +2001,25 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 将重制版对应的英语和德语原句按 GBA 行宽分成两页，末句放在第二页。分支条件及淡出后的独立收尾照旧。
 
 **相关文件：** [酒庄事件入口](data/scripts/jp/EventScript_LocationTransition_EnterAjaWinery1FWithEventDispatch.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c)
+
+<a id="de-popuri-newborn-dialogue"></a>
+### 德版珀布利谈新生儿时多播一条英文
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+婚后分娩事件已结束、孩子 0–59 天时，在 06:00–11:59 的农舍首谈中，德版先播放一条带 `//` 的英文，再播放意思相同的德文。
+
+**判断依据：**
+
+JP、US、EU 在对应分支只说一次孩子可爱。DE 已有与场景对应的德语。
+
+**修复方式：**
+
+移除多余的英文文本和播放调用，保留 `Ahhh....Er ist sooo süß!`（啊……他真可爱！）。
+
+**相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [US 对照](data/scripts/us/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明

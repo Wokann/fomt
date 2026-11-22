@@ -265,8 +265,10 @@ mary_text_table
         "geboren wird! \r\n"
         "Ich bin so aufgeregt!!{Press}";
 
+#ifndef BUGFIX
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation[] =
         "A//hhh....He's so cuuute!{Press}";
+#endif
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation[] =
         "Ahhh....Er ist sooo süß!{Press}";
@@ -1739,7 +1741,9 @@ void EventScript_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
+#ifndef BUGFIX
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation);
+#endif
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation);
                                             }
                                             else
