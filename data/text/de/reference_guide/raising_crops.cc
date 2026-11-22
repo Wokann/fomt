@@ -46,6 +46,9 @@ MAIN
     ""
     "Herbst"
     "  Auberginen"
+#ifdef BUGFIX
+    "  Süßkartoffeln"
+#endif
     "  Paprika"
     "  Karrotten"
     "  Spinat"

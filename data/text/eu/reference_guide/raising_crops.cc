@@ -42,6 +42,9 @@ MAIN
     ""
     "Fall"
     "  Eggplant"
+#ifdef BUGFIX
+    "  Sweet Potato"
+#endif
     "  Pepper"
     "  Carrot"
     "  Spinach"

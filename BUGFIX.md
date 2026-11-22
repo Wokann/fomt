@@ -29,9 +29,9 @@ make -j16 GAME_REGION=JP all
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 14 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 32 |
-| [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 32 |
+| [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 21 |
-| **合计** | | **141** |
+| **合计** | | **142** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1998,6 +1998,7 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 | [巨石说明把五级锤条件写成玩家当前等级](#huge-stone-description) | US、EU、DE | 已接入 |
 | [出货价格指南的黄玉与红宝石价格错误](#guide-topaz-ruby-prices) | 四版 | 已接入 |
 | [魔术草指南少写一天成长时间](#guide-magic-grass-growth-days) | 四版 | 已接入 |
+| [秋季作物清单漏列红薯](#guide-fall-sweet-potato) | US、EU、DE | 已接入 |
 
 <a id="audit-b01"></a>
 ### 出荷价格指南：按道具名称列出三个品质的鸡蛋并修正海外胡萝卜价格
@@ -2746,6 +2747,25 @@ JP是“即使LV5也无法击碎”；这个调查说明不等于已检查玩家
 把四版指南中的成长阶段改为 3、3、2、2 天。
 
 **相关文件：** [成长表](src/field_data.cc) · [每日更新](src/field.cc) · [JP](data/text/jp/reference_guide/seasonal_crops.cc) · [US](data/text/us/reference_guide/seasonal_crops.cc) · [EU](data/text/eu/reference_guide/seasonal_crops.cc) · [DE](data/text/de/reference_guide/seasonal_crops.cc)
+
+<a id="guide-fall-sweet-potato"></a>
+### 秋季作物清单漏列红薯
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
+
+**判断依据：**
+
+红薯可以在秋季种植，海外各版已有相应作物及名称。
+
+**修复方式：**
+
+照 JP 顺序在茄子后补入红薯，英语用 `Sweet Potato`，德语用 `Süßkartoffeln`。
+
+**相关文件：** [JP](data/text/jp/reference_guide/raising_crops.cc) · [US](data/text/us/reference_guide/raising_crops.cc) · [EU](data/text/eu/reference_guide/raising_crops.cc) · [DE](data/text/de/reference_guide/raising_crops.cc) · [田地季节判断](src/field.cc)
 
 <a id="category-television"></a>
 ## 电视节目内容
