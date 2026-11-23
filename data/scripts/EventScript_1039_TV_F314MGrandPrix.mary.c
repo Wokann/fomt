@@ -4,7 +4,6 @@
 
 #include "EventScript_1039_TV_F314MGrandPrix.mary.h"
 
-// BUGFIX uses the same corrected 120-day schedule and text names in every region.
 void EventScript_1039_TV_F314MGrandPrix(void)
 {
     int var_0;
@@ -163,7 +162,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #endif
                     break;
                 case DAY_15:
-#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01);
 #elif defined(REGION_JP)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
@@ -187,7 +186,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_ResultsPart02);
                     break;
                 case DAY_19:
-#if defined(BUGFIX) || defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || (defined(BUGFIX) && defined(REGION_DE))
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01_2);
@@ -229,7 +228,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_ResultsPart02);
                     break;
                 case DAY_27:
-#if defined(BUGFIX) || defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || (defined(BUGFIX) && defined(REGION_DE))
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01_2);
@@ -316,7 +315,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_ResultsPart02);
                     break;
                 case DAY_17:
-#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01_2);
@@ -344,7 +343,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart02);
                     break;
                 case DAY_25:
-#if defined(BUGFIX) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01);
 #elif defined(REGION_JP)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
@@ -437,7 +436,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #endif
                     break;
                 case DAY_19:
-#if defined(BUGFIX)
+#if defined(UNIFY_REGIONS) || (defined(BUGFIX) && defined(REGION_JP))
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #elif defined(REGION_JP)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
@@ -462,7 +461,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race19_PreviewPart01);
                     break;
                 case DAY_24:
-#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #elif defined(REGION_DE)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02_2);

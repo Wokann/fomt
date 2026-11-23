@@ -253,14 +253,14 @@ $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c tools/Makefile
 # Mary owns the complete packed RIFF script stream.  Its three headers remain
 # explicit inputs: callables and slot names live with the selected scripts,
 # while the C/C++-shared constant table lives in include/.
-# Use the same optional fixes for native code and Mary scripts.
-MARY_BUGFIX_FLAG = $(shell $(CPP) -dM include/config.h | awk '$$2 == "BUGFIX" { print "-D BUGFIX" }')
+# Use the same optional configuration for native code, Mary, and guides.
+CONFIG_DEFINES = $(shell $(CPP) -dM include/config.h | awk '$$2 == "BUGFIX" || $$2 == "UNIFY_REGIONS" { print "-D " $$2 }')
 $(MARY_BUNDLE_STAMP): Makefile include/config.h $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
 	@mkdir -p $(MARY_OUTPUT_DIR)
 	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed \
 		--library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) \
 		--charmap $(TEXT_CHARMAP) -I include -I $(MARY_SCRIPT_TEXT_DIR) \
-		--dep-target $(MARY_BUNDLE_STAMP) -D MARY_FOMT_$(GAME_REGION) $(MARY_BUGFIX_FLAG)
+		--dep-target $(MARY_BUNDLE_STAMP) -D MARY_FOMT_$(GAME_REGION) $(CONFIG_DEFINES)
 	@touch $@
 
 $(MARY_BUNDLE_OUTPUTS): $(MARY_BUNDLE_STAMP)
@@ -304,7 +304,7 @@ endef
 # the matching line-pointer tables in exact ROM order.
 $(GUIDE_GENERATED_SOURCE): $(GUIDE_COLLECTION_MANIFEST) $(GUIDE_PAGE_SOURCES) $(TEXT_TOOL) $(TEXT_CHARMAP) include/config.h
 	@mkdir -p $(dir $@)
-	$(TEXT_TOOL) guide-collection $(TEXT_CHARMAP) $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@ $(MARY_BUGFIX_FLAG)
+	$(TEXT_TOOL) guide-collection $(TEXT_CHARMAP) $(GAME_REGION) $(GUIDE_COLLECTION_MANIFEST) $@ $(CONFIG_DEFINES)
 
 $(BUILD_DIR)/src/reference_guide.d: $(GUIDE_GENERATED_SOURCE)
 	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $(BUILD_DIR)/src/reference_guide.o

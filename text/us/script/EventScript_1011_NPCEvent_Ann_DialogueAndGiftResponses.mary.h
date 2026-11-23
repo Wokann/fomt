@@ -80,8 +80,7 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse[] =
         "Aww...It's so cute!{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2[] =
         "Aww...It's so cute!{Press}";
 #endif
@@ -531,8 +530,7 @@ mary_text_table
 #endif
         "like being tied down...{Press}";
 
-// Reuse the complete anniversary response on both floors.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "I can barely cope without\r\n"
         "my dad here!\r\n"
@@ -603,8 +601,7 @@ mary_text_table
         "If you want to order \r\n"
         "something, talk to my dad.{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2[] =
         "Welcome!{Press}";
 #endif
@@ -649,8 +646,7 @@ mary_text_table
         "That's good...but I end up\r\n"
         "breaking lots of dishes!{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2[] =
         "............{Press}";
 #endif
@@ -680,8 +676,7 @@ mary_text_table
         "from you and get up \r\n"
         "earlier myself!...{Press}";
 
-// Reuse the first-floor anniversary responses under BUGFIX.
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Welcome.\r\n"
         "We close at 5, remember.{Press}";
@@ -700,8 +695,7 @@ mary_text_table
         "Yes, Cliff is still\r\n"
         "staying here at the Inn.{Press}";
 
-// Reuse the first-floor anniversary responses under BUGFIX.
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "I can barely cope without\r\n"
         "my dad here!\r\n"

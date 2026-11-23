@@ -4,19 +4,19 @@
 
 ## 启用方法
 
-在 [include/config.h](include/config.h) 中取消以下定义的注释：
+[include/config.h](include/config.h) 提供三个模式，默认两个开关都保持注释：
 
-```c
-#define BUGFIX
-```
+| 模式 | 手动启用 | 行为 |
+| --- | --- | --- |
+| 原版默认 | 无 | 保留各地区原版文字、槽位与流程。 |
+| 仅修复 | `BUGFIX` | 修正已确认的机制、控制、显示和文字错误；本次试点保留合法地区异文及呈现。 |
+| 地区统一 | `UNIFY_REGIONS` | 自动启用 `BUGFIX`，再执行所选的文本复用、结构与呈现统一。 |
 
-然后使用原有构建命令，例如：
+只启用修复时取消 `//#define BUGFIX` 的注释。启用地区统一时只取消 `//#define UNIFY_REGIONS` 的注释，`BUGFIX` 行可以继续注释；配置中的嵌套定义会自动启用它。恢复原版时把两个用户开关都重新注释。
 
-```sh
-make -j16 GAME_REGION=JP all
-```
+使用原有命令，例如 `make jp`；其他地区使用 `make us`、`make eu`、`make de`。[Makefile](Makefile) 会把实际生效的两个宏传给 Mary 和指南生成，并与原生源码使用同一配置，无需另行设置脚本宏。
 
-美版、欧版、德版分别将 `GAME_REGION` 改为 `US`、`EU`、`DE`。[Makefile](Makefile) 会把同一个开关传给原生源码和Mary脚本。重新注释该定义即可恢复原版内容；不需单独修改Mary的宏。当前索引所列问题均已接入此开关。
+本次职责拆分仅覆盖 0988、1008、1011、1027、1030、1033、1039、1044、1048 九个脚本：1008、1011、1039、1048 拆出纯地区统一；0988、1027、1030、1033、1044 没有相应统一项，原有真实修复保持不变。其他条目仍按各自现有开关实现；不表示全仓已完成拆分。合法统一的具体内容见[地区差异](REGIONAL_DIFFERENCES.md#unify-regions-pilot)。
 
 ## 分类索引
 
@@ -361,7 +361,7 @@ JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚�
 <a id="audit-a09"></a>
 ### JP及DE卡莲婚后询问玩家婚姻状态错误
 
-**受影响版本：** JP、DE有婚姻问答错误。四版统一文本条目和调用。
+**受影响版本：** JP、DE有婚姻问答错误；US、EU、DE另有连续设置普通、快乐头像的冗余。
 
 **原版内容与差异：**
 
@@ -377,20 +377,11 @@ JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚�
 
 **修复方式：**
 
-开启 `BUGFIX` 后，四版共用按纠正后的 JP 组织的脚本和 144 个同名、同序的文本槽，各区使用本地语言。JP纠正四处晴天复谈的台词错位。DE删去三次错误的额外播报。已婚时用快乐头像询问夫妻相处，未婚时用普通头像劝婚。US／EU原版的婚姻问答已正确，统一时去掉镇北已婚复谈中快乐头像前的一次普通头像设置。关闭开关时，各版保留原版正文、头像和调用顺序。
+开启 `BUGFIX` 后，JP纠正四处晴天复谈的问答和头像，DE删除三次与婚姻状态不符的额外问句。已婚时直接设置快乐头像并询问夫妻相处，未婚时用普通头像劝婚。US／EU／DE同一分支连续设置普通、快乐头像时，前一设置被后一设置覆盖；修复时直接设置与台词匹配的快乐头像。
 
-| 版本 | 关闭时的文本槽 | 开启时的文本槽 |
-|---|---:|---:|
-| JP、US、EU | 各 144 | 各 144 |
-| DE | 146 | 144 |
+仅启用 `BUGFIX` 时，DE已婚晴天复谈直接使用基础婚姻生活问句；合法婚后 `_2` 和雨天异文的独立物理槽仍保留。中性收礼、低／中好感招呼、紫心首谈和镇北上午的原有分段也不作统一。默认和仅修复模式均为JP／US／EU各144个文本槽、DE146个。
 
-海外版按 JP 的复用方式整理文本。中性赠礼共用一条致谢，低、中好感的首谈各有一句招呼，杂货店紫心首谈和镇北上午分成两句。
-
-海外版未婚雨天的主槽 `UnmarriedNorthSideTownRainyAfternoonOrForestConversation` 对应 JP 的「や、ふっちゃったね。」（哎，下起雨了呢），沿用本版原森林句。英文是 `Looks like it's started raining.`，德文是 `Sieht aus, als hätte es angefangen zu regnen.`（看来下起雨了）。原来镇北的另一种译法以同基名的 `_2` 槽在关闭时保留，意思是「我原先还担心今天会下雨……」。开启时镇北雨天下午和森林雨天共用主槽。
-
-DE 婚后复谈的两个 `_2` 槽在关闭时保留。开启时将原已婚 `_2` 槽询问与妻子相处的正文放入基础的已婚槽，婚后雨天复谈使用共用雨天槽。
-
-低好感沿用本版的 `Hi, {Player}.`（你好，{Player}。），中好感采用 `Hey, {Player}.`（嗨，{Player}。），紫心首谈采用 `Oh. Hey.`（哦，嗨。）。中好感与紫心首谈分别参考本地同级重制版转储 `SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Talk.txt` 第 4623、4655 行和 `SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Scr_Talk.txt` 第 4928、4963 行。镇北上午沿用英版的 `Hello.` 或德版的 `Hallo.`（你好。）。
+`UNIFY_REGIONS` 才将这些合法差异按所选复用方式整理为四版144个同名、同序的文本槽；该统一不把异文认定为错误，也不影响上述真实修复。具体措辞与复用范围见[地区统一](REGIONAL_DIFFERENCES.md#unify-regions-pilot)。两个开关均关闭时保留各版原文、头像及调用。
 
 **相关文件：** [共用脚本](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
@@ -2137,11 +2128,11 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 <a id="karen-dialogue-text"></a>
 ### 卡莲对话中的错译、残句与笔误
 
-**受影响版本：** US、EU、DE。下表按台词归为 14 项，US、EU 各修 10 句，DE 修 11 句。
+**受影响版本：** US、EU、DE。下表按台词归为 13 项，US、EU 各修 10 句，DE 修 10 句。
 
 **原版内容与差异：**
 
-四版都逐句核对过。下表所列 14 项的 US 与 EU 正文相同，合用一列。各版本后的数字是 GBA 文本头中该条的声明行，摘录省略了屏内换行、翻页和按键标记。 [JP 原文](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [US 原文和修订](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [EU 原文和修订](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [DE 原文和修订](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
+四版都逐句核对过。下表所列 13 项的 US 与 EU 正文相同，合用一列。各版本后的数字是 GBA 文本头中该条的声明行，摘录省略了屏内换行、翻页和按键标记。 [JP 原文](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [US 原文和修订](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [EU 原文和修订](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [DE 原文和修订](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
 | 场景 | JP 原文与释义 | US、EU 和 DE 原文与释义 | `BUGFIX` 开启后的 GBA 改写 |
 | --- | --- | --- | --- |
@@ -2158,15 +2149,13 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 | **省译** · 婚后收到香水 | **132**「みんな、きっとびっくりするよ。こんなにいい香りなんだもん！」（这么好闻，大家肯定会吃惊！） | **US 141／EU 136** `It smells lovely!`<br>**DE 142** `Es duftet so gut!`<br>两种原译都只说「真好闻！」 | 在香味评价之前加英文 `Everyone will be surprised!`、德文 `Da staunen bestimmt alle!`（大家肯定会吃惊！）。 |
 | **省译** · 孩子学步后期首谈 | **291**「おはよう。…子どもって、いつのまにか大きくなっていっているのね。さいしょはこの子のすること、すべてにドキドキしていたけど…」（早上好。孩子不知不觉就长大了。起初孩子做什么都让我紧张……） | **US 330／EU 325** `I can't believe how fast {Baby} is growing up! It seems like just yesterday he was an infant!`<br>**DE 345** `Unglaublich, wie schnell {Baby} groß wird! Es scheint, als wäre er erst gestern ein Säugling gewesen!`<br>两种原译都是「{Baby} 长得真快，好像昨天还是个婴儿！」 | 英文加 `Good morning!`，末句改为 `When I was a new mom, everything he did made me nervous...`。德文加 `Guten Morgen!`，末句改为 `Anfangs war ich bei allem, was unser Baby tat, ganz nervös...`。恢复早安与初为人母时的紧张回忆，保留孩子长得快的句子。 |
 | **省译** · 婚后橙心，杂货店复谈 | **434**「わたしの様子を見に来たの？ 大丈夫、ちゃんと手伝いしてるよ。」（来看我吗？放心，我有好好帮忙。） | **US 504／EU 499** `Did you come to check on me? That's sweet of you.`<br>**DE 514** `Bist du gekommen, um nach mir zu sehen? Wie lieb von dir.`<br>两种原译都是「你来看我吗？你真贴心。」 | 保留问句，后接英文 `Don't worry, I'm helping out just fine.`、德文 `Keine Sorge, ich helfe fleißig mit.`（放心，我有好好帮忙。） |
-| **措辞统一** · 婚后星夜祭前一日提醒 | **212**「明日は星夜祭だから、１２時には家に帰っておいてね。」（明天是星夜祭，最迟十二点到家哦。） | **US 233／EU 228** `go back home by 12, OK?`（最迟十二点到家，好吗？）<br>**DE 244** `geh um 12 Uhr nach Hause?`（十二点回家好吗？） | 德文只将 `geh um` 改成 `komm bis`。实际末句为 `komm bis 12 Uhr nach Hause?`（最迟正午十二点到家好吗？），保留正午、节日名和问号。 |
 
 **判断依据：**
 
 台词含义以日版 GBA 为准，英文笔误根据各句语法和拼写修正，香水、学步首谈和杂货店橙心复谈按日版 GBA 补回省略的意思。生日英语 `I love you, {NickName}!`（我爱你，{NickName}！）来自本作艾利 0597。春感谢祭赠礼只将普通饼干和巧克力饼干归入这个分支，且德版琳 1011 的同类收礼台词已经使用 `Kekse`（饼干）。 [美版艾利 0597](text/us/script/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.h#L31) · [欧版艾利 0597](text/eu/script/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.h#L31) · [春感谢祭赠礼判定](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c#L236-L240) · [卡莲收礼台词调用](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c#L647) · [德版琳 1011](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h#L141-L144)
 
-星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，本次只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
 
-重制版参考取自本地与仓库同级的 `SoSFoMTTextDump/SoSFoMTTextDump/` 目录下各语言的 `msg_Scr_Talk.txt`。以下摘录只用于核对台词含义。星夜祭的时间依据是上述 GBA 脚本。
+重制版参考取自本地与仓库同级的 `SoSFoMTTextDump/SoSFoMTTextDump/` 目录下各语言的 `msg_Scr_Talk.txt`。以下摘录只用于核对台词含义。
 
 | 场景 | 重制版参考摘录与释义 |
 | --- | --- |
@@ -2182,7 +2171,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 **修复方式：**
 
-开启 `BUGFIX` 时，按表在各版 GBA 台词上局部更正或补句，保留玩家昵称 `{NickName}` 和孩子名字 `{Baby}` 的占位符，按本作对话框的行宽分行。关闭时使用各版原台词。
+开启 `BUGFIX` 时，按表在各版 GBA 台词上局部更正或补句，保留玩家昵称 `{NickName}` 和孩子名字 `{Baby}` 的占位符，按本作对话框的行宽分行。关闭时使用各版原台词。德文星夜祭 `geh um` 改为 `komm bis` 的措辞统一仅由 `UNIFY_REGIONS` 启用，见[地区统一](REGIONAL_DIFFERENCES.md#unify-regions-pilot)，不计入本条13项错误。
 
 **相关文件：** [共用脚本](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
@@ -2211,18 +2200,9 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 | **笔误** · 玩家已娶别人，旅馆一楼低友情普通复谈 | 「奥さんが家にいると帰るのが楽しみじゃない？」（妻子在家等着，不会很期待回家吗？） | **US＝EU** `Don't you look forward to going home, with you wife waiting there for you?`，`you wife` 缺少所有格的 `r`。<br>**DE** `Freust du dich nicht auf zu Hause, wenn deine Frau schon auf dich wartet?`（妻子已在家等着，难道你不盼着回家吗？）。 | 英文只把 `you wife` 改为 `your wife`（你的妻子）。 |
 | **语法** · 已嫁克里夫时看到蓝色羽毛 | 「やったぁ、おめでとう。はやく行ってきなよ。…きっと{Player}くんの事、待っていると思うよ。」（太好了，恭喜！快去吧。……对方一定也在等你。） | **US＝EU** `Does that mean what I think it means? Congratulations!`（是我想的那个意思吗？恭喜！）。<br>**DE** `Heißt das, was ich denke, das es heißt?`（是我想的那个意思吗？），第二个 `das` 应为从句连词。 | 仅 DE 将第二个 `das` 改为 `dass`，第一个代词 `das` 及后文祝贺保持原样。 |
 
-本条同时统一 `BUGFIX` 开启后的文本结构：四版以 JP 的 151 个条目为准，采用相同的文本声明名、声明顺序和有效脚本调用。原有共用文本不因此全部判为 BUG，正常的本地化用词、感叹方式与省略号点数仍予保留。
+仅启用 `BUGFIX` 时，保留各版原有声明顺序和合法重复槽：JP151、US／EU各152、DE150个文本条目。海外一楼缺五点打烊提示的忌日首谈，直接调用本版二楼已有完整主句；完整句保留在原声明位置，不另拼新译文。其余三组忌日的二楼同义异文和独立槽继续保留。
 
-| 版本 | `BUGFIX` 关闭时的文本条目 | `BUGFIX` 开启时的文本条目 |
-| --- | ---: | ---: |
-| JP | 151 | 151 |
-| US | 152 | 151 |
-| EU | 152 | 151 |
-| DE | 150 | 151 |
-
-US／EU 为可爱动物回应、紫心欢迎和未婚红心沉默补足三个独立文本槽；DE 同样补足这三个槽，另为非玩家配偶的中性收礼和橙心欢迎补足两个槽。新增槽分别沿用本版 GBA 已有的回应、沉默或欢迎句，即使正文相同，也按各自场景独立命名和调用；不为橙心欢迎另加结巴语气。JP 原有条目、正文和调用不改。
-
-忌日共四组对白按 JP 的复用关系整理。未嫁给玩家或克里夫的首谈按上表共用含五点打烊的完整句；开启时，该完整主句移至 JP 对应的声明位置，关闭时仍在海外原有位置。其余三组保留原一楼主句，二楼改为共用：嫁给克里夫的首谈保有玩家姓名和五点打烊提示，复谈直接说明母亲忌日及父亲休息；未嫁给玩家或克里夫的复谈保有母亲去世、自己没有母亲记忆和父亲难过的完整意思。对应二楼原句只是同义改写，故不另增译文。这四组海外 `_2` 均只在关闭开关时保留，开启时各由两层共用对应主句。
+`UNIFY_REGIONS` 才按JP对应结构补足同文独立槽、合并可共用文本并调整声明位置，四版各151个同名、同序条目。US／EU补可爱动物回应、紫心欢迎、未婚红心沉默三个独立槽；DE另补中性收礼和橙心欢迎。四组忌日两层使用对应完整主句，正确的同义异文仅在这个模式下合并；不为橙心欢迎另加结巴语气。详见[地区统一](REGIONAL_DIFFERENCES.md#unify-regions-pilot)。
 
 另对 DE 嫁给克里夫的忌日首谈复用主句做必要分行调整：原行 `Wir schließen um 17 Uhr, also` 为 29 格，超过 28 格行宽；仅开启 `BUGFIX` 时拆成 `Wir schließen um 17 Uhr,`（24 格）和 `also bis dann.`（14 格），词句、标点与末尾按键标记不变。关闭时保留原行；这处纯分行调整不计入上表 13 处内容改写。
 
@@ -2244,7 +2224,9 @@ US／EU 为可爱动物回应、紫心欢迎和未婚红心沉默补足三个独
 
 **修复方式：**
 
-开启 `BUGFIX` 时按表局部修正受影响语种，按 GBA 对话框行宽分行，并按上述 JP 条目结构统一声明及调用。忌日完整句统一使用 `NotRivalSpouseInnMothersDeathAnniversaryFirstConversation` 主基名，海外原一楼缺句使用 `_2`，仅在关闭开关的原版调用中保留；开启时一楼、二楼共同调用主基名，不新增补句文本。关闭时保留各版原台词、条目数及其播放关系。上述 13 个文字位置与文本结构统一合记为本条，不重复登记已有爱心与控制记号条目。
+开启 `BUGFIX` 时按表修正13个文字位置，保留各语GBA称呼、控制符和正常分段；一楼忌日首谈补回已有完整主句中的五点打烊信息，DE超宽行按上文分行。心形显示守卫和原文控制记号的真实修复继续由各自条目记录。
+
+这些修复不依赖结构统一。`UNIFY_REGIONS` 才统一151槽及同义文本复用；两个开关均关闭时保留各版原文字、槽位和调用。
 
 **相关文件：** [共用脚本](data/scripts/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h)
 
@@ -3083,7 +3065,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [德版别墅春季雨天预报把明天说成今天](#de-villa-tv-spring-rain) | DE | 已接入 |
 | [人物介绍节目漏播下期预告和家庭成员](#profile-tv-missing-messages) | US、EU、DE | 已接入 |
 | [人物介绍节目生日与人物数据不符](#profile-tv-birthdays) | 四版（各项受影响版本不同） | 已接入 |
-| [人物介绍节目共用亲属文本、循环开场与字速一致性](#profile-tv-shared-text) | US、EU、DE（JP为共用与呈现对照） | 已接入 |
+| [人物介绍节目循环开场重复介绍](#profile-tv-shared-text) | US、EU、DE（JP为共用与呈现对照） | 已接入 |
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误
@@ -3133,9 +3115,11 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 **修复方式：**
 
-默认分支保留原版文字、物理槽序及原错误，修正放在BUGFIX分支。四版BUGFIX共用101个活动文本名及相同顺序，120日使用一致的活动名分派；同语确实相同的预告共用，人物、车型阶段、场次、日期或完整叙事不同的内容独立保存。合法的英德额外评价继续保留，不为统一活动名删除本地化句子。
+默认分支保留原版文字、物理槽序及原错误。`BUGFIX` 修正上述文字、积分、车型、漏文及日期错序，同时保留合法排版 `_2` 槽与地区调用；四版各120日，活动文本槽依次为JP100、US106、EU106、DE107。正确文本通过调整调用复用，错误跨赛季或跨车型共享则拆开恢复；缺文在对应对象附近补回。
 
-已有正确文本通过调整调用复用，错误共享通过拆开对象恢复各自内容；缺文在对应文本附近补回，字词、数字和指代尽量在GBA原句内最小更正。节目结果仍为固定文本，没有新增实时积分机制或改变节目播放方式。
+`UNIFY_REGIONS` 才合并纯排版变体、去掉旧未用槽、统一声明顺序，并为JP后两季第二战的同文预告设置与海外对应的独立槽。此模式四版共用101个活动文本名和顺序，120日采用相同的活动名分派，保持先前已核对的完整内容；合法英德额外评价仍保留。人物、车型阶段、场次、相对日期或完整叙事不同的内容各自独立。
+
+节目结果仍为固定文本，没有新增实时积分机制或改变节目播放方式。只修复不要求各地区采用相同物理结构，结构统一也不再被记为新的原版错误。
 
 **相关文件：** [共享脚本](data/scripts/EventScript_1039_TV_F314MGrandPrix.mary.c) · [JP 文本](text/jp/script/EventScript_1039_TV_F314MGrandPrix.mary.h) · [US 文本](text/us/script/EventScript_1039_TV_F314MGrandPrix.mary.h) · [EU 文本](text/eu/script/EventScript_1039_TV_F314MGrandPrix.mary.h) · [DE 文本](text/de/script/EventScript_1039_TV_F314MGrandPrix.mary.h)
 
@@ -3650,58 +3634,26 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 **相关文件：** [生日常量](include/fomt_constants.mary.h) · [人物表及实际生日选择](src/npc_collection.cc) · [JP节目](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c)
 
 <a id="profile-tv-shared-text"></a>
-### 人物介绍节目共用亲属文本、循环开场与字速一致性
+### 人物介绍节目循环开场重复介绍
 
-**受影响版本：** US、EU、DE；JP作为共用文本、声明顺序及慢速呈现的对照，不修改JP正文。
+**受影响版本：** US、EU、DE；JP作为正确循环开场的对照。
 
 **原版内容与差异：**
 
-《矿石镇的伙伴们》在Rick／Popuri、Jeff／Sasha、Basil／Anna、Duke／Manna各篇重复介绍同一名家属。JP共用不带所属者性别的亲属短句；海外使用 `his/her`（他的／她的）和 `sein/ihr`（他的／她的）等词分别保存。**原有性别分槽是正常本地化，不是性别错误。** 本项在GBA原文上小改为可共用表达，同时统一篇末衔接与家属短句字速。关闭BUGFIX仍保留原文及各独立槽。
+第39项循环预告中，JP先播仅标题的 `SeriesLoop_Opening`，再由 `SeriesLoop_NextCycleTeaser` 介绍下一轮；海外先播完整 `Shared_Opening`，随后Teaser又重复一次相同介绍语。
 
-下表列出四版原文及共用修订；US、EU相同，合并显示。为便于阅读，省略JP补齐行宽的全角空格和各行尾的CRLF；实改保留原换行与基串原有尾空格。
-
-| 亲属及中文参考 | JP原文（BUGFIX不变） | US＝EU原文的两种独立槽 | DE原文的两种独立槽 | BUGFIX海外共用基串 |
-| --- | --- | --- | --- | --- |
-| 母亲莉莉娅 | `お母さんのリリアさん。` | `his mother Lillia,`／`her mother Lillia,` | `seine Mutter Lillia`／`ihre Mutter Lillia` | US/EU：`the mother Lillia,`；DE：`die Mutter Lillia` |
-| 还有父亲罗德 | `後はお父さんのロッドさん。` | `and his dad Rod.`／`and her dad Rod.` | `und sein Vater Rod.`／`und ihr Vater Rod.` | US/EU：`and the dad Rod.`；DE：`und der Vater Rod.` |
-| 女儿卡莲 | `娘のカレン。` | `his daughter Karen. `／`her daughter Karen.` | `seine Tochter Karen. `／`ihre Tochter Karen.` | US/EU：`the daughter Karen. `；DE：`die Tochter Karen. ` |
-| 女儿玛丽 | `娘のマリー。` | `his daughter Mary.`／`her daughter Mary. ` | `seine Tochter Mary.`／`ihre Tochter Mary. ` | US/EU：`the daughter Mary.`；DE：`die Tochter Mary.` |
-| 还有女儿阿秋 | `後は娘のアージュさん。` | `his daughter Aja. `／`and her daughter Aja. ` | `seine Tochter Aja. `／`und ihre Tochter Aja. ` | US/EU：`and the daughter Aja. `；DE：`und die Tochter Aja. ` |
-
-Aja的连接词必须结合上一条消息处理：US/EU原Duke前文为 `his wife Manna and  \r\n`（他的妻子玛娜和……），BUGFIX改为 `his wife Manna  \r\n`，只去掉and，保留两个尾空格及换行，再接共用 `and the daughter Aja. \r\n`。Manna前文 `her husband Duke \r\n`（她的丈夫笛克）本来没有and，共用串正好保留原有连接词。DE两篇前文都没有und，无需改动。若只把专用槽删掉、沿用无连接词基串，会令Manna篇失去原来的“还有”。
-
-另有Staid、Nappy家属姓名及US/EU的Rick开场，内容相同但空格／Tab布局不同；默认仍保留各槽，仅统一基名并用 `_2`、`_3` 区分。BUGFIX改用JP对应调用的共用基名，词义不变。
-
-篇末第39项存在另一处实际重复：JP先播仅标题的 `SeriesLoop_Opening`，再由 `SeriesLoop_NextCycleTeaser` 开始介绍；海外先播完整 `Shared_Opening`，随后Teaser又重复同一介绍语。
-
-| 版本 | 默认开场后接Teaser | BUGFIX循环开场后接Teaser |
+| 版本 | 原版开场及后续Teaser | `BUGFIX` 处理 |
 | --- | --- | --- |
-| JP | `ミネラルタウンのなかまたち！`（矿石镇的伙伴们！）及两个补齐空白行；Teaser才说 `今日紹介するのはこの人です！`（今天介绍的是这位！） | 原样保留 |
-| US＝EU | `Mineral Town Friends!\r\n\r\n\r\nToday we'll introduce \r\nsomeone new.\r\n`；Teaser又以 `Today we'll introduce \r\nsomeone new.\r\n`（今天介绍一位新人物）开头 | 新增 `SeriesLoop_Opening`：`Mineral Town Friends!\r\n\r\n\r\n`，仅截取现有节目标题及原空白行；Teaser介绍语保留 |
-| DE | `Freunde von Mineralstadt!\r\n\r\n\r\nHeute stellen wir jemand \r\nNeuen vor.\r\n`；Teaser又以 `Heute stellen wir jemand \r\nNeuen vor.\r\n`（今天介绍一位新人物）开头 | 新增 `SeriesLoop_Opening`：`Freunde von Mineralstadt!\r\n\r\n\r\n`，同样只保留已有标题；Teaser介绍语保留 |
+| JP | 标题及空白行；Teaser才说 `今日紹介するのはこの人です！`（今天介绍的是这位！）。 | 保留。 |
+| US＝EU | 开场和Teaser均说 `Today we'll introduce someone new.`（今天介绍一位新人物）。 | 该开场改用仅含现有标题及原空白行的 `SeriesLoop_Opening`，Teaser介绍语保留。 |
+| DE | 开场和Teaser均说 `Heute stellen wir jemand Neuen vor.`（今天介绍一位新人物）。 | 同样改用仅标题的循环开场，保留Teaser。 |
 
-海外另有三处家属短句使用普通 `TalkMessage`，同一位置JP均使用 `TalkMessageSlow`：Lillia丈夫Rod、Stu祖母Ellen、Sasha女儿Karen。下表的“慢／普通”指文字速度，和是否需要按键确认分开判断。
+**修复方式与边界：**
 
-| 目标与原版差异 | 紧邻完整介绍顺序及强对照 | BUGFIX处理 |
-| --- | --- | --- |
-| case2 Lillia：JP `後は旦那さんのロッドさん。`（还有丈夫罗德）慢；US/EU `and her husband Rod. `、DE `und ihr Mann Rod. ` 普通 | 头部慢→女儿Popuri慢→儿子Rick慢→丈夫Rod普通→Lillia叙述慢→下集Cliff预告慢。case0／1同一Rod父亲短句均在清除头像及姓名后出现，之后恢复被介绍者头像／姓名并开始叙述，海外也均为慢。其他无头像的Aja、Joanna短句同样为慢。 | 海外丈夫短句改慢，文本、无头像状态及后续叙述不动。 |
-| case17 Stu：JP `おばあちゃんのエレン。`（祖母艾莲）慢、CRLF结尾；US/EU `his grandmother Ellen.{Press}`、DE `seine Großmutter Ellen.{Press}` 普通 | 头部慢→姐姐Elli慢→祖母Ellen普通→Stu叙述慢→下集Jeff预告慢。case16 Elli介绍同一Ellen、同一高兴头像及姓名时用慢；case15／16／17都按头部→两名家属→自身叙述→预告展开。海外目标是唯一以Press结束的家属短句，但40条现有完整预告都用慢＋Press。 | 海外祖母短句改慢；**原 `{Press}` 保留原处**，继续在家属介绍后等待确认再进入叙述。 |
-| case20 Sasha：JP共用 `娘のカレン。`（女儿卡莲）慢；US/EU `her daughter Karen.`、DE `ihre Tochter Karen.` 普通 | 头部慢→丈夫Jeff慢→女儿Karen普通→Sasha叙述慢→BUGFIX既有Doug预告慢。case18 Jeff介绍同一Karen时，同为婚礼头像＋Karen姓名、随后切回当前介绍者讲叙述，使用慢；case26 Anna的女儿Mary也是独立女性所属者文本、女儿婚礼头像／姓名及相同后续结构，仍用慢。 | 海外改为慢，并调用上表的中性Karen共用基串；已有Doug预告仍由原漏句修复提供。 |
+重复介绍属于真实问题，`BUGFIX` 即修复；已修正的生日、重复介词、漏播预告及家属句、Gotz频道输入返回值也继续各由原条目控制。仅修复模式四版均250次消息调用，文本槽分别为JP172、US181、EU181、DE180。
 
-**判断依据：**
+原有 `his/her`、`sein/ihr`（他的／她的）亲属分槽是正常本地化；同文空白变体、声明顺序和三处普通字速也不因地区不同自动算错。只有 `UNIFY_REGIONS` 才采用五组中性亲属基串、配合移动Duke句尾的and、合并空白变体并统一排序，以及将Lillia丈夫、Stu祖母、Sasha女儿三处普通消息改为 `TalkMessageSlow`。Stu的 `{Press}` 保留原位，不把等待确认和字速混为一项。具体原文及采用范围见[地区统一](REGIONAL_DIFFERENCES.md#unify-regions-pilot)。
 
-亲属表以GBA本作各语原文为主要依据，只移除所属者性别依赖并保留 `dad`、`Mary`、`Aja` 等GBA用词与人名。重制版仅作中性表达的佐证，不整段移植：本地 `SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Television.txt` 的21293行为 `Lillia, the mother.`，21295行为 `And Rod, the father.`；21588、21685、21780行分别为 `And daughter, Karen/Marie/Adge.`（还有女儿卡莲／玛丽／阿秋）。对应DE文件23154、23156行为 `Und Lillia, die Mutter.`、`Und Rod, der Vater.`，23473、23578、23688行为 `Und deren Tochter Karen/Marie/Adge.`。德文 `deren` 指向前文的妻子，不是任意上下文都可共用的中性替换，故采用GBA原词序下的 `die/der`。这些是仓库外本地提取资料及实际行号，不作为本仓库可访问链接。
-
-字速方面，[原生脚本调用分派](src/script_engine.cc) 将 `TalkMessageSlow`（native ID `0x022`）送入同一 `GameScene::TalkMessage`，速率参数为 `0x40`；普通 `TalkMessage`（`0x021`）参数为 `0x100`。这证明两种调用的速度差异，不证明某一个原作者无意选错。按节目源码调用位置统计，完整节目有83处家属短句、40处下集预告；生日头部的两种分支按位置分别统计，非一次播放次数。JP家属短句83处及预告40处均为慢；海外在保留既有漏句修复后为80处家属慢、3处普通，预告40处均为慢。三组紧邻流程、同人物画面及同类句式共同支持本次呈现一致性调整，不能仅凭语言、文本独立分槽、长度或“没有头像”判定应加速。
-
-`{Press}` 是确认停顿，未发现它必须搭配普通字速的规则。Stu的独有分段与字速是两个不同维度：本项保留确认位置，不把它改成CRLF，也不声称普通消息不能处理Press、原版漏等待或存在按键故障。
-
-**修复方式：**
-
-开启BUGFIX时，US/EU各改上述5个亲属共用基串及1个Duke前文，DE改5个共用基串、前文不动；亲属及纯空白变体均使用与JP相同基名和对应调用。海外新增仅标题的循环开场，保留Teaser已有介绍语及下期Rick预告；三处普通家属消息统一用 `TalkMessageSlow`，Stu的Press不变。全部新亲属行不超过28字符，尾空格和CRLF按上述基串保留。
-
-BUGFIX四版最终各172个文本声明，名称及声明顺序一致：US/EU由原180槽减9个额外槽、加1个循环标题；DE由179减8、加1。开启时US/EU通用 `Shared_Opening` 位于第1槽，与JP对应；关闭时保留原排列。默认JP172、US/EU各178、DE177槽，原文与声明顺序保持原样。
-
-本项不重复登记既有[频道输入返回值](#de-profile-tv)、[两处漏句](#profile-tv-missing-messages)及[生日与重复介词](#profile-tv-birthdays)修复。
+地区统一模式四版均172个同名、同序文本槽和250次消息调用；默认仍为JP172、US／EU178、DE177槽，保留原版错误和地区播放关系。本锚点保留用于循环重复介绍这一真实修复，不把中性用词或字速一致性计为BUG。
 
 **相关文件：** [共享节目脚本](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [JP文本](text/jp/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [US文本](text/us/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [EU文本](text/eu/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [DE文本](text/de/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [原生消息速率分派](src/script_engine.cc)

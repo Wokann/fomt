@@ -28,14 +28,14 @@ mary_text_table
         "seine Schwester Popuri, \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyMotherLillia[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "die Mutter Lillia\r\n";
 #else
         "seine Mutter Lillia\r\n";
 #endif
 
     const char gText_TV_MineralTownFriends_FamilyFatherRod[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "und der Vater Rod.\r\n";
 #else
         "und sein Vater Rod.\r\n";
@@ -79,7 +79,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Popuri_FamilySibling[] =
         "ihr Bruder Rick, \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_FamilyMotherLillia_2[] =
         "ihre Mutter Lillia\r\n";
 
@@ -319,7 +319,7 @@ mary_text_table
         "\r\n"
         "Mit ihm leben: \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2[] =
         "Staid　　　　　　\r\n";
 
@@ -375,7 +375,7 @@ mary_text_table
         "\r\n"
         "Mit ihm leben: \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3[] =
         "Nappy \r\n";
 #endif
@@ -646,7 +646,7 @@ mary_text_table
         "seine Frau Sasha und \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterKaren[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "die Tochter Karen. \r\n";
 #else
         "seine Tochter Karen. \r\n";
@@ -720,7 +720,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Sasha_FamilyHusband[] =
         "ihr Mann Jeff und \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_FamilyDaughterKaren_2[] =
         "ihre Tochter Karen.\r\n";
 #endif
@@ -849,7 +849,7 @@ mary_text_table
         "seine Frau Anna und \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterMary[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "die Tochter Mary.\r\n";
 #else
         "seine Tochter Mary.\r\n";
@@ -923,7 +923,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Anna_BiographyPart01[] =
         "ihr Mann Basil und \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_FamilyDaughterMary_2[] =
         "ihre Tochter Mary. \r\n";
 #endif
@@ -1054,7 +1054,7 @@ mary_text_table
         "seine Frau Manna  \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterAja[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "und die Tochter Aja. \r\n";
 #else
         "seine Tochter Aja. \r\n";
@@ -1087,7 +1087,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Manna_BiographyPart01[] =
         "ihr Mann Duke \r\n";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_MineralTownFriends_FamilyDaughterAja_2[] =
         "und ihre Tochter Aja. \r\n";
 #endif

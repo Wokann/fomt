@@ -73,7 +73,7 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks[] =
         "Vielen Dank.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
         "Danke!{Press}";
 #endif
@@ -242,7 +242,7 @@ mary_text_table
 
 // Use noon as a deadline.
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseStarryNightEveReminder[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Morgen ist das Sternen- \r\n"
         "nachtfestival, also komm bis\r\n"
         "12 Uhr nach Hause?{Press}";
@@ -546,7 +546,7 @@ mary_text_table
 
 // Ask about the player's wife in both locations.
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Kommst du gut mit\r\n"
         "deiner Frau aus?{Press}";
 #else
@@ -559,8 +559,7 @@ mary_text_table
         "Sorgen um die Hühner,\r\n"
         "wenn es regnet...{Press}";
 
-// Keep the low- and medium-friendship greetings distinct.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipFirstConversation[] =
         "Hi, {Player}.{Press}";
 #else
@@ -571,7 +570,7 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipRepeatConversation[] =
         "Brauchst du etwas?{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipFirstConversation[] =
         "Hey, {Player}.{Press}";
 #endif
@@ -605,8 +604,7 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlackHeartRepeatConversation[] =
         "Was kann ich für dich tun?{Press}";
 
-// Restore the distinct purple-heart supermarket greeting.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation[] =
         "Oh. Hey.{Press}";
 #else
@@ -672,7 +670,7 @@ mary_text_table
         "Ha ha! Nur Spaß!\r\n"
         "Reingefallen, oder?{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation_2[] =
         "Kommst du gut mit\r\n"
         "deiner Frau aus?{Press}";
@@ -683,8 +681,7 @@ mary_text_table
         " wenn es regnet...{Press}";
 #endif
 
-// Use the same rain greeting in town and in the forest.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownMorningConversation[] =
         "Hallo.{Press}";
 
@@ -736,7 +733,7 @@ mary_text_table
         "auflösen und runter- {Press}\r\n"
         "schlucken könnten?{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation[] =
         "Sieht aus, als hätte es\r\n"
         "angefangen zu regnen.{Press}";

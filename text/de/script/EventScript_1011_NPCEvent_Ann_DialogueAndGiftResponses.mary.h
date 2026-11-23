@@ -62,8 +62,7 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse[] =
         "Danke!{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2[] =
         "Danke!{Press}";
 #endif
@@ -87,8 +86,7 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse[] =
         "Ohhh...Wie süüüß!{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2[] =
         "Ohhh...Wie süüüß!{Press}";
 #endif
@@ -559,8 +557,7 @@ mary_text_table
         "Ich denke, dass er nicht\r\n"
         "gerne irgendwo festsitzt...{Press}";
 
-// Reuse the complete anniversary response on both floors.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Ohne meinen Vater komme\r\n"
         "ich hier kaum zurecht!\r\n"
@@ -630,8 +627,7 @@ mary_text_table
         "Wenn du etwas bestellen \r\n"
         "möchtest, sprich mit Vater.{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2[] =
         "Willkommen.{Press}";
 #endif
@@ -669,8 +665,7 @@ mary_text_table
         "sich \"niedlich\" {Press}\r\n"
         "anziehen sollten?{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3[] =
         "Willkommen.{Press}";
 #endif
@@ -680,8 +675,7 @@ mary_text_table
         "Das ist gut... aber ich\r\n"
         "zerbreche viel Geschirr!{Press}";
 
-// Keep this dialogue scene in its own text slot.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2[] =
         "............{Press}";
 #endif
@@ -712,8 +706,7 @@ mary_text_table
         "an dir nehmen und \r\n"
         "selber früher aufstehen!{Press}";
 
-// Reuse the first-floor anniversary responses under BUGFIX.
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Willkommen.\r\n"
         "Wir schließen um 17 Uhr, \r\n"
@@ -733,8 +726,7 @@ mary_text_table
         "Ja, Cliff ist immer\r\n"
         "noch im Gasthof.{Press}";
 
-// Reuse the first-floor anniversary responses under BUGFIX.
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Ohne meinen Vater komme\r\n"
         "ich hier kaum zurecht!\r\n"

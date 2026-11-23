@@ -1575,7 +1575,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "And there you have it.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race03_PreviewPart01_2[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
@@ -1826,7 +1826,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "And there you have it.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race05_PreviewPart01_2[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
@@ -1845,7 +1845,11 @@ mary_text_table
         "－－－－－－－－－－－－－－\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         "　On Karin\r\n"
         "　Trainee in Magic\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2377,7 +2381,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "And there you have it.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race10_PreviewPart01_2[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
@@ -2396,7 +2400,11 @@ mary_text_table
         "－－－－－－－－－－－－－－\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         "　On Karin\r\n"
         "　Trainee in Magic\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2614,7 +2622,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "And there you have it.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race12_PreviewPart01_2[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
@@ -3339,7 +3347,7 @@ mary_text_table
         "after tomorrow.{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race18_PreviewPart01_2[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"

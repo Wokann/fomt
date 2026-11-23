@@ -1374,8 +1374,7 @@ mary_text_table
         "\r\n"
         "となっております。{Press}";
 
-    // Keep the later localized wording without deleting the first-season comment.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race12_PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
@@ -2862,7 +2861,7 @@ mary_text_table
         "３位　ルピナスさん{Press}";
 
     // Restore seventh-race results before the two previews; Sylvia has 7 + 2 = 9.
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第７戦の結果をお伝えします。\r\n"
@@ -2923,7 +2922,8 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第８戦はあしたです。{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
+    // Restore seventh-race results before the two previews; Sylvia has 7 + 2 = 9.
     const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第７戦の結果をお伝えします。\r\n"
@@ -2945,7 +2945,11 @@ mary_text_table
         "４位－　ルピナスさん　　２５\r\n"
         "５位－　コスモスさん　　１８\r\n"
         "６位－　ミルトニアさん　１２\r\n"
+#ifdef BUGFIX
+        "７位－　すみれさん　　　　９\r\n"
+#else
         "７位－　すみれさん　　　　８\r\n"
+#endif
         "８位－　モレアさん　　　　２\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"

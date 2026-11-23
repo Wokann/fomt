@@ -663,7 +663,7 @@ mary_text_table
         "würden. Diesen Rat schlug \r\n"
         "Daisy natürlich in den \r\n"
         "Wind und nahm wie vorgesehen\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "am Rennen teil. Dann, in der\r\n"
 #else
         "am Rennen teil. Dann, in der \r\n"
@@ -1299,7 +1299,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -1308,7 +1308,7 @@ mary_text_table
 #endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
 #else
         "              \r\n"
@@ -1327,7 +1327,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race09_ResultsPart02[] =
         "Die Ergebnisse des 9.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -1438,7 +1438,7 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "das bedeuten soll.  \r\n"
 #else
         "das bedeuten soll.           \r\n"
@@ -1476,7 +1476,7 @@ mary_text_table
         "Der letzte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race20_ResultsPart01[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -1546,7 +1546,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race10_ResultsPart02[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -1604,7 +1604,7 @@ mary_text_table
 #endif
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race21_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -1777,7 +1777,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -1799,7 +1799,7 @@ mary_text_table
         "3. Platz:  Cosmos{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race21_ResultsPart02[] =
         "Die Ergebnisse des 1.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -1895,7 +1895,7 @@ mary_text_table
         "Der zweite Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race22_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -1916,7 +1916,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -1932,7 +1936,7 @@ mary_text_table
         "morgen statt.{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race22_ResultsPart01[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -2009,7 +2013,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race12_ResultsPart02[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -2064,7 +2068,7 @@ mary_text_table
 #endif
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race22_ResultsPart02_2[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -2093,7 +2097,7 @@ mary_text_table
         "Und das sind sie.{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race23_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2133,7 +2137,7 @@ mary_text_table
         "morgen statt.{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race23_ResultsPart01[] =
         "Die Ergebnisse des 3.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -2255,7 +2259,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race13_ResultsPart02[] =
         "Die Ergebnisse des 3.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -2349,7 +2353,7 @@ mary_text_table
         "Der vierte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race24_ResultsPart01[] =
         "Die Ergebnisse des 4.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -2428,7 +2432,7 @@ mary_text_table
         "Die Ergebnisse des 3.\r\n"
 #endif
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -2484,7 +2488,7 @@ mary_text_table
 #endif
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race25_PreviewPart01_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2505,7 +2509,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -2521,7 +2529,7 @@ mary_text_table
         "übermorgen statt.{Press}";
 #endif
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race25_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2535,7 +2543,11 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
+#ifdef UNIFY_REGIONS
+        "das bedeuten soll.\r\n"
+#else
         "das bedeuten soll.           \r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
@@ -2616,7 +2628,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -2625,7 +2637,7 @@ mary_text_table
 #endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
 #else
         "              \r\n"
@@ -2644,7 +2656,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race15_ResultsPart02[] =
         "Die Ergebnisse des 5.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -2706,7 +2718,7 @@ mary_text_table
 #endif
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race26_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2866,7 +2878,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -2875,7 +2887,7 @@ mary_text_table
 #endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
 #else
         "              \r\n"
@@ -2894,7 +2906,7 @@ mary_text_table
     const char gText_TV_F314MGrandPrix_Race16_ResultsPart02[] =
         "Die Ergebnisse des 6.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -2953,7 +2965,7 @@ mary_text_table
 #endif
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race27_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2974,7 +2986,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -3040,7 +3056,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -3049,7 +3065,7 @@ mary_text_table
 #endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
 #else
         "              \r\n"
@@ -3072,7 +3088,7 @@ mary_text_table
         "Die Ergebnisse des\r\n"
 #endif
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -3144,7 +3160,7 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "das bedeuten soll.\r\n"
 #else
         "das bedeuten soll.           \r\n"
@@ -3171,7 +3187,7 @@ mary_text_table
         "Der achte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3208,7 +3224,11 @@ mary_text_table
         "              \r\n"
         "Das ist alles für heute. \r\n"
         "Der achte Wettkampf findet\r\n"
+#ifdef BUGFIX
+        "morgen statt.{Press}";
+#else
         "übermorgen statt.{Press}";
+#endif
 #endif
 
     // Use the second-season Yotsuba evaluation, not third-season Mayo.
@@ -3302,7 +3322,7 @@ mary_text_table
         "              \r\n"
 #endif
         "Hier die drei besten\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "Teilnehmer. Wir\r\n"
         "veröffentlichen die\r\n"
 #else
@@ -3311,7 +3331,7 @@ mary_text_table
 #endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
 #else
         "              \r\n"
@@ -3333,7 +3353,7 @@ mary_text_table
         "Die Ergebnisse des 8.\r\n"
 #endif
         "F-3.14 MGP Rennens sind:\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "\r\n"
         "\r\n"
 #else
@@ -3546,7 +3566,7 @@ mary_text_table
         "Der letzte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race20_ResultsPart01[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3620,7 +3640,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race21_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3702,7 +3722,7 @@ mary_text_table
         "2. Platz:    Daisy\r\n"
         "3. Platz:  Cosmos{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race21_ResultsPart02[] =
         "Die Ergebnisse des 1.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3762,7 +3782,7 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Als Schüler hat Lilac\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "noch keine magischen Kräfte.\r\n"
 #else
         "noch keine magischen Kräfte. \r\n"
@@ -3775,7 +3795,7 @@ mary_text_table
         "Der zweite Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race22_ResultsPart01[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3856,7 +3876,7 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
         "das bedeuten soll.\r\n"
 #else
         "das bedeuten soll.         \r\n"
@@ -3894,7 +3914,7 @@ mary_text_table
         "Der dritte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race23_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3934,7 +3954,7 @@ mary_text_table
         "morgen statt.{Press}";
 #endif
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race23_ResultsPart01[] =
         "Die Ergebnisse des 3.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -4004,7 +4024,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race24_ResultsPart01[] =
         "Die Ergebnisse des 4.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -4110,7 +4130,7 @@ mary_text_table
         "Der fünfte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race25_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -4231,7 +4251,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race26_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -4435,7 +4455,7 @@ mary_text_table
         "2. Platz:       Licorice\r\n"
         "3. Platz:       Lupinus{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race18_PreviewPart01_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -4503,7 +4523,7 @@ mary_text_table
         "Und das sind sie.{Press}";
 #endif
 
-#ifdef BUGFIX
+#ifdef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -4633,7 +4653,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-#ifndef BUGFIX
+#ifndef UNIFY_REGIONS
     const char gText_TV_F314MGrandPrix_Race09_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"

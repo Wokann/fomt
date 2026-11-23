@@ -490,7 +490,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_KAREN);
                                 }
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
@@ -1474,7 +1474,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation);
@@ -1493,7 +1493,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                                 if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation);
@@ -1565,7 +1565,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
@@ -1735,7 +1735,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_SURPRISED);
-#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
 #elif defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation_2);
@@ -1752,7 +1752,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     {
                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
                                     }
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownMorningConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
@@ -1769,7 +1769,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             {
                                                 ShowTalkHeartIndicator(CHARACTER_KAREN);
                                             }
-#if defined(REGION_JP) || defined(BUGFIX)
+#if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2);

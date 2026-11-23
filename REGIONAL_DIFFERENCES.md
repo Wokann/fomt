@@ -1,6 +1,6 @@
 # 矿石镇四版差异
 
-本页描述默认关闭 `BUGFIX` 的 JP、US、EU、DE 原版。以实际机制、数据读写和玩家可见影响分类；属于缺陷的条目指向 [BUGFIX](BUGFIX.md)，正常本地化与地区规则不自动修正。来源为同一工程的四版代码、脚本、数据及基准 ROM；未独立运行复现的地方只写静态可确认的结果。
+本页描述默认同时关闭 `BUGFIX` 与 `UNIFY_REGIONS` 的 JP、US、EU、DE 原版。以实际机制、数据读写和玩家可见影响分类；属于缺陷的条目指向 [BUGFIX](BUGFIX.md)，正常本地化与地区规则不自动修正。来源为同一工程的四版代码、脚本、数据及基准 ROM；未独立运行复现的地方只写静态可确认的结果。
 
 本页不将旧候选数量当作当前机制数量或本轮构建结果。原始全仓扫描保留于 [逐项索引](REGIONAL_DIFFERENCES.tsv)，其基线为 `97f83743`，不等同于当前工作区验收。已排除的社区问题、相同规则的大段说明和未确认可达的潜在缺陷不列入正式差异。
 
@@ -186,14 +186,51 @@
 | [03DC](data/scripts/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存包含时间的次日状态，导致睡眠小时恢复按 24 小时计算；海外版先保存真实时间。[机制影响](BUGFIX.md#jp-sleep-time) |
 | [03E1](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) | JP=US=EU / DE | DE 在珀布利日常对话中多一次 TalkMessage。 |
 | [03E5](data/scripts/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU原版先播日文再播对应英文夸奖；BUGFIX仅去掉前置日文对象和调用，不补译、不改已有英文及JP／DE。[重复消息](BUGFIX.md#zack-untranslated)。 |
-| [03F0](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和DE文本分段上存在差异。JP开启BUGFIX时让头像随纠正后的婚姻状态台词一起交换；DE去掉多余台词。[对应修复](BUGFIX.md#audit-a09)。 |
+| [03F0](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的婚姻问答错误及US／EU／DE连续普通→快乐头像由BUGFIX修正；前一头像设置被后一设置覆盖，修复时直接设置与台词匹配的头像。合法异文及分槽仅在UNIFY_REGIONS下统一。[对应修复](BUGFIX.md#audit-a09)。 |
 | [03FD](data/scripts/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU将玛娜饰品答谢末段改用普通语速，保留演出。第三段海外把儿子邀请同住改成格雷反抗，另见[亲属及留镇理由修复](BUGFIX.md#manna-saibara-family)。 |
 | [0414](data/scripts/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) | JP=US=EU / DE | 德版春 19 日节目少一个 break，会继续播放 20 日节目。[缺陷记录](BUGFIX.md#de-farm-tv) |
-| [0418](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 保留正常语速差异；海外case 20／21漏播预告及女儿条目，四版部分生日文字错误。[漏播](BUGFIX.md#profile-tv-missing-messages) · [生日及备用日期](BUGFIX.md#profile-tv-birthdays)。DE第36项漏接频道输入见[既有修复](BUGFIX.md#de-profile-tv)。 |
+| [0418](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 仅BUGFIX保留正常语速差异；UNIFY_REGIONS另统一三处家属短句速度。海外case 20／21漏播预告及女儿条目，四版部分生日文字错误。[漏播](BUGFIX.md#profile-tv-missing-messages) · [生日及备用日期](BUGFIX.md#profile-tv-birthdays)。DE第36项漏接频道输入见[既有修复](BUGFIX.md#de-profile-tv)。 |
 | [0432](data/scripts/EventScript_1074_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.c) | JP / US=EU=DE | 海外版本改变玛娜新年对话中一处文本速度。 |
 | [0445](data/scripts/EventScript_1093_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna.mary.c) | JP / US=EU / DE | 玛娜赛马场对话的慢速台词数不同。 |
 | [0468](data/scripts/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |
 | [04B4](data/scripts/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
+
+<a id="unify-regions-pilot"></a>
+## 可选地区统一：九脚本试点
+
+`BUGFIX` 修正已确认的错误；`UNIFY_REGIONS` 自动启用 `BUGFIX`，再采用下表所选的结构、合法异文或呈现统一。默认两个开关均关闭，恢复各版原文及流程。只启用统一开关即可，不需要再手动打开修复开关；沿用 `make jp`、`make us`、`make eu`、`make de`。启用方式见[配置说明](BUGFIX.md#启用方法)。
+
+本轮仅拆分0988、1008、1011、1027、1030、1033、1039、1044、1048，不代表全仓已经采用这种分类；纯命名不在本轮改动范围。
+
+| 脚本 | `BUGFIX` 保留的真实修复 | 仅 `UNIFY_REGIONS` 采用的统一 |
+| --- | --- | --- |
+| [1008 卡莲](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP婚姻问答及头像对应、DE错误追加句、US／EU／DE连续普通→快乐头像冗余，以及已批准的错译、漏句和语法修正。 | 中性收礼、低／中好感招呼、紫心和镇北上午分段；雨天及DE合法婚后 `_2` 异文按所选主串共用，统一144槽。DE星夜祭 `geh um`（在某时回去）改为 `komm bis`（最迟某时到家）的措辞调整也仅在此模式采用。 |
+| [1011 琳](data/scripts/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) | 心形守卫、13处文字修正、一楼忌日漏五点打烊提示、DE29格超宽行分行。 | 同文回应按场景补独立槽、合并正确的三组忌日同义异文并移动条目，统一151槽；单开修复仍保留这些合法异文。 |
+| [1039 F-3.14](data/scripts/EventScript_1039_TV_F314MGrandPrix.mary.c) | 日期错序、跨赛季／车型错用、漏文、译文、成绩及升降名次错误。 | 合并纯排版变体、删除旧未用槽、统一声明顺序及对应的JP同文预告独立槽，四版101槽、120日同调用；合法英德额外评价仍保留。 |
+| [1048 人物介绍](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | 生日、重复介词、两处漏句、Gotz返回值、循环重复介绍。 | 五组中性亲属串与Duke前文配合移and、空白变体合并与排序、三处普通消息改慢；四版172槽、250次同调用。 |
+
+另外五个试点没有纯地区统一项，源码不作职责迁移：0988的实际睡眠时间保存顺序、1027／1030已确认满行覆盖的尾空格、1033卡片数及误译／漏文、1044体力说明及DE遗漏break，均继续由 `BUGFIX` 修复。
+
+| 参与编译的文本槽（JP／US／EU／DE） | 默认 | 仅 `BUGFIX` | `UNIFY_REGIONS`（自动修复） |
+| --- | --- | --- | --- |
+| 1008 | 144／144／144／146 | 144／144／144／146 | 144／144／144／144 |
+| 1011 | 151／152／152／150 | 151／152／152／150 | 151／151／151／151 |
+| 1039 | 100／105／105／97 | 100／106／106／107 | 101／101／101／101 |
+| 1048 | 172／178／178／177 | 172／181／181／180 | 172／172／172／172 |
+
+1008的雨天主串沿用 `Looks like it's started raining.`／`Sieht aus, als hätte es angefangen zu regnen.`（看来下起雨了），另一种“原先还担心今天会下雨”的合法译法只在统一模式下合并。DE仅修复时的已婚晴天复谈采用基础婚姻生活问句，正确的婚后 `_2` 异文仍保留独立槽；统一模式才采用所选妻子问句并清理 `_2`，不把合法异文视作缺文。
+
+1048的五组亲属统一只移除所属者性别依赖，保留本作姓名及称呼：英文采用 `the mother Lillia`、`and the dad Rod`、`the daughter Karen`、`the daughter Mary`、`and the daughter Aja`（母亲莉莉娅、还有父亲罗德、女儿卡莲、女儿玛丽、还有女儿阿秋）；德文采用对应的 `die Mutter`、`der Vater`、`die Tochter`。US／EU的Duke前文移去原and，连接词由Aja共用串承担；DE前文无需改动。原his／her、sein／ihr分槽本来正确，单开修复不改。
+
+同节目Lillia的丈夫Rod、Stu的祖母Ellen、Sasha的女儿Karen三处海外普通消息仅在统一模式改为 `TalkMessageSlow`。原生速率参数普通为0x100、慢速为0x40，只证明速度不同，不证明原来误选；Stu的 `{Press}` 确认位置继续保留。Staid、Nappy及Rick开场的同文空格／Tab变体也只在统一模式合并。[消息速率](src/script_engine.cc) · [循环重复介绍这一真实修复](BUGFIX.md#profile-tv-shared-text)。
+
+统一措辞的来源仍以GBA本作原句为主，重制转储只作对应表达的参考。本地同级 `SoSFoMTTextDump/SoSFoMTTextDump/` 中，1008中好感及紫心招呼分别参考 `US/msg_Scr_Talk.txt` 4623／4655行、`DE/msg_Scr_Talk.txt` 4928／4963行；低好感及镇北上午沿用GBA既有招呼，不据此补造剧情。
+
+1048中性亲属的重制对应见 `US/msg_Scr_Television.txt` 21293／21295行的 `Lillia, the mother.`／`And Rod, the father.`（母亲莉莉娅／还有父亲罗德），21588／21685／21780行的女儿Karen／Marie／Adge；德文同文件23154／23156行的 `Und Lillia, die Mutter.`／`Und Rod, der Vater.`（还有莉莉娅，母亲／还有罗德，父亲），23473／23578／23688行的 `Und deren Tochter Karen/Marie/Adge.`（还有她的女儿卡莲／玛丽／阿秋）。本作统一仍保留GBA的 `dad`、`Mary`、`Aja`，不移植重制名字；德文 `deren` 在该重制上下文指前文妻子，不能作为任意所属者都适用的基串，因此采用GBA词序下的 `die/der`。
+
+同节目按源码调用位置计，JP的83处家属短句均为慢速；海外在保留既有漏句修复后是80处慢速、3处普通，40处完整下集预告四版均为慢速。这些相邻流程和同类句式是选择统一三处字速的依据，不能证明原普通字速为错误；调用位置数也不等于一次播放次数。上述来源是已核对的本地转储及GBA脚本，不是本仓库内可直接打开的重制文件链接。
+
+星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，本次只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
 
 ## 已确认错误的源码名称整理
 
