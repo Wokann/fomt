@@ -68,13 +68,10 @@ void EventScript_1044_TV_LifeOnTheFarm_Beginner(void)
                     break;
                 case DAY_19:
                     var_0 = ShowTelevisionMessage(gText_TV_LifeOnTheFarm_Beginner_SpringDay19);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                    // The original DE version omits this break.
                     break;
-#else
-#ifdef BUGFIX
-                    // Finish day 19 before the next episode branch.
-                    break;
-#endif
+#elif defined(REGION_DE)
 #endif
                 case DAY_20:
                     var_0 = ShowTelevisionMessage(gText_TV_LifeOnTheFarm_Beginner_SpringDay20);
