@@ -10,10 +10,20 @@ mary_text_table
         "ca. 17 Uhr helfen?{Press}";
 
     const char gText_NPCEvent_Cliff_PermanentWineryJob_ChoiceAcceptWineryHelp[] =
+#ifdef BUGFIX
+        // The first answer accepts the request for help.
+        "Gerne.";
+#else
         "Sorry";
+#endif
 
     const char gText_NPCEvent_Cliff_PermanentWineryJob_ChoiceDeclineWineryHelp[] =
+#ifdef BUGFIX
+        // Keep the apology with the refusal.
+        "Sorry, ich kann nicht.";
+#else
         "ich kann nicht.";
+#endif
 
     const char gText_NPCEvent_Cliff_PermanentWineryJob_CannotWorkWhileHoldingItem[] =
         "Mit etwas in der Hand \r\n"

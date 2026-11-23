@@ -179,7 +179,7 @@
 | [0218](data/scripts/de/EventScript_LocationInteraction_InspectTownCottageClock.mary.c) | JP=US=EU / DE | DE 的镇上别墅时钟保留下午小时数。 |
 | [021B](data/scripts/us/EventScript_LocationInteraction_InspectTownCottageDesk.mary.c) | JP=DE / US=EU | US/EU 在镇上别墅书桌的对话中追加文字。 |
 | [021C](data/scripts/us/EventScript_TV_EntertainmentChannel.mary.c) | JP / US=EU=DE | 换台入口也有同样的隐藏节目调用差异。[4:44 电视](BUGFIX.md#tv-444) |
-| [02CD](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) | JP / US=EU / DE | 克里夫酒庄就职事件中，多处普通和慢速对话调用不同。 |
+| [02CD](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) | JP / US=EU / DE | 克里夫酒庄就职事件中，多处普通和慢速对话调用不同，保留语速。DE将拒绝句拆成两个菜单项，第一项实际接受；仅修正[选项文字](BUGFIX.md#de-winery-work-options)。 |
 | [02D1](data/scripts/de/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) | JP=US=EU / DE | DE 将玛娜的三处慢速对话改用普通对话。 |
 | [02EF](data/scripts/us/EventScript_NPCEvent_Jeff_WonOffersToBuyPainting.mary.c) | JP / US=EU=DE | 海外版本多调用一次 TalkMessage。 |
 | [02F4](data/scripts/de/EventScript_NPCEvent_Manna_AjasDepartureAdviceFromFriends.mary.c) | JP / US=EU / DE | 讨论阿雅离家时，部分台词的播放速度不同。 |
