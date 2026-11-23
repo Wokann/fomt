@@ -278,9 +278,9 @@ JP 指南及三个海外版数据均为 50、120、200 G。
 
 **修复方式：**
 
-只交换 JP 次日过渡脚本的两条调用顺序；固定床效果、花瓶与早餐逻辑不改。
+JP 开启 `BUGFIX` 时与海外版共用同一顺序，先保存实际入睡时间，再将时钟设为 06:00。JP 关闭 `BUGFIX` 时保留原版顺序。固定床效果、花瓶与早餐逻辑保持原样。
 
-**相关文件：** [JP 过渡](data/scripts/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [保存与恢复](src/game_scene.cc) · [床效果](data/scripts/EventScript_0425_LocationInteraction_FarmhouseBedSleepChoice.mary.c) · [晚起判断](data/scripts/EventScript_0986_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.c)
+**相关文件：** [次日过渡](data/scripts/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [保存与恢复](src/game_scene.cc) · [床效果](data/scripts/EventScript_0425_LocationInteraction_FarmhouseBedSleepChoice.mary.c) · [晚起判断](data/scripts/EventScript_0986_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.c)
 
 <a id="jp-birth-affection"></a>
 ### 幼畜出生好感度计算错误

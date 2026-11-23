@@ -5,18 +5,13 @@
 void EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay(void)
 {
     FadeOutBGM();
-#if defined(REGION_JP)
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     // Save the actual bedtime before replacing the clock with 06:00.
     PreservePlayerLocationForNextDay();
     SetGameTime(6, 0);
-#else
+#elif defined(REGION_JP)
     SetGameTime(6, 0);
     PreservePlayerLocationForNextDay();
-#endif
-#else
-    PreservePlayerLocationForNextDay();
-    SetGameTime(6, 0);
 #endif
     CallScript(EventScript_0980_SystemEvent_AdvanceToNextDay);
 }
