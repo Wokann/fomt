@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Anna_BlocksBasilHouseUpstairsAccess_AnnaSaysUpstairsIsNotCleaned[] =
-        "Ich habe oben noch\r\n"
-        "nicht geputzt, also geh \r\n"
-        "bitte nicht nach oben.{Press}";
-
-    const char gText_NPCEvent_Anna_BlocksBasilHouseUpstairsAccess_AnnaSaysDoNotGoUpstairs[] =
-        "Geh bitte nicht hoch!{Press}";
-};
+#include "EventScript_0292_NPCEvent_Anna_BlocksBasilHouseUpstairsAccess.mary.h"
 
 void EventScript_0292_NPCEvent_Anna_BlocksBasilHouseUpstairsAccess(void)
 {

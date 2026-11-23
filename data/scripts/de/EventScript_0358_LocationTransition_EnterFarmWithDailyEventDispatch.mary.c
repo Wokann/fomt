@@ -3,24 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterFarmWithDailyEventDispatch_TyphoonBlocksOutdoorTravel[] =
-        "Der Wind ist zu stark,\r\n"
-        "um rauszugehen.{Press}";
-
-    const char gText_LocationTransition_EnterFarmWithDailyEventDispatch_SnowstormBlocksOutdoorTravel[] =
-        "Der Schnee ist zu tief,\r\n"
-        "um rauszugehen.{Press}";
-
-    const char gText_LocationTransition_EnterFarmWithDailyEventDispatch_NickNameWhereAreYouGoing[] =
-        "{NickName},\r\n"
-        "Wo willst du denn hin?{Press}";
-
-    const char gText_LocationTransition_EnterFarmWithDailyEventDispatch_PlayerWhereAreYouGoing[] =
-        "{Player},\r\n"
-        "Wo willst du denn hin?{Press}";
-};
+#include "EventScript_0358_LocationTransition_EnterFarmWithDailyEventDispatch.mary.h"
 
 void EventScript_0358_LocationTransition_EnterFarmWithDailyEventDispatch(void)
 {

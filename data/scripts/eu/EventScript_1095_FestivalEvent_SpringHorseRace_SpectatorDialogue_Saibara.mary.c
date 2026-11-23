@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara_NoPlayerEntryComment[] =
-        "What's important is \r\n"
-        "becoming one with the Horse!{Press}";
-
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara_EncouragesPlayerEntry[] =
-        "Just believe in yourself \r\n"
-        "and trust in the Horse. {Press}";
-};
+#include "EventScript_1095_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara.mary.h"
 
 void EventScript_1095_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara(void)
 {

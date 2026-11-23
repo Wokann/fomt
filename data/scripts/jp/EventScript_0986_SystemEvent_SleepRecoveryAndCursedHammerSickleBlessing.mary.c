@@ -3,19 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing_Overslept[] =
-        "寝坊した…{Press}";
-
-    const char gText_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing_HammerCurseLifted[] =
-        "呪われたハンマーの\r\n"
-        "呪いがとけた！{Press}";
-
-    const char gText_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing_SickleCurseLifted[] =
-        "呪われたカマの\r\n"
-        "呪いがとけた！{Press}";
-};
+#include "EventScript_0986_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.h"
 
 void EventScript_0986_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing(void)
 {

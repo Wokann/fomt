@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Elli_StudiesMedicineForEllensLegs_Doctor_Followup_DoctorBelievesElliWillSucceed[] =
-        "エリィなら、きっとやれると\r\n"
-        "ボクは信じてるよ。{Press}";
-};
+#include "EventScript_0774_NPCEvent_Elli_StudiesMedicineForEllensLegs_FollowupDoctorDialogue.mary.h"
 
 void EventScript_0774_NPCEvent_Elli_StudiesMedicineForEllensLegs_FollowupDoctorDialogue(void)
 {

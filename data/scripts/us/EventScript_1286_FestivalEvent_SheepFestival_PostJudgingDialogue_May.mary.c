@@ -3,23 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_May_IWantedToEnterMySheep[] =
-        "I wanted to enter my Sheep,\r\n"
-        "but they said it \r\n"
-        "was too young!{Press}\r\n"
-        "It's no fair! I don't think\r\n"
-        "age should matter at all!{Press}";
-
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_May_ImSoGladYouWonPlayer[] =
-        "I'm so glad you won, \r\n"
-        "{Player}!{Press}";
-
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_May_DontFeelBadPlayer[] =
-        "Don't feel bad, \r\n"
-        "{Player}.{Press}";
-};
+#include "EventScript_1286_FestivalEvent_SheepFestival_PostJudgingDialogue_May.mary.h"
 
 void EventScript_1286_FestivalEvent_SheepFestival_PostJudgingDialogue_May(void)
 {

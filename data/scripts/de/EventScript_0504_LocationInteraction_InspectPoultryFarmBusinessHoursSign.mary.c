@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectPoultryFarmBusinessHoursSign[] =
-        "Geflügelfarm\r\n"
-        "11-16 Uhr geöffnet\r\n"
-        "sonntags geschlossen{Press}";
-};
+#include "EventScript_0504_LocationInteraction_InspectPoultryFarmBusinessHoursSign.mary.h"
 
 void EventScript_0504_LocationInteraction_InspectPoultryFarmBusinessHoursSign(void)
 {

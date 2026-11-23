@@ -3,23 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Kappa_CucumberOffering_SilentPause[] =
-        "…………\r\n"
-        "\r\n"
-        "{Press}";
-
-    const char gText_NPCEvent_Kappa_CucumberOffering_HereYouGoDontComeBack[] =
-        "…これやる。もう来るな。\r\n"
-        "\r\n"
-        "{Press}";
-
-    const char gText_NPCEvent_Kappa_CucumberOffering_YouSureAreStubborn[] =
-        "お前、しつこい。もう来るな。\r\n"
-        "\r\n"
-        "{Press}";
-};
+#include "EventScript_0572_NPCEvent_Kappa_CucumberOffering.mary.h"
 
 void EventScript_0572_NPCEvent_Kappa_CucumberOffering(void)
 {

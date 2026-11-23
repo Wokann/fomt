@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Cow_DoingWellMessage[] =
-        "Den Kühen auf deiner Farm\r\n"
-        "geht es immer gut.{Press}";
-};
+#include "EventScript_0011_FarmEvent_Cow_DoingWellMessage.mary.h"
 
 void EventScript_0011_FarmEvent_Cow_DoingWellMessage(void)
 {

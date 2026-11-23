@@ -3,22 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterBeachCottageWithFestivalExitGuardAndEventStateCleanup_RickBlocksExitBeforeFireworksFestival[] =
-        "Wo willst du denn hin?\r\n"
-        "Das Feuerwerk fängt\r\n"
-        "gleich an!{Press}";
-
-    const char gText_LocationTransition_EnterBeachCottageWithFestivalExitGuardAndEventStateCleanup_ZackBlocksExitBeforeBeachDayFestival[] =
-        "Wo willst du denn hin?\r\n"
-        "Der Strandtag\r\n"
-        "fängt gleich an!{Press}";
-
-    const char gText_LocationTransition_EnterBeachCottageWithFestivalExitGuardAndEventStateCleanup_BeachDayFestivalConcludesAndReturnsPlayerToWork[] =
-        "Das hat Spaß gemacht!\r\n"
-        "Ok, zurück zur Arbeit...{Press}";
-};
+#include "EventScript_0107_LocationTransition_EnterBeachCottageWithFestivalExitGuardAndEventStateCleanup.mary.h"
 
 void EventScript_0107_LocationTransition_EnterBeachCottageWithFestivalExitGuardAndEventStateCleanup(void)
 {

@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_JeffAndSasha_StoreCreditLesson_Jeff_Followup_JeffFeelsMoreConfident[] =
-        "Ich komm jetzt klar!!\r\n"
-        "...Denke ich...{Press}";
-};
+#include "EventScript_0754_NPCEvent_JeffAndSasha_StoreCreditLesson_FollowupJeffDialogue.mary.h"
 
 void EventScript_0754_NPCEvent_JeffAndSasha_StoreCreditLesson_FollowupJeffDialogue(void)
 {

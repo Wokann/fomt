@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Foal_Talk[] =
-        "Here here...\r\n"
-        "Get big and strong now.{Press}";
-};
+#include "EventScript_0009_FarmEvent_Foal_Talk.mary.h"
 
 void EventScript_0009_FarmEvent_Foal_Talk(void)
 {

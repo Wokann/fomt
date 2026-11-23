@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_DukeAndManna_MissingJuiceArgument_MannaApologizesForArgumentBeforePlayer[] =
-        "ごめんなさいね、\r\n"
-        "{Player}さん。{Press}\p"
-        "せっかく来てくれたのにケンカ\r\n"
-        "してるなんてね。{Press}\p"
-        "気を悪くしないでおくれよ。{Press}";
-};
+#include "EventScript_0720_NPCEvent_DukeAndManna_MissingJuiceArgument_FollowupMannaDialogue.mary.h"
 
 void EventScript_0720_NPCEvent_DukeAndManna_MissingJuiceArgument_FollowupMannaDialogue(void)
 {

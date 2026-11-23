@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_MaryAndGray_04_OrangeHeart_BlacksmithSkillTestPromise_FollowupMaryDialogue_MaryWondersWhatGrayWantsToTellHer[] =
-        "I wonder what Gray wants?{Press}";
-};
+#include "EventScript_0934_RivalEvent_MaryAndGray_04_OrangeHeart_BlacksmithSkillTestPromise_FollowupMaryDialogue.mary.h"
 
 void EventScript_0934_RivalEvent_MaryAndGray_04_OrangeHeart_BlacksmithSkillTestPromise_FollowupMaryDialogue(void)
 {

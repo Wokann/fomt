@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_HarvestFestival_Dialogue_Thomas_CommentsAfterAcceptedPlayerContribution[] =
-        "みんなで作るからね。\r\n"
-        "まぁ、こういうこともあるよ。{Press}";
-
-    const char gText_FestivalEvent_HarvestFestival_Dialogue_Thomas_CommentsWithoutAcceptedPlayerContribution[] =
-        "楽しかったかい？\r\n"
-        "おおぜいの食事は\r\n"
-        "いいものだろう？{Press}";
-};
+#include "EventScript_1225_FestivalEvent_HarvestFestival_Dialogue_Thomas.mary.h"
 
 void EventScript_1225_FestivalEvent_HarvestFestival_Dialogue_Thomas(void)
 {

@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_HorseRacePreRaceDialogue_Lillia_ItsAPerfectDayForHorse[] =
-        "It's a perfect day \r\n"
-        "for Horse racing!{Press}";
-
-    const char gText_FestivalEvent_HorseRacePreRaceDialogue_Lillia_AreYouRacingIHopeYou[] =
-        "Are you racing? \r\n"
-        "I hope you win! {Press}";
-};
+#include "EventScript_1250_FestivalEvent_HorseRacePreRaceDialogue_Lillia.mary.h"
 
 void EventScript_1250_FestivalEvent_HorseRacePreRaceDialogue_Lillia(void)
 {

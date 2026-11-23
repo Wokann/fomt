@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_GrayAndKai_KaiCooksForGray_KaiReflectsOnGraysFirstRestaurantVisit[] =
-        "グレイとは宿屋でも\r\n"
-        "結構話すんだよ。{Press}\p"
-        "店にきてくれたのは、\r\n"
-        "はじめてだけどな。{Press}";
-};
+#include "EventScript_0715_NPCEvent_GrayAndKai_KaiCooksForGray_FollowupKaiDialogue.mary.h"
 
 void EventScript_0715_NPCEvent_GrayAndKai_KaiCooksForGray_FollowupKaiDialogue(void)
 {

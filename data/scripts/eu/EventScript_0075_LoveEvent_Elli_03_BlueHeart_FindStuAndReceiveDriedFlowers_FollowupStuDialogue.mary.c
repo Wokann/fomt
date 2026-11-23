@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Elli_03_BlueHeart_RefusalResponse_FollowupStuSilent[] =
-        "........{Press}";
-
-    const char gText_LoveEvent_Elli_03_BlueHeart_HelpResponse_FollowupStuDreadsDinner[] =
-        "Hah... She’s gonna\r\n"
-        "cook again, and I have\r\n"
-        "to eat them...{Press}";
-};
+#include "EventScript_0075_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers_FollowupStuDialogue.mary.h"
 
 void EventScript_0075_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers_FollowupStuDialogue(void)
 {

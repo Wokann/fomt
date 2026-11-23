@@ -3,23 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemMenu_SelectAnimalCategory_Prompt[] =
-        "Which animal?";
-
-    const char gText_SystemMenu_SelectAnimalCategory_ChoiceChickens[] =
-        "Chickens";
-
-    const char gText_SystemMenu_SelectAnimalCategory_ChoiceCows[] =
-        "Cows";
-
-    const char gText_SystemMenu_SelectAnimalCategory_Sheep[] =
-        "Sheep";
-
-    const char gText_SystemMenu_SelectAnimalCategory_ChoiceCancel[] =
-        "Cancel";
-};
+#include "EventScript_1059_SystemMenu_SelectAnimalCategory.mary.h"
 
 void EventScript_1059_SystemMenu_SelectAnimalCategory(void)
 {

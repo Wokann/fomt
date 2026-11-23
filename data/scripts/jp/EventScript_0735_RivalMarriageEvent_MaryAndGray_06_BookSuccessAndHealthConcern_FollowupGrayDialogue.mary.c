@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupGrayDialogue_GrayHidesEmbarrassment[] =
-        "えっ、顔が赤いって？\r\n"
-        "な…なんでもねぇよ。{Press}";
-};
+#include "EventScript_0735_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupGrayDialogue.mary.h"
 
 void EventScript_0735_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupGrayDialogue(void)
 {

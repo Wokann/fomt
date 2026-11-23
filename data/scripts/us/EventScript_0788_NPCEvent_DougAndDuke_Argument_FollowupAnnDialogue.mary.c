@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_DougAndDuke_Argument_FollowupAnnDialogue_StoppedFight_AnnExasperatedByForgottenCause[] =
-        "Huh, can you believe this?{Press}";
-
-    const char gText_NPCEvent_DougAndDuke_Argument_FollowupAnnDialogue_NotIntervened_AnnContinuesPleadingWithDoug[] =
-        "Dad!...\r\n"
-        "Stop arguing already!!{Press}";
-};
+#include "EventScript_0788_NPCEvent_DougAndDuke_Argument_FollowupAnnDialogue.mary.h"
 
 void EventScript_0788_NPCEvent_DougAndDuke_Argument_FollowupAnnDialogue(void)
 {

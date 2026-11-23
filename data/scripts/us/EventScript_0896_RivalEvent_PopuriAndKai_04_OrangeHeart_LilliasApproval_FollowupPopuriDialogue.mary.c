@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupPopuriDialogue_PopuriSilentlyConsidersHerFuture[] =
-        ".........{Press}";
-};
+#include "EventScript_0896_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupPopuriDialogue.mary.h"
 
 void EventScript_0896_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupPopuriDialogue(void)
 {

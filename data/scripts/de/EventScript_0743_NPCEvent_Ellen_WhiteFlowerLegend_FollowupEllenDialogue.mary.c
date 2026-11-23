@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Ellen_WhiteFlowerLegend_FollowupEllenDialogue_EllenWantsToSeeFlowerBeforeSheDies[] =
-        "Ich möchte sie nur einmal\r\n"
-        "ansehen, bevor ich sterbe...{Press}";
-
-    const char gText_NPCEvent_Ellen_WhiteFlowerLegend_FollowupEllenDialogue_EllenAcceptsHerWishMayNotComeTrue[] =
-        "Vielleicht wird mir dieser\r\n"
-        "Wunsch nie erfüllt, aber...{Press}";
-};
+#include "EventScript_0743_NPCEvent_Ellen_WhiteFlowerLegend_FollowupEllenDialogue.mary.h"
 
 void EventScript_0743_NPCEvent_Ellen_WhiteFlowerLegend_FollowupEllenDialogue(void)
 {

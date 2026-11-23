@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectEmptyLumberStorage_Label[] =
-        "Woodbin{Press}";
-
-    const char gText_LocationInteraction_InspectEmptyLumberStorage_TheresNoLumberInTheWoodbin[] =
-        "There's no Lumber\r\n"
-        "in the Woodbin.{Press}";
-};
+#include "EventScript_0156_LocationInteraction_InspectEmptyLumberStorage.mary.h"
 
 void EventScript_0156_LocationInteraction_InspectEmptyLumberStorage(void)
 {

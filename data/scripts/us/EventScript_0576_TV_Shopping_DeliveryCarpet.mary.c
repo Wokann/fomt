@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_TV_Shopping_DeliveryCarpet_TheCarpetYouOrderedIsHere[] =
-        "The Carpet you ordered \r\n"
-        "is here. {Press}\p"
-        "This'll really cheer up a \r\n"
-        "room!\r\n"
-        "It's top quality, too!{Press}";
-
-    const char gText_TV_Shopping_DeliveryCarpet_DeliveredSafeAndSound[] =
-        "Delivered safe and sound!{Press}";
-};
+#include "EventScript_0576_TV_Shopping_DeliveryCarpet.mary.h"
 
 void EventScript_0576_TV_Shopping_DeliveryCarpet(void)
 {

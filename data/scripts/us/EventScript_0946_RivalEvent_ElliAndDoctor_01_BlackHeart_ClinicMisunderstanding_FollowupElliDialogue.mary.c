@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_ElliAndDoctor_01_BlackHeart_ClinicMisunderstanding_FollowupElliDialogue_ElliSighsInDisappointment[] =
-        "Hmmm......{Press}";
-};
+#include "EventScript_0946_RivalEvent_ElliAndDoctor_01_BlackHeart_ClinicMisunderstanding_FollowupElliDialogue.mary.h"
 
 void EventScript_0946_RivalEvent_ElliAndDoctor_01_BlackHeart_ClinicMisunderstanding_FollowupElliDialogue(void)
 {

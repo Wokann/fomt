@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectWaterDrawingSpot[] =
-        "↑Wasserstelle{Press}";
-};
+#include "EventScript_0161_LocationInteraction_InspectWaterDrawingSpot.mary.h"
 
 void EventScript_0161_LocationInteraction_InspectWaterDrawingSpot(void)
 {

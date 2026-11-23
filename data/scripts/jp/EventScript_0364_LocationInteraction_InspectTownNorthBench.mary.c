@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectTownNorthBench[] =
-        "ベンチ{Press}";
-};
+#include "EventScript_0364_LocationInteraction_InspectTownNorthBench.mary.h"
 
 void EventScript_0364_LocationInteraction_InspectTownNorthBench(void)
 {

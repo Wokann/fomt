@@ -157,6 +157,7 @@ is interpreted as one RIFF. `--print-ir` appends an instruction listing.
   --library data/scripts/us/fomt_callables.mary.h \
   --script-table data/scripts/us/fomt_scripts.mary.h \
   --constants include/fomt_constants.mary.h \
+  -I include -I text/us/script \
   --charmap charmap.txt -D MARY_FOMT_US
 ```
 
@@ -175,7 +176,8 @@ For future FoMT integration, keep the compiler sources in `tools/mary/` and
 build them with the ordinary host-tool rules. The authoritative compilation
 tables stay in FoMT: `include/fomt_constants.mary.h` and each language's
 `data/scripts/<region>/fomt_callables.mary.h` / `fomt_scripts.mary.h`. Mary reads
-those explicit paths. It does not install another copy over them. The independent
+those explicit paths and expands numbered script text headers from
+`text/<region>/script/`. The independent
 `goodies/` adaptation is for opt-in decompilation and testing only.
 
 ## Import into a ROM copy

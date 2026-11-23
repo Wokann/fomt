@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CowFestival_PostJudgingSceneSetup_ThomasAnnouncesFestivalClosingAndCowReturn[] =
-        "Das Kuhfestival ist nun \r\n"
-        "vorbei.  Wir bringen \r\n"
-        "deine Kuh für dich heim,{Press}\r\n"
-        "also kannst du gehen. {Press}";
-};
+#include "EventScript_1177_FestivalEvent_CowFestival_PostJudgingSceneSetup.mary.h"
 
 void EventScript_1177_FestivalEvent_CowFestival_PostJudgingSceneSetup(void)
 {

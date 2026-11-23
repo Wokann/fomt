@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Jeff_BloodTypeCorrection_Elli_Followup_ElliReflectsDoctorsCanMakeMistakes[] =
-        "Even doctors make mistakes! {Press}\p"
-        "I always assumed they \r\n"
-        "didn't, but they're \r\n"
-        "human too, I guess!{Press}";
-};
+#include "EventScript_0772_NPCEvent_Jeff_BloodTypeCorrection_FollowupElliDialogue.mary.h"
 
 void EventScript_0772_NPCEvent_Jeff_BloodTypeCorrection_FollowupElliDialogue(void)
 {

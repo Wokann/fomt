@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_SpringMine_CollectedEveryItem[] =
-        "Ta-daaaa!\r\n"
-        "Du hast alles gefunden,\r\n"
-        "was es in dieser Mine{Press}\r\n"
-        "zu finden gibt.{Press}\p"
-        "Herzlichen Glückwunsch!{Press}\p"
-        "Das ist alles.\r\n"
-        "Du bekommst nichts.\r\n"
-        "Tschüss.{Press}";
-};
+#include "EventScript_0845_AchievementEvent_SpringMine_CollectedEveryItem.mary.h"
 
 void EventScript_0845_AchievementEvent_SpringMine_CollectedEveryItem(void)
 {

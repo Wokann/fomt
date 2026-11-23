@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_BlockFarmExitWhileRidingHorse[] =
-        "馬に乗ったまま入ることは\r\n"
-        "できない。{Press}";
-};
+#include "EventScript_0171_LocationInteraction_BlockFarmExitWhileRidingHorse.mary.h"
 
 void EventScript_0171_LocationInteraction_BlockFarmExitWhileRidingHorse(void)
 {

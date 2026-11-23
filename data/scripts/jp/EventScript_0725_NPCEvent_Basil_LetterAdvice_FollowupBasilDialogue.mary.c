@@ -3,19 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Basil_LetterAdvice_FollowupBasilDialogue_BasilReaffirmsConfidenceAndPlansReply[] =
-        "さて、返事でも書くよ。\r\n"
-        "キミのおかげだよ。\r\n"
-        "ありがとう。{Press}";
-
-    const char gText_NPCEvent_Basil_LetterAdvice_FollowupBasilDialogue_BasilAsksToBeLeftAlone[] =
-        "一人にしておいてくれるかな。\r\n"
-        "{Press}\p"
-        "……………\r\n"
-        "{Press}";
-};
+#include "EventScript_0725_NPCEvent_Basil_LetterAdvice_FollowupBasilDialogue.mary.h"
 
 void EventScript_0725_NPCEvent_Basil_LetterAdvice_FollowupBasilDialogue(void)
 {

@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBlacksmithBusinessHoursSign[] =
-        "「鍛冶屋サイバラ」\r\n"
-        "午前１０時～午後４時。\r\n"
-        "木曜休日。{Press}";
-};
+#include "EventScript_0508_LocationInteraction_InspectBlacksmithBusinessHoursSign.mary.h"
 
 void EventScript_0508_LocationInteraction_InspectBlacksmithBusinessHoursSign(void)
 {

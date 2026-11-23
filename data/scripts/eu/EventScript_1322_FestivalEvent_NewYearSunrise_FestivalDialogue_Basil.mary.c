@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearSunrise_FestivalDialogue_Basil[] =
-        "I don't know about you,\r\n"
-        "but I had a great year.{Press}";
-};
+#include "EventScript_1322_FestivalEvent_NewYearSunrise_FestivalDialogue_Basil.mary.h"
 
 void EventScript_1322_FestivalEvent_NewYearSunrise_FestivalDialogue_Basil(void)
 {

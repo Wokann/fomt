@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_ShopEvent_Supermarket_OpenEntry01_Welcome[] =
-        "いらっしゃい。\r\n"
-        "{Press}";
-};
+#include "EventScript_0468_ShopEvent_Supermarket_OpenEntry01.mary.h"
 
 void EventScript_0468_ShopEvent_Supermarket_OpenEntry01(void)
 {

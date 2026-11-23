@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SheepFestival_PlayerVictory_BarleyAnnouncesPlayersWinningSheep[] =
-        "And the winning Sheep is...\r\n"
-        "{Var1} from \r\n"
-        "{Place1}!{Press}\p"
-        "It had the best coat, and \r\n"
-        "was also just the nicest!{Press}";
-};
+#include "EventScript_1289_FestivalEvent_SheepFestival_PlayerVictory.mary.h"
 
 void EventScript_1289_FestivalEvent_SheepFestival_PlayerVictory(void)
 {

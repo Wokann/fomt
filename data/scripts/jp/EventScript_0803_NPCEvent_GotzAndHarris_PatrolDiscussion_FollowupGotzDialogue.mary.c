@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_GotzAndHarris_PatrolDiscussion_FollowupGotzDialogue_GotzWarnsPlayerToBeCarefulOnMountain[] =
-        "山に登るときは\r\n"
-        "気をつけるんだぞ。{Press}";
-
-    const char gText_NPCEvent_GotzAndHarris_PatrolDiscussion_FollowupGotzDialogue_GotzFallsSilentRememberingFamily[] =
-        "………………\r\n"
-        "{Press}";
-};
+#include "EventScript_0803_NPCEvent_GotzAndHarris_PatrolDiscussion_FollowupGotzDialogue.mary.h"
 
 void EventScript_0803_NPCEvent_GotzAndHarris_PatrolDiscussion_FollowupGotzDialogue(void)
 {

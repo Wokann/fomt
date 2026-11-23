@@ -3,23 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_Rick_ItsHarderToTellWhatSheep[] =
-        "Die Gedanken von Schafen\r\n"
-        "sind schwieriger zu raten\r\n"
-        "als die von Kühen, oder?{Press}";
-
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_Rick_YourSheepHadSuchFineWool[] =
-        "Dein Schaf hat so feine\r\n"
-        "Wolle, ich war mir sicher,\r\n"
-        "dass es gewinnt! {Press}";
-
-    const char gText_FestivalEvent_SheepFestival_PostJudgingDialogue_Rick_DontWorryTheresAlwaysNextYear[] =
-        "Keine Sorge. \r\n"
-        "Es gibt immer \r\n"
-        "ein nächstes Jahr.{Press}";
-};
+#include "EventScript_1278_FestivalEvent_SheepFestival_PostJudgingDialogue_Rick.mary.h"
 
 void EventScript_1278_FestivalEvent_SheepFestival_PostJudgingDialogue_Rick(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_ClinicElliRoomLocked[] =
-        "カギがかかってる…{Press}";
-};
+#include "EventScript_0240_LocationInteraction_ClinicElliRoomLocked.mary.h"
 
 void EventScript_0240_LocationInteraction_ClinicElliRoomLocked(void)
 {

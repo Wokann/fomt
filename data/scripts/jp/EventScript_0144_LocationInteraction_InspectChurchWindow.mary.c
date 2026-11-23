@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectChurchWindow[] =
-        "窓{Press}";
-};
+#include "EventScript_0144_LocationInteraction_InspectChurchWindow.mary.h"
 
 void EventScript_0144_LocationInteraction_InspectChurchWindow(void)
 {

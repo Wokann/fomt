@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_Pedometer_10000Steps[] =
-        "ぱんぱかぱーん。{Press}\p"
-        "ただいま万歩計の歩数が\r\n"
-        "１００００歩になりました。{Press}\p"
-        "おめでとうございまーす。{Press}\p"
-        "それだけ。\r\n"
-        "特に何かプレゼントとかある\r\n"
-        "わけじゃないので。じゃねー。{Press}";
-};
+#include "EventScript_0822_AchievementEvent_Pedometer_10000Steps.mary.h"
 
 void EventScript_0822_AchievementEvent_Pedometer_10000Steps(void)
 {

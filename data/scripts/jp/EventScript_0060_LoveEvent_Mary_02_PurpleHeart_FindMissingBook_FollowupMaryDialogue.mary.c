@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Mary_02_PurpleHeart_HelpResponse_FollowupMaryContinuesWriting[] =
-        "これで続きが書けるし、\r\n"
-        "よかったわ。{Press}";
-
-    const char gText_LoveEvent_Mary_02_PurpleHeart_RefusalResponse_FollowupMaryStillSearching[] =
-        "どこにしまったかしら…\r\n"
-        "あれがないと書けないわ…{Press}";
-};
+#include "EventScript_0060_LoveEvent_Mary_02_PurpleHeart_FindMissingBook_FollowupMaryDialogue.mary.h"
 
 void EventScript_0060_LoveEvent_Mary_02_PurpleHeart_FindMissingBook_FollowupMaryDialogue(void)
 {

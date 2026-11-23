@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CookingFestival_PreJudgingDialogue_Sasha[] =
-        "Was wohl das Thema  \r\n"
-        "dieses Jahres ist?{Press}\p"
-        "Was es auch ist, ich \r\n"
-        "wünschte, Karen würde\r\n"
-        "nicht mitmachen.{Press}";
-};
+#include "EventScript_1107_FestivalEvent_CookingFestival_PreJudgingDialogue_Sasha.mary.h"
 
 void EventScript_1107_FestivalEvent_CookingFestival_PreJudgingDialogue_Sasha(void)
 {

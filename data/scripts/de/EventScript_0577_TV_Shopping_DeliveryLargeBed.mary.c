@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_TV_Shopping_DeliveryLargeBed_TheLargeBedYouOrderedIs[] =
-        "Das große Bett, das du \r\n"
-        "bestellt hast, ist da. {Press}\p"
-        "Was machst du denn nun \r\n"
-        "mit so einem großen Bett?{Press}";
-
-    const char gText_TV_Shopping_DeliveryLargeBed_DeliveredSafeAndSound[] =
-        "Unversehrt geliefert!{Press}";
-};
+#include "EventScript_0577_TV_Shopping_DeliveryLargeBed.mary.h"
 
 void EventScript_0577_TV_Shopping_DeliveryLargeBed(void)
 {

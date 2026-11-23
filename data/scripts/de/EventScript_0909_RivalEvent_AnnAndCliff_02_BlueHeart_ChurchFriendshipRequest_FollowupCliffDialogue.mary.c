@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCliffDialogue_CliffIsConfusedByCartersRequest[] =
-        "Wovon redet Carter \r\n"
-        "auf einmal?{Press}";
-};
+#include "EventScript_0909_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCliffDialogue.mary.h"
 
 void EventScript_0909_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCliffDialogue(void)
 {

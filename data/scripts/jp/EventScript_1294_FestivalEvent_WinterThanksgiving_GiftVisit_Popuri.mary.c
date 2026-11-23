@@ -3,22 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_WinterThanksgiving_GiftVisit_Popuri_ThisIsFromMeIHope[] =
-        "いつも、お世話になってる\r\n"
-        "から…\r\n"
-        "はい、これ。食べてね。{Press}";
-
-    const char gText_FestivalEvent_WinterThanksgiving_GiftVisit_Popuri_ThisIsForTheCookiesYou[] =
-        "{Player}くん。\r\n"
-        "これ、春にもらったクッキーの\r\n"
-        "お返しだよ。食べてね。{Press}";
-
-    const char gText_FestivalEvent_WinterThanksgiving_GiftVisit_Popuri_ICameToGiveYouSomething[] =
-        "渡したいものがあって、\r\n"
-        "今日は来たの。{Press}";
-};
+#include "EventScript_1294_FestivalEvent_WinterThanksgiving_GiftVisit_Popuri.mary.h"
 
 void EventScript_1294_FestivalEvent_WinterThanksgiving_GiftVisit_Popuri(void)
 {

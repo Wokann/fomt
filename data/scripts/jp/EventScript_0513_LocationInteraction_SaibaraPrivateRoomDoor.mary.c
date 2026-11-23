@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_SaibaraPrivateRoomDoor[] =
-        "そっちはワシの部屋じゃ！\r\n"
-        "入ってはいかん！{Press}";
-};
+#include "EventScript_0513_LocationInteraction_SaibaraPrivateRoomDoor.mary.h"
 
 void EventScript_0513_LocationInteraction_SaibaraPrivateRoomDoor(void)
 {

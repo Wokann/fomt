@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Van_ShopCounter_BoxOfOranges[] =
-        "Kiste mit Orangen{Press}";
-
-    const char gText_NPCEvent_Van_ShopCounter_Welcome[] =
-        "Willkommen!{Press}";
-};
+#include "EventScript_0465_NPCEvent_Van_ShopCounter.mary.h"
 
 void EventScript_0465_NPCEvent_Van_ShopCounter(void)
 {

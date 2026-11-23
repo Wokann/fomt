@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Elli_AllTheCowsAreSoCute[] =
-        "ふふ、みんなかわいいわねぇ。\r\n"
-        "ごはんを食べてるときが\r\n"
-        "ボーとしてて…{Press}";
-
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Elli_IBetThatCowOfYours[] =
-        "あなたの牛なら大丈夫よ。\r\n"
-        "きっと優勝出来るわ。{Press}";
-};
+#include "EventScript_1172_FestivalEvent_CowFestival_PreJudgingDialogue_Elli.mary.h"
 
 void EventScript_1172_FestivalEvent_CowFestival_PreJudgingDialogue_Elli(void)
 {

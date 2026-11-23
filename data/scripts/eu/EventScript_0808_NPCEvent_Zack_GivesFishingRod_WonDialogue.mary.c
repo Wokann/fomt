@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Zack_GivesFishingRod_WonDialogue_WonComplimentsFishingRod[] =
-        "You've gotten a nice \r\n"
-        "fishing rod. {Press}";
-};
+#include "EventScript_0808_NPCEvent_Zack_GivesFishingRod_WonDialogue.mary.h"
 
 void EventScript_0808_NPCEvent_Zack_GivesFishingRod_WonDialogue(void)
 {

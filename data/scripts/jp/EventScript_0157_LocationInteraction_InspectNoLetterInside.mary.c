@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectNoLetterInside[] =
-        "お手紙は入っていない。{Press}";
-};
+#include "EventScript_0157_LocationInteraction_InspectNoLetterInside.mary.h"
 
 void EventScript_0157_LocationInteraction_InspectNoLetterInside(void)
 {

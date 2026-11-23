@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann_HorsesFromYodelFarmAreRacing[] =
-        "Pferde der Jodel-Farm\r\n"
-        "machen auch mit. {Press}\p"
-        "Dieses Jahr reitet \r\n"
-        "jemand anderes, sonst \r\n"
-        "war es Barley. {Press}";
-
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann_AnnCheersForTheRace[] =
-        "Schwing die Hufe! {Press}";
-};
+#include "EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.h"
 
 void EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann(void)
 {

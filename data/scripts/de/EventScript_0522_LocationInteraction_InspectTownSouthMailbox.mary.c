@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectTownSouthMailbox[] =
-        "Briefkasten {Press}";
-};
+#include "EventScript_0522_LocationInteraction_InspectTownSouthMailbox.mary.h"
 
 void EventScript_0522_LocationInteraction_InspectTownSouthMailbox(void)
 {

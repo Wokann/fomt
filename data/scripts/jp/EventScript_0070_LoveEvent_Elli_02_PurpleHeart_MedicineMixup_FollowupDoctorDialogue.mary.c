@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Elli_02_PurpleHeart_MedicineMixup_FollowupDoctorDialogue[] =
-        "エリィは、\r\n"
-        "よくがんばっているよ。{Press}";
-};
+#include "EventScript_0070_LoveEvent_Elli_02_PurpleHeart_MedicineMixup_FollowupDoctorDialogue.mary.h"
 
 void EventScript_0070_LoveEvent_Elli_02_PurpleHeart_MedicineMixup_FollowupDoctorDialogue(void)
 {

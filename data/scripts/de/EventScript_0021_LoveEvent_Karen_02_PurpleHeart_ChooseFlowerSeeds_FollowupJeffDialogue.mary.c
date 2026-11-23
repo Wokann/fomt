@@ -3,19 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Karen_02_PurpleHeart_ChooseFlowerSeeds_FollowupJeff_FavorableChoice[] =
-        "Gott sei Dank ist unser\r\n"
-        "Streit endlich vorbei...{Press}\p"
-        "Danke, {Player}. {Press}";
-
-    const char gText_LoveEvent_Karen_02_PurpleHeart_ChooseFlowerSeeds_FollowupJeff_UnfavorableChoice[] =
-        "Ich bin froh, dass ihr nicht\r\n"
-        "mehr streitet,\r\n"
-        "aber Karen kann lange{Press}\r\n"
-        "eingeschnappt sein...{Press}";
-};
+#include "EventScript_0021_LoveEvent_Karen_02_PurpleHeart_ChooseFlowerSeeds_FollowupJeffDialogue.mary.h"
 
 void EventScript_0021_LoveEvent_Karen_02_PurpleHeart_ChooseFlowerSeeds_FollowupJeffDialogue(void)
 {

@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_PlayerVictory[] =
-        "いやぁ、\r\n"
-        "すばらしいレースだったよ、\r\n"
-        "{Player}くん。{Press}\r\n"
-        "おめでとう。{Press}";
-};
+#include "EventScript_1098_FestivalEvent_SpringHorseRace_PlayerVictory.mary.h"
 
 void EventScript_1098_FestivalEvent_SpringHorseRace_PlayerVictory(void)
 {

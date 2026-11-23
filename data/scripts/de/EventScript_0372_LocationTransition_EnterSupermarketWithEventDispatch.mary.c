@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterSupermarketWithEventDispatch_DoorIsLocked[] =
-        "Abgeschlossen...{Press}";
-};
+#include "EventScript_0372_LocationTransition_EnterSupermarketWithEventDispatch.mary.h"
 
 void EventScript_0372_LocationTransition_EnterSupermarketWithEventDispatch(void)
 {

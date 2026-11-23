@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBarnStoredFodderAmount[] =
-        "Menge an Tierfutter\r\n"
-        " \r\n"
-        "       {Var1}Einheiten{Press}";
-};
+#include "EventScript_0461_LocationInteraction_InspectBarnStoredFodderAmount.mary.h"
 
 void EventScript_0461_LocationInteraction_InspectBarnStoredFodderAmount(void)
 {

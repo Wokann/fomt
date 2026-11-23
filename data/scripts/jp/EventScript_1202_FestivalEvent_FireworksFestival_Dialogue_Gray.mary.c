@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FireworksFestival_Dialogue_Gray[] =
-        "じいさんが、花火の「つつ」を\r\n"
-        "作ったって言ってたぜ。{Press}\p"
-        "でも、そんなのは、ここから\r\n"
-        "見えるわけでもないしな。{Press}";
-};
+#include "EventScript_1202_FestivalEvent_FireworksFestival_Dialogue_Gray.mary.h"
 
 void EventScript_1202_FestivalEvent_FireworksFestival_Dialogue_Gray(void)
 {

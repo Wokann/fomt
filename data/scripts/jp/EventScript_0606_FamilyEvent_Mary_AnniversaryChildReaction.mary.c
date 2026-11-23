@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Mary_AnniversaryChildReaction[] =
-        "だあ？{Press}";
-};
+#include "EventScript_0606_FamilyEvent_Mary_AnniversaryChildReaction.mary.h"
 
 void EventScript_0606_FamilyEvent_Mary_AnniversaryChildReaction(void)
 {

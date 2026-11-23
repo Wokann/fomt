@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupDoctorDialogue_DoctorInvitesPlayerToCelebrateMarriage[] =
-        "Treffen wir uns \r\n"
-        "mal. Wir  \r\n"
-        "können feiern. {Press}";
-
-    const char gText_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupDoctorDialogue_DoctorSaysClinicWillNotChange[] =
-        "Hier in der Klinik \r\n"
-        "ändert sich nichts. {Press}";
-};
+#include "EventScript_0958_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupDoctorDialogue.mary.h"
 
 void EventScript_0958_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupDoctorDialogue(void)
 {

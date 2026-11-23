@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_ExitChurchWithEventStateCleanupAndMusicFestivalGuard_CarterBlocksExitDuringMusicFestival[] =
-        "{Player}くん。\r\n"
-        "ダメだよ外に出ちゃあ。{Press}";
-};
+#include "EventScript_0143_LocationTransition_ExitChurchWithEventStateCleanupAndMusicFestivalGuard.mary.h"
 
 void EventScript_0143_LocationTransition_ExitChurchWithEventStateCleanupAndMusicFestivalGuard(void)
 {

@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Saibara_YouMustBecomeOneWithThe[] =
-        "Du musst eins mit dem \r\n"
-        "Pferd werden, wenn du auf\r\n"
-        "dein Ziel zustürmst. {Press}";
-
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Saibara_YouMustBelieveInYourself[] =
-        "Du musst an dich\r\n"
-        "glauben. {Press}";
-};
+#include "EventScript_1261_FestivalEvent_FallHorseRace_SpectatorDialogue_Saibara.mary.h"
 
 void EventScript_1261_FestivalEvent_FallHorseRace_SpectatorDialogue_Saibara(void)
 {

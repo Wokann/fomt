@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FireworksFestival_Dialogue_Cliff[] =
-        "ボクの住んでいた町も、\r\n"
-        "夏に花火してたよ。{Press}\p"
-        "あれ、もしかして同じのを\r\n"
-        "見てたのかなぁ？{Press}";
-};
+#include "EventScript_1195_FestivalEvent_FireworksFestival_Dialogue_Cliff.mary.h"
 
 void EventScript_1195_FestivalEvent_FireworksFestival_Dialogue_Cliff(void)
 {

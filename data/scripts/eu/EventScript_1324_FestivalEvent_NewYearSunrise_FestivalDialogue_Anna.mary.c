@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearSunrise_FestivalDialogue_Anna[] =
-        "Good evening. \r\n"
-        "The first sunrise of the\r\n"
-        "year is beautiful here. {Press}";
-};
+#include "EventScript_1324_FestivalEvent_NewYearSunrise_FestivalDialogue_Anna.mary.h"
 
 void EventScript_1324_FestivalEvent_NewYearSunrise_FestivalDialogue_Anna(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBasket[] =
-        "Basket{Press}";
-};
+#include "EventScript_0146_LocationInteraction_InspectBasket.mary.h"
 
 void EventScript_0146_LocationInteraction_InspectBasket(void)
 {

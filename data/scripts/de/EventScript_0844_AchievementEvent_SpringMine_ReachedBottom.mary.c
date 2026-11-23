@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_SpringMine_ReachedBottom[] =
-        "Ta-daaaa!\r\n"
-        "Du hast den niedrigsten{Press}\p"
-        "Level erreicht. Das ist \r\n"
-        "alles. Du bekommst nichts.\r\n"
-        "Tschüss.{Press}";
-};
+#include "EventScript_0844_AchievementEvent_SpringMine_ReachedBottom.mary.h"
 
 void EventScript_0844_AchievementEvent_SpringMine_ReachedBottom(void)
 {

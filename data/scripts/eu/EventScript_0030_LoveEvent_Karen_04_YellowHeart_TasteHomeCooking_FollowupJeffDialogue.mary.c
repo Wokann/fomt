@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Karen_04_YellowHeart_TasteHomeCooking_FollowupJeffDialogue[] =
-        "So I have to eat Karen's\r\n"
-        "cooking?...{Press}\p"
-        "Just the thought makes\r\n"
-        "me queasy!{Press}";
-};
+#include "EventScript_0030_LoveEvent_Karen_04_YellowHeart_TasteHomeCooking_FollowupJeffDialogue.mary.h"
 
 void EventScript_0030_LoveEvent_Karen_04_YellowHeart_TasteHomeCooking_FollowupJeffDialogue(void)
 {

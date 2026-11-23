@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_PopuriAndKai_01_BlackHeart_CookingForLillia_FollowupPopuriDialogue_PopuriInvitesPlayerToJoinThem[] =
-        "Mach einfach mit, wenn \r\n"
-        "du Zeit hast. {Press}";
-};
+#include "EventScript_0887_RivalEvent_PopuriAndKai_01_BlackHeart_CookingForLillia_FollowupPopuriDialogue.mary.h"
 
 void EventScript_0887_RivalEvent_PopuriAndKai_01_BlackHeart_CookingForLillia_FollowupPopuriDialogue(void)
 {

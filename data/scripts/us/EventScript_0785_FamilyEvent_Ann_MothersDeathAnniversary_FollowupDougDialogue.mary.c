@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Ann_MothersDeathAnniversary_Followup_DougReflectsOnLateWife[] =
-        "Today is the one day I \r\n"
-        "allow myself to \r\n"
-        "think about her...{Press}";
-};
+#include "EventScript_0785_FamilyEvent_Ann_MothersDeathAnniversary_FollowupDougDialogue.mary.h"
 
 void EventScript_0785_FamilyEvent_Ann_MothersDeathAnniversary_FollowupDougDialogue(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectChickenCoopChickenSlot07FeedBox[] =
-        "Futterbox{Press}";
-};
+#include "EventScript_0215_LocationInteraction_InspectChickenCoopChickenSlot07FeedBox.mary.h"
 
 void EventScript_0215_LocationInteraction_InspectChickenCoopChickenSlot07FeedBox(void)
 {

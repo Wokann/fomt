@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBeachWoodBox[] =
-        "木箱{Press}";
-};
+#include "EventScript_0110_LocationInteraction_InspectBeachWoodBox.mary.h"
 
 void EventScript_0110_LocationInteraction_InspectBeachWoodBox(void)
 {

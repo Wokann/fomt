@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectPoultryFarmBusinessHoursSign[] =
-        "「にわとりりあ」\r\n"
-        "ＡＭ１１時～ＰＭ４時開いて\r\n"
-        "ます。日曜日は定休日です。{Press}";
-};
+#include "EventScript_0504_LocationInteraction_InspectPoultryFarmBusinessHoursSign.mary.h"
 
 void EventScript_0504_LocationInteraction_InspectPoultryFarmBusinessHoursSign(void)
 {

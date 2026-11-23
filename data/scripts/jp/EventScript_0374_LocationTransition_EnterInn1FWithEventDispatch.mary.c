@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterInn1FWithEventDispatch_DoorIsLocked[] =
-        "カギがかかっている…{Press}";
-};
+#include "EventScript_0374_LocationTransition_EnterInn1FWithEventDispatch.mary.h"
 
 void EventScript_0374_LocationTransition_EnterInn1FWithEventDispatch(void)
 {

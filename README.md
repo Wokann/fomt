@@ -38,10 +38,11 @@ For Linux/WSL, Windows/MSYS2, and macOS setup and build instructions, see
   code uses regional conditionals for version differences.
 - `asm/` contains standalone assembly. Modules being recovered may also keep
   file-scope assembly alongside their C/C++ definitions.
-- `text/<region>/` contains game text, including Reference Guide pages.
-  `data/scripts/<region>/` contains Mary event scripts and regional headers;
-  [include/fomt_constants.mary.h](include/fomt_constants.mary.h) supplies shared
-  native-code and script constants.
+- `text/<region>/` contains regional game text. Reference Guide pages live in
+  `reference_guide/` and Mary script text tables live in `script/`.
+  Each numbered script in `data/scripts/<region>/` includes its text header when
+  it has a text table. [include/fomt_constants.mary.h](include/fomt_constants.mary.h)
+  supplies shared native-code and script constants.
 - `graphics/` contains authored resources. The
   [graphics rules](graphics_file_rules.mk) convert PNG tiles and independent
   palettes to native formats, then compress resources beside their sources.

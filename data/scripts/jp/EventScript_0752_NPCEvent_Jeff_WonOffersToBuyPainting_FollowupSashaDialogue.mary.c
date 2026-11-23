@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue_SashaPraisesJeffsPaintingTalent[] =
-        "ちゃんと信念を持って絵を\r\n"
-        "描いてたんだねぇ。\r\n"
-        "カッコよく見えたよ。{Press}";
-};
+#include "EventScript_0752_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue.mary.h"
 
 void EventScript_0752_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue(void)
 {

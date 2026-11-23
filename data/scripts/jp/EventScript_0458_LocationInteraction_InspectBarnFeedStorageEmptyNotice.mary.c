@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBarnFeedStorageEmptyNotice[] =
-        "サイロの中に\r\n"
-        "１コも飼い葉が入っていない。{Press}";
-};
+#include "EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.h"
 
 void EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice(void)
 {

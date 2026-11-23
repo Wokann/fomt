@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_DukeAndManna_MissingJuiceArgument_DukeApologizesForArgumentBeforePlayer[] =
-        "Sorry for showing you \r\n"
-        "such an ugly scene...{Press}";
-};
+#include "EventScript_0719_NPCEvent_DukeAndManna_MissingJuiceArgument_FollowupDukeDialogue.mary.h"
 
 void EventScript_0719_NPCEvent_DukeAndManna_MissingJuiceArgument_FollowupDukeDialogue(void)
 {

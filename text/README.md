@@ -12,12 +12,14 @@ Regional text belongs under this directory by its owning data structure:
         reference_guide/
             harvest_sprite_minigames.cc
             festival_hints.cc
+        script/
+            EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h
 
 Historical layout and audit records refer to this tree by its former path
 `data/text/<region>/`. For files still present, use `text/<region>/` in those paths.
 
-Group text by its owning functional module and actual ROM continuity. Each
-text source corresponds to the C/C++ module that owns its text pointers.
+Group native text by its owning functional module and actual ROM continuity.
+Each native text source corresponds to the C/C++ module that owns its text pointers.
 A source-owned text fragment is included at its exact physical point
 inside the owning `src/<module>.cc`; it remains under `text` and is listed
 in `TEXT_FRAGMENT_SOURCES` so it does not produce a second object.
@@ -48,7 +50,7 @@ record it as a dependency. This selects encoding only: it does not select a
 different region, translate sources, or relocate data. Native builds need no
 additional argument.
 
-Each source includes its owning declaration header and uses ordinary C++
+Each native text source includes its owning declaration header and uses ordinary C++
 `char const` definitions. The host-side text preprocessor converts their UTF-8
 string literals with `charmap.txt` into generated escaped C++ source, which
 `agbcp` compiles into stable symbols. C/C++ tables then reference those symbols
@@ -91,11 +93,11 @@ spelling or physical adjacency alone does not establish a shared origin.
 The non-display fixed SRAM signature is
 kept with its owning `src/sram_proxy_1.c` save-verifier module.
 
-Game scripts are deliberately outside this directory and remain independently
-managed by Mary.  The top-level build invokes Mary for the selected
-`data/scripts/<region>` directory, then links its generated packed script body
-and relocatable pointer table through the regional linker script.  Do not add
-scripts to this directory's text-object lists.
+Mary compiles the numbered scripts in `data/scripts/<region>/` and reads their
+same-named text headers from `text/<region>/script/`. Each header preserves the
+complete `mary_text_table` and its declaration order. Make supplies the selected
+region's include directory, tracks the headers as dependencies of the Mary
+bundle, and links the packed scripts and pointer table.
 
 Do not embed item-text literals in C/C++ info-table initializers.  Every
 name/description pointer field must reference a gText_* symbol defined by the

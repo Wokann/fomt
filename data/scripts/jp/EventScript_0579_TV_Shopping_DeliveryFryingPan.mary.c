@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_TV_Shopping_DeliveryFryingPan_TheFryingPanYouOrderedIs[] =
-        "おい、おまえが注文したフライ\r\n"
-        "パンがとどいてたぜ。{Press}\p"
-        "フライパンがなかったら、炒め\r\n"
-        "ものとか出来ないしな。\r\n"
-        "いい買い物したじゃねぇか。{Press}";
-
-    const char gText_TV_Shopping_DeliveryFryingPan_DeliveredSafeAndSound[] =
-        "それじゃ、確かにとどけたぜ。{Press}";
-};
+#include "EventScript_0579_TV_Shopping_DeliveryFryingPan.mary.h"
 
 void EventScript_0579_TV_Shopping_DeliveryFryingPan(void)
 {

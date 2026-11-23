@@ -3,21 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_ShopEvent_Inn_Counter_Counter[] =
-        "Counter{Press}";
-
-    const char gText_ShopEvent_Inn_Counter_WelcomeAllFoodsCantBeTaken[] =
-        "Welcome!\r\n"
-        "All foods can't be \r\n"
-        "taken out of this shop.{Press}";
-
-    const char gText_ShopEvent_Inn_Counter_CannotOrderFoodWhileHoldingItem[] =
-        "Welcome!\r\n"
-        "You're holding\r\n"
-        "too much to eat!{Press}";
-};
+#include "EventScript_0484_ShopEvent_Inn_Counter.mary.h"
 
 void EventScript_0484_ShopEvent_Inn_Counter(void)
 {

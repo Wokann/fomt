@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_AnnAndCliff_01_BlackHeart_InnHelpOffer_FollowupCliffDialogue_CliffSilentlyReflectsOnAnnsKindness[] =
-        "....................{Press}";
-};
+#include "EventScript_0907_RivalEvent_AnnAndCliff_01_BlackHeart_InnHelpOffer_FollowupCliffDialogue.mary.h"
 
 void EventScript_0907_RivalEvent_AnnAndCliff_01_BlackHeart_InnHelpOffer_FollowupCliffDialogue(void)
 {

@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Stu_ThisCowIsSoBigAnd[] =
-        "Diese Kuh ist so groß \r\n"
-        "und stark!!\r\n"
-        "Sie würde dich plattmachen,{Press}\r\n"
-        "wenn sie auf dich träte!{Press}";
-
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Stu_YourCowLooksLikeAWinner[] =
-        "Deine Kuh sieht wie ein\r\n"
-        "Gewinner aus, {Player}.{Press}";
-};
+#include "EventScript_1173_FestivalEvent_CowFestival_PreJudgingDialogue_Stu.mary.h"
 
 void EventScript_1173_FestivalEvent_CowFestival_PreJudgingDialogue_Stu(void)
 {

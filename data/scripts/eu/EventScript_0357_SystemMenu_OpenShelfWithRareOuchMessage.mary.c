@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemMenu_OpenShelfWithRareOuchMessage[] =
-        "Ouch!...{Press}";
-};
+#include "EventScript_0357_SystemMenu_OpenShelfWithRareOuchMessage.mary.h"
 
 void EventScript_0357_SystemMenu_OpenShelfWithRareOuchMessage(void)
 {

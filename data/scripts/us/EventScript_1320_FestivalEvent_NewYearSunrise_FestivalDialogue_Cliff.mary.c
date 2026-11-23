@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff[] =
-        "So much happened to me\r\n"
-        "this past year. {Press}\p"
-        "I feel like a new part\r\n"
-        "of my life is beginning.{Press}";
-};
+#include "EventScript_1320_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff.mary.h"
 
 void EventScript_1320_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff(void)
 {

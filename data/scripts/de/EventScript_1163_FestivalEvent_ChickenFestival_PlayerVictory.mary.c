@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PlayerVictory_WinnerAnnouncement[] =
-        "Herzlichen Glückwunsch!\r\n"
-        "Ich habe noch nie so\r\n"
-        "ein starkes Huhn gesehen! {Press}\p"
-        "Vielen Dank für viele\r\n"
-        "spannende Runden! {Press}";
-};
+#include "EventScript_1163_FestivalEvent_ChickenFestival_PlayerVictory.mary.h"
 
 void EventScript_1163_FestivalEvent_ChickenFestival_PlayerVictory(void)
 {

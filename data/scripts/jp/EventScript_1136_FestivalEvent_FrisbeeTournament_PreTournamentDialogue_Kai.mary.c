@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Kai_IWasWonderingWhatAllThe[] =
-        "外がうるさいと思ったら、\r\n"
-        "フリスビー大会か。{Press}\p"
-        "犬がフリスビーを\r\n"
-        "キャッチするんだよな。{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Kai_YoureCompetingTooIllBeWatching[] =
-        "おっ、エントリーしたんだ。\r\n"
-        "見てやるから、がんばれよ。{Press}";
-};
+#include "EventScript_1136_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Kai.mary.h"
 
 void EventScript_1136_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Kai(void)
 {

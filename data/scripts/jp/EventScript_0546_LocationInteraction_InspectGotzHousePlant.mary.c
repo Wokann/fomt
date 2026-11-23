@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectGotzHousePlant[] =
-        "植物{Press}";
-};
+#include "EventScript_0546_LocationInteraction_InspectGotzHousePlant.mary.h"
 
 void EventScript_0546_LocationInteraction_InspectGotzHousePlant(void)
 {

@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Popuri_SpouseCollapseRecovery_PopuriAdmitsOverworkCausedCollapse[] =
-        "あ～あ、つまんないなぁ。\r\n"
-        "たおれるまで気がつかないなん\r\n"
-        "て、ポプリってバカだよねぇ？{Press}";
-
-    const char gText_FamilyEvent_Popuri_SpouseCollapseRecovery_PopuriPlansToSleepAndRecover[] =
-        "明日にはよくなると思うから。\r\n"
-        "何だか、ねむくなっちゃった。{Press}";
-};
+#include "EventScript_0679_FamilyEvent_Popuri_SpouseCollapseRecovery.mary.h"
 
 void EventScript_0679_FamilyEvent_Popuri_SpouseCollapseRecovery(void)
 {

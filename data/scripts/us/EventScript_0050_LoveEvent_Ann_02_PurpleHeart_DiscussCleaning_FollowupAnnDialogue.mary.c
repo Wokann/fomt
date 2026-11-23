@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Ann_02_PurpleHeart_LikeCleaningResponse_FollowupAnnCompletingChores[] =
-        "Just a few more chores...{Press}";
-
-    const char gText_LoveEvent_Ann_02_PurpleHeart_HateCleaningResponse_FollowupAnnAsksAboutChores[] =
-        "Are you doing all your\r\n"
-        "chores like you should, \r\n"
-        "{Player}?{Press}";
-};
+#include "EventScript_0050_LoveEvent_Ann_02_PurpleHeart_DiscussCleaning_FollowupAnnDialogue.mary.h"
 
 void EventScript_0050_LoveEvent_Ann_02_PurpleHeart_DiscussCleaning_FollowupAnnDialogue(void)
 {

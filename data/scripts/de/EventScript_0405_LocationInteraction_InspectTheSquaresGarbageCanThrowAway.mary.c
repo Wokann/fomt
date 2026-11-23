@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectTheSquaresGarbageCanThrowAway[] =
-        "Mülltonne am Platz\r\n"
-        "Entsorge Müll hier.{Press}";
-};
+#include "EventScript_0405_LocationInteraction_InspectTheSquaresGarbageCanThrowAway.mary.h"
 
 void EventScript_0405_LocationInteraction_InspectTheSquaresGarbageCanThrowAway(void)
 {

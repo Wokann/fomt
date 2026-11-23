@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_MoonViewingOrNewYearSunrise_ExitGuard_Warning[] =
-        "Wait one second!\r\n"
-        "You've come too far\r\n"
-        "to turn back now!{Press}";
-};
+#include "EventScript_0532_FestivalEvent_MoonViewingOrNewYearSunrise_ExitGuard.mary.h"
 
 void EventScript_0532_FestivalEvent_MoonViewingOrNewYearSunrise_ExitGuard(void)
 {

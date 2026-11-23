@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CookingFestival_PostJudgingDialogue_Gotz[] =
-        "Sonst esse ich nur mein\r\n"
-        "eigenes lausiges Essen, \r\n"
-        "deshalb liebe ich {Press}\r\n"
-        "den Wettbewerb! {Press}";
-};
+#include "EventScript_1127_FestivalEvent_CookingFestival_PostJudgingDialogue_Gotz.mary.h"
 
 void EventScript_1127_FestivalEvent_CookingFestival_PostJudgingDialogue_Gotz(void)
 {

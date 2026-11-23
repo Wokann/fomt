@@ -3,20 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemMenu_Bookshelf_MenuBooks[] =
-        "Bücherliste";
-
-    const char gText_SystemMenu_Bookshelf_MenuLetters[] =
-        "Briefliste";
-
-    const char gText_SystemMenu_Bookshelf_Exit[] =
-        "Schließen";
-
-    const char gText_SystemMenu_Bookshelf_NoLetterInside[] =
-        "Kein Brief.{Press}";
-};
+#include "EventScript_0344_SystemMenu_Bookshelf.mary.h"
 
 void EventScript_0344_SystemMenu_Bookshelf(void)
 {

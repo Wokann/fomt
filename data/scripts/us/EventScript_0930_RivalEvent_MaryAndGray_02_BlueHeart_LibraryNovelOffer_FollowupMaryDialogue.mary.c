@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_FollowupMaryDialogue_MaryIsNervousToShowHerNovelToItsFirstReader[] =
-        "This is the first time I've \r\n"
-        "ever shown anyone, so I'm \r\n"
-        "a little nervous... {Press}";
-};
+#include "EventScript_0930_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_FollowupMaryDialogue.mary.h"
 
 void EventScript_0930_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_FollowupMaryDialogue(void)
 {

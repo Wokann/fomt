@@ -208,6 +208,7 @@ MARY_TOOL_DIR := tools/mary
 MARY_TOOL := $(MARY_TOOL_DIR)/mary$(EXE)
 MARY_TOOL_SOURCES := $(wildcard $(MARY_TOOL_DIR)/src/*.cc $(MARY_TOOL_DIR)/src/*.hh) $(MARY_TOOL_DIR)/Makefile
 MARY_SOURCE_DIR := data/scripts/$(REGION_DIR)
+MARY_SCRIPT_TEXT_DIR := text/$(REGION_DIR)/script
 MARY_OUTPUT_DIR := $(BUILD_DIR)/data/scripts
 MARY_LIBRARY := $(MARY_SOURCE_DIR)/fomt_callables.mary.h
 MARY_SCRIPT_TABLE := $(MARY_SOURCE_DIR)/fomt_scripts.mary.h
@@ -254,9 +255,12 @@ $(GFX_RANGE_VERIFY): tools/verify_gfx_range.c tools/Makefile
 # while the C/C++-shared constant table lives in include/.
 # Use the same optional fixes for native code and Mary scripts.
 MARY_BUGFIX_FLAG = $(shell $(CPP) -dM include/config.h | awk '$$2 == "BUGFIX" { print "-D BUGFIX" }')
-$(MARY_BUNDLE_STAMP): include/config.h $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
+$(MARY_BUNDLE_STAMP): Makefile include/config.h $(MARY_TOOL) $(MARY_SOURCES) $(MARY_LIBRARY) $(MARY_SCRIPT_TABLE) $(MARY_CONSTANTS) $(TEXT_CHARMAP)
 	@mkdir -p $(MARY_OUTPUT_DIR)
-	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed --library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) --charmap $(TEXT_CHARMAP) -D MARY_FOMT_$(GAME_REGION) $(MARY_BUGFIX_FLAG)
+	@$(MARY_TOOL) bundle $(MARY_SOURCE_DIR) -o $(MARY_OUTPUT_DIR) --layout packed \
+		--library $(MARY_LIBRARY) --script-table $(MARY_SCRIPT_TABLE) --constants $(MARY_CONSTANTS) \
+		--charmap $(TEXT_CHARMAP) -I include -I $(MARY_SCRIPT_TEXT_DIR) \
+		--dep-target $(MARY_BUNDLE_STAMP) -D MARY_FOMT_$(GAME_REGION) $(MARY_BUGFIX_FLAG)
 	@touch $@
 
 $(MARY_BUNDLE_OUTPUTS): $(MARY_BUNDLE_STAMP)

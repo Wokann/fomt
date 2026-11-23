@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_MineEvent_ReturnToSurfaceChoice_ChoiceReturnToSurface[] =
-        "Zur Oberfläche?";
-
-    const char gText_MineEvent_ReturnToSurfaceChoice_Yes[] =
-        "Ja";
-
-    const char gText_MineEvent_ReturnToSurfaceChoice_No[] =
-        "Nein";
-};
+#include "EventScript_0979_MineEvent_ReturnToSurfaceChoice.mary.h"
 
 void EventScript_0979_MineEvent_ReturnToSurfaceChoice(void)
 {

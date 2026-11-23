@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_Sasha_Followup_AjaLeftAfterArgumentWithDuke[] =
-        "アージュはデュークともめて、\r\n"
-        "家を飛び出したんだよ。{Press}";
-
-    const char gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_Sasha_Followup_SashaPlansToCallAja[] =
-        "さて、アージュに電話でも\r\n"
-        "しておこうか。{Press}";
-};
+#include "EventScript_0757_NPCEvent_Manna_AjasDepartureAdviceFromFriends_FollowupSashaDialogue.mary.h"
 
 void EventScript_0757_NPCEvent_Manna_AjasDepartureAdviceFromFriends_FollowupSashaDialogue(void)
 {

@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Elli_Wedding_CarterPronouncesMarriage[] =
-        "では、ちかいのキスを…{Press}";
-
-    const char gText_LoveEvent_Elli_Wedding_ElliPromisesHappyFamily[] =
-        "幸せな家庭を作ろうね。{Press}";
-
-    const char gText_LoveEvent_Elli_Wedding_CarterBlessesCouple[] =
-        "二人でいつまでも幸せにね。{Press}";
-};
+#include "EventScript_0078_LoveEvent_Elli_Wedding.mary.h"
 
 void EventScript_0078_LoveEvent_Elli_Wedding(void)
 {

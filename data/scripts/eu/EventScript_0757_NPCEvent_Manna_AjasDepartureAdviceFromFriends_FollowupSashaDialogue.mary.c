@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_Sasha_Followup_AjaLeftAfterArgumentWithDuke[] =
-        "Aja left home because of \r\n"
-        "an argument with Duke. {Press}";
-
-    const char gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_Sasha_Followup_SashaPlansToCallAja[] =
-        "Let's call Aja now. {Press}";
-};
+#include "EventScript_0757_NPCEvent_Manna_AjasDepartureAdviceFromFriends_FollowupSashaDialogue.mary.h"
 
 void EventScript_0757_NPCEvent_Manna_AjasDepartureAdviceFromFriends_FollowupSashaDialogue(void)
 {

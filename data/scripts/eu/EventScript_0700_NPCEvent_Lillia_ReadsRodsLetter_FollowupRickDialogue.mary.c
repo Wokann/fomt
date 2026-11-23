@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Lillia_ReadsRodsLetter_RickWantsRodToReturnHome[] =
-        "Letters are nice...\r\n"
-        "But I want him to come\r\n"
-        "home now!...{Press}";
-};
+#include "EventScript_0700_NPCEvent_Lillia_ReadsRodsLetter_FollowupRickDialogue.mary.h"
 
 void EventScript_0700_NPCEvent_Lillia_ReadsRodsLetter_FollowupRickDialogue(void)
 {

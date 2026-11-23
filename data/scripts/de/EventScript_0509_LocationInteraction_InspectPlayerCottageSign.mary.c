@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectPlayerCottageSign_CottageSign[] =
-        "{Player}s Hütte\r\n"
-        "{Press}";
-
-    const char gText_LocationInteraction_InspectPlayerCottageSign_EmptyLotSign[] =
-        "Ein ungenutzter Fleck\r\n"
-        "{Press}";
-};
+#include "EventScript_0509_LocationInteraction_InspectPlayerCottageSign.mary.h"
 
 void EventScript_0509_LocationInteraction_InspectPlayerCottageSign(void)
 {

@@ -3,22 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemMenu_ConfirmSleepForDay_GoToBedForTheDay[] =
-        "Go to bed for the day?";
-
-    const char gText_SystemMenu_ConfirmSleepForDay_Yes[] =
-        "Yes";
-
-    const char gText_SystemMenu_ConfirmSleepForDay_No[] =
-        "No";
-
-    const char gText_SystemMenu_ConfirmSleepForDay_MustExamineBedFromLeft[] =
-        "Bed\r\n"
-        "Investigate from left \r\n"
-        "side to sleep.{Press}";
-};
+#include "EventScript_0223_SystemMenu_ConfirmSleepForDay.mary.h"
 
 void EventScript_0223_SystemMenu_ConfirmSleepForDay(void)
 {

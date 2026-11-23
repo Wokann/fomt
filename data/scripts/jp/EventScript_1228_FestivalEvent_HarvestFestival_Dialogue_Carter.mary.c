@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_HarvestFestival_Dialogue_Carter_ThisKindOfThingIsWhat[] =
-        "ああ、まぁこんな事があるから\r\n"
-        "おもしろいんじゃないですか？\r\n"
-        "ははははは。{Press}";
-
-    const char gText_FestivalEvent_HarvestFestival_Dialogue_Carter_ItsFunWhenYouEatWith[] =
-        "やっぱりおナベは、たくさんで\r\n"
-        "食べた方がおいしいね。{Press}";
-};
+#include "EventScript_1228_FestivalEvent_HarvestFestival_Dialogue_Carter.mary.h"
 
 void EventScript_1228_FestivalEvent_HarvestFestival_Dialogue_Carter(void)
 {

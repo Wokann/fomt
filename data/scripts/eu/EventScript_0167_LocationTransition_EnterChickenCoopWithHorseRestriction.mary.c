@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterChickenCoopWithHorseRestriction[] =
-        "You can't go inside\r\n"
-        "while riding a horse!{Press}";
-};
+#include "EventScript_0167_LocationTransition_EnterChickenCoopWithHorseRestriction.mary.h"
 
 void EventScript_0167_LocationTransition_EnterChickenCoopWithHorseRestriction(void)
 {

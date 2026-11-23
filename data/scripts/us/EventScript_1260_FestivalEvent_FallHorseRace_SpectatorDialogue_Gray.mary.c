@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Gray_NoPlayerEntryComment[] =
-        "I begged by grampa to \r\n"
-        "let me come today! \r\n"
-        "Now who should I bet on...{Press}";
-
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Gray_SupportsPlayerEntry[] =
-        "You're racing, {Player}?\r\n"
-        "Great! I'll bet on you,\r\n"
-        "then! {Press}";
-};
+#include "EventScript_1260_FestivalEvent_FallHorseRace_SpectatorDialogue_Gray.mary.h"
 
 void EventScript_1260_FestivalEvent_FallHorseRace_SpectatorDialogue_Gray(void)
 {

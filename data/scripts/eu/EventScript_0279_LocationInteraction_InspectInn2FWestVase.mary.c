@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectInn2FWestVase[] =
-        "Vase{Press}";
-};
+#include "EventScript_0279_LocationInteraction_InspectInn2FWestVase.mary.h"
 
 void EventScript_0279_LocationInteraction_InspectInn2FWestVase(void)
 {

@@ -3,20 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_MusicFestival_EntryCheck_Carter_IveBeenWaitingForYouEverybody[] =
-        "I've been waiting for you.\r\n"
-        "Everybody else is already\r\n"
-        "inside waiting.{Press}";
-
-    const char gText_FestivalEvent_MusicFestival_EntryCheck_Carter_ImSorryButYouCantBring[] =
-        "I'm sorry, but you can't \r\n"
-        "bring any items into the\r\n"
-        "Church today. {Press}\p"
-        "Would you please put that\r\n"
-        "in your Rucksack?{Press}";
-};
+#include "EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.h"
 
 void EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter(void)
 {

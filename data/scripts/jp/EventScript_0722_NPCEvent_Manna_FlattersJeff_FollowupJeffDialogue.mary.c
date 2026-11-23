@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Manna_FlattersJeff_JeffAdmiresMannasFlattery[] =
-        "マナさんも口がうまいなぁ。\r\n"
-        "{Press}";
-};
+#include "EventScript_0722_NPCEvent_Manna_FlattersJeff_FollowupJeffDialogue.mary.h"
 
 void EventScript_0722_NPCEvent_Manna_FlattersJeff_FollowupJeffDialogue(void)
 {

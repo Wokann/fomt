@@ -3,33 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing[] =
-        "{NickName},\r\n"
-        "wo willst du denn hin,{Press}?";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing[] =
-        "{Player},\r\n"
-        "Wo willst du denn hin?{Press}?";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing[] =
-        "{NickName},\r\n"
-        "Wo willst du denn hin?{Press}?";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_YouCantTakeYourEyesOff[] =
-        "Du kannst den Blick nicht \r\n"
-        "von {Baby} abwenden.{Press}";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChoiceTakeBath[] =
-        "Ein Bad nehmen?";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_Yes[] =
-        "Ja";
-
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_No[] =
-        "Nein";
-};
+#include "EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice.mary.h"
 
 void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice(void)
 {

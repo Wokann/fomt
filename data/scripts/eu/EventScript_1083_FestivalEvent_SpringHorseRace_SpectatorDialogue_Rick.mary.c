@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Rick_IAlwaysGetSoExcitedAbout[] =
-        "I always get so excited \r\n"
-        "about the races! {Press}";
-
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Rick_IllBeRootingForYou[] =
-        "I'll be rooting \r\n"
-        "for you! {Press}";
-};
+#include "EventScript_1083_FestivalEvent_SpringHorseRace_SpectatorDialogue_Rick.mary.h"
 
 void EventScript_1083_FestivalEvent_SpringHorseRace_SpectatorDialogue_Rick(void)
 {

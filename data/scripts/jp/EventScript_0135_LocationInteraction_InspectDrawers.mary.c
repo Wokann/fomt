@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectDrawers[] =
-        "たんす{Press}";
-};
+#include "EventScript_0135_LocationInteraction_InspectDrawers.mary.h"
 
 void EventScript_0135_LocationInteraction_InspectDrawers(void)
 {

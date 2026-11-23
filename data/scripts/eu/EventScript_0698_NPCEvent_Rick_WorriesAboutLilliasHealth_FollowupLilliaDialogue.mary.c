@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Rick_WorriesAboutLilliasHealth_LilliaAppreciatesChildrenAndResolvesToStayHealthy[] =
-        "I can't believe how luck I \r\n"
-        "am to have such fine \r\n"
-        "children! {Press}\p"
-        "I'll have to stay healthy \r\n"
-        "for them...!{Press}";
-};
+#include "EventScript_0698_NPCEvent_Rick_WorriesAboutLilliasHealth_FollowupLilliaDialogue.mary.h"
 
 void EventScript_0698_NPCEvent_Rick_WorriesAboutLilliasHealth_FollowupLilliaDialogue(void)
 {

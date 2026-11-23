@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_HarvestFestival_PreCookingDialogue_Carter[] =
-        "Das erinnert mich \r\n"
-        "daran, wie ich vor nicht\r\n"
-        "allzu langer Zeit Unmengen{Press}\r\n"
-        "Suppe gekocht und\r\n"
-        "sie an alle verschenkt habe.{Press}";
-};
+#include "EventScript_1239_FestivalEvent_HarvestFestival_PreCookingDialogue_Carter.mary.h"
 
 void EventScript_1239_FestivalEvent_HarvestFestival_PreCookingDialogue_Carter(void)
 {

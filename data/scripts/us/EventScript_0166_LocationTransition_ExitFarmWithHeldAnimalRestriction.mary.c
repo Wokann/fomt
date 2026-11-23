@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_ExitFarmWithHeldAnimalRestriction_YouCantGoOutsideWhileRiding[] =
-        "You can't go outside\r\n"
-        "while riding a horse!{Press}";
-
-    const char gText_LocationTransition_ExitFarmWithHeldAnimalRestriction_YouCantGoOusideWhileHolding[] =
-        "You can't go ouside\r\n"
-        "while holding a chicken!{Press}";
-};
+#include "EventScript_0166_LocationTransition_ExitFarmWithHeldAnimalRestriction.mary.h"
 
 void EventScript_0166_LocationTransition_ExitFarmWithHeldAnimalRestriction(void)
 {

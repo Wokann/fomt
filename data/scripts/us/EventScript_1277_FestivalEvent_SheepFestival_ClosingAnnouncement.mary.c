@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SheepFestival_ClosingAnnouncement[] =
-        "The Sheep Festival has \r\n"
-        "ended. We'll return your\r\n"
-        "Sheep to your house for you,{Press}\r\n"
-        "so please go home now.{Press}";
-};
+#include "EventScript_1277_FestivalEvent_SheepFestival_ClosingAnnouncement.mary.h"
 
 void EventScript_1277_FestivalEvent_SheepFestival_ClosingAnnouncement(void)
 {

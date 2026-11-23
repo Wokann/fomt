@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_ShopEvent_YodelRanch_Counter_Counter[] =
-        "カウンター{Press}";
-
-    const char gText_ShopEvent_YodelRanch_Counter_BarleyOffersRanchGoods[] =
-        "…何かほしいもんでも\r\n"
-        "あるのかの？{Press}";
-};
+#include "EventScript_0489_ShopEvent_YodelRanch_Counter.mary.h"
 
 void EventScript_0489_ShopEvent_YodelRanch_Counter(void)
 {

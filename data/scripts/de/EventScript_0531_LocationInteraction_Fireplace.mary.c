@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_Fireplace_ItsHot[] =
-        "Es ist heiß!...{Press}";
-
-    const char gText_LocationInteraction_Fireplace_FireplaceLabel[] =
-        "Feuerstelle{Press}";
-};
+#include "EventScript_0531_LocationInteraction_Fireplace.mary.h"
 
 void EventScript_0531_LocationInteraction_Fireplace(void)
 {

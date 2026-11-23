@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Popuri_NoPlayerEntryComment[] =
-        "I didn't use to like Milk,\r\n"
-        "but now I love it. {Press}";
-
-    const char gText_FestivalEvent_CowFestival_PreJudgingDialogue_Popuri_EncouragesPlayerEntry[] =
-        "I hope you win, \r\n"
-        "{Player}. {Press}";
-};
+#include "EventScript_1167_FestivalEvent_CowFestival_PreJudgingDialogue_Popuri.mary.h"
 
 void EventScript_1167_FestivalEvent_CowFestival_PreJudgingDialogue_Popuri(void)
 {

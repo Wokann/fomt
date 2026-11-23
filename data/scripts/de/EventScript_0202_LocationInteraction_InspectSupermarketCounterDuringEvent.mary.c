@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectSupermarketCounterDuringEvent_Counter[] =
-        "Tresen{Press}";
-
-    const char gText_LocationInteraction_InspectSupermarketCounterDuringEvent_YouWontBeAbleToShop[] =
-        "Du kannst nichts kaufen,\r\n"
-        "bevor du einen Tresen\r\n"
-        "mit Waren siehst!{Press}";
-};
+#include "EventScript_0202_LocationInteraction_InspectSupermarketCounterDuringEvent.mary.h"
 
 void EventScript_0202_LocationInteraction_InspectSupermarketCounterDuringEvent(void)
 {

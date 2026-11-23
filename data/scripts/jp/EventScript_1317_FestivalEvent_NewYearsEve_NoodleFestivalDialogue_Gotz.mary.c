@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Gotz[] =
-        "よぉ、おまえもそばを食いに\r\n"
-        "きたのか？{Press}\p"
-        "年を越すなら、やっぱりそばを\r\n"
-        "食っとかなきゃな。{Press}";
-};
+#include "EventScript_1317_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Gotz.mary.h"
 
 void EventScript_1317_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Gotz(void)
 {

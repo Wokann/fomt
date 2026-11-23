@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterGotzHouseWithEventDispatch_DoorIsLocked[] =
-        "It's locked...{Press}";
-};
+#include "EventScript_0179_LocationTransition_EnterGotzHouseWithEventDispatch.mary.h"
 
 void EventScript_0179_LocationTransition_EnterGotzHouseWithEventDispatch(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterBlacksmithWithEventDispatch_DoorIsLocked[] =
-        "Abgeschlossen...{Press}";
-};
+#include "EventScript_0528_LocationTransition_EnterBlacksmithWithEventDispatch.mary.h"
 
 void EventScript_0528_LocationTransition_EnterBlacksmithWithEventDispatch(void)
 {

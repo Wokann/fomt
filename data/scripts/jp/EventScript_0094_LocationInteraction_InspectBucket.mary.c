@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBucket[] =
-        "ばけつ{Press}";
-};
+#include "EventScript_0094_LocationInteraction_InspectBucket.mary.h"
 
 void EventScript_0094_LocationInteraction_InspectBucket(void)
 {

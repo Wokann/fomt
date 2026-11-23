@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_Shipping_10000Items[] =
-        "ぱんぱかぱーん。{Press}\p"
-        "ただいま、\r\n"
-        "{Var1}の出荷数\r\n"
-        "が１００００コになりました。{Press}\p"
-        "おめでとうございまーす。{Press}\p"
-        "それだけ。\r\n"
-        "特に何かプレゼントとかある\r\n"
-        "わけじゃないので。じゃねー。{Press}";
-};
+#include "EventScript_0828_AchievementEvent_Shipping_10000Items.mary.h"
 
 void EventScript_0828_AchievementEvent_Shipping_10000Items(void)
 {

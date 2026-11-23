@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Lillia_ReadsRodsLetter_PopuriCelebratesLilliasHappiness[] =
-        "I'm so glad you are,\r\n"
-        "happy, Mom!{Press}";
-};
+#include "EventScript_0701_NPCEvent_Lillia_ReadsRodsLetter_FollowupPopuriDialogue.mary.h"
 
 void EventScript_0701_NPCEvent_Lillia_ReadsRodsLetter_FollowupPopuriDialogue(void)
 {

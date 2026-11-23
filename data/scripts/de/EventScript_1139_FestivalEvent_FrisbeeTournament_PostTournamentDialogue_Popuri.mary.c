@@ -3,21 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Popuri_YouAlmostMadeItDidntYou[] =
-        "Du hast es fast geschafft,\r\n"
-        "oder nicht? Ich\r\n"
-        "wette, nächstes Jahr{Press}\r\n"
-        "klappt es!{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Popuri_PopuriPraisesPerformance[] =
-        "Mensch! Das war \r\n"
-        "klasse!{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Popuri_TheDogsWereAllSoCute[] =
-        "Die Hunde waren so süß!{Press}";
-};
+#include "EventScript_1139_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Popuri.mary.h"
 
 void EventScript_1139_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Popuri(void)
 {

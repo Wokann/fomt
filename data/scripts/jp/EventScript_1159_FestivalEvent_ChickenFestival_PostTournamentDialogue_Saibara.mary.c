@@ -3,20 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PostTournamentDialogue_Saibara_IWonderWhatHappenedToThat[] =
-        "あの鶏は、どうなって\r\n"
-        "しまったのじゃろうな。{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PostTournamentDialogue_Saibara_EvenThatChickensFaceLooksFierce[] =
-        "さすが、いさましい顔を\r\n"
-        "しておる。{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PostTournamentDialogue_Saibara_ThatWasAGoodEffort[] =
-        "んん、\r\n"
-        "よくがんばったな。{Press}";
-};
+#include "EventScript_1159_FestivalEvent_ChickenFestival_PostTournamentDialogue_Saibara.mary.h"
 
 void EventScript_1159_FestivalEvent_ChickenFestival_PostTournamentDialogue_Saibara(void)
 {

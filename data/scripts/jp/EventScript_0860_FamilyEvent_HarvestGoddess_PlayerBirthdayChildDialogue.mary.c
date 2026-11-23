@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayChildDialogue_ChildResponse[] =
-        "だあ？{Press}";
-};
+#include "EventScript_0860_FamilyEvent_HarvestGoddess_PlayerBirthdayChildDialogue.mary.h"
 
 void EventScript_0860_FamilyEvent_HarvestGoddess_PlayerBirthdayChildDialogue(void)
 {

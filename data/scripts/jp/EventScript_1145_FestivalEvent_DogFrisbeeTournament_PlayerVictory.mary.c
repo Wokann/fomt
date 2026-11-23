@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_DogFrisbeeTournament_PlayerVictory_WinnerAnnouncement[] =
-        "みんな、よく聞いてくれ！\r\n"
-        "今年のチャンピオン犬は、\r\n"
-        "{Dog}に決まったぞ！！{Press}\r\n"
-        "よくやったな！{Press}";
-};
+#include "EventScript_1145_FestivalEvent_DogFrisbeeTournament_PlayerVictory.mary.h"
 
 void EventScript_1145_FestivalEvent_DogFrisbeeTournament_PlayerVictory(void)
 {

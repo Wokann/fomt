@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterWineryBasement[] =
-        "Right now I'm organizing\r\n"
-        "the wine shelves, so \r\n"
-        "don't go down there, OK?{Press}";
-};
+#include "EventScript_0416_LocationTransition_EnterWineryBasement.mary.h"
 
 void EventScript_0416_LocationTransition_EnterWineryBasement(void)
 {

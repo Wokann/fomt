@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCarterDialogue_CarterTrustsAnnToHelpCliff[] =
-        "Auf Ann ist Verlass.{Press}";
-};
+#include "EventScript_0910_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCarterDialogue.mary.h"
 
 void EventScript_0910_RivalEvent_AnnAndCliff_02_BlueHeart_ChurchFriendshipRequest_FollowupCarterDialogue(void)
 {

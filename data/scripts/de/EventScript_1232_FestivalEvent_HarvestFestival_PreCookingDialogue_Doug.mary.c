@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_HarvestFestival_PreCookingDialogue_Doug[] =
-        "Hey!! Ihr alle! Stopft\r\n"
-        "nicht alles auf einmal rein!{Press}\p"
-        "Du da, geh zurück!\r\n"
-        "...Was macht der Fisch \r\n"
-        "hier...?!?{Press}";
-};
+#include "EventScript_1232_FestivalEvent_HarvestFestival_PreCookingDialogue_Doug.mary.h"
 
 void EventScript_1232_FestivalEvent_HarvestFestival_PreCookingDialogue_Doug(void)
 {

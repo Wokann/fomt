@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Livestock_SicknessRecoveryNotice[] =
-        "Die Krankheit ist vorbei!{Press}";
-};
+#include "EventScript_0002_FarmEvent_Livestock_SicknessRecoveryNotice.mary.h"
 
 void EventScript_0002_FarmEvent_Livestock_SicknessRecoveryNotice(void)
 {

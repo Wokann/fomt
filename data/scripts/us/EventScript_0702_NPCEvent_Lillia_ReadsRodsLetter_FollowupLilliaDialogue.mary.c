@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Lillia_ReadsRodsLetter_LilliaRemainsHappyAfterLetter[] =
-        "Tee-hee....\r\n"
-        "I'm so happy!...{Press}";
-};
+#include "EventScript_0702_NPCEvent_Lillia_ReadsRodsLetter_FollowupLilliaDialogue.mary.h"
 
 void EventScript_0702_NPCEvent_Lillia_ReadsRodsLetter_FollowupLilliaDialogue(void)
 {

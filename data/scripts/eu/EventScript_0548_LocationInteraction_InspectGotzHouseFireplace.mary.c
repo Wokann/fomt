@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectGotzHouseFireplace[] =
-        "Fireplace{Press}";
-};
+#include "EventScript_0548_LocationInteraction_InspectGotzHouseFireplace.mary.h"
 
 void EventScript_0548_LocationInteraction_InspectGotzHouseFireplace(void)
 {

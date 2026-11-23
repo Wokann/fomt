@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_Collection_HarvestGoddessJewelsExchange_GoddessExchangesJewelsForGoddessGem[] =
-        "Herzlichen Glückwunsch!\r\n"
-        "Du hast alle Juwelen der \r\n"
-        "Erntegöttin eingesammelt.{Press}\r\n"
-        "Ich erlaube dir, sie gegen \r\n"
-        "den Stein der Göttin zu{Press}\p"
-        "tauschen. Tschüss dann.{Press}";
-};
+#include "EventScript_0816_AchievementEvent_Collection_HarvestGoddessJewelsExchange.mary.h"
 
 void EventScript_0816_AchievementEvent_Collection_HarvestGoddessJewelsExchange(void)
 {

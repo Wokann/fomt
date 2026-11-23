@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Livestock_StatusNoWorriesMessage[] =
-        "やあ、キミは\r\n"
-        "悩みなんてなさそうだなぁ。{Press}";
-};
+#include "EventScript_0010_FarmEvent_Livestock_StatusNoWorriesMessage.mary.h"
 
 void EventScript_0010_FarmEvent_Livestock_StatusNoWorriesMessage(void)
 {

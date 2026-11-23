@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectSupermarketBusinessHoursSign[] =
-        "Supermarket\r\n"
-        "Open 9AM-5PM\r\n"
-        "Closed Tuesdays and Sundays{Press}";
-};
+#include "EventScript_0496_LocationInteraction_InspectSupermarketBusinessHoursSign.mary.h"
 
 void EventScript_0496_LocationInteraction_InspectSupermarketBusinessHoursSign(void)
 {

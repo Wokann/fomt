@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Harris_MyGreatestJoyIsObservingEverybodys[] =
-        "Meine größte Freude ist,\r\n"
-        "mir alle Pferde\r\n"
-        "anzusehen. {Press}";
-
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Harris_LookLikeTheRacesAreBeginning[] =
-        "Sieht aus, als fingen \r\n"
-        "die Rennen an.\r\n"
-        "Viel Glück! {Press}";
-};
+#include "EventScript_1258_FestivalEvent_FallHorseRace_SpectatorDialogue_Harris.mary.h"
 
 void EventScript_1258_FestivalEvent_FallHorseRace_SpectatorDialogue_Harris(void)
 {

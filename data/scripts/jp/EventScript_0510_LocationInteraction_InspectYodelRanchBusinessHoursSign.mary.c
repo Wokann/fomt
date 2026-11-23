@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectYodelRanchBusinessHoursSign[] =
-        "「ヨーデル牧場」\r\n"
-        "ＡＭ１０時～ＰＭ３時、開いて\r\n"
-        "ます。月曜日は出かけてます。{Press}";
-};
+#include "EventScript_0510_LocationInteraction_InspectYodelRanchBusinessHoursSign.mary.h"
 
 void EventScript_0510_LocationInteraction_InspectYodelRanchBusinessHoursSign(void)
 {

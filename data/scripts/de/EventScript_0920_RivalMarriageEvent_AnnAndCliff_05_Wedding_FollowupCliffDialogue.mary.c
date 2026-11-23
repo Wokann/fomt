@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_AnnAndCliff_05_Wedding_FollowupCliffDialogue_CliffSaysHeIsMarryingAnn[] =
-        "Hab ich schon erzählt, \r\n"
-        "Ann und ich heiraten?{Press}";
-
-    const char gText_RivalMarriageEvent_AnnAndCliff_05_Wedding_FollowupCliffDialogue_CliffSaysHeWillStayInTownWithHisFamily[] =
-        "Ich bleibe für \r\n"
-        "immer hier. \r\n"
-        "Ich bin hier glücklich.{Press}";
-};
+#include "EventScript_0920_RivalMarriageEvent_AnnAndCliff_05_Wedding_FollowupCliffDialogue.mary.h"
 
 void EventScript_0920_RivalMarriageEvent_AnnAndCliff_05_Wedding_FollowupCliffDialogue(void)
 {

@@ -3,19 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CowFestival_PostJudgingDialogue_Barley_ThereAreLotsOfGoodCows[] =
-        "Dieses Jahr sind viele\r\n"
-        "gute Kühe dabei. {Press}";
-
-    const char gText_FestivalEvent_CowFestival_PostJudgingDialogue_Barley_YouGottaTakeGoodCareOf[] =
-        "Du musst gut auf deine\r\n"
-        "Tiere aufpassen. {Press}";
-
-    const char gText_FestivalEvent_CowFestival_PostJudgingDialogue_Barley_BarleyConsolesPlayer[] =
-        "Zu schade...{Press}";
-};
+#include "EventScript_1188_FestivalEvent_CowFestival_PostJudgingDialogue_Barley.mary.h"
 
 void EventScript_1188_FestivalEvent_CowFestival_PostJudgingDialogue_Barley(void)
 {

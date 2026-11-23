@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Ellen_GrandfathersHiddenLetterDiscovery_FollowupStuDialogue_StuMissesGrandfather[] =
-        "Ich vermisse Großvater...{Press}";
-};
+#include "EventScript_0748_NPCEvent_Ellen_GrandfathersHiddenLetterDiscovery_FollowupStuDialogue.mary.h"
 
 void EventScript_0748_NPCEvent_Ellen_GrandfathersHiddenLetterDiscovery_FollowupStuDialogue(void)
 {

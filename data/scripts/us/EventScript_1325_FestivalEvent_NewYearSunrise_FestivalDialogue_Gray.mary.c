@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearSunrise_FestivalDialogue_Gray[] =
-        ".....I'm so tired...{Press}";
-};
+#include "EventScript_1325_FestivalEvent_NewYearSunrise_FestivalDialogue_Gray.mary.h"
 
 void EventScript_1325_FestivalEvent_NewYearSunrise_FestivalDialogue_Gray(void)
 {

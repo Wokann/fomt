@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FireworksFestival_Dialogue_Rick[] =
-        "It wouldn't be Summer \r\n"
-        "without the Firework\r\n"
-        "Festival!{Press}";
-};
+#include "EventScript_1193_FestivalEvent_FireworksFestival_Dialogue_Rick.mary.h"
 
 void EventScript_1193_FestivalEvent_FireworksFestival_Dialogue_Rick(void)
 {

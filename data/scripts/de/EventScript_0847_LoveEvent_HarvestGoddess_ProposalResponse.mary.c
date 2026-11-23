@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_HarvestGoddess_ProposalResponse_AcceptsProposal[] =
-        "Wenn du willst, heirate\r\n"
-        "ich dich, {Player}.{Press}";
-
-    const char gText_LoveEvent_HarvestGoddess_ProposalResponse_RejectsProposalWhenRequirementsUnmet[] =
-        "Nee.{Press}";
-};
+#include "EventScript_0847_LoveEvent_HarvestGoddess_ProposalResponse.mary.h"
 
 void EventScript_0847_LoveEvent_HarvestGoddess_ProposalResponse(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectMenu[] =
-        "メニュー{Press}";
-};
+#include "EventScript_0434_LocationInteraction_InspectMenu.mary.h"
 
 void EventScript_0434_LocationInteraction_InspectMenu(void)
 {

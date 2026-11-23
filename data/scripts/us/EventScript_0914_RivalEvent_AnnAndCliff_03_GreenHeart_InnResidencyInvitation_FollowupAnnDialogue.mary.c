@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue_AnnSaysCliffBeginsLivingAtTheInnToday[] =
-        "Cliff is going to live here \r\n"
-        "starting today.{Press}";
-};
+#include "EventScript_0914_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue.mary.h"
 
 void EventScript_0914_RivalEvent_AnnAndCliff_03_GreenHeart_InnResidencyInvitation_FollowupAnnDialogue(void)
 {

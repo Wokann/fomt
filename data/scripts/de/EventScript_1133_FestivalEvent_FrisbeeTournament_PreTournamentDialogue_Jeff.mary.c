@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Jeff_DogsAreSoCleverMaybeI[] =
-        "Hunde sind so schlau!\r\n"
-        "Vielleicht sollte ich mir\r\n"
-        "einen Wachhund halten...{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Jeff_YoureGoingToCompeteIllBe[] =
-        "Machst du auch mit?\r\n"
-        "Ich drücke dir die Daumen!{Press}";
-};
+#include "EventScript_1133_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Jeff.mary.h"
 
 void EventScript_1133_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Jeff(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectCandlesticks[] =
-        "燭台{Press}";
-};
+#include "EventScript_0137_LocationInteraction_InspectCandlesticks.mary.h"
 
 void EventScript_0137_LocationInteraction_InspectCandlesticks(void)
 {

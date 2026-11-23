@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBlacksmithShovel[] =
-        "Schaufel{Press}";
-};
+#include "EventScript_0516_LocationInteraction_InspectBlacksmithShovel.mary.h"
 
 void EventScript_0516_LocationInteraction_InspectBlacksmithShovel(void)
 {

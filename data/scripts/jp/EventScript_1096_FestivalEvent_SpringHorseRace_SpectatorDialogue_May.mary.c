@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_May_ThereAreSoManyPrettyHorses[] =
-        "お馬さんがたくさんいるね。{Press}";
-
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_May_HorseIsGoingToRunToo[] =
-        "お兄ちゃん、\r\n"
-        "{Horse}が\r\n"
-        "走るんでしょう？{Press}";
-};
+#include "EventScript_1096_FestivalEvent_SpringHorseRace_SpectatorDialogue_May.mary.h"
 
 void EventScript_1096_FestivalEvent_SpringHorseRace_SpectatorDialogue_May(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_HarvestGoddess_ChildPreWalkingInteraction_Response[] =
-        "Goo. {Press}";
-};
+#include "EventScript_0850_FamilyEvent_HarvestGoddess_ChildPreWalkingInteraction.mary.h"
 
 void EventScript_0850_FamilyEvent_HarvestGoddess_ChildPreWalkingInteraction(void)
 {

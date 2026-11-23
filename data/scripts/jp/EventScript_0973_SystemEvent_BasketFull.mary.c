@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemEvent_BasketFull[] =
-        "カゴがいっぱいだ…{Press}";
-};
+#include "EventScript_0973_SystemEvent_BasketFull.mary.h"
 
 void EventScript_0973_SystemEvent_BasketFull(void)
 {

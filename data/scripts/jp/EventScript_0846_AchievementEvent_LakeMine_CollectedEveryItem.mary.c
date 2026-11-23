@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_AchievementEvent_LakeMine_CollectedEveryItem[] =
-        "ぱんぱかぱーん。{Press}\p"
-        "ここの鉱石場で見つかる\r\n"
-        "アイテムを全部見つけちゃい\r\n"
-        "ましたー。{Press}\p"
-        "おめでとうございまーす。{Press}\p"
-        "それだけ。\r\n"
-        "特に何かプレゼントとかある\r\n"
-        "わけじゃないので。じゃねー。{Press}";
-};
+#include "EventScript_0846_AchievementEvent_LakeMine_CollectedEveryItem.mary.h"
 
 void EventScript_0846_AchievementEvent_LakeMine_CollectedEveryItem(void)
 {

@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_EnterHotSpring_CannotEnterWhileHoldingItem[] =
-        "Gehe von hier in die\r\n"
-        "heiße Quelle. Du \r\n"
-        "musst dazu aber{Press}\r\n"
-        "leere Hände haben.{Press}";
-};
+#include "EventScript_0085_LocationInteraction_EnterHotSpring.mary.h"
 
 void EventScript_0085_LocationInteraction_EnterHotSpring(void)
 {

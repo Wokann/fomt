@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Elli_ChildFirstSteps_FollowupElliDialogue_ElliCallsChildATreasure[] =
-        "He's such a treasure!{Press}";
-};
+#include "EventScript_0672_FamilyEvent_Elli_ChildFirstSteps_FollowupElliDialogue.mary.h"
 
 void EventScript_0672_FamilyEvent_Elli_ChildFirstSteps_FollowupElliDialogue(void)
 {

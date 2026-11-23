@@ -3,22 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_FarmhouseBedSleepChoice_PromptReadyToSleep[] =
-        "Schlafen gehen?";
-
-    const char gText_LocationInteraction_FarmhouseBedSleepChoice_Yes[] =
-        "Ja";
-
-    const char gText_LocationInteraction_FarmhouseBedSleepChoice_No[] =
-        "Nein";
-
-    const char gText_LocationInteraction_FarmhouseBedSleepChoice_MustExamineBedFromLeft[] =
-        "Bett\r\n"
-        "Zum Schlafen von  \r\n"
-        "links erkunden.{Press}";
-};
+#include "EventScript_0425_LocationInteraction_FarmhouseBedSleepChoice.mary.h"
 
 void EventScript_0425_LocationInteraction_FarmhouseBedSleepChoice(void)
 {

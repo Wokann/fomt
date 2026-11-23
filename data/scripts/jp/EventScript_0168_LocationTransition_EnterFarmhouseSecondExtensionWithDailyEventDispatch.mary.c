@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch[] =
-        "馬に乗ったまま入ることは\r\n"
-        "できない。{Press}";
-};
+#include "EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.h"
 
 void EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch(void)
 {

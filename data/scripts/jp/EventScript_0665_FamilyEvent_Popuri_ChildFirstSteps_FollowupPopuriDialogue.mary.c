@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Popuri_ChildFirstSteps_FollowupPopuriDialogue_PopuriPlansFamilyPicnic[] =
-        "今度、ピクニックにでも\r\n"
-        "いこうね。{Press}";
-};
+#include "EventScript_0665_FamilyEvent_Popuri_ChildFirstSteps_FollowupPopuriDialogue.mary.h"
 
 void EventScript_0665_FamilyEvent_Popuri_ChildFirstSteps_FollowupPopuriDialogue(void)
 {

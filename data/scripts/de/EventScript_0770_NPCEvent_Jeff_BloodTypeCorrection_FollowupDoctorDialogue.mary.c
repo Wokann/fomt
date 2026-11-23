@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Jeff_BloodTypeCorrection_Doctor_Followup_DoctorIsDisturbedByMedicalError[] =
-        "Diese Art Fehler ist \r\n"
-        "sehr beunruhigend...{Press}";
-};
+#include "EventScript_0770_NPCEvent_Jeff_BloodTypeCorrection_FollowupDoctorDialogue.mary.h"
 
 void EventScript_0770_NPCEvent_Jeff_BloodTypeCorrection_FollowupDoctorDialogue(void)
 {

@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearsDayFestivalDialogue_Manna[] =
-        "So you're here too, \r\n"
-        "{Player}?{Press}\r\n"
-        "I don't usually eat Rice \r\n"
-        "Cakes because they're \r\n"
-        "fattening. Just this once, {Press}\r\n"
-        "every year, I let myself \r\n"
-        "lose control. Tee-hee...{Press}";
-};
+#include "EventScript_1074_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.h"
 
 void EventScript_1074_FestivalEvent_NewYearsDayFestivalDialogue_Manna(void)
 {

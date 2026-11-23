@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara_NoPlayerEntryComment[] =
-        "馬はいい。一心にゴールを\r\n"
-        "目ざす心がすばらしい。{Press}";
-
-    const char gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara_EncouragesPlayerEntry[] =
-        "今までやってきたことを信じて\r\n"
-        "やってみることだな。{Press}";
-};
+#include "EventScript_1095_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara.mary.h"
 
 void EventScript_1095_FestivalEvent_SpringHorseRace_SpectatorDialogue_Saibara(void)
 {

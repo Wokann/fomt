@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectZackHouseLilliaPhoto_UnidentifiedBeforeMeetingLillia[] =
-        "写真がある。誰の写真だろう…{Press}";
-
-    const char gText_LocationInteraction_InspectZackHouseLilliaPhoto_IdentifiesLilliaAfterMeeting[] =
-        "リリアさんの写真がある。{Press}";
-};
+#include "EventScript_0150_LocationInteraction_InspectZackHouseLilliaPhoto.mary.h"
 
 void EventScript_0150_LocationInteraction_InspectZackHouseLilliaPhoto(void)
 {

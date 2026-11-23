@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupRickDialogue_RickStillOpposesPopuriLeaving[] =
-        "母さんにも困ったもんだよ！\r\n"
-        "ボクはぜったい反対だからね！{Press}";
-};
+#include "EventScript_0895_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupRickDialogue.mary.h"
 
 void EventScript_0895_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_FollowupRickDialogue(void)
 {

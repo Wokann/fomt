@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectPoultryFarmYodelFarmForest[] =
-        "←Poultry Farm\r\n"
-        "　　　　　　　Yodel Farm→\r\n"
-        "↓Forest{Press}";
-};
+#include "EventScript_0506_LocationInteraction_InspectPoultryFarmYodelFarmForest.mary.h"
 
 void EventScript_0506_LocationInteraction_InspectPoultryFarmYodelFarmForest(void)
 {

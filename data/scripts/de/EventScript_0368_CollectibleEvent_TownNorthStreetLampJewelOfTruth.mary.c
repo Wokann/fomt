@@ -3,24 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_CollectibleEvent_TownNorthStreetLampJewelOfTruth_AfterCollection[] =
-        "Straßenlaterne{Press}";
-
-    const char gText_CollectibleEvent_TownNorthStreetLampJewelOfTruth_JewelFound[] =
-        "Ein Juwel der Wahrheit\r\n"
-        "ist neben die \r\n"
-        "Laterne gefallen.{Press}";
-
-    const char gText_CollectibleEvent_TownNorthStreetLampJewelOfTruth_InventoryFull[] =
-        "Ein Juwel der Wahrheit\r\n"
-        "ist neben die  \r\n"
-        "Laterne gefallen.{Press}\p"
-        "...Aber meine Hände\r\n"
-        "sind schon voll, ich \r\n"
-        "kann es nicht halten.{Press}";
-};
+#include "EventScript_0368_CollectibleEvent_TownNorthStreetLampJewelOfTruth.mary.h"
 
 void EventScript_0368_CollectibleEvent_TownNorthStreetLampJewelOfTruth(void)
 {

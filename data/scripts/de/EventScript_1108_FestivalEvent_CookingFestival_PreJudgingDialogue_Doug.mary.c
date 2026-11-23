@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CookingFestival_PreJudgingDialogue_Doug[] =
-        "Ich muss gewinnen oder\r\n"
-        "mein Ruf leidet darunter!{Press}";
-};
+#include "EventScript_1108_FestivalEvent_CookingFestival_PreJudgingDialogue_Doug.mary.h"
 
 void EventScript_1108_FestivalEvent_CookingFestival_PreJudgingDialogue_Doug(void)
 {

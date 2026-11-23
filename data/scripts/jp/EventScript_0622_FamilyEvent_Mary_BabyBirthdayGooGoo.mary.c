@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Mary_BabyBirthdayGooGoo[] =
-        "だあ？{Press}";
-};
+#include "EventScript_0622_FamilyEvent_Mary_BabyBirthdayGooGoo.mary.h"
 
 void EventScript_0622_FamilyEvent_Mary_BabyBirthdayGooGoo(void)
 {

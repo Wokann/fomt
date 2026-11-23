@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Ann_ChildFirstSteps_FollowupAnnDialogue_AnnPlansFamilyMountainHike[] =
-        "I can't wait to go on a \r\n"
-        "family hike!{Press}";
-};
+#include "EventScript_0669_FamilyEvent_Ann_ChildFirstSteps_FollowupAnnDialogue.mary.h"
 
 void EventScript_0669_FamilyEvent_Ann_ChildFirstSteps_FollowupAnnDialogue(void)
 {

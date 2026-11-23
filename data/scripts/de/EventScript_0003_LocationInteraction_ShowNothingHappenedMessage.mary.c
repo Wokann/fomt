@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_ShowNothingHappenedMessage[] =
-        "Nichts ist passiert.{Press}";
-};
+#include "EventScript_0003_LocationInteraction_ShowNothingHappenedMessage.mary.h"
 
 void EventScript_0003_LocationInteraction_ShowNothingHappenedMessage(void)
 {

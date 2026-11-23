@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Doug_BirthdayGiftFromAnn_Followup_DougPraisesAnnAndResolvesToWorkForHer[] =
-        "むすめってのはいいもんだ\r\n"
-        "なぁ。{Press}\p"
-        "よし、あいつのために仕事\r\n"
-        "がんばるか！{Press}";
-};
+#include "EventScript_0793_FamilyEvent_Doug_BirthdayGiftFromAnn_FollowupDougDialogue.mary.h"
 
 void EventScript_0793_FamilyEvent_Doug_BirthdayGiftFromAnn_FollowupDougDialogue(void)
 {

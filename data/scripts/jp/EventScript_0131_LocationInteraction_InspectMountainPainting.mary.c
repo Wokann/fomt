@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectMountainPainting[] =
-        "山の絵{Press}";
-};
+#include "EventScript_0131_LocationInteraction_InspectMountainPainting.mary.h"
 
 void EventScript_0131_LocationInteraction_InspectMountainPainting(void)
 {

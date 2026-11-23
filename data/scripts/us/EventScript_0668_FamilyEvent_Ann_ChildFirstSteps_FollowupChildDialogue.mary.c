@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Ann_ChildFirstSteps_FollowupChildDialogue_ChildCallsPlayerDaDa[] =
-        "Da-da.{Press}";
-};
+#include "EventScript_0668_FamilyEvent_Ann_ChildFirstSteps_FollowupChildDialogue.mary.h"
 
 void EventScript_0668_FamilyEvent_Ann_ChildFirstSteps_FollowupChildDialogue(void)
 {

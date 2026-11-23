@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectLargeStoneRequiresHigherHammerLevel[] =
-        "Large Stone\r\n"
-        "Your Hammer can't crush\r\n"
-        "it unless it's LV2{Press}\r\n"
-        "or higher.{Press}";
-};
+#include "EventScript_0970_LocationInteraction_InspectLargeStoneRequiresHigherHammerLevel.mary.h"
 
 void EventScript_0970_LocationInteraction_InspectLargeStoneRequiresHigherHammerLevel(void)
 {

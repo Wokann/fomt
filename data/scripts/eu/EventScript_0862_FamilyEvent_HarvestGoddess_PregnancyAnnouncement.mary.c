@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_HarvestGoddess_PregnancyAnnouncement_HarvestGoddessAnnouncesPregnancyAndDeparts[] =
-        "It seems as though I'm \r\n"
-        "pregnant, {Player}. \r\n"
-        "Bye now. {Press}";
-};
+#include "EventScript_0862_FamilyEvent_HarvestGoddess_PregnancyAnnouncement.mary.h"
 
 void EventScript_0862_FamilyEvent_HarvestGoddess_PregnancyAnnouncement(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectAjaWineryStorageShelf[] =
-        "Shelf{Press}";
-};
+#include "EventScript_0414_LocationInteraction_InspectAjaWineryStorageShelf.mary.h"
 
 void EventScript_0414_LocationInteraction_InspectAjaWineryStorageShelf(void)
 {

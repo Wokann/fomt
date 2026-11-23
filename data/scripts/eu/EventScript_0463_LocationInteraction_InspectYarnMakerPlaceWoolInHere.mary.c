@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectYarnMakerPlaceWoolInHere[] =
-        "Yarn Maker\r\n"
-        "Place Wool in here to \r\n"
-        "make Yarn.{Press}";
-};
+#include "EventScript_0463_LocationInteraction_InspectYarnMakerPlaceWoolInHere.mary.h"
 
 void EventScript_0463_LocationInteraction_InspectYarnMakerPlaceWoolInHere(void)
 {

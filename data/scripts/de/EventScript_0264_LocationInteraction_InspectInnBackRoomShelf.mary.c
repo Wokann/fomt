@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectInnBackRoomShelf[] =
-        "Regal{Press}";
-};
+#include "EventScript_0264_LocationInteraction_InspectInnBackRoomShelf.mary.h"
 
 void EventScript_0264_LocationInteraction_InspectInnBackRoomShelf(void)
 {

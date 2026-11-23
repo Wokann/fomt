@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBarnSouthPregnantAnimalFeedBox[] =
-        "Pregnant animal Feed Box\r\n"
-        "Put Feed for pregnant\r\n"
-        "animals here.{Press}";
-};
+#include "EventScript_0460_LocationInteraction_InspectBarnSouthPregnantAnimalFeedBox.mary.h"
 
 void EventScript_0460_LocationInteraction_InspectBarnSouthPregnantAnimalFeedBox(void)
 {

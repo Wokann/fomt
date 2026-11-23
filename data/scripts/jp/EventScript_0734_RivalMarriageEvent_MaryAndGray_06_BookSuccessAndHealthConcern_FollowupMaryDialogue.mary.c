@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupMaryDialogue_MaryReflectsOnGraysConcern[] =
-        "グレイがこんな風に考えてくれ\r\n"
-        "ていたなんて…\r\n"
-        "心配させないようにしなきゃ。{Press}\p"
-        "グレイと結婚してよかった♡\r\n"
-        "{Press}";
-};
+#include "EventScript_0734_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupMaryDialogue.mary.h"
 
 void EventScript_0734_RivalMarriageEvent_MaryAndGray_06_BookSuccessAndHealthConcern_FollowupMaryDialogue(void)
 {

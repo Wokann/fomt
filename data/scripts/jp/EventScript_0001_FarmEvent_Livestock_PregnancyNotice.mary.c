@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Livestock_PregnancyNotice[] =
-        "{Var1}が\r\n"
-        "妊娠したようだ。{Press}";
-};
+#include "EventScript_0001_FarmEvent_Livestock_PregnancyNotice.mary.h"
 
 void EventScript_0001_FarmEvent_Livestock_PregnancyNotice(void)
 {

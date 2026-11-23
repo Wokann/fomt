@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Basil_PublishingAward_MaryResolvesToImproveHerNovel[] =
-        "I'm so proud of you, Dad.\r\n"
-        "Now I have to do even \r\n"
-        "better on my novel!{Press}";
-};
+#include "EventScript_0728_NPCEvent_Basil_PublishingAward_FollowupMaryDialogue.mary.h"
 
 void EventScript_0728_NPCEvent_Basil_PublishingAward_FollowupMaryDialogue(void)
 {

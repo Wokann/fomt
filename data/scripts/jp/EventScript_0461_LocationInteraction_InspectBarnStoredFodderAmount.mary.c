@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBarnStoredFodderAmount[] =
-        "飼い葉の数\r\n"
-        "　\r\n"
-        "　　　　　　　　　　{Var1}コ{Press}";
-};
+#include "EventScript_0461_LocationInteraction_InspectBarnStoredFodderAmount.mary.h"
 
 void EventScript_0461_LocationInteraction_InspectBarnStoredFodderAmount(void)
 {

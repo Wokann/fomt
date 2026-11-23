@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara_NoPlayerEntryComment[] =
-        "鶏の全力でたたかうすがたは\r\n"
-        "見ならうところがあるとは\r\n"
-        "思わんか。{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara_EncouragesPlayersEnteredChicken[] =
-        "たたかいぶりを\r\n"
-        "見せてもらうぞ。{Press}";
-};
+#include "EventScript_1152_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara.mary.h"
 
 void EventScript_1152_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara(void)
 {

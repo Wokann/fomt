@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara_NoPlayerEntryComment[] =
-        "Die Hühner so tapfer \r\n"
-        "kämpfen zu sehen, erfüllt\r\n"
-        "mich mit Stolz!{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara_EncouragesPlayersEnteredChicken[] =
-        "Dann zeig mal, was \r\n"
-        "dein Huhn kann!{Press}";
-};
+#include "EventScript_1152_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara.mary.h"
 
 void EventScript_1152_FestivalEvent_ChickenFestival_PreTournamentDialogue_Saibara(void)
 {

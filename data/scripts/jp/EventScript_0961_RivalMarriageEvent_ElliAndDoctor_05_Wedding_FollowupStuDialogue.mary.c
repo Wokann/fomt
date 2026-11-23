@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupStuDialogue_StuPraisesEllisWeddingAppearance[] =
-        "エリィお姉ちゃん、\r\n"
-        "キレイだね。{Press}";
-
-    const char gText_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupStuDialogue_StuExpectsDoctorToBeSurprisedByEllisCooking[] =
-        "ドクター、お姉ちゃんの料理\r\n"
-        "食べたらビックリ\r\n"
-        "するだろうなぁ。{Press}";
-};
+#include "EventScript_0961_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupStuDialogue.mary.h"
 
 void EventScript_0961_RivalMarriageEvent_ElliAndDoctor_05_Wedding_FollowupStuDialogue(void)
 {

@@ -47,7 +47,8 @@ Mary-C 是主要维护格式。`.mary.c`／`.mary.h` 后缀用于 C 语法高亮
 
 不加 `--binary` 时输出 C 数组；二进制模式要求输入恰好包含一个脚本。
 不提供文件名时读取标准输入。`--library`、`--script-table`、`--constants`
-可以指定表头，普通 Mary-C include 路径相对于输入文件解析。
+可以指定表头。Mary-C 的引号 include 先相对于发出引用的文件查找，再按命令行
+`-I` 的顺序搜索。相对命令行路径以当前工作目录为准。
 
 `--mary-c --binary --source-map script.tsv` 可同时导出调试映射，RIFF 字节保持一致。`--source-map -` 将映射写到标准错误，标准输出仍可用来传输二进制。映射记录实际 CODE 偏移、预处理前的源码行、条件计算起点和跳转真值，以及本次编译使用的 callable 原型、变量号和区域字符表解出的 STR 文本。`mary_ir` 原始指令块没有 Mary-C 语句行映射。
 
@@ -112,6 +113,7 @@ mary_script(1) void script_1(void)
   --library data/scripts/us/fomt_callables.mary.h \
   --script-table data/scripts/us/fomt_scripts.mary.h \
   --constants include/fomt_constants.mary.h \
+  -I include -I text/us/script \
   --charmap charmap.txt -D MARY_FOMT_US
 ```
 
@@ -123,6 +125,7 @@ packed 模式生成 `scripts.bin`、`scripts.s`、`script_table.s` 和 `scripts.
 后续整合 FoMT 时，工具源码放在 `tools/mary/`，采用普通宿主工具构建规则。
 编译所用的权威表只维护 FoMT 自身的 `include/fomt_constants.mary.h`，以及各语言
 `data/scripts/<region>/fomt_callables.mary.h`／`fomt_scripts.mary.h`。
+Mary 从 `text/<region>/script/` 展开编号脚本的同名文本头，并在构建依赖里记录这些头。
 Mary 按显式路径读取，不安装另一份表去覆盖它们。
 工具自身 `goodies/` 的独立适配仅供主动选择的反编译和测试使用。
 

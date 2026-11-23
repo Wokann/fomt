@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_MusicFestival_Dialogue_Jeff[] =
-        "いいねぇ、\r\n"
-        "やっぱりリラックスするには\r\n"
-        "音楽が１番だよ。{Press}";
-};
+#include "EventScript_1206_FestivalEvent_MusicFestival_Dialogue_Jeff.mary.h"
 
 void EventScript_1206_FestivalEvent_MusicFestival_Dialogue_Jeff(void)
 {

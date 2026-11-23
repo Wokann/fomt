@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_SpringHorseRace_MedalExchangeAfterClosing_Reminder[] =
-        "Alle sind gegangen.\r\n"
-        "Wenn du deine Medaille \r\n"
-        "gegen einen Preis tau- {Press}\r\n"
-        "schen willst, komm zu mir.{Press}";
-};
+#include "EventScript_1082_FestivalEvent_SpringHorseRace_MedalExchangeAfterClosing.mary.h"
 
 void EventScript_1082_FestivalEvent_SpringHorseRace_MedalExchangeAfterClosing(void)
 {

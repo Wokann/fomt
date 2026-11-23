@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationTransition_EnterMineralBeachWithFestivalDispatch_TyphoonBlocksOutdoorTravel[] =
-        "The wind is too strong\r\n"
-        "to go outside.{Press}";
-
-    const char gText_LocationTransition_EnterMineralBeachWithFestivalDispatch_SnowstormBlocksOutdoorTravel[] =
-        "The snow is too deep\r\n"
-        "to go outside.{Press}";
-};
+#include "EventScript_0430_LocationTransition_EnterMineralBeachWithFestivalDispatch.mary.h"
 
 void EventScript_0430_LocationTransition_EnterMineralBeachWithFestivalDispatch(void)
 {

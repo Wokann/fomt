@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_ShopEvent_Clinic_Counter_Counter[] =
-        "Counter{Press}";
-
-    const char gText_ShopEvent_Clinic_Counter_HowAreYouFeelingNowThere[] =
-        "How are you feeling?\r\n"
-        "Now there...Which\r\n"
-        "medicine would you like?{Press}";
-};
+#include "EventScript_0482_ShopEvent_Clinic_Counter.mary.h"
 
 void EventScript_0482_ShopEvent_Clinic_Counter(void)
 {

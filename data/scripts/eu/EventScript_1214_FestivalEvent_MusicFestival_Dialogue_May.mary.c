@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_MusicFestival_Dialogue_May[] =
-        "When I get bigger, I want\r\n"
-        "to sing in the Music \r\n"
-        "Festival, too!{Press}";
-};
+#include "EventScript_1214_FestivalEvent_MusicFestival_Dialogue_May.mary.h"
 
 void EventScript_1214_FestivalEvent_MusicFestival_Dialogue_May(void)
 {

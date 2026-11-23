@@ -3,24 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_Opening_MayWeBeginTheChickenFestival[] =
-        "鶏祭りを始めてもいいかい？{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_Opening_ChoiceStartFestival[] =
-        "鶏祭りを始める";
-
-    const char gText_FestivalEvent_ChickenFestival_Opening_NotYet[] =
-        "ちょっとまって";
-
-    const char gText_FestivalEvent_ChickenFestival_Opening_LetsStartThen[] =
-        "じゃあ、始めるよ。{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_Opening_LetMeKnowWhenYoureReady[] =
-        "じゃあ、始めてもよくなったら\r\n"
-        "話しかけてきてね。{Press}";
-};
+#include "EventScript_1147_FestivalEvent_ChickenFestival_Opening.mary.h"
 
 void EventScript_1147_FestivalEvent_ChickenFestival_Opening(void)
 {

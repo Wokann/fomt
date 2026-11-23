@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectChickenFeedStockpile_StockAmount[] =
-        "Menge an Hühnerfutter\r\n"
-        " \r\n"
-        "       {Var1} Einheiten{Press}";
-};
+#include "EventScript_0221_LocationInteraction_InspectChickenFeedStockpile.mary.h"
 
 void EventScript_0221_LocationInteraction_InspectChickenFeedStockpile(void)
 {

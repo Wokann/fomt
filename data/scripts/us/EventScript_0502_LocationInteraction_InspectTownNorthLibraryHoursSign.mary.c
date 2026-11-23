@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectTownNorthLibraryHoursSign_InspectTownNorthLibraryHoursAfterMaryMarriage[] =
-        "Mary's Library\r\n"
-        "Open: 10AM\r\n"
-        "Closed: 4PM  Closed Thursdays{Press}";
-
-    const char gText_LocationInteraction_InspectTownNorthLibraryHoursSign_InspectTownNorthLibraryHoursBeforeMaryMarriage[] =
-        "Mary's Library\r\n"
-        "Open: 10AM\r\n"
-        "Closed: 4PM  Closed Mondays{Press}";
-};
+#include "EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.h"
 
 void EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign(void)
 {

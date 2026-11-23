@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Mary_BlocksLibraryUpstairsAccess[] =
-        "２階は本の整理をやってるの。\r\n"
-        "上がらないでね。{Press}";
-};
+#include "EventScript_0305_NPCEvent_Mary_BlocksLibraryUpstairsAccess.mary.h"
 
 void EventScript_0305_NPCEvent_Mary_BlocksLibraryUpstairsAccess(void)
 {

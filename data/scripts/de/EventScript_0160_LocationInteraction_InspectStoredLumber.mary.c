@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectStoredLumber_StockAmount[] =
-        "Nutzholzstückzahl\r\n"
-        " \r\n"
-        "              {Var1}boards{Press}";
-};
+#include "EventScript_0160_LocationInteraction_InspectStoredLumber.mary.h"
 
 void EventScript_0160_LocationInteraction_InspectStoredLumber(void)
 {

@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_PopuriAndKai_03_GreenHeart_FamilyDepartureConflict_FollowupPopuriDialogue_PopuriAsksWhetherPlayerIsInterestedInOtherTowns[] =
-        "Are you curious about other\r\n"
-        "places, {Player}?{Press}";
-};
+#include "EventScript_0892_RivalEvent_PopuriAndKai_03_GreenHeart_FamilyDepartureConflict_FollowupPopuriDialogue.mary.h"
 
 void EventScript_0892_RivalEvent_PopuriAndKai_03_GreenHeart_FamilyDepartureConflict_FollowupPopuriDialogue(void)
 {

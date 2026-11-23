@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue_SashaPraisesJeffsPaintingTalent[] =
-        "I think his painting is\r\n"
-        "great. Who knew he had\r\n"
-        "such talent?{Press}";
-};
+#include "EventScript_0752_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue.mary.h"
 
 void EventScript_0752_NPCEvent_Jeff_WonOffersToBuyPainting_FollowupSashaDialogue(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InnDougRoomLocked[] =
-        "カギがかかっている…{Press}";
-};
+#include "EventScript_0259_LocationInteraction_InnDougRoomLocked.mary.h"
 
 void EventScript_0259_LocationInteraction_InnDougRoomLocked(void)
 {

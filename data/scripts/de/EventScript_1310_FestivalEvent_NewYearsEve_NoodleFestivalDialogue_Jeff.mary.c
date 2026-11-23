@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Jeff[] =
-        "Buchweizennudeln sind\r\n"
-        "sehr gesund. {Press}\p"
-        "Darum werde ich eine \r\n"
-        "Menge essen!{Press}";
-};
+#include "EventScript_1310_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Jeff.mary.h"
 
 void EventScript_1310_FestivalEvent_NewYearsEve_NoodleFestivalDialogue_Jeff(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Doctor_BlocksClinicUpstairsAccess[] =
-        "Du kannst nicht nach oben.{Press}";
-};
+#include "EventScript_0237_NPCEvent_Doctor_BlocksClinicUpstairsAccess.mary.h"
 
 void EventScript_0237_NPCEvent_Doctor_BlocksClinicUpstairsAccess(void)
 {

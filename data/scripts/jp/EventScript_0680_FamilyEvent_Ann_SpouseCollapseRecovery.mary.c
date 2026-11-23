@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FamilyEvent_Ann_SpouseCollapseRecovery_AnnLamentsUnexpectedCollapse[] =
-        "健康だけが、わたしのとりえ\r\n"
-        "なのに。たおれちゃうなんて、\r\n"
-        "それもなくなっちゃった。{Press}";
-
-    const char gText_FamilyEvent_Ann_SpouseCollapseRecovery_AnnPlansToSleepAndRecover[] =
-        "明日にはきっと元気になってる\r\n"
-        "からね。すこし、ねむって\r\n"
-        "おくよ。{Press}";
-};
+#include "EventScript_0680_FamilyEvent_Ann_SpouseCollapseRecovery.mary.h"
 
 void EventScript_0680_FamilyEvent_Ann_SpouseCollapseRecovery(void)
 {

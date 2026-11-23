@@ -3,29 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_SystemMenu_RecipeBook_ChoiceGetKitchen[] =
-        "Küche kriegen";
-
-    const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook1[] =
-        "Rezeptbuch 1";
-
-    const char gText_SystemMenu_RecipeBook_Exit[] =
-        "Schließen";
-
-    const char gText_SystemMenu_RecipeBook_ChoiceKitchen[] =
-        "Küche";
-
-    const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook2[] =
-        "Rezeptbuch 2";
-
-    const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook3[] =
-        "Rezeptbuch 3";
-
-    const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook4[] =
-        "Rezeptbuch 4";
-};
+#include "EventScript_0318_SystemMenu_RecipeBook.mary.h"
 
 void EventScript_0318_SystemMenu_RecipeBook(void)
 {

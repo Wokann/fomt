@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff[] =
-        "これから、新しいオレが\r\n"
-        "始まるんだ。{Press}\p"
-        "今年１年いろいろな事が\r\n"
-        "あった。\r\n"
-        "とっても、いい意味でね。{Press}";
-};
+#include "EventScript_1320_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff.mary.h"
 
 void EventScript_1320_FestivalEvent_NewYearSunrise_FestivalDialogue_Cliff(void)
 {

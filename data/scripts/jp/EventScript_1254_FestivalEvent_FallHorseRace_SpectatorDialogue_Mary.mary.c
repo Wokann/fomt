@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Mary_ImGoingToBetTodayBut[] =
-        "今日は、わたしもチケットを\r\n"
-        "買うんだ。\r\n"
-        "どの馬が勝つかなぁ…{Press}";
-
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Mary_GoodLuckIllBeRootingFor[] =
-        "がんばってね。\r\n"
-        "応援してるから。{Press}";
-};
+#include "EventScript_1254_FestivalEvent_FallHorseRace_SpectatorDialogue_Mary.mary.h"
 
 void EventScript_1254_FestivalEvent_FallHorseRace_SpectatorDialogue_Mary(void)
 {

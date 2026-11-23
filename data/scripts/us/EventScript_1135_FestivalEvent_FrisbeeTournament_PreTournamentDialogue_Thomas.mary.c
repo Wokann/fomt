@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Thomas_NoPlayerEntryComment[] =
-        "I've always loved this \r\n"
-        "Festival. It's so much fun\r\n"
-        "watching the dogs chase{Press}\r\n"
-        "the frisbees! {Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Thomas_EncouragesPlayerEntry[] =
-        "You're going to compete? \r\n"
-        "Good luck! {Press}";
-};
+#include "EventScript_1135_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Thomas.mary.h"
 
 void EventScript_1135_FestivalEvent_FrisbeeTournament_PreTournamentDialogue_Thomas(void)
 {

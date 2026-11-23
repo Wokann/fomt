@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_TV_Shopping_DeliveryMirror_TheMirrorYouOrderedIsHere[] =
-        "The Mirror you ordered \r\n"
-        "is here. {Press}\p"
-        "A man's gotta take care of \r\n"
-        "his looks!\r\n"
-        "It's top quality, too!{Press}";
-
-    const char gText_TV_Shopping_DeliveryMirror_DeliveredSafeAndSound[] =
-        "Delivered safe and sound!{Press}";
-};
+#include "EventScript_0587_TV_Shopping_DeliveryMirror.mary.h"
 
 void EventScript_0587_TV_Shopping_DeliveryMirror(void)
 {

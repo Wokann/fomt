@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectInn1FBarrel[] =
-        "Fass{Press}";
-};
+#include "EventScript_0251_LocationInteraction_InspectInn1FBarrel.mary.h"
 
 void EventScript_0251_LocationInteraction_InspectInn1FBarrel(void)
 {

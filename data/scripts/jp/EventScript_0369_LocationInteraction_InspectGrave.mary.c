@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectGrave[] =
-        "お墓{Press}";
-};
+#include "EventScript_0369_LocationInteraction_InspectGrave.mary.h"
 
 void EventScript_0369_LocationInteraction_InspectGrave(void)
 {

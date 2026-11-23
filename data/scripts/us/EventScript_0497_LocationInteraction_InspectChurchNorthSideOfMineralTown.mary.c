@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectChurchNorthSideOfMineralTown[] =
-        "　　　　　　　　　　Church↑\r\n"
-        "←North side of Mineral Town\r\n"
-        "　　　　　Rose Square↓{Press}";
-};
+#include "EventScript_0497_LocationInteraction_InspectChurchNorthSideOfMineralTown.mary.h"
 
 void EventScript_0497_LocationInteraction_InspectChurchNorthSideOfMineralTown(void)
 {

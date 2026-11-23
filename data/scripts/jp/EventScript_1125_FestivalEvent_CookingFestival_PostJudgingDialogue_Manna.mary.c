@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CookingFestival_PostJudgingDialogue_Manna[] =
-        "わたしはね、おふくろの味を\r\n"
-        "テーマにしているんですよ。\r\n"
-        "いつも作りなれているもの\r\n"
-        "だから、自信はあるんだけど\r\n"
-        "ねぇ。{Press}";
-};
+#include "EventScript_1125_FestivalEvent_CookingFestival_PostJudgingDialogue_Manna.mary.h"
 
 void EventScript_1125_FestivalEvent_CookingFestival_PostJudgingDialogue_Manna(void)
 {

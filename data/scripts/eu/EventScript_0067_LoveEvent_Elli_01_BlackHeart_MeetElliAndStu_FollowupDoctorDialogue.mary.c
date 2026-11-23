@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Elli_01_BlackHeart_MeetElliAndStu_FollowupDoctorDialogue[] =
-        "I understand how Stu\r\n"
-        "feels, though. {Press}\p"
-        "All children want lots of \r\n"
-        "attention, so they bother \r\n"
-        "people they like. {Press}";
-};
+#include "EventScript_0067_LoveEvent_Elli_01_BlackHeart_MeetElliAndStu_FollowupDoctorDialogue.mary.h"
 
 void EventScript_0067_LoveEvent_Elli_01_BlackHeart_MeetElliAndStu_FollowupDoctorDialogue(void)
 {

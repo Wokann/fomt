@@ -3,18 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupGrayDialogue_GrayAnnouncesWeddingToMary[] =
-        "Mary und ich \r\n"
-        "heiraten heute! {Press}\p"
-        "Wusstest du schon, hä?\r\n"
-        "Du bist eingeladen! {Press}";
-
-    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupGrayDialogue_GrayInvitesPlayerToAttendIfFree[] =
-        "Komm und sieh zu, \r\n"
-        "wenn du kannst! {Press}";
-};
+#include "EventScript_0942_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupGrayDialogue.mary.h"
 
 void EventScript_0942_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupGrayDialogue(void)
 {

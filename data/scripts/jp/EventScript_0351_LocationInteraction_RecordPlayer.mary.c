@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_RecordPlayer_RecordPlayer[] =
-        "レコードプレイヤー{Press}";
-
-    const char gText_LocationInteraction_RecordPlayer_Table[] =
-        "机{Press}";
-};
+#include "EventScript_0351_LocationInteraction_RecordPlayer.mary.h"
 
 void EventScript_0351_LocationInteraction_RecordPlayer(void)
 {

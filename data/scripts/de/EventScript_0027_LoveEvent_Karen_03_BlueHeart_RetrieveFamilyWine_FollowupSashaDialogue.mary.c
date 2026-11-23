@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Karen_03_BlueHeart_RetrieveFamilyWine_FollowupSashaDialogue[] =
-        "Ich wusste nicht, dass Karen\r\n"
-        "sich so freuen würde!{Press}";
-};
+#include "EventScript_0027_LoveEvent_Karen_03_BlueHeart_RetrieveFamilyWine_FollowupSashaDialogue.mary.h"
 
 void EventScript_0027_LoveEvent_Karen_03_BlueHeart_RetrieveFamilyWine_FollowupSashaDialogue(void)
 {

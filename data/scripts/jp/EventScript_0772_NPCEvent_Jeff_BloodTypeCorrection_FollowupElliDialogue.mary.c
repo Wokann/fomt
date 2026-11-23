@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Jeff_BloodTypeCorrection_Elli_Followup_ElliReflectsDoctorsCanMakeMistakes[] =
-        "ドクターもまちがえることが\r\n"
-        "あるのね。{Press}\p"
-        "わたしはよくドジをふむから\r\n"
-        "失敗ばかりだけど、{Press}\p"
-        "ドクターが\r\n"
-        "失敗したところって、\r\n"
-        "はじめて見たかも。{Press}";
-};
+#include "EventScript_0772_NPCEvent_Jeff_BloodTypeCorrection_FollowupElliDialogue.mary.h"
 
 void EventScript_0772_NPCEvent_Jeff_BloodTypeCorrection_FollowupElliDialogue(void)
 {

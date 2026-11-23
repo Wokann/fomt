@@ -3,15 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Popuri_AreYouGoingToEnterA[] =
-        "Are you going to enter \r\n"
-        "a Chicken? It's very fun. {Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Popuri_PopuriAdmiresChickens[] =
-        "The Chickens are so cute!...{Press}";
-};
+#include "EventScript_1148_FestivalEvent_ChickenFestival_PreTournamentDialogue_Popuri.mary.h"
 
 void EventScript_1148_FestivalEvent_ChickenFestival_PreTournamentDialogue_Popuri(void)
 {

@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Duke_HiTherePlayerItsAnElimination[] =
-        "おう、\r\n"
-        "{Player}じゃねぇか。\r\n"
-        "鶏祭りは勝ちぬきなんだぜ。{Press}";
-
-    const char gText_FestivalEvent_ChickenFestival_PreTournamentDialogue_Duke_GoodLuck[] =
-        "がんばれよ。{Press}";
-};
+#include "EventScript_1151_FestivalEvent_ChickenFestival_PreTournamentDialogue_Duke.mary.h"
 
 void EventScript_1151_FestivalEvent_ChickenFestival_PreTournamentDialogue_Duke(void)
 {

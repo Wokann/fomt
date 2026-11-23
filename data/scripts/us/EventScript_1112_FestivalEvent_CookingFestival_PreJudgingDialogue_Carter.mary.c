@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_CookingFestival_PreJudgingDialogue_Carter[] =
-        "I love to see everybody's\r\n"
-        "different styles of cooking.\r\n"
-        "It's so mouth-watering!{Press}";
-};
+#include "EventScript_1112_FestivalEvent_CookingFestival_PreJudgingDialogue_Carter.mary.h"
 
 void EventScript_1112_FestivalEvent_CookingFestival_PreJudgingDialogue_Carter(void)
 {

@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBlacksmithSmeltingFurnace[] =
-        "Schmelzofen{Press}";
-};
+#include "EventScript_0514_LocationInteraction_InspectBlacksmithSmeltingFurnace.mary.h"
 
 void EventScript_0514_LocationInteraction_InspectBlacksmithSmeltingFurnace(void)
 {

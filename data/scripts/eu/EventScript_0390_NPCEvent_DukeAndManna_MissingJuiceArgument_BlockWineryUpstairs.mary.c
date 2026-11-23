@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_DukeAndManna_MissingJuiceArgument_BlockWineryUpstairs[] =
-        "I haven't cleaned upstairs\r\n"
-        "yet, so please don't \r\n"
-        "go up there.{Press}";
-};
+#include "EventScript_0390_NPCEvent_DukeAndManna_MissingJuiceArgument_BlockWineryUpstairs.mary.h"
 
 void EventScript_0390_NPCEvent_DukeAndManna_MissingJuiceArgument_BlockWineryUpstairs(void)
 {

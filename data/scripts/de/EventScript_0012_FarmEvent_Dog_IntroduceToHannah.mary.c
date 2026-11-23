@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FarmEvent_Dog_IntroduceToHannah[] =
-        "Nun spiel schön mit\r\n"
-        "{Dog}, Hannah.\r\n"
-        "{Press}";
-};
+#include "EventScript_0012_FarmEvent_Dog_IntroduceToHannah.mary.h"
 
 void EventScript_0012_FarmEvent_Dog_IntroduceToHannah(void)
 {

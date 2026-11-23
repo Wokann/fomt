@@ -3,14 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_PopuriAndKai_02_BlueHeart_RicksConfrontation_FollowupKaiDialogue_KaiComplainsAboutRicksInterference[] =
-        "聞いてたの？\r\n"
-        "リックのやつ、ウルサイだろ？{Press}\p"
-        "オレがポプリとしゃべってると\r\n"
-        "いっつもなんだよ。{Press}";
-};
+#include "EventScript_0890_RivalEvent_PopuriAndKai_02_BlueHeart_RicksConfrontation_FollowupKaiDialogue.mary.h"
 
 void EventScript_0890_RivalEvent_PopuriAndKai_02_BlueHeart_RicksConfrontation_FollowupKaiDialogue(void)
 {

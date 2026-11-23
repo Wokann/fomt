@@ -3,24 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Kai_GoodTryButNoLuckThis[] =
-        "Guter Versuch, aber kein \r\n"
-        "Glück in diesem Jahr. {Press}\r\n"
-        "Sei nicht so hart \r\n"
-        "mit dir. {Press}\r\n"
-        "Versuch es nächstes Jahr!{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Kai_IWasWatchingAndYouWere[] =
-        "Ich habe zugesehen,\r\n"
-        "du warst super! \r\n"
-        "Herzlichen Glückwunsch!{Press}";
-
-    const char gText_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Kai_ICantBelieveThatDogsCan[] =
-        "Unglaublich, dass Hunde\r\n"
-        "so tolle Sachen machen!{Press}";
-};
+#include "EventScript_1143_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Kai.mary.h"
 
 void EventScript_1143_FestivalEvent_FrisbeeTournament_PostTournamentDialogue_Kai(void)
 {

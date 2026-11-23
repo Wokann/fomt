@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectFishFoodStorageSign[] =
-        "Fischfutterlagerzeichen{Press}";
-};
+#include "EventScript_0158_LocationInteraction_InspectFishFoodStorageSign.mary.h"
 
 void EventScript_0158_LocationInteraction_InspectFishFoodStorageSign(void)
 {

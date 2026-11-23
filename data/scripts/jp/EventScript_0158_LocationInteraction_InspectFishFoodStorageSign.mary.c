@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectFishFoodStorageSign[] =
-        "魚のエサ置き場の看板{Press}";
-};
+#include "EventScript_0158_LocationInteraction_InspectFishFoodStorageSign.mary.h"
 
 void EventScript_0158_LocationInteraction_InspectFishFoodStorageSign(void)
 {

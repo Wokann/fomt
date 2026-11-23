@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Carter_ConfessionalDreamPredictsGoodFortune_Followup_CarterKeepsWantedItemSecret[] =
-        "So you want to hear about\r\n"
-        "that matter...?{Press}\p"
-        "It's a secret! Heh heh...{Press}";
-};
+#include "EventScript_0778_NPCEvent_Carter_ConfessionalDreamPredictsGoodFortune_FollowupCarterDialogue.mary.h"
 
 void EventScript_0778_NPCEvent_Carter_ConfessionalDreamPredictsGoodFortune_FollowupCarterDialogue(void)
 {

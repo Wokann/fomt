@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Manna_FlattersJeff_MannaRevealsJeffWasEasyToManipulate[] =
-        "Jeff ist leicht \r\n"
-        "zu bequatschen!...{Press}";
-};
+#include "EventScript_0723_NPCEvent_Manna_FlattersJeff_FollowupMannaDialogue.mary.h"
 
 void EventScript_0723_NPCEvent_Manna_FlattersJeff_FollowupMannaDialogue(void)
 {

@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_NPCEvent_Elli_StudiesMedicineForEllensLegs_Elli_Followup_ElliIsDeterminedToHealEllen[] =
-        "Ich bin entschlossen, Groß-\r\n"
-        "mutters Beine zu heilen!{Press}";
-};
+#include "EventScript_0775_NPCEvent_Elli_StudiesMedicineForEllensLegs_FollowupElliDialogue.mary.h"
 
 void EventScript_0775_NPCEvent_Elli_StudiesMedicineForEllensLegs_FollowupElliDialogue(void)
 {

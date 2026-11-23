@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectBlacksmithBusinessHoursSign[] =
-        "Saibara der Schmied\r\n"
-        "10-16 Uhr geöffnet\r\n"
-        "donnerstags geschlossen{Press}";
-};
+#include "EventScript_0508_LocationInteraction_InspectBlacksmithBusinessHoursSign.mary.h"
 
 void EventScript_0508_LocationInteraction_InspectBlacksmithBusinessHoursSign(void)
 {

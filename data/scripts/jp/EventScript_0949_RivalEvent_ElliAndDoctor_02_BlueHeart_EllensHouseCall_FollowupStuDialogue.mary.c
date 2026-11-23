@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_FollowupStuDialogue_StuRespectsDoctorForHisKindness[] =
-        "ボク、ドクターのこと\r\n"
-        "ソンケイしてるんだ。{Press}";
-};
+#include "EventScript_0949_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_FollowupStuDialogue.mary.h"
 
 void EventScript_0949_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_FollowupStuDialogue(void)
 {

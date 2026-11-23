@@ -3,11 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectMirror[] =
-        "Spiegel{Press}";
-};
+#include "EventScript_0538_LocationInteraction_InspectMirror.mary.h"
 
 void EventScript_0538_LocationInteraction_InspectMirror(void)
 {

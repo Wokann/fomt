@@ -3,17 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupBasilDialogue_BasilRealizesMaryHasReachedMarriageAge[] =
-        "マリーも、\r\n"
-        "もうそんな年だったのか…{Press}";
-
-    const char gText_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupBasilDialogue_BasilAcceptsMarysMarriageAsNaturalLifeExperience[] =
-        "いいことだ。\r\n"
-        "人生、何でも\r\n"
-        "けいけんだからね。{Press}";
-};
+#include "EventScript_0938_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupBasilDialogue.mary.h"
 
 void EventScript_0938_RivalMarriageEvent_MaryAndGray_05_Wedding_FollowupBasilDialogue(void)
 {

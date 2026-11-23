@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_TV_DailyProgramDispatcher_ProgramUnavailable[] =
-        "Unmöglich!\r\n"
-        "{Press}";
-};
+#include "EventScript_1053_TV_DailyProgramDispatcher.mary.h"
 
 void EventScript_1053_TV_DailyProgramDispatcher(void)
 {

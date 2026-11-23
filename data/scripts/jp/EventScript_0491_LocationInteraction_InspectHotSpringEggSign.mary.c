@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LocationInteraction_InspectHotSpringEggSign[] =
-        "ここから卵を投げ込めば\r\n"
-        "温泉たまごができあがる。\r\n"
-        "{Press}";
-};
+#include "EventScript_0491_LocationInteraction_InspectHotSpringEggSign.mary.h"
 
 void EventScript_0491_LocationInteraction_InspectHotSpringEggSign(void)
 {

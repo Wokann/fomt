@@ -3,12 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Mary_01_BlackHeart_LibraryIntroduction_FollowupMaryDialogue[] =
-        "本だったら自由に\r\n"
-        "読んでくれていいよ。{Press}";
-};
+#include "EventScript_0058_LoveEvent_Mary_01_BlackHeart_LibraryIntroduction_FollowupMaryDialogue.mary.h"
 
 void EventScript_0058_LoveEvent_Mary_01_BlackHeart_LibraryIntroduction_FollowupMaryDialogue(void)
 {

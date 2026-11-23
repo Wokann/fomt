@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_LoveEvent_Karen_01_BlackHeart_ReceiveWelcomeSeedGift_FollowupSashaDialogue[] =
-        "Viel Glück mit der Farm!\r\n"
-        "Komm zu mir, wenn \r\n"
-        "du Fragen hast.{Press}";
-};
+#include "EventScript_0019_LoveEvent_Karen_01_BlackHeart_ReceiveWelcomeSeedGift_FollowupSashaDialogue.mary.h"
 
 void EventScript_0019_LoveEvent_Karen_01_BlackHeart_ReceiveWelcomeSeedGift_FollowupSashaDialogue(void)
 {

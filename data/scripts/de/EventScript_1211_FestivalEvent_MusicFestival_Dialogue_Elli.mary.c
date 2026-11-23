@@ -3,13 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_MusicFestival_Dialogue_Elli[] =
-        "Ich bin so nervös! \r\n"
-        "Ich hoffe, ich mache\r\n"
-        "keinen Fehler!{Press}";
-};
+#include "EventScript_1211_FestivalEvent_MusicFestival_Dialogue_Elli.mary.h"
 
 void EventScript_1211_FestivalEvent_MusicFestival_Dialogue_Elli(void)
 {

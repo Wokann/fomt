@@ -3,16 +3,7 @@
 #include "fomt_callables.mary.h"
 #include "fomt_scripts.mary.h"
 
-mary_text_table
-{
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Gotz_YouMustBelieveInYourself[] =
-        "You must believe\r\n"
-        "in yourself. {Press}";
-
-    const char gText_FestivalEvent_FallHorseRace_SpectatorDialogue_Gotz_ImBettingOnYouSoDont[] =
-        "I'm betting on you, \r\n"
-        "so don't fail me!{Press}";
-};
+#include "EventScript_1262_FestivalEvent_FallHorseRace_SpectatorDialogue_Gotz.mary.h"
 
 void EventScript_1262_FestivalEvent_FallHorseRace_SpectatorDialogue_Gotz(void)
 {
