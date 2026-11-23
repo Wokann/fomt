@@ -470,18 +470,18 @@ mary_text_table
         "Sonntags helfe ich gerne \r\n"
         "im Haus meiner Eltern.{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation[] =
         "Warum heiratest du  \r\n"
         "nicht, {Player}?{Press}\p"
         "Eine Frau bringt etwas\r\n"
         "Freude in dein Leben und\r\n"
         "erleichtert den Farmalltag!{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
         "Wie gefällt dir das\r\n"
         "Eheleben...?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversationWorriesAboutChickens[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation[] =
         "Aber ich mache mir\r\n"
         "Sorgen um die Hühner,\r\n"
         "wenn es regnet...{Press}";
@@ -575,16 +575,16 @@ mary_text_table
         "Ha ha! Nur Spaß!\r\n"
         "Reingefallen, oder?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownSunnyRepeatConversationAsksAboutPlayersWife[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation_2[] =
         "Kommst du gut mit\r\n"
         "deiner Frau aus?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownRainyRepeatConversationWorriesAboutChickens[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation_2[] =
         "Aber ich mache mir\r\n"
         "Sorgen um die Hühner,\r\n"
         " wenn es regnet...{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2[] =
         "Ich hatte befürchtet,\r\n"
         "es würde heute regnen...{Press}";
 
@@ -621,7 +621,7 @@ mary_text_table
         "auflösen und runter- {Press}\r\n"
         "schlucken könnten?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedForestRainyConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation[] =
         "Sieht aus, als hätte es\r\n"
         "angefangen zu regnen.{Press}";
 

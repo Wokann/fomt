@@ -563,7 +563,7 @@ mary_text_table
         "Ha ha! Just kidding!\r\n"
         "Bet I had you fooled, huh?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2[] =
         "I was afraid it might\r\n"
         "rain today...{Press}";
 
@@ -599,7 +599,7 @@ mary_text_table
         "could dissolve our troubles\r\n"
         "and just drink them away?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedForestRainyConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation[] =
         "Looks like it's started\r\n"
         "raining.{Press}";
 

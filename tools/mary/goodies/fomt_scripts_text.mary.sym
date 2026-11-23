@@ -10821,9 +10821,9 @@ mary_script_symbols
         gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketRedHeartRepeatConversation,
         #if defined(REGION_DE)
             gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversationWorriesAboutChickens,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipRepeatConversation,
@@ -10845,9 +10845,9 @@ mary_script_symbols
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketOrangeHeartRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketRedHeartFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketRedHeartRepeatConversation,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownSunnyRepeatConversationAsksAboutPlayersWife,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownRainyRepeatConversationWorriesAboutChickens,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation_2,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation_2,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownSunnyAfternoonConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownEveningConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation,
@@ -10856,7 +10856,7 @@ mary_script_symbols
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedMothersHillRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedInnFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedInnRepeatConversation,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedForestRainyConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedGotzHouseFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedGotzHouseRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_SouthSideTownLowFriendshipFirstConversation,
@@ -10915,7 +10915,7 @@ mary_script_symbols
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketRedHeartFirstConversation,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketRedHeartRepeatConversation,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2,
         #elif defined(REGION_JP)
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownMorningConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation,
@@ -10929,7 +10929,7 @@ mary_script_symbols
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedInnFirstConversation,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedInnRepeatConversation,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedForestRainyConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation,
         #endif
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedGotzHouseFirstConversation,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedGotzHouseRepeatConversation,

@@ -1429,10 +1429,10 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #else
 #ifndef BUGFIX
                                                 // This extra message addresses the opposite player marriage state.
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #endif
                                             }
                                         }
@@ -1460,10 +1460,10 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #else
 #ifndef BUGFIX
                                                 // This extra message addresses the opposite player marriage state.
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                             }
                                         }
@@ -1481,7 +1481,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
 #else
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversationWorriesAboutChickens);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
 #endif
                                         }
                                     }
@@ -1726,10 +1726,10 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
 #ifndef BUGFIX
                                             // This extra message addresses the opposite player marriage state.
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownSunnyRepeatConversationAsksAboutPlayersWife);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation_2);
 #endif
                                         }
                                     }
@@ -1756,7 +1756,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #else
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                         }
                                     }
@@ -1774,7 +1774,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
 #else
-                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseNorthSideTownRainyRepeatConversationWorriesAboutChickens);
+                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation_2);
 #endif
                                     }
                                 }
@@ -1808,7 +1808,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
 #else
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonConversation);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2);
 #endif
                                             break;
                                         }
@@ -1906,7 +1906,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
 #else
-                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedForestRainyConversation);
+                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
 #endif
                             break;
                         case MAP_GOTZ_HOUSE:
