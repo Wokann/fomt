@@ -3,8 +3,8 @@
 // Adding a one-page book:
 //   { "new_book", 137, FOMT_REFERENCE_GUIDE_PAGE_1 },
 // creates one directory entry and requires one article source per region:
-//   data/text/jp/reference_guide/new_book.cc
-//   data/text/us/reference_guide/new_book.cc
+//   text/jp/reference_guide/new_book.cc
+//   text/us/reference_guide/new_book.cc
 // fomt-text derives gReferenceGuide_new_book from this row and the file paths;
 // do not add a manual FOMT_REFERENCE_GUIDE_PAGE(...) declaration to an article.
 // The row name and article file name are one shared identifier and must match.
@@ -31,8 +31,8 @@
 // 新增单页图书示例：
 //   { "new_book", 137, FOMT_REFERENCE_GUIDE_PAGE_1 },
 // 会生成一个目录项，并要求每个区域各有一个文章源：
-//   data/text/jp/reference_guide/new_book.cc
-//   data/text/us/reference_guide/new_book.cc
+//   text/jp/reference_guide/new_book.cc
+//   text/us/reference_guide/new_book.cc
 // fomt-text 会由该行与文件路径自动推导 gReferenceGuide_new_book；文章文件中不应
 // 手写 FOMT_REFERENCE_GUIDE_PAGE(...) 声明。该行名称与文章文件名是同一个共享
 // 标识，必须完全一致。

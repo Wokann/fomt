@@ -75,7 +75,7 @@ To recover the editable, visible row source for a regional staff-credit table:
     tools/textproc/fomt-text staff-credits-decode CHARMAP REGION BASEROM OUTPUT
 
 That decode command is an optional ROM comparison/export operation. The normal
-staff-credit build reads only `data/text/<region>/staff_credits_1.cc`: first
+staff-credit build reads only `text/<region>/staff_credits.cc`: first
 appearance sets physical text-field order, identical encoded rows share a
 pointer, and each field contains its C terminator and four-byte zero padding.
 The JP/US/EU/DE retail text pools and pointer tables were checked against this
@@ -201,10 +201,10 @@ charmap. Use \xNN for an intentional unmapped raw byte.
 
 Migration target:
 
-1. Put every text body under its regional `data/text/jp`, `data/text/us`,
-   `data/text/eu`, or `data/text/de` directory by owning C/C++ data category.
+1. Put every text body under its regional `text/jp`, `text/us`,
+   `text/eu`, or `text/de` directory by owning C/C++ data category.
    Duplicate byte-identical content into every applicable regional directory;
-   do not create a `data/text/common` source directory.  For multiple physical
+   do not create a `text/common` source directory.  For multiple physical
    fragments of one owner, number all fragments from `_1` in physical ROM
    include order; use the bare owner name only when there is one fragment.
 2. Keep item, menu, and other C/C++ data tables structural: they point to

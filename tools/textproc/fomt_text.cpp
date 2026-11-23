@@ -2542,7 +2542,7 @@ std::filesystem::path GuideArticlePath(const std::filesystem::path &manifest_pat
     std::transform(lower_region.begin(), lower_region.end(), lower_region.begin(), [](char value) {
         return static_cast<char>(std::tolower(static_cast<unsigned char>(value)));
     });
-    return root / "data" / "text" / lower_region / "reference_guide"
+    return root / "text" / lower_region / "reference_guide"
         / (GuideSectionStem(page) + ".cc");
 }
 

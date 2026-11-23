@@ -2,7 +2,7 @@
 
 Regional text belongs under this directory by its owning data structure:
 
-    data/text/jp/, data/text/us/, data/text/eu/, and data/text/de/
+    text/jp/, text/us/, text/eu/, and text/de/
         item_1.cc through item_3.cc
         help_menu.cc
         animal_data_1.cc through animal_data_3.cc, script_engine.cc
@@ -13,13 +13,16 @@ Regional text belongs under this directory by its owning data structure:
             harvest_sprite_minigames.cc
             festival_hints.cc
 
+Historical layout and audit records refer to this tree by its former path
+`data/text/<region>/`. For files still present, use `text/<region>/` in those paths.
+
 Group text by its owning functional module and actual ROM continuity. Each
 text source corresponds to the C/C++ module that owns its text pointers.
 A source-owned text fragment is included at its exact physical point
-inside the owning `src/<module>.cc`; it remains under `data/text` and is listed
+inside the owning `src/<module>.cc`; it remains under `text` and is listed
 in `TEXT_FRAGMENT_SOURCES` so it does not produce a second object.
 
-There is no `data/text/common/` source directory.  Even byte-identical text is
+There is no `text/common/` source directory.  Even byte-identical text is
 stored in each of `jp`, `us`, `eu`, and `de`, because each regional source is
 inserted at a verified physical point in that region's ROM layout.
 
@@ -35,7 +38,7 @@ tables and declarations are centralized in `src/reference_guide.cc` and
 
 The project-root `charmap.txt` is shared by every regional text category.  Its
 Shift-JIS entries include ASCII, so regional text does not need separate
-character maps. It is intentionally outside `data/text` so script and
+character maps. It is intentionally outside `text` so script and
 non-script preprocessing use one explicit project-level encoding contract.
 
 The Makefile defaults `TEXT_CHARMAP` to `charmap.txt`. To select another

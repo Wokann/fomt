@@ -71,18 +71,18 @@
 | 动物照料最高记录 | JP 读取照料记录，海外错读收获记录。 | 成绩保存正确；开启 BUGFIX 后，海外记录页读取独立的动物照料成绩。[读写证据与状态](BUGFIX.md#overseas-animal-care-record)。 |
 | 对话语言与角色 | 海外来访星期、休息日、人物指代、物品名等存在错译；US／EU 部分已调用消息仍为日文／德文，DE 联机确认仍为 Yes／No。 | 已核实对象及实际正确含义统一列在 [文本修复清单](BUGFIX.md#localization-text)，不把错误译文推断为事件条件或奖励改变。 |
 | 羊祭接待桌 | JP 的共用接待脚本 `0x0194` 分别调用牛祭、羊祭提示；US／EU／DE 两个分支共用含 Cows／Kühe（牛）的文字。直接交谈的羊祭脚本 `0x04FC` 四版均无此误称。 | 羊祭被说成牛祭，只影响提示，不改变评审动物或结果；接待分支没有年份限制。海外 BUGFIX 仿照 JP 分开消息，复用各版本已有羊祭台词。[调用与修复](BUGFIX.md#sheep-reception-text)。 |
-| DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](data/text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#de-harvest-labels)。 |
+| DE 收获结果栏目 | 用动物照料的 Gefüttert／Vergessen（已喂食／遗忘），JP／US／EU 对应收获／失败。 | 计分仍取收获与失败次数，仅修栏目为 Geerntet／Fehler。[DE 文本](text/de/scene_harvesting_minigame_2.cc) · [消费者](src/scene_harvesting_minigame.cc) · [修复](BUGFIX.md#de-harvest-labels)。 |
 | 普通鱼竿说明 | US／EU 缺首行分隔，读取器越过终止零拼入下一个对象；JP／DE 有分隔。 | 补齐说明两行，保持原菜单逻辑。[说明读取](src/game_menu.cc) · [文本修复](BUGFIX.md#fishing-rod-lines)。 |
 | 钓获消息行宽 | US／EU 的漂流瓶、海贼宝藏展开后超过 28 格；DE 四种长鱼名的模板多一尾空格。 | 回绕同一行覆盖开头；仅修这些模板，不添加自动换页。[消息与修复](BUGFIX.md#fishing-message-width)。 |
 | 换行残留与满行空格 | US／EU／DE 的部分脚本含字面量 `ret>` 或 `<RET>`，四版均发现正文满行后还有空格的情况。 | 记号会按普通字符显示，多余空格会覆盖行首；仅修已核实的对应原文，不给引擎增加新控制符。[残留控制记号](BUGFIX.md#text-control-literals) · [满行尾空格](BUGFIX.md#text-trailing-space)。 |
-| 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](data/text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#kai-card-tab)。 |
+| 凯贺卡签名 | US／EU／DE 的原 ROM 均含制表字节 `09`；JP 直接用空格排签名。 | 源码转义写法虽不同，实际前三版字节相同。指南不解释制表控制，保留真实缩进并去除该前缀。[页面](text/us/reference_guide/birthday_card_kai.cc) · [修复](BUGFIX.md#kai-card-tab)。 |
 | 联机商人英文名 | GBA 海外姓名栏为 Lou／Lu，英语自我介绍为 Van；JP 为バァン。 | 属于本作姓名错译，BUGFIX 修为 Van；与另一位料理角色的 Ruby／Lou 改名无关。[错误与依据](BUGFIX.md#van-name-history)。 |
 | 料理来访者英文名 | GBA 海外姓名栏为 Lu、自介 Lou；同期 NGC／NDS 英文版为 Ruby，重制版为 Lou。 | BUGFIX 按旧时代联动名称统一为 Ruby，保留 LouOrRuby 标识符及角色 ID。[原文与命名沿革](BUGFIX.md#ruby-name)。 |
 
 <a id="cooking-wrapped-description"></a>
 ### 料理材料包装说明
 
-料理材料选择状态 `func_080962F0` 另有一处海外显示缺陷。选中非空且已包装物品时，JP 把物品名和包装说明拼入同一个缓冲区，再交给文本窗口；海外三版先把 `A wrapped`／`Gepackt` 拷入另一个最多七字节的临时缓冲区，又将物品名拼向该临时区，但最终仍传入原来的**仅有物品名**的缓冲区。由此包装说明未进入实际显示文本；不是商品包装标志被清除。海外该函数在既有匹配快照中的代码与重定位完全一致。已追到 `func_08050DC8` 将指针直接交给 `UiStatePayload::SetText`，没有在下游补入包装说明。开启 BUGFIX 后，三版均在实际显示的 128 字节缓冲区内追加本作背包已有的完整包装说明；材料消费和配方判断不在这项修复的改动范围内。[拼接与实参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [JP 说明](data/text/jp/scene_cooking_2.cc) · [US](data/text/us/scene_cooking_2.cc) · [EU](data/text/eu/scene_cooking_2.cc) · [DE](data/text/de/scene_cooking_2.cc)
+料理材料选择状态 `func_080962F0` 另有一处海外显示缺陷。选中非空且已包装物品时，JP 把物品名和包装说明拼入同一个缓冲区，再交给文本窗口；海外三版先把 `A wrapped`／`Gepackt` 拷入另一个最多七字节的临时缓冲区，又将物品名拼向该临时区，但最终仍传入原来的**仅有物品名**的缓冲区。由此包装说明未进入实际显示文本；不是商品包装标志被清除。海外该函数在既有匹配快照中的代码与重定位完全一致。已追到 `func_08050DC8` 将指针直接交给 `UiStatePayload::SetText`，没有在下游补入包装说明。开启 BUGFIX 后，三版均在实际显示的 128 字节缓冲区内追加本作背包已有的完整包装说明；材料消费和配方判断不在这项修复的改动范围内。[拼接与实参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [JP 说明](text/jp/scene_cooking_2.cc) · [US](text/us/scene_cooking_2.cc) · [EU](text/eu/scene_cooking_2.cc) · [DE](text/de/scene_cooking_2.cc)
 
 问题依据与修复方式见 [BUGFIX](BUGFIX.md#cooking-wrapped-description)。
 
@@ -100,9 +100,9 @@
 | EU | 同上 | 7 | `0x081171F0` |
 | DE | 高仓介绍：`Arbeitet mit <cp> auf der`（与联机玩家在……工作） | 13 | `0x0810FB3C` |
 
-实际影响是名称没有展开，原标记字节进入绘制器。四版单字节字模表中的 `<`、`>`、`p`、`f` 都是有效字模，普通绘制器也不再展开指南变量，因此不能把社区的“漏字”描述直接写成这里必然隐藏整段文字。JP 现有名称标记没有命中该步长问题；DE 托马斯贺信的 `<f>` 在偏移 4，能正常展开。`<f>` 的实际来源是**牧场名**，不是社区猜测的配偶名。[展开与显示](src/scene_reference_page.cc) · [字模索引](src/font_data.s) · [绘制器](src/font_draw.cc) · [US 养鸡场贺卡](data/text/us/reference_guide/new_year_card_poultry_farm_player_and_popuri.cc) · [US 托马斯贺信](data/text/us/reference_guide/newborn_congratulations_thomas_and_harris.cc) · [DE 高仓介绍](data/text/de/reference_guide/ngc_awl_profiles_takakura.cc)
+实际影响是名称没有展开，原标记字节进入绘制器。四版单字节字模表中的 `<`、`>`、`p`、`f` 都是有效字模，普通绘制器也不再展开指南变量，因此不能把社区的“漏字”描述直接写成这里必然隐藏整段文字。JP 现有名称标记没有命中该步长问题；DE 托马斯贺信的 `<f>` 在偏移 4，能正常展开。`<f>` 的实际来源是**牧场名**，不是社区猜测的配偶名。[展开与显示](src/scene_reference_page.cc) · [字模索引](src/font_data.s) · [绘制器](src/font_draw.cc) · [US 养鸡场贺卡](text/us/reference_guide/new_year_card_poultry_farm_player_and_popuri.cc) · [US 托马斯贺信](text/us/reference_guide/newborn_congratulations_thomas_and_harris.cc) · [DE 高仓介绍](text/de/reference_guide/ngc_awl_profiles_takakura.cc)
 
-另有独立的边界风险：该函数限制的是最多 14 轮，而不是写入字节数；名称一次可以写入多个字节。标题和正文调用者均使用 `char text[32]`。JP 的联机玩家介绍标题在名称后还有 24 字节文字／全角空格，名称达到 8 字节时，加终止零就要 33 字节，超过局部数组。DE 高仓介绍另一行 `er ein Freund von <cp>s`（他是联机玩家父亲的朋友）也可超过此数组；普通路径还会复制落在一对字节中第二位的终止零后继续读下一对，不能只按可见字符串长度计算写入上界。按接收端允许的最长名称和原 ROM 后继字节静态推演，这两处分别写入 39 字节和 39 字节（含最终终止零）。这是缓冲区越界证据，**尚未运行确认具体破坏或崩溃症状**；GC 对端实际可输入长度仍须与具体 AWL 版本另核，不把接收协议上限当作对端界面上限。[JP 标题](data/text/jp/reference_guide/ngc_awl_profiles_player.cc) · [DE 正文](data/text/de/reference_guide/ngc_awl_profiles_takakura.cc) · [接收端解码](src/gamecube_link_save.cc) · [名称字段](include/game_state_types.hh)
+另有独立的边界风险：该函数限制的是最多 14 轮，而不是写入字节数；名称一次可以写入多个字节。标题和正文调用者均使用 `char text[32]`。JP 的联机玩家介绍标题在名称后还有 24 字节文字／全角空格，名称达到 8 字节时，加终止零就要 33 字节，超过局部数组。DE 高仓介绍另一行 `er ein Freund von <cp>s`（他是联机玩家父亲的朋友）也可超过此数组；普通路径还会复制落在一对字节中第二位的终止零后继续读下一对，不能只按可见字符串长度计算写入上界。按接收端允许的最长名称和原 ROM 后继字节静态推演，这两处分别写入 39 字节和 39 字节（含最终终止零）。这是缓冲区越界证据，**尚未运行确认具体破坏或崩溃症状**；GC 对端实际可输入长度仍须与具体 AWL 版本另核，不把接收协议上限当作对端界面上限。[JP 标题](text/jp/reference_guide/ngc_awl_profiles_player.cc) · [DE 正文](text/de/reference_guide/ngc_awl_profiles_takakura.cc) · [接收端解码](src/gamecube_link_save.cc) · [名称字段](include/game_state_types.hh)
 
 展开函数入口为 JP `0x0807A2B0`、US `0x0807A708`、EU `0x0807A71C`、DE `0x0807A600`；既有原版取证中，四版各 368 字节与对应 baserom 一致；这不是本轮修复后的验收记录。以上是原版代码与文本组合问题。[最小修复](BUGFIX.md#guide-name-expansion)保留原有 14 次循环与名称复制规则：JP 删除上述标题尾空格，海外只补普通内容第二字节的结束符／标记起点判断，不引入通用截断。
 
@@ -119,7 +119,7 @@
 | 料理祭评审停顿 | DE 一处等待从 240 帧增至 480 帧，其他判定语句相同。[DE 评审](data/scripts/de/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) | 延长演出等待；这处差异没有修改评分公式。 |
 | 时钟显示 | DE 的相关脚本保留下午小时数，其他版减 12。HUD 正午另有区别：JP 将 12 减成 0、仍显示下午标记，US／EU 特判 12、不减；DE 直接显示小时值。午夜传入 0 时 US／EU 也保持 0，不能概括成严格的 1–12 小时制。[时钟脚本](data/scripts/de/EventScript_SystemMenu_ClockCalendarDisplay.mary.c) · [HUD](src/map_clock_status.cc) · [小时字段调用](src/game_scene_state.cc) | 改变显示，不改变游戏一天长度或事件判断所读取的小时字段。 |
 | 参赛动物的获奖标记 | JP 的鸡列表会检查获奖标志；海外版还在牛、羊列表增加同类检查及 2×2 图块绘制。[选择画面](src/animal_festival_selection.cc) · [获奖标志读取](src/animal.cc) | 已定位的新增分支只绘制标记，不写入动物状态，不应解释成海外改了获奖资格或产物等级。图案外观未在本轮运行确认。 |
-| 酒庄购买后的送货提示 | JP、DE 区分全部送入冰箱与部分送入；US、EU 使用同一条送货消息。地区分支位于向手持物、背包、冰箱分配物品之后。[分配与提示](src/scene_winery_shop.cc) · [JP 文本](data/text/jp/scene_winery_shop.cc) · [US 文本](data/text/us/scene_winery_shop.cc) | 该分支影响反馈文字，不改变本次实际扣款或分配数量。 |
+| 酒庄购买后的送货提示 | JP、DE 区分全部送入冰箱与部分送入；US、EU 使用同一条送货消息。地区分支位于向手持物、背包、冰箱分配物品之后。[分配与提示](src/scene_winery_shop.cc) · [JP 文本](text/jp/scene_winery_shop.cc) · [US 文本](text/us/scene_winery_shop.cc) | 该分支影响反馈文字，不改变本次实际扣款或分配数量。 |
 | 鸡祭场景的精灵位置 | `UpdateUnkPhase0` 为 `sprite_96C` 的绘制参数设置相同横坐标 96，纵坐标在 JP、DE 为 8，在 US、EU 为 10。[初始化](src/scene_chicken_festival.cc) · [位置字段](include/resource_handle.hh) | 这处数值差异是显示对象下移 2 像素，不是比赛时长或鸡的能力；尚未给该精灵图案臆定名称。 |
 | 工作人员名单过渡 | JP 在滚动计数超过 127 后进入后续滚动；海外在超过 138 后额外淡出、更新字幕、淡入，再进入后续滚动。[状态机与绘制](src/staff_credits.cc) | 不只是名单文字不同，演出状态机也不同；这些阈值是状态机计数，不能直接当作表内有效文本数。 |
 
@@ -133,7 +133,7 @@
 | 飞盘成绩板 | JP／海外每个数字字形 128／64 字节，标题缓存宽 22／27 图块，姓名行跨度 13／14 字节。 | [显示初始化](src/frisbee_scoreboard.cc) · [结构](include/frisbee_scoreboard.hh) |
 | 新游戏确认与日期输入 | 确认值区同为 12 tile，标签区 JP 12、海外 14；生日输入的列步长按字宽调整，写回仍为四季各 30 天。 | [确认](src/new_game_identity.cc) · [生日输入](src/new_game_birthday_input.cc) |
 | 存档摘要 | JP 把宽数字放在年／日后缀前；海外把 Years／Jahre、Day／Tag 放在数字前，并调整季节间隔。仅格式化摘要，不改存档日期。 | [摘要](src/new_game_menu.cc) |
-| 动物悼词 | JP／海外名字与提示拼接顺序不同；DE 自然死亡另用开头与牧场前缀。 | [消息生成](src/game_scene.cc) · [DE 文本](data/text/de/game_scene.cc) |
+| 动物悼词 | JP／海外名字与提示拼接顺序不同；DE 自然死亡另用开头与牧场前缀。 | [消息生成](src/game_scene.cc) · [DE 文本](text/de/game_scene.cc) |
 | 赛马轮次及购票提示 | 轮次数横坐标 JP／US、EU／DE 为 16／32／136；玩家参赛时 JP 取鼓励消息，海外仍用一般购票询问。 | [赛马界面](src/horse_race.cc) |
 | 商店送货提示 | JP 杂货店按装备、食品及部分送货选择不同文案，海外复用部分消息；JP 霍安商店另区分普通物品和工具，海外复用消息。选句在实际分配之后，不改变扣款与分配数量。 | [杂货店](src/scene_supermarket.cc) · [霍安](src/scene_won_shop.cc) |
 | 开场 | JP 资源 8 初始 Y 为 −56，海外 −96；JP 额外提交资源 9；对应归档组号也有偏移。 | [开场场景](src/intro_scene.cc)。未把匿名资源猜作新增游戏功能。 |
@@ -209,7 +209,7 @@ JP的`FarmLowFriendshipShipmentGreeting`与`FarmHighFriendshipShipmentGreeting`�
 | `gText_FishingRecord_SilverCarp37` / `FISHING_RECORD_SILVER_CARP_37` | 移除数字后缀，使用 `gText_FishingRecord_SilverCarp` / `FISHING_RECORD_SILVER_CARP`。JP ハクレン（鲢鱼）对应 Silver Carp／Silberkarpfen，显示名称正确。槽 44 ヘラブナ已有的 `CrucianCarp` 标识符和显示名称保留。 |
 | JP／DE 猜拳 `ChoiceRock` / `ChoicePaper` / `ChoiceScissors` | JP「ちょき」「ぱー」及 DE「Schere」「Stein」「Papier」原标签与自身文字不符；使用本作 US／EU 已有的正确 Rock／Scissors／Paper 名称，声明和调用目标一起更名。 |
 
-依据：[日版鱼名](data/text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)、[JP 猜拳](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)、[DE 猜拳](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
+依据：[日版鱼名](text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)、[JP 猜拳](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)、[DE 猜拳](data/scripts/de/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
 
 Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/9546204/)、[2019 年研究中的 silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/31347186/)。重制版英文泛称 Crucian Carp 会与另一鱼种重名，本次采用完整英文名的界面短写 Silver Crucian，变量同步采用 SilverCrucian；该短写由用户确认，不宣称是已查证的官方简称。[国立环境研究所](https://www.nies.go.jp/biodiversity/invasive/DB/detail/50060.html) 则将 Silver carp 对应到ハクレン。原版两个记录共用同名字串本身不是结构错误，修复对象是记录 22 的鱼种显示名。
 

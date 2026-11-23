@@ -38,7 +38,7 @@ For Linux/WSL, Windows/MSYS2, and macOS setup and build instructions, see
   code uses regional conditionals for version differences.
 - `asm/` contains standalone assembly. Modules being recovered may also keep
   file-scope assembly alongside their C/C++ definitions.
-- `data/text/<region>/` contains game text, including Reference Guide pages.
+- `text/<region>/` contains game text, including Reference Guide pages.
   `data/scripts/<region>/` contains Mary event scripts and regional headers;
   [include/fomt_constants.mary.h](include/fomt_constants.mary.h) supplies shared
   native-code and script constants.

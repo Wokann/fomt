@@ -168,27 +168,30 @@ else
 TEXT_REGION := us
 endif
 
+TEXT_DIR := text
+REGION_TEXT_DIR := $(TEXT_DIR)/$(TEXT_REGION)
+
 # Every ordinary .cc file joins the same C++ compilation channel below.  Files
 # included at a physical point inside an owning src module must not also become
 # standalone objects.  Enumerate existing text files with wildcard, then use
 # the actual src include relation to select those fragments.  Renaming or
 # adding an included fragment therefore needs no Makefile update.
-TEXT_FRAGMENT_CANDIDATES := $(wildcard data/text/$(TEXT_REGION)/*.cc)
+TEXT_FRAGMENT_CANDIDATES := $(wildcard $(REGION_TEXT_DIR)/*.cc)
 FOMT_TEXT_INCLUDE_LPAREN := (
 FOMT_TEXT_INCLUDE_RPAREN := )
 FOMT_TEXT_INCLUDE_REGEX_LPAREN := \(
 FOMT_TEXT_INCLUDE_REGEX_RPAREN := \)
-TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) include | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|data/text/$(TEXT_REGION)/|' | sort | uniq)
+TEXT_FRAGMENT_REGION_INCLUDES := $(shell grep -RhoE '^#include FOMT_TEXT_INCLUDE$(FOMT_TEXT_INCLUDE_REGEX_LPAREN)[[:alnum:]_]+\.cc$(FOMT_TEXT_INCLUDE_REGEX_RPAREN)' $(SRC_DIR) include | cut -d '$(FOMT_TEXT_INCLUDE_LPAREN)' -f2 | tr -d '$(FOMT_TEXT_INCLUDE_RPAREN)' | sed 's|^|$(REGION_TEXT_DIR)/|' | sort | uniq)
 TEXT_FRAGMENT_INCLUDES := $(TEXT_FRAGMENT_REGION_INCLUDES)
 TEXT_FRAGMENT_SOURCES := $(sort $(filter $(TEXT_FRAGMENT_CANDIDATES),$(TEXT_FRAGMENT_INCLUDES)))
 
 # The staff-credit source and the Reference Guide pages use their own visible
 # authoring formats.  The staff source is lowered in-place by its owning
 # src/staff_credits.cc unit; guide pages remain a generated aggregate source.
-STAFF_CREDITS_SOURCE := data/text/$(TEXT_REGION)/staff_credits.cc
+STAFF_CREDITS_SOURCE := $(REGION_TEXT_DIR)/staff_credits.cc
 
-REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(wildcard data/text/$(TEXT_REGION)/*.cc))
-REGION_TEXT_ORDINARY_OBJS := $(patsubst data/text/$(TEXT_REGION)/%.cc,$(BUILD_DIR)/data/text/%.o,$(REGION_TEXT_SOURCES))
+REGION_TEXT_SOURCES := $(filter-out $(TEXT_FRAGMENT_SOURCES) $(STAFF_CREDITS_SOURCE),$(TEXT_FRAGMENT_CANDIDATES))
+REGION_TEXT_ORDINARY_OBJS := $(patsubst $(REGION_TEXT_DIR)/%.cc,$(BUILD_DIR)/$(TEXT_DIR)/%.o,$(REGION_TEXT_SOURCES))
 REGION_TEXT_ORDINARY_DEPS := $(REGION_TEXT_ORDINARY_OBJS:.o=.d)
 REGION_TEXT_OBJS := $(REGION_TEXT_ORDINARY_OBJS)
 REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS)
@@ -196,7 +199,7 @@ REGION_TEXT_DEPS := $(REGION_TEXT_ORDINARY_DEPS)
 # The manifest records directory order, physical ROM-group order, and whether
 # an auxiliary page participates in the master directory.
 GUIDE_COLLECTION_MANIFEST := src/reference_guide.cc
-GUIDE_PAGE_SOURCES := $(wildcard data/text/$(TEXT_REGION)/reference_guide/*.cc)
+GUIDE_PAGE_SOURCES := $(wildcard $(REGION_TEXT_DIR)/reference_guide/*.cc)
 GUIDE_GENERATED_SOURCE := $(BUILD_DIR)/src/reference_guide.cc
 GUIDE_GENERATED_OBJ := $(BUILD_DIR)/src/reference_guide.o
 GUIDE_GENERATED_DEP := $(BUILD_DIR)/src/reference_guide.d
@@ -309,11 +312,11 @@ $(BUILD_DIR)/src/reference_guide.o: $(GUIDE_GENERATED_SOURCE) $(BUILD_DIR)/src/r
 # The selected regional .cc sources map to the region-neutral object paths
 # used by the linker scripts.  Their recipe is the same universal pipeline as
 # every other C++ translation unit; no text-specific staging source is made.
-$(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/data/text/%.d: data/text/$(TEXT_REGION)/%.cc
+$(REGION_TEXT_ORDINARY_DEPS): $(BUILD_DIR)/$(TEXT_DIR)/%.d: $(REGION_TEXT_DIR)/%.cc
 	@mkdir -p $(dir $@)
-	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/data/text/$*.o
+	@$(CPP) $(CPPFLAGS) $< -o $@ -MM -MG -MP -MT $@ -MT $(BUILD_DIR)/$(TEXT_DIR)/$*.o
 
-$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/data/text/%.o: data/text/$(TEXT_REGION)/%.cc $(BUILD_DIR)/data/text/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
+$(REGION_TEXT_ORDINARY_OBJS): $(BUILD_DIR)/$(TEXT_DIR)/%.o: $(REGION_TEXT_DIR)/%.cc $(BUILD_DIR)/$(TEXT_DIR)/%.d $(TEXT_TOOLS) $(TEXT_CHARMAP) $(CC1PLUS)
 	@echo "CP $<"
 	$(call FOMT_COMPILE_CPP,)
 

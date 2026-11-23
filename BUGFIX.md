@@ -187,7 +187,7 @@ JP 在重试入口同步设置 `ui_state = 4`，不改变通信协议或存档�
 
 JP 按一基协议修正边界，不扩大字符表、包长或存档字段。
 
-**相关文件：** [编解码](src/gamecube_link_save.cc) · [JP 字符表](data/text/jp/gamecube_link_save.cc) · [协议结构](include/gamecube_link_save.hh)
+**相关文件：** [编解码](src/gamecube_link_save.cc) · [JP 字符表](text/jp/gamecube_link_save.cc) · [协议结构](include/gamecube_link_save.hh)
 
 <a id="de-farm-tv"></a>
 ### 春 19 日入门节目贯穿下一日分支
@@ -242,7 +242,7 @@ JP 指南及三个海外版数据均为 50、120、200 G。
 
 仅交换 JP 小鱼和大鱼的出货价格，中鱼与其他物品不变。
 
-**相关文件：** [商品表](src/item.cc) · [JP 指南](data/text/jp/reference_guide/sell_price.cc) · [US 指南](data/text/us/reference_guide/sell_price.cc)
+**相关文件：** [商品表](src/item.cc) · [JP 指南](text/jp/reference_guide/sell_price.cc) · [US 指南](text/us/reference_guide/sell_price.cc)
 
 <a id="jp-livestock-sale-prices"></a>
 ### 获奖牛羊的高等级售价倒置
@@ -523,7 +523,7 @@ JP 拼入同一个缓冲区并把它传给窗口。下游 `UiStatePayload::SetTe
 wrapped as a present.`，DE 为 `
 als Geschenk verpackt.`。不再构造未被使用的七字节前缀；原 `A wrapped` 有九个字符，仅改显示指针也无法显示完整内容。拼接沿用原 128 字节说明区，正文最多 127 字节并补结束符。JP 原本正确的拼接、包装标志及料理材料处理保持不变；关闭开关时保留原版行为。
 
-**相关文件：** [拼接与传参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [US 既有包装说明](data/text/us/game_menu_1.cc) · [EU](data/text/eu/game_menu_1.cc) · [DE](data/text/de/game_menu_1.cc)
+**相关文件：** [拼接与传参](src/scene_cooking.cc) · [窗口适配器](src/ui_state.cc) · [US 既有包装说明](text/us/game_menu_1.cc) · [EU](text/eu/game_menu_1.cc) · [DE](text/de/game_menu_1.cc)
 
 <a id="goddess-rps-options"></a>
 ### 女神猜拳显示手势与实际分支不一致
@@ -630,7 +630,7 @@ US／EU原You fished a {Var1}.中漂流瓶、海贼宝藏展开为33／29格；D
 
 改为Ja／Nein，不交换选项返回值。
 
-**相关文件：** [JP](data/text/jp/scene_gamecube_link.cc) · [US](data/text/us/scene_gamecube_link.cc) · [EU](data/text/eu/scene_gamecube_link.cc) · [DE](data/text/de/scene_gamecube_link.cc)
+**相关文件：** [JP](text/jp/scene_gamecube_link.cc) · [US](text/us/scene_gamecube_link.cc) · [EU](text/eu/scene_gamecube_link.cc) · [DE](text/de/scene_gamecube_link.cc)
 
 <a id="de-harvest-labels"></a>
 ### 德版收获结果误用喂食栏目
@@ -649,7 +649,7 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 
 改为Geerntet／Fehler，不改小游戏成绩。
 
-**相关文件：** [JP](data/text/jp/scene_harvesting_minigame_2.cc) · [US](data/text/us/scene_harvesting_minigame_2.cc) · [EU](data/text/eu/scene_harvesting_minigame_2.cc) · [DE](data/text/de/scene_harvesting_minigame_2.cc) · [成绩读取](src/scene_harvesting_minigame.cc)
+**相关文件：** [JP](text/jp/scene_harvesting_minigame_2.cc) · [US](text/us/scene_harvesting_minigame_2.cc) · [EU](text/eu/scene_harvesting_minigame_2.cc) · [DE](text/de/scene_harvesting_minigame_2.cc) · [成绩读取](src/scene_harvesting_minigame.cc)
 
 <a id="text-control-literals"></a>
 ### 原文残留ret>／<RET>换行记号
@@ -719,7 +719,7 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 
 移除制表前缀，保留原签名缩进。
 
-**相关文件：** [JP](data/text/jp/reference_guide/birthday_card_kai.cc) · [US](data/text/us/reference_guide/birthday_card_kai.cc) · [EU](data/text/eu/reference_guide/birthday_card_kai.cc) · [DE](data/text/de/reference_guide/birthday_card_kai.cc)
+**相关文件：** [JP](text/jp/reference_guide/birthday_card_kai.cc) · [US](text/us/reference_guide/birthday_card_kai.cc) · [EU](text/eu/reference_guide/birthday_card_kai.cc) · [DE](text/de/reference_guide/birthday_card_kai.cc)
 
 <a id="horse-race-prize-exit-prompt"></a>
 ### 赛马兑奖退出问句的肯否含义反向
@@ -738,7 +738,7 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 
 英文改用 `Not exchange for a prize?`，德文改用 `Nicht gegen Preis tauschen?`，都表示“不兑换奖品吗？”。两句均适配 28 列窗口。
 
-**相关文件：** [分支](src/horse_race_medal_exchange.cc) · [JP](data/text/jp/horse_race_medal_exchange_2.cc) · [US](data/text/us/horse_race_medal_exchange_2.cc) · [EU](data/text/eu/horse_race_medal_exchange_2.cc) · [DE](data/text/de/horse_race_medal_exchange_2.cc)
+**相关文件：** [分支](src/horse_race_medal_exchange.cc) · [JP](text/jp/horse_race_medal_exchange_2.cc) · [US](text/us/horse_race_medal_exchange_2.cc) · [EU](text/eu/horse_race_medal_exchange_2.cc) · [DE](text/de/horse_race_medal_exchange_2.cc)
 
 <a id="horse-race-ticket-confirm-help"></a>
 ### 赛马购票帮助指向不存在的 OK 选项
@@ -757,7 +757,7 @@ US、EU 的第五项为 `Enter`（确认），DE 为 `Mitmach.`（参加）。�
 
 帮助改用实际显示的选项名称，德文沿用 `Mitmach.` 自带的句点。
 
-**相关文件：** [菜单和帮助入口](src/horse_race.cc) · [US](data/text/us/horse_race_2.cc) · [EU](data/text/eu/horse_race_2.cc) · [DE](data/text/de/horse_race_2.cc)
+**相关文件：** [菜单和帮助入口](src/horse_race.cc) · [US](text/us/horse_race_2.cc) · [EU](text/eu/horse_race_2.cc) · [DE](text/de/horse_race_2.cc)
 
 <a id="chicken-festival-ring-warning"></a>
 ### 鸡祭出界警告多出否定词
@@ -776,7 +776,7 @@ JP 和 DE 都提醒玩家助威时小心别把自家的鸡赶出擂台。英文�
 
 删除第二行开头多出的 `not `，保留后续台词、换页和按键等待。
 
-**相关文件：** [讲解流程](src/scene_chicken_festival.cc) · [JP](data/text/jp/scene_chicken_festival_2.cc) · [US](data/text/us/scene_chicken_festival_2.cc) · [EU](data/text/eu/scene_chicken_festival_2.cc) · [DE](data/text/de/scene_chicken_festival_2.cc)
+**相关文件：** [讲解流程](src/scene_chicken_festival.cc) · [JP](text/jp/scene_chicken_festival_2.cc) · [US](text/us/scene_chicken_festival_2.cc) · [EU](text/eu/scene_chicken_festival_2.cc) · [DE](text/de/scene_chicken_festival_2.cc)
 
 <a id="de-winery-work-options"></a>
 ### 德版酒庄帮工选项把拒绝拆成两项
@@ -845,7 +845,7 @@ JP `0x89` 为「焼きそば」（炒荞麦面），与炒乌冬面不同。
 
 为海外 `0x89` 使用独立名称及说明；英文 Fried Soba、德文 Gebratene Soba 是本工程补译，图标与属性保持原值。
 
-**相关文件：** [食物表](src/item.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [DE](data/text/de/item_2.cc)
+**相关文件：** [食物表](src/item.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="wool-x"></a>
 ### X 级羊毛复用 P 级文本
@@ -864,7 +864,7 @@ JP 的 X 级名称和说明与其等级一致。
 
 海外两处均改用 X 级文本，措辞沿用各版本羊毛说明风格，不改变产物属性。
 
-**相关文件：** [物品表](src/item.cc) · [JP](data/text/jp/item_3.cc) · [EU](data/text/eu/item_3.cc)
+**相关文件：** [物品表](src/item.cc) · [JP](text/jp/item_3.cc) · [EU](text/eu/item_3.cc)
 
 <a id="de-jewels"></a>
 ### 收集用宝玉与合成秘宝同名
@@ -883,7 +883,7 @@ JP、US、EU 分别命名收集物和成品。
 
 DE 收集物改用 Kappa-Juwelteil、Wahrheitsjuwelteil（河童／真实宝玉部件），同步说明首行；成品保留原名。这两个名称为本工程补译。
 
-**相关文件：** [收集物指针表](src/item.cc) · [DE 工具](data/text/de/item_1.cc) · [DE 收集物](data/text/de/item_3.cc)
+**相关文件：** [收集物指针表](src/item.cc) · [DE 工具](text/de/item_1.cc) · [DE 收集物](text/de/item_3.cc)
 
 <a id="de-food"></a>
 ### 加强药 XL 名称与失败料理语言错误
@@ -902,7 +902,7 @@ DE 收集物改用 Kappa-Juwelteil、Wahrheitsjuwelteil（河童／真实宝玉�
 
 采用 DE 现有 XL 名称及 Misserfolg（失败）说明。三个漏翻名称补为 `Missl. Getränk`（失败饮料）、`Missl. Topfgericht`（失败锅料理）、`Missl. Dessert`（失败甜点），沿用本作 `Missl. Gericht` 的简称形式及既有 Getränk／Dessert 词汇，锅料理按 JP「鍋に入ってるの」补译。三者最长 17 个单字节字符。重制版 DE 的对应失败料理位置为空，故这些是有本作模板依据的补译，不能标成重制版官方译名。默认分支保留英文名称及原指针。
 
-**相关文件：** [食物表](src/item.cc) · [DE 文本](data/text/de/item_2.cc)
+**相关文件：** [食物表](src/item.cc) · [DE 文本](text/de/item_2.cc)
 
 <a id="fish-record-names"></a>
 ### 不同鱼种复用同一显示名
@@ -925,7 +925,7 @@ Silver Crucian 为 14 字符，原钓获提示 `You fished a {Var1}.` 展开后�
 
 英文鱼名依据：银鲫ギンブナ／ginbuna在[1998年研究](https://pubmed.ncbi.nlm.nih.gov/9546204/)和[2019年研究](https://pubmed.ncbi.nlm.nih.gov/31347186/)中称为silver crucian carp。重制版US的Crucian Carp泛称会与另一鱼种同名，因此界面采用完整英文名的短写；这个短写不是官方简称。
 
-**相关文件：** [名称表](src/fishing_results_data.cc) · [JP 文本](data/text/jp/fishing_results_data.cc) · [DE 文本](data/text/de/fishing_results_data.cc) · [记录编号](include/fomt_constants.mary.h) · [US鱼名](data/text/us/fishing_results_data.cc) · [EU鱼名](data/text/eu/fishing_results_data.cc)
+**相关文件：** [名称表](src/fishing_results_data.cc) · [JP 文本](text/jp/fishing_results_data.cc) · [DE 文本](text/de/fishing_results_data.cc) · [记录编号](include/fomt_constants.mary.h) · [US鱼名](text/us/fishing_results_data.cc) · [EU鱼名](text/eu/fishing_results_data.cc)
 
 <a id="audit-b12"></a>
 ### DE：茶叶与成品茶同名，配方原料也未区分
@@ -946,7 +946,7 @@ JP及US／EU的茶叶原料与成品茶名称不同，DE两者原道具名和说
 
 原版茶叶与成品茶均称Entspannungstee。统一将茶叶道具名、说明首行和指南原料写为 `Entspann.-Teeblätter`（20字符）；这是为适配GBA料理列表20格宽度采用的界面缩写，非官方简称。完整名称 `Entspannungsteeblätter`（22字符）来自重制版德文道具文本。成品茶名称保持原样。
 
-**相关文件：** [配方](data/text/de/reference_guide/cookbook_4.cc) · [JP对应文件](data/text/jp/reference_guide/cookbook_4.cc) · [US对应文件](data/text/us/reference_guide/cookbook_4.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_4.cc) · [德文茶与茶叶](data/text/de/item_2.cc) · [JP对应文件](data/text/jp/item_2.cc) · [US对应文件](data/text/us/item_2.cc) · [EU对应文件](data/text/eu/item_2.cc) · [料理列表20格区域](src/scene_cooking.cc:11698) · [绘制边界](src/font_draw.cc:240) · [重制版德文道具名](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Item.txt:915)
+**相关文件：** [配方](text/de/reference_guide/cookbook_4.cc) · [JP对应文件](text/jp/reference_guide/cookbook_4.cc) · [US对应文件](text/us/reference_guide/cookbook_4.cc) · [EU对应文件](text/eu/reference_guide/cookbook_4.cc) · [德文茶与茶叶](text/de/item_2.cc) · [JP对应文件](text/jp/item_2.cc) · [US对应文件](text/us/item_2.cc) · [EU对应文件](text/eu/item_2.cc) · [料理列表20格区域](src/scene_cooking.cc:11698) · [绘制边界](src/font_draw.cc:240) · [重制版德文道具名](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Item.txt:915)
 
 <a id="barn-fodder-text"></a>
 ### 畜棚及牛羊商店把牧草称作鸡饲料
@@ -965,7 +965,7 @@ JP及US／EU的茶叶原料与成品茶名称不同，DE两者原道具名和说
 
 畜棚及受影响的牛羊商店句子改用Fodder／Viehfutter，保留鸡舍的正确称谓。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [JP](data/text/jp/scene_yodel_ranch_shop_2.cc) · [US](data/text/us/scene_yodel_ranch_shop_2.cc) · [EU](data/text/eu/scene_yodel_ranch_shop_2.cc) · [DE](data/text/de/scene_yodel_ranch_shop_2.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [JP](text/jp/scene_yodel_ranch_shop_2.cc) · [US](text/us/scene_yodel_ranch_shop_2.cc) · [EU](text/eu/scene_yodel_ranch_shop_2.cc) · [DE](text/de/scene_yodel_ranch_shop_2.cc)
 
 <a id="flour-name"></a>
 ### 德版把面粉译成花
@@ -984,7 +984,7 @@ JP为小麦粉，US／EU为Flour；这是料理原料，不是花卉。
 
 名称及说明首行统一改为Mehl，保留正确Flour源码身份。
 
-**相关文件：** [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc)
+**相关文件：** [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="fishing-rod-lines"></a>
 ### 普通鱼竿说明缺少行分隔
@@ -1003,7 +1003,7 @@ JP／DE及其他鱼竿有标题与说明分隔；菜单格式化循环依赖换�
 
 补成Fishing Rod、For fishing.两行及必要分隔；第三个空字符串只表示源码布局，不额外插入换行。
 
-**相关文件：** [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [说明读取](src/game_menu.cc)
+**相关文件：** [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [说明读取](src/game_menu.cc)
 
 <a id="topaz-description"></a>
 ### 黄玉说明错用红宝石标题且正文破损
@@ -1022,7 +1022,7 @@ Topaz的说明首行写Ruby，正文也有破损。
 
 恢复Topaz标题和对应黄玉说明，不把对象改为红宝石。
 
-**相关文件：** [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="dinner-roll-spelling"></a>
 ### 餐包名称误拼为Dinner Role
@@ -1041,7 +1041,7 @@ Topaz的说明首行写Ruby，正文也有破损。
 
 名称及说明首行改为Dinner Roll，源码标签沿用正确DinnerRoll身份。
 
-**相关文件：** [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc)
+**相关文件：** [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="baked-apple-name"></a>
 ### 烤苹果误译为Apple Souffl?
@@ -1060,7 +1060,7 @@ JP为焼きりんご（烤苹果），不是苹果舒芙蕾；DE既有烤苹果�
 
 英文名称及说明首行改为Baked Apple，DE原称保留；源码标签采用BakedApple。
 
-**相关文件：** [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc)
+**相关文件：** [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="lou-apple-dish"></a>
 ### 露的德文料理名与物品表不一致
@@ -1079,7 +1079,7 @@ JP为焼きりんご（烤苹果），不是苹果舒芙蕾；DE既有烤苹果�
 
 改用本版Apfelauflauf，不另译料理名。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="flower-seasons"></a>
 ### 操作说明：花种 `0x42/0x43`
@@ -1098,7 +1098,7 @@ US／EU／DE 额外写可在秋季种植
 
 沿用同版种子的春／夏现成句式，移除秋季
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc) · [作物季节判断](src/field.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc) · [作物季节判断](src/field.cc)
 
 <a id="red-flower-shipping"></a>
 ### 操作说明：红色魔术草 `0x03`
@@ -1117,7 +1117,7 @@ JP 写可以出货；`gProductInfo[0x42]` 为红花提供 200 的出货价
 
 仅改为可以出货，蓝花仍不可出货
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="adamantite-use"></a>
 ### 用途错配：金刚石 `0x17`
@@ -1136,7 +1136,7 @@ JP／US／EU 写用于制作加工机；同版加工机说明使用 Maschine
 
 改为用于制作机器，保留矿石名称
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="moon-dumplings"></a>
 ### 身份错译：赏月团子 `0x96`
@@ -1155,7 +1155,7 @@ JP 是串在签上的圆团子；名称仍为 Moon Dumplings／Mondklöße
 
 按 JP 直译圆团子串，不更换原名称
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="mixed-juice"></a>
 ### 配料遗漏：混合果汁 `0x56`
@@ -1174,7 +1174,7 @@ JP 同时列蔬菜与水果；本作混合奶的配料也保留两者
 
 补齐水果和蔬菜，不更改物品属性
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="mixed-milk-ketchup"></a>
 ### 句子残缺：混合奶 `0x59`、番茄酱 `0x60`
@@ -1193,7 +1193,7 @@ JP／US／EU 分别明确牛奶、番茄
 
 补齐遗漏的 Milch／Tomaten；混合奶配料行恰为 28 字符，保留原末行饮用／赠送说明，仍为三行
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="milk-x-description"></a>
 ### 句子残缺：X 牛奶 `0x21`
@@ -1212,7 +1212,7 @@ DE 末行重复饮用句片段，漏掉出货说明
 
 保留 X 标题，沿用其他牛奶正文
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="toast-description"></a>
 ### 食用类型：吐司 `0x92`
@@ -1231,7 +1231,7 @@ JP／US／EU 为可食用面包；同版相邻食品已有 Selberessen
 
 使用同版食物的“食用或赠送”句式
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="record13-language"></a>
 ### 漏翻：唱片 13 `0x4C`
@@ -1250,7 +1250,7 @@ DE 的三行说明完整遗留英文
 
 套用邻项德文，只将胜数写为 70
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="miso-soup-lines"></a>
 ### 排版缺损：味噌汤 `0x4F`
@@ -1269,7 +1269,7 @@ JP／US／EU 分隔标题与说明，同版其他汤类也如此
 
 补回一个 `\r\n`，不重译
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="food-spelling"></a>
 ### 拼写：苹果 `0x28`、菠萝汁 `0x64`
@@ -1288,7 +1288,7 @@ US／EU 分别写 eated、Pinapple
 
 只修正错误拼写
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](data/text/jp/item_1.cc) · [US](data/text/us/item_1.cc) · [EU](data/text/eu/item_1.cc) · [DE](data/text/de/item_1.cc) · [JP](data/text/jp/item_2.cc) · [US](data/text/us/item_2.cc) · [EU](data/text/eu/item_2.cc) · [DE](data/text/de/item_2.cc) · [JP](data/text/jp/item_3.cc) · [US](data/text/us/item_3.cc) · [EU](data/text/eu/item_3.cc) · [DE](data/text/de/item_3.cc)
+**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="category-dialogue"></a>
 ## 剧情对话、人物与称呼
@@ -1501,7 +1501,7 @@ JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unser
 
 新增正确工具名称，仅替换贤者锤订单的文本变量引用；实际给予物品不改。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [锻冶屋领取分支](data/scripts/de/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [JP对应文件](data/scripts/jp/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [US对应文件](data/scripts/us/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [EU对应文件](data/scripts/eu/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](data/text/de/item_1.cc) · [JP对应文件](data/text/jp/item_1.cc) · [US对应文件](data/text/us/item_1.cc) · [EU对应文件](data/text/eu/item_1.cc)
+**相关文件：** [锻冶屋领取分支](data/scripts/de/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [JP对应文件](data/scripts/jp/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [US对应文件](data/scripts/us/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [EU对应文件](data/scripts/eu/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](text/de/item_1.cc) · [JP对应文件](text/jp/item_1.cc) · [US对应文件](text/us/item_1.cc) · [EU对应文件](text/eu/item_1.cc)
 
 <a id="audit-c01"></a>
 ### 海外三版：巴基尔雨天台词失去原有的晴雨对比
@@ -1566,7 +1566,7 @@ JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”�
 
 参赛确认改为带走动物，不再说送给玩家；继续供现有动物选择共用。
 
-**相关文件：** [参赛确认原文](data/text/jp/animal_festival_selection.cc) · [US对应文件](data/text/us/animal_festival_selection.cc) · [EU对应文件](data/text/eu/animal_festival_selection.cc) · [DE对应文件](data/text/de/animal_festival_selection.cc) · [调用位置](src/animal_festival_selection.cc)
+**相关文件：** [参赛确认原文](text/jp/animal_festival_selection.cc) · [US对应文件](text/us/animal_festival_selection.cc) · [EU对应文件](text/eu/animal_festival_selection.cc) · [DE对应文件](text/de/animal_festival_selection.cc) · [调用位置](src/animal_festival_selection.cc)
 
 <a id="audit-c04"></a>
 ### 海外三版：巴基尔与安娜贺卡标题把 Anna 写成 Ann
@@ -1587,7 +1587,7 @@ JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”�
 
 贺卡标题Ann改为本作已有的Anna；不改人物身份或收信条件。
 
-**相关文件：** [贺卡标题与署名](data/text/us/reference_guide/new_year_card_basil_and_anna.cc) · [JP对应文件](data/text/jp/reference_guide/new_year_card_basil_and_anna.cc) · [EU对应文件](data/text/eu/reference_guide/new_year_card_basil_and_anna.cc) · [DE对应文件](data/text/de/reference_guide/new_year_card_basil_and_anna.cc)
+**相关文件：** [贺卡标题与署名](text/us/reference_guide/new_year_card_basil_and_anna.cc) · [JP对应文件](text/jp/reference_guide/new_year_card_basil_and_anna.cc) · [EU对应文件](text/eu/reference_guide/new_year_card_basil_and_anna.cc) · [DE对应文件](text/de/reference_guide/new_year_card_basil_and_anna.cc)
 
 <a id="audit-c05"></a>
 ### DE：Lumina 的祖母误写成 Manna
@@ -1608,7 +1608,7 @@ JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”�
 
 Lumina祖母改为本作已有的Romana，不再指向Manna。
 
-**相关文件：** [Lumina 介绍](data/text/de/reference_guide/ngc_awl_profiles_lumina.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_lumina.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_lumina.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_lumina.cc)
+**相关文件：** [Lumina 介绍](text/de/reference_guide/ngc_awl_profiles_lumina.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_lumina.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_lumina.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_lumina.cc)
 
 <a id="audit-c06"></a>
 ### US／EU：Sebastian 介绍中的 Romana 误写成 Manna
@@ -1629,7 +1629,7 @@ JP／DE 及本段前后的人物关系一致，英文中途换成了另一人。
 
 Sebastian服务对象改为本作已有的Romana。
 
-**相关文件：** [Sebastian 介绍](data/text/us/reference_guide/ngc_awl_profiles_sebastian.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_sebastian.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_sebastian.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_sebastian.cc)
+**相关文件：** [Sebastian 介绍](text/us/reference_guide/ngc_awl_profiles_sebastian.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_sebastian.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_sebastian.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_sebastian.cc)
 
 <a id="audit-c07"></a>
 ### 海外三版：Gustafa 的祖先经历写成本人经历
@@ -1650,7 +1650,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 按JP保留家族世代服务宫廷的身世，将主语从本人改为祖先。
 
-**相关文件：** [Gustafa 介绍](data/text/jp/reference_guide/ngc_awl_profiles_gustafa.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_gustafa.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_gustafa.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_gustafa.cc)
+**相关文件：** [Gustafa 介绍](text/jp/reference_guide/ngc_awl_profiles_gustafa.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_gustafa.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_gustafa.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_gustafa.cc)
 
 <a id="audit-c08"></a>
 ### 海外三版：Griffin 被家人厌弃，翻成因爱家而定居
@@ -1671,7 +1671,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 按JP恢复四处流浪、被家人厌弃及独自来到谷地的先后关系，不增添定居动机。
 
-**相关文件：** [Griffin 介绍](data/text/jp/reference_guide/ngc_awl_profiles_griffin.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_griffin.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_griffin.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_griffin.cc)
+**相关文件：** [Griffin 介绍](text/jp/reference_guide/ngc_awl_profiles_griffin.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_griffin.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_griffin.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_griffin.cc)
 
 <a id="audit-c09"></a>
 ### 海外三版：Hardy 入住腾出的房屋，写成跟随 Galen 来村
@@ -1692,7 +1692,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 明确Nina去世、Galen搬出之后，Hardy才入住旧居；不再说两人结伴来到村子。
 
-**相关文件：** [Hardy 介绍](data/text/jp/reference_guide/ngc_awl_profiles_hardy.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_hardy.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_hardy.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_hardy.cc)
+**相关文件：** [Hardy 介绍](text/jp/reference_guide/ngc_awl_profiles_hardy.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_hardy.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_hardy.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_hardy.cc)
 
 <a id="audit-c10"></a>
 ### DE：儿子介绍使用了错误的姓名标记
@@ -1713,7 +1713,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 仅正文的父亲姓名标记改为<cp>，标题的孩子姓名<cs>保持。
 
-**相关文件：** [儿子介绍](data/text/de/reference_guide/ngc_awl_profiles_child.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_child.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_child.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_child.cc)
+**相关文件：** [儿子介绍](text/de/reference_guide/ngc_awl_profiles_child.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_child.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_child.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_child.cc)
 
 <a id="audit-c11"></a>
 ### 海外三版：一家三口写成三个儿子
@@ -1734,7 +1734,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 按JP一家三口恢复为夫妻及一个儿子，不再写成三个儿子。
 
-**相关文件：** [联机主角介绍](data/text/us/reference_guide/ngc_awl_profiles_player.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_player.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_player.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_player.cc)
+**相关文件：** [联机主角介绍](text/us/reference_guide/ngc_awl_profiles_player.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_player.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_player.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_player.cc)
 
 <a id="audit-c12"></a>
 ### Wally：马拉松教练变成赛事组织者
@@ -1757,7 +1757,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 恢复在城里公司任马拉松教练的职业，以及与妻子和儿子住在谷地；不误写本人居住在城里。
 
-**相关文件：** [日文介绍](data/text/jp/reference_guide/ngc_awl_profiles_wally.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_wally.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_wally.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_wally.cc)
+**相关文件：** [日文介绍](text/jp/reference_guide/ngc_awl_profiles_wally.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_wally.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_wally.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_wally.cc)
 
 <a id="audit-c13"></a>
 ### Galen：“平时安静”变成“通常很快乐”
@@ -1782,7 +1782,7 @@ Sebastian服务对象改为本作已有的Romana。
 
 将通常很快乐改为通常很安静，保留失去妻子的上下文。
 
-**相关文件：** [日文介绍](data/text/jp/reference_guide/ngc_awl_profiles_galen.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_galen.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_galen.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_galen.cc)
+**相关文件：** [日文介绍](text/jp/reference_guide/ngc_awl_profiles_galen.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_galen.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_galen.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_galen.cc)
 
 <a id="audit-f01"></a>
 ### US：卡莲初次见面的 `You name`
@@ -1880,7 +1880,7 @@ GBA 姓名栏和自我介绍直接冲突；JP 的バァン及同期联动商人�
 
 开启 `BUGFIX` 时把海外商人姓名栏改为 Van；关闭时保留 Lou／Lu。角色 ID、变量名和其他事件不变。
 
-**相关文件：** [US 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [JP 姓名](data/text/jp/npc_collection.cc) · [US 姓名](data/text/us/npc_collection.cc) · [EU 姓名](data/text/eu/npc_collection.cc) · [DE 姓名](data/text/de/npc_collection.cc)
+**相关文件：** [US 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [JP 姓名](text/jp/npc_collection.cc) · [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc)
 
 <a id="ruby-name"></a>
 ### 料理来访者未使用同期英文名 Ruby
@@ -1893,7 +1893,7 @@ GBA 姓名栏和自我介绍直接冲突；JP 的バァン及同期联动商人�
 
 **判断依据：**
 
-本作 [Ruby 的 NGC 人物介绍](data/text/us/reference_guide/ngc_awl_profiles_ruby.cc)、[Rock 简介中的父母称呼](data/text/us/reference_guide/ngc_awl_profiles_rock.cc)和 [NGC 人物选择菜单](data/scripts/us/EventScript_SystemMenu_GameCubeLinkAWLCharacterProfileBrowser.mary.c)均直接写 Ruby；EU、DE 对应内容也一致。因此这次修复不是单纯借用其他作品的名字，而是与本作已存在的同一角色介绍统一。
+本作 [Ruby 的 NGC 人物介绍](text/us/reference_guide/ngc_awl_profiles_ruby.cc)、[Rock 简介中的父母称呼](text/us/reference_guide/ngc_awl_profiles_rock.cc)和 [NGC 人物选择菜单](data/scripts/us/EventScript_SystemMenu_GameCubeLinkAWLCharacterProfileBrowser.mary.c)均直接写 Ruby；EU、DE 对应内容也一致。因此这次修复不是单纯借用其他作品的名字，而是与本作已存在的同一角色介绍统一。
 
 | 作品时期 | 料理旅馆经营者 | 旅行商人 |
 | --- | --- | --- |
@@ -1910,7 +1910,7 @@ NGC 的[联机资料](https://fogu.com/hm/hmawl/gbaconnection.php)、NDS 的 [Ru
 
 开启 `BUGFIX` 时，海外姓名栏 Lu 和自我介绍 Lou 均改为 Ruby；JP 的ルウ不变。关闭时保留原文。保留 `LouOrRuby`／`CHARACTER_LOU_OR_RUBY` 标识符和角色 ID，不涉及人物顺序或事件机制。
 
-**相关文件：** [US 姓名](data/text/us/npc_collection.cc) · [EU 姓名](data/text/eu/npc_collection.cc) · [DE 姓名](data/text/de/npc_collection.cc) · [US 自介](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU 自介](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE 自介](data/scripts/de/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c)
+**相关文件：** [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc) · [US 自介](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU 自介](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE 自介](data/scripts/de/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c)
 
 <a id="spouse-birthday-baby-talk"></a>
 ### 玩家生日晚餐的妻子问候误用婴儿语
@@ -2024,7 +2024,7 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 
 仅修对应单词，不改角色ID或脚本条件。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](data/text/jp/scene_special_merchant_shop.cc) · [US](data/text/us/scene_special_merchant_shop.cc) · [EU](data/text/eu/scene_special_merchant_shop.cc) · [DE](data/text/de/scene_special_merchant_shop.cc) · [JP](data/scripts/jp/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](text/jp/scene_special_merchant_shop.cc) · [US](text/us/scene_special_merchant_shop.cc) · [EU](text/eu/scene_special_merchant_shop.cc) · [DE](text/de/scene_special_merchant_shop.cc) · [JP](data/scripts/jp/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
 
 <a id="winery-job-decline-duke-dialogue"></a>
 ### 玩家拒绝采葡萄时杜克向未到场的克里夫讲话
@@ -2184,7 +2184,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 四版均列出普通、好、高品质三种鸡蛋，使用各版本道具名称，价格分别为50／60／80G；海外指南以这三行替换原普通蛋、温泉蛋和金蛋三行。S／M／L仅用于说明等级对应，不写入名称。海外胡萝卜改为120G，未改实际商品价格。
 
-**相关文件：** [JP 指南](data/text/jp/reference_guide/sell_price.cc) · [US对应文件](data/text/us/reference_guide/sell_price.cc) · [EU对应文件](data/text/eu/reference_guide/sell_price.cc) · [DE对应文件](data/text/de/reference_guide/sell_price.cc) · [实际数据](src/item.cc)
+**相关文件：** [JP 指南](text/jp/reference_guide/sell_price.cc) · [US对应文件](text/us/reference_guide/sell_price.cc) · [EU对应文件](text/eu/reference_guide/sell_price.cc) · [DE对应文件](text/de/reference_guide/sell_price.cc) · [实际数据](src/item.cc)
 
 <a id="audit-b02"></a>
 ### 海外三版：图书馆休馆日变更方向写反
@@ -2205,7 +2205,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 将休馆日变更改为星期一改星期四，沿用本版既有星期名称。
 
-**相关文件：** [通知原文](data/text/us/reference_guide/notice_marys_library_day_off_change.cc) · [JP对应文件](data/text/jp/reference_guide/notice_marys_library_day_off_change.cc) · [EU对应文件](data/text/eu/reference_guide/notice_marys_library_day_off_change.cc) · [DE对应文件](data/text/de/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/jp/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
+**相关文件：** [通知原文](text/us/reference_guide/notice_marys_library_day_off_change.cc) · [JP对应文件](text/jp/reference_guide/notice_marys_library_day_off_change.cc) · [EU对应文件](text/eu/reference_guide/notice_marys_library_day_off_change.cc) · [DE对应文件](text/de/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/jp/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
 
 <a id="audit-b03"></a>
 ### 海外三版：牛羊牧场指南说可以卖鸡
@@ -2226,7 +2226,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 只将可出售动物改为牛与羊，保持牛羊牧场的其他说明。
 
-**相关文件：** [指南](data/text/us/reference_guide/yodel_farm.cc) · [JP对应文件](data/text/jp/reference_guide/yodel_farm.cc) · [EU对应文件](data/text/eu/reference_guide/yodel_farm.cc) · [DE对应文件](data/text/de/reference_guide/yodel_farm.cc) · [商店处理](src/scene_yodel_ranch_shop.cc)
+**相关文件：** [指南](text/us/reference_guide/yodel_farm.cc) · [JP对应文件](text/jp/reference_guide/yodel_farm.cc) · [EU对应文件](text/eu/reference_guide/yodel_farm.cc) · [DE对应文件](text/de/reference_guide/yodel_farm.cc) · [商店处理](src/scene_yodel_ranch_shop.cc)
 
 <a id="audit-b04"></a>
 ### 海外三版：诊所营业时间表述错误，德版采用24小时制
@@ -2247,7 +2247,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
-**相关文件：** [指南](data/text/us/reference_guide/clinic.cc) · [JP对应文件](data/text/jp/reference_guide/clinic.cc) · [EU对应文件](data/text/eu/reference_guide/clinic.cc) · [DE对应文件](data/text/de/reference_guide/clinic.cc) · [营业告示](data/scripts/jp/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
+**相关文件：** [指南](text/us/reference_guide/clinic.cc) · [JP对应文件](text/jp/reference_guide/clinic.cc) · [EU对应文件](text/eu/reference_guide/clinic.cc) · [DE对应文件](text/de/reference_guide/clinic.cc) · [营业告示](data/scripts/jp/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
 
 <a id="audit-b05"></a>
 ### 海外三版：料理指南多写一个重复选项
@@ -2268,7 +2268,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 移除重复的“重新开始”解释，恢复现有料理菜单中的“另选食谱”及返回食谱选择说明。
 
-**相关文件：** [指南](data/text/us/reference_guide/how_to_cook.cc) · [JP对应文件](data/text/jp/reference_guide/how_to_cook.cc) · [EU对应文件](data/text/eu/reference_guide/how_to_cook.cc) · [DE对应文件](data/text/de/reference_guide/how_to_cook.cc) · [实际菜单调用](src/scene_cooking.cc)
+**相关文件：** [指南](text/us/reference_guide/how_to_cook.cc) · [JP对应文件](text/jp/reference_guide/how_to_cook.cc) · [EU对应文件](text/eu/reference_guide/how_to_cook.cc) · [DE对应文件](text/de/reference_guide/how_to_cook.cc) · [实际菜单调用](src/scene_cooking.cc)
 
 <a id="audit-b06"></a>
 ### DE：秘银锄头误写成秘银镰刀
@@ -2289,7 +2289,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 仅锄头段的Mythrilsichel（秘银镰刀）改为同版Mythrilhacke（秘银锄头）；真正的镰刀段不变。
 
-**相关文件：** [工具指南](data/text/de/reference_guide/using_tools_1.cc) · [JP对应文件](data/text/jp/reference_guide/using_tools_1.cc) · [US对应文件](data/text/us/reference_guide/using_tools_1.cc) · [EU对应文件](data/text/eu/reference_guide/using_tools_1.cc)
+**相关文件：** [工具指南](text/de/reference_guide/using_tools_1.cc) · [JP对应文件](text/jp/reference_guide/using_tools_1.cc) · [US对应文件](text/us/reference_guide/using_tools_1.cc) · [EU对应文件](text/eu/reference_guide/using_tools_1.cc)
 
 <a id="audit-b07"></a>
 ### DE：计步器“装备”误译成“升级”
@@ -2310,7 +2310,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 将计步器的升级动词改为装备动词，不新增计步器升级功能。
 
-**相关文件：** [计步器段落](data/text/de/reference_guide/using_tools_1.cc) · [JP对应文件](data/text/jp/reference_guide/using_tools_1.cc) · [US对应文件](data/text/us/reference_guide/using_tools_1.cc) · [EU对应文件](data/text/eu/reference_guide/using_tools_1.cc)
+**相关文件：** [计步器段落](text/de/reference_guide/using_tools_1.cc) · [JP对应文件](text/jp/reference_guide/using_tools_1.cc) · [US对应文件](text/us/reference_guide/using_tools_1.cc) · [EU对应文件](text/eu/reference_guide/using_tools_1.cc)
 
 <a id="audit-b08"></a>
 ### 海外三版：四种作物最终收获阶段写成开花
@@ -2331,7 +2331,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 将四种可重复收获作物的成熟阶段改为Ripe／Reife，保留实际花卉的开花说明。
 
-**相关文件：** [四版对应的作物指南](data/text/us/reference_guide/seasonal_crops.cc) · [JP对应文件](data/text/jp/reference_guide/seasonal_crops.cc) · [EU对应文件](data/text/eu/reference_guide/seasonal_crops.cc) · [DE对应文件](data/text/de/reference_guide/seasonal_crops.cc)
+**相关文件：** [四版对应的作物指南](text/us/reference_guide/seasonal_crops.cc) · [JP对应文件](text/jp/reference_guide/seasonal_crops.cc) · [EU对应文件](text/eu/reference_guide/seasonal_crops.cc) · [DE对应文件](text/de/reference_guide/seasonal_crops.cc)
 
 <a id="audit-b09"></a>
 ### 海外三版：疲劳段落错写成体力效果
@@ -2352,7 +2352,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 仅疲劳段改为增加疲劳；不修改前面的体力说明或食物数值。
 
-**相关文件：** [体力／疲劳指南](data/text/us/reference_guide/stamina_and_fatigue.cc) · [JP对应文件](data/text/jp/reference_guide/stamina_and_fatigue.cc) · [EU对应文件](data/text/eu/reference_guide/stamina_and_fatigue.cc) · [DE对应文件](data/text/de/reference_guide/stamina_and_fatigue.cc)
+**相关文件：** [体力／疲劳指南](text/us/reference_guide/stamina_and_fatigue.cc) · [JP对应文件](text/jp/reference_guide/stamina_and_fatigue.cc) · [EU对应文件](text/eu/reference_guide/stamina_and_fatigue.cc) · [DE对应文件](text/de/reference_guide/stamina_and_fatigue.cc)
 
 <a id="audit-b10"></a>
 ### DE：冰箱让一次“购买更多”写成“烹饪更多”
@@ -2373,7 +2373,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 将冰箱扩容的结果改为一次购买更多，保留既有厨房及储物机制。
 
-**相关文件：** [杂货店指南](data/text/de/reference_guide/supermarket.cc) · [JP对应文件](data/text/jp/reference_guide/supermarket.cc) · [US对应文件](data/text/us/reference_guide/supermarket.cc) · [EU对应文件](data/text/eu/reference_guide/supermarket.cc)
+**相关文件：** [杂货店指南](text/de/reference_guide/supermarket.cc) · [JP对应文件](text/jp/reference_guide/supermarket.cc) · [US对应文件](text/us/reference_guide/supermarket.cc) · [EU对应文件](text/eu/reference_guide/supermarket.cc)
 
 <a id="audit-b11"></a>
 ### 海外三版：霍安出售的种子是否随季节变化，含义写反
@@ -2394,7 +2394,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 明确霍安全年出售相同种子；保留种植仍受季节限制的说明。
 
-**相关文件：** [指南](data/text/us/reference_guide/wons_shop.cc) · [JP对应文件](data/text/jp/reference_guide/wons_shop.cc) · [EU对应文件](data/text/eu/reference_guide/wons_shop.cc) · [DE对应文件](data/text/de/reference_guide/wons_shop.cc) · [商品加入逻辑](src/scene_won_shop.cc)
+**相关文件：** [指南](text/us/reference_guide/wons_shop.cc) · [JP对应文件](text/jp/reference_guide/wons_shop.cc) · [EU对应文件](text/eu/reference_guide/wons_shop.cc) · [DE对应文件](text/de/reference_guide/wons_shop.cc) · [商品加入逻辑](src/scene_won_shop.cc)
 
 <a id="audit-b13"></a>
 ### 锤子指南：海外漏掉银锤说明，日版次数也存在问题
@@ -2425,7 +2425,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 按已核实的充分蓄力条件改为铜锤大石3次、银锤大石2次／岩石6次、秘银1／2次。海外补银阶；不修改此前否决的银锤物品描述。
 
-**相关文件：** [蓄力等级](src/player_actor.cc:29567) · [效果表](src/animal_data.cc:93) · [石块耐久处理](src/field.cc:209) · [日文指南](data/text/jp/reference_guide/using_tools_1.cc) · [US对应文件](data/text/us/reference_guide/using_tools_1.cc) · [EU对应文件](data/text/eu/reference_guide/using_tools_1.cc) · [DE对应文件](data/text/de/reference_guide/using_tools_1.cc)
+**相关文件：** [蓄力等级](src/player_actor.cc:29567) · [效果表](src/animal_data.cc:93) · [石块耐久处理](src/field.cc:209) · [日文指南](text/jp/reference_guide/using_tools_1.cc) · [US对应文件](text/us/reference_guide/using_tools_1.cc) · [EU对应文件](text/eu/reference_guide/using_tools_1.cc) · [DE对应文件](text/de/reference_guide/using_tools_1.cc)
 
 <a id="audit-b14"></a>
 ### 房屋“两阶段扩建”误译成“建造二楼”
@@ -2448,7 +2448,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 海外改为房屋可扩建两次，不再把第二阶段写成建造二楼。
 
-**相关文件：** [木工指南](data/text/us/reference_guide/woodcutters_house.cc) · [JP对应文件](data/text/jp/reference_guide/woodcutters_house.cc) · [EU对应文件](data/text/eu/reference_guide/woodcutters_house.cc) · [DE对应文件](data/text/de/reference_guide/woodcutters_house.cc) · [房屋扩建等级](src/farm_house.cc:171)
+**相关文件：** [木工指南](text/us/reference_guide/woodcutters_house.cc) · [JP对应文件](text/jp/reference_guide/woodcutters_house.cc) · [EU对应文件](text/eu/reference_guide/woodcutters_house.cc) · [DE对应文件](text/de/reference_guide/woodcutters_house.cc) · [房屋扩建等级](src/farm_house.cc:171)
 
 <a id="audit-b15"></a>
 ### 孵化箱随鸡舍扩建增加，误译成可以购买
@@ -2473,7 +2473,7 @@ US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
 US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutkästen wird sich auf 2 erhöhen.`。按指南宽度分行，不另加“instead of 1／statt einem”，不改扩建机制。
 
-**相关文件：** [指南原文](data/text/de/reference_guide/woodcutters_house.cc) · [JP对应文件](data/text/jp/reference_guide/woodcutters_house.cc) · [US对应文件](data/text/us/reference_guide/woodcutters_house.cc) · [EU对应文件](data/text/eu/reference_guide/woodcutters_house.cc) · [孵化箱数量](src/coop.cc:83) · [重制版英文](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Book.txt:1575) · [重制版德文](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Book.txt:1618)
+**相关文件：** [指南原文](text/de/reference_guide/woodcutters_house.cc) · [JP对应文件](text/jp/reference_guide/woodcutters_house.cc) · [US对应文件](text/us/reference_guide/woodcutters_house.cc) · [EU对应文件](text/eu/reference_guide/woodcutters_house.cc) · [孵化箱数量](src/coop.cc:83) · [重制版英文](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Book.txt:1575) · [重制版德文](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Book.txt:1618)
 
 <a id="audit-b16"></a>
 ### 德文鸡饲料制作提示把“玉米”泛化成“谷物”
@@ -2496,7 +2496,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 按既有饲料制作原料将Getreide（谷物）限定为Mais（玉米）。
 
-**相关文件：** [德文指南](data/text/de/reference_guide/poultry_farm.cc) · [JP对应文件](data/text/jp/reference_guide/poultry_farm.cc) · [US对应文件](data/text/us/reference_guide/poultry_farm.cc) · [EU对应文件](data/text/eu/reference_guide/poultry_farm.cc) · [水车材料判断](data/scripts/de/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [JP对应文件](data/scripts/jp/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28)
+**相关文件：** [德文指南](text/de/reference_guide/poultry_farm.cc) · [JP对应文件](text/jp/reference_guide/poultry_farm.cc) · [US对应文件](text/us/reference_guide/poultry_farm.cc) · [EU对应文件](text/eu/reference_guide/poultry_farm.cc) · [水车材料判断](data/scripts/de/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [JP对应文件](data/scripts/jp/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28)
 
 <a id="audit-d01"></a>
 ### US／EU：Nina 缺少第一段解锁边界
@@ -2517,7 +2517,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 在现有第一段后恢复<111>，正文不重写。
 
-**相关文件：** [Nina 原文](data/text/us/reference_guide/ngc_awl_profiles_nina.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_nina.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_nina.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_nina.cc)
+**相关文件：** [Nina 原文](text/us/reference_guide/ngc_awl_profiles_nina.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_nina.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_nina.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_nina.cc)
 
 <a id="audit-d02"></a>
 ### 海外三版：Griffin 缺少第二段解锁边界
@@ -2538,7 +2538,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 在既有第二段之后恢复<222>，与Griffin其他段落修复一起保留完整正文。
 
-**相关文件：** [Griffin 原文](data/text/us/reference_guide/ngc_awl_profiles_griffin.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_griffin.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_griffin.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_griffin.cc)
+**相关文件：** [Griffin 原文](text/us/reference_guide/ngc_awl_profiles_griffin.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_griffin.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_griffin.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_griffin.cc)
 
 <a id="audit-d03"></a>
 ### 海外三版：Nak 缺少第二段解锁边界
@@ -2559,7 +2559,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 在现有第二段后恢复<332>，不调整解锁函数。
 
-**相关文件：** [Nak 原文](data/text/us/reference_guide/ngc_awl_profiles_nak.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_nak.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_nak.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_nak.cc) · [边界读取逻辑](src/scene_reference_page.cc)
+**相关文件：** [Nak 原文](text/us/reference_guide/ngc_awl_profiles_nak.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_nak.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_nak.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_nak.cc) · [边界读取逻辑](src/scene_reference_page.cc)
 
 <a id="audit-d04"></a>
 ### DE：四本指南／贺卡的标题缺失，正文第一句占据固定标题位置
@@ -2583,7 +2583,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 DE四页补回固定标题，同时把原本占据标题的有效第一句保留到正文开头；不删除原内容。
 
-**相关文件：** [例：Samantha](data/text/de/reference_guide/ngc_awl_profiles_samantha.cc) · [JP对应文件](data/text/jp/reference_guide/ngc_awl_profiles_samantha.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_samantha.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_samantha.cc) · [例：Gray 贺卡](data/text/de/reference_guide/new_year_card_gray.cc) · [JP对应文件](data/text/jp/reference_guide/new_year_card_gray.cc) · [US对应文件](data/text/us/reference_guide/new_year_card_gray.cc) · [EU对应文件](data/text/eu/reference_guide/new_year_card_gray.cc)
+**相关文件：** [例：Samantha](text/de/reference_guide/ngc_awl_profiles_samantha.cc) · [JP对应文件](text/jp/reference_guide/ngc_awl_profiles_samantha.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_samantha.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_samantha.cc) · [例：Gray 贺卡](text/de/reference_guide/new_year_card_gray.cc) · [JP对应文件](text/jp/reference_guide/new_year_card_gray.cc) · [US对应文件](text/us/reference_guide/new_year_card_gray.cc) · [EU对应文件](text/eu/reference_guide/new_year_card_gray.cc)
 
 <a id="audit-d05"></a>
 ### DE：食谱中的黄油小标题缺失
@@ -2604,7 +2604,7 @@ DE四页补回固定标题，同时把原本占据标题的有效第一句保留
 
 在原黄油材料列表前恢复☆Butter（黄油）小标题，保留后续黄油面包标题。
 
-**相关文件：** [食谱对应段落](data/text/de/reference_guide/cookbook_2.cc) · [JP对应文件](data/text/jp/reference_guide/cookbook_2.cc) · [US对应文件](data/text/us/reference_guide/cookbook_2.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_2.cc)
+**相关文件：** [食谱对应段落](text/de/reference_guide/cookbook_2.cc) · [JP对应文件](text/jp/reference_guide/cookbook_2.cc) · [US对应文件](text/us/reference_guide/cookbook_2.cc) · [EU对应文件](text/eu/reference_guide/cookbook_2.cc)
 
 <a id="audit-d06"></a>
 ### Wally：海外缺两段
@@ -2637,7 +2637,7 @@ DE 在对应句之后结束：
 
 Wally补回因腿病退役后当教练，以及希望儿子成为一流运动员、每天陪他慢跑两段；恢复<041>／<042>分界，已有标记不重复插入。
 
-**相关文件：** [JP人物介绍](data/text/jp/reference_guide/ngc_awl_profiles_wally.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_wally.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_wally.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_wally.cc)
+**相关文件：** [JP人物介绍](text/jp/reference_guide/ngc_awl_profiles_wally.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_wally.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_wally.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_wally.cc)
 
 <a id="audit-d07"></a>
 ### Hugh：海外缺两段
@@ -2670,7 +2670,7 @@ DE 仅有：
 
 Hugh补回害怕童年欺负他的Kate，以及从学步前接受父亲训练、将来可能超越父亲两段；保留<061>并恢复<062>。
 
-**相关文件：** [JP](data/text/jp/reference_guide/ngc_awl_profiles_hugh.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_hugh.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_hugh.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_hugh.cc)
+**相关文件：** [JP](text/jp/reference_guide/ngc_awl_profiles_hugh.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_hugh.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_hugh.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_hugh.cc)
 
 <a id="audit-d08"></a>
 ### Samantha：海外缺两段
@@ -2703,7 +2703,7 @@ DE 对应内容：
 
 Samantha补回严格保守、认为普通最好，以及经常待在家中两段；恢复<081>／<082>。
 
-**相关文件：** [JP](data/text/jp/reference_guide/ngc_awl_profiles_samantha.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_samantha.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_samantha.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_samantha.cc)
+**相关文件：** [JP](text/jp/reference_guide/ngc_awl_profiles_samantha.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_samantha.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_samantha.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_samantha.cc)
 
 <a id="audit-d09"></a>
 ### Galen：海外缺最后一段
@@ -2734,7 +2734,7 @@ DE 在对应句结束：
 
 Galen补回妻子去世后一直悲伤、生活寂寞的末段，并恢复<102>；保留已有迁居正文。
 
-**相关文件：** [JP人物介绍](data/text/jp/reference_guide/ngc_awl_profiles_galen.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_galen.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_galen.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_galen.cc)
+**相关文件：** [JP人物介绍](text/jp/reference_guide/ngc_awl_profiles_galen.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_galen.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_galen.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_galen.cc)
 
 <a id="audit-d10"></a>
 ### Daryl：海外缺两段
@@ -2767,7 +2767,7 @@ DE 仅有：
 
 Daryl补回童年被牛重伤后怕牛、研究克隆优良牛发财两段；恢复<121>／<122>。
 
-**相关文件：** [JP](data/text/jp/reference_guide/ngc_awl_profiles_daryl.cc) · [US对应文件](data/text/us/reference_guide/ngc_awl_profiles_daryl.cc) · [EU对应文件](data/text/eu/reference_guide/ngc_awl_profiles_daryl.cc) · [DE对应文件](data/text/de/reference_guide/ngc_awl_profiles_daryl.cc) · [人物介绍显示条件](src/scene_reference_page.cc:678)
+**相关文件：** [JP](text/jp/reference_guide/ngc_awl_profiles_daryl.cc) · [US对应文件](text/us/reference_guide/ngc_awl_profiles_daryl.cc) · [EU对应文件](text/eu/reference_guide/ngc_awl_profiles_daryl.cc) · [DE对应文件](text/de/reference_guide/ngc_awl_profiles_daryl.cc) · [人物介绍显示条件](src/scene_reference_page.cc:678)
 
 <a id="audit-f02"></a>
 ### JP：味噌汤食谱的锅写成 `なぺ`
@@ -2788,7 +2788,7 @@ Daryl补回童年被牛重伤后怕牛、研究克隆优良牛发财两段；恢
 
 JP食谱なぺ改为已有正确锅名なべ。
 
-**相关文件：** [味噌汤食谱](data/text/jp/reference_guide/cookbook_1.cc) · [US对应文件](data/text/us/reference_guide/cookbook_1.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_1.cc) · [DE对应文件](data/text/de/reference_guide/cookbook_1.cc)
+**相关文件：** [味噌汤食谱](text/jp/reference_guide/cookbook_1.cc) · [US对应文件](text/us/reference_guide/cookbook_1.cc) · [EU对应文件](text/eu/reference_guide/cookbook_1.cc) · [DE对应文件](text/de/reference_guide/cookbook_1.cc)
 
 <a id="audit-f03"></a>
 ### 海外三版：食谱牛奶单词残缺
@@ -2809,7 +2809,7 @@ JP食谱なぺ改为已有正确锅名なべ。
 
 海外食谱Mil补全为Milk／Milch，使用本版既有牛奶名称。
 
-**相关文件：** [食谱原文](data/text/de/reference_guide/cookbook_4.cc) · [JP对应文件](data/text/jp/reference_guide/cookbook_4.cc) · [US对应文件](data/text/us/reference_guide/cookbook_4.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_4.cc)
+**相关文件：** [食谱原文](text/de/reference_guide/cookbook_4.cc) · [JP对应文件](text/jp/reference_guide/cookbook_4.cc) · [US对应文件](text/us/reference_guide/cookbook_4.cc) · [EU对应文件](text/eu/reference_guide/cookbook_4.cc)
 
 <a id="audit-f04"></a>
 ### DE：酱油名称出现错误字符
@@ -2830,7 +2830,7 @@ JP食谱なぺ改为已有正确锅名なべ。
 
 DE食谱Soyasoﾟe改为另一本食谱已有的Soyasoße（酱油）。
 
-**相关文件：** [错误文本](data/text/de/reference_guide/cookbook_4.cc) · [JP对应文件](data/text/jp/reference_guide/cookbook_4.cc) · [US对应文件](data/text/us/reference_guide/cookbook_4.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_4.cc) · [已有正确拼写](data/text/de/reference_guide/cookbook_2.cc) · [JP对应文件](data/text/jp/reference_guide/cookbook_2.cc) · [US对应文件](data/text/us/reference_guide/cookbook_2.cc) · [EU对应文件](data/text/eu/reference_guide/cookbook_2.cc)
+**相关文件：** [错误文本](text/de/reference_guide/cookbook_4.cc) · [JP对应文件](text/jp/reference_guide/cookbook_4.cc) · [US对应文件](text/us/reference_guide/cookbook_4.cc) · [EU对应文件](text/eu/reference_guide/cookbook_4.cc) · [已有正确拼写](text/de/reference_guide/cookbook_2.cc) · [JP对应文件](text/jp/reference_guide/cookbook_2.cc) · [US对应文件](text/us/reference_guide/cookbook_2.cc) · [EU对应文件](text/eu/reference_guide/cookbook_2.cc)
 
 <a id="winery-day-off"></a>
 ### 酒庄告示休息日错误
@@ -2887,7 +2887,7 @@ JP是“即使LV5也无法击碎”；这个调查说明不等于已检查玩家
 
 把指南中的两个数字改为实际出货价，沿用各版排版。
 
-**相关文件：** [物品价格](src/item.cc) · [出货结算](src/shipping_bin.cc) · [JP](data/text/jp/reference_guide/sell_price.cc) · [US](data/text/us/reference_guide/sell_price.cc) · [EU](data/text/eu/reference_guide/sell_price.cc) · [DE](data/text/de/reference_guide/sell_price.cc)
+**相关文件：** [物品价格](src/item.cc) · [出货结算](src/shipping_bin.cc) · [JP](text/jp/reference_guide/sell_price.cc) · [US](text/us/reference_guide/sell_price.cc) · [EU](text/eu/reference_guide/sell_price.cc) · [DE](text/de/reference_guide/sell_price.cc)
 
 <a id="guide-magic-grass-growth-days"></a>
 ### 魔术草指南少写一天成长时间
@@ -2906,7 +2906,7 @@ JP是“即使LV5也无法击碎”；这个调查说明不等于已检查玩家
 
 把四版指南中的成长阶段改为 3、3、2、2 天。
 
-**相关文件：** [成长表](src/field_data.cc) · [每日更新](src/field.cc) · [JP](data/text/jp/reference_guide/seasonal_crops.cc) · [US](data/text/us/reference_guide/seasonal_crops.cc) · [EU](data/text/eu/reference_guide/seasonal_crops.cc) · [DE](data/text/de/reference_guide/seasonal_crops.cc)
+**相关文件：** [成长表](src/field_data.cc) · [每日更新](src/field.cc) · [JP](text/jp/reference_guide/seasonal_crops.cc) · [US](text/us/reference_guide/seasonal_crops.cc) · [EU](text/eu/reference_guide/seasonal_crops.cc) · [DE](text/de/reference_guide/seasonal_crops.cc)
 
 <a id="guide-fall-sweet-potato"></a>
 ### 秋季作物清单漏列红薯
@@ -2925,7 +2925,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 照 JP 顺序在茄子后补入红薯，英语用 `Sweet Potato`，德语用 `Süßkartoffeln`。
 
-**相关文件：** [JP](data/text/jp/reference_guide/raising_crops.cc) · [US](data/text/us/reference_guide/raising_crops.cc) · [EU](data/text/eu/reference_guide/raising_crops.cc) · [DE](data/text/de/reference_guide/raising_crops.cc) · [田地季节判断](src/field.cc)
+**相关文件：** [JP](text/jp/reference_guide/raising_crops.cc) · [US](text/us/reference_guide/raising_crops.cc) · [EU](text/eu/reference_guide/raising_crops.cc) · [DE](text/de/reference_guide/raising_crops.cc) · [田地季节判断](src/field.cc)
 
 <a id="category-television"></a>
 ## 电视节目内容
@@ -3098,7 +3098,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 第3集S牛奶和第7集全部G牛奶引用沿用本版物品名称Milk／Milch (S/G)，不新增羊奶或山羊奶。
 
-**相关文件：** [节目原文](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c) · [已有牛奶名称](data/text/us/item_2.cc) · [JP对应文件](data/text/jp/item_2.cc) · [EU对应文件](data/text/eu/item_2.cc) · [DE对应文件](data/text/de/item_2.cc)
+**相关文件：** [节目原文](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c) · [已有牛奶名称](text/us/item_2.cc) · [JP对应文件](text/jp/item_2.cc) · [EU对应文件](text/eu/item_2.cc) · [DE对应文件](text/de/item_2.cc)
 
 <a id="audit-e06"></a>
 ### 海外三版：同节目第1集，把将来发售写成已经发售
@@ -3289,7 +3289,7 @@ BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE�
 
 沿用已修鱼记录中的Bonito（鲣鱼），仅第6集替换错误金枪鱼名称。
 
-**相关文件：** [第6集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [德文鱼记录](data/text/de/fishing_results_data.cc) · [JP对应文件](data/text/jp/fishing_results_data.cc) · [US对应文件](data/text/us/fishing_results_data.cc) · [EU对应文件](data/text/eu/fishing_results_data.cc)
+**相关文件：** [第6集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [德文鱼记录](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
 
 <a id="audit-e15"></a>
 ### DE：钓鱼节目第10集，把下游鱼全部说成海鱼
@@ -3331,7 +3331,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 沿用同版RockTrout记录的Gebirgsforelle，避免误用另一鱼种Bergforelle。
 
-**相关文件：** [第13集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [既有名称映射](data/text/de/fishing_results_data.cc) · [JP对应文件](data/text/jp/fishing_results_data.cc) · [US对应文件](data/text/us/fishing_results_data.cc) · [EU对应文件](data/text/eu/fishing_results_data.cc)
+**相关文件：** [第13集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [既有名称映射](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
 
 <a id="audit-e17"></a>
 ### US／EU：矿场研究第9集，把“255层没有下行楼梯”写成“没有通向255层的楼梯”

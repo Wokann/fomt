@@ -795,10 +795,10 @@ static Source inspect_source(const char *root, const char *build, int region, co
     char *repo_stem = path_join(root, object_stem);
     char *build_stem = path_join(build, object_stem);
     char *path = find_source(repo_stem, &source.origin, false);
-    if (!path && starts(object_stem, "data/text/")) {
-        char *text_dir = path_join(root, "data/text");
+    if (!path && starts(object_stem, "text/")) {
+        char *text_dir = path_join(root, "text");
         char *region_dir = path_join(text_dir, regions[region]);
-        char *regional_stem = path_join(region_dir, object_stem + strlen("data/text/"));
+        char *regional_stem = path_join(region_dir, object_stem + strlen("text/"));
         path = find_source(regional_stem, &source.origin, false);
         free(regional_stem);
         free(region_dir);

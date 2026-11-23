@@ -4452,7 +4452,7 @@ SceneTransitionOwner YodelRanchShopScene::Run()
 
 /*
  * The source order is the ROM order: menu text, catalog, status text, then
- * dialogue text.  Regional prose lives in data/text; these includes deliberately
+ * dialogue text.  Regional prose lives in text; these includes deliberately
  * make one physical source object so the catalog stays between its text groups.
  */
 #include FOMT_TEXT_INCLUDE(scene_yodel_ranch_shop_1.cc)
