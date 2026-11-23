@@ -186,7 +186,7 @@
 | [03DC](data/scripts/us/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存包含时间的次日状态，导致睡眠小时恢复按 24 小时计算；海外版先保存真实时间。[机制影响](BUGFIX.md#jp-sleep-time) |
 | [03E1](data/scripts/de/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) | JP=US=EU / DE | DE 在珀布利日常对话中多一次 TalkMessage。 |
 | [03E5](data/scripts/us/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU原版先播日文再播对应英文夸奖；BUGFIX仅去掉前置日文对象和调用，不补译、不改已有英文及JP／DE。[重复消息](BUGFIX.md#zack-untranslated)。 |
-| [03F0](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和 DE 文本分段上存在差异。 |
+| [03F0](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和DE文本分段上存在差异。JP开启BUGFIX时让头像随纠正后的婚姻状态台词一起交换；DE去掉多余台词。[对应修复](BUGFIX.md#audit-a09)。 |
 | [03FD](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU 将玛娜日常对话中的一处慢速文本改用普通对话。 |
 | [0414](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) | JP=US=EU / DE | 德版春 19 日节目少一个 break，会继续播放 20 日节目。[缺陷记录](BUGFIX.md#de-farm-tv) |
 | [0418](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 人物介绍节目中的慢速台词数和调用类型不同；DE 第 36 号人物节目没有读取频道输入，随后分派到天气频道。[缺陷记录](BUGFIX.md#de-profile-tv) |

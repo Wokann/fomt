@@ -2076,11 +2076,12 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
-                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
 #ifdef BUGFIX
-                                                // Match the actual player marriage state; the original messages are reversed.
+                                                // Match the portrait and dialogue to the player's marriage state.
+                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #else
+                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #endif
                                             }
@@ -2094,11 +2095,12 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
-                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
 #ifdef BUGFIX
-                                                // Match the actual player marriage state; the original messages are reversed.
+                                                // Match the portrait and dialogue to the player's marriage state.
+                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #else
+                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                             }
@@ -2329,11 +2331,12 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         }
                                         else
                                         {
-                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
 #ifdef BUGFIX
-                                            // Match the actual player marriage state; the original messages are reversed.
+                                            // Match the portrait and dialogue to the player's marriage state.
+                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #else
+                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #endif
                                         }
@@ -2347,11 +2350,12 @@ void EventScript_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         }
                                         else
                                         {
-                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
 #ifdef BUGFIX
-                                            // Match the actual player marriage state; the original messages are reversed.
+                                            // Match the portrait and dialogue to the player's marriage state.
+                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #else
+                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                         }

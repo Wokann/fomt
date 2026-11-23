@@ -379,7 +379,7 @@ US／EU在实际玩家已婚条件下询问婚后生活，未婚时劝婚。
 
 **修复方式：**
 
-JP交换四次相关消息引用；DE删除三次错误的额外消息。保留婚礼完成、地点、天气、首谈／复谈条件及其余有效台词。 BUGFIX关闭时保留原文本及引用。
+JP交换四次相关消息引用，并让相应头像随台词一起调整：询问已婚玩家夫妻相处时使用快乐头像，劝未婚玩家结婚时使用普通头像，与原台词的头像配对及海外三版一致。DE删除三次错误的额外消息。保留婚礼完成、地点、天气、首谈／复谈条件及其余有效台词。BUGFIX关闭时保留原文本、引用和头像。
 
 **相关文件：** [JP 条件](data/scripts/jp/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
 
