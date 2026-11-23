@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 35 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 36 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 22 |
-| **合计** | | **149** |
+| **合计** | | **150** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1331,6 +1331,7 @@ US／EU 分别写 eated、Pinapple
 | [玩家拒绝采葡萄时杜克向未到场的克里夫讲话](#winery-job-decline-duke-dialogue) | US、EU、DE | 已接入 |
 | [德版珀布利谈新生儿时多播一条英文](#de-popuri-newborn-dialogue) | DE | 已接入 |
 | [德版珀布利在孩子学步事件中重复同一句](#de-popuri-child-first-steps) | DE | 已接入 |
+| [德版玛娜恭维杰夫时夸奖对象颠倒](#de-manna-flatters-jeff) | DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2080,6 +2081,25 @@ JP、US、EU 的第二句感叹孩子长得很快，本作德版玛丽的育儿�
 保留学步第一句，第二次调用改为珀布利的独立对话 `Er wird einfach so schnell groß!`（他长得真快呀！）。
 
 **相关文件：** [珀布利学步事件](data/scripts/de/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [玛丽的德语原句](data/scripts/de/EventScript_NPCEvent_Mary_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [US 对照](data/scripts/us/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c)
+
+<a id="de-manna-flatters-jeff"></a>
+### 德版玛娜恭维杰夫时夸奖对象颠倒
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+玛娜在杂货店称赞杰夫后问价。JP为 `わたしもホレてしまいそうよ。`（连我都快喜欢上你了），US／EU为 `I might develop a crush on you myself!`（我自己都快喜欢上你了）。DE的 `Ich bin zum Verlieben!` 却成了“我很招人喜欢”，把被称赞的人从杰夫换成玛娜自己。
+
+**判断依据：**
+
+前文始终是玛娜恭维杰夫，后续由杰夫回应并给她优惠；英日对应文本也明确指向杰夫。德版三处消息速度不同是独立的地区演出，不因此改变。
+
+**修复方式：**
+
+仅在BUGFIX开启时将德文第一句改为 `Ich könnte mich glatt in dich verlieben!`（我简直要喜欢上你了！），按现有行宽分行，恢复英日同一场景的含义。保留原问价两行、杰夫半价答复、肖像和消息调用顺序。
+
+**相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_FlattersJeff.mary.c)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明

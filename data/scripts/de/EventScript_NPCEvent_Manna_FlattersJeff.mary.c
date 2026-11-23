@@ -46,7 +46,13 @@ mary_text_table
         "Wenn du es sagst...{Press}";
 
     const char gText_NPCEvent_Manna_FlattersJeff_MannaFlirtsAndAsksPrice[] =
+#ifdef BUGFIX
+        // Manna says she could fall for Jeff.
+        "Ich könnte mich glatt\r\n"
+        "in dich verlieben!\r\n"
+#else
         "Ich bin zum Verlieben!\r\n"
+#endif
         "Nun aber, wie viel schulde \r\n"
         "ich dir fürs Essen...?{Press}";
 
