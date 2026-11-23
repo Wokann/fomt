@@ -28,10 +28,18 @@ mary_text_table
         "seine Schwester Popuri, \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyMotherLillia[] =
+#ifdef BUGFIX
+        "die Mutter Lillia\r\n";
+#else
         "seine Mutter Lillia\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_FamilyFatherRod[] =
+#ifdef BUGFIX
+        "und der Vater Rod.\r\n";
+#else
         "und sein Vater Rod.\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Rick_BiographyPart01[] =
         "Er liebt seine Schwester \r\n"
@@ -71,11 +79,13 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Popuri_FamilySibling[] =
         "ihr Bruder Rick, \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_FamilyMotherLillia_2[] =
         "ihre Mutter Lillia\r\n";
 
     const char gText_TV_MineralTownFriends_FamilyFatherRod_2[] =
         "und ihr Vater Rod.\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Popuri_BiographyPart01[] =
         "Sie ist kindisch und kann\r\n"
@@ -309,11 +319,13 @@ mary_text_table
         "\r\n"
         "Mit ihm leben: \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2[] =
         "Staid　　　　　　\r\n";
 
     const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_2[] =
         "Nappy　　　　　　　　　\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Bold_HarvestSpriteFamilyOverview[] =
         "Die 7 Brüder (?) leben\r\n"
@@ -363,8 +375,10 @@ mary_text_table
         "\r\n"
         "Mit ihm leben: \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3[] =
         "Nappy \r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Aqua_HarvestSpriteFamilyOverview[] =
         "Die 7 Brüder (?) leben\r\n"
@@ -632,7 +646,11 @@ mary_text_table
         "seine Frau Sasha und \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterKaren[] =
+#ifdef BUGFIX
+        "die Tochter Karen. \r\n";
+#else
         "seine Tochter Karen. \r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Jeff_BiographyPart01[] =
         "Er kann sich nicht durch- \r\n"
@@ -702,8 +720,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Sasha_FamilyHusband[] =
         "ihr Mann Jeff und \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_FamilyDaughterKaren_2[] =
         "ihre Tochter Karen.\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Sasha_FamilyAndBiography[] =
         "Im Gegensatz zu ihrem\r\n"
@@ -829,7 +849,11 @@ mary_text_table
         "seine Frau Anna und \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterMary[] =
+#ifdef BUGFIX
+        "die Tochter Mary.\r\n";
+#else
         "seine Tochter Mary.\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Basil_BiographyPart02[] =
         "Er kam mit seiner Familie\r\n"
@@ -899,8 +923,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Anna_BiographyPart01[] =
         "ihr Mann Basil und \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_FamilyDaughterMary_2[] =
         "ihre Tochter Mary. \r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Anna_BiographyPart02[] =
         "Sie mag das Leben auf dem\r\n"
@@ -1028,7 +1054,11 @@ mary_text_table
         "seine Frau Manna  \r\n";
 
     const char gText_TV_MineralTownFriends_FamilyDaughterAja[] =
+#ifdef BUGFIX
+        "und die Tochter Aja. \r\n";
+#else
         "seine Tochter Aja. \r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Duke_BiographyPart02[] =
         "Er hat immer mal gerne\r\n"
@@ -1057,8 +1087,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Manna_BiographyPart01[] =
         "ihr Mann Duke \r\n";
 
+#ifndef BUGFIX
     const char gText_TV_MineralTownFriends_FamilyDaughterAja_2[] =
         "und ihre Tochter Aja. \r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_Manna_BiographyPart03[] =
         "Sie erzählt und tratscht \r\n"
@@ -1264,6 +1296,13 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Barley_NextEpisodePreview[] =
         "Nächstes Mal stellen \r\n"
         "jemand Unsichtbaren vor.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_MineralTownFriends_SeriesLoop_Opening[] =
+        "Freunde von Mineralstadt!\r\n"
+        "\r\n"
+        "\r\n";
+#endif
 
     const char gText_TV_MineralTownFriends_SeriesLoop_NextCycleTeaser[] =
         "Heute stellen wir jemand \r\n"

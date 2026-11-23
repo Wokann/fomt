@@ -30,8 +30,8 @@ make -j16 GAME_REGION=JP all
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 39 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 24 |
-| **合计** | | **155** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 25 |
+| **合计** | | **156** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -3083,6 +3083,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [德版别墅春季雨天预报把明天说成今天](#de-villa-tv-spring-rain) | DE | 已接入 |
 | [人物介绍节目漏播下期预告和家庭成员](#profile-tv-missing-messages) | US、EU、DE | 已接入 |
 | [人物介绍节目生日与人物数据不符](#profile-tv-birthdays) | 四版（各项受影响版本不同） | 已接入 |
+| [人物介绍节目共用亲属文本、循环开场与字速一致性](#profile-tv-shared-text) | US、EU、DE（JP为共用与呈现对照） | 已接入 |
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误
@@ -3630,3 +3631,60 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 开启BUGFIX时，仅将上表受影响版本的23处日期文字改成实际生日，并去掉DE上述5处重复介词。其余原文、行数、通常／备用选择分支及人物生日数据保持不变；关闭开关保留原版文本。
 
 **相关文件：** [生日常量](include/fomt_constants.mary.h) · [人物表及实际生日选择](src/npc_collection.cc) · [JP节目](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c)
+
+<a id="profile-tv-shared-text"></a>
+### 人物介绍节目共用亲属文本、循环开场与字速一致性
+
+**受影响版本：** US、EU、DE；JP作为共用文本、声明顺序及慢速呈现的对照，不修改JP正文。
+
+**原版内容与差异：**
+
+《矿石镇的伙伴们》在Rick／Popuri、Jeff／Sasha、Basil／Anna、Duke／Manna各篇重复介绍同一名家属。JP共用不带所属者性别的亲属短句；海外使用 `his/her`（他的／她的）和 `sein/ihr`（他的／她的）等词分别保存。**原有性别分槽是正常本地化，不是性别错误。** 本项在GBA原文上小改为可共用表达，同时统一篇末衔接与家属短句字速。关闭BUGFIX仍保留原文及各独立槽。
+
+下表列出四版原文及共用修订；US、EU相同，合并显示。为便于阅读，省略JP补齐行宽的全角空格和各行尾的CRLF；实改保留原换行与基串原有尾空格。
+
+| 亲属及中文参考 | JP原文（BUGFIX不变） | US＝EU原文的两种独立槽 | DE原文的两种独立槽 | BUGFIX海外共用基串 |
+| --- | --- | --- | --- | --- |
+| 母亲莉莉娅 | `お母さんのリリアさん。` | `his mother Lillia,`／`her mother Lillia,` | `seine Mutter Lillia`／`ihre Mutter Lillia` | US/EU：`the mother Lillia,`；DE：`die Mutter Lillia` |
+| 还有父亲罗德 | `後はお父さんのロッドさん。` | `and his dad Rod.`／`and her dad Rod.` | `und sein Vater Rod.`／`und ihr Vater Rod.` | US/EU：`and the dad Rod.`；DE：`und der Vater Rod.` |
+| 女儿卡莲 | `娘のカレン。` | `his daughter Karen. `／`her daughter Karen.` | `seine Tochter Karen. `／`ihre Tochter Karen.` | US/EU：`the daughter Karen. `；DE：`die Tochter Karen. ` |
+| 女儿玛丽 | `娘のマリー。` | `his daughter Mary.`／`her daughter Mary. ` | `seine Tochter Mary.`／`ihre Tochter Mary. ` | US/EU：`the daughter Mary.`；DE：`die Tochter Mary.` |
+| 还有女儿阿秋 | `後は娘のアージュさん。` | `his daughter Aja. `／`and her daughter Aja. ` | `seine Tochter Aja. `／`und ihre Tochter Aja. ` | US/EU：`and the daughter Aja. `；DE：`und die Tochter Aja. ` |
+
+Aja的连接词必须结合上一条消息处理：US/EU原Duke前文为 `his wife Manna and  \r\n`（他的妻子玛娜和……），BUGFIX改为 `his wife Manna  \r\n`，只去掉and，保留两个尾空格及换行，再接共用 `and the daughter Aja. \r\n`。Manna前文 `her husband Duke \r\n`（她的丈夫笛克）本来没有and，共用串正好保留原有连接词。DE两篇前文都没有und，无需改动。若只把专用槽删掉、沿用无连接词基串，会令Manna篇失去原来的“还有”。
+
+另有Staid、Nappy家属姓名及US/EU的Rick开场，内容相同但空格／Tab布局不同；默认仍保留各槽，仅统一基名并用 `_2`、`_3` 区分。BUGFIX改用JP对应调用的共用基名，词义不变。
+
+篇末第39项存在另一处实际重复：JP先播仅标题的 `SeriesLoop_Opening`，再由 `SeriesLoop_NextCycleTeaser` 开始介绍；海外先播完整 `Shared_Opening`，随后Teaser又重复同一介绍语。
+
+| 版本 | 默认开场后接Teaser | BUGFIX循环开场后接Teaser |
+| --- | --- | --- |
+| JP | `ミネラルタウンのなかまたち！`（矿石镇的伙伴们！）及两个补齐空白行；Teaser才说 `今日紹介するのはこの人です！`（今天介绍的是这位！） | 原样保留 |
+| US＝EU | `Mineral Town Friends!\r\n\r\n\r\nToday we'll introduce \r\nsomeone new.\r\n`；Teaser又以 `Today we'll introduce \r\nsomeone new.\r\n`（今天介绍一位新人物）开头 | 新增 `SeriesLoop_Opening`：`Mineral Town Friends!\r\n\r\n\r\n`，仅截取现有节目标题及原空白行；Teaser介绍语保留 |
+| DE | `Freunde von Mineralstadt!\r\n\r\n\r\nHeute stellen wir jemand \r\nNeuen vor.\r\n`；Teaser又以 `Heute stellen wir jemand \r\nNeuen vor.\r\n`（今天介绍一位新人物）开头 | 新增 `SeriesLoop_Opening`：`Freunde von Mineralstadt!\r\n\r\n\r\n`，同样只保留已有标题；Teaser介绍语保留 |
+
+海外另有三处家属短句使用普通 `TalkMessage`，同一位置JP均使用 `TalkMessageSlow`：Lillia丈夫Rod、Stu祖母Ellen、Sasha女儿Karen。下表的“慢／普通”指文字速度，和是否需要按键确认分开判断。
+
+| 目标与原版差异 | 紧邻完整介绍顺序及强对照 | BUGFIX处理 |
+| --- | --- | --- |
+| case2 Lillia：JP `後は旦那さんのロッドさん。`（还有丈夫罗德）慢；US/EU `and her husband Rod. `、DE `und ihr Mann Rod. ` 普通 | 头部慢→女儿Popuri慢→儿子Rick慢→丈夫Rod普通→Lillia叙述慢→下集Cliff预告慢。case0／1同一Rod父亲短句均在清除头像及姓名后出现，之后恢复被介绍者头像／姓名并开始叙述，海外也均为慢。其他无头像的Aja、Joanna短句同样为慢。 | 海外丈夫短句改慢，文本、无头像状态及后续叙述不动。 |
+| case17 Stu：JP `おばあちゃんのエレン。`（祖母艾莲）慢、CRLF结尾；US/EU `his grandmother Ellen.{Press}`、DE `seine Großmutter Ellen.{Press}` 普通 | 头部慢→姐姐Elli慢→祖母Ellen普通→Stu叙述慢→下集Jeff预告慢。case16 Elli介绍同一Ellen、同一高兴头像及姓名时用慢；case15／16／17都按头部→两名家属→自身叙述→预告展开。海外目标是唯一以Press结束的家属短句，但40条现有完整预告都用慢＋Press。 | 海外祖母短句改慢；**原 `{Press}` 保留原处**，继续在家属介绍后等待确认再进入叙述。 |
+| case20 Sasha：JP共用 `娘のカレン。`（女儿卡莲）慢；US/EU `her daughter Karen.`、DE `ihre Tochter Karen.` 普通 | 头部慢→丈夫Jeff慢→女儿Karen普通→Sasha叙述慢→BUGFIX既有Doug预告慢。case18 Jeff介绍同一Karen时，同为婚礼头像＋Karen姓名、随后切回当前介绍者讲叙述，使用慢；case26 Anna的女儿Mary也是独立女性所属者文本、女儿婚礼头像／姓名及相同后续结构，仍用慢。 | 海外改为慢，并调用上表的中性Karen共用基串；已有Doug预告仍由原漏句修复提供。 |
+
+**判断依据：**
+
+亲属表以GBA本作各语原文为主要依据，只移除所属者性别依赖并保留 `dad`、`Mary`、`Aja` 等GBA用词与人名。重制版仅作中性表达的佐证，不整段移植：本地 `SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Television.txt` 的21293行为 `Lillia, the mother.`，21295行为 `And Rod, the father.`；21588、21685、21780行分别为 `And daughter, Karen/Marie/Adge.`（还有女儿卡莲／玛丽／阿秋）。对应DE文件23154、23156行为 `Und Lillia, die Mutter.`、`Und Rod, der Vater.`，23473、23578、23688行为 `Und deren Tochter Karen/Marie/Adge.`。德文 `deren` 指向前文的妻子，不是任意上下文都可共用的中性替换，故采用GBA原词序下的 `die/der`。这些是仓库外本地提取资料及实际行号，不作为本仓库可访问链接。
+
+字速方面，[原生脚本调用分派](src/script_engine.cc) 将 `TalkMessageSlow`（native ID `0x022`）送入同一 `GameScene::TalkMessage`，速率参数为 `0x40`；普通 `TalkMessage`（`0x021`）参数为 `0x100`。这证明两种调用的速度差异，不证明某一个原作者无意选错。按节目源码调用位置统计，完整节目有83处家属短句、40处下集预告；生日头部的两种分支按位置分别统计，非一次播放次数。JP家属短句83处及预告40处均为慢；海外在保留既有漏句修复后为80处家属慢、3处普通，预告40处均为慢。三组紧邻流程、同人物画面及同类句式共同支持本次呈现一致性调整，不能仅凭语言、文本独立分槽、长度或“没有头像”判定应加速。
+
+`{Press}` 是确认停顿，未发现它必须搭配普通字速的规则。Stu的独有分段与字速是两个不同维度：本项保留确认位置，不把它改成CRLF，也不声称普通消息不能处理Press、原版漏等待或存在按键故障。
+
+**修复方式：**
+
+开启BUGFIX时，US/EU各改上述5个亲属共用基串及1个Duke前文，DE改5个共用基串、前文不动；亲属及纯空白变体均使用与JP相同基名和对应调用。海外新增仅标题的循环开场，保留Teaser已有介绍语及下期Rick预告；三处普通家属消息统一用 `TalkMessageSlow`，Stu的Press不变。全部新亲属行不超过28字符，尾空格和CRLF按上述基串保留。
+
+BUGFIX四版最终各172个文本声明，名称及声明顺序一致：US/EU由原180槽减9个额外槽、加1个循环标题；DE由179减8、加1。开启时US/EU通用 `Shared_Opening` 位于第1槽，与JP对应；关闭时保留原排列。默认JP172、US/EU各178、DE177槽，原文与声明顺序保持原样。
+
+本项不重复登记既有[频道输入返回值](#de-profile-tv)、[两处漏句](#profile-tv-missing-messages)及[生日与重复介词](#profile-tv-birthdays)修复。
+
+**相关文件：** [共享节目脚本](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [JP文本](text/jp/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [US文本](text/us/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [EU文本](text/eu/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [DE文本](text/de/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [原生消息速率分派](src/script_engine.cc)
