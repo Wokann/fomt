@@ -30,8 +30,8 @@ make -j16 GAME_REGION=JP all
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 37 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 23 |
-| **合计** | | **152** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 24 |
+| **合计** | | **153** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -2955,6 +2955,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [英文电视台词残留日文助词](#tv-japanese-particles) | US、EU | 已接入 |
 | [德版别墅春季雨天预报把明天说成今天](#de-villa-tv-spring-rain) | DE | 已接入 |
 | [人物介绍节目漏播下期预告和家庭成员](#profile-tv-missing-messages) | US、EU、DE | 已接入 |
+| [人物介绍节目生日与人物数据不符](#profile-tv-birthdays) | 四版（各项受影响版本不同） | 已接入 |
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误
@@ -3455,3 +3456,50 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 开启BUGFIX时，在三个海外版与JP相同的位置补回两份文本及慢速消息调用。US／EU采用 `Next time we'll introduce / Doug.`（下期介绍达德）、`his daughter Ann.`（他的女儿琳）；DE采用 `Nächstes Mal stellen / wir Doug vor.`、`seine Tochter Ann.`，按原节目行宽、换行和等待符排版。沿用本作同语相邻条目的句式，不改节目索引、现有生平或末尾琳的预告。
 
 **相关文件：** [JP](data/scripts/jp/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c)
+
+<a id="profile-tv-birthdays"></a>
+### 人物介绍节目生日与人物数据不符
+
+**受影响版本：** 四版，各人物的错误版本如下。
+
+**原版内容与差异：**
+
+节目直接播报写在人物介绍中的日期，不会自动读取人物实际生日。以下12组原版文字至少有一个版本与人物数据不符；玛丽这一行专指玩家生日与她的通常生日重合时的备用介绍。
+
+| 人物及分支 | JP节目 | US节目 | EU节目 | DE节目 | 实际生日 |
+| --- | --- | --- | --- | --- | --- |
+| 里克 | 秋27 | 夏27 | 夏27 | 夏27 | 秋27 |
+| 莉莉娅 | 秋27 | 秋27 | 秋27 | 秋27 | 春19 |
+| 医生 | 秋17 | 秋17 | 秋17 | 秋17 | 秋19 |
+| Bold | 春4 | 春4 | 春4 | 春15 | 春4 |
+| Hoggy | 秋10 | 秋10 | 秋10 | 秋14 | 秋10 |
+| Timid | 夏16 | 夏16 | 夏16 | 夏29 | 夏16 |
+| 艾利，通常介绍 | 春16 | 春16 | 春16 | 春季，漏日号 | 春16 |
+| 小优 | 秋5 | 秋5 | 秋5 | 秋27 | 秋5 |
+| 玛丽，备用介绍 | 冬25 | 冬25 | 冬25 | 冬13 | 冬23 |
+| 霍安 | 冬19 | 冬19 | 冬19 | 冬11 | 冬19 |
+| 赛巴拉 | 春11 | 春11 | 春11 | 春20 | 春11 |
+| 穆奇 | 春17 | 春17 | 春17 | 春26 | 春17 |
+
+德文女神通常介绍及杰夫、达德、霍安、杜克的生日行还重复介词，如 `Sein Geburtstag ist am / am 11. Wintertag.`（生日在／在冬11日）。霍安同时存在日号错误，其余重复介词不代表日期也有错。
+
+**判断依据：**
+
+核对四版各37份通常日期介绍、6份备用日期介绍，以及共享人物生日表和实际生日读取逻辑。生日字段影响游戏中实际生日判断，不能为迁就错误节目文字而改动人物数据。六组备用生日如下，只有玩家生日等于通常生日时才选用：
+
+| 人物 | 通常生日 | 备用生日 |
+| --- | --- | --- |
+| 女神 | 春8 | 春9 |
+| 艾利 | 春16 | 春20 |
+| 珀布利 | 夏3 | 夏10 |
+| 琳 | 夏17 | 夏22 |
+| 卡莲 | 秋15 | 秋23 |
+| 玛丽 | 冬20 | 冬23 |
+
+六组节目选择条件在四版均正确；其他人物即使与玩家同生日，也不会套用这六人的备用日期。玛丽原版备用介绍本身写错日号，通常冬20日介绍无需修改。
+
+**修复方式：**
+
+开启BUGFIX时，仅将上表受影响版本的23处日期文字改成实际生日，并去掉DE上述5处重复介词。其余原文、行数、通常／备用选择分支及人物生日数据保持不变；关闭开关保留原版文本。
+
+**相关文件：** [生日常量](include/fomt_constants.mary.h) · [人物表及实际生日选择](src/npc_collection.cc) · [JP节目](data/scripts/jp/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c)

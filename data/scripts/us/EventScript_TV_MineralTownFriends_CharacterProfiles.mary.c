@@ -16,7 +16,12 @@ mary_text_table
         "His name is Rick.\r\n"
         "\r\n"
         "His birthday is the 27th of \r\n"
+#ifdef BUGFIX
+// Rick's birthday is in fall.
+        "Fall.\r\n"
+#else
         "Summer.\r\n"
+#endif
         "\r\n"
         "He lives at the Poultry\r\n"
         "Farm.\r\n"
@@ -100,8 +105,14 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Lillia_ProfileHeader[] =
         "Her name is Lillia.\r\n"
         "\r\n"
+#ifdef BUGFIX
+// Lillia's birthday is in spring.
+        "Her birthday is the 19th of \r\n"
+        "Spring.\r\n"
+#else
         "Her birthday is the 27th of \r\n"
         "Fall.\r\n"
+#endif
         "\r\n"
         "She runs the Poultry Farm.\r\n"
         "\r\n"
@@ -190,7 +201,12 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Doctor_ProfileHeader[] =
         "This is the Doctor.\r\n"
         "\r\n"
+#ifdef BUGFIX
+// The doctor's birthday is on Fall 19.
+        "His birthday is the 19th\r\n"
+#else
         "His birthday is the 17th\r\n"
+#endif
         "of Fall. \r\n"
         "\r\n"
         "He runs the Mineral Clinic.\r\n"
@@ -796,7 +812,12 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Mary_ProfileHeaderBirthdayShiftedForPlayerConflict[] =
         "This is Mary.\r\n"
         "\r\n"
+#ifdef BUGFIX
+// Mary's alternate birthday is on Winter 23.
+        "Her birthday is the 23rd of\r\n"
+#else
         "Her birthday is the 25th of\r\n"
+#endif
         "Winter.\r\n"
         "\r\n"
         "She works at the Library.\r\n"

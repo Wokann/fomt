@@ -16,7 +16,12 @@ mary_text_table
         "Sein Name ist Rick.\r\n"
         "\r\n"
         "Sein Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// Rick's birthday is in fall.
+        "27. Herbsttag.\r\n"
+#else
         "27. Sommertag.\r\n"
+#endif
         "\r\n"
         "Er lebt auf der \r\n"
         "Geflügelfarm.\r\n"
@@ -96,7 +101,12 @@ mary_text_table
         "Ihr Name ist Lilia.\r\n"
         "\r\n"
         "Ihr Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// Lillia's birthday is in spring.
+        "19. Frühlingstag.\r\n"
+#else
         "27. Herbsttag.\r\n"
+#endif
         "\r\n"
         "Sie leitet die Geflügelfarm.\r\n"
         "\r\n"
@@ -188,7 +198,12 @@ mary_text_table
         "Dies ist der Doktor.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// The doctor's birthday is on Fall 19.
+        "19. Herbsttag. \r\n"
+#else
         "17. Herbsttag. \r\n"
+#endif
         "\r\n"
         "Er leitet die Mineralklinik.\r\n"
         "\r\n"
@@ -287,7 +302,12 @@ mary_text_table
         "Sein Name ist Bold.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// Bold's birthday is on Spring 4.
+        "4. Frühlingstag.\r\n"
+#else
         "15. Frühlingstag.\r\n"
+#endif
         "\r\n"
         "Er ist ein Erntewichtel, \r\n"
         "der hinter der Kirche lebt.\r\n"
@@ -369,7 +389,12 @@ mary_text_table
         "Sein Name ist Hoggy.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// Hoggy's birthday is on Fall 10.
+        "10. Herbsttag.\r\n"
+#else
         "14. Herbsttag.\r\n"
+#endif
         "\r\n"
         "Er ist ein Erntewichtel, \r\n"
         "der hinter der Kirche lebt.\r\n"
@@ -393,7 +418,12 @@ mary_text_table
         "Sein Name ist Timid. \r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// Timid's birthday is on Summer 16.
+        "16. Sommertag.\r\n"
+#else
         "29. Sommertag.\r\n"
+#endif
         "\r\n"
         "Er ist ein Erntewichtel, \r\n"
         "der hinter der Kirche lebt.\r\n"
@@ -433,7 +463,12 @@ mary_text_table
         "\r\n"
         "\r\n"
         "Ihr Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// The birthday line repeats the preposition.
+        "8. Frühlingstag. \r\n"
+#else
         "am 8. Frühlingstag. \r\n"
+#endif
         "\r\n"
         "Sie lebt (?) in der Quelle\r\n"
         "auf dem Mutterberg. \r\n"
@@ -520,7 +555,12 @@ mary_text_table
         "Dies ist Elli.\r\n"
         "\r\n"
         "Ihr Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// The regular birthday is missing the day number.
+        "16. Frühlingstag.\r\n"
+#else
         ". Frühlingstag.\r\n"
+#endif
         "\r\n"
         "Sie will Krankenschwester \r\n"
         "in der Klinik werden.\r\n"
@@ -550,7 +590,12 @@ mary_text_table
         "Dies ist Stu.\r\n"
         "\r\n"
         "Sein Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// Stu's birthday is on Fall 5.
+        "5. Herbsttag.\r\n"
+#else
         "27. Herbsttag.\r\n"
+#endif
         "\r\n"
         "Er lebt in einem Haus\r\n"
         "im Norden von Mineralstadt.\r\n"
@@ -577,7 +622,12 @@ mary_text_table
 
     const char gText_TV_MineralTownFriends_Jeff_ProfileHeader[] =
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// The birthday line repeats the preposition.
+        "29. Wintertag.\r\n"
+#else
         "am 29. Wintertag.\r\n"
+#endif
         "\r\n"
         "Er leitet den Supermarkt.\r\n"
         "\r\n"
@@ -680,7 +730,12 @@ mary_text_table
         "Dies ist Doug. \r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// The birthday line repeats the preposition.
+        "11. Wintertag.\r\n"
+#else
         "am 11. Wintertag.\r\n"
+#endif
         "\r\n"
         "Er hat einen Gasthof\r\n"
         "namens \"Dougs \r\n"
@@ -796,7 +851,12 @@ mary_text_table
         "Dies ist Mary.\r\n"
         "\r\n"
         "Ihr Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// Mary's alternate birthday is on Winter 23.
+        "23. Wintertag.\r\n"
+#else
         "13. Wintertag.\r\n"
+#endif
         "\r\n"
         "Arbeitet in der Bibliothek.\r\n"
         "\r\n"
@@ -864,7 +924,12 @@ mary_text_table
         "Dies ist Won.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// Won's birthday has the wrong day and a repeated preposition.
+        "19. Wintertag.\r\n"
+#else
         "am 11. Wintertag.\r\n"
+#endif
         "\r\n"
         "Er ist ein reisender \r\n"
         "Händler, der in Mineral-\r\n"
@@ -953,7 +1018,12 @@ mary_text_table
         "Dies ist Duke.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// The birthday line repeats the preposition.
+        "15. Wintertag.\r\n"
+#else
         "am 15. Wintertag.\r\n"
+#endif
         "\r\n"
         "Er leitet Ajas Weingut.\r\n"
         "\r\n"
@@ -1086,7 +1156,12 @@ mary_text_table
         "Dies ist Saibara.\r\n"
         "\r\n"
         "Sein Geburtstag ist am\r\n"
+#ifdef BUGFIX
+// Saibara's birthday is on Spring 11.
+        "11. Frühlingstag.\r\n"
+#else
         "20. Frühlingstag.\r\n"
+#endif
         "\r\n"
         "Er ist Schmied.\r\n"
         "\r\n"
@@ -1161,7 +1236,12 @@ mary_text_table
         "Dies ist Barley.\r\n"
         "\r\n"
         "Sein Geburtstag ist am \r\n"
+#ifdef BUGFIX
+// Barley's birthday is on Spring 17.
+        "17. Frühlingstag.\r\n"
+#else
         "26. Frühlingstag.\r\n"
+#endif
         "\r\n"
         "Er leitet die Jodel-Farm.\r\n"
         "\r\n"

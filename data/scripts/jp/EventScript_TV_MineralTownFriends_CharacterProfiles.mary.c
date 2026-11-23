@@ -83,7 +83,12 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Lillia_ProfileHeader[] =
         "この人の名前はリリア。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+#ifdef BUGFIX
+// Lillia's birthday is in spring.
+        "誕生日は春の月１９日。　　　\r\n"
+#else
         "誕生日は秋の月２７日。　　　\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "養鶏場『にわとりりあ』を営業\r\n"
         "しているおばちゃん。　　　　\r\n"
@@ -167,7 +172,12 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Doctor_ProfileHeader[] =
         "この人の名前はドクター。　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+#ifdef BUGFIX
+// The doctor's birthday is on Fall 19.
+        "誕生日は秋の月１９日。　　　\r\n"
+#else
         "誕生日は秋の月１７日。　　　\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "『ミネラル医院』を営業してい\r\n"
         "る男のコ。　　　　　　　　　\r\n"
@@ -739,7 +749,12 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Mary_ProfileHeaderBirthdayShiftedForPlayerConflict[] =
         "この人の名前はマリー。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
+#ifdef BUGFIX
+// Mary's alternate birthday is on Winter 23.
+        "誕生日は冬の月２３日。　　　\r\n"
+#else
         "誕生日は冬の月２５日。　　　\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "『マリーの図書館』の受付をし\r\n"
         "ている女のコ。　　　　　　　\r\n"
