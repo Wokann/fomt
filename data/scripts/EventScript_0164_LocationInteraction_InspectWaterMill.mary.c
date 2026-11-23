@@ -1,0 +1,12 @@
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+#include "EventScript_0164_LocationInteraction_InspectWaterMill.mary.h"
+
+void EventScript_0164_LocationInteraction_InspectWaterMill(void)
+{
+    TalkOpen();
+    TalkAppendMessage(gText_LocationInteraction_InspectWaterMill);
+    TalkClose();
+}

@@ -1,0 +1,12 @@
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+#include "EventScript_0412_LocationInteraction_InspectAjaWineryStorageBarrel.mary.h"
+
+void EventScript_0412_LocationInteraction_InspectAjaWineryStorageBarrel(void)
+{
+    TalkOpen();
+    TalkAppendMessage(gText_LocationInteraction_InspectAjaWineryStorageBarrel);
+    TalkClose();
+}

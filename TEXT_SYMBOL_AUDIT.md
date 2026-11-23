@@ -100,7 +100,7 @@
 
 **依据：** DE 同一个字符串既用于琳的答谢，又用于医生解释病情。医生身份、对话位置均能确定；DE 玛丽怀孕事件已有 `Deine Frau ist nicht krank.` 可供参考。应拆开错误复用，保留琳原来的答谢。
 
-[医生与琳的实际调用](data/scripts/de/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c)
+[医生与琳的实际调用](data/scripts/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c)
 
 <a id="a02"></a>
 ### A02．DE：玛丽怀孕事件末尾，玩家独白复用了玛丽的台词
@@ -115,7 +115,7 @@
 
 **依据：** DE 将玛丽“通知父母、邀请玩家回家”的整段话再次用于玩家独白，人物身份不符。不是单纯标签命名问题。
 
-[末尾独白与复用关系](data/scripts/de/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c)
+[末尾独白与复用关系](data/scripts/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c)
 
 <a id="a03"></a>
 ### A03．DE：里克与卡莲婚礼，里克重复珀布利的调侃
@@ -130,7 +130,7 @@
 
 **依据：** 同一句 DE 文本先由珀布利说，再切换里克肖像和姓名重复一次。缺的是里克的否认与邀请，原有文本属于珀布利。
 
-[婚礼对话与肖像切换](data/scripts/de/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c)
+[婚礼对话与肖像切换](data/scripts/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c)
 
 <a id="a04"></a>
 ### A04．DE：Nappy 接受一天收获委托，却说工作一周
@@ -145,7 +145,7 @@
 
 **依据：** 一天分支实际传入 `HARVEST_SPRITE_WORK_DAYS_ONE_DAY`，DE 只是错误共用一周的确认文本，工作时长本身没有变。
 
-[委托参数与文本调用](data/scripts/de/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
+[委托参数与文本调用](data/scripts/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
 
 <a id="a05"></a>
 ### A05．DE：一亿条鱼成就显示一千万
@@ -160,7 +160,7 @@
 
 **依据：** 实际条件是 `GetTotalFishCaught() >= 100000000`，并设置独立的一亿成就标志；DE 错误复用一千万文本。
 
-[成就阈值与调用](data/scripts/de/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c)
+[成就阈值与调用](data/scripts/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c)
 
 <a id="a06"></a>
 ### A06．DE：领取贤者锤时显示秘银锤名称
@@ -175,7 +175,7 @@
 
 **依据：** 订单实际给予 `ITEM_TOOL_HAMMER_MYTHIC`；DE 道具文本已有正确的 `Mythischer Hammer`，可以直接沿用，不需要另造译名。
 
-[锻冶屋领取分支](data/scripts/de/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](data/text/de/item_1.cc)
+[锻冶屋领取分支](data/scripts/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](data/text/de/item_1.cc)
 
 <a id="a07"></a>
 ### A07．海外三版：艾利生日，生育后的选项仍使用生育前内容
@@ -190,7 +190,7 @@
 
 **依据：** 生育后的程序把**第二项**判为正确并增加好感，但海外第二项显示“我的生日”；选第三项“你的生日”反而扣好感。应修正产后菜单对应内容，不能改变本来正确的判定位置。
 
-[海外菜单及结果分支](data/scripts/us/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c)
+[海外菜单及结果分支](data/scripts/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c)
 
 <a id="a08"></a>
 ### A08．海外三版：女神生日，生育前选项顺序错位
@@ -205,7 +205,7 @@
 
 **依据：** 程序把第三项作为女神生日的正确答案，海外第三项却是玩家生日。**生育后的菜单对应关系正确**，因此不能把相关指针全局交换。
 
-[女神生日两套菜单](data/scripts/us/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c)
+[女神生日两套菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c)
 
 <a id="a09"></a>
 ### A09．JP、DE：卡莲嫁给里克后，对玩家婚姻状态的对话不符
@@ -220,7 +220,7 @@
 
 **依据：** 核对的是实际婚姻条件、婚礼完成标志和消息调用，不是根据变量名猜测。JP 是对应关系颠倒；DE 还存在多余调用，需要分别处理具体分支。
 
-[JP 条件](data/scripts/jp/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE 多次消息调用](data/scripts/de/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+[JP 条件](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
 
 <a id="a10"></a>
 ### A10．四版不同程度存在：F-3.14 节目错序或错误复用
@@ -239,7 +239,7 @@
 
 **依据：** 对照实际日期分派、冬21／22的第八战结果，以及前后比赛积分和人物介绍。既有调用错误，也有文本本身的日期、场次错误，不能只改标签名。
 
-[JP 节目](data/scripts/jp/EventScript_1039_TV_F314MGrandPrix.mary.c) · [DE 节目](data/scripts/de/EventScript_1039_TV_F314MGrandPrix.mary.c)
+[JP 节目](data/scripts/EventScript_1039_TV_F314MGrandPrix.mary.c)
 
 
 
@@ -286,7 +286,7 @@
 
 **依据：** 通知在玛丽与格雷结婚后送出，婚后营业告示明确是星期四休馆。
 
-[通知原文](data/text/us/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/jp/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
+[通知原文](data/text/us/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
 
 <a id="b03"></a>
 ### B03．海外三版：牛羊牧场指南说可以卖鸡
@@ -312,7 +312,7 @@
 
 **依据：** 营业告示是09:00至16:00，英文末尾应为下午。DE 表达不够明确，但没有英文这种显式的 AM 错误。用户随后确认德版也按24小时制修为9–16 Uhr。
 
-[指南](data/text/us/reference_guide/clinic.cc) · [营业告示](data/scripts/jp/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
+[指南](data/text/us/reference_guide/clinic.cc) · [营业告示](data/scripts/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
 
 <a id="b05"></a>
 ### B05．海外三版：料理指南多写一个重复选项
@@ -499,7 +499,7 @@
 
 **拟纳入：**仅 DE，把材料明确写成玉米；不改其他句意。
 
-来源：[德文指南](data/text/de/reference_guide/poultry_farm.cc)、[水车材料判断](data/scripts/de/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:28)。
+来源：[德文指南](data/text/de/reference_guide/poultry_farm.cc)、[水车材料判断](data/scripts/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:27)。
 
 
 ## C．人物、动作与剧情含义
@@ -515,7 +515,7 @@
 
 **依据：** JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”；海外晴雨共用晴天文本，雨水的重要性被反转。正常的晴天句子应保留。
 
-[晴雨分支](data/scripts/jp/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c)
+[晴雨分支](data/scripts/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c)
 
 <a id="c02"></a>
 ### C02．海外三版：玛丽星夜祭把自己做料理写成妈妈今天做蛋糕
@@ -528,7 +528,7 @@
 
 **依据：** 时间和料理制作者均改变。婚后有无孩子共用这段话本身合理，不需要因此拆掉正常共用。
 
-[星夜祭对应台词](data/scripts/jp/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c)
+[星夜祭对应台词](text/jp/script/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.h)
 
 **补文依据及范围：** 按用户审核意见，在GBA既有英文／德文上最小修正：把母亲今天做饭改为母亲以前做饭，补明今天玛丽使用母亲食谱做饭；保留原结尾“Tell me what you think of everything!”／“Sag mir, wie du alles findest!”。日版原文用于核对制作者与时态。重制版只作含义交叉参考，不采用其称呼、家庭描述或结尾，不新增昵称。仅按GBA行宽调整控制符及分行，保留既有节日名称和有／无孩子共用关系。
 
@@ -895,7 +895,7 @@ DE 仅有：
 
 **依据：** 本段开头明确是“回到教室的真琴”，老师对其外貌对应的诚人说话；海外身份标注正确。JP 应修显示的说话人，不调整集数或角色映射。
 
-[第24集上下文](data/scripts/jp/EventScript_1045_TV_AaronChanges.mary.c)
+[第24集上下文](data/scripts/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="e02"></a>
 ### E02．DE：同节目第2集漏否定词
@@ -908,7 +908,7 @@ DE 仅有：
 
 **依据：** 原因反转；DE 下一集回顾同一事件时已有正确的 `nicht`，可以用同语原文参照。
 
-[第2、3集](data/scripts/de/EventScript_1045_TV_AaronChanges.mary.c)
+[第2、3集](data/scripts/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="e03"></a>
 ### E03．DE：同节目第13集把竖笛译成录音机
@@ -921,7 +921,7 @@ DE 仅有：
 
 **依据：** 音乐课、吹奏测试、“间接接吻”的上下文共同确定 `recorder` 指竖笛，不是录音机。
 
-[第13集](data/scripts/de/EventScript_1045_TV_AaronChanges.mary.c)
+[第13集](data/scripts/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="e04"></a>
 ### E04．四版：《Card Collector Chisato》第3集卡片数量算错
@@ -934,7 +934,7 @@ DE 仅有：
 
 **依据：** 第2集已明确总计256种、得到186种、还差70种；第3集重述同一批卡片时写成156。随后交换七种，还差63，也支持应为186。
 
-[第2、3集数量关系](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c)
+[第2、3集数量关系](data/scripts/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="e05"></a>
 ### E05．海外三版：同节目把 S／G 牛奶译成羊奶、山羊奶
@@ -948,7 +948,7 @@ DE 仅有：
 
 **依据：** 这里是游戏道具卡片，S／G 为牛奶等级。应沿用现有道具译名，不新增羊奶或山羊奶的物品身份。
 
-[节目原文](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [已有牛奶名称](data/text/us/item_2.cc)
+[节目原文](text/us/script/EventScript_1033_TV_CardCollectorChisato.mary.h) · [已有牛奶名称](data/text/us/item_2.cc)
 
 <a id="e06"></a>
 ### E06．海外三版：同节目第1集，把将来发售写成已经发售
@@ -961,7 +961,7 @@ DE 仅有：
 
 **依据：** 同一段随后仍约定“发售时一起去买”，过去与将来关系冲突。
 
-[第1集](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c)
+[第1集](data/scripts/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="e07"></a>
 ### E07．海外三版：同节目第11集，把假设写成已经发生
@@ -974,7 +974,7 @@ DE 仅有：
 
 **依据：** 前文是连续两天没抽到，所以昨天不再去买；海外却写成已连续三天没抽到，与实际行动冲突。
 
-[第8至11集](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c)
+[第8至11集](data/scripts/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="e08"></a>
 ### E08．海外三版：同节目第8集标题残留 `<et>`
@@ -987,7 +987,7 @@ DE 仅有：
 
 **依据：** 当前码表、消息读取器没有把 `<et>` 定义为控制符，会作为文字显示。它与之前的 `ret>`／`<RET>` 是不同的遗漏点；尚不能断定历史来源相同。
 
-[原文](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [消息读取器](src/ui_text_stream.cc)
+[原文](text/us/script/EventScript_1033_TV_CardCollectorChisato.mary.h) · [消息读取器](src/ui_text_stream.cc)
 
 <a id="e09"></a>
 ### E09．DE：《Mechabot Ultror Zero》第1集装饰人员多出 Yellow
@@ -1000,7 +1000,7 @@ DE 仅有：
 
 **依据：** 日英都是红、蓝、绿负责装饰，黄负责料理；德文把黄重复加入了装饰名单。
 
-[第1集](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
+[第1集](data/scripts/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
 
 <a id="e10"></a>
 ### E10．DE：同节目第2集把上午写成明天
@@ -1013,7 +1013,7 @@ DE 仅有：
 
 **依据：** 德文把作为对照的上午改成明天。US／EU 额外加入“天气预报”的改写，本次不直接等同判定为必须修复；**此项确定范围是 DE 的时间错位**。
 
-[第2集](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
+[第2集](data/scripts/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
 
 <a id="e11"></a>
 ### E11．四版：入门节目冬21日的初始体力和翻倍说明错误
@@ -1026,7 +1026,7 @@ DE 仅有：
 
 **依据：** 四版共享实现中初始体力为150，最大值为 `150 + 10 × 力之果实数量`，十颗后250；状态画面也直接显示该值。应修节目数字与“翻倍”说法，不改游戏机制。
 
-[节目](data/scripts/jp/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [实际体力实现](src/farmer.cc:11)
+[节目](data/scripts/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [实际体力实现](src/farmer.cc:11)
 
 **审核决定及实现：** BUGFIX下四版初始值均改为150；JP把2倍改为1.67倍，US／EU把增加100%改为66.67%，DE按本地小数逗号写作66,67%。实际150→250对应5/3倍、增加66又2/3%，显示值按用户决定四舍五入。其余用词、十颗果实及每颗增加10的说明不改，仅JP为容纳倍率调整必要分行。默认关闭保持原文，脚本条件及游戏机制均不改。本次仅静态核对，未编译。
 
@@ -1041,7 +1041,7 @@ DE 仅有：
 
 **依据：** 温泉恢复上限是角色当前最大体力，不是10。修文应表达“最大值”，不能简单把10改成另一个固定数字。
 
-[冬2日](data/scripts/de/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
+[冬2日](data/scripts/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
 
 <a id="e13"></a>
 ### E13．DE：进阶节目冬3日，把矿场写成磨坊
@@ -1054,7 +1054,7 @@ DE 仅有：
 
 **依据：** 后面紧接着讲用锄头挖地、锤子敲石，同一德文段落随后也用 `Mine`。场所译错。
 
-[冬3日](data/scripts/de/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
+[冬3日](data/scripts/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
 
 <a id="e14"></a>
 ### E14．DE：钓鱼节目第6集，鲣鱼仍误用金枪鱼名称
@@ -1067,7 +1067,7 @@ DE 仅有：
 
 **依据：** 对应鱼种身份已经在鱼类审计中确定；节目漏掉了与鱼记录一致的修正。
 
-[第6集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [德文鱼记录](data/text/de/fishing_results_data.cc)
+[第6集](data/scripts/EventScript_1038_TV_FishingHour.mary.c) · [德文鱼记录](data/text/de/fishing_results_data.cc)
 
 <a id="e15"></a>
 ### E15．DE：钓鱼节目第10集，把下游鱼全部说成海鱼
@@ -1080,7 +1080,7 @@ DE 仅有：
 
 **依据：** 下游这一地点限定被遗漏。本项修地点关系，不借此更改既有鱼种 ID 或重新命名全部鱼类。
 
-[第10集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c)
+[第10集](data/scripts/EventScript_1038_TV_FishingHour.mary.c)
 
 <a id="e16"></a>
 ### E16．DE：钓鱼节目第13集误用了另一鱼种的既有名字
@@ -1093,7 +1093,7 @@ DE 仅有：
 
 **依据：** DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是 MountainTrout。此处依据游戏现有名称映射修正，不依据现代生物分类擅自重译。
 
-[第13集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [既有名称映射](data/text/de/fishing_results_data.cc)
+[第13集](data/scripts/EventScript_1038_TV_FishingHour.mary.c) · [既有名称映射](data/text/de/fishing_results_data.cc)
 
 <a id="e17"></a>
 ### E17．US／EU：矿场研究第9集，把“255层没有下行楼梯”写成“没有通向255层的楼梯”
@@ -1106,7 +1106,7 @@ DE 仅有：
 
 **依据：** 同一段明确说已经到过255层几次。正确意思是在255层没找到继续往下的楼梯，而不是到不了255层。
 
-[第9集](data/scripts/us/EventScript_1056_TV_MineResearchGroup.mary.c)
+[第9集](data/scripts/EventScript_1056_TV_MineResearchGroup.mary.c)
 
 
 <a id="e18"></a>
@@ -1124,7 +1124,7 @@ DE 仅有：
 
 **拟纳入：**海外三版恢复“钓到的人掌握这三种料理”的提示。
 
-来源：[节目原文](data/scripts/us/EventScript_1038_TV_FishingHour.mary.c)、[鱼王食谱条件](src/fishing.cc:893)。
+来源：[节目原文](text/us/script/EventScript_1038_TV_FishingHour.mary.h)、[鱼王食谱条件](src/fishing.cc:893)。
 
 <a id="e19"></a>
 ### E19．料理对决第2集把糖译成盐
@@ -1141,7 +1141,7 @@ DE 仅有：
 
 **拟纳入：**海外三版恢复为糖。节目胜负本身是固定文本，不是修改这个词便会改变程序计算出的比赛结果。
 
-来源：[料理节目](data/scripts/us/EventScript_1035_TV_DuelingChefs.mary.c)、[配方与调味效果](src/cooking_recipe.cc)。
+来源：[料理节目](data/scripts/EventScript_1035_TV_DuelingChefs.mary.c)、[配方与调味效果](src/cooking_recipe.cc)。
 
 
 ## F．拼写
@@ -1158,7 +1158,7 @@ DE 仅有：
 
 **依据：** US 缺所有格 `Your`，EU 已修正，可直接作为同系列依据。
 
-[US 原文](data/scripts/us/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU 原文](data/scripts/eu/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+[US 原文](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [EU 原文](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
 <a id="f02"></a>
 ### F02．JP：味噌汤食谱的锅写成 `なぺ`

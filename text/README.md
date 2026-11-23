@@ -93,7 +93,7 @@ spelling or physical adjacency alone does not establish a shared origin.
 The non-display fixed SRAM signature is
 kept with its owning `src/sram_proxy_1.c` save-verifier module.
 
-Mary compiles the numbered scripts in `data/scripts/<region>/` and reads their
+Mary compiles the numbered scripts in `data/scripts/` and reads their
 same-named text headers from `text/<region>/script/`. Each header preserves the
 complete `mary_text_table` and its declaration order. Make supplies the selected
 region's include directory, tracks the headers as dependencies of the Mary

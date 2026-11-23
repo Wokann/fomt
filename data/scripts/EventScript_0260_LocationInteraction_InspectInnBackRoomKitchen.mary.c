@@ -1,0 +1,12 @@
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+#include "EventScript_0260_LocationInteraction_InspectInnBackRoomKitchen.mary.h"
+
+void EventScript_0260_LocationInteraction_InspectInnBackRoomKitchen(void)
+{
+    TalkOpen();
+    TalkAppendMessage(gText_LocationInteraction_InspectInnBackRoomKitchen);
+    TalkClose();
+}

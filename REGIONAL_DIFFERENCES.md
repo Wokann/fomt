@@ -14,7 +14,7 @@
 | 婚期避让表 | 25 项，不包含年内索引 89、114 | 27 项，增加秋 30 日南瓜祭、冬 25 日袜子送礼日 | 四版都有对应事件；海外覆盖日历的全部 17 个固定节日，JP 仅漏秋 30 日，冬 25 日是日历之外的送礼事件。JP 的 BUGFIX 补齐两项，默认保留原表。[日期表和查询](src/wedding_date.cc) · [修复依据](BUGFIX.md#jp-wedding-birthdays) |
 | 婚期的生日冲突 | 订婚后查询已婚配偶；生日与避让表按固定顺序各检查，顺延后不重新检查全部条件 | 使用本次婚约对象，并在每次顺延后重新检查双方生日与避让表 | JP 可能安排在未婚妻生日，或在避开其他日期后落到玩家生日。[BUGFIX 修复](BUGFIX.md#jp-wedding-birthdays) |
 | 医生的两段下午行程 | 两套外出日程的切换点为 600、627 | 切换点为 601、628 | 调度使用从 06:00 起算的分钟，因此从 16:00／16:27 改为 16:01／16:28；相同路径晚一分钟开始及结束。仅适用于选中这两套日程时，不能推广为医生所有活动都推迟。[日程选择与路径](src/npc_schedule_doctor.cc) · [时间比较](src/npc_schedule_search.cc) · [分钟换算](src/npc_entity.cc) |
-| 扩建畜棚的三格调查属性 | 网格坐标 `(11,6)`、`(11,7)`、`(11,8)` 使用属性项 3，调查脚本为 `0x016B` | 三格改为属性项 2，调查脚本为 0 | 两属性项的阻挡位相同，仅取消这三格的“木桶”调查文本，不是允许穿过墙壁。坐标以 8 像素格计、从 0 起算。[网格和属性](src/map_terrain.cc) · [地图选择](src/map_selection.c) · [调查脚本](data/scripts/jp/EventScript_0363_LocationInteraction_InspectTownAndFarmBuildingBarrel.mary.c) |
+| 扩建畜棚的三格调查属性 | 网格坐标 `(11,6)`、`(11,7)`、`(11,8)` 使用属性项 3，调查脚本为 `0x016B` | 三格改为属性项 2，调查脚本为 0 | 两属性项的阻挡位相同，仅取消这三格的“木桶”调查文本，不是允许穿过墙壁。坐标以 8 像素格计、从 0 起算。[网格和属性](src/map_terrain.cc) · [地图选择](src/map_selection.c) · [调查脚本](data/scripts/EventScript_0363_LocationInteraction_InspectTownAndFarmBuildingBarrel.mary.c) |
 | 动物照料最高记录 | 从动物照料记录字段读取 | 动物照料栏再次读取收获记录字段 | 海外版两个小游戏栏目显示相同成绩，但动物照料的真实成绩仍独立保存；不是没有结算小游戏奖励。[BUGFIX 与读写证据](BUGFIX.md#overseas-animal-care-record) |
 | 获奖牛羊的出售价格 | 好感度超过 200 且获奖时，累计户外不足 600 小时：牛 7,000 G、羊 5,000 G；达到 600 小时：牛 6,000 G、羊 4,000 G | 同样两档依次为牛 6,000／7,000 G、羊 4,000／5,000 G | JP 两个高等级的售价分支与海外相反，达到户外时间门槛反而少卖 1,000 G；报价直接用于实际入账，不是文本错误。[完整售价与入账链](#livestock-sale-prices) |
 
@@ -46,7 +46,7 @@
 | 德版电视频道与节目 | 春 19 日贯穿到 20 日并覆盖输入；人物介绍第 36 项未取得频道输入。其他地区无这两处遗漏。 | 两项分别修正：[春 19 日](BUGFIX.md#de-farm-tv) · [频道输入](BUGFIX.md#de-profile-tv)。 |
 | 联机重试 | JP 新消息不重置场景缓存；旧值为完成状态时可提前创建重试选项。海外将缓存设为 4。 | JP 可选修复：[重试状态](BUGFIX.md#jp-link-retry)。尚未运行复现全部断线时序。 |
 | 新手教学退出 | 海外进入退出状态后跳过 Start 再次退出检查；JP 没有这层状态保护，满足淡出空闲和对话条件的新按键事件可能再次启动淡出。 | 保留为输入防重入差异，未接入 BUGFIX；不能表述为持续按住 Start 必然卡死。[教学状态机](src/farming_tutorial.cc) · [按键事件](src/hardware_input.cc) · [淡出](src/hardware_blend.cc) |
-| 音乐节入场状态 | 海外转入开幕前多写一次阶段 1；四版正常卡特对话入口此前已写相同值。 | 实际存在重复写入，但正常入口没有改变演奏资格、奖励或退场条件，不作 BUGFIX。[对话入口](data/scripts/jp/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [海外入场](data/scripts/us/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) |
+| 音乐节入场状态 | 海外转入开幕前多写一次阶段 1；四版正常卡特对话入口此前已写相同值。 | 实际存在重复写入，但正常入口没有改变演奏资格、奖励或退场条件，不作 BUGFIX。[对话入口](data/scripts/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [海外入场](data/scripts/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) |
 
 <a id="goddess-rps-options"></a>
 ### 女神猜拳的显示选项
@@ -59,7 +59,7 @@
 | 2／剪刀 | ちょき（剪刀） | Paper（布，错误） | Stein（石头，错误） |
 | 3／布 | ぱー（布） | Scissors（剪刀，错误） | Papier（布） |
 
-因此 US／EU 的第二、三项错位，DE 的第一、二项错位。选择显示的手势后，会进入另一手势的结果与胜负分支；不是随机结果或赢局累加的公式改变。因为三个实际手势仍各有一个入口，此问题本身也不等于修改了胜率。`ChoiceRock`／`ChoiceScissors`／`ChoicePaper` 标识符现按各自文字的实际含义命名；声明与引用一起替换，未改变原版选项次序或 BUGFIX 逻辑。[JP 脚本](data/scripts/jp/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [US](data/scripts/us/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [EU](data/scripts/eu/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [DE](data/scripts/de/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [选项返回值](include/fomt_constants.mary.h)
+因此 US／EU 的第二、三项错位，DE 的第一、二项错位。选择显示的手势后，会进入另一手势的结果与胜负分支；不是随机结果或赢局累加的公式改变。因为三个实际手势仍各有一个入口，此问题本身也不等于修改了胜率。`ChoiceRock`／`ChoiceScissors`／`ChoicePaper` 标识符现按各自文字的实际含义命名；声明与引用一起替换，未改变原版选项次序或 BUGFIX 逻辑。[JP 脚本](data/scripts/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [选项返回值](include/fomt_constants.mary.h)
 
 ## 文字、名称与显示
 
@@ -116,8 +116,8 @@
 | --- | --- | --- |
 | 购买数量选择器 | JP 多绘制一个数量后缀图块；金额使用双格数字，海外使用窄数字。数量上限、按金钱限制数量及方向键增减逻辑相同。[实现](src/ui_quantity_selector.cc) | 本处是显示调整，没有发现海外放宽购买上限。 |
 | 飞盘界面 | DE 对资源组 `0x1A` 的一次精灵提交将横坐标从 160 改为 158，纵坐标 16 不变。[调用与精灵提交](src/frisbee_core.cc) | 该差异影响界面位置，不是投掷距离或狗的能力。 |
-| 料理祭评审停顿 | DE 一处等待从 240 帧增至 480 帧，其他判定语句相同。[DE 评审](data/scripts/de/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) | 延长演出等待；这处差异没有修改评分公式。 |
-| 时钟显示 | DE 的相关脚本保留下午小时数，其他版减 12。HUD 正午另有区别：JP 将 12 减成 0、仍显示下午标记，US／EU 特判 12、不减；DE 直接显示小时值。午夜传入 0 时 US／EU 也保持 0，不能概括成严格的 1–12 小时制。[时钟脚本](data/scripts/de/EventScript_0225_SystemMenu_ClockCalendarDisplay.mary.c) · [HUD](src/map_clock_status.cc) · [小时字段调用](src/game_scene_state.cc) | 改变显示，不改变游戏一天长度或事件判断所读取的小时字段。 |
+| 料理祭评审停顿 | DE 一处等待从 240 帧增至 480 帧，其他判定语句相同。[DE 评审](data/scripts/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) | 延长演出等待；这处差异没有修改评分公式。 |
+| 时钟显示 | DE 的相关脚本保留下午小时数，其他版减 12。HUD 正午另有区别：JP 将 12 减成 0、仍显示下午标记，US／EU 特判 12、不减；DE 直接显示小时值。午夜传入 0 时 US／EU 也保持 0，不能概括成严格的 1–12 小时制。[时钟脚本](data/scripts/EventScript_0225_SystemMenu_ClockCalendarDisplay.mary.c) · [HUD](src/map_clock_status.cc) · [小时字段调用](src/game_scene_state.cc) | 改变显示，不改变游戏一天长度或事件判断所读取的小时字段。 |
 | 参赛动物的获奖标记 | JP 的鸡列表会检查获奖标志；海外版还在牛、羊列表增加同类检查及 2×2 图块绘制。[选择画面](src/animal_festival_selection.cc) · [获奖标志读取](src/animal.cc) | 已定位的新增分支只绘制标记，不写入动物状态，不应解释成海外改了获奖资格或产物等级。图案外观未在本轮运行确认。 |
 | 酒庄购买后的送货提示 | JP、DE 区分全部送入冰箱与部分送入；US、EU 使用同一条送货消息。地区分支位于向手持物、背包、冰箱分配物品之后。[分配与提示](src/scene_winery_shop.cc) · [JP 文本](text/jp/scene_winery_shop.cc) · [US 文本](text/us/scene_winery_shop.cc) | 该分支影响反馈文字，不改变本次实际扣款或分配数量。 |
 | 鸡祭场景的精灵位置 | `UpdateUnkPhase0` 为 `sprite_96C` 的绘制参数设置相同横坐标 96，纵坐标在 JP、DE 为 8，在 US、EU 为 10。[初始化](src/scene_chicken_festival.cc) · [位置字段](include/resource_handle.hh) | 这处数值差异是显示对象下移 2 像素，不是比赛时长或鸡的能力；尚未给该精灵图案臆定名称。 |
@@ -163,41 +163,41 @@
 
 ## 脚本调用与播放方式
 
-本表按忽略文本符号名后的原版语句差异排列。普通消息、慢速消息、追加消息分别采用 `0x100`、`0x40`、0 的提交速率，并改变分段体验；电视消息还返回频道输入，不能统称为“仅速度不同”。已确认为缺陷的行链接 BUGFIX，重复赋值和正常本地化保留其实际边界。[接口](data/scripts/jp/fomt_callables.mary.h) · [提交](src/game_scene.cc)
+本表按忽略文本符号名后的原版语句差异排列。普通消息、慢速消息、追加消息分别采用 `0x100`、`0x40`、0 的提交速率，并改变分段体验；电视消息还返回频道输入，不能统称为“仅速度不同”。已确认为缺陷的行链接 BUGFIX，重复赋值和正常本地化保留其实际边界。[接口](data/scripts/fomt_callables.mary.h) · [提交](src/game_scene.cc)
 
 | 槽号 | 分组 | 已核对的变化 |
 | --- | --- | --- |
-| [004F](data/scripts/us/EventScript_0079_LoveEvent_Elli_NicknameChoice.mary.c) | JP=DE / US=EU | 第二个昵称选项：US/EU 显示确认，却没有写回所选昵称。[缺陷记录](BUGFIX.md#elli-nickname) |
-| [00E1](data/scripts/de/EventScript_0225_SystemMenu_ClockCalendarDisplay.mary.c) | JP=US=EU / DE | 下午小时数在 DE 直接取原值，其他版减 12。 |
-| [011E](data/scripts/de/EventScript_0286_LocationInteraction_InspectBasilHouse1FChair.mary.c) | JP=US=EU / DE | DE 对一段文字重新调用 TalkMessage，其他版使用 TalkAppendMessage 追加。 |
-| [015A](data/scripts/us/EventScript_0346_LocationInteraction_InspectUpgradedFarmhouseChair.mary.c) | JP / US=EU=DE | 海外版本追加一段文字，JP 调用 TalkMessage。 |
-| [015B](data/scripts/de/EventScript_0347_SystemMenu_CalendarDateAndTimeDisplay.mary.c) | JP=US=EU / DE | DE 的日期时间界面按 24 小时制传入下午小时数。 |
-| [0164](data/scripts/us/EventScript_0356_TV_ChannelDispatcher.mary.c) | JP / US=EU=DE | 海外版本缺少转入隐藏节目的调用。[4:44 电视](BUGFIX.md#tv-444) |
-| [0193](data/scripts/de/EventScript_0403_SystemMenu_FestivalCalendar.mary.c) | JP=US=EU / DE | DE 在节日日历的一段文字中使用 TalkMessage，其他版追加。 |
-| [01AB](data/scripts/de/EventScript_0427_LocationInteraction_InspectBeachCottageClock.mary.c) | JP=US=EU / DE | DE 的海边别墅时钟保留下午小时数。 |
-| [0217](data/scripts/us/EventScript_0535_LocationInteraction_InspectTownCottageChair.mary.c) | JP=DE / US=EU | US/EU 在镇上别墅椅子的对话中追加文字。 |
-| [0218](data/scripts/de/EventScript_0536_LocationInteraction_InspectTownCottageClock.mary.c) | JP=US=EU / DE | DE 的镇上别墅时钟保留下午小时数。 |
-| [021B](data/scripts/us/EventScript_0539_LocationInteraction_InspectTownCottageDesk.mary.c) | JP=DE / US=EU | US/EU 在镇上别墅书桌的对话中追加文字。 |
-| [021C](data/scripts/us/EventScript_0540_TV_EntertainmentChannel.mary.c) | JP / US=EU=DE | 换台入口也有同样的隐藏节目调用差异。[4:44 电视](BUGFIX.md#tv-444) |
-| [02CD](data/scripts/de/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) | JP / US=EU / DE | 克里夫酒庄就职事件中，多处普通和慢速对话调用不同，保留语速。DE将拒绝句拆成两个菜单项，第一项实际接受；仅修正[选项文字](BUGFIX.md#de-winery-work-options)。 |
-| [02D1](data/scripts/de/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c) | JP=US=EU / DE | DE 将玛娜的三处慢速对话改用普通对话，保留语速。夸杰夫时把夸奖对象改成自己，另见[措辞修复](BUGFIX.md#de-manna-flatters-jeff)。 |
-| [02EF](data/scripts/us/EventScript_0751_NPCEvent_Jeff_WonOffersToBuyPainting.mary.c) | JP / US=EU=DE | 海外版本多调用一次 TalkMessage。 |
-| [02F4](data/scripts/de/EventScript_0756_NPCEvent_Manna_AjasDepartureAdviceFromFriends.mary.c) | JP / US=EU / DE | 讨论阿雅离家时，部分台词的播放速度不同。 |
-| [03DC](data/scripts/us/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存包含时间的次日状态，导致睡眠小时恢复按 24 小时计算；海外版先保存真实时间。[机制影响](BUGFIX.md#jp-sleep-time) |
-| [03E1](data/scripts/de/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) | JP=US=EU / DE | DE 在珀布利日常对话中多一次 TalkMessage。 |
-| [03E5](data/scripts/us/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU原版先播日文再播对应英文夸奖；BUGFIX仅去掉前置日文对象和调用，不补译、不改已有英文及JP／DE。[重复消息](BUGFIX.md#zack-untranslated)。 |
-| [03F0](data/scripts/de/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和DE文本分段上存在差异。JP开启BUGFIX时让头像随纠正后的婚姻状态台词一起交换；DE去掉多余台词。[对应修复](BUGFIX.md#audit-a09)。 |
-| [03FD](data/scripts/us/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU将玛娜饰品答谢末段改用普通语速，保留演出。第三段海外把儿子邀请同住改成格雷反抗，另见[亲属及留镇理由修复](BUGFIX.md#manna-saibara-family)。 |
-| [0414](data/scripts/de/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) | JP=US=EU / DE | 德版春 19 日节目少一个 break，会继续播放 20 日节目。[缺陷记录](BUGFIX.md#de-farm-tv) |
-| [0418](data/scripts/de/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 保留正常语速差异；海外case 20／21漏播预告及女儿条目，四版部分生日文字错误。[漏播](BUGFIX.md#profile-tv-missing-messages) · [生日及备用日期](BUGFIX.md#profile-tv-birthdays)。DE第36项漏接频道输入见[既有修复](BUGFIX.md#de-profile-tv)。 |
-| [0432](data/scripts/us/EventScript_1074_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.c) | JP / US=EU=DE | 海外版本改变玛娜新年对话中一处文本速度。 |
-| [0445](data/scripts/de/EventScript_1093_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna.mary.c) | JP / US=EU / DE | 玛娜赛马场对话的慢速台词数不同。 |
-| [0468](data/scripts/de/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |
-| [04B4](data/scripts/us/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
+| [004F](data/scripts/EventScript_0079_LoveEvent_Elli_NicknameChoice.mary.c) | JP=DE / US=EU | 第二个昵称选项：US/EU 显示确认，却没有写回所选昵称。[缺陷记录](BUGFIX.md#elli-nickname) |
+| [00E1](data/scripts/EventScript_0225_SystemMenu_ClockCalendarDisplay.mary.c) | JP=US=EU / DE | 下午小时数在 DE 直接取原值，其他版减 12。 |
+| [011E](data/scripts/EventScript_0286_LocationInteraction_InspectBasilHouse1FChair.mary.c) | JP=US=EU / DE | DE 对一段文字重新调用 TalkMessage，其他版使用 TalkAppendMessage 追加。 |
+| [015A](data/scripts/EventScript_0346_LocationInteraction_InspectUpgradedFarmhouseChair.mary.c) | JP / US=EU=DE | 海外版本追加一段文字，JP 调用 TalkMessage。 |
+| [015B](data/scripts/EventScript_0347_SystemMenu_CalendarDateAndTimeDisplay.mary.c) | JP=US=EU / DE | DE 的日期时间界面按 24 小时制传入下午小时数。 |
+| [0164](data/scripts/EventScript_0356_TV_ChannelDispatcher.mary.c) | JP / US=EU=DE | 海外版本缺少转入隐藏节目的调用。[4:44 电视](BUGFIX.md#tv-444) |
+| [0193](data/scripts/EventScript_0403_SystemMenu_FestivalCalendar.mary.c) | JP=US=EU / DE | DE 在节日日历的一段文字中使用 TalkMessage，其他版追加。 |
+| [01AB](data/scripts/EventScript_0427_LocationInteraction_InspectBeachCottageClock.mary.c) | JP=US=EU / DE | DE 的海边别墅时钟保留下午小时数。 |
+| [0217](data/scripts/EventScript_0535_LocationInteraction_InspectTownCottageChair.mary.c) | JP=DE / US=EU | US/EU 在镇上别墅椅子的对话中追加文字。 |
+| [0218](data/scripts/EventScript_0536_LocationInteraction_InspectTownCottageClock.mary.c) | JP=US=EU / DE | DE 的镇上别墅时钟保留下午小时数。 |
+| [021B](data/scripts/EventScript_0539_LocationInteraction_InspectTownCottageDesk.mary.c) | JP=DE / US=EU | US/EU 在镇上别墅书桌的对话中追加文字。 |
+| [021C](data/scripts/EventScript_0540_TV_EntertainmentChannel.mary.c) | JP / US=EU=DE | 换台入口也有同样的隐藏节目调用差异。[4:44 电视](BUGFIX.md#tv-444) |
+| [02CD](data/scripts/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) | JP / US=EU / DE | 克里夫酒庄就职事件中，多处普通和慢速对话调用不同，保留语速。DE将拒绝句拆成两个菜单项，第一项实际接受；仅修正[选项文字](BUGFIX.md#de-winery-work-options)。 |
+| [02D1](data/scripts/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c) | JP=US=EU / DE | DE 将玛娜的三处慢速对话改用普通对话，保留语速。夸杰夫时把夸奖对象改成自己，另见[措辞修复](BUGFIX.md#de-manna-flatters-jeff)。 |
+| [02EF](data/scripts/EventScript_0751_NPCEvent_Jeff_WonOffersToBuyPainting.mary.c) | JP / US=EU=DE | 海外版本多调用一次 TalkMessage。 |
+| [02F4](data/scripts/EventScript_0756_NPCEvent_Manna_AjasDepartureAdviceFromFriends.mary.c) | JP / US=EU / DE | 讨论阿雅离家时，部分台词的播放速度不同。 |
+| [03DC](data/scripts/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) | JP / US=EU=DE | JP 先设 06:00 再保存包含时间的次日状态，导致睡眠小时恢复按 24 小时计算；海外版先保存真实时间。[机制影响](BUGFIX.md#jp-sleep-time) |
+| [03E1](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) | JP=US=EU / DE | DE 在珀布利日常对话中多一次 TalkMessage。 |
+| [03E5](data/scripts/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU原版先播日文再播对应英文夸奖；BUGFIX仅去掉前置日文对象和调用，不补译、不改已有英文及JP／DE。[重复消息](BUGFIX.md#zack-untranslated)。 |
+| [03F0](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和DE文本分段上存在差异。JP开启BUGFIX时让头像随纠正后的婚姻状态台词一起交换；DE去掉多余台词。[对应修复](BUGFIX.md#audit-a09)。 |
+| [03FD](data/scripts/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU将玛娜饰品答谢末段改用普通语速，保留演出。第三段海外把儿子邀请同住改成格雷反抗，另见[亲属及留镇理由修复](BUGFIX.md#manna-saibara-family)。 |
+| [0414](data/scripts/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) | JP=US=EU / DE | 德版春 19 日节目少一个 break，会继续播放 20 日节目。[缺陷记录](BUGFIX.md#de-farm-tv) |
+| [0418](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 保留正常语速差异；海外case 20／21漏播预告及女儿条目，四版部分生日文字错误。[漏播](BUGFIX.md#profile-tv-missing-messages) · [生日及备用日期](BUGFIX.md#profile-tv-birthdays)。DE第36项漏接频道输入见[既有修复](BUGFIX.md#de-profile-tv)。 |
+| [0432](data/scripts/EventScript_1074_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.c) | JP / US=EU=DE | 海外版本改变玛娜新年对话中一处文本速度。 |
+| [0445](data/scripts/EventScript_1093_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna.mary.c) | JP / US=EU / DE | 玛娜赛马场对话的慢速台词数不同。 |
+| [0468](data/scripts/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |
+| [04B4](data/scripts/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
 
 ## 已确认错误的源码名称整理
 
-脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。默认和 BUGFIX 两态均沿用各自的文字、槽位顺序和调用关系。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/jp/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/jp/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/de/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
+脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。默认和 BUGFIX 两态均沿用各自的文字、槽位顺序和调用关系。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
 
 扎克的DE文本有三处旧名称错位：收货路线应为`FarmLowFriendshipRepeatConversation_PlansPickupRoute`，提醒自己正在工作应为`FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking`，农场晚间高好感道别应为`FarmEveningHighFriendshipFarewell`。仅修正定义、实际调用及Mary原版反编译名称表，不改变德文文本或调用顺序。
 
@@ -211,7 +211,7 @@ JP的`FarmLowFriendshipShipmentGreeting`与`FarmHighFriendshipShipmentGreeting`�
 | `gText_FishingRecord_SilverCarp37` / `FISHING_RECORD_SILVER_CARP_37` | 移除数字后缀，使用 `gText_FishingRecord_SilverCarp` / `FISHING_RECORD_SILVER_CARP`。JP ハクレン（鲢鱼）对应 Silver Carp／Silberkarpfen，显示名称正确。槽 44 ヘラブナ已有的 `CrucianCarp` 标识符和显示名称保留。 |
 | JP／DE 猜拳 `ChoiceRock` / `ChoicePaper` / `ChoiceScissors` | JP「ちょき」「ぱー」及 DE「Schere」「Stein」「Papier」原标签与自身文字不符；使用本作 US／EU 已有的正确 Rock／Scissors／Paper 名称，声明和调用目标一起更名。 |
 
-依据：[日版鱼名](text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)、[JP 猜拳](data/scripts/jp/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c)、[DE 猜拳](data/scripts/de/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
+依据：[日版鱼名](text/jp/fishing_results_data.cc)、[鱼名指针表](src/fishing_results_data.cc)、[纪录 ID](include/fomt_constants.mary.h)、[既有鱼名问题](BUGFIX.md#fish-record-names)、[JP 猜拳](text/jp/script/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.h)、[DE 猜拳](text/de/script/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.h)。重制版名称取自同级 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Item.txt` 与 `US/msg_Item.txt` 的对应鱼名序列：キンブナ／ギンブナ／クエ对应 Goldfish／Crucian Carp／Longtooth Grouper；不是仅凭相似英文词推断。
 
 Silver Crucian Carp 是已有英文鱼名：[1998 年研究中的 Japanese silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/9546204/)、[2019 年研究中的 silver crucian carp／ginbuna](https://pubmed.ncbi.nlm.nih.gov/31347186/)。重制版英文泛称 Crucian Carp 会与另一鱼种重名，本次采用完整英文名的界面短写 Silver Crucian，变量同步采用 SilverCrucian；该短写由用户确认，不宣称是已查证的官方简称。[国立环境研究所](https://www.nies.go.jp/biodiversity/invasive/DB/detail/50060.html) 则将 Silver carp 对应到ハクレン。原版两个记录共用同名字串本身不是结构错误，修复对象是记录 22 的鱼种显示名。
 

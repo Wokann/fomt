@@ -18267,7 +18267,7 @@ DE 1,881 项，另核实 handler 对象的精确变动。
 其他操作不执行。宿主本身不增加原生代码中不存在的空指针保护。
 控制器内部操作仍是原生汇编，不能把这一批转发层算作完整特效
 引擎反编译。名称和生命周期参照现有 [Mary 原生审计记录](docs/mary-native-audit/events/new_year_sunrise_and_sparkle_effects.md)
-及 [callable 声明](data/scripts/us/fomt_callables.mary.h)，并与各区
+及 [callable 声明](data/scripts/fomt_callables.mary.h)，并与各区
 真实调用及脚本用途交叉核对。
 
 日出／星光播放分别写回原有场景状态 `0x1C/0x1B`，即使回调
@@ -18328,7 +18328,7 @@ ROM 逐字节／SHA-1 全部通过。每区其余 204 个输入对象及所有
 四个 Mary 捕获鱼名称／尺寸／属性读取入口继续直接使用同一
 查询。音乐查询保留原有 `HardwareMusicPlayerSlot::IsActive`
 的完整字返回，不在包装层改成布尔归一化。语义与现有
-[Mary callable 声明](data/scripts/us/fomt_callables.mary.h)、实际
+[Mary callable 声明](data/scripts/fomt_callables.mary.h)、实际
 handler 读取及四区域原生调用交叉核对。
 
 创建子女先向已有 `func_080A05E8` 传入存档 NPC 集合和保存日期
@@ -18397,7 +18397,7 @@ DE 1,907 项。296 字节包含各原函数末尾对齐，不全是指令字节�
 玩家虚槽分别为 `+0x68`、`+0x80`、`+0x7C`。三项提交物品读取
 使用 `+0x84`、`+0x88`、`+0x8C`：类别使用现有 Mary 域，ID 保留
 原始有符号整数，不误设为单一食品／物品枚举；包装状态独立读取。
-名称与参数依据现有 [Mary callable 声明](data/scripts/us/fomt_callables.mary.h)、
+名称与参数依据现有 [Mary callable 声明](data/scripts/fomt_callables.mary.h)、
 [果实原生审计](docs/mary-native-audit/player/mystic_berry_audit.md)及本批
 四区域实际指令和具体玩家虚表交叉核对，不从相邻槽位猜测含义。
 

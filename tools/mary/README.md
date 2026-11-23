@@ -153,9 +153,9 @@ is interpreted as one RIFF. `--print-ir` appends an instruction listing.
 ## Bundle for a decompilation project
 
 ```sh
-./mary bundle data/scripts/us -o build/us/data/scripts --layout packed \
-  --library data/scripts/us/fomt_callables.mary.h \
-  --script-table data/scripts/us/fomt_scripts.mary.h \
+./mary bundle data/scripts -o build/us/data/scripts --layout packed \
+  --library data/scripts/fomt_callables.mary.h \
+  --script-table data/scripts/fomt_scripts.mary.h \
   --constants include/fomt_constants.mary.h \
   -I include -I text/us/script \
   --charmap charmap.txt -D MARY_FOMT_US
@@ -175,7 +175,7 @@ including transitive headers.
 For future FoMT integration, keep the compiler sources in `tools/mary/` and
 build them with the ordinary host-tool rules. The authoritative compilation
 tables stay in FoMT: `include/fomt_constants.mary.h` and each language's
-`data/scripts/<region>/fomt_callables.mary.h` / `fomt_scripts.mary.h`. Mary reads
+`data/scripts/fomt_callables.mary.h` / `fomt_scripts.mary.h`. Mary reads
 those explicit paths and expands numbered script text headers from
 `text/<region>/script/`. The independent
 `goodies/` adaptation is for opt-in decompilation and testing only.

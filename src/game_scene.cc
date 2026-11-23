@@ -22,15 +22,7 @@
 #include "harvest_sprite_actor.hh"
 #include "world_prop_entities.hh"
 #include "fomt_constants.hh"
-#if defined(REGION_JP)
-#include "data/scripts/jp/fomt_scripts.mary.h"
-#elif defined(REGION_US)
-#include "data/scripts/us/fomt_scripts.mary.h"
-#elif defined(REGION_EU)
-#include "data/scripts/eu/fomt_scripts.mary.h"
-#else
-#include "data/scripts/de/fomt_scripts.mary.h"
-#endif
+#include "data/scripts/fomt_scripts.mary.h"
 #include "hardware_sound.hh"
 #include "font.hh"
 #include "font_decimal.hh"

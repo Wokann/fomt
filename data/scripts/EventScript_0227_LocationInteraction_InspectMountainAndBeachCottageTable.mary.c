@@ -1,0 +1,12 @@
+#include "fomt_constants.mary.h"
+#include "fomt_callables.mary.h"
+#include "fomt_scripts.mary.h"
+
+#include "EventScript_0227_LocationInteraction_InspectMountainAndBeachCottageTable.mary.h"
+
+void EventScript_0227_LocationInteraction_InspectMountainAndBeachCottageTable(void)
+{
+    TalkOpen();
+    TalkMessage(gText_LocationInteraction_InspectMountainAndBeachCottageTable);
+    TalkClose();
+}

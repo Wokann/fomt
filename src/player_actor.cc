@@ -19,15 +19,7 @@
 #include "farmer.hh"
 #include <new>
 
-#if defined(REGION_JP)
-#include "data/scripts/jp/fomt_scripts.mary.h"
-#elif defined(REGION_US)
-#include "data/scripts/us/fomt_scripts.mary.h"
-#elif defined(REGION_EU)
-#include "data/scripts/eu/fomt_scripts.mary.h"
-#else
-#include "data/scripts/de/fomt_scripts.mary.h"
-#endif
+#include "data/scripts/fomt_scripts.mary.h"
 
 inline void PlayerSpriteSlots::Push(PlayerSpriteSlot const & slot)
 {

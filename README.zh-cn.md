@@ -32,7 +32,7 @@ Linux/WSL、Windows/MSYS2 和 macOS 的环境配置与编译方法，请参阅
 - `src/` 和 `include/` 存放游戏模块及其声明，共享代码通过区域条件区分版本差异。
 - `asm/` 存放独立汇编。还原中的模块也可以在 C/C++ 定义旁保留文件级汇编。
 - `text/<region>/` 存放各版游戏文本，`reference_guide/` 存放图书指南页面，
-  `script/` 存放 Mary 脚本文本表。`data/scripts/<region>/` 中带文本表的编号脚本
+  `script/` 存放 Mary 脚本文本表。`data/scripts/` 中带文本表的编号脚本
   包含对应区域的同名文本头。
   [include/fomt_constants.mary.h](include/fomt_constants.mary.h) 提供常规代码与脚本共用的常量。
 - `graphics/` 存放资源源文件。[图形构建规则](graphics_file_rules.mk)将 PNG 图块和独立调色板

@@ -109,9 +109,9 @@ mary_script(1) void script_1(void)
 ## 为反编译工程生成链接输入
 
 ```sh
-./mary bundle data/scripts/us -o build/us/data/scripts --layout packed \
-  --library data/scripts/us/fomt_callables.mary.h \
-  --script-table data/scripts/us/fomt_scripts.mary.h \
+./mary bundle data/scripts -o build/us/data/scripts --layout packed \
+  --library data/scripts/fomt_callables.mary.h \
+  --script-table data/scripts/fomt_scripts.mary.h \
   --constants include/fomt_constants.mary.h \
   -I include -I text/us/script \
   --charmap charmap.txt -D MARY_FOMT_US
@@ -124,7 +124,7 @@ packed 模式生成 `scripts.bin`、`scripts.s`、`script_table.s` 和 `scripts.
 
 后续整合 FoMT 时，工具源码放在 `tools/mary/`，采用普通宿主工具构建规则。
 编译所用的权威表只维护 FoMT 自身的 `include/fomt_constants.mary.h`，以及各语言
-`data/scripts/<region>/fomt_callables.mary.h`／`fomt_scripts.mary.h`。
+`data/scripts/fomt_callables.mary.h`／`fomt_scripts.mary.h`。
 Mary 从 `text/<region>/script/` 展开编号脚本的同名文本头，并在构建依赖里记录这些头。
 Mary 按显式路径读取，不安装另一份表去覆盖它们。
 工具自身 `goodies/` 的独立适配仅供主动选择的反编译和测试使用。

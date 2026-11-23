@@ -40,7 +40,7 @@ For Linux/WSL, Windows/MSYS2, and macOS setup and build instructions, see
   file-scope assembly alongside their C/C++ definitions.
 - `text/<region>/` contains regional game text. Reference Guide pages live in
   `reference_guide/` and Mary script text tables live in `script/`.
-  Each numbered script in `data/scripts/<region>/` includes its text header when
+  Each numbered script in `data/scripts/` includes its text header when
   it has a text table. [include/fomt_constants.mary.h](include/fomt_constants.mary.h)
   supplies shared native-code and script constants.
 - `graphics/` contains authored resources. The
