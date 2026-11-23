@@ -14,7 +14,13 @@ mary_text_table
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseBirthdayGiftResponse[] =
         "A birthday present?\r\n"
+// Restore Karen's affection toward her spouse in the birthday response.
+#ifdef BUGFIX
+        "For me? Wow!\r\n"
+        "I love you, {NickName}!{Press}";
+#else
         "For me? I love presents!{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseBirthdayGiftResponse[] =
         "Today's my birthday,\r\n"
@@ -68,8 +74,10 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks[] =
         "Thanks a lot.{Press}";
 
+#ifndef BUGFIX
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
         "Thanks.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
         "Haven't I told you I\r\n"
@@ -134,7 +142,13 @@ mary_text_table
         "Gee, thanks!\r\n"
         "Can I wear it at the\r\n"
         "Festival coming up?{Press}\p"
+// Restore Karen's expectation that the perfume will surprise everyone.
+#ifdef BUGFIX
+        "Everyone will be surprised!\r\n"
         "It smells lovely!{Press}";
+#else
+        "It smells lovely!{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePerfumeGiftResponse[] =
         "How wonderful!\r\n"
@@ -148,7 +162,12 @@ mary_text_table
         "show it off!{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_SpringThanksgivingRivalSpouseGiftResponse[] =
+// Name the cookies accepted by the spring gift event.
+#ifdef BUGFIX
+        "Mmm...These Cookies look \r\n"
+#else
         "Mmm...This Cake looks \r\n"
+#endif
         "delicious...{Press}\p"
         "Oh yeah...Today's the \r\n"
         "Spring Festival. I should \r\n"
@@ -266,7 +285,12 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseChildNewbornRepeatConversation[] =
         "The baby always keeps\r\n"
         "me up at night crying,\r\n"
+// Correct the misspelling of enough.
+#ifdef BUGFIX
+        "so I don't get enough{Press}\r\n"
+#else
         "so I don't get enought{Press}\r\n"
+#endif
         "sleep!{Press}\p"
         "I see you don't have the\r\n"
         "same problem, though!{Press}";
@@ -304,15 +328,30 @@ mary_text_table
         "loves getting into trouble!{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseChildWalkingLaterFirstConversation[] =
+// Restore the greeting and Karen's nerves about the baby's every move.
+#ifdef BUGFIX
+        "Good morning!\r\n"
+        "I can't believe how fast\r\n"
+        "{Baby} is growing up!{Press}\p"
+        "When I was a new mom,\r\n"
+        "everything he did made me\r\n"
+        "nervous...{Press}";
+#else
         "I can't believe how fast\r\n"
         "{Baby} is growing up!{Press}\p"
         "It seems like just\r\n"
         "yesterday he was an infant!{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseChildWalkingLaterRepeatConversation[] =
         "I think I'm finally getting\r\n"
         "the hang of being a mom...{Press}\p"
+// Correct the verb in Karen's line about her child.
+#ifdef BUGFIX
+        "I love {Baby} \r\n"
+#else
         "I'm love {Baby} \r\n"
+#endif
         "so much!...{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartFirstConversation[] =
@@ -361,7 +400,12 @@ mary_text_table
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation[] =
         "Good morning!\r\n"
+// Restore the player as the one who slept soundly.
+#ifdef BUGFIX
+        "Boy did you sleep soundly!{Press}";
+#else
         "Boy did I sleep soundly!{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation[] =
         "It's fun looking after\r\n"
@@ -427,7 +471,12 @@ mary_text_table
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketGreenHeartRepeatConversation[] =
         "I'm busy right now,\r\n"
+// Correct the misspelling of so.
+#ifdef BUGFIX
+        "so leave me alone.{Press}";
+#else
         "slo leave me alone.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketYellowHeartFirstConversation[] =
         "Welcome!\r\n"
@@ -435,9 +484,17 @@ mary_text_table
         "{NickName}. What's up?{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketYellowHeartRepeatConversation[] =
+// Restore Karen's joke about buying out the store.
+#ifdef BUGFIX
+        "Will you do some \r\n"
+        "shopping here?{Press}\p"
+        "Since you're here, buy\r\n"
+        "everything in the store!\r\n"
+#else
         "Will you do some \r\n"
         "shopping for me?{Press}\p"
         "I just need....everything!\r\n"
+#endif
         "Hee-hee, just kidding!{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketOrangeHeartFirstConversation[] =
@@ -446,8 +503,14 @@ mary_text_table
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketOrangeHeartRepeatConversation[] =
         "Did you come to\r\n"
+// Restore Karen's reassurance that she is helping out.
+#ifdef BUGFIX
+        "check on me? Don't worry,\r\n"
+        "I'm helping out just fine.{Press}";
+#else
         "check on me?\r\n"
         "That's sweet of you.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketRedHeartFirstConversation[] =
         "Hi, {NickName}.\r\n"
@@ -464,9 +527,11 @@ mary_text_table
         "I like to help out at my \r\n"
         "parents' house on Sundays.{Press}";
 
+#ifndef BUGFIX
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
         "How are you liking\r\n"
         "married life...?{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation[] =
         "Why don't you get \r\n"
@@ -475,15 +540,33 @@ mary_text_table
         "joy to your life, and make\r\n"
         "things on the farm easier!{Press}";
 
+// Match the Japanese declaration order.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
+        "How are you liking\r\n"
+        "married life...?{Press}";
+#endif
+
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation[] =
         "But, I get worried about the\r\n"
         "Chickens when it rains...{Press}";
 
+// Keep the low- and medium-friendship greetings distinct.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipFirstConversation[] =
+        "Hi, {Player}.{Press}";
+#else
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation[] =
         "Hi, {Player}.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipRepeatConversation[] =
         "Do you need something?{Press}";
+
+#ifdef BUGFIX
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipFirstConversation[] =
+        "Hey, {Player}.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipRepeatConversation[] =
         "Keeping yourself busy, \r\n"
@@ -514,8 +597,14 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlackHeartRepeatConversation[] =
         "What can I do for you?{Press}";
 
+// Restore the distinct purple-heart supermarket greeting.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation[] =
+        "Oh. Hey.{Press}";
+#else
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation[] =
         "Hello.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartRepeatConversation[] =
         "Just let me know \r\n"
@@ -568,9 +657,19 @@ mary_text_table
         "Ha ha! Just kidding!\r\n"
         "Bet I had you fooled, huh?{Press}";
 
+// Use the same rain greeting in town and in the forest.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownMorningConversation[] =
+        "Hello.{Press}";
+
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation[] =
+        "Looks like it's started\r\n"
+        "raining.{Press}";
+#else
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2[] =
         "I was afraid it might\r\n"
         "rain today...{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownSunnyAfternoonConversation[] =
         "The spring sure is pretty\r\n"
@@ -604,9 +703,11 @@ mary_text_table
         "could dissolve our troubles\r\n"
         "and just drink them away?{Press}";
 
+#ifndef BUGFIX
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation[] =
         "Looks like it's started\r\n"
         "raining.{Press}";
+#endif
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedGotzHouseFirstConversation[] =
         "Oh, what a coincidence.{Press}";

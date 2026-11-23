@@ -490,9 +490,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_KAREN);
                                 }
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
 #endif
                             }
@@ -1414,23 +1414,15 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
-#if defined(REGION_JP)
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU)
                                                 // Match the portrait and dialogue to the player's marriage state.
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#else
+#elif defined(REGION_JP)
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#endif
-#elif defined(REGION_US) || defined(REGION_EU)
-                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#else
-#ifndef BUGFIX
-                                                // This extra message addresses the opposite player marriage state.
+#elif defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
 #endif
@@ -1445,23 +1437,14 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             }
                                             else
                                             {
-#if defined(REGION_JP)
-#ifdef BUGFIX
-                                                // Match the portrait and dialogue to the player's marriage state.
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU)
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#else
+#elif defined(REGION_JP)
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#endif
-#elif defined(REGION_US) || defined(REGION_EU)
-                                                SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#else
-#ifndef BUGFIX
-                                                // This extra message addresses the opposite player marriage state.
+#elif defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#endif
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
@@ -1478,11 +1461,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_SURPRISED);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
-#else
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
-#endif
                                         }
                                     }
                                 }
@@ -1495,9 +1474,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowFriendshipFirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation);
 #endif
                                             }
@@ -1514,9 +1493,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                                 if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherMediumFriendshipFirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation);
 #endif
                                                 }
@@ -1586,9 +1565,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
 #endif
                                                     }
@@ -1709,25 +1688,19 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         }
                                         else
                                         {
-#if defined(REGION_JP)
-#ifdef BUGFIX
-                                            // Match the portrait and dialogue to the player's marriage state.
+#if defined(BUGFIX)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#else
+#elif defined(REGION_JP)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#endif
 #elif defined(REGION_US) || defined(REGION_EU)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#else
+#elif defined(REGION_DE)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-#ifndef BUGFIX
-                                            // This extra message addresses the opposite player marriage state.
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#endif
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation_2);
 #endif
@@ -1742,21 +1715,12 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         }
                                         else
                                         {
-#if defined(REGION_JP)
-#ifdef BUGFIX
-                                            // Match the portrait and dialogue to the player's marriage state.
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#else
+#elif defined(REGION_JP)
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation);
-#endif
-#elif defined(REGION_US) || defined(REGION_EU)
-                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
-#else
-                                            SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation);
 #endif
                                         }
                                     }
@@ -1771,9 +1735,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_SURPRISED);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation);
-#else
+#elif defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation_2);
 #endif
                                     }
@@ -1788,9 +1752,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     {
                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
                                     }
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownMorningConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
 #endif
                                 }
@@ -1805,9 +1769,9 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             {
                                                 ShowTalkHeartIndicator(CHARACTER_KAREN);
                                             }
-#if defined(REGION_JP)
+#if defined(REGION_JP) || defined(BUGFIX)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation_2);
 #endif
                                             break;
@@ -1903,11 +1867,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                             {
                                 ShowTalkHeartIndicator(CHARACTER_KAREN);
                             }
-#if defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
-#else
-                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedNorthSideTownRainyAfternoonOrForestConversation);
-#endif
                             break;
                         case MAP_GOTZ_HOUSE:
                             if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)

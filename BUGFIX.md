@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 37 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 38 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 24 |
-| **合计** | | **153** |
+| **合计** | | **154** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -361,7 +361,7 @@ JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚�
 <a id="audit-a09"></a>
 ### JP及DE卡莲婚后询问玩家婚姻状态错误
 
-**受影响版本：** JP、DE。
+**受影响版本：** JP、DE有婚姻问答错误。四版统一文本条目和调用。
 
 **原版内容与差异：**
 
@@ -375,13 +375,24 @@ JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚�
 
 核对的是实际婚姻条件、婚礼完成标志和消息调用，不是根据变量名猜测。JP 是对应关系颠倒；DE 还存在多余调用，需要分别处理具体分支。
 
-US／EU在实际玩家已婚条件下询问婚后生活，未婚时劝婚。
-
 **修复方式：**
 
-JP交换四次相关消息引用，并让相应头像随台词一起调整：询问已婚玩家夫妻相处时使用快乐头像，劝未婚玩家结婚时使用普通头像，与原台词的头像配对及海外三版一致。DE删除三次错误的额外消息。保留婚礼完成、地点、天气、首谈／复谈条件及其余有效台词。BUGFIX关闭时保留原文本、引用和头像。
+开启 `BUGFIX` 后，四版共用按纠正后的 JP 组织的脚本和 144 个同名、同序的文本槽，各区使用本地语言。JP纠正四处晴天复谈的台词错位。DE删去三次错误的额外播报。已婚时用快乐头像询问夫妻相处，未婚时用普通头像劝婚。US／EU原版的婚姻问答已正确，统一时去掉镇北已婚复谈中快乐头像前的一次普通头像设置。关闭开关时，各版保留原版正文、头像和调用顺序。
 
-**相关文件：** [JP 条件](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+| 版本 | 关闭时的文本槽 | 开启时的文本槽 |
+|---|---:|---:|
+| JP、US、EU | 各 144 | 各 144 |
+| DE | 146 | 144 |
+
+海外版按 JP 的复用方式整理文本。中性赠礼共用一条致谢，低、中好感的首谈各有一句招呼，杂货店紫心首谈和镇北上午分成两句。
+
+海外版未婚雨天的主槽 `UnmarriedNorthSideTownRainyAfternoonOrForestConversation` 对应 JP 的「や、ふっちゃったね。」（哎，下起雨了呢），沿用本版原森林句。英文是 `Looks like it's started raining.`，德文是 `Sieht aus, als hätte es angefangen zu regnen.`（看来下起雨了）。原来镇北的另一种译法以同基名的 `_2` 槽在关闭时保留，意思是「我原先还担心今天会下雨……」。开启时镇北雨天下午和森林雨天共用主槽。
+
+DE 婚后复谈的两个 `_2` 槽在关闭时保留。开启时将原已婚 `_2` 槽询问与妻子相处的正文放入基础的已婚槽，婚后雨天复谈使用共用雨天槽。
+
+低好感沿用本版的 `Hi, {Player}.`（你好，{Player}。），中好感采用 `Hey, {Player}.`（嗨，{Player}。），紫心首谈采用 `Oh. Hey.`（哦，嗨。）。中好感与紫心首谈分别参考本地同级重制版转储 `SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Talk.txt` 第 4623、4655 行和 `SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Scr_Talk.txt` 第 4928、4963 行。镇北上午沿用英版的 `Hello.` 或德版的 `Hallo.`（你好。）。
+
+**相关文件：** [共用脚本](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
 <a id="curry-powder-price"></a>
 ### 杂货店咖喱粉货架报价错误
@@ -1333,6 +1344,7 @@ US／EU 分别写 eated、Pinapple
 | [德版珀布利在孩子学步事件中重复同一句](#de-popuri-child-first-steps) | DE | 已接入 |
 | [德版玛娜恭维杰夫时夸奖对象颠倒](#de-manna-flatters-jeff) | DE | 已接入 |
 | [玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗](#manna-saibara-family) | US、EU、DE | 已接入 |
+| [卡莲对话中的错译、残句与笔误](#karen-dialogue-text) | US、EU、DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2120,6 +2132,58 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 仅在BUGFIX开启时修正海外第三段，恢复儿子邀请同住、赛巴拉坚持留镇的意思。第四段及赠礼好感、物品扣除、语速和演出调用保持不变。译文依据日版该段含义，不新增事件。
 
 **相关文件：** [共享脚本](data/scripts/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c)
+
+<a id="karen-dialogue-text"></a>
+### 卡莲对话中的错译、残句与笔误
+
+**受影响版本：** US、EU、DE。下表按台词归为 14 项，US、EU 各修 10 句，DE 修 11 句。
+
+**原版内容与差异：**
+
+四版都逐句核对过。下表所列 14 项的 US 与 EU 正文相同，合用一列。各版本后的数字是 GBA 文本头中该条的声明行，摘录省略了屏内换行、翻页和按键标记。 [JP 原文](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [US 原文和修订](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [EU 原文和修订](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [DE 原文和修订](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
+
+| 场景 | JP 原文与释义 | US、EU 和 DE 原文与释义 | `BUGFIX` 开启后的 GBA 改写 |
+| --- | --- | --- | --- |
+| **错译** · 婚后橙心，农舍早晨首谈 | **347**「おはよう。ふふふ、よく眠っていたわね。」（早上好。呵呵，你睡得真香。） | **US 401／EU 396** `Boy did I sleep soundly!`<br>**DE 412** `Habe ich tief geschlafen!`<br>两种原译都是「我睡得真香！」 | 英文换成 `Boy did you sleep soundly!`，德文换成 `Du hast tief geschlafen!`，都改为「你睡得真香！」，保留早安问候。 |
+| **错译** · 婚后黄心，杂货店复谈 | **424**「何か買っていってくれるの？ せっかくだから店のもの全部買っていってよ。ふふっ…じょうだんよ。」（要买点什么吗？来都来了，把店里的东西都买下吧。呵呵，玩笑啦。） | **US 486／EU 481** `Will you do some shopping for me? I just need....everything!`<br>**DE 495** `Kaufst du etwas für mich ein? Ich brauche nur.... alles!`<br>两种原译都是「能替我采购吗？我只需要……所有东西！」 | 英文用 `Will you do some shopping here? Since you're here, buy everything in the store!`。德文用 `Kaufst du etwas bei uns ein? Dann kauf doch gleich alles!`。恢复店里买东西及「把店里的东西都买下吧」的玩笑，保留结尾的笑声。 |
+| **错译** · 婚后收到生日礼物 | **12**「へ、誕生日プレゼント？ わぁ、うれしい！ {NickName} 大好きっ♡」（诶，生日礼物？哇，真开心！最喜欢你了，{NickName}♡） | **US 15／EU 10** `A birthday present? For me? I love presents!`<br>**DE 12** `Ein Geburtstagsgeschenk? Für mich?! Ich liebe Geschenke!`<br>两种原译都以「我喜欢礼物！」收尾。 | 英文改为 `Wow! I love you, {NickName}!`（哇！我爱你，{NickName}！），德文改为 `Hab dich lieb, {NickName}!`（我爱你，{NickName}！）。保留开头的生日礼物问句。 |
+| **错译** · 卡莲嫁给里克后收到春感谢祭礼物 | **152**「へー、おいしそうなクッキーだねぇ。…あ、今日春の感謝祭だった…リックからも、もらいにいこうっと。」（饼干看起来真好吃。啊，今天是春感谢祭，我也去找里克要一份吧。） | **US 164／EU 159** `This Cake looks delicious`<br>**DE 169** `Der Kuchen sieht köstlich aus`<br>两种原译都说「蛋糕看起来真好吃」。 | 英文用 `These Cookies look delicious`，德文用 `Die Kekse sehen köstlich aus`（这些饼干看起来真好吃），德文后句的代词改为 `welche`（一些）。沿用各版原有节日名和向里克讨礼物的情节。 |
+| **残句** · 未婚黄心，杂货店复谈 | **535**「同じくらいの年の人が牧場やっているなんて感心するわ、わたし。」（跟我差不多年纪的人能经营牧场，真让我佩服。） | **US 637／EU 632** `I'm impressed that someone the same age as I am is running a farm all by himself!`（我很佩服跟我同龄的人能独自经营农场！）<br>**DE 646** `Ich bin beeindruckt, dass jemand meines Alters überhaupt eine`（我真佩服，跟我同龄的人居然能……一座）。 | 德文在原句末补 `Farm führt!`（经营农场）。 |
+| **残句** · 镇南低友好度复谈 | **612**「今の生活、とっても楽しいわ。リリアさんやリックにいろいろ教わって、ポプリの分もがんばろうと思って。」（我很喜欢现在的生活。莉莉娅和里克教了我很多，我也想代珀布利出一份力。） | **US 725／EU 720** `I like things the way they are now, learning things from Lillia and Rick, and making up for Popuri, too.`（我喜欢现在这样，向莉莉娅和里克学习，也帮珀布利分担。）<br>**DE 760** `Mir gefallen die Dinge, wie sie gerade sind. Von Lillia und Rick zu lernen und Popuri.`（我喜欢现在这样。向莉莉娅和里克学习，以及珀布利。） | 德文保留首句，第二页补成 `Von Lillia und Rick lerne ich viel. Auch an Popuris Stelle will ich anpacken.`（我向莉莉娅和里克学到很多，也想代珀布利出力。） |
+| **错译** · 未婚，镇北晴天下午 | **563**「こんにちは、いい天気だね。こんな日は、泉がきれいなんだよ。」（你好，天气真好。这种日子泉水很美。） | **US 674／EU 669** `The spring sure is pretty in this kind of weather...`（这种天气，泉水真漂亮……）<br>**DE 701** `Bei solchem Wetter ist der Frühling toll...`（这种天气，春天真棒……） | 德文换成 `Bei solchem Wetter ist die Quelle so schön...`（这种天气，泉水真漂亮……）。 |
+| **笔误** · 新生儿阶段复谈 | **257**「この子が夜になくからすっかり寝不足だわ。」（孩子夜里老哭，我都睡不够。） | **US 285／EU 280** `so I don't get enought sleep!`<br>**DE 304** `ich kriege nicht genug Schlaf!`<br>两种原译都说「我睡不够！」，英文多了一个 `t`。 | 英文 `enought` 改为 `enough`（足够）。 |
+| **语法** · 孩子学步后期复谈 | **299**「…{Baby}がいて、ほんとによかった。」（……有了 {Baby} 真好。） | **US 346／EU 341** `I'm love {Baby} so much!...`<br>**DE 361** `Ich liebe mein {Baby} so sehr!...`<br>两种原译都在表达「我太爱 {Baby} 了！」 | 英文 `I'm love {Baby}` 改为 `I love {Baby}`（我爱 {Baby}）。 |
+| **笔误** · 婚后绿心，杂货店复谈 | **414**「いそがしいんだから放っておいてよ。もう。」（我忙着呢，别来烦我啦。） | **US 472／EU 467** `I'm busy right now, slo leave me alone.`<br>**DE 485** `Ich bin beschäftigt, also lass mich allein.`<br>两种原译都是「我正忙，所以让我一个人待着。」 | 英文 `slo` 改为 `so`（所以）。 |
+| **省译** · 婚后收到香水 | **132**「みんな、きっとびっくりするよ。こんなにいい香りなんだもん！」（这么好闻，大家肯定会吃惊！） | **US 141／EU 136** `It smells lovely!`<br>**DE 142** `Es duftet so gut!`<br>两种原译都只说「真好闻！」 | 在香味评价之前加英文 `Everyone will be surprised!`、德文 `Da staunen bestimmt alle!`（大家肯定会吃惊！）。 |
+| **省译** · 孩子学步后期首谈 | **291**「おはよう。…子どもって、いつのまにか大きくなっていっているのね。さいしょはこの子のすること、すべてにドキドキしていたけど…」（早上好。孩子不知不觉就长大了。起初孩子做什么都让我紧张……） | **US 330／EU 325** `I can't believe how fast {Baby} is growing up! It seems like just yesterday he was an infant!`<br>**DE 345** `Unglaublich, wie schnell {Baby} groß wird! Es scheint, als wäre er erst gestern ein Säugling gewesen!`<br>两种原译都是「{Baby} 长得真快，好像昨天还是个婴儿！」 | 英文加 `Good morning!`，末句改为 `When I was a new mom, everything he did made me nervous...`。德文加 `Guten Morgen!`，末句改为 `Anfangs war ich bei allem, was unser Baby tat, ganz nervös...`。恢复早安与初为人母时的紧张回忆，保留孩子长得快的句子。 |
+| **省译** · 婚后橙心，杂货店复谈 | **434**「わたしの様子を見に来たの？ 大丈夫、ちゃんと手伝いしてるよ。」（来看我吗？放心，我有好好帮忙。） | **US 504／EU 499** `Did you come to check on me? That's sweet of you.`<br>**DE 514** `Bist du gekommen, um nach mir zu sehen? Wie lieb von dir.`<br>两种原译都是「你来看我吗？你真贴心。」 | 保留问句，后接英文 `Don't worry, I'm helping out just fine.`、德文 `Keine Sorge, ich helfe fleißig mit.`（放心，我有好好帮忙。） |
+| **措辞统一** · 婚后星夜祭前一日提醒 | **212**「明日は星夜祭だから、１２時には家に帰っておいてね。」（明天是星夜祭，最迟十二点到家哦。） | **US 233／EU 228** `go back home by 12, OK?`（最迟十二点到家，好吗？）<br>**DE 244** `geh um 12 Uhr nach Hause?`（十二点回家好吗？） | 德文只将 `geh um` 改成 `komm bis`。实际末句为 `komm bis 12 Uhr nach Hause?`（最迟正午十二点到家好吗？），保留正午、节日名和问号。 |
+
+**判断依据：**
+
+台词含义以日版 GBA 为准，英文笔误根据各句语法和拼写修正，香水、学步首谈和杂货店橙心复谈按日版 GBA 补回省略的意思。生日英语 `I love you, {NickName}!`（我爱你，{NickName}！）来自本作艾利 0597。春感谢祭赠礼只将普通饼干和巧克力饼干归入这个分支，且德版琳 1011 的同类收礼台词已经使用 `Kekse`（饼干）。 [美版艾利 0597](text/us/script/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.h#L31) · [欧版艾利 0597](text/eu/script/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.h#L31) · [春感谢祭赠礼判定](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c#L236-L240) · [卡莲收礼台词调用](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c#L647) · [德版琳 1011](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h#L141-L144)
+
+星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，本次只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
+
+重制版参考取自本地与仓库同级的 `SoSFoMTTextDump/SoSFoMTTextDump/` 目录下各语言的 `msg_Scr_Talk.txt`。以下摘录只用于核对台词含义。星夜祭的时间依据是上述 GBA 脚本。
+
+| 场景 | 重制版参考摘录与释义 |
+| --- | --- |
+| 早晨谈谁睡得熟 | `JA/msg_Scr_Talk.txt` 5046–5047「おはよう。ふふふ、よく眠っていたわね。」（早上好。呵呵，你睡得真香。）<br>`US/msg_Scr_Talk.txt` 4499 `You were sleeping so soundly all night.`、`DE/msg_Scr_Talk.txt` 4796–4797 `Du hast die ganze Nacht tief und fest geschlafen.`（你一整晚都睡得很熟。） |
+| 黄心杂货店玩笑 | `JA/msg_Scr_Talk.txt` 5101–5104「せっかくだから店のもの全部買っていってよ。」（来都来了，把店里的东西全部买下吧。）<br>`US/msg_Scr_Talk.txt` 4546–4548 `Since you're here, why don't you go ahead and clean out our whole stock?`（既然来了，不如把我们的货全买光？） |
+| 生日收礼时表达爱意 | `JA/msg_Scr_Talk.txt` 4769–4771 `<nickname>大好きっ`（最喜欢你了，〈昵称〉。）<br>`US/msg_Scr_Talk.txt` 4251–4253 `<nickname>, I love you so much.`、`DE/msg_Scr_Talk.txt` 4527–4529 `<nickname>, ich liebe dich einfach.`（〈昵称〉，我真的很爱你。） |
+| 佩服同龄人经营农场 | `US/msg_Scr_Talk.txt` 4676–4677 `Knowing someone my age is running a farm as a solo gig is impressive.`（同龄人独自经营农场，真让我佩服。） |
+| 向莉莉娅和里克学习，代珀布利出力 | `US/msg_Scr_Talk.txt` 4730–4732 `Rick and Lillia are teaching me so much. I'm doing the best I can to fill Popuri's shoes.`（里克和莉莉娅教了我很多，我也尽力接手珀布利的活。） |
+| 镇北晴天的泉水 | `DE/msg_Scr_Talk.txt` 5006–5007 `An Tagen wie heute ist die Quelle der Göttin am schönsten.`（像今天这样的日子，女神泉最美。） |
+| 收到香水时想象大家的反应 | `US/msg_Scr_Talk.txt` 4334–4335 `I'm sure everyone's going to be like, "Whaaat?! Karen? Wearing perfume?"`（大家肯定会吃惊地说：「什么？！卡莲？喷香水了？」） |
+| 学步后回忆初为人母 | `US/msg_Scr_Talk.txt` 4468–4469 `I used to get so nervous and excited every time our baby would do something new for the first time...`（以前孩子每次头一回做一件事，我都又紧张又激动……） |
+| 杂货店橙心复谈时让玩家放心 | `DE/msg_Scr_Talk.txt` 4853–4855 `Keine Sorge, mir geht es prima. Ich helfe nur bei Sachen, denen ich gewachsen bin.`（放心，我很好。我只帮些力所能及的忙。） |
+
+**修复方式：**
+
+开启 `BUGFIX` 时，按表在各版 GBA 台词上局部更正或补句，保留玩家昵称 `{NickName}` 和孩子名字 `{Baby}` 的占位符，按本作对话框的行宽分行。关闭时使用各版原台词。
+
+**相关文件：** [共用脚本](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明
