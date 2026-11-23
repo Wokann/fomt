@@ -8222,7 +8222,7 @@ C++：完成延后的落地声音与位置回调、按原规则请求女神供�
 农田属性缓存，并由成员析构按逆序释放六项事件图标、四项未知对象、天气、
 两组各两项精灵及其他已识别所有者，最后调用原生世界数据析构。
 脚本编号直接使用各版 Mary 清单导出的
-`EventScript_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices`；
+`EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices`；
 落地声音使用现有 `AUDIO_SFX_THROWN_ITEM_LANDS`，不硬写其数值。
 
 | 区域 | 析构函数半开范围 | 新增 C++ 字节 |
@@ -8772,8 +8772,8 @@ Mary 文档 `events/farming_tutorial_callable.md` 仅使用 FoMT 的结论，EU
 
 `gFarmingTutorialScriptIds[2]` 仍位于连续的 Common UI 数据对象，
 声明保持在 `include/common_ui.hh`。条目通过区域 `fomt_scripts.mary.h`
-读取实际 C/C++ 枚举：种植 `EventScript_TutorialEvent_CropFarmingInstructions`
-与动物分类 `EventScript_SystemMenu_SelectAnimalCategory`，不再写 0x0427／
+读取实际 C/C++ 枚举：种植 `EventScript_1063_TutorialEvent_CropFarmingInstructions`
+与动物分类 `EventScript_1059_SystemMenu_SelectAnimalCategory`，不再写 0x0427／
 0x0423 裸编号。原尾部两字节零由紧随文本的原生对齐保留，不定义第三种教程。
 Common UI 全段重定位后字节、所有标签地址和相邻文本排列均保持原样。
 
@@ -11698,7 +11698,7 @@ Makefile、编译器选项和正式工具均未改变。完整原版字节／SHA
 
 `10000` 至 `1000000000` 的六档十进制里程碑直接使用所选区域
 `fomt_scripts.mary.h` 中的
-`EventScript_AchievementEvent_Pedometer_<步数>Steps` 编号，构造
+`EventScript_NNNN_AchievementEvent_Pedometer_<步数>Steps` 编号，构造
 真实 `GameSceneScriptRequest(id, 0)`，经既有 `QueueScript` 的
 队列类型 1 提交。脚本源码、编码、索引及 Mary 构建产物未更改。
 
@@ -12639,7 +12639,7 @@ JP／海外槽容量、ASCII／SJIS／控制字节，核对源内容、结束符
 把一次请求直接等同于成就对话已经显示。
 
 七个脚本使用对应区域 `data/scripts/<region>/fomt_scripts.mary.h`
-的实际 `EventScript_AchievementEvent_Shipping_*` 名称。四份
+的实际 `EventScript_NNNN_AchievementEvent_Shipping_*` 名称。四份
 区域头文件均单独核对，源码没有写死脚本 ID 或复制一份常量表。
 Mary 脚本内容和编译流程保持原样。
 
@@ -23137,7 +23137,7 @@ ABS32 跳转表数据；完整表值和真实分派目标均已核对，未误�
 清单同时提供 Mary 脚本表和普通 C/C++ 枚举。Mary 首项仍为 `NULL`；
 C/C++ 首项为 `EventScript_None = 0`，其余编号按原目录自然排列。
 1329 个槽位（含空首项）的编号均经 C、C++ 编译期检查。
-本函数直接使用 `EventScript_FarmEvent_Zack_DailyShippingPickup`，
+本函数直接使用 `EventScript_0987_FarmEvent_Zack_DailyShippingPickup`，
 不再硬写 `0x3DB`，也不另建重复的编号表。只有场景源文件按区域
 引用该清单，全局常量头保持不变，避免脚本目录更新牵连无关源码。
 这只使已恢复的调用者随目录更新，不代表其他原生硬编码脚本号

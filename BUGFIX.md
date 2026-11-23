@@ -130,7 +130,7 @@ JP 在设为无信号后调用隐藏节目，由该节目处理播放和结束�
 
 只为三个海外版的两个入口补上本版隐藏节目调用；保留节目原有星期、日期、重复次数和文本。
 
-**相关文件：** [JP 入口](data/scripts/jp/EventScript_TV_ChannelDispatcher.mary.c) · [US 初始入口](data/scripts/us/EventScript_TV_ChannelDispatcher.mary.c) · [US 换台入口](data/scripts/us/EventScript_TV_EntertainmentChannel.mary.c) · [隐藏节目](data/scripts/us/EventScript_TV_4AMHiddenBroadcast.mary.c) · [VM 初始化](src/script_vm.cc)
+**相关文件：** [JP 入口](data/scripts/jp/EventScript_0356_TV_ChannelDispatcher.mary.c) · [US 初始入口](data/scripts/us/EventScript_0356_TV_ChannelDispatcher.mary.c) · [US 换台入口](data/scripts/us/EventScript_0540_TV_EntertainmentChannel.mary.c) · [隐藏节目](data/scripts/us/EventScript_1032_TV_4AMHiddenBroadcast.mary.c) · [VM 初始化](src/script_vm.cc)
 
 <a id="de-profile-tv"></a>
 ### 人物介绍节目未接收频道输入
@@ -149,7 +149,7 @@ JP、US、EU 使用 `var_0 = ShowTelevisionMessage(...)`，将输入送入后续
 
 仅恢复 DE 该项的电视消息调用与返回值保存；其他慢速台词保持原样。与 4:44 问题分开处理。
 
-**相关文件：** [DE 分派](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US 对照](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道定义](include/fomt_constants.mary.h)
+**相关文件：** [DE 分派](data/scripts/de/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US 对照](data/scripts/us/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [频道定义](include/fomt_constants.mary.h)
 
 <a id="jp-link-retry"></a>
 ### 联机失败消息沿用旧窗口状态
@@ -206,7 +206,7 @@ JP、US、EU 在春 19 日消息后结束该分支。
 
 仅补 DE 分支结束；保持 19 日消息及频道选择。
 
-**相关文件：** [DE 节目](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c)
+**相关文件：** [DE 节目](data/scripts/de/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c)
 
 <a id="category-mechanics"></a>
 ## 养成、经济与事件条件
@@ -280,7 +280,7 @@ JP 指南及三个海外版数据均为 50、120、200 G。
 
 只交换 JP 次日过渡脚本的两条调用顺序；固定床效果、花瓶与早餐逻辑不改。
 
-**相关文件：** [JP 过渡](data/scripts/jp/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [US 对照](data/scripts/us/EventScript_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [保存与恢复](src/game_scene.cc) · [床效果](data/scripts/jp/EventScript_LocationInteraction_FarmhouseBedSleepChoice.mary.c) · [晚起判断](data/scripts/jp/EventScript_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.c)
+**相关文件：** [JP 过渡](data/scripts/jp/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [US 对照](data/scripts/us/EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay.mary.c) · [保存与恢复](src/game_scene.cc) · [床效果](data/scripts/jp/EventScript_0425_LocationInteraction_FarmhouseBedSleepChoice.mary.c) · [晚起判断](data/scripts/jp/EventScript_0986_SystemEvent_SleepRecoveryAndCursedHammerSickleBlessing.mary.c)
 
 <a id="jp-birth-affection"></a>
 ### 幼畜出生好感度计算错误
@@ -318,7 +318,7 @@ JP、DE 在确认前调用 `SetPlayerNicknameForSpouse` 保存所选文本。
 
 仅在 US、EU 第二选项补上写回，采用当前选项已有字符串；不改其他昵称分支。
 
-**相关文件：** [US](data/scripts/us/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [JP](data/scripts/jp/EventScript_LoveEvent_Elli_NicknameChoice.mary.c) · [DE](data/scripts/de/EventScript_LoveEvent_Elli_NicknameChoice.mary.c)
+**相关文件：** [US](data/scripts/us/EventScript_0079_LoveEvent_Elli_NicknameChoice.mary.c) · [JP](data/scripts/jp/EventScript_0079_LoveEvent_Elli_NicknameChoice.mary.c) · [DE](data/scripts/de/EventScript_0079_LoveEvent_Elli_NicknameChoice.mary.c)
 
 <a id="jp-wedding-birthdays"></a>
 ### 婚期未完整避开双方生日及节日事件
@@ -337,7 +337,7 @@ JP、DE 在确认前调用 `SetPlayerNicknameForSpouse` 保存所选文本。
 
 JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚约对象取得生日，每次顺延后重新检查双方生日和避让条件；同时在自己的日期避让表中补入秋 30 日和冬 25 日，与海外已有规则一致。海外三版保持原有流程和表内容。关闭开关时仍使用原版 JP 实现和 25 项日期表。
 
-**相关文件：** [婚期计算](src/script_engine.cc) · [订婚／已婚查询](src/npc_collection.cc) · [日期表](src/wedding_date.cc) · [日历节日](src/scene_calendar_core.cc) · [JP 每日更新](data/scripts/jp/EventScript_SystemEvent_ResetDailyWorldState.mary.c) · [原生证据](docs/mary-native-audit/events/event_state_registration.md)
+**相关文件：** [婚期计算](src/script_engine.cc) · [订婚／已婚查询](src/npc_collection.cc) · [日期表](src/wedding_date.cc) · [日历节日](src/scene_calendar_core.cc) · [JP 每日更新](data/scripts/jp/EventScript_0982_SystemEvent_ResetDailyWorldState.mary.c) · [原生证据](docs/mary-native-audit/events/event_state_registration.md)
 
 <a id="ann-heart"></a>
 ### 玩家已娶别人仍显示琳的爱心
@@ -356,7 +356,7 @@ JP 开启 `BUGFIX` 后采用海外版已有的婚期计算流程：用本次婚�
 
 四版重复对话加上首谈条件；保留琳与玩家及与克里夫的原有婚后分支。
 
-**相关文件：** [JP 对话](data/scripts/jp/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [US 对话](data/scripts/us/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP 对话](data/scripts/jp/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [US 对话](data/scripts/us/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c)
 
 <a id="audit-a09"></a>
 ### JP及DE卡莲婚后询问玩家婚姻状态错误
@@ -381,7 +381,7 @@ US／EU在实际玩家已婚条件下询问婚后生活，未婚时劝婚。
 
 JP交换四次相关消息引用，并让相应头像随台词一起调整：询问已婚玩家夫妻相处时使用快乐头像，劝未婚玩家结婚时使用普通头像，与原台词的头像配对及海外三版一致。DE删除三次错误的额外消息。保留婚礼完成、地点、天气、首谈／复谈条件及其余有效台词。BUGFIX关闭时保留原文本、引用和头像。
 
-**相关文件：** [JP 条件](data/scripts/jp/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP 条件](data/scripts/jp/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
 
 <a id="curry-powder-price"></a>
 ### 杂货店咖喱粉货架报价错误
@@ -400,7 +400,7 @@ JP交换四次相关消息引用，并让相应头像随台词一起调整：询
 
 沿用各版购物教学的价格，将货架台词中的 100 G 改为 50 G。
 
-**相关文件：** [实际购买](src/scene_supermarket.cc) · [US](data/scripts/us/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [EU](data/scripts/eu/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [DE](data/scripts/de/EventScript_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [购物教学](data/scripts/us/EventScript_TutorialEvent_Shopping_BuyItemsAtStoreCounter.mary.c)
+**相关文件：** [实际购买](src/scene_supermarket.cc) · [US](data/scripts/us/EventScript_0473_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [EU](data/scripts/eu/EventScript_0473_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [DE](data/scripts/de/EventScript_0473_ShopEvent_Supermarket_CurryPowderPurchase.mary.c) · [购物教学](data/scripts/us/EventScript_0423_TutorialEvent_Shopping_BuyItemsAtStoreCounter.mary.c)
 
 <a id="lake-mine-decade-rock-weights"></a>
 ### 湖矿 B201–B250 的整十层选错岩石权重
@@ -423,7 +423,7 @@ GBA 时期的两份民间攻略记载有别。2007 年中文攻略把两种宝�
 
 让 B210、B220、B230、B240、B250 使用 GBA 原有的索引 53，两种宝石在该行的取样率各为 1/256。
 
-**相关文件：** [岩石权重选择](src/mine_floor.cc) · [权重行索引](include/mine_weight_rows.h) · [权重表](src/mine_floor_items.c) · 矿场研究第 8 集（[JP](data/scripts/jp/EventScript_TV_MineResearchGroup.mary.c) · [US](data/scripts/us/EventScript_TV_MineResearchGroup.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineResearchGroup.mary.c) · [DE](data/scripts/de/EventScript_TV_MineResearchGroup.mary.c)）
+**相关文件：** [岩石权重选择](src/mine_floor.cc) · [权重行索引](include/mine_weight_rows.h) · [权重表](src/mine_floor_items.c) · 矿场研究第 8 集（[JP](data/scripts/jp/EventScript_1056_TV_MineResearchGroup.mary.c) · [US](data/scripts/us/EventScript_1056_TV_MineResearchGroup.mary.c) · [EU](data/scripts/eu/EventScript_1056_TV_MineResearchGroup.mary.c) · [DE](data/scripts/de/EventScript_1056_TV_MineResearchGroup.mary.c)）
 
 <a id="jp-winter-grass-growth"></a>
 ### 日版牧草在冬季继续生长
@@ -442,7 +442,7 @@ JP 秋 23 日农舍入门节目说牧草冬季埋在雪下，到春天才重新�
 
 JP 同时采用海外版的入冬重置和冬季停长逻辑。
 
-**相关文件：** [田地每日与换季更新](src/field.cc) · [JP 秋 23 日节目](data/scripts/jp/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [地区差异](REGIONAL_DIFFERENCES.md)
+**相关文件：** [田地每日与换季更新](src/field.cc) · [JP 秋 23 日节目](data/scripts/jp/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [US 对照](data/scripts/us/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [地区差异](REGIONAL_DIFFERENCES.md)
 
 <a id="category-interface"></a>
 ## 菜单选项、记录与显示
@@ -542,7 +542,7 @@ JP 的菜单显示与三条胜负／结果消息分支一致。
 
 仅重排三个海外版 `TalkChoice3` 的文本实参，不改随机数、胜负判断、连胜累加或奖金。
 
-**相关文件：** [JP 脚本](data/scripts/jp/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c) · [US 脚本](data/scripts/us/EventScript_TV_HarvestGoddessRockPaperScissors.mary.c)
+**相关文件：** [JP 脚本](data/scripts/jp/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c) · [US 脚本](data/scripts/us/EventScript_1040_TV_HarvestGoddessRockPaperScissors.mary.c)
 
 <a id="audit-a07"></a>
 ### 海外艾利产后生日选项错位
@@ -567,7 +567,7 @@ JP产后为玩家、艾利、孩子生日；孩子称呼沿用同语言女神生
 
 恢复孩子生日选项，并按原来的正确答案位置重排产后菜单；产前菜单与好感判定不改。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [海外菜单及结果分支](data/scripts/us/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [DE对应文件](data/scripts/de/EventScript_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c)
+**相关文件：** [海外菜单及结果分支](data/scripts/us/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c) · [DE对应文件](data/scripts/de/EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice.mary.c)
 
 <a id="audit-a08"></a>
 ### 海外女神产前生日选项错位
@@ -592,7 +592,7 @@ JP为纪念日、玩家生日、女神生日；海外现有字符串足够恢复
 
 只调整产前菜单参数顺序，产后已经正确的菜单和判定保持不变。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [女神生日两套菜单](data/scripts/us/EventScript_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [DE对应文件](data/scripts/de/EventScript_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c)
+**相关文件：** [女神生日两套菜单](data/scripts/us/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [DE对应文件](data/scripts/de/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c)
 
 <a id="fishing-message-width"></a>
 ### 钓获提示长名称覆盖行首
@@ -611,7 +611,7 @@ US／EU原You fished a {Var1}.中漂流瓶、海贼宝藏展开为33／29格；D
 
 英文特殊物品名移到下一行；DE三个尺寸模板去掉鱼名后的多余空格，不改鱼种名或引擎换行规则。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [US](data/scripts/us/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [EU](data/scripts/eu/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [DE](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [钓获取名](src/fishing.cc) · [回绕规则](src/ui_text_rows.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [US](data/scripts/us/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [EU](data/scripts/eu/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [DE](data/scripts/de/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [钓获取名](src/fishing.cc) · [回绕规则](src/ui_text_rows.cc)
 
 <a id="de-link-options"></a>
 ### 德版联机确认选项残留英语
@@ -670,11 +670,11 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 
 对应的文本文件：
 
-- US：[NPCEvent_Ann_DialogueAndGiftResponses](data/scripts/us/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [NPCEvent_Harris_DialogueAndGiftResponses](data/scripts/us/EventScript_NPCEvent_Harris_DialogueAndGiftResponses.mary.c) · [TV_FairyAndMeHisStory](data/scripts/us/EventScript_TV_FairyAndMeHisStory.mary.c) · [TV_MyDearPrincess](data/scripts/us/EventScript_TV_MyDearPrincess.mary.c)
-- EU：[NPCEvent_Ann_DialogueAndGiftResponses](data/scripts/eu/EventScript_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [NPCEvent_Harris_DialogueAndGiftResponses](data/scripts/eu/EventScript_NPCEvent_Harris_DialogueAndGiftResponses.mary.c) · [TV_FairyAndMeHisStory](data/scripts/eu/EventScript_TV_FairyAndMeHisStory.mary.c) · [TV_MyDearPrincess](data/scripts/eu/EventScript_TV_MyDearPrincess.mary.c)
-- DE：[NPCEvent_Duke_GrapeHarvestInvitation](data/scripts/de/EventScript_NPCEvent_Duke_GrapeHarvestInvitation.mary.c) · [TV_MechabotUltrorZero_EpisodeReminders](data/scripts/de/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [TV_MyDearPrincess](data/scripts/de/EventScript_TV_MyDearPrincess.mary.c) · [TV_StarLilyBanditGirl](data/scripts/de/EventScript_TV_StarLilyBanditGirl.mary.c)
+- US：[NPCEvent_Ann_DialogueAndGiftResponses](data/scripts/us/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [NPCEvent_Harris_DialogueAndGiftResponses](data/scripts/us/EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses.mary.c) · [TV_FairyAndMeHisStory](data/scripts/us/EventScript_1036_TV_FairyAndMeHisStory.mary.c) · [TV_MyDearPrincess](data/scripts/us/EventScript_1034_TV_MyDearPrincess.mary.c)
+- EU：[NPCEvent_Ann_DialogueAndGiftResponses](data/scripts/eu/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [NPCEvent_Harris_DialogueAndGiftResponses](data/scripts/eu/EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses.mary.c) · [TV_FairyAndMeHisStory](data/scripts/eu/EventScript_1036_TV_FairyAndMeHisStory.mary.c) · [TV_MyDearPrincess](data/scripts/eu/EventScript_1034_TV_MyDearPrincess.mary.c)
+- DE：[NPCEvent_Duke_GrapeHarvestInvitation](data/scripts/de/EventScript_0716_NPCEvent_Duke_GrapeHarvestInvitation.mary.c) · [TV_MechabotUltrorZero_EpisodeReminders](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [TV_MyDearPrincess](data/scripts/de/EventScript_1034_TV_MyDearPrincess.mary.c) · [TV_StarLilyBanditGirl](data/scripts/de/EventScript_1054_TV_StarLilyBanditGirl.mary.c)
 
-**相关文件：** [JP](data/scripts/jp/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US](data/scripts/us/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU](data/scripts/eu/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [DE](data/scripts/de/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [控制符读取](src/ui_text_stream.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US](data/scripts/us/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU](data/scripts/eu/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [DE](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [控制符读取](src/ui_text_stream.cc)
 
 <a id="text-trailing-space"></a>
 ### 满行后的多余空格覆盖行首
@@ -695,10 +695,10 @@ JP／US／EU是收获与失败；本栏实际读取收获数和失败数。
 
 对应的文本文件：
 
-- JP：[NPCEvent_Barley_DialogueAndGiftResponses](data/scripts/jp/EventScript_NPCEvent_Barley_DialogueAndGiftResponses.mary.c) · [NPCEvent_Saibara_DialogueAndGiftResponses](data/scripts/jp/EventScript_NPCEvent_Saibara_DialogueAndGiftResponses.mary.c)
-- US：[FamilyEvent_Doug_BirthdayGiftFromAnn](data/scripts/us/EventScript_FamilyEvent_Doug_BirthdayGiftFromAnn.mary.c) · [FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice](data/scripts/us/EventScript_FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice.mary.c) · [FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley](data/scripts/us/EventScript_FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley.mary.c) · [FestivalEvent_CookingFestival_Judging](data/scripts/us/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) · [FestivalEvent_FireworksFestival_PostFestivalDialogue](data/scripts/us/EventScript_FestivalEvent_FireworksFestival_PostFestivalDialogue.mary.c) · [NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue](data/scripts/us/EventScript_NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue.mary.c) · [NPCEvent_Gray_DialogueAndGiftResponses](data/scripts/us/EventScript_NPCEvent_Gray_DialogueAndGiftResponses.mary.c) · [NPCEvent_Kai_LeavesAfterSummer](data/scripts/us/EventScript_NPCEvent_Kai_LeavesAfterSummer.mary.c) · [TV_StEmeraldAcademy](data/scripts/us/EventScript_TV_StEmeraldAcademy.mary.c) · [TutorialEvent_CropFarmingInstructions](data/scripts/us/EventScript_TutorialEvent_CropFarmingInstructions.mary.c)
-- EU：[FamilyEvent_Doug_BirthdayGiftFromAnn](data/scripts/eu/EventScript_FamilyEvent_Doug_BirthdayGiftFromAnn.mary.c) · [FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice](data/scripts/eu/EventScript_FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice.mary.c) · [FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley](data/scripts/eu/EventScript_FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley.mary.c) · [FestivalEvent_CookingFestival_Judging](data/scripts/eu/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) · [FestivalEvent_FireworksFestival_PostFestivalDialogue](data/scripts/eu/EventScript_FestivalEvent_FireworksFestival_PostFestivalDialogue.mary.c) · [NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue](data/scripts/eu/EventScript_NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue.mary.c) · [NPCEvent_Gray_DialogueAndGiftResponses](data/scripts/eu/EventScript_NPCEvent_Gray_DialogueAndGiftResponses.mary.c) · [NPCEvent_Kai_LeavesAfterSummer](data/scripts/eu/EventScript_NPCEvent_Kai_LeavesAfterSummer.mary.c) · [TV_StEmeraldAcademy](data/scripts/eu/EventScript_TV_StEmeraldAcademy.mary.c) · [TutorialEvent_CropFarmingInstructions](data/scripts/eu/EventScript_TutorialEvent_CropFarmingInstructions.mary.c)
-- DE：[AchievementEvent_Fishing_MilestoneReward](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice](data/scripts/de/EventScript_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.c) · [NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices](data/scripts/de/EventScript_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.c) · [NPCEvent_Sasha_DialogueAndGiftResponses](data/scripts/de/EventScript_NPCEvent_Sasha_DialogueAndGiftResponses.mary.c) · [TV_F314MGrandPrix](data/scripts/de/EventScript_TV_F314MGrandPrix.mary.c) · [TV_HarvestTheater](data/scripts/de/EventScript_TV_HarvestTheater.mary.c) · [TV_LifeOnTheFarm_Advanced](data/scripts/de/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [TV_MechabotUltror](data/scripts/de/EventScript_TV_MechabotUltror.mary.c) · [TV_StarLilyBanditGirl](data/scripts/de/EventScript_TV_StarLilyBanditGirl.mary.c)
+- JP：[NPCEvent_Barley_DialogueAndGiftResponses](data/scripts/jp/EventScript_1030_NPCEvent_Barley_DialogueAndGiftResponses.mary.c) · [NPCEvent_Saibara_DialogueAndGiftResponses](data/scripts/jp/EventScript_1027_NPCEvent_Saibara_DialogueAndGiftResponses.mary.c)
+- US：[FamilyEvent_Doug_BirthdayGiftFromAnn](data/scripts/us/EventScript_0792_FamilyEvent_Doug_BirthdayGiftFromAnn.mary.c) · [FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice](data/scripts/us/EventScript_0855_FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice.mary.c) · [FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley](data/scripts/us/EventScript_1153_FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley.mary.c) · [FestivalEvent_CookingFestival_Judging](data/scripts/us/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) · [FestivalEvent_FireworksFestival_PostFestivalDialogue](data/scripts/us/EventScript_1192_FestivalEvent_FireworksFestival_PostFestivalDialogue.mary.c) · [NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue](data/scripts/us/EventScript_0791_NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue.mary.c) · [NPCEvent_Gray_DialogueAndGiftResponses](data/scripts/us/EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses.mary.c) · [NPCEvent_Kai_LeavesAfterSummer](data/scripts/us/EventScript_0798_NPCEvent_Kai_LeavesAfterSummer.mary.c) · [TV_StEmeraldAcademy](data/scripts/us/EventScript_1055_TV_StEmeraldAcademy.mary.c) · [TutorialEvent_CropFarmingInstructions](data/scripts/us/EventScript_1063_TutorialEvent_CropFarmingInstructions.mary.c)
+- EU：[FamilyEvent_Doug_BirthdayGiftFromAnn](data/scripts/eu/EventScript_0792_FamilyEvent_Doug_BirthdayGiftFromAnn.mary.c) · [FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice](data/scripts/eu/EventScript_0855_FamilyEvent_HarvestGoddess_ChildBirthdayDateChoice.mary.c) · [FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley](data/scripts/eu/EventScript_1153_FestivalEvent_ChickenFestival_PreTournamentDialogue_Barley.mary.c) · [FestivalEvent_CookingFestival_Judging](data/scripts/eu/EventScript_1128_FestivalEvent_CookingFestival_Judging.mary.c) · [FestivalEvent_FireworksFestival_PostFestivalDialogue](data/scripts/eu/EventScript_1192_FestivalEvent_FireworksFestival_PostFestivalDialogue.mary.c) · [NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue](data/scripts/eu/EventScript_0791_NPCEvent_DougAndDuke_Argument_FollowupHarrisDialogue.mary.c) · [NPCEvent_Gray_DialogueAndGiftResponses](data/scripts/eu/EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses.mary.c) · [NPCEvent_Kai_LeavesAfterSummer](data/scripts/eu/EventScript_0798_NPCEvent_Kai_LeavesAfterSummer.mary.c) · [TV_StEmeraldAcademy](data/scripts/eu/EventScript_1055_TV_StEmeraldAcademy.mary.c) · [TutorialEvent_CropFarmingInstructions](data/scripts/eu/EventScript_1063_TutorialEvent_CropFarmingInstructions.mary.c)
+- DE：[AchievementEvent_Fishing_MilestoneReward](data/scripts/de/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice](data/scripts/de/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.c) · [NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices](data/scripts/de/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.c) · [NPCEvent_Sasha_DialogueAndGiftResponses](data/scripts/de/EventScript_1009_NPCEvent_Sasha_DialogueAndGiftResponses.mary.c) · [TV_F314MGrandPrix](data/scripts/de/EventScript_1039_TV_F314MGrandPrix.mary.c) · [TV_HarvestTheater](data/scripts/de/EventScript_1042_TV_HarvestTheater.mary.c) · [TV_LifeOnTheFarm_Advanced](data/scripts/de/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [TV_MechabotUltror](data/scripts/de/EventScript_1046_TV_MechabotUltror.mary.c) · [TV_StarLilyBanditGirl](data/scripts/de/EventScript_1054_TV_StarLilyBanditGirl.mary.c)
 
 **相关文件：** [列号回绕](src/ui_text_rows.cc) · [四版脚本文本](data/scripts)
 
@@ -795,7 +795,7 @@ JP 和 DE 都提醒玩家助威时小心别把自家的鸡赶出擂台。英文�
 
 仅在BUGFIX开启时把DE两个选项改为 `Gerne.`／`Sorry, ich kann nicht.`（乐意帮忙／抱歉，我不能帮忙）；不调整选项引用顺序、帮工流程、报酬或克里夫的在场条件。
 
-**相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c)
+**相关文件：** [DE](data/scripts/de/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [JP](data/scripts/jp/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c)
 
 <a id="category-items"></a>
 ## 道具身份、名称与说明
@@ -965,7 +965,7 @@ JP及US／EU的茶叶原料与成品茶名称不同，DE两者原道具名和说
 
 畜棚及受影响的牛羊商店句子改用Fodder／Viehfutter，保留鸡舍的正确称谓。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [JP](text/jp/scene_yodel_ranch_shop_2.cc) · [US](text/us/scene_yodel_ranch_shop_2.cc) · [EU](text/eu/scene_yodel_ranch_shop_2.cc) · [DE](text/de/scene_yodel_ranch_shop_2.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [US](data/scripts/us/EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [EU](data/scripts/eu/EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [DE](data/scripts/de/EventScript_0458_LocationInteraction_InspectBarnFeedStorageEmptyNotice.mary.c) · [JP](text/jp/scene_yodel_ranch_shop_2.cc) · [US](text/us/scene_yodel_ranch_shop_2.cc) · [EU](text/eu/scene_yodel_ranch_shop_2.cc) · [DE](text/de/scene_yodel_ranch_shop_2.cc)
 
 <a id="flour-name"></a>
 ### 德版把面粉译成花
@@ -1079,7 +1079,7 @@ JP为焼きりんご（烤苹果），不是苹果舒芙蕾；DE既有烤苹果�
 
 改用本版Apfelauflauf，不另译料理名。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
+**相关文件：** [JP](data/scripts/jp/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [US](data/scripts/us/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [EU](data/scripts/eu/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [DE](data/scripts/de/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc)
 
 <a id="flower-seasons"></a>
 ### 操作说明：花种 `0x42/0x43`
@@ -1351,7 +1351,7 @@ JP 在同一接待脚本分别使用牛祭和羊祭消息。海外也应在羊�
 
 仅在海外三版 `BUGFIX` 下增加独立羊祭提示，并替换羊祭分支的一次 `TalkMessage`。羊祭声明与 JP 一样放在文本表末尾的 `Table` 之后；牛祭标签统一为 JP 的 `CowContestJudgingStartPrompt`，关闭开关时仍保留羊祭误用牛祭文本的原行为。复用各版本 `0x04FC` 已有的三行台词、换行和等待符：US／EU 为 `It's time for the judging / to begin! / Are you ready?`（评审要开始了，准备好了吗？），DE 为 `Es ist Zeit für die / Bewertung! / Bist du soweit?`（到评审时间了，准备好了吗？）。不另行补译；牛祭仍调用原消息，JP 不改。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [US](data/scripts/us/EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [EU](data/scripts/eu/EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [DE](data/scripts/de/EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice.mary.c) · [US](data/scripts/us/EventScript_1276_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [EU](data/scripts/eu/EventScript_1276_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c) · [DE](data/scripts/de/EventScript_1276_FestivalEvent_SheepFestival_StartJudgingChoice_Barley.mary.c)
 
 <a id="audit-a01"></a>
 ### 德版琳怀孕时医生复用答谢
@@ -1376,7 +1376,7 @@ JP／US／EU在此说明妻子不是生病；DE玛丽怀孕事件已有 `Deine F
 
 在琳答谢之后新增独立医生文本，仅切换医生的那次调用，琳答谢保留。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [医生与琳的实际调用](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c)
+**相关文件：** [医生与琳的实际调用](data/scripts/de/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary](data/scripts/de/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c)
 
 <a id="audit-a02"></a>
 ### 德版玛丽怀孕末尾复用妻子台词
@@ -1401,7 +1401,7 @@ JP及英文是玩家即将当父亲的喜悦；复用DE琳怀孕末尾已有的�
 
 在文本表末尾恢复玩家独白，仅替换事件结尾引用，不改变玛丽先前台词。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [末尾独白与复用关系](data/scripts/de/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FamilyEvent_Ann_PregnancyDiscovery.mary.c)
+**相关文件：** [末尾独白与复用关系](data/scripts/de/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery.mary.c) · [EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary](data/scripts/de/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [US对应文件](data/scripts/us/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery.mary.c)
 
 <a id="audit-a03"></a>
 ### 德版里克婚礼重复珀布利调侃
@@ -1426,7 +1426,7 @@ JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unser
 
 沿用本作邀请句，按JP补齐否认与邀请双方；保留珀布利原调用。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [婚礼对话与肖像切换](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [JP对应文件](data/scripts/jp/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [US对应文件](data/scripts/us/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EU对应文件](data/scripts/eu/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary](data/scripts/de/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [JP对应文件](data/scripts/jp/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [US对应文件](data/scripts/us/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [EU对应文件](data/scripts/eu/EventScript_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c)
+**相关文件：** [婚礼对话与肖像切换](data/scripts/de/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [US对应文件](data/scripts/us/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction.mary.c) · [EventScript_0877_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary](data/scripts/de/EventScript_0877_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0877_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [US对应文件](data/scripts/us/EventScript_0877_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0877_RivalMarriageEvent_RickAndKaren_05_Wedding_Ceremony.mary.c)
 
 <a id="audit-a04"></a>
 ### 德版Nappy一天收获委托说成一周
@@ -1451,7 +1451,7 @@ JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unser
 
 增加一天收获确认，仅替换一天分支；工作参数不改。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [委托参数与文本调用](data/scripts/de/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [JP对应文件](data/scripts/jp/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [US对应文件](data/scripts/us/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
+**相关文件：** [委托参数与文本调用](data/scripts/de/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [US对应文件](data/scripts/us/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
 
 <a id="audit-a05"></a>
 ### 德版一亿鱼成就复用一千万台词
@@ -1476,7 +1476,7 @@ JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unser
 
 复制本版完整成就消息，仅将数字修为100.000.000，拆开错误复用。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [成就阈值与调用](data/scripts/de/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [JP对应文件](data/scripts/jp/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [US对应文件](data/scripts/us/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c) · [EU对应文件](data/scripts/eu/EventScript_AchievementEvent_Fishing_MilestoneReward.mary.c)
+**相关文件：** [成就阈值与调用](data/scripts/de/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [US对应文件](data/scripts/us/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0976_AchievementEvent_Fishing_MilestoneReward.mary.c)
 
 <a id="audit-a06"></a>
 ### 德版贤者锤领取提示使用秘银锤名
@@ -1501,7 +1501,7 @@ JP里克否认并邀请两人参加今天的婚礼；DE普通婚礼已有 `Unser
 
 新增正确工具名称，仅替换贤者锤订单的文本变量引用；实际给予物品不改。 BUGFIX关闭时保留原文本及引用。
 
-**相关文件：** [锻冶屋领取分支](data/scripts/de/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [JP对应文件](data/scripts/jp/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [US对应文件](data/scripts/us/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [EU对应文件](data/scripts/eu/EventScript_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](text/de/item_1.cc) · [JP对应文件](text/jp/item_1.cc) · [US对应文件](text/us/item_1.cc) · [EU对应文件](text/eu/item_1.cc)
+**相关文件：** [锻冶屋领取分支](data/scripts/de/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [JP对应文件](data/scripts/jp/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [US对应文件](data/scripts/us/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [已有德文道具名称](text/de/item_1.cc) · [JP对应文件](text/jp/item_1.cc) · [US对应文件](text/us/item_1.cc) · [EU对应文件](text/eu/item_1.cc)
 
 <a id="audit-c01"></a>
 ### 海外三版：巴基尔雨天台词失去原有的晴雨对比
@@ -1522,7 +1522,7 @@ JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”�
 
 恢复雨天重复对话的独立文本及引用，晴天对话保留。对应重制版US／DE普通对话已有“人和植物过度曝晒都会枯萎”的句子，采用该句并按本作窗口分行。
 
-**相关文件：** [晴雨分支](data/scripts/jp/EventScript_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_NPCEvent_Basil_DialogueAndGiftResponses.mary.c)
+**相关文件：** [晴雨分支](data/scripts/jp/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [US对应文件](data/scripts/us/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses.mary.c)
 
 <a id="audit-c02"></a>
 ### 海外三版：玛丽星夜祭把自己做料理写成妈妈今天做蛋糕
@@ -1545,7 +1545,7 @@ JP 晴天讲“不晒太阳会萎蔫”，雨天讲“只晒太阳也不行”�
 
 在GBA既有英文／德文上最小修正：把母亲今天做饭改为母亲以前做饭，补明今天玛丽使用母亲食谱做饭；保留原结尾“Tell me what you think of everything!”／“Sag mir, wie du alles findest!”。日版原文用于核对制作者与时态。重制版只作含义交叉参考，不采用其称呼、家庭描述或结尾，不新增昵称。仅按GBA行宽调整控制符及分行，保留既有节日名称和有／无孩子共用关系。
 
-**相关文件：** [星夜祭对应台词](data/scripts/jp/EventScript_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [US对应文件](data/scripts/us/EventScript_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [EU对应文件](data/scripts/eu/EventScript_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [DE对应文件](data/scripts/de/EventScript_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [重制版英文原文](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Year.txt:2520) · [重制版德文原文](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Scr_Year.txt:2733)
+**相关文件：** [星夜祭对应台词](data/scripts/jp/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [US对应文件](data/scripts/us/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [DE对应文件](data/scripts/de/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c) · [重制版英文原文](../SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Year.txt:2520) · [重制版德文原文](../SoSFoMTTextDump/SoSFoMTTextDump/DE/msg_Scr_Year.txt:2733)
 
 <a id="audit-c03"></a>
 ### 海外三版：参赛动物确认，把“带走”写成“送给你”
@@ -1804,7 +1804,7 @@ US 缺所有格 `Your`，EU 已修正，可直接作为同系列依据。
 
 仅US把You name改为Your name，EU已有正确所有格。
 
-**相关文件：** [US 原文](data/scripts/us/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [JP对应文件](data/scripts/jp/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
+**相关文件：** [US 原文](data/scripts/us/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [DE对应文件](data/scripts/de/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c)
 
 <a id="lou-visit-day"></a>
 ### 露自我介绍中的来访星期错误
@@ -1823,7 +1823,7 @@ US 缺所有格 `Your`，EU 已修正，可直接作为同系列依据。
 
 仅把错误星期改为星期日。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c) · [US](data/scripts/us/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU](data/scripts/eu/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE](data/scripts/de/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c)
 
 <a id="manna-duke-reference"></a>
 ### 玛娜把自己说成另一位在场者
@@ -1842,7 +1842,7 @@ US 缺所有格 `Your`，EU 已修正，可直接作为同系列依据。
 
 仅把这处Manna改为Duke，保留其余句子。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [DE](data/scripts/de/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c)
 
 <a id="lillia-wedding"></a>
 ### 莉莉娅在女儿婚礼后声称自己嫁给凯
@@ -1861,7 +1861,7 @@ US／EU：Everybody I love is here to celebrate my marriage with Kai.；DE也称
 
 按GBA日文补译女儿出嫁的感想；不采用重制版角色身份反推台词。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [US](data/scripts/us/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [EU](data/scripts/eu/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [DE](data/scripts/de/EventScript_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [US](data/scripts/us/EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [EU](data/scripts/eu/EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c) · [DE](data/scripts/de/EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue.mary.c)
 
 <a id="van-name-history"></a>
 ### 联机商人姓名错译为 Lou／Lu
@@ -1880,7 +1880,7 @@ GBA 姓名栏和自我介绍直接冲突；JP 的バァン及同期联动商人�
 
 开启 `BUGFIX` 时把海外商人姓名栏改为 Van；关闭时保留 Lou／Lu。角色 ID、变量名和其他事件不变。
 
-**相关文件：** [US 自我介绍](data/scripts/us/EventScript_NPCEvent_Van_Introduction.mary.c) · [JP 姓名](text/jp/npc_collection.cc) · [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc)
+**相关文件：** [US 自我介绍](data/scripts/us/EventScript_0813_NPCEvent_Van_Introduction.mary.c) · [JP 姓名](text/jp/npc_collection.cc) · [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc)
 
 <a id="ruby-name"></a>
 ### 料理来访者未使用同期英文名 Ruby
@@ -1893,7 +1893,7 @@ GBA 姓名栏和自我介绍直接冲突；JP 的バァン及同期联动商人�
 
 **判断依据：**
 
-本作 [Ruby 的 NGC 人物介绍](text/us/reference_guide/ngc_awl_profiles_ruby.cc)、[Rock 简介中的父母称呼](text/us/reference_guide/ngc_awl_profiles_rock.cc)和 [NGC 人物选择菜单](data/scripts/us/EventScript_SystemMenu_GameCubeLinkAWLCharacterProfileBrowser.mary.c)均直接写 Ruby；EU、DE 对应内容也一致。因此这次修复不是单纯借用其他作品的名字，而是与本作已存在的同一角色介绍统一。
+本作 [Ruby 的 NGC 人物介绍](text/us/reference_guide/ngc_awl_profiles_ruby.cc)、[Rock 简介中的父母称呼](text/us/reference_guide/ngc_awl_profiles_rock.cc)和 [NGC 人物选择菜单](data/scripts/us/EventScript_0316_SystemMenu_GameCubeLinkAWLCharacterProfileBrowser.mary.c)均直接写 Ruby；EU、DE 对应内容也一致。因此这次修复不是单纯借用其他作品的名字，而是与本作已存在的同一角色介绍统一。
 
 | 作品时期 | 料理旅馆经营者 | 旅行商人 |
 | --- | --- | --- |
@@ -1910,7 +1910,7 @@ NGC 的[联机资料](https://fogu.com/hm/hmawl/gbaconnection.php)、NDS 的 [Ru
 
 开启 `BUGFIX` 时，海外姓名栏 Lu 和自我介绍 Lou 均改为 Ruby；JP 的ルウ不变。关闭时保留原文。保留 `LouOrRuby`／`CHARACTER_LOU_OR_RUBY` 标识符和角色 ID，不涉及人物顺序或事件机制。
 
-**相关文件：** [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc) · [US 自介](data/scripts/us/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU 自介](data/scripts/eu/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE 自介](data/scripts/de/EventScript_NPCEvent_LouOrRuby_Introduction.mary.c)
+**相关文件：** [US 姓名](text/us/npc_collection.cc) · [EU 姓名](text/eu/npc_collection.cc) · [DE 姓名](text/de/npc_collection.cc) · [US 自介](data/scripts/us/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c) · [EU 自介](data/scripts/eu/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c) · [DE 自介](data/scripts/de/EventScript_0814_NPCEvent_LouOrRuby_Introduction.mary.c)
 
 <a id="spouse-birthday-baby-talk"></a>
 ### 玩家生日晚餐的妻子问候误用婴儿语
@@ -1929,7 +1929,7 @@ NGC 的[联机资料](https://fogu.com/hm/hmawl/gbaconnection.php)、NDS 的 [Ru
 
 按JP补译妻子的问候，不改孩子正常婴儿语。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [US](data/scripts/us/EventScript_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [EU](data/scripts/eu/EventScript_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [DE](data/scripts/de/EventScript_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [JP](data/scripts/jp/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [US](data/scripts/us/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [EU](data/scripts/eu/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [DE](data/scripts/de/EventScript_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0647_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [US](data/scripts/us/EventScript_0647_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [EU](data/scripts/eu/EventScript_0647_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [DE](data/scripts/de/EventScript_0647_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice.mary.c) · [JP](data/scripts/jp/EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [US](data/scripts/us/EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [EU](data/scripts/eu/EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c) · [DE](data/scripts/de/EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice.mary.c)
 
 <a id="anna-gift-birthday"></a>
 ### 安娜普通赠礼答谢误提生日
@@ -1948,7 +1948,7 @@ NGC 的[联机资料](https://fogu.com/hm/hmawl/gbaconnection.php)、NDS 的 [Ru
 
 去除错误生日限定，不改礼物好感及生日乘数。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
 
 <a id="carter-untranslated"></a>
 ### 卡特葡萄园兼职提示及选项残留德语
@@ -1967,7 +1967,7 @@ JP为告知兼职机会；本作其他村民有对应英文选项，重制版有
 
 提示参考对应重制版英文，选项沿用本作Tell about the job／Don’t tell的句式。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Carter_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c)
 
 <a id="nappy-perfume"></a>
 ### 精灵香水答谢残留日文
@@ -1986,7 +1986,7 @@ JP为告知兼职机会；本作其他村民有对应英文选项，重制版有
 
 补为英语香味答谢，不改礼物判断或好感。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [US](data/scripts/us/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [EU](data/scripts/eu/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [DE](data/scripts/de/EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
 
 <a id="zack-untranslated"></a>
 ### 扎克牧场生活夸奖多播日文
@@ -2005,7 +2005,7 @@ US／EU在农场高好感复谈先播放日文两页，再播放英文 `The farm
 
 开启BUGFIX时，仅从US／EU移除多余的日文对象及其消息调用，保留已有英文原句和调用。关闭开关时保留原日文对象与两次调用，以维持原版内容。JP与DE文字、调用和页数不变。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses.mary.c)
 
 <a id="english-spelling"></a>
 ### 人物和物件名称的英文拼写错误
@@ -2024,7 +2024,7 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 
 仅修对应单词，不改角色ID或脚本条件。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectClinic1FSofa.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](text/jp/scene_special_merchant_shop.cc) · [US](text/us/scene_special_merchant_shop.cc) · [EU](text/eu/scene_special_merchant_shop.cc) · [DE](text/de/scene_special_merchant_shop.cc) · [JP](data/scripts/jp/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [US](data/scripts/us/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [EU](data/scripts/eu/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [DE](data/scripts/de/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [US](data/scripts/us/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [EU](data/scripts/eu/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [DE](data/scripts/de/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [JP](data/scripts/jp/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](text/jp/scene_special_merchant_shop.cc) · [US](text/us/scene_special_merchant_shop.cc) · [EU](text/eu/scene_special_merchant_shop.cc) · [DE](text/de/scene_special_merchant_shop.cc) · [JP](data/scripts/jp/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [US](data/scripts/us/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [EU](data/scripts/eu/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [DE](data/scripts/de/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [JP](data/scripts/jp/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
 
 <a id="winery-job-decline-duke-dialogue"></a>
 ### 玩家拒绝采葡萄时杜克向未到场的克里夫讲话
@@ -2043,7 +2043,7 @@ Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应
 
 将重制版对应的英语和德语原句按 GBA 行宽分成两页，末句放在第二页。分支条件及淡出后的独立收尾照旧。
 
-**相关文件：** [酒庄事件入口](data/scripts/jp/EventScript_LocationTransition_EnterAjaWinery1FWithEventDispatch.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Cliff_PermanentWineryJob.mary.c)
+**相关文件：** [酒庄事件入口](data/scripts/jp/EventScript_0378_LocationTransition_EnterAjaWinery1FWithEventDispatch.mary.c) · [JP](data/scripts/jp/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [US](data/scripts/us/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [EU](data/scripts/eu/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c) · [DE](data/scripts/de/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c)
 
 <a id="de-popuri-newborn-dialogue"></a>
 ### 德版珀布利谈新生儿时多播一条英文
@@ -2062,7 +2062,7 @@ JP、US、EU 在对应分支只说一次孩子可爱。DE 已有与场景对应�
 
 移除多余的英文文本和播放调用，保留 `Ahhh....Er ist sooo süß!`（啊……他真可爱！）。
 
-**相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [US 对照](data/scripts/us/EventScript_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
+**相关文件：** [DE](data/scripts/de/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c) · [US 对照](data/scripts/us/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
 
 <a id="de-popuri-child-first-steps"></a>
 ### 德版珀布利在孩子学步事件中重复同一句
@@ -2081,7 +2081,7 @@ JP、US、EU 的第二句感叹孩子长得很快，本作德版玛丽的育儿�
 
 保留学步第一句，第二次调用改为珀布利的独立对话 `Er wird einfach so schnell groß!`（他长得真快呀！）。
 
-**相关文件：** [珀布利学步事件](data/scripts/de/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [玛丽的德语原句](data/scripts/de/EventScript_NPCEvent_Mary_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [US 对照](data/scripts/us/EventScript_FamilyEvent_Popuri_ChildFirstSteps.mary.c)
+**相关文件：** [珀布利学步事件](data/scripts/de/EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [玛丽的德语原句](data/scripts/de/EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses.mary.c) · [JP 对照](data/scripts/jp/EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps.mary.c) · [US 对照](data/scripts/us/EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps.mary.c)
 
 <a id="de-manna-flatters-jeff"></a>
 ### 德版玛娜恭维杰夫时夸奖对象颠倒
@@ -2100,7 +2100,7 @@ JP、US、EU 的第二句感叹孩子长得很快，本作德版玛丽的育儿�
 
 仅在BUGFIX开启时将德文第一句改为 `Ich könnte mich glatt in dich verlieben!`（我简直要喜欢上你了！），按现有行宽分行，恢复英日同一场景的含义。保留原问价两行、杰夫半价答复、肖像和消息调用顺序。
 
-**相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_FlattersJeff.mary.c)
+**相关文件：** [DE](data/scripts/de/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c) · [JP](data/scripts/jp/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c) · [US](data/scripts/us/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c) · [EU](data/scripts/eu/EventScript_0721_NPCEvent_Manna_FlattersJeff.mary.c)
 
 <a id="manna-saibara-family"></a>
 ### 玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗
@@ -2119,7 +2119,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 仅在BUGFIX开启时修正海外第三段，恢复儿子邀请同住、赛巴拉坚持留镇的意思。第四段及赠礼好感、物品扣除、语速和演出调用保持不变。译文依据日版该段含义，不新增事件。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明
@@ -2205,7 +2205,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 将休馆日变更改为星期一改星期四，沿用本版既有星期名称。
 
-**相关文件：** [通知原文](text/us/reference_guide/notice_marys_library_day_off_change.cc) · [JP对应文件](text/jp/reference_guide/notice_marys_library_day_off_change.cc) · [EU对应文件](text/eu/reference_guide/notice_marys_library_day_off_change.cc) · [DE对应文件](text/de/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/jp/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
+**相关文件：** [通知原文](text/us/reference_guide/notice_marys_library_day_off_change.cc) · [JP对应文件](text/jp/reference_guide/notice_marys_library_day_off_change.cc) · [EU对应文件](text/eu/reference_guide/notice_marys_library_day_off_change.cc) · [DE对应文件](text/de/reference_guide/notice_marys_library_day_off_change.cc) · [婚前后告示](data/scripts/jp/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_0502_LocationInteraction_InspectTownNorthLibraryHoursSign.mary.c)
 
 <a id="audit-b03"></a>
 ### 海外三版：牛羊牧场指南说可以卖鸡
@@ -2247,7 +2247,7 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 
 US／EU改为9AM—4PM；DE改为9—16 Uhr，按本版24小时制。
 
-**相关文件：** [指南](text/us/reference_guide/clinic.cc) · [JP对应文件](text/jp/reference_guide/clinic.cc) · [EU对应文件](text/eu/reference_guide/clinic.cc) · [DE对应文件](text/de/reference_guide/clinic.cc) · [营业告示](data/scripts/jp/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
+**相关文件：** [指南](text/us/reference_guide/clinic.cc) · [JP对应文件](text/jp/reference_guide/clinic.cc) · [EU对应文件](text/eu/reference_guide/clinic.cc) · [DE对应文件](text/de/reference_guide/clinic.cc) · [营业告示](data/scripts/jp/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [US对应文件](data/scripts/us/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [EU对应文件](data/scripts/eu/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c) · [DE对应文件](data/scripts/de/EventScript_0500_LocationInteraction_InspectClinicBusinessHoursSign.mary.c)
 
 <a id="audit-b05"></a>
 ### 海外三版：料理指南多写一个重复选项
@@ -2496,7 +2496,7 @@ US／EU采用 `You will have 2 Incubators.`；DE采用 `Die Anzahl deiner Brutk�
 
 按既有饲料制作原料将Getreide（谷物）限定为Mais（玉米）。
 
-**相关文件：** [德文指南](text/de/reference_guide/poultry_farm.cc) · [JP对应文件](text/jp/reference_guide/poultry_farm.cc) · [US对应文件](text/us/reference_guide/poultry_farm.cc) · [EU对应文件](text/eu/reference_guide/poultry_farm.cc) · [水车材料判断](data/scripts/de/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [JP对应文件](data/scripts/jp/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [US对应文件](data/scripts/us/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [EU对应文件](data/scripts/eu/EventScript_LocationInteraction_Farm_UseWaterMill.mary.c:28)
+**相关文件：** [德文指南](text/de/reference_guide/poultry_farm.cc) · [JP对应文件](text/jp/reference_guide/poultry_farm.cc) · [US对应文件](text/us/reference_guide/poultry_farm.cc) · [EU对应文件](text/eu/reference_guide/poultry_farm.cc) · [水车材料判断](data/scripts/de/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [JP对应文件](data/scripts/jp/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [US对应文件](data/scripts/us/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:28) · [EU对应文件](data/scripts/eu/EventScript_0173_LocationInteraction_Farm_UseWaterMill.mary.c:28)
 
 <a id="audit-d01"></a>
 ### US／EU：Nina 缺少第一段解锁边界
@@ -2849,7 +2849,7 @@ DE食谱Soyasoﾟe改为另一本食谱已有的Soyasoße（酱油）。
 
 告示改星期六，不改营业日程。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0503_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [US](data/scripts/us/EventScript_0503_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [EU](data/scripts/eu/EventScript_0503_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c) · [DE](data/scripts/de/EventScript_0503_LocationInteraction_InspectAjaWineryBusinessHoursSign.mary.c)
 
 <a id="huge-stone-description"></a>
 ### 巨石说明把五级锤条件写成玩家当前等级
@@ -2868,7 +2868,7 @@ JP是“即使LV5也无法击碎”；这个调查说明不等于已检查玩家
 
 保留原石头名称、三行结构及等待位置，改为即使五级锤也无法击碎。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [US](data/scripts/us/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [EU](data/scripts/eu/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [DE](data/scripts/de/EventScript_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_0969_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [US](data/scripts/us/EventScript_0969_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [EU](data/scripts/eu/EventScript_0969_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c) · [DE](data/scripts/de/EventScript_0969_LocationInteraction_InspectHugeStoneUnbreakableWithLevel5Hammer.mary.c)
 
 <a id="guide-topaz-ruby-prices"></a>
 ### 出货价格指南的黄玉与红宝石价格错误
@@ -2992,7 +2992,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 对已有正确文本调整调用；错误共用的对象拆出BUGFIX专用文本；缺失正文与成绩在对应对象附近补回。更正Daisy的两处数值，以及四版Sylvia第三赛季第七战少计一分并延续到后三场的问题。没有改变节目播放机制或添加运行时积分计算。
 
-**相关文件：** [JP 节目](data/scripts/jp/EventScript_TV_F314MGrandPrix.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_F314MGrandPrix.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_F314MGrandPrix.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_F314MGrandPrix.mary.c)
+**相关文件：** [JP 节目](data/scripts/jp/EventScript_1039_TV_F314MGrandPrix.mary.c) · [US对应文件](data/scripts/us/EventScript_1039_TV_F314MGrandPrix.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1039_TV_F314MGrandPrix.mary.c) · [DE对应文件](data/scripts/de/EventScript_1039_TV_F314MGrandPrix.mary.c)
 
 <a id="audit-e01"></a>
 ### JP：《まことクンちぇんじ》第24集说话人写反
@@ -3013,7 +3013,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 只将第24集两处说话人改为真琴（身体是诚人），保留交换身体剧情及其余集数。
 
-**相关文件：** [第24集上下文](data/scripts/jp/EventScript_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_AaronChanges.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_AaronChanges.mary.c)
+**相关文件：** [第24集上下文](data/scripts/jp/EventScript_1045_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_1045_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1045_TV_AaronChanges.mary.c) · [DE对应文件](data/scripts/de/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="audit-e02"></a>
 ### DE：同节目第2集漏否定词
@@ -3034,7 +3034,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 补回nicht（不），按窗口宽度分行；以同版第3集回顾中的否定为依据。
 
-**相关文件：** [第2、3集](data/scripts/de/EventScript_TV_AaronChanges.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_AaronChanges.mary.c)
+**相关文件：** [第2、3集](data/scripts/de/EventScript_1045_TV_AaronChanges.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1045_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_1045_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="audit-e03"></a>
 ### DE：同节目第13集把竖笛译成录音机
@@ -3055,7 +3055,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 音乐课测试与拿起的物品统一改为Blockflöte（竖笛），同步调整冠词，移除重复的und（和）。
 
-**相关文件：** [第13集](data/scripts/de/EventScript_TV_AaronChanges.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_AaronChanges.mary.c)
+**相关文件：** [第13集](data/scripts/de/EventScript_1045_TV_AaronChanges.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1045_TV_AaronChanges.mary.c) · [US对应文件](data/scripts/us/EventScript_1045_TV_AaronChanges.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1045_TV_AaronChanges.mary.c)
 
 <a id="audit-e04"></a>
 ### 四版：《Card Collector Chisato》第3集卡片数量算错
@@ -3076,7 +3076,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 四版将第3集156改186，依据256−70及前后交换卡片的数量；不改卡片总数。
 
-**相关文件：** [第2、3集数量关系](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c)
+**相关文件：** [第2、3集数量关系](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c) · [US对应文件](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1033_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="audit-e05"></a>
 ### 海外三版：同节目把 S／G 牛奶译成羊奶、山羊奶
@@ -3098,7 +3098,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 第3集S牛奶和第7集全部G牛奶引用沿用本版物品名称Milk／Milch (S/G)，不新增羊奶或山羊奶。
 
-**相关文件：** [节目原文](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c) · [已有牛奶名称](text/us/item_2.cc) · [JP对应文件](text/jp/item_2.cc) · [EU对应文件](text/eu/item_2.cc) · [DE对应文件](text/de/item_2.cc)
+**相关文件：** [节目原文](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1033_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_1033_TV_CardCollectorChisato.mary.c) · [已有牛奶名称](text/us/item_2.cc) · [JP对应文件](text/jp/item_2.cc) · [EU对应文件](text/eu/item_2.cc) · [DE对应文件](text/de/item_2.cc)
 
 <a id="audit-e06"></a>
 ### 海外三版：同节目第1集，把将来发售写成已经发售
@@ -3119,7 +3119,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 恢复下个月发售的将来时，保留随后约定发售时一起购买的对话。
 
-**相关文件：** [第1集](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c)
+**相关文件：** [第1集](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1033_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="audit-e07"></a>
 ### 海外三版：同节目第11集，把假设写成已经发生
@@ -3140,7 +3140,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 把连续三天抽不到新卡改为假设，保留昨天未购买、接受八种卡片后回家的事实。
 
-**相关文件：** [第8至11集](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c)
+**相关文件：** [第8至11集](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c) · [US对应文件](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1033_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_1033_TV_CardCollectorChisato.mary.c)
 
 <a id="audit-e08"></a>
 ### 海外三版：同节目第8集标题残留 `<et>`
@@ -3161,7 +3161,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 只移除<et>字面标签，不新增控制符解释。
 
-**相关文件：** [原文](data/scripts/us/EventScript_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_CardCollectorChisato.mary.c) · [消息读取器](src/ui_text_stream.cc)
+**相关文件：** [原文](data/scripts/us/EventScript_1033_TV_CardCollectorChisato.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1033_TV_CardCollectorChisato.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1033_TV_CardCollectorChisato.mary.c) · [DE对应文件](data/scripts/de/EventScript_1033_TV_CardCollectorChisato.mary.c) · [消息读取器](src/ui_text_stream.cc)
 
 <a id="audit-e09"></a>
 ### DE：《Mechabot Ultror Zero》第1集装饰人员多出 Yellow
@@ -3182,7 +3182,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 从装饰人员名单移除Yellow／Gelb，保留其负责料理及四人共同过生日的叙事。
 
-**相关文件：** [第1集](data/scripts/de/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
+**相关文件：** [第1集](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US对应文件](data/scripts/us/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
 
 <a id="audit-e10"></a>
 ### DE：同节目第2集把上午写成明天
@@ -3203,7 +3203,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 只修DE为当天上午，不改变US／EU既有表述或另造时间设定。
 
-**相关文件：** [第2集](data/scripts/de/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
+**相关文件：** [第2集](data/scripts/de/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [US对应文件](data/scripts/us/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1047_TV_MechabotUltrorZero_EpisodeReminders.mary.c)
 
 <a id="audit-e11"></a>
 ### 四版：入门节目初始体力及增长比例错误
@@ -3226,7 +3226,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE显示增加66,67%。采用用户指定的两位小数近似值；其余台词用词及控制符不改，JP只做必要分行。保留默认原文和原有游戏机制。
 
-**相关文件：** [节目](data/scripts/jp/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) · [实际体力实现](src/farmer.cc:11)
+**相关文件：** [节目](data/scripts/jp/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [US对应文件](data/scripts/us/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [DE对应文件](data/scripts/de/EventScript_1044_TV_LifeOnTheFarm_Beginner.mary.c) · [实际体力实现](src/farmer.cc:11)
 
 <a id="audit-e12"></a>
 ### DE：进阶节目冬2日，把最大体力写成10
@@ -3247,7 +3247,7 @@ BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE�
 
 将固定10改为角色当前体力上限，疲劳最低0；不修改实际恢复机制。
 
-**相关文件：** [冬2日](data/scripts/de/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_LifeOnTheFarm_Advanced.mary.c)
+**相关文件：** [冬2日](data/scripts/de/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [US对应文件](data/scripts/us/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
 
 <a id="audit-e13"></a>
 ### DE：进阶节目冬3日，把矿场写成磨坊
@@ -3268,7 +3268,7 @@ BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE�
 
 将Mühle（磨坊）改为同段已有的Mine（矿场）。
 
-**相关文件：** [冬3日](data/scripts/de/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_LifeOnTheFarm_Advanced.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_LifeOnTheFarm_Advanced.mary.c)
+**相关文件：** [冬3日](data/scripts/de/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [US对应文件](data/scripts/us/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1043_TV_LifeOnTheFarm_Advanced.mary.c)
 
 <a id="audit-e14"></a>
 ### DE：钓鱼节目第6集，鲣鱼仍误用金枪鱼名称
@@ -3289,7 +3289,7 @@ BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE�
 
 沿用已修鱼记录中的Bonito（鲣鱼），仅第6集替换错误金枪鱼名称。
 
-**相关文件：** [第6集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [德文鱼记录](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
+**相关文件：** [第6集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1038_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_1038_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1038_TV_FishingHour.mary.c) · [德文鱼记录](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
 
 <a id="audit-e15"></a>
 ### DE：钓鱼节目第10集，把下游鱼全部说成海鱼
@@ -3310,7 +3310,7 @@ BUGFIX下初始值改为150；JP显示1.67倍，US／EU显示增加66.67%，DE�
 
 补回Lachs／Bachschmerle（鲑鱼／泥鳅）的下游地点，保持原有鱼种名。
 
-**相关文件：** [第10集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c)
+**相关文件：** [第10集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1038_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_1038_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1038_TV_FishingHour.mary.c)
 
 <a id="audit-e16"></a>
 ### DE：钓鱼节目第13集误用了另一鱼种的既有名字
@@ -3331,7 +3331,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 沿用同版RockTrout记录的Gebirgsforelle，避免误用另一鱼种Bergforelle。
 
-**相关文件：** [第13集](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [既有名称映射](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
+**相关文件：** [第13集](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1038_TV_FishingHour.mary.c) · [US对应文件](data/scripts/us/EventScript_1038_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1038_TV_FishingHour.mary.c) · [既有名称映射](text/de/fishing_results_data.cc) · [JP对应文件](text/jp/fishing_results_data.cc) · [US对应文件](text/us/fishing_results_data.cc) · [EU对应文件](text/eu/fishing_results_data.cc)
 
 <a id="audit-e17"></a>
 ### US／EU：矿场研究第9集，把“255层没有下行楼梯”写成“没有通向255层的楼梯”
@@ -3352,7 +3352,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 将down to（下到）改为down from（从该层继续下行），明确已经抵达255层但未发现更深楼梯。
 
-**相关文件：** [第9集](data/scripts/us/EventScript_TV_MineResearchGroup.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_MineResearchGroup.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_MineResearchGroup.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_MineResearchGroup.mary.c)
+**相关文件：** [第9集](data/scripts/us/EventScript_1056_TV_MineResearchGroup.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1056_TV_MineResearchGroup.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1056_TV_MineResearchGroup.mary.c) · [DE对应文件](data/scripts/de/EventScript_1056_TV_MineResearchGroup.mary.c)
 
 <a id="audit-e18"></a>
 ### 鱼王条件被译成“这条鱼适合做哪些菜”
@@ -3375,7 +3375,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 恢复钓到鱼王的人会做寿司、刺身和烤鱼的提示，使用本作既有菜名与日文原义；实际食谱判定不改。
 
-**相关文件：** [节目原文](data/scripts/us/EventScript_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_FishingHour.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_FishingHour.mary.c) · [鱼王食谱条件](src/fishing.cc:893)
+**相关文件：** [节目原文](data/scripts/us/EventScript_1038_TV_FishingHour.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1038_TV_FishingHour.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1038_TV_FishingHour.mary.c) · [DE对应文件](data/scripts/de/EventScript_1038_TV_FishingHour.mary.c) · [鱼王食谱条件](src/fishing.cc:893)
 
 <a id="audit-e19"></a>
 ### 料理对决第2集把糖译成盐
@@ -3398,7 +3398,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 只将第2集B选手调味料改为Sugar／Zucker（糖）；其他集的盐、固定比赛结果保留。
 
-**相关文件：** [料理节目](data/scripts/us/EventScript_TV_DuelingChefs.mary.c) · [JP对应文件](data/scripts/jp/EventScript_TV_DuelingChefs.mary.c) · [EU对应文件](data/scripts/eu/EventScript_TV_DuelingChefs.mary.c) · [DE对应文件](data/scripts/de/EventScript_TV_DuelingChefs.mary.c) · [配方与调味效果](src/cooking_recipe.cc)
+**相关文件：** [料理节目](data/scripts/us/EventScript_1035_TV_DuelingChefs.mary.c) · [JP对应文件](data/scripts/jp/EventScript_1035_TV_DuelingChefs.mary.c) · [EU对应文件](data/scripts/eu/EventScript_1035_TV_DuelingChefs.mary.c) · [DE对应文件](data/scripts/de/EventScript_1035_TV_DuelingChefs.mary.c) · [配方与调味效果](src/cooking_recipe.cc)
 
 <a id="tv-japanese-particles"></a>
 ### 英文电视台词残留日文助词
@@ -3417,7 +3417,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 只移除已经确认混入英文的は／に，不改节目分派。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_TV_F314MGrandPrix.mary.c) · [US](data/scripts/us/EventScript_TV_F314MGrandPrix.mary.c) · [EU](data/scripts/eu/EventScript_TV_F314MGrandPrix.mary.c) · [DE](data/scripts/de/EventScript_TV_F314MGrandPrix.mary.c) · [JP](data/scripts/jp/EventScript_TV_StEmeraldAcademy.mary.c) · [US](data/scripts/us/EventScript_TV_StEmeraldAcademy.mary.c) · [EU](data/scripts/eu/EventScript_TV_StEmeraldAcademy.mary.c) · [DE](data/scripts/de/EventScript_TV_StEmeraldAcademy.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1039_TV_F314MGrandPrix.mary.c) · [US](data/scripts/us/EventScript_1039_TV_F314MGrandPrix.mary.c) · [EU](data/scripts/eu/EventScript_1039_TV_F314MGrandPrix.mary.c) · [DE](data/scripts/de/EventScript_1039_TV_F314MGrandPrix.mary.c) · [JP](data/scripts/jp/EventScript_1055_TV_StEmeraldAcademy.mary.c) · [US](data/scripts/us/EventScript_1055_TV_StEmeraldAcademy.mary.c) · [EU](data/scripts/eu/EventScript_1055_TV_StEmeraldAcademy.mary.c) · [DE](data/scripts/de/EventScript_1055_TV_StEmeraldAcademy.mary.c)
 
 <a id="de-villa-tv-spring-rain"></a>
 ### 德版别墅春季雨天预报把明天说成今天
@@ -3436,7 +3436,7 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 
 用相邻预报的首句替换德版雨天首句。
 
-**相关文件：** [别墅电视入口](src/map_terrain.cc) · [DE](data/scripts/de/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [JP 对照](data/scripts/jp/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [US 对照](data/scripts/us/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c)
+**相关文件：** [别墅电视入口](src/map_terrain.cc) · [DE](data/scripts/de/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.c) · [JP 对照](data/scripts/jp/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.c) · [US 对照](data/scripts/us/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.c)
 
 <a id="profile-tv-missing-messages"></a>
 ### 人物介绍节目漏播下期预告和家庭成员
@@ -3455,7 +3455,7 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 
 开启BUGFIX时，在三个海外版与JP相同的位置补回两份文本及慢速消息调用。US／EU采用 `Next time we'll introduce / Doug.`（下期介绍达德）、`his daughter Ann.`（他的女儿琳）；DE采用 `Nächstes Mal stellen / wir Doug vor.`、`seine Tochter Ann.`，按原节目行宽、换行和等待符排版。沿用本作同语相邻条目的句式，不改节目索引、现有生平或末尾琳的预告。
 
-**相关文件：** [JP](data/scripts/jp/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c)
+**相关文件：** [JP](data/scripts/jp/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c)
 
 <a id="profile-tv-birthdays"></a>
 ### 人物介绍节目生日与人物数据不符
@@ -3502,4 +3502,4 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 
 开启BUGFIX时，仅将上表受影响版本的23处日期文字改成实际生日，并去掉DE上述5处重复介词。其余原文、行数、通常／备用选择分支及人物生日数据保持不变；关闭开关保留原版文本。
 
-**相关文件：** [生日常量](include/fomt_constants.mary.h) · [人物表及实际生日选择](src/npc_collection.cc) · [JP节目](data/scripts/jp/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c)
+**相关文件：** [生日常量](include/fomt_constants.mary.h) · [人物表及实际生日选择](src/npc_collection.cc) · [JP节目](data/scripts/jp/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c)

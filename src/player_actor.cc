@@ -25820,27 +25820,27 @@ void UpdatePlayerPedometer(PlayerActor const & player)
         switch (player.farmer->GetStepCount()) {
         case 10000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_10000Steps, 0), 1);
+                EventScript_0822_AchievementEvent_Pedometer_10000Steps, 0), 1);
             break;
         case 100000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_100000Steps, 0), 1);
+                EventScript_0823_AchievementEvent_Pedometer_100000Steps, 0), 1);
             break;
         case 1000000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_1000000Steps, 0), 1);
+                EventScript_0824_AchievementEvent_Pedometer_1000000Steps, 0), 1);
             break;
         case 10000000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_10000000Steps, 0), 1);
+                EventScript_0825_AchievementEvent_Pedometer_10000000Steps, 0), 1);
             break;
         case 100000000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_100000000Steps, 0), 1);
+                EventScript_0826_AchievementEvent_Pedometer_100000000Steps, 0), 1);
             break;
         case 1000000000:
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Pedometer_1000000000Steps, 0), 1);
+                EventScript_0827_AchievementEvent_Pedometer_1000000000Steps, 0), 1);
             break;
         }
     }
@@ -25895,14 +25895,14 @@ void CheckPlayerCollectionEvents(PlayerActor const & player)
         && player.farmer->held_item.GetKind() == HeldItem::KIND_ARTICLE
         && player.farmer->held_item.GetArticle().GetId() == ITEM_ARTICLE_HARVEST_GODDESS_JEWEL) {
         player.game_object->QueueScript(GameSceneScriptRequest(
-            EventScript_AchievementEvent_Collection_HarvestGoddessJewelsExchange, 0), 0);
+            EventScript_0816_AchievementEvent_Collection_HarvestGoddessJewelsExchange, 0), 0);
     }
     if (player.save_image->mine_floor.CountKappaJewels() == 9
         && player.save_image->event_state.kappa_jewel_exchange_state == EVENT_LIFECYCLE_NOT_STARTED
         && player.farmer->held_item.GetKind() == HeldItem::KIND_ARTICLE
         && player.farmer->held_item.GetArticle().GetId() == ITEM_ARTICLE_KAPPA_JEWEL) {
         player.game_object->QueueScript(GameSceneScriptRequest(
-            EventScript_AchievementEvent_Collection_KappaJewelsExchange, 0), 0);
+            EventScript_0818_AchievementEvent_Collection_KappaJewelsExchange, 0), 0);
     }
     if (player.save_image->event_state.achievement_collected_every_spring_mine_item_state == ACHIEVEMENT_EVENT_NOT_REACHED) {
         bool all_shipped = true;
@@ -25918,7 +25918,7 @@ void CheckPlayerCollectionEvents(PlayerActor const & player)
             && player.save_image->mine_floor.CountHarvestGoddessJewels()
             && player.save_image->mine_floor.HasFoundTeleportStone()) {
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_SpringMine_CollectedEveryItem, 0), 0);
+                EventScript_0845_AchievementEvent_SpringMine_CollectedEveryItem, 0), 0);
         }
     }
     if (player.save_image->event_state.achievement_collected_every_lake_mine_item_state == ACHIEVEMENT_EVENT_NOT_REACHED) {
@@ -25934,7 +25934,7 @@ void CheckPlayerCollectionEvents(PlayerActor const & player)
             && player.save_image->mine_floor.HasFoundLakeMinePowerBerry()
             && player.save_image->mine_floor.CountKappaJewels()) {
             player.game_object->QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_LakeMine_CollectedEveryItem, 0), 0);
+                EventScript_0846_AchievementEvent_LakeMine_CollectedEveryItem, 0), 0);
         }
     }
 }

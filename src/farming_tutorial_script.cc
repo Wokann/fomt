@@ -11,8 +11,8 @@
 #endif
 
 u16 const gFarmingTutorialScriptIds[] ALIGN(2) = {
-    EventScript_TutorialEvent_CropFarmingInstructions,
-    EventScript_SystemMenu_SelectAnimalCategory,
+    EventScript_1063_TutorialEvent_CropFarmingInstructions,
+    EventScript_1059_SystemMenu_SelectAnimalCategory,
 };
 
 #include "farming_tutorial.hh"

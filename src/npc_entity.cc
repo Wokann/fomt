@@ -4401,7 +4401,7 @@ asm_unified(
 LilliaNpcActor::LilliaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gLilliaScheduleData.descriptor,
-        607, 611, EventScript_NPCEvent_Lillia_DialogueAndGiftResponses)
+        607, 611, EventScript_0994_NPCEvent_Lillia_DialogueAndGiftResponses)
 {
 }
 
@@ -4437,7 +4437,7 @@ asm_unified(
 RickNpcActor::RickNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gRickScheduleData.descriptor,
-        531, 535, EventScript_NPCEvent_Rick_DialogueAndGiftResponses)
+        531, 535, EventScript_0992_NPCEvent_Rick_DialogueAndGiftResponses)
 {
 }
 
@@ -4473,7 +4473,7 @@ asm_unified(
 PopuriNpcActor::PopuriNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gPopuriScheduleData.descriptor,
-        559, 563, EventScript_NPCEvent_Popuri_DialogueAndGiftResponses)
+        559, 563, EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses)
 {
 }
 
@@ -4614,7 +4614,7 @@ asm_unified(
 BarleyNpcActor::BarleyNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gBarleyScheduleData,
-        2543, 2547, EventScript_NPCEvent_Barley_DialogueAndGiftResponses)
+        2543, 2547, EventScript_1030_NPCEvent_Barley_DialogueAndGiftResponses)
 {
 }
 
@@ -4652,7 +4652,7 @@ asm_unified(
 MayNpcActor::MayNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMayScheduleData,
-        2535, 2539, EventScript_NPCEvent_May_DialogueAndGiftResponses)
+        2535, 2539, EventScript_1029_NPCEvent_May_DialogueAndGiftResponses)
 {
 }
 
@@ -4688,7 +4688,7 @@ asm_unified(
 SaibaraNpcActor::SaibaraNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gSaibaraScheduleData,
-        2465, 2469, EventScript_NPCEvent_Saibara_DialogueAndGiftResponses)
+        2465, 2469, EventScript_1027_NPCEvent_Saibara_DialogueAndGiftResponses)
 {
 }
 
@@ -4724,7 +4724,7 @@ asm_unified(
 GrayNpcActor::GrayNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gGrayScheduleData,
-        2441, 2445, EventScript_NPCEvent_Gray_DialogueAndGiftResponses)
+        2441, 2445, EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses)
 {
 }
 
@@ -4762,7 +4762,7 @@ asm_unified(
 DukeNpcActor::DukeNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gDukeScheduleData,
-        2240, 2244, EventScript_NPCEvent_Duke_DialogueAndGiftResponses)
+        2240, 2244, EventScript_1020_NPCEvent_Duke_DialogueAndGiftResponses)
 {
 }
 
@@ -4798,7 +4798,7 @@ asm_unified(
 MannaNpcActor::MannaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMannaScheduleData,
-        2256, 2260, EventScript_NPCEvent_Manna_DialogueAndGiftResponses)
+        2256, 2260, EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses)
 {
 }
 
@@ -4834,7 +4834,7 @@ asm_unified(
 BasilNpcActor::BasilNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gBasilScheduleData,
-        2059, 2063, EventScript_NPCEvent_Basil_DialogueAndGiftResponses)
+        2059, 2063, EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses)
 {
 }
 
@@ -4872,7 +4872,7 @@ asm_unified(
 AnnaNpcActor::AnnaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gAnnaScheduleData,
-        2123, 2127, EventScript_NPCEvent_Anna_DialogueAndGiftResponses)
+        2123, 2127, EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses)
 {
 }
 
@@ -4908,7 +4908,7 @@ asm_unified(
 MaryNpcActor::MaryNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMaryScheduleData,
-        2067, 2071, EventScript_NPCEvent_Mary_DialogueAndGiftResponses)
+        2067, 2071, EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses)
 {
 }
 
@@ -5049,7 +5049,7 @@ asm_unified(
 ThomasNpcActor::ThomasNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gThomasScheduleData,
-        2143, 2147, EventScript_NPCEvent_Thomas_DialogueAndGiftResponses)
+        2143, 2147, EventScript_1017_NPCEvent_Thomas_DialogueAndGiftResponses)
 {
 }
 
@@ -5085,7 +5085,7 @@ asm_unified(
 HarrisNpcActor::HarrisNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gHarrisScheduleData,
-        2276, 2280, EventScript_NPCEvent_Harris_DialogueAndGiftResponses)
+        2276, 2280, EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses)
 {
 }
 
@@ -5123,7 +5123,7 @@ asm_unified(
 EllenNpcActor::EllenNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gEllenScheduleData,
-        1669, 1669, EventScript_NPCEvent_Ellen_DialogueAndGiftResponses)
+        1669, 1669, EventScript_1006_NPCEvent_Ellen_DialogueAndGiftResponses)
 {
 }
 
@@ -5161,7 +5161,7 @@ asm_unified(
 StuNpcActor::StuNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gStuScheduleData,
-        2232, 2236, EventScript_NPCEvent_Stu_DialogueAndGiftResponses)
+        2232, 2236, EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses)
 {
 }
 
@@ -5197,7 +5197,7 @@ asm_unified(
 JeffNpcActor::JeffNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gJeffScheduleData,
-        1673, 1677, EventScript_NPCEvent_Jeff_DialogueAndGiftResponses)
+        1673, 1677, EventScript_1007_NPCEvent_Jeff_DialogueAndGiftResponses)
 {
 }
 
@@ -5233,7 +5233,7 @@ asm_unified(
 SashaNpcActor::SashaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gSashaScheduleData,
-        1733, 1737, EventScript_NPCEvent_Sasha_DialogueAndGiftResponses)
+        1733, 1737, EventScript_1009_NPCEvent_Sasha_DialogueAndGiftResponses)
 {
 }
 
@@ -5269,7 +5269,7 @@ asm_unified(
 KarenNpcActor::KarenNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gKarenScheduleData,
-        1681, 1685, EventScript_NPCEvent_Karen_DialogueAndGiftResponses)
+        1681, 1685, EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses)
 {
 }
 
@@ -5410,7 +5410,7 @@ asm_unified(
 DoctorNpcActor::DoctorNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gDoctorScheduleData.descriptor,
-        800, 804, EventScript_NPCEvent_Doctor_DialogueAndGiftResponses)
+        800, 804, EventScript_0998_NPCEvent_Doctor_DialogueAndGiftResponses)
 {
 }
 
@@ -5446,7 +5446,7 @@ asm_unified(
 ElliNpcActor::ElliNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gElliScheduleData,
-        2180, 2184, EventScript_NPCEvent_Elli_DialogueAndGiftResponses)
+        2180, 2184, EventScript_1018_NPCEvent_Elli_DialogueAndGiftResponses)
 {
 }
 
@@ -5587,7 +5587,7 @@ asm_unified(
 CarterNpcActor::CarterNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gCarterScheduleData,
-        2284, 2288, EventScript_NPCEvent_Carter_DialogueAndGiftResponses)
+        2284, 2288, EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses)
 {
 }
 
@@ -5623,7 +5623,7 @@ asm_unified(
 CliffNpcActor::CliffNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gCliffScheduleData.descriptor,
-        635, 639, EventScript_NPCEvent_Cliff_DialogueAndGiftResponses)
+        635, 639, EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses)
 {
 }
 
@@ -5712,7 +5712,7 @@ asm_unified(
 DougNpcActor::DougNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gDougScheduleData,
-        1970, 1974, EventScript_NPCEvent_Doug_DialogueAndGiftResponses)
+        1970, 1974, EventScript_1010_NPCEvent_Doug_DialogueAndGiftResponses)
 {
 }
 
@@ -5748,7 +5748,7 @@ asm_unified(
 LouOrRubyNpcActor::LouOrRubyNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gLouScheduleData,
-        2034, 2038, EventScript_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes)
+        2034, 2038, EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes)
 {
 }
 
@@ -5784,7 +5784,7 @@ asm_unified(
 AnnNpcActor::AnnNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gAnnScheduleData,
-        1982, 1986, EventScript_NPCEvent_Ann_DialogueAndGiftResponses)
+        1982, 1986, EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses)
 {
 }
 
@@ -5933,7 +5933,7 @@ asm_unified(
 KaiNpcActor::KaiNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gKaiScheduleData,
-        2306, 2310, EventScript_NPCEvent_Kai_DialogueAndGiftResponses)
+        2306, 2310, EventScript_1025_NPCEvent_Kai_DialogueAndGiftResponses)
 {
 }
 
@@ -5969,7 +5969,7 @@ asm_unified(
 GotzNpcActor::GotzNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gGotzScheduleData,
-        2515, 2519, EventScript_NPCEvent_Gotz_DialogueAndGiftResponses)
+        2515, 2519, EventScript_1028_NPCEvent_Gotz_DialogueAndGiftResponses)
 {
 }
 
@@ -6064,7 +6064,7 @@ asm_unified(
 ZackNpcActor::ZackNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gZackScheduleData.descriptor,
-        792, 796, EventScript_NPCEvent_Zack_DialogueAndGiftResponses)
+        792, 796, EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses)
 {
 }
 
@@ -6184,7 +6184,7 @@ asm_unified(
 WonNpcActor::WonNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gWonScheduleData,
-        2135, 2139, EventScript_NPCEvent_Won_DialogueAndGiftResponses)
+        2135, 2139, EventScript_1016_NPCEvent_Won_DialogueAndGiftResponses)
 {
 }
 
@@ -6330,7 +6330,7 @@ asm_unified(
 VanNpcActor::VanNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gVanScheduleData,
-        2264, 2268, EventScript_NPCEvent_Van_DialogueGiftAndGameCubeAlbumUnlock)
+        2264, 2268, EventScript_1022_NPCEvent_Van_DialogueGiftAndGameCubeAlbumUnlock)
 {
 }
 
@@ -6366,7 +6366,7 @@ asm_unified(
 ChildNpcActor::ChildNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gChildScheduleData.descriptor,
-        615, 623, EventScript_NPCEvent_Baby_DialogueAndInteractions),
+        615, 623, EventScript_0995_NPCEvent_Baby_DialogueAndInteractions),
       idle_animation_countdown(0)
 {
 }

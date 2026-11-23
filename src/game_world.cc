@@ -672,7 +672,7 @@ GameSceneWorld::~GameSceneWorld()
                 save->npcs.ApplyDroppedItemFriendshipPenalty(location, save->event_state);
             } else {
                 GameSceneWorld::QueueScript(GameSceneScriptRequest(
-                    EventScript_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);
+                    EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);
             }
         }
     }
@@ -724,7 +724,7 @@ void GameSceneWorld::Update(GameObjectUpdateContext const & input)
                 data.unk_1028.Reset(vfunc_64(), 0x1A9, this, position);
             } else {
                 QueueScript(GameSceneScriptRequest(
-                    EventScript_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);
+                    EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);
             }
         }
     }
@@ -742,7 +742,7 @@ void GameSceneWorld::Update(GameObjectUpdateContext const & input)
             if (hour == 6 && minute == 0) {
                 if (!player->ChangeStaminaAndFatigue(0, 10)) {
                     QueueScript(GameSceneScriptRequest(
-                        EventScript_SystemEvent_ReturnHomeAndAdvanceToNextDay, 0), 2);
+                        EventScript_0981_SystemEvent_ReturnHomeAndAdvanceToNextDay, 0), 2);
                 }
             } else {
                 UpdateWorldTimeOfDayPalettes(*this, hour, minute, 0);
@@ -12954,7 +12954,7 @@ void GameSceneWorld::vfunc_114()
     i32 value = world.save->farm.shipping_bin.GetValueShipped();
     world.save->CollectShippingRevenue();
     world.QueueScript(GameSceneScriptRequest(
-        EventScript_FarmEvent_Zack_DailyShippingPickup, value), 1);
+        EventScript_0987_FarmEvent_Zack_DailyShippingPickup, value), 1);
 }
 
 void GameSceneWorld::PrepareClockMenuTransition()
@@ -18308,34 +18308,34 @@ void GameSceneWorld::ShipProduct(Product const & product)
         switch (count) {
         case 10000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_10000Items, product_id), 1);
+                EventScript_0828_AchievementEvent_Shipping_10000Items, product_id), 1);
             break;
         case 100000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_100000Items, product_id), 1);
+                EventScript_0829_AchievementEvent_Shipping_100000Items, product_id), 1);
             break;
         case 1000000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_1000000Items, product_id), 1);
+                EventScript_0830_AchievementEvent_Shipping_1000000Items, product_id), 1);
             break;
         case 10000000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_10000000Items, product_id), 1);
+                EventScript_0831_AchievementEvent_Shipping_10000000Items, product_id), 1);
             break;
         case 100000000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_100000000Items, product_id), 1);
+                EventScript_0832_AchievementEvent_Shipping_100000000Items, product_id), 1);
             break;
         case 1000000000:
             QueueScript(GameSceneScriptRequest(
-                EventScript_AchievementEvent_Shipping_1000000000Items, product_id), 1);
+                EventScript_0833_AchievementEvent_Shipping_1000000000Items, product_id), 1);
             break;
         }
     }
     if (save->event_state.achievement_shipped_every_item_kind_state == 0
         && shipping.HasShippedOneOfEachProduct()) {
         QueueScript(GameSceneScriptRequest(
-            EventScript_AchievementEvent_Shipping_EveryItemKind, 0), 1);
+            EventScript_0834_AchievementEvent_Shipping_EveryItemKind, 0), 1);
     }
 }
 
