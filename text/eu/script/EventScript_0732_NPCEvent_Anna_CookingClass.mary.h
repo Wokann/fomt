@@ -51,6 +51,12 @@ mary_text_table
         "Fruit or Corn Flakes. \r\n"
         "Try it out!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2[] =
+        "Don't mention it. \r\n"
+        "Until next time. {Press}";
+#endif
+
     const char gText_NPCEvent_Anna_CookingClass_AnnaTeachesCheesecake[] =
         "Today's lesson will be on \r\n"
         "Cheese Cake. \r\n"

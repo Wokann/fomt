@@ -61,6 +61,12 @@ mary_text_table
         "Let's go home now,\r\n"
         "baby!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2[] =
+        "Let's go home now, \r\n"
+        "Chickies! {Press}";
+#endif
+
     const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_QuestionsChickenDislike[] =
         "But why not?!\r\n"
         "They're so cute!{Press}";
@@ -74,7 +80,9 @@ mary_text_table
         "Sorry to make you touch\r\n"
         "a Chicken!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2[] =
         "Let's go home now, \r\n"
         "Chickies! {Press}";
+#endif
 };

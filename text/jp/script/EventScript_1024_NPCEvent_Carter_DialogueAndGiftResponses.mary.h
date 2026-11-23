@@ -172,6 +172,14 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "それでは…{Press}\p";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_2[] =
+        "それでは…{Press}\p";
+
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_3[] =
+        "それでは…{Press}\p";
+#endif
+
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =
         "あるところに、どこにでもある\r\n"
         "ような、ふつうのかぞくがあり\r\n"

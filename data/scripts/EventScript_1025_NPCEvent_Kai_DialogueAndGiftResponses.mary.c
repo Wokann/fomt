@@ -360,17 +360,17 @@ void EventScript_1025_NPCEvent_Kai_DialogueAndGiftResponses(void)
                         break;
                     case NPC_INTERACTION_LIKED_GIFT:
                         SetTalkPortrait(TALK_PORTRAIT_KAI_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_Shared_NonPlayerSpouseLikedOrNeutralGiftResponse);
 #endif
                         break;
                     case NPC_INTERACTION_NEUTRAL_GIFT:
                         SetTalkPortrait(TALK_PORTRAIT_KAI_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_Shared_NonPlayerSpouseLikedOrNeutralGiftResponse);
 #endif
                         break;
@@ -652,9 +652,9 @@ void EventScript_1025_NPCEvent_Kai_DialogueAndGiftResponses(void)
                             if (WasNpcSpokenToJustNow(CHARACTER_KAI) == FALSE)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_KAI_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendship0To100FirstConversationWelcome);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeSharedFriendshipAnyFirstConversationWelcome);
 #endif
                             }
@@ -669,9 +669,9 @@ void EventScript_1025_NPCEvent_Kai_DialogueAndGiftResponses(void)
                             if (WasNpcSpokenToJustNow(CHARACTER_KAI) == FALSE)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_KAI_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendshipAbove100FirstConversationWarmWelcome);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeSharedFriendshipAnyFirstConversationWelcome);
 #endif
                             }

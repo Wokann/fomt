@@ -284,17 +284,21 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
             {
                 case CHARACTER_KAREN:
                     SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                    TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_2);
+#elif defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenAdditionalReflection);
 #endif
                     break;
                 case CHARACTER_POPURI:
                     SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                    TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection_2);
+#elif defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriAdditionalReflection);
 #endif
                     break;
@@ -304,9 +308,9 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                     break;
                 case CHARACTER_MARY:
                     SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryAdditionalReflection);
 #endif
                     break;
@@ -356,9 +360,9 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                         break;
                     case CHARACTER_POPURI:
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriReceivesMoonDumplings);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriReceivesMoonDumplingsAlternative);
 #endif
                         break;
@@ -372,9 +376,11 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                         break;
                     case CHARACTER_ELLI:
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_BLUSHING);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                        TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings_2);
+#elif defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplingsAlternative);
 #endif
                         break;
@@ -390,9 +396,11 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                 {
                     case CHARACTER_KAREN:
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                        TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_3);
+#elif defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenQuestionAboutMoon);
 #endif
                         break;
@@ -406,11 +414,11 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                         break;
                     case CHARACTER_MARY:
                         SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryClosingReflection);
 #elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryAdditionalReflection);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryParentsReflectionAfterMoonDumplings);
 #endif
                         break;
@@ -445,9 +453,11 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                 {
                     case CHARACTER_KAREN:
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS)
+                        TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_4);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflectionWithoutMoonDumplings);
 #endif
                         break;
@@ -461,19 +471,19 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                         break;
                     case CHARACTER_MARY:
                         SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryClosingReflection);
 #elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryAdditionalReflection);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryParentsReflectionWithoutMoonDumplings);
 #endif
                         break;
                     case CHARACTER_ELLI:
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliClosingReflection);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliClosingReflectionWithoutMoonDumplings);
 #endif
                         break;
@@ -505,9 +515,11 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
             {
                 case CHARACTER_KAREN:
                     SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                    TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_5);
+#elif defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenLateNightReflection);
 #endif
                     break;
@@ -521,17 +533,17 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                     break;
                 case CHARACTER_MARY:
                     SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryClosingReflection);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryAdditionalReflection);
 #endif
                     break;
                 case CHARACTER_ELLI:
                     SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliClosingReflection);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliClosingReflectionWithoutMoonDumplings);
 #endif
                     break;

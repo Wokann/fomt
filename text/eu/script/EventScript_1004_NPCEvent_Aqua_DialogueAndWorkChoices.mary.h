@@ -273,11 +273,19 @@ mary_text_table
         "Let's play the\r\n"
         "watering game, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringMinigameWinImprovement[] =
+#else
     const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_AllMinigamesWinImprovement[] =
+#endif
         "I think I've gotten \r\n"
         "better than before, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringMinigameLossConcern[] =
+#else
     const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringOrHarvestingMinigameLossConcern[] =
+#endif
         "I hope I don't make \r\n"
         "too many mistakes...{Press}";
 
@@ -285,10 +293,26 @@ mary_text_table
         "Let's play the\r\n"
         "harvest game, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_HarvestingMinigameWinImprovement[] =
+        "I think I've gotten \r\n"
+        "better than before, budum!{Press}";
+
+    const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_HarvestingMinigameLossConcern[] =
+        "I hope I don't make \r\n"
+        "too many mistakes...{Press}";
+#endif
+
     const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_AnimalCareMinigameIntroduction[] =
         "Let's play the\r\n"
         "animal husbandry game,\r\n"
         "budum!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement[] =
+        "I think I've gotten \r\n"
+        "better than before, budum!{Press}";
+#endif
 
     const char gText_NPCEvent_Aqua_DialogueAndWorkChoices_AnimalCareMinigameLossConcern[] =
         "I'm worried I might fail to\r\n"

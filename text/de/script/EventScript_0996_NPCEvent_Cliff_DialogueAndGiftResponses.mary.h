@@ -231,6 +231,11 @@ mary_text_table
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause[] =
         ".......................{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2[] =
+        ".........................{Press}";
+#endif
+
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationRepeatConversation[] =
         "Hey, {Player}.{Press}\p"
         "Das Geld, das ich mitge-\r\n"
@@ -247,8 +252,10 @@ mary_text_table
         "Job war ein Zeichen, dass\r\n"
         "ich in diese Stadt gehöre!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2[] =
         ".........................{Press}";
+#endif
 
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_MissedGrapeJobPlansDepartureRepeatConversation[] =
         "Ich habe keinen Job\r\n"

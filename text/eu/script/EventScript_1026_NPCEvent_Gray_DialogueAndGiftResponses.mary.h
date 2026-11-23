@@ -144,7 +144,11 @@ mary_text_table
         "Mary's father alll the time. {Press}";
 #endif
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryTownRepeatBlacksmithCommitment[] =
+#else
     const char gText_NPCEvent_Gray_DialogueAndGiftResponses_SharedMarriedToMaryTownOrLibraryRepeatBlacksmithCommitment[] =
+#endif
         "I like books, too, but\r\n"
         "I'm never to give up \r\n"
         "on being a blacksmith.{Press}";
@@ -191,6 +195,13 @@ mary_text_table
         "I hear interesting stories \r\n"
         "from Mary's father \r\n"
         "all the time.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryLibraryRepeatBlacksmithCommitment[] =
+        "I like books, too, but\r\n"
+        "I'm never to give up \r\n"
+        "on being a blacksmith.{Press}";
+#endif
 
     const char gText_NPCEvent_Gray_DialogueAndGiftResponses_LibraryBeforeMaryMarriageFirstConversationEnjoysBooks[] =
         "Books have some really\r\n"

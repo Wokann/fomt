@@ -12,14 +12,30 @@ mary_text_table
         "Schere-Stein-Papier Show!\r\n"
         "Spielen wir, {Player}!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown[] =
+#else
     const char gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown[] =
+#endif
         "Eins... Zwei... Drei!...{Press}\r\n";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
         "Schere";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown[] =
+        "Eins... Zwei... Drei!...{Press}\r\n";
+#endif
 
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =
         "Stein";
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
+        "Schere";
+#endif
 
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
         "Papier";

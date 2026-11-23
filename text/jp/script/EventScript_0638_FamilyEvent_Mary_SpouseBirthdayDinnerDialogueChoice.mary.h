@@ -54,6 +54,15 @@ mary_text_table
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2[] =
+        "おもしろい事言うのね。\r\n"
+        "あなた見ているとあきないわ。\r\n"
+        "ホントに小説の主人公みたい。{Press}\p"
+        "さ、わたしの誕生日、\r\n"
+        "いっしょにいわって{Press}";
+#endif
+
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherDoesn[] =
         "{Baby}の誕生日！？\r\n"
         "そんなぁ！パパは、子どもの\r\n"

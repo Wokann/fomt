@@ -147,10 +147,10 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
@@ -168,10 +168,10 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

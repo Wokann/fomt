@@ -184,9 +184,9 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                     {
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Karen30000To39999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen30000To39999_Ann40000To49999_PopuriAtLeast60000_FirstConversation);
 #endif
                     }
@@ -205,9 +205,11 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                         {
                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                             ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                            TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Karen40000To49999_FirstConversation);
+#elif defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen40000To49999_Mary30000To39999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_KarenAndElli40000To49999_FirstConversation);
 #endif
                         }
@@ -343,9 +345,9 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_PopuriAtLeast60000_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen30000To39999_Ann40000To49999_PopuriAtLeast60000_FirstConversation);
 #endif
                                     }
@@ -413,9 +415,9 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Ann40000To49999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen30000To39999_Ann40000To49999_PopuriAtLeast60000_FirstConversation);
 #endif
                                 }
@@ -500,9 +502,11 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_MARY_SURPRISED);
                                     ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                    TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To39999_FirstConversation);
+#elif defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen40000To49999_Mary30000To39999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To49999_FirstConversation);
 #endif
                                 }
@@ -521,9 +525,11 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                         ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                        TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Mary40000To49999_FirstConversation);
+#elif defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_MaryAndElli40000To49999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To49999_FirstConversation);
 #endif
                                     }
@@ -625,9 +631,11 @@ void EventScript_0343_NPCEvent_Spouse_BedtimeDialogue(void)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_ELLI_NORMAL);
                                             ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                            TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Elli40000To49999_FirstConversation);
+#elif defined(REGION_JP)
                                             TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_MaryAndElli40000To49999_FirstConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_Spouse_BedtimeDialogue_Shared_KarenAndElli40000To49999_FirstConversation);
 #endif
                                         }

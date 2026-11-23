@@ -18,11 +18,7 @@ void EventScript_0318_SystemMenu_RecipeBook(void)
         if (VarGet(VAR_YEAR) <= 3)
         {
             TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             var_0 = TalkChoice3(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_Exit);
-#else
-            var_0 = TalkChoice3(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_Exit);
-#endif
             switch (var_0)
             {
                 case CHOICE_OPTION_1:
@@ -48,11 +44,11 @@ void EventScript_0318_SystemMenu_RecipeBook(void)
             if (VarGet(VAR_YEAR) <= 5)
             {
                 TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 var_0 = TalkChoice4(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_Exit);
 #elif defined(REGION_US) || defined(REGION_EU)
                 var_0 = TalkChoice4(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1_2, gText_SystemMenu_RecipeBook_MenuPage2_2, gText_SystemMenu_RecipeBook_Exit);
-#else
+#elif defined(REGION_DE)
                 var_0 = TalkChoice4(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption_2, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_Exit);
 #endif
                 switch (var_0)
@@ -86,11 +82,11 @@ void EventScript_0318_SystemMenu_RecipeBook(void)
                 if (VarGet(VAR_YEAR) <= 10)
                 {
                     TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     var_0 = TalkChoice5(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_MenuPage3, gText_SystemMenu_RecipeBook_Exit);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = TalkChoice5(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1_2, gText_SystemMenu_RecipeBook_MenuPage2_2, gText_SystemMenu_RecipeBook_MenuPage3_2, gText_SystemMenu_RecipeBook_Exit);
-#else
+#elif defined(REGION_DE)
                     var_0 = TalkChoice5(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption_2, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_MenuPage3, gText_SystemMenu_RecipeBook_Exit);
 #endif
                     switch (var_0)
@@ -128,9 +124,9 @@ void EventScript_0318_SystemMenu_RecipeBook(void)
                 else
                 {
                     TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = TalkChoice6(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_MenuPage3, gText_SystemMenu_RecipeBook_MenuPage4, gText_SystemMenu_RecipeBook_Exit);
-#else
+#elif defined(REGION_DE)
                     var_0 = TalkChoice6(gText_SystemMenu_RecipeBook_KitchenAcquisitionOption_2, gText_SystemMenu_RecipeBook_MenuPage1, gText_SystemMenu_RecipeBook_MenuPage2, gText_SystemMenu_RecipeBook_MenuPage3, gText_SystemMenu_RecipeBook_MenuPage4, gText_SystemMenu_RecipeBook_Exit);
 #endif
                     switch (var_0)

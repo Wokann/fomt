@@ -23,9 +23,9 @@ void EventScript_1130_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack(vo
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_ZACK_HAPPY);
         SetTalkNameplateCharacter(CHARACTER_ZACK);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_PuppyFestivalAnnouncement);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_Shared_FestivalAnnouncementAndAdultDogInvitation);
 #endif
         SetTalkPortrait(TALK_PORTRAIT_ZACK_NORMAL);
@@ -47,9 +47,9 @@ void EventScript_1130_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack(vo
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_ZACK_HAPPY);
         SetTalkNameplateCharacter(CHARACTER_ZACK);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_AdultDogEntryInvitation);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_Shared_FestivalAnnouncementAndAdultDogInvitation);
 #endif
         TalkClose();

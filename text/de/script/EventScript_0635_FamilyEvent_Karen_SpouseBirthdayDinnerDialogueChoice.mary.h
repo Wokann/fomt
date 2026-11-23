@@ -63,6 +63,13 @@ mary_text_table
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
+        "Richtig! Lass \r\n"
+        "uns die Nacht \r\n"
+        "durchfeiern!{Press}";
+#endif
+
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =
         "Ha ha ha! Unglaublich, dass du \r\n"
         "unsere Geburtstage \r\n"
@@ -70,10 +77,12 @@ mary_text_table
         "Du bist wirklich \r\n"
         "süß , {NickName}.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
         "Richtig! Lass \r\n"
         "uns die Nacht \r\n"
         "durchfeiern!{Press}";
+#endif
 
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily[] =
         "Gut, wir werden unsere \r\n"

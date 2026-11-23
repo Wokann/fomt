@@ -26,8 +26,10 @@ mary_text_table
         "Das können wir \r\n"
         "nicht hineintun! {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse_2[] =
         "Wie es scheint, hast du \r\n"
         "nichts. Du solltest \r\n"
         "etwas mitbringen.{Press}";
+#endif
 };

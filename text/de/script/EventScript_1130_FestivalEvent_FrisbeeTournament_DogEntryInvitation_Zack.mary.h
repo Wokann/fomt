@@ -1,6 +1,10 @@
 mary_text_table
 {
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_PuppyFestivalAnnouncement[] =
+#else
     const char gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_Shared_FestivalAnnouncementAndAdultDogInvitation[] =
+#endif
         "Morgen ist Strand- \r\n"
         "tag. {Press}\p"
         "Ich wollte dich und deinen\r\n"
@@ -14,6 +18,14 @@ mary_text_table
         "Komm trotzdem morgen\r\n"
         "um 10 Uhr an den Strand, \r\n"
         "wenn du Zeit hast. Tschüss.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_AdultDogEntryInvitation[] =
+        "Morgen ist Strand- \r\n"
+        "tag. {Press}\p"
+        "Ich wollte dich und deinen\r\n"
+        "Hund einladen. {Press}\p";
+#endif
 
     const char gText_FestivalEvent_FrisbeeTournament_DogEntryInvitation_Zack_ChoiceEnterDog[] =
         "Mitmachen.";

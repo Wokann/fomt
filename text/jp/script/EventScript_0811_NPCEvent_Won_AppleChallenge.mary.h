@@ -39,6 +39,12 @@ mary_text_table
         "ト·ゴージャス·ビューティフ\r\n"
         "ルりんご！{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2[] =
+        "はぁはぁはぁ…\r\n"
+        "という名前ある。{Press}";
+#endif
+
     const char gText_NPCEvent_Won_AppleChallenge_WonIntroducesAEPFEApple[] =
         "最後はこれ！\r\n"
         "その名もＡＥＰＦＥりんご\r\n"
@@ -50,6 +56,12 @@ mary_text_table
         "エンジェル·エターナル·ピュ\r\n"
         "ア·フレッシュ·エレガントり\r\n"
         "んご！{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3[] =
+        "はぁはぁはぁ…\r\n"
+        "という名前ある。{Press}";
+#endif
 
     const char gText_NPCEvent_Won_AppleChallenge_WonUrgesPlayerToTasteApple[] =
         "３種類とも、\r\n"

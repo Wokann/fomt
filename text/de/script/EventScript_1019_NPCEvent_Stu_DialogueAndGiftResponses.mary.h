@@ -21,8 +21,17 @@ mary_text_table
         "Mensch!\r\n"
         "Danke!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedGiftResponse[] =
+#else
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedOrNeutralGiftResponse[] =
+#endif
         "Danke!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_NeutralGiftResponse[] =
+        "Danke!{Press}";
+#endif
 
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_DislikedGiftResponse[] =
         "Das gebe ich vielleicht\r\n"
@@ -60,7 +69,11 @@ mary_text_table
         "in unserem Haus...{Press}\p"
         "Elli sagt, es gehörte Mama.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseMorningFriendship0To100FirstConversation[] =
+#else
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_Shared_EllenHouseMorningOrOutsideGreeting[] =
+#endif
         "Hi!{Press}";
 
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseMorningFriendship0To100RepeatConversation[] =
@@ -120,6 +133,11 @@ mary_text_table
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseAfternoonMondayOrWednesdayRepeatConversation[] =
         "Ich habe keine Lust, den\r\n"
         "ganzen Tag Mama zu spielen!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightFirstConversation[] =
+        "Hi!{Press}";
+#endif
 
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightRepeatConversation[] =
         "Schlafenszeit...{Press}\p"

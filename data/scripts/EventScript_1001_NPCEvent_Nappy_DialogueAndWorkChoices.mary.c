@@ -768,7 +768,7 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                                     SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Day);
-#else
+#elif defined(REGION_DE)
 #ifdef BUGFIX
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Day);
 #else
@@ -788,7 +788,7 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                                     SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week);
-#else
+#elif defined(REGION_DE)
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week);
 #endif
                                                     StartHarvestSpriteTask(CHARACTER_NAPPY, HARVEST_SPRITE_TASK_HARVEST, HARVEST_SPRITE_WORK_DAYS_ONE_WEEK);
@@ -877,18 +877,18 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_WateringMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_WateringMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -909,18 +909,18 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_HarvestingMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_HarvestingMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -941,18 +941,18 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_NAPPY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }

@@ -10,6 +10,11 @@ mary_text_table
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "え～～～、{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
+        "え～～～、{Press}";
+#endif
+
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =
         "今日は、カーターさんが\r\n"
         "お父さんでポプリお姉ちゃんが\r\n"

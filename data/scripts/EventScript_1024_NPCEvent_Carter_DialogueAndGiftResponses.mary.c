@@ -625,7 +625,7 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryConclusion);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
-#else
+#elif defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                             }
@@ -634,11 +634,13 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 if (GetNpcFriendship(CHARACTER_CARTER) > 100 && GetNpcFriendship(CHARACTER_CARTER) <= 200)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_2);
+#elif defined(REGION_JP)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryTransition);
-#else
+#elif defined(REGION_DE)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                                     TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryPremise);
@@ -654,11 +656,13 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_3);
+#elif defined(REGION_JP)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
-#else
+#elif defined(REGION_DE)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                                     TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryPremise);

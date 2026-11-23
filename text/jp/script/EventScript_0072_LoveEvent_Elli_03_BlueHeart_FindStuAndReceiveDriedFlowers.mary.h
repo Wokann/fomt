@@ -61,6 +61,11 @@ mary_text_table
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
         "ううん、いいのよ。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
+        "ううん、いいのよ。{Press}";
+#endif
+
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenTellsStuElliForgivesHim[] =
         "ユウ、お姉ちゃんも\r\n"
         "ゆるしてるんだから泣くのを\r\n"

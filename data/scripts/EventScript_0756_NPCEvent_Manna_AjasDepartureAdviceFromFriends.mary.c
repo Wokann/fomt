@@ -38,9 +38,9 @@ void EventScript_0756_NPCEvent_Manna_AjasDepartureAdviceFromFriends(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_AFRAID);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessageSlow(gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_MannaNamesAjaAsConcern);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_MannaNamesAjaAsConcern);
 #endif
     TalkClose();
@@ -52,9 +52,9 @@ void EventScript_0756_NPCEvent_Manna_AjasDepartureAdviceFromFriends(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_AFRAID);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
     TalkMessageSlow(gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_MannaExplainsAjaLeftAfterArgumentWithDuke);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Manna_AjasDepartureAdviceFromFriends_MannaExplainsAjaLeftAfterArgumentWithDuke);
 #endif
     TalkClose();

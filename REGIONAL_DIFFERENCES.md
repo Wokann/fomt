@@ -196,11 +196,23 @@
 | [04B4](data/scripts/EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter.mary.c) | JP / US=EU=DE | 海外版在转入音乐祭开幕脚本前显式写入 FESTIVAL_PHASE_INITIAL；四版卡特普通交谈调用此前已设置同值，正常交谈入场路径没有因此改变资格、奖励或退场条件。 |
 
 <a id="unify-regions-pilot"></a>
-## 可选地区统一：九脚本试点
+<a id="unify-regions-scripts"></a>
+## 可选地区统一：事件脚本
 
 `BUGFIX` 修正已确认的错误；`UNIFY_REGIONS` 自动启用 `BUGFIX`，再采用下表所选的结构、合法异文或呈现统一。默认两个开关均关闭，恢复各版原文及流程。只启用统一开关即可，不需要再手动打开修复开关；沿用 `make jp`、`make us`、`make eu`、`make de`。启用方式见[配置说明](BUGFIX.md#启用方法)。
 
-本轮仅拆分0988、1008、1011、1027、1030、1033、1039、1044、1048，不代表全仓已经采用这种分类；纯命名不在本轮改动范围。
+本轮审阅全部1328个脚本及其四语文本，并完整检查134个有地区或功能条件的脚本。常开纯命名按实际台词与完整调用范围处理；仅更名时不改字符串、物理顺序或引用的槽。以下可选结构统一另由 `UNIFY_REGIONS` 控制，不把正常本地化差异重新记为错误。范围仍限事件脚本；原生代码、其他数据与资源未在本轮全面拆分。
+
+同一调用位置需要不同合法原文或控制符时，保留各语完整正文，并在其他语言补真正参与该位置调用的同文槽；不同角色的通用短答也可按实际角色拆槽。新槽必须被调用，不补未用占位或符号别名，不把海外完整改写压成日文直译。已有真实修复在四语可共享时使用同一修复分支。
+
+| 范围 | 统一内容与保留边界 |
+| --- | --- |
+| 恋爱、家庭与NPC对话 | 同一角色／场景的文本接口与声明顺序对应；为实际说话人、重复交谈和合法分页异文保留必要独立槽。0341保留各版原有 `{NickName}`／`{Player}` 展开；0487保留日版完成制作与海外Gray配送的不同正文。 |
+| 菜单与物品提示 | 同用途的空白、数字间隔或措辞变体只在统一模式选用既有基串；例如0045的新生活结语、0318料理书菜单、0479拒购确认。0403秋冬预告拆成两个真正使用的槽，完整预告不删。 |
+| 电视、天气与节日 | 按实际剧集、明日天气和事件分支建立共同文本调用，保留各语言完整句、分页及确认符；1021、1074、1093所选消息字速和1128的评审等待仅属可选呈现统一。1204正常入口的重复阶段初始化也只在统一模式整理，原必要状态写入保留。 |
+| 保留的地区行为 | 0225、0347、0427、0536继续保留原12／24小时显示、数字与空格格式和小时算术。0286、0346、0403、0535、0539继续保留各地区必要的 `TalkMessage`／`TalkAppendMessage`；0403可共用文本槽也不改变DE冬季的输出方式。地区选择使用明确的JP／US／EU／DE分支，单纯功能开关的 `#else` 保持原含义。 |
+
+下表继续列出最初四个职责拆分脚本的具体内容，供对照已有问题条目。其他脚本也遵循上述边界；有合法地区行为时不承诺四语代码和文本数量全部相同。
 
 | 脚本 | `BUGFIX` 保留的真实修复 | 仅 `UNIFY_REGIONS` 采用的统一 |
 | --- | --- | --- |
@@ -209,7 +221,7 @@
 | [1039 F-3.14](data/scripts/EventScript_1039_TV_F314MGrandPrix.mary.c) | 日期错序、跨赛季／车型错用、漏文、译文、成绩及升降名次错误。 | 合并纯排版变体、删除旧未用槽、统一声明顺序及对应的JP同文预告独立槽，四版101槽、120日同调用；合法英德额外评价仍保留。 |
 | [1048 人物介绍](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) | 生日、重复介词、两处漏句、Gotz返回值、循环重复介绍。 | 五组中性亲属串与Duke前文配合移and、空白变体合并与排序、三处普通消息改慢；四版172槽、250次同调用。 |
 
-另外五个试点没有纯地区统一项，源码不作职责迁移：0988的实际睡眠时间保存顺序、1027／1030已确认满行覆盖的尾空格、1033卡片数及误译／漏文、1044体力说明及DE遗漏break，均继续由 `BUGFIX` 修复。
+0988、1027、1030、1033、1044没有需要迁出的纯地区统一项：0988的实际睡眠时间保存顺序、1027／1030已确认满行覆盖的尾空格、1033卡片数及误译／漏文、1044体力说明及DE遗漏break，均继续由 `BUGFIX` 修复。
 
 | 参与编译的文本槽（JP／US／EU／DE） | 默认 | 仅 `BUGFIX` | `UNIFY_REGIONS`（自动修复） |
 | --- | --- | --- | --- |
@@ -230,11 +242,11 @@
 
 同节目按源码调用位置计，JP的83处家属短句均为慢速；海外在保留既有漏句修复后是80处慢速、3处普通，40处完整下集预告四版均为慢速。这些相邻流程和同类句式是选择统一三处字速的依据，不能证明原普通字速为错误；调用位置数也不等于一次播放次数。上述来源是已核对的本地转储及GBA脚本，不是本仓库内可直接打开的重制文件链接。
 
-星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，本次只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
+星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，统一模式只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
 
 ## 已确认错误的源码名称整理
 
-脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。默认和 BUGFIX 两态均沿用各自的文字、槽位顺序和调用关系。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
+脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。这些常开更名本身保持默认、BUGFIX及统一模式各自的文字、槽位顺序和调用关系；可选结构调整另见上节。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
 
 扎克的DE文本有三处旧名称错位：收货路线应为`FarmLowFriendshipRepeatConversation_PlansPickupRoute`，提醒自己正在工作应为`FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking`，农场晚间高好感道别应为`FarmEveningHighFriendshipFarewell`。仅修正定义、实际调用及Mary原版反编译名称表，不改变德文文本或调用顺序。
 

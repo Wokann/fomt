@@ -78,7 +78,11 @@ mary_text_table
         "sprechen, ich hoffe, \r\n"
         "sie kommt bald...{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_May_DialogueAndGiftResponses_SunnySouthTownOrYodelHouseLowFriendshipFirstConversationGreeting[] =
+#else
     const char gText_NPCEvent_May_DialogueAndGiftResponses_Shared_SouthTownYodelHouseOrMothersHillGreeting[] =
+#endif
         "Hi!{Press}";
 
     const char gText_NPCEvent_May_DialogueAndGiftResponses_SunnySouthTownOrYodelHouseLowFriendshipRepeatConversationBarleyTooBusy[] =
@@ -134,6 +138,11 @@ mary_text_table
     const char gText_NPCEvent_May_DialogueAndGiftResponses_MothersHillMiddleLowFriendshipRepeatConversationDislikesHotSpring[] =
         "Ich hasse die heiße Quelle!\r\n"
         "Sie ist zu heiß!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_May_DialogueAndGiftResponses_MothersHillMiddleHighFriendshipFirstConversationGreeting[] =
+        "Hi!{Press}";
+#endif
 
     const char gText_NPCEvent_May_DialogueAndGiftResponses_MothersHillMiddleHighFriendshipRepeatConversationMentionsFormerField[] =
         "Ich habe gehört, weiter\r\n"

@@ -29,8 +29,10 @@ mary_text_table
     const char gText_ShopEvent_Rucksack_PurchaseChoice_LargeRucksackPrice[] =
         "Gr. Rucksäcke: 5.000G";
 
+#ifndef UNIFY_REGIONS
     const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation_2[] =
         "Wirklich? Bist du sicher?{Press}";
+#endif
 
     const char gText_ShopEvent_Rucksack_PurchaseChoice_InsufficientGoldForLargeRucksack[] =
         "Hm...tut mir Leid, aber\r\n"

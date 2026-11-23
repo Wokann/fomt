@@ -119,18 +119,18 @@ void EventScript_0763_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement(voi
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_KAREN_ANGRY);
             SetTalkNameplateCharacter(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenStartsContestAfterRefusal);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedKarenStartsContestAfterEitherChoice);
 #endif
             TalkClose();
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_DUKE_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DUKE);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_DukeAcceptsContestAfterRefusal);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedDukeAcceptsContestAfterEitherChoice);
 #endif
             TalkClose();
@@ -164,18 +164,18 @@ void EventScript_0763_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement(voi
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenStartsContestAfterAcceptance);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedKarenStartsContestAfterEitherChoice);
 #endif
             TalkClose();
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_DUKE_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DUKE);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_DukeAcceptsContestAfterAcceptance);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedDukeAcceptsContestAfterEitherChoice);
 #endif
             TalkClose();

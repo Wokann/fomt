@@ -15,7 +15,7 @@ void EventScript_1204_FestivalEvent_MusicFestival_EntryCheck_Carter(void)
         TalkClose();
         MarkNpcSpokenTo(CHARACTER_CARTER);
         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if !defined(UNIFY_REGIONS) && (defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE))
         VarSet(VAR_MUSIC_FESTIVAL_ACTIVE, FESTIVAL_PHASE_INITIAL);
 #endif
         CallScript(EventScript_1205_FestivalEvent_MusicFestival_Opening);

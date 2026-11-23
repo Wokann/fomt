@@ -289,11 +289,19 @@ mary_text_table
         "Spielen wir das\r\n"
         "Gießen-Spiel, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_WateringMinigameWinImprovement[] =
+#else
     const char gText_NPCEvent_Staid_DialogueAndWorkChoices_AllMinigamesWinImprovement[] =
+#endif
         "Ich glaube, ich habe \r\n"
         "mich verbessert, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_WateringMinigameLossConcern[] =
+#else
     const char gText_NPCEvent_Staid_DialogueAndWorkChoices_AllMinigamesLossConcern[] =
+#endif
         "Ich hoffe, ich mache\r\n"
         "nicht zu viele Fehler...{Press}";
 
@@ -301,10 +309,30 @@ mary_text_table
         "Spielen wir das\r\n"
         "Erntespiel, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_HarvestingMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_HarvestingMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
+
     const char gText_NPCEvent_Staid_DialogueAndWorkChoices_AnimalCareMinigameIntroduction[] =
         "Spielen wir das\r\n"
         "Tierhaltungsspiel,\r\n"
         "budum!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Staid_DialogueAndWorkChoices_AnimalCareMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
 
     const char gText_NPCEvent_Staid_DialogueAndWorkChoices_DeclineMinigame[] =
         "Was? Du willst\r\n"

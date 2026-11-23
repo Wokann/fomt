@@ -57,17 +57,17 @@ void EventScript_1040_TV_HarvestGoddessRockPaperScissors(void)
             {
                 case HARVEST_GODDESS_GAME_ROUND_WIN:
                     SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown);
 #endif
                     break;
                 case HARVEST_GODDESS_GAME_ROUND_DRAW:
                     SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown);
 #endif
                     break;
@@ -81,7 +81,7 @@ void EventScript_1040_TV_HarvestGoddessRockPaperScissors(void)
 #else
             var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors);
 #endif
-#else
+#elif defined(REGION_DE)
     // Match each displayed choice to the existing result branch; leave the game rules unchanged.
 #ifdef BUGFIX
             var_0 = TalkChoice3(gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock, gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors, gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper);

@@ -197,10 +197,12 @@ mary_text_table
         "besuchen. Er gibt\r\n"
         "gute Ratschläge.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing_2[] =
         "Uff...Endlich ist der\r\n"
         "Tag vorbei! Aber morgen\r\n"
         "wird auch hart!{Press}";
+#endif
 
     const char gText_NPCEvent_Jeff_DialogueAndGiftResponses_ChurchFirstConversation[] =
         "Ich mag es, wenn\r\n"

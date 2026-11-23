@@ -442,15 +442,19 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
                             break;
                         case HARVEST_SPRITE_INTERACTION_ACCESSORY:
                             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2);
 #endif
                             break;
                         case HARVEST_SPRITE_INTERACTION_COSMETIC:
                             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
+#ifdef UNIFY_REGIONS
+                            TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2);
+#else
                             TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse);
+#endif
                             break;
                         case HARVEST_SPRITE_INTERACTION_PERFUME:
                             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
@@ -869,18 +873,18 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_WateringMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_WateringMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -901,18 +905,18 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_HarvestingMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_HarvestingMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -933,18 +937,18 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_BOLD_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AnimalCareMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }

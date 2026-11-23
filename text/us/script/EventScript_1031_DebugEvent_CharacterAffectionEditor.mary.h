@@ -42,8 +42,18 @@ mary_text_table
     const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000[] =
         "RA+1,000";
 
+#ifdef UNIFY_REGIONS
+    const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2[] =
+        "RA+1000";
+#endif
+
     const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000[] =
         "RA-1,000";
+
+#ifdef UNIFY_REGIONS
+    const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2[] =
+        "RA-1000";
+#endif
 
     const char gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList[] =
         "Return";
@@ -57,11 +67,15 @@ mary_text_table
     const char gText_DebugEvent_CharacterAffectionEditor_EllisLoveValueDisplay[] =
         "Elli's love{Var1}";
 
+#ifndef UNIFY_REGIONS
     const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2[] =
         "RA+1000";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2[] =
         "RA-1000";
+#endif
 
     const char gText_DebugEvent_CharacterAffectionEditor_MarysLoveValueDisplay[] =
         "Mary's love{Var1}";

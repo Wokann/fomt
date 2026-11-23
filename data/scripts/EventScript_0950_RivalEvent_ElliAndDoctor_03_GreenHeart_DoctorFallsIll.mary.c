@@ -72,11 +72,7 @@ void EventScript_0950_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll(void
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_DOCTOR_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_DOCTOR);
-#if defined(REGION_JP)
     TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToAWife);
-#else
-    TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToAWife);
-#endif
     SetTalkPortrait(TALK_PORTRAIT_DOCTOR_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_DOCTOR);
     TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorSaysElliWillMakeAGoodWife);

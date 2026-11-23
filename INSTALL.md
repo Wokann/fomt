@@ -140,8 +140,11 @@ Use `make clean_jp`, `make clean_us`, `make clean_eu`, or `make clean_de`
 to select a version, or `make clean_all` to remove all four versions' outputs.
 To clean and rebuild in order, run `make clean_us && make -j8 us`.
 
-## Optional bug fixes
+## Optional bug fixes and regional unification
 
 For optional fixes, see [BUGFIX.md](BUGFIX.md). After changing the setting,
 clean the region you plan to rebuild, for example with `make clean_jp`. Use the
-normal build command without `compare` when BUGFIX is enabled.
+normal build command without `compare` when `BUGFIX` or `UNIFY_REGIONS` is enabled.
+For optional [script unification](REGIONAL_DIFFERENCES.md#unify-regions-scripts),
+uncomment only `UNIFY_REGIONS` in [include/config.h](include/config.h); it automatically
+enables `BUGFIX`. Leave both user switches commented for the original matching build.

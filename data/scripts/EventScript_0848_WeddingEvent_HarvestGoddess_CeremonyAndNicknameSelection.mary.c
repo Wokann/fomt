@@ -214,10 +214,10 @@ void EventScript_0848_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection(v
             TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_RejectsDarlingChoice);
             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-            TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
             TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+            TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname);
 #endif
             TalkClose();
             break;

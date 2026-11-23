@@ -45,13 +45,9 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetTalkPortrait(TALK_PORTRAIT_ELLI_BLUSHING);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP) || defined(REGION_DE)
-            SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_ChoiceHoney);
-#else
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_DE)
             // Store the selected nickname before confirming it, as in JP and DE.
             SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_ChoiceHoney);
-#endif
 #endif
             TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
             TalkClose();
@@ -88,9 +84,9 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetTalkPortrait(TALK_PORTRAIT_ELLI_BLUSHING);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname_2);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
 #endif
             TalkClose();

@@ -77,9 +77,9 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayIveBeenPlanningThis);
 #endif
                         TalkClose();
@@ -146,11 +146,7 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
-#else
-                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
-#endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
@@ -172,10 +168,10 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

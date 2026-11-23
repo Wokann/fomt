@@ -47,6 +47,29 @@ mary_text_table
         "beautiful tonight than {Press}\r\n"
         "usual? {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_2[] =
+        "The moon looks extra \r\n"
+        "beautiful tonight, doesn't\r\n"
+        "it? {Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_3[] =
+        "Why can we see the moon\r\n"
+        "so clearly tonight?{Press}\p"
+        "Why is it just\r\n"
+        "tonight?{Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_4[] =
+        "Is it just me, or does the\r\n"
+        "moon look even more \r\n"
+        "beautiful tonight than {Press}\r\n"
+        "usual? {Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_5[] =
+        "I love spending all night \r\n"
+        "moongazing like this...{Press}";
+#endif
+
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection[] =
     // Use the possessive its for the moon's light.
 #ifdef BUGFIX
@@ -55,6 +78,13 @@ mary_text_table
         "It's light makes everything\r\n"
 #endif
         "different. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection_2[] =
+        "The moonlight makes \r\n"
+        "everything look so pale and\r\n"
+        "mysterious!...{Press}";
+#endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_AnnClosingReflection[] =
         "It looks so close...\r\n"
@@ -114,16 +144,21 @@ mary_text_table
         "You mean I can have yours?{Press}\p"
         "Mmmm...They're delicious! {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenAdditionalReflection[] =
         "The moon looks extra \r\n"
         "beautiful tonight, doesn't\r\n"
         "it? {Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriAdditionalReflection[] =
         "The moonlight makes \r\n"
         "everything look so pale and\r\n"
         "mysterious!...{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_MaryAdditionalReflection[] =
         "Dad said he would come with\r\n"
         "Mom, but maybe they found\r\n"
@@ -136,7 +171,9 @@ mary_text_table
         "to come a all. She hates \r\n"
 #endif
         "the mountain at night. {Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplingsAlternative[] =
         "Moon Dumplings! \r\n"
         "I tried to make some myself\r\n"
@@ -144,14 +181,29 @@ mary_text_table
         "turn out so well...{Press}\p"
         "You mean I can have yours?{Press}\p"
         "Mmmm...They're delicious! {Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenQuestionAboutMoon[] =
         "Why can we see the moon\r\n"
         "so clearly tonight?{Press}\p"
         "Why is it just\r\n"
         "tonight?{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenLateNightReflection[] =
         "I love spending all night \r\n"
         "moongazing like this...{Press}";
+#endif
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings_2[] =
+        "Moon Dumplings! \r\n"
+        "I tried to make some myself\r\n"
+        "today, but they didn't \r\n"
+        "turn out so well...{Press}\p"
+        "You mean I can have yours?{Press}\p"
+        "Mmmm...They're delicious! {Press}";
+#endif
+
 };

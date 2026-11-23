@@ -7,15 +7,32 @@ mary_text_table
     const char gText_NPCEvent_Spouse_BedtimeDialogue_PleaseLeaveMeAlone[] =
         "Please leave me alone!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen30000To39999_Ann40000To49999_PopuriAtLeast60000_FirstConversation[] =
         "Good night!{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Karen30000To39999_FirstConversation[] =
+        "Good night!{Press}";
+#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_IAlwaysWantToGoPlay[] =
         "I always want to go play\r\n"
         "at night...{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_KarenAndElli40000To49999_FirstConversation[] =
         "Good night.{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Karen40000To49999_FirstConversation[] =
+        "Good night.{Press}";
+
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To39999_FirstConversation[] =
+        "Good night. {Press}";
+#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_IfYouDontGoToSleep[] =
         "If you don't go to\r\n"
@@ -70,6 +87,11 @@ mary_text_table
         "day's work is a good \r\n"
         "night's sleep!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_PopuriAtLeast60000_FirstConversation[] =
+        "Good night!{Press}";
+#endif
+
     const char gText_NPCEvent_Spouse_BedtimeDialogue_ArenYouTiredIMGoing[] =
         "Aren’t you tired?\r\n"
         "I’m going to bed soon.\r\n"
@@ -90,6 +112,11 @@ mary_text_table
         "You should get to sleep now,\r\n"
         "so you're not tired in the\r\n"
         "morning. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Ann40000To49999_FirstConversation[] =
+        "Good night!{Press}";
+#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_BetterGetToSleepNowSo[] =
         "Better get to sleep now\r\n"
@@ -122,12 +149,22 @@ mary_text_table
         "put aside some time for\r\n"
         "me, too!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To49999_FirstConversation[] =
         "Good night. {Press}";
+#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_IllGoToBedLaterIm[] =
         "I'll go to bed later. I'm\r\n"
         "not tired now. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary40000To49999_FirstConversation[] =
+        "Good night. {Press}";
+
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Elli40000To49999_FirstConversation[] =
+        "Good night.{Press}";
+#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_DontWorryIWontGoAnywhere[] =
         "Don't worry! I won't go\r\n"

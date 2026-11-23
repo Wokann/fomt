@@ -55,6 +55,19 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2[] =
+        "You remembered!\r\n"
+        "I don't know why, but I was\r\n"
+        "sure you'd forget...Sorry!{Press}";
+
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
+        "I look more mature to\r\n"
+        "you, don't I...?{Press}\p"
+        "Well, one day does too\r\n"
+        "make a difference!{Press}";
+#endif
+
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherAre[] =
         "What kind of a father \r\n"
         "are you!? {Press}\p"

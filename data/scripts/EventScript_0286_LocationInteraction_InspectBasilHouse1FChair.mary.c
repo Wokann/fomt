@@ -9,7 +9,7 @@ void EventScript_0286_LocationInteraction_InspectBasilHouse1FChair(void)
     TalkOpen();
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkAppendMessage(gText_LocationInteraction_InspectBasilHouse1FChair);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_LocationInteraction_InspectBasilHouse1FChair);
 #endif
     TalkClose();

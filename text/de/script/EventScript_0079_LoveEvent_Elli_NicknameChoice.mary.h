@@ -29,6 +29,12 @@ mary_text_table
         "nicht einen richtig \r\n"
         "guten Namen gibt...?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname_2[] =
+        "OK, dann also \r\n"
+        "{NickName}. {Press}";
+#endif
+
     const char gText_LoveEvent_Elli_Nickname_ElliAsksToContinueClinicWork[] =
         "{NickName}, \r\n"
         "Ich würde gern in der\r\n"

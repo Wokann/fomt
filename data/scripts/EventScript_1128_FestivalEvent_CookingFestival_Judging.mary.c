@@ -344,9 +344,9 @@ void EventScript_1128_FestivalEvent_CookingFestival_Judging(void)
         case FESTIVAL_COOKING_DISH_CATEGORY_BREAD:
         case FESTIVAL_COOKING_DISH_CATEGORY_NOODLES:
             StartEntityEffect(ENTITY_GOURMET, ENTITY_EMOTE_BAD, FALSE);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             WaitFrames(60 * 4);
-#else
+#elif defined(REGION_DE)
             WaitFrames(60 * 4 * 2);
 #endif
             break;

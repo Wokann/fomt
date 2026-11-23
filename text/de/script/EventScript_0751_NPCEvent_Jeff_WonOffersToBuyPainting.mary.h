@@ -99,8 +99,10 @@ mary_text_table
         "als würde ich ein Stück {Press}\r\n"
         "meines Herzens verkaufen.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Jeff_WonOffersToBuyPainting_SilentReactionToJeffsConviction[] =
         "......{Press}";
+#endif
 
     const char gText_NPCEvent_Jeff_WonOffersToBuyPainting_SashaCallsJeffByName[] =
         "Jeff...{Press}";

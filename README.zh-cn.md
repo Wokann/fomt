@@ -21,6 +21,8 @@
 
 可选修复由 [include/config.h](include/config.h) 中的 `BUGFIX` 控制。
 [BUGFIX 文档](BUGFIX.md)记录了受影响的版本、原版行为、判断依据和修复方式。
+可选 `UNIFY_REGIONS` 自动启用 `BUGFIX`，再采用所选[脚本地区统一](REGIONAL_DIFFERENCES.md#unify-regions-scripts)。
+两个开关默认关闭；启用任一模式时使用不带 `compare` 的普通编译命令。
 
 ## 安装
 

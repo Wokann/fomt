@@ -114,11 +114,7 @@ void EventScript_0045_LoveEvent_Popuri_NicknameChoice(void)
             VarSet(VAR_POPURI_NICKNAME_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
-#else
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
-#endif
             TalkClose();
             CallScript(EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay);
             break;
@@ -138,12 +134,10 @@ void EventScript_0045_LoveEvent_Popuri_NicknameChoice(void)
             VarSet(VAR_POPURI_NICKNAME_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
             TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #elif defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife_2);
-#else
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #endif
             TalkClose();
             CallScript(EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay);

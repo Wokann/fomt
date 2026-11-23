@@ -11,6 +11,14 @@ mary_text_table
         "auf und morgen wird es \r\n"
         "den ganzen Tag regnen. {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_TV_WeatherChannelForecast_SpringToSummerRain_2[] =
+        "Schwere Gewitter!\r\n"
+        "Heute nacht ziehen Wolken \r\n"
+        "auf und morgen wird es \r\n"
+        "den ganzen Tag regnen. {Press}";
+#endif
+
     const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon[] =
         "Das Wetter für morgen:\r\n"
         "Ein Taifun wird vorbei-\r\n"
@@ -18,6 +26,16 @@ mary_text_table
         "Fenster und Türen ge-\r\n"
         "schlossen und lass die \r\n"
         "Tiere in der Scheune!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2[] =
+        "Das Wetter für morgen:\r\n"
+        "Ein Taifun wird vorbei-\r\n"
+        "ziehen, also halte alle\r\n"
+        "Fenster und Türen ge-\r\n"
+        "schlossen und lass die \r\n"
+        "Tiere in der Scheune!{Press}";
+#endif
 
     const char gText_TV_WeatherChannelForecast_NoSignalSnow[] =
         "Schnee {Press}";
@@ -50,11 +68,13 @@ mary_text_table
         "Morgen wird ein kalter \r\n"
         "und regnerischer Tag.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_WeatherChannelForecast_SpringToSummerRain_2[] =
         "Schwere Gewitter!\r\n"
         "Heute nacht ziehen Wolken \r\n"
         "auf und morgen wird es \r\n"
         "den ganzen Tag regnen. {Press}";
+#endif
 
     const char gText_TV_WeatherChannelForecast_FallToWinterClear[] =
         "Das Wetter für morgen:\r\n"
@@ -69,8 +89,10 @@ mary_text_table
     const char gText_TV_WeatherChannelForecast_NoSignalRain[] =
         "Regen!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_WeatherChannelForecast_NoSignalTyphoon_2[] =
         "Taifun! {Press}";
+#endif
 
     const char gText_TV_WeatherChannelForecast_WinterSnow[] =
         "Das Wetter für morgen:\r\n"

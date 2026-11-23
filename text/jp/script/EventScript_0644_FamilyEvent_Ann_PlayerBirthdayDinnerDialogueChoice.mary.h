@@ -53,6 +53,13 @@ mary_text_table
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2[] =
+        "そうそう。もう{NickName}も\r\n"
+        "大人なんだから、ピシッと\r\n"
+        "がんばってよ。{Press}";
+#endif
+
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_StopFoolingMeIKnowYou[] =
         "なにをトボけた事を言ってん\r\n"
         "の、今日は{NickName}の\r\n"

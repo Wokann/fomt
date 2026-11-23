@@ -58,6 +58,11 @@ mary_text_table
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
         "I forgive you, Stu. {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
+        "That's OK, Stu. {Press}";
+#endif
+
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenTellsStuElliForgivesHim[] =
         "Elli says she forgives you,\r\n"
         "so you can stop crying now,\r\n"
@@ -81,8 +86,10 @@ mary_text_table
     const char gText_LoveEvent_Elli_03_BlueHeart_StuApologizesAfterReturning[] =
         "I'm sorry, Sis. {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
         "That's OK, Stu. {Press}";
+#endif
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenThanksPlayerAfterStusReturn[] =
         "Thanks again, \r\n"

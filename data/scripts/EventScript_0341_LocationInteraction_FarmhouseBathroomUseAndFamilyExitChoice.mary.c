@@ -84,11 +84,13 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                 SetTalkNameplateCharacter(CHARACTER_POPURI);
                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing);
+#elif defined(REGION_JP)
                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing);
 #elif defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                 TalkClose();
@@ -102,11 +104,13 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
                                     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                     SetTalkNameplateCharacter(CHARACTER_ANN);
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                    TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing);
+#elif defined(REGION_JP)
                                     TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing);
 #elif defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
-#else
+#elif defined(REGION_DE)
                                     TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                     TalkClose();
@@ -120,11 +124,13 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
                                         SetTalkPortrait(TALK_PORTRAIT_ELLI_NORMAL);
                                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                        TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing);
+#elif defined(REGION_JP)
                                         TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing);
 #elif defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
-#else
+#elif defined(REGION_DE)
                                         TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                         TalkClose();
@@ -138,11 +144,13 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                             SetTalkNameplateCharacter(CHARACTER_KAREN);
                                             ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                            TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing);
+#elif defined(REGION_JP)
                                             TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing);
 #elif defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
-#else
+#elif defined(REGION_DE)
                                             TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                             TalkClose();
@@ -156,11 +164,13 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
                                                 SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                                 SetTalkNameplateCharacter(CHARACTER_MARY);
                                                 ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing);
+#elif defined(REGION_JP)
                                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
-#else
+#elif defined(REGION_DE)
                                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                                 TalkClose();

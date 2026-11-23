@@ -167,6 +167,13 @@ mary_text_table
         "Oh, never mind...\r\n"
         "Forget I mentioned it!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipShipmentGreeting[] =
+        "How are your\r\n"
+        "shipments coming?\r\n"
+        "I'm counting on you, now!{Press}";
+#endif
+
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute[] =
         "Should I go there and pick\r\n"
         "that up, or to that other\r\n"
@@ -183,6 +190,13 @@ mary_text_table
         "けっこう牧場がにあってんじゃ\r\n"
         "ねぇか？{Press}\p"
         "これでも、ほめてんだぜ～。{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipShipmentGreeting[] =
+        "How are your\r\n"
+        "shipments coming?\r\n"
+        "I'm counting on you, now!{Press}";
 #endif
 
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_PraisesPlayerAsFarmer[] =

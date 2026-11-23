@@ -61,6 +61,14 @@ mary_text_table
         "spend the night \r\n"
         "celebrating!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =
+        "Ha ha ha! I can't \r\n"
+        "believe you mixed up our \r\n"
+        "birthdays! You sure are {Press}\r\n"
+        "cute, {NickName}.{Press}";
+#endif
+
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily[] =
         "Well, we will celebrate our\r\n"
         "family anniversaries just  \r\n"

@@ -240,15 +240,24 @@ mary_text_table
         "für dich, budum.{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week[] =
         "Verstanden.\r\n"
         "Ich ernte eine Woche \r\n"
         "für dich, budum.{Press}";
+#endif
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor3Days[] =
         "Verstanden.\r\n"
         "Ich ernte 3 Tage \r\n"
         "für dich, budum.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week[] =
+        "Verstanden.\r\n"
+        "Ich ernte eine Woche \r\n"
+        "für dich, budum.{Press}";
+#endif
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareDurationPrompt[] =
         "Wie lange soll ich für\r\n"
@@ -291,21 +300,49 @@ mary_text_table
         "Spielen wir das\r\n"
         "Gießen-Spiel, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_WateringMinigameWinImprovement[] =
+#else
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesWinImprovement[] =
+#endif
         "Ich glaube, ich habe \r\n"
         "mich verbessert, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_WateringMinigameLossConcern[] =
+#else
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AllMinigamesLossConcern[] =
+#endif
         "Ich hoffe, ich mache\r\n"
         "nicht zu viele Fehler...{Press}";
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_HarvestingMinigameIntroduction[] =
         "Spielen wir das Erntespiel.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_HarvestingMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_HarvestingMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
+
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareMinigameIntroduction[] =
         "Spielen wir das\r\n"
         "Tierhaltungsspiel,\r\n"
         "budum!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AnimalCareMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
 
     const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_DeclineMinigame[] =
         "Was? Du willst\r\n"

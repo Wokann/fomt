@@ -129,9 +129,9 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_KAREN);
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_HaHaHaICantBelieve);
 #endif
                         TalkClose();
@@ -155,10 +155,10 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_KAREN);
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP)
-                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2);
+#elif defined(REGION_JP)
+                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

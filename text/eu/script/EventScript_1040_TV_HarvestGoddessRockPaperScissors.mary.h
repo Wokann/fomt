@@ -20,11 +20,18 @@ mary_text_table
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =
         "Rock";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
         "Paper";
+#endif
 
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceScissors[] =
         "Scissors";
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessRockPaperScissors_ChoicePaper[] =
+        "Paper";
+#endif
 
     const char gText_TV_HarvestGoddessRockPaperScissors_PlayerRockGoddessRockDraw[] =
         "{Player}\r\n"

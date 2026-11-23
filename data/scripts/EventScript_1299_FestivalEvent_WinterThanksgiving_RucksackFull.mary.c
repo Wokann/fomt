@@ -164,9 +164,9 @@ void EventScript_1299_FestivalEvent_WinterThanksgiving_RucksackFull(void)
             {
                 MarkNpcSpokenTo(CHARACTER_ANN);
                 SetTalkNameplateCharacter(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_AnnSearchesSleepingPlayersRucksack);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_Shared_AnnPopuriAndElliSearchSleepingPlayersRucksack);
 #endif
                 TalkClose();
@@ -205,9 +205,9 @@ void EventScript_1299_FestivalEvent_WinterThanksgiving_RucksackFull(void)
                 {
                     MarkNpcSpokenTo(CHARACTER_POPURI);
                     SetTalkNameplateCharacter(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_PopuriSearchesSleepingPlayersRucksack);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_Shared_AnnPopuriAndElliSearchSleepingPlayersRucksack);
 #endif
                     TalkClose();
@@ -246,9 +246,9 @@ void EventScript_1299_FestivalEvent_WinterThanksgiving_RucksackFull(void)
                     {
                         MarkNpcSpokenTo(CHARACTER_ELLI);
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_ElliSearchesSleepingPlayersRucksack);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_WinterThanksgiving_RucksackFull_Shared_AnnPopuriAndElliSearchSleepingPlayersRucksack);
 #endif
                         TalkClose();

@@ -122,9 +122,9 @@ void EventScript_0894_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval(voi
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
     SetTalkNameplateCharacter(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
     TalkMessage(gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_PopuriReactsToLilliasMarriageCondition);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     TalkMessage(gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_PopuriOrRickReactsToLilliasMarriageCondition);
 #endif
     TalkClose();
@@ -136,9 +136,9 @@ void EventScript_0894_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval(voi
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_RICK_BLUSHING);
     SetTalkNameplateCharacter(CHARACTER_RICK);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
     TalkMessage(gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_RickReactsToLilliasMarriageCondition);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     TalkMessage(gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_PopuriOrRickReactsToLilliasMarriageCondition);
 #endif
     TalkClose();

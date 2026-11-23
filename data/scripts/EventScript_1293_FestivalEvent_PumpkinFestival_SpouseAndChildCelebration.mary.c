@@ -192,11 +192,11 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                     SetTalkNameplateCharacter(CHARACTER_POPURI);
                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriInvitesFamilyToEatSweets);
 #elif defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriAndAnnInviteFamilyToEatSweets);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_Shared_PopuriAnnAndMaryInviteFamilyToEatSweets);
 #endif
                     TalkClose();
@@ -210,11 +210,11 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_AnnInvitesFamilyToEatSweets);
 #elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriAndAnnInviteFamilyToEatSweets);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_Shared_PopuriAnnAndMaryInviteFamilyToEatSweets);
 #endif
                         TalkClose();
@@ -228,9 +228,9 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                             SetTalkNameplateCharacter(CHARACTER_MARY);
                             SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                             ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryInvitesFamilyToEatSweets);
-#else
+#elif defined(REGION_DE)
                             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_Shared_PopuriAnnAndMaryInviteFamilyToEatSweets);
 #endif
                             TalkClose();
@@ -270,7 +270,7 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
             TalkOpen();
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
-#else
+#elif defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
 #endif
             TalkClose();
@@ -356,9 +356,9 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
             RemoveEventIcon(EVENT_ICON_SLOT_0);
             RemoveEventIcon(EVENT_ICON_SLOT_1);
             TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
-#else
+#elif defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_2);
 #endif
             TalkClose();
@@ -409,10 +409,10 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                         SetTalkNameplateCharacter(CHARACTER_MARY);
                         SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
-                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2);
+#elif defined(REGION_JP)
+                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction);
 #endif
                         TalkClose();
                         MarkNpcSpokenTo(CHARACTER_MARY);
@@ -449,9 +449,9 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
         RemoveEventIcon(EVENT_ICON_SLOT_0);
         RemoveEventIcon(EVENT_ICON_SLOT_1);
         TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_3);
 #endif
         TalkClose();

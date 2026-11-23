@@ -144,7 +144,11 @@ mary_text_table
         "Ich habe viele Geschich-\r\n"
         "ten von Marys Vater gehört.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryTownRepeatBlacksmithCommitment[] =
+#else
     const char gText_NPCEvent_Gray_DialogueAndGiftResponses_SharedMarriedToMaryTownOrLibraryRepeatBlacksmithCommitment[] =
+#endif
         "Ich mag auch Bücher,\r\n"
         "aber ich gebe nie das \r\n"
         "Schmiedehandwerk auf.{Press}";
@@ -192,6 +196,13 @@ mary_text_table
         "Ich höre immer interes- \r\n"
         "sante Geschichten von \r\n"
         "Marys Vater.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryLibraryRepeatBlacksmithCommitment[] =
+        "Ich mag auch Bücher,\r\n"
+        "aber ich gebe nie das \r\n"
+        "Schmiedehandwerk auf.{Press}";
+#endif
 
     const char gText_NPCEvent_Gray_DialogueAndGiftResponses_LibraryBeforeMaryMarriageFirstConversationEnjoysBooks[] =
         "Bücher erzählen schon\r\n"

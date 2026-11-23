@@ -15,6 +15,11 @@ mary_text_table
         "something in your hand, \r\n"
         "you know!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_Cliff_PermanentWineryJob_GoodLuckWithWineryWork[] =
+        "Do a good job, now!{Press}";
+#endif
+
     const char gText_NPCEvent_Cliff_PermanentWineryJob_KeepUpTheGoodWork[] =
         "Do a good job, now!{Press}";
 

@@ -80,10 +80,10 @@ void EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages(void)
                                 }
                                 else
                                 {
-#if defined(REGION_JP)
-                                    TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2);
+#elif defined(REGION_JP)
+                                    TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice);
 #endif
                                 }
                                 break;

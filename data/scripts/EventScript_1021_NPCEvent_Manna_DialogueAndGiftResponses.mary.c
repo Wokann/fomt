@@ -402,9 +402,9 @@ void EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses(void)
                         SetTalkPortrait(TALK_PORTRAIT_MANNA_ANGRY);
                         TalkMessageSlow(gText_NPCEvent_Manna_DialogueAndGiftResponses_AccessoryGiftResponsePart3);
                         SetTalkPortrait(TALK_PORTRAIT_MANNA_NORMAL);
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
                         TalkMessageSlow(gText_NPCEvent_Manna_DialogueAndGiftResponses_AccessoryGiftResponsePart4);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_NPCEvent_Manna_DialogueAndGiftResponses_AccessoryGiftResponsePart4);
 #endif
                         break;

@@ -145,6 +145,11 @@ mary_text_table
         "Du bist anscheinend\r\n"
         "beschäftigt. Weiter so!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
+        "Arbeite weiter so gut!{Press}";
+#endif
+
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestWorkFirstConversationSearchesForLumberTrees[] =
         "Ich suche gute Nutz-\r\n"
         "holzbäume.  Dann suche \r\n"
@@ -164,8 +169,10 @@ mary_text_table
         "meister besuchen, man \r\n"
         "muss Beziehungen pflegen!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
         "Arbeite weiter so gut!{Press}";
+#endif
 
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_TownInteriorLowFriendshipFirstConversationExplainsSaturdayVisits[] =
         "Ich komme gerne\r\n"

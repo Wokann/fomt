@@ -16,9 +16,9 @@ void EventScript_1093_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna(void
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_MANNA_NORMAL);
         SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessageSlow(gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna_IAlwaysLoseAtTheseRaces);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna_IAlwaysLoseAtTheseRaces);
 #endif
     }
@@ -27,9 +27,9 @@ void EventScript_1093_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna(void
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
         SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
         TalkMessageSlow(gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna_ImGoingToBetOnYou);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna_ImGoingToBetOnYou);
 #endif
     }

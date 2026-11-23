@@ -103,6 +103,11 @@ mary_text_table
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause[] =
         ".........................{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2[] =
+        "............................{Press}";
+#endif
+
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_SpringFriendship051To100RepeatConversationLikesSpringAndTeaParty[] =
         "I love Spring!...\r\n"
         "It has birds, flowers, and\r\n"
@@ -131,8 +136,10 @@ mary_text_table
         "I'd be willing to do a \r\n"
         "favor for you, budum.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2[] =
         "............................{Press}";
+#endif
 
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_NonSpringFriendship051To100RepeatConversationTiredFromWork[] =
         "...I'm tired of\r\n"
@@ -263,11 +270,19 @@ mary_text_table
         "Let's play the\r\n"
         "watering game, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_WateringMinigameWinImprovement[] =
+#else
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesWinImprovement[] =
+#endif
         "I think I've gotten \r\n"
         "better than before, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_WateringMinigameLossConcern[] =
+#else
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesLossConcern[] =
+#endif
         "I hope I don't make \r\n"
         "too many mistakes...{Press}";
 
@@ -275,10 +290,30 @@ mary_text_table
         "Let's play the\r\n"
         "harvest game, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_HarvestingMinigameWinImprovement[] =
+        "I think I've gotten \r\n"
+        "better than before, budum!{Press}";
+
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_HarvestingMinigameLossConcern[] =
+        "I hope I don't make \r\n"
+        "too many mistakes...{Press}";
+#endif
+
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_AnimalCareMinigameIntroduction[] =
         "Let's play the\r\n"
         "animal husbandry game,\r\n"
         "budum!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement[] =
+        "I think I've gotten \r\n"
+        "better than before, budum!{Press}";
+
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_AnimalCareMinigameLossConcern[] =
+        "I hope I don't make \r\n"
+        "too many mistakes...{Press}";
+#endif
 
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_DeclineMinigame[] =
         "What? You don't want to\r\n"

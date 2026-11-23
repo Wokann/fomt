@@ -41,6 +41,11 @@ mary_text_table
     const char gText_FestivalEvent_MoonViewing_Choice_AnnOrMaryAgreesToWatchTogether[] =
         "OK, let's watch together. {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_Choice_MaryAgreesToWatchTogether[] =
+        "OK, let's watch together. {Press}";
+#endif
+
     const char gText_FestivalEvent_MoonViewing_Choice_ElliAgreesToWatchTogether[] =
         "Alright,\r\n"
         "let's watch together.{Press}";

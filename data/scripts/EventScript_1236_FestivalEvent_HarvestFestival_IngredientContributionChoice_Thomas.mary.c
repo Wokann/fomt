@@ -24,7 +24,7 @@ void EventScript_1236_FestivalEvent_HarvestFestival_IngredientContributionChoice
         SetTalkPortrait(TALK_PORTRAIT_THOMAS_AFRAID);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
 #endif
         TalkClose();
@@ -248,9 +248,9 @@ void EventScript_1236_FestivalEvent_HarvestFestival_IngredientContributionChoice
                 TalkOpen();
                 SetTalkPortrait(TALK_PORTRAIT_THOMAS_AFRAID);
                 SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
-#else
+#elif defined(REGION_DE)
                 TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse_2);
 #endif
                 TalkClose();

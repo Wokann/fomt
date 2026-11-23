@@ -33,6 +33,13 @@ mary_text_table
         "朝から雨になって、一日中　　\r\n"
         "降り続けるもようっちょ！{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
+        "明日の天気予報っちょ！　　　\r\n"
+        "朝から雨になって、一日中　　\r\n"
+        "降り続けるもようっちょ！{Press}";
+#endif
+
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
         "台風！{Press}";
 
@@ -65,6 +72,14 @@ mary_text_table
         "雪が降るっちょ！　　　　　　\r\n"
         "カゼなんかひかないように気を\r\n"
         "つけるっちょ！{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2[] =
+        "明日の天気予報っちょ！　　　\r\n"
+        "雪が降るっちょ！　　　　　　\r\n"
+        "カゼなんかひかないように気を\r\n"
+        "つけるっちょ！{Press}";
+#endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "明日の天気予報っちょ！　　　\r\n"

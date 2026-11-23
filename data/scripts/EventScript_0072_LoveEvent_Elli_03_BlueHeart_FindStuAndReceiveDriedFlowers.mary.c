@@ -50,9 +50,9 @@ void EventScript_0072_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers(
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_ELLI_AFRAID);
     SetTalkNameplateCharacter(CHARACTER_ELLI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliWorriesInSilence);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliWorriesBeforeAndAfterSearch);
 #endif
     TalkClose();
@@ -85,9 +85,9 @@ void EventScript_0072_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers(
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ELLI_AFRAID);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliRemainsWorried);
-#else
+#elif defined(REGION_DE)
             TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliWorriesBeforeAndAfterSearch);
 #endif
             TalkClose();
@@ -213,10 +213,10 @@ void EventScript_0072_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers(
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
-#if defined(REGION_JP)
-            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2);
+#elif defined(REGION_JP)
+            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu);
 #endif
             TalkClose();
             TalkOpen();

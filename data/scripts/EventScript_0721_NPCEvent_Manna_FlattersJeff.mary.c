@@ -62,9 +62,9 @@ void EventScript_0721_NPCEvent_Manna_FlattersJeff(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessageSlow(gText_NPCEvent_Manna_FlattersJeff_MannaOrdersRiceBallAndCurryPowder);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Manna_FlattersJeff_MannaOrdersRiceBallAndCurryPowder);
 #endif
     TalkClose();
@@ -78,9 +78,9 @@ void EventScript_0721_NPCEvent_Manna_FlattersJeff(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessageSlow(gText_NPCEvent_Manna_FlattersJeff_MannaComplimentsJeffsAppearance);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Manna_FlattersJeff_MannaComplimentsJeffsAppearance);
 #endif
     TalkClose();
@@ -92,9 +92,9 @@ void EventScript_0721_NPCEvent_Manna_FlattersJeff(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessageSlow(gText_NPCEvent_Manna_FlattersJeff_MannaInsistsJeffLooksFit);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Manna_FlattersJeff_MannaInsistsJeffLooksFit);
 #endif
     TalkClose();

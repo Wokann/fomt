@@ -40,6 +40,14 @@ mary_text_table
         "Ich habe das hier schon\r\n"
         "lange Zeit geplant!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether[] =
+        "Lass uns für immer\r\n"
+        "zusammenbleiben, OK? \r\n"
+        "Egal, wie alt wir auch {Press}\p"
+        "werden...{Press}";
+#endif
+
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_IHadSoMuchFunToday[] =
         "Ich hatte so viel Spaß!\r\n"
         "Ich werde schlafen \r\n"
@@ -53,11 +61,13 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether[] =
         "Lass uns für immer\r\n"
         "zusammenbleiben, OK? \r\n"
         "Egal, wie alt wir auch {Press}\p"
         "werden...{Press}";
+#endif
 
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2[] =
         "Wie kannst du meinen\r\n"

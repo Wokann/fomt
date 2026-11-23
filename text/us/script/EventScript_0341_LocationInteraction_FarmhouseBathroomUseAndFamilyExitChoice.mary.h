@@ -4,6 +4,12 @@ mary_text_table
         "{NickName},\r\n"
         "where are you going{Press}?";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing[] =
+        "{Player},\r\n"
+        "where are you going{Press}?";
+#endif
+
     const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing[] =
         "{Player},\r\n"
         "where are you going{Press}?";

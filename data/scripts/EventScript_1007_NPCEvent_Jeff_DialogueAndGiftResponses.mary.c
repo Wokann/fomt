@@ -659,9 +659,9 @@ void EventScript_1007_NPCEvent_Jeff_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_JEFF_AFRAID);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing);
-#else
+#elif defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing_2);
 #endif
                                     }

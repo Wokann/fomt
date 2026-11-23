@@ -94,6 +94,11 @@ mary_text_table
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause[] =
         "……………………………………{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2[] =
+        "……………………………………{Press}";
+#endif
+
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_SpringFriendship051To100RepeatConversationLikesSpringAndTeaParty[] =
         "春はお茶会があるから…\r\n"
         "あったかいから好きなの…{Press}";

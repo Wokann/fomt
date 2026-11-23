@@ -15,9 +15,9 @@ void EventScript_0272_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess(void)
             SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_ANN);
             ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
             TalkMessage(gText_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess_AnnSaysUpstairsIsNotCleaned);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess_Shared_AnnAndDougSayUpstairsIsNotCleaned);
 #endif
             TalkClose();
@@ -33,9 +33,9 @@ void EventScript_0272_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess(void)
                 TalkOpen();
                 SetTalkPortrait(TALK_PORTRAIT_DOUG_NORMAL);
                 SetTalkNameplateCharacter(CHARACTER_DOUG);
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
                 TalkMessage(gText_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess_DougSaysUpstairsIsNotCleaned);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
                 TalkMessage(gText_NPCEvent_AnnAndDoug_BlockInnUpstairsAccess_Shared_AnnAndDougSayUpstairsIsNotCleaned);
 #endif
                 TalkClose();

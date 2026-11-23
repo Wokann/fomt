@@ -11,6 +11,11 @@ mary_text_table
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "No way...!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
+        "No way...!{Press}";
+#endif
+
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =
         "Today Carter can be Father \r\n"
         "and Popuri can be Mother.{Press}";

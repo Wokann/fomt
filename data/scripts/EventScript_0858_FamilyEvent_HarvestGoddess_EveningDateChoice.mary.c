@@ -28,15 +28,10 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
             TalkOpen();
             if (VarGet(VAR_HARVEST_GODDESS_CHILDBIRTH_EVENT_STATE) == EVENT_LIFECYCLE_NOT_STARTED)
             {
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                 var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday);
-#else
-#ifdef BUGFIX
-                // The existing overseas strings mean anniversary, player, then goddess.
-                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday);
-#endif
 #endif
                 switch (var_0)
                 {
@@ -188,10 +183,10 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
                         TalkOpen();
                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

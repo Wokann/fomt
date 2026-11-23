@@ -45,6 +45,12 @@ mary_text_table
         "So you're going to exchange\r\n"
         "your medal, eh?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation[] =
+        "So you're going to exchange\r\n"
+        "your medal, eh?{Press}";
+#endif
+
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "You can't do it while\r\n"
         "holding something. {Press}";

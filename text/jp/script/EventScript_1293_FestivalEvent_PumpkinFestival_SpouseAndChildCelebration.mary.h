@@ -86,6 +86,14 @@ mary_text_table
         "でね、お菓子を作ってみたん\r\n"
         "だけど、食べてくれる？{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
+        "今日はね、かぼちゃ祭りらしい\r\n"
+        "のよ。{Press}\p"
+        "でね、お菓子を作ってみたん\r\n"
+        "だけど、食べてくれる？{Press}";
+#endif
+
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
         "今日は、かぼちゃ祭りよ。\r\n"
         "おばあちゃんに手伝って\r\n"

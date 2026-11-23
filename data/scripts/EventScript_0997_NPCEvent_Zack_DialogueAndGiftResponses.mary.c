@@ -640,9 +640,9 @@ void EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_ZACK_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell);
-#else
+#elif defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell_2);
 #endif
                                 }
@@ -654,9 +654,9 @@ void EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                     if (WasNpcSpokenToJustNow(CHARACTER_ZACK) == FALSE)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ZACK_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipShipmentGreeting);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_DaytimeShipmentGreeting);
 #endif
                                     }
@@ -673,9 +673,9 @@ void EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                     if (WasNpcSpokenToJustNow(CHARACTER_ZACK) == FALSE)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ZACK_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipShipmentGreeting);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_DaytimeShipmentGreeting);
 #endif
                                     }

@@ -15,8 +15,17 @@ mary_text_table
         "Du bist der Einzige,\r\n"
         "der nett zu mir ist.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse[] =
+#else
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_Shared_NonPlayerSpouseLikedOrNeutralGiftResponse[] =
+#endif
         "Vielen Dank.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
+        "Vielen Dank.{Press}";
+#endif
 
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_NonPlayerSpouseDislikedGiftResponse[] =
         "...Tut mir Leid, aber ich\r\n"
@@ -159,7 +168,11 @@ mary_text_table
         "Nächstes Mal möchte\r\n"
         "ich das ganze Jahr bleiben!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendship0To100FirstConversationWelcome[] =
+#else
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeSharedFriendshipAnyFirstConversationWelcome[] =
+#endif
         "Hey, {Player}.\r\n"
         "Willkommen.{Press}";
 
@@ -167,6 +180,12 @@ mary_text_table
         "Andere Kunden?\r\n"
         "Nicht sehr viele.{Press}\p"
         "Aber ist mir auch egal. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendshipAbove100FirstConversationWarmWelcome[] =
+        "Hey, {Player}.\r\n"
+        "Willkommen.{Press}";
+#endif
 
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendshipAbove100RepeatConversationInvitesPlayerToRelax[] =
         "Verbringe hier so viel\r\n"

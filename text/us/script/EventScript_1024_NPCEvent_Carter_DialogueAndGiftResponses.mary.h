@@ -179,6 +179,14 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "In that case...{Press}\p";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_2[] =
+        "Now let me see....{Press}";
+
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_3[] =
+        "Now let me see...{Press}";
+#endif
+
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =
         "This is the story of a \r\n"
         "perfectly normal family.{Press}";
@@ -218,11 +226,15 @@ mary_text_table
         "Well then, see you again...{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction[] =
         "Now let me see...{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryTransition[] =
         "Now let me see....{Press}";
+#endif
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryPremise[] =
         "Once, there was a beautiful\r\n"

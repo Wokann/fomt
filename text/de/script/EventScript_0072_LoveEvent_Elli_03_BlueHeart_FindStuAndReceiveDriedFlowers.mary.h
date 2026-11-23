@@ -19,8 +19,15 @@ mary_text_table
         "es nicht und ist weggerannt!{Press}\r\n"
         "...............{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliWorriesBeforeAndAfterSearch[] =
         "...............{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliWorriesInSilence[] =
+        "...............{Press}";
+#endif
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenRegretsUnableToSearch[] =
         "Wenn ich meine Beine\r\n"
@@ -49,12 +56,22 @@ mary_text_table
         "Ich bin sicher, dass Stu\r\n"
         "bald zurückkommt!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliRemainsWorried[] =
+        "...............{Press}";
+#endif
+
     const char gText_LoveEvent_Elli_03_BlueHeart_StuReturnsAndApologizesToElli[] =
         "Schnief...schnief....\r\n"
         "Tut mir Leid...{Press}";
 
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
         "Ich verzeihe dir, Stu.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
+        "Schon gut, Stu. {Press}";
+#endif
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenTellsStuElliForgivesHim[] =
         "Elli sagt, dass sie dir\r\n"
@@ -81,8 +98,10 @@ mary_text_table
     const char gText_LoveEvent_Elli_03_BlueHeart_StuApologizesAfterReturning[] =
         "Tut mir Leid, Schwester.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
         "Schon gut, Stu. {Press}";
+#endif
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenThanksPlayerAfterStusReturn[] =
         "Danke noch mal, \r\n"

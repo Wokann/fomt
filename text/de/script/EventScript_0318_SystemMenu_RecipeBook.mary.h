@@ -9,8 +9,10 @@ mary_text_table
     const char gText_SystemMenu_RecipeBook_Exit[] =
         "Schließen";
 
+#ifndef UNIFY_REGIONS
     const char gText_SystemMenu_RecipeBook_KitchenAcquisitionOption_2[] =
         "Küche";
+#endif
 
     const char gText_SystemMenu_RecipeBook_MenuPage2[] =
         "Rezeptbuch 2";

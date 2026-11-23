@@ -133,7 +133,10 @@ make
 用 `make clean_all` 清理四版产物。要先清理再编译，可用
 `make clean_us && make -j8 us`。
 
-## 可选 BUGFIX
+## 可选修复与地区统一
 
 可选修复见 [BUGFIX.md](BUGFIX.md)。切换设置后先清理待重新编译的版本，
-例如运行 `make clean_jp`。启用 BUGFIX 时使用普通编译命令。
+例如运行 `make clean_jp`。启用 `BUGFIX` 或 `UNIFY_REGIONS` 时使用不带 `compare` 的普通编译命令。
+若需可选[脚本地区统一](REGIONAL_DIFFERENCES.md#unify-regions-scripts)，只取消
+[include/config.h](include/config.h) 中 `UNIFY_REGIONS` 的注释，它会自动启用 `BUGFIX`。
+两个用户开关都保持注释时，编译原版匹配模式。

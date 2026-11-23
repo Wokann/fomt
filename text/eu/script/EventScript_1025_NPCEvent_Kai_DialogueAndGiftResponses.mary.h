@@ -152,7 +152,11 @@ mary_text_table
         "Next time I want to spend\r\n"
         "all year here!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendship0To100FirstConversationWelcome[] =
+#else
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeSharedFriendshipAnyFirstConversationWelcome[] =
+#endif
         "Hey there, {Player}.\r\n"
         "Welcome.{Press}";
 
@@ -160,6 +164,12 @@ mary_text_table
         "Other customers?\r\n"
         "There aren't many, I guess.{Press}\p"
         "Not that I care, much. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendshipAbove100FirstConversationWarmWelcome[] =
+        "Hey there, {Player}.\r\n"
+        "Welcome.{Press}";
+#endif
 
     const char gText_NPCEvent_Kai_DialogueAndGiftResponses_BeachCafeFriendshipAbove100RepeatConversationInvitesPlayerToRelax[] =
         "Spend all the time here\r\n"

@@ -65,15 +65,31 @@ mary_text_table
         "davor... Es hat mich nur\r\n"
         "überrascht, budum...{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
         "Vielen Dank!\r\n"
         "Das ist für mich, \r\n"
         "budum?{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse[] =
         "Vielen Dank!\r\n"
         "Ist das wirklich für mich, \r\n"
         "budum?{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse[] =
+        "Vielen Dank!\r\n"
+        "Das ist für mich, \r\n"
+        "budum?{Press}";
+
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
+        "Vielen Dank!\r\n"
+        "Ist das wirklich für mich, \r\n"
+        "budum?{Press}";
+#endif
 
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_PerfumeGiftResponse[] =
         "Ich werde es immer in \r\n"
@@ -286,11 +302,19 @@ mary_text_table
         "Spielen wir das\r\n"
         "Gießen-Spiel, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_WateringMinigameWinImprovement[] =
+#else
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesWinImprovement[] =
+#endif
         "Ich glaube, ich habe \r\n"
         "mich verbessert, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_WateringMinigameLossConcern[] =
+#else
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AllMinigamesLossConcern[] =
+#endif
         "Ich hoffe, ich mache\r\n"
         "nicht zu viele Fehler...{Press}";
 
@@ -298,10 +322,30 @@ mary_text_table
         "Spielen wir das\r\n"
         "Erntespiel, budum!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_HarvestingMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_HarvestingMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
+
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AnimalCareMinigameIntroduction[] =
         "Spielen wir das\r\n"
         "Tierhaltungsspiel,\r\n"
         "budum!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement[] =
+        "Ich glaube, ich habe \r\n"
+        "mich verbessert, budum!{Press}";
+
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AnimalCareMinigameLossConcern[] =
+        "Ich hoffe, ich mache\r\n"
+        "nicht zu viele Fehler...{Press}";
+#endif
 
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_DeclineMinigame[] =
         "Was? Du willst\r\n"

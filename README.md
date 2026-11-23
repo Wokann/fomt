@@ -25,7 +25,9 @@ checksums:
 
 Optional fixes are controlled by `BUGFIX` in [include/config.h](include/config.h).
 The [bug-fix documentation](BUGFIX.md) describes the affected versions, original
-behavior, evidence, and fixes.
+behavior, evidence, and fixes. Optional `UNIFY_REGIONS` automatically enables
+`BUGFIX` and adds the selected [regional script unification](REGIONAL_DIFFERENCES.md#unify-regions-scripts).
+Both switches are off by default; build enabled modes without `compare`.
 
 ## Installation
 

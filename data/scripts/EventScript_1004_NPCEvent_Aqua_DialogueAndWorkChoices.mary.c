@@ -863,18 +863,18 @@ void EventScript_1004_NPCEvent_Aqua_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_AQUA_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_AQUA_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringOrHarvestingMinigameLossConcern);
 #endif
                                             }
@@ -896,18 +896,18 @@ void EventScript_1004_NPCEvent_Aqua_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_AQUA_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_HarvestingMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_AQUA_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_HarvestingMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_WateringOrHarvestingMinigameLossConcern);
 #endif
                                             }
@@ -929,9 +929,9 @@ void EventScript_1004_NPCEvent_Aqua_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_AQUA_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Aqua_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }

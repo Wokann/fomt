@@ -55,12 +55,22 @@ mary_text_table
         "Kai, you must make Popuri\r\n"
         "happy forever!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_PopuriReactsToLilliasMarriageCondition[] =
+        "Mom!...{Press}";
+#else
     const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_PopuriOrRickReactsToLilliasMarriageCondition[] =
         "Mom!...{Press}";
+#endif
 
     const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_KaiIsSurprisedByLilliasMarriageCondition[] =
         "Wha... What is this\r\n"
         "all of a sudden?{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_RickReactsToLilliasMarriageCondition[] =
+        "Mom!...{Press}";
+#endif
 
     const char gText_RivalEvent_PopuriAndKai_04_OrangeHeart_LilliasApproval_LilliaTellsKaiToConsiderHerCondition[] =
         "You don't have to answer \r\n"

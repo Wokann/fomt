@@ -48,8 +48,22 @@ mary_text_table
         "----------------------------\r\n"
         "---------------for----------{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_ChannelDispatcher_Shared_LateNightCommonSignalInterferenceAAndB[] =
         "----------------------------\r\n"
         "----------------------------\r\n"
         "----------------------------{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_ChannelDispatcher_LateNightCommonSignalInterferenceA[] =
+        "----------------------------\r\n"
+        "----------------------------\r\n"
+        "----------------------------{Press}";
+
+    const char gText_TV_ChannelDispatcher_LateNightCommonSignalInterferenceB[] =
+        "----------------------------\r\n"
+        "----------------------------\r\n"
+        "----------------------------{Press}";
+#endif
 };

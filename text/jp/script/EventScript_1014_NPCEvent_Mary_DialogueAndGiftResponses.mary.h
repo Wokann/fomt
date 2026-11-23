@@ -385,6 +385,12 @@ mary_text_table
         "あ、{NickName}。\r\n"
         "来てたんだ。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2[] =
+        "あ、{NickName}。\r\n"
+        "来てたんだ。{Press}";
+#endif
+
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyRepeatConversation[] =
         "だいじょうぶよ。\r\n"
         "重い物は持たないようにしてい\r\n"

@@ -128,15 +128,23 @@ mary_text_table
         "ist fertig wie bestellt.{Press}\r\n"
         "{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerStatus[] =
+        "Gray liefert die Bestellung.\r\n"
+        "{Press}";
+#endif
+
     const char gText_ShopEvent_Blacksmith_OrderCounter_GrayWillDeliverCompletedMaker[] =
         "Gray liefert die Bestellung.\r\n"
         "{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2[] =
         "{Var1}\r\n"
         "ist fertig zum\r\n"
         "Mitnehmen.{Press}\r\n"
         "{Press}";
+#endif
 
     const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolSentToStorageBecauseRucksackFull[] =
         "{Var1}\r\n"

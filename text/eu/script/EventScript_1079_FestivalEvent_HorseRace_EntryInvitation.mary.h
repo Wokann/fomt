@@ -1,11 +1,24 @@
 mary_text_table
 {
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRace_EntryInvitation_NoHorse[] =
+#else
     const char gText_FestivalEvent_HorseRace_EntryInvitation_SharedNoHorseOrYoungHorse[] =
+#endif
         "The Horse Races are \r\n"
         "tomorrow at the Square, you\r\n"
         "know...{Press}\p"
         "If you've got a Horse, you\r\n"
         "should consider competing!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRace_EntryInvitation_YoungHorse[] =
+        "The Horse Races are \r\n"
+        "tomorrow at the Square, you\r\n"
+        "know...{Press}\p"
+        "If you've got a Horse, you\r\n"
+        "should consider competing!{Press}";
+#endif
 
     const char gText_FestivalEvent_HorseRace_EntryInvitation_ThomasAsksPlayerToEnterAdultHorse[] =
         "Hi there, {Player}. \r\n"

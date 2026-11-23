@@ -22,9 +22,9 @@ void EventScript_0406_FestivalEvent_NewYearCelebration_StartChoice(void)
             }
             TalkClose();
             TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             var_0 = TalkChoice2(gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice, gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             var_0 = TalkChoice2(gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceStartRiceCakeFestival, gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceWaitBeforeRiceCakeFestival);
 #endif
             switch (var_0)
@@ -67,9 +67,11 @@ void EventScript_0406_FestivalEvent_NewYearCelebration_StartChoice(void)
                 }
                 TalkClose();
                 TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                var_0 = TalkChoice2(gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice_2, gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice_2);
+#elif defined(REGION_JP)
                 var_0 = TalkChoice2(gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice, gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 var_0 = TalkChoice2(gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceStartNoodleFestivalMeal, gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceWaitBeforeNoodleFestivalMeal);
 #endif
                 switch (var_0)

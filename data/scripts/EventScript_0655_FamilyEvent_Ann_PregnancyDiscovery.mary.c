@@ -43,11 +43,7 @@ void EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery(void)
     SetTalkNameplateCharacter(CHARACTER_ANN);
     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
     ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
-#else
-    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
-#endif
     TalkClose();
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
     ChangeMap(MAP_MINERAL_CLINIC_1F, X(228), Y(148));
@@ -71,14 +67,10 @@ void EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_DOCTOR_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_DOCTOR);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorExplainsAnnIsPregnant);
-#else
-#ifdef BUGFIX
-    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorExplainsAnnIsPregnant);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
-#endif
 #endif
     TalkClose();
     StartEntityEffect(ENTITY_ANN, ENTITY_EMOTE_QUESTION, FALSE);

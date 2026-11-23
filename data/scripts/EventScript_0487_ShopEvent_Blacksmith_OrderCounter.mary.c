@@ -119,23 +119,15 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
                         break;
                     case BLACKSMITH_ORDER_HAMMER_MYSTRILE:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
-#else
-                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
-#endif
                         var_1 = ITEM_TOOL_HAMMER_MYSTRILE;
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
                         break;
                     case BLACKSMITH_ORDER_HAMMER_MYTHIC:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MythicHammer);
-#else
-#ifdef BUGFIX
-                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MythicHammer);
-#else
+#elif defined(REGION_DE)
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
-#endif
 #endif
                         var_1 = ITEM_TOOL_HAMMER_MYTHIC;
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
@@ -229,11 +221,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                         switch (var_0)
                         {
                             case BLACKSMITH_PRODUCT_CATEGORY_TOOL:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#endif
                                 TalkClose();
                                 if (IsPlayerHoldingNothing() == TRUE)
                                 {
@@ -242,11 +230,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                                 }
                                 break;
                             case BLACKSMITH_PRODUCT_CATEGORY_ACCESSORY:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#endif
                                 TalkClose();
                                 RestorePlayerAfterScriptedAnimation();
                                 break;
@@ -261,9 +245,9 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                         switch (var_0)
                         {
                             case BLACKSMITH_PRODUCT_CATEGORY_TOOL:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2);
 #endif
                                 TalkClose();
@@ -274,9 +258,9 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                                 }
                                 break;
                             case BLACKSMITH_PRODUCT_CATEGORY_ACCESSORY:
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2);
 #endif
                                 break;
@@ -297,9 +281,11 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedAccessoryScheduledForDeliveryBecauseRucksackFull);
                                 break;
                             case BLACKSMITH_PRODUCT_CATEGORY_MAKER:
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS)
+                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerStatus);
+#elif defined(REGION_JP)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerReady);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_GrayWillDeliverCompletedMaker);
 #endif
                                 SetTalkPortrait(TALK_PORTRAIT_SAIBARA_HAPPY);
@@ -337,9 +323,9 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
         else
         {
             TalkOpen();
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
             TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter_2);
 #endif
         }
@@ -347,9 +333,9 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
     else
     {
         TalkOpen();
-#if defined(REGION_JP) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_DE)
         TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter_2);
 #endif
     }

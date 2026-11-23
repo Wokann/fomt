@@ -662,10 +662,10 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
                                 if (GetNpcFriendship(CHARACTER_TIMID) <= 50)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_TIMID_SCARED);
-#if defined(REGION_JP)
-                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2);
+#elif defined(REGION_JP)
+                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause);
 #endif
                                 }
                                 else
@@ -867,18 +867,18 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_WateringMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_WateringMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -899,18 +899,18 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_HarvestingMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_HarvestingMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -931,18 +931,18 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_TIMID_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AnimalCareMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }

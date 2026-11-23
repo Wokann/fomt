@@ -33,12 +33,27 @@ mary_text_table
     const char gText_FestivalEvent_MoonViewing_Choice_No[] =
         "Nein.";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_Choice_KarenAgreesToWatchTogether[] =
+#else
     const char gText_FestivalEvent_MoonViewing_Choice_Shared_KarenAndPopuriAgreeToWatchTogether[] =
+#endif
         "Lass uns zusammensitzen,\r\n"
         "ja?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_Choice_PopuriAgreesToWatchTogether[] =
+        "Lass uns zusammensitzen,\r\n"
+        "ja?{Press}";
+#endif
+
     const char gText_FestivalEvent_MoonViewing_Choice_AnnOrMaryAgreesToWatchTogether[] =
         "Ok, schauen wir zusammen.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_Choice_MaryAgreesToWatchTogether[] =
+        "Ok, schauen wir zusammen.{Press}";
+#endif
 
     const char gText_FestivalEvent_MoonViewing_Choice_ElliAgreesToWatchTogether[] =
         "Gut,\r\n"

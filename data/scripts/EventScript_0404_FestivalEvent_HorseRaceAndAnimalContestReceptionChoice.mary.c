@@ -142,11 +142,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
-#else
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
-#endif
                             TalkClose();
                             FadeOutScreen(SCREEN_FADE_STYLE_WHITE_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                             OpenHorseRaceMedalExchange();
@@ -158,11 +154,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
-#else
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
-#endif
                             TalkClose();
                         }
                         break;
@@ -183,9 +175,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                 TalkOpen();
                 SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                 SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
-#else
+#elif defined(REGION_DE)
                 TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
 #endif
                 TalkClose();
@@ -200,9 +192,11 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS)
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
-#else
+#elif defined(REGION_DE)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
 #endif
                             TalkClose();
@@ -216,9 +210,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
-#else
+#elif defined(REGION_DE)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem_2);
 #endif
                             TalkClose();
@@ -321,15 +315,11 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                         TalkOpen();
                         SetTalkPortrait(TALK_PORTRAIT_BARLEY_NORMAL);
                         SetTalkNameplateCharacter(CHARACTER_BARLEY);
-#if defined(REGION_JP)
-                        TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SheepContestJudgingStartPrompt);
-#else
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_JP)
                         // The shared overseas prompt names cows even at the sheep reception.
                         TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SheepContestJudgingStartPrompt);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt);
-#endif
 #endif
                         TalkClose();
                         TalkOpen();

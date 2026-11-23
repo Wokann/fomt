@@ -531,7 +531,7 @@ void EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses(void)
                                     SetTalkPortrait(TALK_PORTRAIT_BASIL_NORMAL);
 #if defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation);
 #endif
                                 }
@@ -550,7 +550,7 @@ void EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses(void)
                                     SetTalkPortrait(TALK_PORTRAIT_BASIL_NORMAL);
 #if defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyRepeatConversation);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #ifdef BUGFIX
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyRepeatConversation);
 #else

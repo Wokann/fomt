@@ -98,9 +98,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_MARY);
             SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithoutChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild);
 #endif
         }
@@ -109,9 +109,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithoutChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild);
 #endif
         }
@@ -120,9 +120,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_HARVEST_GODDESS);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithoutChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedHarvestGoddessDinnerWithOrWithoutChild);
 #endif
         }
@@ -137,9 +137,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_KAREN);
             SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_KarenDinnerWithChild);
-#else
+#elif defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedKarenAndPopuriDinnerWithChild);
 #endif
         }
@@ -148,9 +148,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_POPURI);
             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_PopuriDinnerWithChild);
-#else
+#elif defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedKarenAndPopuriDinnerWithChild);
 #endif
         }
@@ -166,9 +166,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_MARY);
             SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild);
 #endif
         }
@@ -177,9 +177,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild);
 #endif
         }
@@ -188,9 +188,9 @@ void EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild(void)
             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
             ShowTalkHeartIndicator(CHARACTER_HARVEST_GODDESS);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithChild);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedHarvestGoddessDinnerWithOrWithoutChild);
 #endif
         }

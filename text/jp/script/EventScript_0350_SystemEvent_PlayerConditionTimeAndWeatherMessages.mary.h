@@ -14,6 +14,12 @@ mary_text_table
         "今日はもう遅いから\r\n"
         "寝た方がいいかも。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2[] =
+        "今日はもう遅いから\r\n"
+        "寝た方がいいかも。{Press}";
+#endif
+
     const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_PredawnSleepAdvice[] =
         "もう朝方だ…\r\n"
         "少しでも寝た方がいいかも。{Press}";

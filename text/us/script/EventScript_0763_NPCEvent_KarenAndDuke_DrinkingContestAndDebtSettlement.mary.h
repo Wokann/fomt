@@ -32,15 +32,35 @@ mary_text_table
         "Well, you can still \r\n"
         "watch if you want to. {Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenStartsContestAfterRefusal[] =
+        "Let's start! {Press}";
+#else
     const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedKarenStartsContestAfterEitherChoice[] =
         "Let's start! {Press}";
+#endif
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_DukeAcceptsContestAfterRefusal[] =
+        "Here we go!{Press}";
+#else
     const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_SharedDukeAcceptsContestAfterEitherChoice[] =
         "Here we go!{Press}";
+#endif
 
     const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenThanksPlayerForAcceptingToJudge[] =
         "I knew we could count on \r\n"
         "you, {Player}. Thanks!{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenStartsContestAfterAcceptance[] =
+        "Let's start! {Press}";
+#endif
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_DukeAcceptsContestAfterAcceptance[] =
+        "Here we go!{Press}";
+#endif
 
     const char gText_NPCEvent_KarenAndDuke_DrinkingContestAndDebtSettlement_KarenDrunkenlyDeclaresVictory[] =
         "Ha! I tolddd youu I'dd \r\n"

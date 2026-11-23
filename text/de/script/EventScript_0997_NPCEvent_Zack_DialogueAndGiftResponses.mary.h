@@ -169,11 +169,20 @@ mary_text_table
         "Oh, nichts...\r\n"
         "Vergiss es einfach!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell_2[] =
         "Fertig für heute, \r\n"
         "{Player}? {Press}\p"
         "Du scheinst ein harter \r\n"
         "Arbeiter zu sein. Weiter so!{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipShipmentGreeting[] =
+        "Wie läuft es mit\r\n"
+        "dem Versand?\r\n"
+        "Ich zähle auf dich!{Press}";
+#endif
 
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute[] =
         "Soll ich zuerst dahin gehen\r\n"
@@ -184,6 +193,13 @@ mary_text_table
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking[] =
         "{Player},\r\n"
         "Ich arbeite jetzt!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipShipmentGreeting[] =
+        "Wie läuft es mit\r\n"
+        "dem Versand?\r\n"
+        "Ich zähle auf dich!{Press}";
+#endif
 
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_PraisesPlayerAsFarmer[] =
         "Das Farmleben scheint\r\n"

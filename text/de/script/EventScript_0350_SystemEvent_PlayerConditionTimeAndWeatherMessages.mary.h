@@ -15,15 +15,24 @@ mary_text_table
         "Es ist schon spät.\r\n"
         "Ich sollte ins Bett gehen.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2[] =
+        "Es wird spät.\r\n"
+        "Warum gehst du \r\n"
+        "nicht ins Bett?{Press}";
+#endif
+
     const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_PredawnSleepAdvice[] =
         "Es wird bald Morgen...\r\n"
         "Ich sollte wenigstens\r\n"
         "etwas schlafen.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2[] =
         "Es wird spät.\r\n"
         "Warum gehst du \r\n"
         "nicht ins Bett?{Press}";
+#endif
 
     const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_NightTimeLabel[] =
         "Nacht\r\n"

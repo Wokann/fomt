@@ -116,11 +116,7 @@ void EventScript_0976_AchievementEvent_Fishing_MilestoneReward(void)
         TalkOpen();
         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
-#else
-        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
-#endif
         TalkClose();
         MarkNpcSpokenTo(CHARACTER_HARVEST_GODDESS);
         AddCharacterLove(CHARACTER_HARVEST_GODDESS, 3000);
@@ -137,14 +133,10 @@ void EventScript_0976_AchievementEvent_Fishing_MilestoneReward(void)
         TalkOpen();
         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught100000000FishMilestone);
-#else
-#ifdef BUGFIX
-        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught100000000FishMilestone);
-#else
+#elif defined(REGION_DE)
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
-#endif
 #endif
         TalkClose();
         MarkNpcSpokenTo(CHARACTER_HARVEST_GODDESS);

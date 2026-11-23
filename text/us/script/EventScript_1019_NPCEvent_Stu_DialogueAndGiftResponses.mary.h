@@ -21,8 +21,17 @@ mary_text_table
         "Wow!\r\n"
         "Thanks!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedGiftResponse[] =
+#else
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedOrNeutralGiftResponse[] =
+#endif
         "Thanks!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_NeutralGiftResponse[] =
+        "Thanks!{Press}";
+#endif
 
     const char gText_NPCEvent_Stu_DialogueAndGiftResponses_DislikedGiftResponse[] =
         "I think maybe I'll\r\n"

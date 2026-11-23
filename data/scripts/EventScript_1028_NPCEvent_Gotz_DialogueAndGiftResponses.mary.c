@@ -601,10 +601,10 @@ void EventScript_1028_NPCEvent_Gotz_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_GOTZ_NORMAL);
-#if defined(REGION_JP)
-                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2);
+#elif defined(REGION_JP)
+                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork);
 #endif
                                 }
                                 break;

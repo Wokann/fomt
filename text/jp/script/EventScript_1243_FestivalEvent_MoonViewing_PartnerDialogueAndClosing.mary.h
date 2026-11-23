@@ -47,9 +47,41 @@ mary_text_table
         "どうして、\r\n"
         "今日だけなんだろ？{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_2[] =
+        "どうしてこんなに月が\r\n"
+        "きれいに見えるのかなぁ…{Press}\p"
+        "どうして、\r\n"
+        "今日だけなんだろ？{Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_3[] =
+        "どうしてこんなに月が\r\n"
+        "きれいに見えるのかなぁ…{Press}\p"
+        "どうして、\r\n"
+        "今日だけなんだろ？{Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_4[] =
+        "どうしてこんなに月が\r\n"
+        "きれいに見えるのかなぁ…{Press}\p"
+        "どうして、\r\n"
+        "今日だけなんだろ？{Press}";
+
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_5[] =
+        "どうしてこんなに月が\r\n"
+        "きれいに見えるのかなぁ…{Press}\p"
+        "どうして、\r\n"
+        "今日だけなんだろ？{Press}";
+#endif
+
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection[] =
         "なんだか、ちがう星に\r\n"
         "いるみたいだね。{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection_2[] =
+        "なんだか、ちがう星に\r\n"
+        "いるみたいだね。{Press}";
+#endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_AnnClosingReflection[] =
         "ピョンってとんだら、\r\n"
@@ -116,4 +148,17 @@ mary_text_table
         "………モグモグモグ…\r\n"
         "おいしい！\r\n"
         "ありがとう♡{Press}";
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings_2[] =
+        "あっ、月見だんご！\r\n"
+        "今日、実は作るの失敗しちゃっ\r\n"
+        "たの。{Press}\p"
+        "わたしに？\r\n"
+        "いいの？\r\n"
+        "じゃ、いただきます。{Press}\p"
+        "………モグモグモグ…\r\n"
+        "おいしい！\r\n"
+        "ありがとう♡{Press}";
+#endif
+
 };

@@ -1,7 +1,17 @@
 mary_text_table
 {
+#if defined(UNIFY_REGIONS)
+    const char gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_MaryGreetsGrayAtLibrary[] =
+        "Hallo. {Press}";
+#else
     const char gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_Shared_MaryAndGrayExchangeGreetings[] =
         "Hallo. {Press}";
+#endif
+
+#if defined(UNIFY_REGIONS)
+    const char gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_GrayGreetsMary[] =
+        "Hallo. {Press}";
+#endif
 
     const char gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_MaryThanksGrayForVisitingLibrary[] =
         "Danke fürs Kommen! Die\r\n"

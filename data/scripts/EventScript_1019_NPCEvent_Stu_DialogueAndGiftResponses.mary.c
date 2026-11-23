@@ -368,17 +368,17 @@ void EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses(void)
                         break;
                     case NPC_INTERACTION_LIKED_GIFT:
                         SetTalkPortrait(TALK_PORTRAIT_STU_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedGiftResponse);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedOrNeutralGiftResponse);
 #endif
                         break;
                     case NPC_INTERACTION_NEUTRAL_GIFT:
                         SetTalkPortrait(TALK_PORTRAIT_STU_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_NeutralGiftResponse);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_LikedOrNeutralGiftResponse);
 #endif
                         break;
@@ -524,9 +524,9 @@ void EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses(void)
                                 if (WasNpcSpokenToJustNow(CHARACTER_STU) == FALSE)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_STU_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseMorningFriendship0To100FirstConversation);
-#else
+#elif defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_Shared_EllenHouseMorningOrOutsideGreeting);
 #endif
                                 }
@@ -618,9 +618,9 @@ void EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses(void)
                                 if (WasNpcSpokenToJustNow(CHARACTER_STU) == FALSE)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_STU_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightFirstConversation);
-#else
+#elif defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_Shared_EllenHouseMorningOrOutsideGreeting);
 #endif
                                 }

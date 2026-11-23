@@ -47,13 +47,26 @@ mary_text_table
         "Du willst also deine\r\n"
         "Medaille tauschen, was?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation[] =
+        "Du willst deine Medaille \r\n"
+        "gegen einen Preis tauschen?{Press}";
+#endif
+
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "Du kannst es nicht tun,\r\n"
         "solange du etwas hältst. {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
+        "Du willst also deine\r\n"
+        "Medaille tauschen, was?{Press}";
+#endif
+
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes[] =
         "Medaille gegen Preis.";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
         "Du willst deine Medaille \r\n"
         "gegen einen Preis tauschen?{Press}";
@@ -61,6 +74,7 @@ mary_text_table
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem_2[] =
         "Du kannst es nicht tun,\r\n"
         "solange du etwas hältst.{Press}";
+#endif
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt[] =
         "Wir wollen jetzt die\r\n"

@@ -23,9 +23,9 @@ void EventScript_0717_NPCEvent_Cliff_PermanentWineryJob(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MANNA_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessageSlow(gText_NPCEvent_Cliff_PermanentWineryJob_AskToHelpAtWineryUntilFive);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Cliff_PermanentWineryJob_AskToHelpAtWineryUntilFive);
 #endif
     TalkClose();
@@ -54,9 +54,9 @@ void EventScript_0717_NPCEvent_Cliff_PermanentWineryJob(void)
                 TalkOpen();
                 SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
                 SetTalkNameplateCharacter(CHARACTER_MANNA);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkMessageSlow(gText_NPCEvent_Cliff_PermanentWineryJob_GoodLuckWithWineryWork);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 TalkMessageSlow(gText_NPCEvent_Cliff_PermanentWineryJob_KeepUpTheGoodWork);
 #endif
                 TalkClose();
@@ -85,18 +85,18 @@ void EventScript_0717_NPCEvent_Cliff_PermanentWineryJob(void)
                 SetTalkNameplateCharacter(CHARACTER_DUKE);
                 if (VarGet(VAR_TOLD_CLIFF_ABOUT_GRAPE_HARVEST_JOB) == FALSE)
                 {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_NPCEvent_Cliff_PermanentWineryJob_KeepUpTheGoodWork);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessageSlow(gText_NPCEvent_Cliff_PermanentWineryJob_KeepUpTheGoodWork);
 #endif
                     TalkClose();
                 }
                 else
                 {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_NPCEvent_Cliff_PermanentWineryJob_BothOfYouKeepUpTheGoodWork);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessageSlow(gText_NPCEvent_Cliff_PermanentWineryJob_BothOfYouKeepUpTheGoodWork);
 #endif
                     TalkClose();

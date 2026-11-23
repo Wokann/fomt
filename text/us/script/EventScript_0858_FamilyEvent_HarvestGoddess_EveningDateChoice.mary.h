@@ -14,14 +14,21 @@ mary_text_table
         "Do you know what day it \r\n"
         "is today? {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday[] =
         "Your birthday";
+#endif
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary[] =
         "Our anniversary";
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday[] =
         "My birthday";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday[] =
+        "Your birthday";
+#endif
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_IncorrectWeddingAnniversaryResponse[] =
         "Our anniversary? \r\n"
@@ -50,6 +57,13 @@ mary_text_table
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday[] =
         "{Baby}'s birthday";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2[] =
+        "Yes, it's my birthday!{Press}\p"
+        "You hadn't said anything, \r\n"
+        "so I thought you forgot. {Press}";
+#endif
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_HarvestGoddessJokesAboutHerAge[] =
         "How old am I...?\r\n"

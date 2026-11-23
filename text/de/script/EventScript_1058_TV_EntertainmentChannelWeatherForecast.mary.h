@@ -40,6 +40,14 @@ mary_text_table
         "Regen den ganzen Tag! \r\n"
         "Zu schade!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
+        "Hier das Wetter für morgen!\r\n"
+        "Morgen früh beginnt es zu \r\n"
+        "regnen und hört den\r\n"
+        "ganzen Tag nicht auf. {Press}";
+#endif
+
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
         "Taifun!{Press}";
 
@@ -52,6 +60,16 @@ mary_text_table
         "Hier das Wetter für morgen!\r\n"
         "Morgen wird ein kalter \r\n"
         "und regnerischer Tag.{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2[] =
+        "Hier das Wetter für morgen!\r\n"
+        "Ein Taifun wird vorbei-\r\n"
+        "ziehen, also halte alle\r\n"
+        "Fenster und Türen ge-\r\n"
+        "schlossen und lass die \r\n"
+        "Tiere in der Scheune!{Press}";
+#endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_FallToWinterClear[] =
         "Hier das Wetter für morgen!\r\n"
@@ -66,8 +84,10 @@ mary_text_table
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalRain[] =
         "Regen!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon_2[] =
         "Taifun! {Press}";
+#endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow[] =
         "Das Wetter für morgen:\r\n"
@@ -75,22 +95,35 @@ mary_text_table
         "pass auf, dass du dich \r\n"
         "nicht erkältest. {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "Hier das Wetter für morgen!\r\n"
         "Ein Schneesturm zieht auf, \r\n"
         "also schließe alle Türen \r\n"
         "und Fenster und bring die\r\n"
         "Tiere in die Scheune!{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
         "Hier das Wetter für morgen!\r\n"
         "Morgen früh beginnt es zu \r\n"
         "regnen und hört den\r\n"
         "ganzen Tag nicht auf. {Press}";
+#endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2[] =
         "Hier das Wetter für morgen!\r\n"
         "Es wird schneien, also\r\n"
         "pass auf, dass du dich \r\n"
         "nicht erkältest. {Press}";
+#ifdef UNIFY_REGIONS
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
+        "Hier das Wetter für morgen!\r\n"
+        "Ein Schneesturm zieht auf, \r\n"
+        "also schließe alle Türen \r\n"
+        "und Fenster und bring die\r\n"
+        "Tiere in die Scheune!{Press}";
+#endif
+
 };

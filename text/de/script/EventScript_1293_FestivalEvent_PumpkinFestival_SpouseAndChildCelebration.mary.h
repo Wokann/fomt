@@ -39,8 +39,20 @@ mary_text_table
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_KarenInvitesFamilyToEatSweets[] =
         "Probier sie mal!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriInvitesFamilyToEatSweets[] =
+#else
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_Shared_PopuriAnnAndMaryInviteFamilyToEatSweets[] =
+#endif
         "Essen wir!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_AnnInvitesFamilyToEatSweets[] =
+        "Essen wir!{Press}";
+
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryInvitesFamilyToEatSweets[] =
+        "Essen wir!{Press}";
+#endif
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliInvitesFamilyToEatSweets[] =
         "Iss jetzt auf!{Press}";
@@ -79,6 +91,7 @@ mary_text_table
         "Ich habe Pasteten.\r\n"
         "Möchtest du probieren?{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
         "Heute ist das Kürbis- \r\n"
         "festival, darum haben Oma\r\n"
@@ -87,12 +100,15 @@ mary_text_table
         "Keine Sorge, sie hat sie \r\n"
         "schon probiert. \r\n"
         "Iss auf!{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_2[] =
         "Mir ist schlecht von den\r\n"
         "vielen Süßigkeiten...ich \r\n"
         "fühle schon die {Press}\r\n"
         "Zahnlöcher.{Press}";
+#endif
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Heute ist das Kürbis-\r\n"
@@ -100,9 +116,22 @@ mary_text_table
         "Süßigkeiten zu machen.{Press}\r\n"
         "Koste sie mal. {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_3[] =
         "Mir ist schlecht von den \r\n"
         "vielen Süßigkeiten...ich\r\n"
         "fühle schon die {Press}\r\n"
         "Zahnlöcher.{Press}";
+#endif
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
+        "Heute ist das Kürbis- \r\n"
+        "festival, darum haben Oma\r\n"
+        "und ich jede Menge {Press}\r\n"
+        "Süßes gemacht.{Press}\p"
+        "Keine Sorge, sie hat sie \r\n"
+        "schon probiert. \r\n"
+        "Iss auf!{Press}";
+#endif
+
 };

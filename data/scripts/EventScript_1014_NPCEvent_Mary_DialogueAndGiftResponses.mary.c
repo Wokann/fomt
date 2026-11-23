@@ -471,9 +471,9 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                                 ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLikedGiftResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLikedOrNonPlayerSpouseNeutralGiftResponse);
 #endif
                             }
@@ -501,9 +501,9 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_MARY);
                                 }
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLikedOrNonPlayerSpouseNeutralGiftResponse);
 #endif
                             }
@@ -1289,7 +1289,7 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                             ShowTalkHeartIndicator(CHARACTER_MARY);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
-#else
+#elif defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #endif
                                         }
@@ -1311,11 +1311,11 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                                 ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP)
-                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
-#elif defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU)
                                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2);
-#else
+#elif defined(REGION_JP)
+                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
+#elif defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #endif
                                             }

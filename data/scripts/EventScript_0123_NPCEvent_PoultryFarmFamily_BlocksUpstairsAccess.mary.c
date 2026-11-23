@@ -71,9 +71,9 @@ void EventScript_0123_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess(void)
                         {
                             SetTalkPortrait(TALK_PORTRAIT_RICK_ANGRY);
                             SetTalkNameplateCharacter(CHARACTER_RICK);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_RickSaysDoNotGoUpstairs);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_Shared_RickLilliaAndPopuriSayDoNotGoUpstairs);
 #endif
                         }
@@ -83,9 +83,9 @@ void EventScript_0123_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_LILLIA_NORMAL);
                                 SetTalkNameplateCharacter(CHARACTER_LILLIA);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_LilliaSaysDoNotGoUpstairs);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_Shared_RickLilliaAndPopuriSayDoNotGoUpstairs);
 #endif
                             }
@@ -97,9 +97,9 @@ void EventScript_0123_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_PopuriSaysDoNotGoUpstairs);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_PoultryFarmFamily_BlocksUpstairsAccess_Shared_RickLilliaAndPopuriSayDoNotGoUpstairs);
 #endif
                             }

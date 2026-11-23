@@ -114,14 +114,10 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
             }
             else
             {
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                 var_0 = TalkChoice3(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliAsksForHerBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday);
-#else
-#ifdef BUGFIX
-                var_0 = TalkChoice3(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliAsksForHerBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 var_0 = TalkChoice3(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_OurAnniversary, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliAsksForHerBirthday);
-#endif
 #endif
                 switch (var_0)
                 {
@@ -133,10 +129,10 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -159,10 +155,10 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(REGION_JP)
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2);
+#elif defined(REGION_JP)
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

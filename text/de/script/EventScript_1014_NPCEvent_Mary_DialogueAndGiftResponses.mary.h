@@ -51,7 +51,11 @@ mary_text_table
         "Uuii, vielen Dank!\r\n"
         "Ein tolles Geschenk!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLikedGiftResponse[] =
+#else
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLikedOrNonPlayerSpouseNeutralGiftResponse[] =
+#endif
         "Vielen Dank.{Press}";
 
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse[] =
@@ -59,6 +63,11 @@ mary_text_table
 
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseNeutralGiftResponse[] =
         "D-danke...{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
+        "Vielen Dank.{Press}";
+#endif
 
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
         "Ich bin allergisch\r\n"
@@ -387,6 +396,12 @@ mary_text_table
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation[] =
         "Oh, {NickName}.\r\n"
         "Schön, dich zu sehen. {Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2[] =
+        "Oh, {NickName}.\r\n"
+        "Schön, dich zu sehen. {Press}";
+#endif
 
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyRepeatConversation[] =
         "Keine Sorge. Ich\r\n"

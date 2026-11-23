@@ -329,6 +329,16 @@ mary_text_table
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime[] =
         "Komm jederzeit wieder.{Press}\p";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasRomanticInterest[] =
+        "Ja";
+#endif
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasNoRomanticInterest[] =
+        "Nein";
+#endif
+
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChooseRomanticInterest[] =
         "So...\r\n"
         "Wer ist es?{Press}";
@@ -456,6 +466,18 @@ mary_text_table
         "überreiche ich dir {Press}\r\n"
         "Weißes Gras als Zeichen\r\n"
         "meiner Dankbarkeit.{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_WhiteGrassRewardFarewell[] =
+        "Komm jederzeit wieder.{Press}\p";
+#endif
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved[] =
+        "Übrigens, das letzte  \r\n"
+        "Geschenk war toll.\r\n"
+        "Tschüss dann. {Press}";
+#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIReallyLiked[] =
         "Übrigens, das letzte  \r\n"

@@ -71,22 +71,14 @@ void EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps(void)
     SetTalkNameplateCharacter(CHARACTER_POPURI);
     SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
     ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
-#else
-    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
-#endif
     SetTalkNameplateCharacter(CHARACTER_POPURI);
     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
     ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriMarvelsAtChildGrowingQuickly);
-#else
-#ifdef BUGFIX
-    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriMarvelsAtChildGrowingQuickly);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
-#endif
 #endif
     TalkClose();
     MarkNpcSpokenTo(CHARACTER_POPURI);

@@ -93,6 +93,13 @@ mary_text_table
         "{Player}.  Nachts \r\n"
         "kommen die wilden Hunde. {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
+        "Geh besser nach Hause, \r\n"
+        "{Player}. Nachts\r\n"
+        "kommen die wilden Hunde.{Press}";
+#endif
+
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18NonSunnyFirstConversation[] =
         "Heute regnet es, aber wegen\r\n"
         "des Wetters ändere ich  \r\n"
@@ -115,6 +122,12 @@ mary_text_table
         "Gibt es Probleme?!{Press}\p"
         "Denke nicht... Nicht in \r\n"
         "einer Stadt wie dieser!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
+        "Gibt es irgendwo Ärger!?\r\n"
+        "Ha! Natürlich nicht!{Press}";
+#endif
 
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation[] =
         "Ein weiterer harter\r\n"
@@ -150,12 +163,16 @@ mary_text_table
         "Und samstags kommt \r\n"
         "Gotz zu mir nach Hause.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
         "Gibt es irgendwo Ärger!?\r\n"
         "Ha! Natürlich nicht!{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
         "Geh besser nach Hause, \r\n"
         "{Player}. Nachts\r\n"
         "kommen die wilden Hunde.{Press}";
+#endif
 };

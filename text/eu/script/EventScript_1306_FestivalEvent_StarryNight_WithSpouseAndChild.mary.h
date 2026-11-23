@@ -17,7 +17,11 @@ mary_text_table
         "Let's start our \r\n"
         "Starry Night Festival.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild[] =
+#endif
 // Correct the cook and tense: Mary cooked today using her mother's recipes.
 #ifdef BUGFIX
         "My mom used to make some\r\n"
@@ -34,14 +38,22 @@ mary_text_table
         "everything!{Press}";
 #endif
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild[] =
+#endif
         "Why do you look so \r\n"
         "surprised? Even I can make\r\n"
         "something good for the {Press}\r\n"
         "Starry Night Festival. {Press}\p"
         "Let's eat!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedHarvestGoddessDinnerWithOrWithoutChild[] =
+#endif
         "I made a delicious feast for\r\n"
         "the Starry Night Festival.{Press}\p"
         "Let's eat it together, \r\n"
@@ -64,6 +76,30 @@ mary_text_table
         "feast for the Starry \r\n"
         "Night Festival. {Press}\p"
         "Let's us 3 enjoy it!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithChild[] =
+    // Correct the cook and tense: Mary cooked today using her mother's recipes.
+        "My mom used to make some\r\n"
+        "cake for the Starry Night\r\n"
+        "Festival. {Press}\p"
+        "Today I cooked using her\r\n"
+        "recipes. Tell me what you\r\n"
+        "think of everything!{Press}";
+
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithChild[] =
+        "Why do you look so \r\n"
+        "surprised? Even I can make\r\n"
+        "something good for the {Press}\r\n"
+        "Starry Night Festival. {Press}\p"
+        "Let's eat!{Press}";
+
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithChild[] =
+        "I made a delicious feast for\r\n"
+        "the Starry Night Festival.{Press}\p"
+        "Let's eat it together, \r\n"
+        "alright?{Press}";
+#endif
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_GooGoo[] =
         "Goo-goo!{Press}";

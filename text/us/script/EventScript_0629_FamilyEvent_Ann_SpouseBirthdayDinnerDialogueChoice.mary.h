@@ -38,6 +38,12 @@ mary_text_table
         "no excuse for forgetting\r\n"
         "my birthday!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
+        "I'd better apologize \r\n"
+        "later...{Press}";
+#endif
+
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy[] =
         "Awww...You remembered!\r\n"
         "You're so busy all the time\r\n"
@@ -55,6 +61,26 @@ mary_text_table
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2[] =
+        "Are you feeling OK, \r\n"
+        "{NickName}? {Press}\p"
+        "If you're not sick, you've\r\n"
+        "no excuse for forgetting\r\n"
+        "my birthday!{Press}";
+
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2[] =
+        "Awww...You remembered!\r\n"
+        "You're so busy all the time\r\n"
+        "I was afraid you wouldn't.{Press}\p"
+        "I shouldn't have doubted!{Press}";
+
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2[] =
+        "Sorry all my food is the\r\n"
+        "same as at the Inn. {Press}\p"
+        "I learned it all from dad!{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ItDoesntTakeMuchToRemember[] =
         "It doesn't take much to \r\n"

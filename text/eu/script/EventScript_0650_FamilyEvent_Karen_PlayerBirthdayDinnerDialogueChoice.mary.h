@@ -66,6 +66,14 @@ mary_text_table
         "family anniversaries just  \r\n"
         "like this...Forever!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2[] =
+        "Ha ha ha! I can't \r\n"
+        "believe you mixed up our \r\n"
+        "birthdays! You sure are {Press}\r\n"
+        "cute, {NickName}.{Press}";
+#endif
+
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingPlayerAndChildBirthdays[] =
         "Ha ha ha! I can't \r\n"
         "believe you mixed up your \r\n"

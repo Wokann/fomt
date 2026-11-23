@@ -862,18 +862,18 @@ void EventScript_1005_NPCEvent_Hoggy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_WateringMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_WateringMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -895,18 +895,18 @@ void EventScript_1005_NPCEvent_Hoggy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_HarvestingMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_HarvestingMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }
@@ -928,18 +928,18 @@ void EventScript_1005_NPCEvent_Hoggy_DialogueAndWorkChoices(void)
                                             if (var_4)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AnimalCareMinigameWinImprovement);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesWinImprovement);
 #endif
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_HOGGY_SCARED);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AnimalCareMinigameLossConcern);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Hoggy_DialogueAndWorkChoices_AllMinigamesLossConcern);
 #endif
                                             }

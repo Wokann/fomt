@@ -99,11 +99,7 @@ void EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery(void)
     SetTalkNameplateCharacter(CHARACTER_MARY);
     SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
     ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
-#else
-    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
-#endif
     TalkClose();
     SetEntityFacing(ENTITY_PLAYER, FACING_DOWN);
     WaitFrames(60);
@@ -127,14 +123,10 @@ void EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery(void)
     VarSet(VAR_MARY_PREGNANCY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
     TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_PlayerReflectsOnFatherhoodAndLoveForMary);
-#else
-#ifdef BUGFIX
-    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_PlayerReflectsOnFatherhoodAndLoveForMary);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
-#endif
 #endif
     TalkClose();
     PlacePlayerAtFarmhouseBed();

@@ -321,6 +321,16 @@ mary_text_table
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime[] =
         "Come again any time.{Press}\p";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasRomanticInterest[] =
+        "Yes";
+#endif
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasNoRomanticInterest[] =
+        "No";
+#endif
+
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChooseRomanticInterest[] =
         "So...\r\n"
         "Who is it?{Press}";
@@ -371,6 +381,11 @@ mary_text_table
         "Here, I'll give you this\r\n"
         "instead. Just don't cause\r\n"
         "any trouble!{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2[] =
+        "Come again any time.{Press}\p";
+#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
         "I'll make Mary feel more \r\n"
@@ -440,6 +455,11 @@ mary_text_table
         "I shall now grant you  {Press}\r\n"
         "White Grass as a token\r\n"
         "of my thanks.{Press}";
+
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_WhiteGrassRewardFarewell[] =
+        "Come again any time.{Press}\p";
+#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved[] =
         "By the way, I just  \r\n"

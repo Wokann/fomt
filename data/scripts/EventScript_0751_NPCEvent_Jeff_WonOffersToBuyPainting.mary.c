@@ -231,7 +231,8 @@ void EventScript_0751_NPCEvent_Jeff_WonOffersToBuyPainting(void)
     SetTalkPortrait(TALK_PORTRAIT_JEFF_AFRAID);
     SetTalkNameplateCharacter(CHARACTER_JEFF);
     TalkMessage(gText_NPCEvent_Jeff_WonOffersToBuyPainting_JeffExplainsPaintingsComeFromHeartAndCannotBeSold);
-#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     TalkMessage(gText_NPCEvent_Jeff_WonOffersToBuyPainting_SilentReactionToJeffsConviction);
 #endif
     TalkClose();

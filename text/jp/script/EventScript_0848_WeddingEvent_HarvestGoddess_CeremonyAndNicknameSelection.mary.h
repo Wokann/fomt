@@ -52,6 +52,12 @@ mary_text_table
         "ダーリンより{Player}\r\n"
         "ちゃんの方がいいじゃない。{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2[] =
+        "ってわけで、\r\n"
+        "{Player}ちゃんに決定。{Press}";
+#endif
+
     const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_RequestsCustomNickname[] =
         "え？\r\n"
         "他の呼び方がいい？\r\n"

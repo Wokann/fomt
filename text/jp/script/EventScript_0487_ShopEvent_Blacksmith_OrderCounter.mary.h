@@ -124,6 +124,13 @@ mary_text_table
         "{Var1}が\r\n"
         "出来上がったぞ。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerStatus[] =
+        "たのまれていた、\r\n"
+        "{Var1}が\r\n"
+        "出来上がったぞ。{Press}";
+#endif
+
     const char gText_ShopEvent_Blacksmith_OrderCounter_GrayWillDeliverCompletedMaker[] =
         "グレイに持っていかせたから\r\n"
         "見てきなさい。{Press}";

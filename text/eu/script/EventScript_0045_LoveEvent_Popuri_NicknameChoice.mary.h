@@ -60,7 +60,9 @@ mary_text_table
         "leave the house chores \r\n"
         "to me. {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife_2[] =
         "Tomorrow is the first day\r\n"
         "of our new life together!{Press}";
+#endif
 };

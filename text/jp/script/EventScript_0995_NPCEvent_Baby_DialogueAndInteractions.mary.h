@@ -6,6 +6,11 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse[] =
         "キャッ、キャッ、キャッ。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse_2[] =
+        "キャッ、キャッ、キャッ。{Press}";
+#endif
+
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse[] =
         "キャッ、キャッ。{Press}";
 
@@ -15,8 +20,18 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse[] =
         "ヤッ！{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2[] =
+        "ヤッ！{Press}";
+#endif
+
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse[] =
         "たぁ？{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2[] =
+        "たぁ？{Press}";
+#endif
 
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavorableAnimalResponse[] =
         "チャッ！{Press}";

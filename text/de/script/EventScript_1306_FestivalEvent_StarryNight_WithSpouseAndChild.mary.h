@@ -18,7 +18,11 @@ mary_text_table
         "Beginnen wir unser \r\n"
         "Sternennachtfestival.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedMaryDinnerWithOrWithoutChild[] =
+#endif
 // Correct the cook and tense: Mary cooked today using her mother's recipes.
 #ifdef BUGFIX
         "Früher hat meine Mutter\r\n"
@@ -36,26 +40,47 @@ mary_text_table
         "alles findest!{Press}";
 #endif
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedElliDinnerWithOrWithoutChild[] =
+#endif
         "Warum siehst du so über-\r\n"
         "rascht aus? Sogar ich\r\n"
         "kann etwas Leckeres für {Press}\r\n"
         "das Festival machen. {Press}\p"
         "Essen wir!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithoutChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedHarvestGoddessDinnerWithOrWithoutChild[] =
+#endif
         "Für das Sternennachtfestival\r\n"
         "habe ich ein Festmahl \r\n"
         "gemacht.{Press}\p"
         "Essen wir zusammen, \r\n"
         "in Ordnung?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_KarenDinnerWithChild[] =
+#else
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_SharedKarenAndPopuriDinnerWithChild[] =
+#endif
         "Es hat den ganzen Tag \r\n"
         "gedauert, dieses Essen für\r\n"
         "das Sternennachtfestival {Press}\r\n"
         "zu machen. {Press}\p"
         "Essen wir 3 alles auf!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_PopuriDinnerWithChild[] =
+        "Es hat den ganzen Tag \r\n"
+        "gedauert, dieses Essen für\r\n"
+        "das Sternennachtfestival {Press}\r\n"
+        "zu machen. {Press}\p"
+        "Essen wir 3 alles auf!{Press}";
+#endif
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_AnnDinnerWithChild[] =
         "Es hat den ganzen Tag \r\n"
@@ -63,6 +88,32 @@ mary_text_table
         "das Sternennachtfestival {Press}\r\n"
         "zu machen. {Press}\p"
         "Genießen wir 3 es!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_MaryDinnerWithChild[] =
+    // Correct the cook and tense: Mary cooked today using her mother's recipes.
+        "Früher hat meine Mutter\r\n"
+        "Kuchen für das Sternen-\r\n"
+        "nachtfestival gemacht. {Press}\p"
+        "Heute habe ich nach ihren\r\n"
+        "Rezepten gekocht.\r\n"
+        "Sag mir, wie du{Press}\r\n"
+        "alles findest!{Press}";
+
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_ElliDinnerWithChild[] =
+        "Warum siehst du so über-\r\n"
+        "rascht aus? Sogar ich\r\n"
+        "kann etwas Leckeres für {Press}\r\n"
+        "das Festival machen. {Press}\p"
+        "Essen wir!{Press}";
+
+    const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_HarvestGoddessDinnerWithChild[] =
+        "Für das Sternennachtfestival\r\n"
+        "habe ich ein Festmahl \r\n"
+        "gemacht.{Press}\p"
+        "Essen wir zusammen, \r\n"
+        "in Ordnung?{Press}";
+#endif
 
     const char gText_FestivalEvent_StarryNight_WithSpouseAndChild_GooGoo[] =
         "Ga-ga!{Press}";

@@ -11,6 +11,11 @@ mary_text_table
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "Wirklich...?{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
+        "Aww...{Press}";
+#endif
+
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =
         "Heute ist Carter der Vater \r\n"
         "und Popuri die Mutter.{Press}";
@@ -32,8 +37,10 @@ mary_text_table
         "Wenn das so ist, \r\n"
         "spielen wir was anderes!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
         "Aww...{Press}";
+#endif
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_Carter_UnsureHowToHelp[] =
         "Was mache ich jetzt...?{Press}";

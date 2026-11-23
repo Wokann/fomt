@@ -621,9 +621,9 @@ void EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses(void)
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_GRAY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                                 TalkMessage(gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryTownRepeatBlacksmithCommitment);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                                 TalkMessage(gText_NPCEvent_Gray_DialogueAndGiftResponses_SharedMarriedToMaryTownOrLibraryRepeatBlacksmithCommitment);
 #endif
                                                             }
@@ -700,9 +700,9 @@ void EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_GRAY_NORMAL);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Gray_DialogueAndGiftResponses_MarriedToMaryLibraryRepeatBlacksmithCommitment);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_Gray_DialogueAndGiftResponses_SharedMarriedToMaryTownOrLibraryRepeatBlacksmithCommitment);
 #endif
                                 }

@@ -27,6 +27,11 @@ mary_text_table
     const char gText_TV_HarvestGoddessNumberGuessing_ChoiceLower[] =
         "Smaller";
 
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessNumberGuessing_SubsequentComparisonPrompt[] =
+        "Compared to {Var2}, it's";
+#endif
+
     const char gText_TV_HarvestGoddessNumberGuessing_NextNumberDisplay[] =
         "{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}\r\n"
         "{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}{Var1}\r\n"
@@ -83,4 +88,10 @@ mary_text_table
         "your hands are full. {Press}\p"
         "Too bad, but you'll have to \r\n"
         "wait until next time....{Press}\p";
+#ifdef UNIFY_REGIONS
+    const char gText_TV_HarvestGoddessNumberGuessing_SessionEndedAfterReward[] =
+        "Bye now.\r\n"
+        "{Press}";
+#endif
+
 };

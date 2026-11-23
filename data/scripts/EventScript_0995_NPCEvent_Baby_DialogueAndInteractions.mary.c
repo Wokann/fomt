@@ -680,9 +680,9 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                         break;
                     case NPC_INTERACTION_LIKED_GIFT:
                         SetTalkPortrait(TALK_PORTRAIT_BABY_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                         break;
@@ -799,11 +799,11 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                     if ((var_0 == NPC_INTERACTION_FAVORITE_GIFT || var_0 == NPC_INTERACTION_LIKED_GIFT || var_0 == NPC_INTERACTION_NEUTRAL_GIFT) && IsCharacterBirthdayToday(CHARACTER_CHILD))
                     {
                         SetTalkPortrait(TALK_PORTRAIT_BABY_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavorableGiftWithChildNearbyResponse);
 #elif defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                     }
@@ -813,9 +813,9 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                         {
                             case NPC_INTERACTION_FAVORITE_GIFT:
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavoriteGiftResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                                 break;
@@ -833,27 +833,27 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                                 break;
                             case NPC_INTERACTION_HATED_GIFT:
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_CRYING);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildHatedGiftResponse);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildHatedGiftOrUnfavorableAnimalResponse);
 #endif
                                 break;
                             case NPC_INTERACTION_FAVORABLE_ANIMAL_RESPONSE:
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavorableAnimalResponse);
 #elif defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                                 break;
                             case NPC_INTERACTION_UNFAVORABLE_ANIMAL_RESPONSE:
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_CRYING);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildUnfavorableAnimalResponse);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildHatedGiftOrUnfavorableAnimalResponse);
 #endif
                                 break;
@@ -1030,10 +1030,10 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                         else
                         {
                             SetTalkPortrait(TALK_PORTRAIT_BABY_INDIGNATED);
-#if defined(REGION_JP)
-                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2);
+#elif defined(REGION_JP)
+                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse);
 #endif
                         }
                     }
@@ -1044,18 +1044,18 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                             if (WasNpcSpokenToJustNow(CHARACTER_CHILD) == FALSE)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_NORMAL);
-#if defined(REGION_JP)
-                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2);
+#elif defined(REGION_JP)
+                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse);
 #endif
                             }
                             else
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                             }
@@ -1070,9 +1070,11 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                             else
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_NORMAL);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS)
+                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse);
-#else
+#elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);
 #endif
                             }

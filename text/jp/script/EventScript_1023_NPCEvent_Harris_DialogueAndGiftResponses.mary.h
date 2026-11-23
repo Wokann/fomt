@@ -99,6 +99,13 @@ mary_text_table
         "はやく帰って下さい。夜には野\r\n"
         "犬などが出て来ますから。{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
+        "さぁ、{Player}さんも\r\n"
+        "はやく帰って下さい。夜には野\r\n"
+        "犬などが出て来ますから。{Press}";
+#endif
+
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18NonSunnyFirstConversation[] =
         "やぁ、今日はふってますね。{Press}\p"
         "ボクは、こんな日でもパトロー\r\n"
@@ -124,6 +131,15 @@ mary_text_table
         "か？{Press}\p"
         "なんて、\r\n"
         "そんなわけないですね。{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
+        "やぁ、どうしたんです？\r\n"
+        "もしかして、何かあったんです\r\n"
+        "か？{Press}\p"
+        "なんて、\r\n"
+        "そんなわけないですね。{Press}";
+#endif
 
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation[] =
         "さぁてと、今日も１日がんばる\r\n"

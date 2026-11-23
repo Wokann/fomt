@@ -68,9 +68,9 @@ void EventScript_1041_TV_HarvestGoddessNumberGuessing(void)
                 SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
                 var_4 = var_1;
                 SetTextVariableNumber(TEXT_VARIABLE_2, var_4);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 var_0 = TalkPromptChoice2(gText_TV_HarvestGoddessNumberGuessing_SubsequentComparisonPrompt, gText_TV_HarvestGoddessNumberGuessing_ChoiceHigher, gText_TV_HarvestGoddessNumberGuessing_ChoiceLower);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 var_0 = TalkPromptChoice2(gText_TV_HarvestGoddessNumberGuessing_InitialOrSharedComparisonPrompt, gText_TV_HarvestGoddessNumberGuessing_ChoiceHigher, gText_TV_HarvestGoddessNumberGuessing_ChoiceLower);
 #endif
             }
@@ -740,9 +740,9 @@ void EventScript_1041_TV_HarvestGoddessNumberGuessing(void)
                 TalkOpen();
                 SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                 SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkMessage(gText_TV_HarvestGoddessNumberGuessing_SessionEndedAfterReward);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 TalkMessage(gText_TV_HarvestGoddessNumberGuessing_SessionEnded);
 #endif
             }

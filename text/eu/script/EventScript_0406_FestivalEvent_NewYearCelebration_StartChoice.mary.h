@@ -9,11 +9,27 @@ mary_text_table
         "participate while your hands\r\n"
         "are full!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceStartRiceCakeFestival[] =
         "Start";
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceWaitBeforeRiceCakeFestival[] =
         "Wait a minute";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice[] =
+        "Start";
+
+    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice_2[] =
+        "Start.";
+
+    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice[] =
+        "Wait a minute";
+
+    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice_2[] =
+        "Hold on a second.";
+#endif
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ThomasStartsRiceCakeFestival[] =
         "Alright, let's get started.\r\n"
@@ -34,11 +50,13 @@ mary_text_table
         "your hands are full, \r\n"
         "can you?{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceStartNoodleFestivalMeal[] =
         "Start.";
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ChoiceWaitBeforeNoodleFestivalMeal[] =
         "Hold on a second.";
+#endif
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ThomasStartsNoodleFestivalMeal[] =
         "Let's eat, then!\r\n"

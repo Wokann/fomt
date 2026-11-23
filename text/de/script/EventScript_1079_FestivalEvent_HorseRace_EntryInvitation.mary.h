@@ -1,11 +1,24 @@
 mary_text_table
 {
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRace_EntryInvitation_NoHorse[] =
+#else
     const char gText_FestivalEvent_HorseRace_EntryInvitation_SharedNoHorseOrYoungHorse[] =
+#endif
         "Die Pferderennen sind \r\n"
         "morgen auf dem Rosen-\r\n"
         "platz...{Press}\p"
         "Wenn du ein Pferd hast,\r\n"
         "solltest du mitmachen!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_HorseRace_EntryInvitation_YoungHorse[] =
+        "Die Pferderennen sind \r\n"
+        "morgen auf dem Rosen-\r\n"
+        "platz...{Press}\p"
+        "Wenn du ein Pferd hast,\r\n"
+        "solltest du mitmachen!{Press}";
+#endif
 
     const char gText_FestivalEvent_HorseRace_EntryInvitation_ThomasAsksPlayerToEnterAdultHorse[] =
         "Hi, {Player}. \r\n"

@@ -6,6 +6,11 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse[] =
         "Hee hee hee!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse_2[] =
+        "Hee hee hee!{Press}";
+#endif
+
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipRepeatOrYoungChildLikedGiftOrFavorableAnimalResponse[] =
         "Gaaa...gaa....{Press}";
 
@@ -15,8 +20,18 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse[] =
         "Geee! {Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2[] =
+        "Geeba!{Press}";
+#endif
+
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse[] =
         "Da...?{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2[] =
+        "Da?...{Press}";
+#endif
 
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavorableAnimalResponse[] =
         "Ta...ta...!{Press}";
@@ -30,6 +45,11 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantPerfumeResponse[] =
         "Cough...cough...{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavorableGiftWithChildNearbyResponse[] =
+        "Gaaa...gaa....{Press}";
+#endif
+
     const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavoriteGiftResponse[] =
         "Yah! Gaaa...gaa....{Press}";
 
@@ -42,8 +62,20 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildDislikedGiftResponse[] =
         "Moooomoo.{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildHatedGiftResponse[] =
+#else
     const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildHatedGiftOrUnfavorableAnimalResponse[] =
+#endif
         "Noooo...!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildFavorableAnimalResponse[] =
+        "Gaaa...gaa....{Press}";
+
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildUnfavorableAnimalResponse[] =
+        "Noooo...!{Press}";
+#endif
 
     const char gText_NPCEvent_Baby_DialogueAndInteractions_YoungChildAccessoryOrCosmeticGiftResponse[] =
         "??{Press}";
@@ -87,11 +119,15 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantLowFriendshipFirstConversation[] =
         "Boo...baa....boo...{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2[] =
         "Geeba!{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2[] =
         "Da?...{Press}";
+#endif
 
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHighFriendshipFirstConversation[] =
         "Da...boo...{Press}";

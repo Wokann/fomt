@@ -93,6 +93,7 @@ mary_text_table
         "Sheep!               Mayor\r\n"
         "{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview[] =
         "☆Year End Festival and\r\n"
         "Year End Noodles{Press}\p"
@@ -109,6 +110,43 @@ mary_text_table
         "Everyone come celebrate!\r\n"
         "                     Mayor\r\n"
         "{Press}";
+#endif
+
+#ifdef UNIFY_REGIONS
+    const char gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview[] =
+        "☆Year End Festival and\r\n"
+        "Year End Noodles{Press}\p"
+        "Come celebrate the end of\r\n"
+        "the old year and the \r\n"
+        "beginning of the new!{Press}\p"
+        "☆Year End Festival\r\n"
+        "30th day of Winter,\r\n"
+        "Midnight, at Mother's Hill\r\n"
+        "Peak.{Press}\p"
+        "☆Year End Noodles\r\n"
+        "30th day of Winter, 6PM\r\n"
+        "At Rose Square{Press}\p"
+        "Everyone come celebrate!\r\n"
+        "                     Mayor\r\n"
+        "{Press}";
+
+    const char gText_SystemMenu_FestivalCalendar_YearEndEventsEarlyWinter[] =
+        "☆Year End Festival and\r\n"
+        "Year End Noodles{Press}\p"
+        "Come celebrate the end of\r\n"
+        "the old year and the \r\n"
+        "beginning of the new!{Press}\p"
+        "☆Year End Festival\r\n"
+        "30th day of Winter,\r\n"
+        "Midnight, at Mother's Hill\r\n"
+        "Peak.{Press}\p"
+        "☆Year End Noodles\r\n"
+        "30th day of Winter, 6PM\r\n"
+        "At Rose Square{Press}\p"
+        "Everyone come celebrate!\r\n"
+        "                     Mayor\r\n"
+        "{Press}";
+#endif
 
     const char gText_SystemMenu_FestivalCalendar_YearEndAndNewYearEventsLateWinter[] =
         "☆Year End Festival,\r\n"

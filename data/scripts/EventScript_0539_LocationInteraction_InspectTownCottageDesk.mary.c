@@ -9,7 +9,7 @@ void EventScript_0539_LocationInteraction_InspectTownCottageDesk(void)
     TalkOpen();
 #if defined(REGION_JP) || defined(REGION_DE)
     TalkMessage(gText_LocationInteraction_InspectTownCottageDesk);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
     TalkAppendMessage(gText_LocationInteraction_InspectTownCottageDesk);
 #endif
     TalkClose();

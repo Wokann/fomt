@@ -11,13 +11,9 @@ void EventScript_0356_TV_ChannelDispatcher(void)
     if ((VarGet(VAR_HOUR) == 4 || VarGet(VAR_HOUR) == 16) && VarGet(VAR_MINUTE) == 44)
     {
         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
-#if defined(REGION_JP)
-        CallScript(EventScript_1032_TV_4AMHiddenBroadcast);
-#else
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_JP)
         // Transfer to the hidden program, which closes the TV on completion.
         CallScript(EventScript_1032_TV_4AMHiddenBroadcast);
-#endif
 #endif
     }
     else
@@ -76,9 +72,9 @@ void EventScript_0356_TV_ChannelDispatcher(void)
                         case 3:
                         case 4:
                         case 5:
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                             var_1 = ShowTelevisionMessage(gText_TV_ChannelDispatcher_LateNightCommonSignalInterferenceA);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             var_1 = ShowTelevisionMessage(gText_TV_ChannelDispatcher_Shared_LateNightCommonSignalInterferenceAAndB);
 #endif
                             break;
@@ -87,9 +83,9 @@ void EventScript_0356_TV_ChannelDispatcher(void)
                         case 8:
                         case 9:
                         case 10:
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                             var_1 = ShowTelevisionMessage(gText_TV_ChannelDispatcher_LateNightCommonSignalInterferenceB);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                             var_1 = ShowTelevisionMessage(gText_TV_ChannelDispatcher_Shared_LateNightCommonSignalInterferenceAAndB);
 #endif
                             break;

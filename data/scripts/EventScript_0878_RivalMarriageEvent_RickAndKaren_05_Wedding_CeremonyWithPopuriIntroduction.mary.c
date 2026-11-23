@@ -38,25 +38,17 @@ void EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPop
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_POPURI);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
-#else
-    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
-#endif
     TalkClose();
     WaitFrames(30);
     SetEntityFacing(ENTITY_RICK, FACING_LEFT);
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_RICK_BLUSHING);
     SetTalkNameplateCharacter(CHARACTER_RICK);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_RickDismissesPopurisTeasingAndInvitesPlayer);
-#else
-#ifdef BUGFIX
-    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_RickDismissesPopurisTeasingAndInvitesPlayer);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
-#endif
 #endif
     TalkClose();
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

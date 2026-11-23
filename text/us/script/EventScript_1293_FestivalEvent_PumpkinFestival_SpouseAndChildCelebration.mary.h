@@ -37,8 +37,17 @@ mary_text_table
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_KarenInvitesFamilyToEatSweets[] =
         "Try them!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriInvitesFamilyToEatSweets[] =
+#else
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PopuriAndAnnInviteFamilyToEatSweets[] =
+#endif
         "Let's eat!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_AnnInvitesFamilyToEatSweets[] =
+        "Let's eat!{Press}";
+#endif
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryInvitesFamilyToEatSweets[] =
         "Let's eat. {Press}";
@@ -77,16 +86,27 @@ mary_text_table
         "I baked some pasties.\r\n"
         "Would you like some?{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
         "Today is the Pumpkin \r\n"
         "Festival, so Grandma and I\r\n"
         "made a whole lot of treats.{Press}\p"
         "Don't worry, she already \r\n"
         "tested them. Eat up!{Press}";
+#endif
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Today is the Pumpkin\r\n"
         "Festival, so I tried making\r\n"
         "some treats. Give them {Press}\r\n"
         "a try. {Press}";
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
+        "Today is the Pumpkin \r\n"
+        "Festival, so Grandma and I\r\n"
+        "made a whole lot of treats.{Press}\p"
+        "Don't worry, she already \r\n"
+        "tested them. Eat up!{Press}";
+#endif
+
 };

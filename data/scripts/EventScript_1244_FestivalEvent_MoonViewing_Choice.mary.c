@@ -155,9 +155,9 @@ void EventScript_1244_FestivalEvent_MoonViewing_Choice(void)
                     {
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
                     }
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_KarenAgreesToWatchTogether);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_Shared_KarenAndPopuriAgreeToWatchTogether);
 #endif
                     break;
@@ -166,9 +166,9 @@ void EventScript_1244_FestivalEvent_MoonViewing_Choice(void)
                     {
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
                     }
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_PopuriAgreesToWatchTogether);
-#else
+#elif defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_Shared_KarenAndPopuriAgreeToWatchTogether);
 #endif
                     break;
@@ -184,9 +184,9 @@ void EventScript_1244_FestivalEvent_MoonViewing_Choice(void)
                     {
                         ShowTalkHeartIndicator(CHARACTER_MARY);
                     }
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_MaryAgreesToWatchTogether);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_FestivalEvent_MoonViewing_Choice_AnnOrMaryAgreesToWatchTogether);
 #endif
                     break;

@@ -91,6 +91,101 @@ mary_text_table
         "{Player}. Wild dogs \r\n"
         "come out at night. {Press}";
 
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18NonSunnyFirstConversation[] =
+        "It's raining today, but I \r\n"
+        "don't change my patrol \r\n"
+        "for the weather!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18NonSunnyRepeatConversation[] =
+        "I hope you're not going \r\n"
+        "mountain climbing on a day \r\n"
+        "like today! It's dangerous!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendship0To100FirstConversation[] =
+        "Has anything been troubling\r\n"
+        "you, {Player}?{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendship0To100RepeatConversation[] =
+        "This is such a \r\n"
+        "peaceful town...{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation[] =
+        "Is there any trouble?!{Press}\p"
+        "No, I guess not...Not in a \r\n"
+        "town like this!...{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation[] =
+        "Another tough day \r\n"
+        "on the beat!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_YodelRanchHouseFirstConversation[] =
+        "Good morning!\r\n"
+        "Another day to protect \r\n"
+        "Mineral Town!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_YodelRanchHouseRepeatConversation[] =
+        "It makes me so happy to\r\n"
+        "see the townspeople at \r\n"
+        "peace...I love my job!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_InnFirstConversation[] =
+        "Are you taking the day off, \r\n"
+        "too, {Player}?{Press}\p"
+        "Everybody needs a break\r\n"
+        "now and then!{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_InnRepeatConversation[] =
+        "It's OK. Everybody knows I'm\r\n"
+        "here around this time. {Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendship0To100FirstConversation[] =
+        "I rest at Gotz's house\r\n"
+        "when I'm on patrol. {Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendship0To100RepeatConversation[] =
+        "And, on Saturdays, \r\n"
+        "Gotz comes to my house.{Press}";
+#endif
+
+#ifndef UNIFY_REGIONS
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
+        "Is there trouble anywhere!?\r\n"
+        "Ha! Of course there isn't!{Press}";
+#endif
+
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
+// Replace the untranslated line-break marker with the actual CR/LF control.
+#ifdef BUGFIX
+        "You'd better get home now,\r\n"
+        "{Player}. Wild dogs \r\n"
+#else
+        "You'd better get home now,ret>{Player}. Wild dogs \r\n"
+#endif
+        "come out at night. {Press}";
+#ifdef UNIFY_REGIONS
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18NonSunnyFirstConversation[] =
         "It's raining today, but I \r\n"
         "don't change my patrol \r\n"
@@ -113,6 +208,10 @@ mary_text_table
         "Is there any trouble?!{Press}\p"
         "No, I guess not...Not in a \r\n"
         "town like this!...{Press}";
+
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
+        "Is there trouble anywhere!?\r\n"
+        "Ha! Of course there isn't!{Press}";
 
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation[] =
         "Another tough day \r\n"
@@ -145,18 +244,6 @@ mary_text_table
     const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendship0To100RepeatConversation[] =
         "And, on Saturdays, \r\n"
         "Gotz comes to my house.{Press}";
-
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
-        "Is there trouble anywhere!?\r\n"
-        "Ha! Of course there isn't!{Press}";
-
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
-// Replace the untranslated line-break marker with the actual CR/LF control.
-#ifdef BUGFIX
-        "You'd better get home now,\r\n"
-        "{Player}. Wild dogs \r\n"
-#else
-        "You'd better get home now,ret>{Player}. Wild dogs \r\n"
 #endif
-        "come out at night. {Press}";
+
 };

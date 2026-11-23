@@ -24,6 +24,11 @@ mary_text_table
         "Mit etwas in der Hand \r\n"
         "kannst du nicht arbeiten.{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_NPCEvent_Cliff_PermanentWineryJob_GoodLuckWithWineryWork[] =
+        "Mach deine Arbeit gut!{Press}";
+#endif
+
     const char gText_NPCEvent_Cliff_PermanentWineryJob_KeepUpTheGoodWork[] =
         "Mach deine Arbeit gut!{Press}";
 

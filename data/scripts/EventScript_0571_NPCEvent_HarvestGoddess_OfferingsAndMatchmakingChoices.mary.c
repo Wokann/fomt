@@ -1009,9 +1009,9 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                     }
                     else
                     {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         var_0 = TalkChoice2(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasRomanticInterest, gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ChoiceHasNoRomanticInterest);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         var_0 = TalkChoice2(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_Yes, gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_No);
 #endif
                         switch (var_0)
@@ -1064,10 +1064,10 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #endif
                                         }
                                         else
@@ -1099,10 +1099,10 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #endif
                                         }
                                         else
@@ -1165,10 +1165,10 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #endif
                                         }
                                         else
@@ -1218,9 +1218,9 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                     SetPlayerHeldFood(ITEM_FOOD_WHITE_GRASS);
                     SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                     SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                     TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_WhiteGrassRewardFarewell);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #endif
                 }
@@ -1530,9 +1530,9 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
         {
             case 1:
                 SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved);
-#else
+#elif defined(REGION_DE)
                 TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIReallyLiked);
 #endif
                 break;

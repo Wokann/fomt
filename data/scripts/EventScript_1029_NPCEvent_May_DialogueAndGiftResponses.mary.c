@@ -523,9 +523,9 @@ void EventScript_1029_NPCEvent_May_DialogueAndGiftResponses(void)
                                     if (WasNpcSpokenToJustNow(CHARACTER_MAY) == FALSE)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_MAY_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_May_DialogueAndGiftResponses_SunnySouthTownOrYodelHouseLowFriendshipFirstConversationGreeting);
-#else
+#elif defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_May_DialogueAndGiftResponses_Shared_SouthTownYodelHouseOrMothersHillGreeting);
 #endif
                                     }
@@ -610,9 +610,9 @@ void EventScript_1029_NPCEvent_May_DialogueAndGiftResponses(void)
                                 if (WasNpcSpokenToJustNow(CHARACTER_MAY) == FALSE)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_MAY_HAPPY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_NPCEvent_May_DialogueAndGiftResponses_MothersHillMiddleHighFriendshipFirstConversationGreeting);
-#else
+#elif defined(REGION_DE)
                                     TalkMessage(gText_NPCEvent_May_DialogueAndGiftResponses_Shared_SouthTownYodelHouseOrMothersHillGreeting);
 #endif
                                 }

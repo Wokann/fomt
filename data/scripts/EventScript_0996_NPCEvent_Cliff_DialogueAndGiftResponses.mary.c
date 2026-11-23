@@ -737,10 +737,10 @@ void EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_CLIFF) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_CLIFF_AFRAID);
-#if defined(REGION_JP)
-                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2);
+#elif defined(REGION_JP)
+                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
 #endif
                                             }
                                             else
@@ -754,10 +754,10 @@ void EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_CLIFF) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_CLIFF_AFRAID);
-#if defined(REGION_JP)
-                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
-#else
+#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2);
+#elif defined(REGION_JP)
+                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
 #endif
                                             }
                                             else

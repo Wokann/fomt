@@ -3,6 +3,11 @@ mary_text_table
     const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing[] =
         "{NickName}、どこ行くの？{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildEventWhereAreYouGoing[] =
+        "{NickName}、どこ行くの？{Press}";
+#endif
+
     const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing[] =
         "{Player}ちゃん、\r\n"
         "どこ行くの？{Press}";

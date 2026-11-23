@@ -37,9 +37,9 @@ void EventScript_0929_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer(void
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_MARY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_MaryGreetsGrayAtLibrary);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_Shared_MaryAndGrayExchangeGreetings);
 #endif
     TalkClose();
@@ -49,9 +49,9 @@ void EventScript_0929_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer(void
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_GRAY_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_GRAY);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_GrayGreetsMary);
-#else
+#elif defined(REGION_DE)
     TalkMessage(gText_RivalEvent_MaryAndGray_02_BlueHeart_LibraryNovelOffer_Shared_MaryAndGrayExchangeGreetings);
 #endif
     TalkClose();

@@ -29,7 +29,11 @@ mary_text_table
         "I can't wait to see the \r\n"
         "look on his face!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_AnnSearchesSleepingPlayersRucksack[] =
+#else
     const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_Shared_AnnPopuriAndElliSearchSleepingPlayersRucksack[] =
+#endif
         "Shuffle...shuffle....{Press}";
 
     const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_AnnCannotLeaveGiftBecauseRucksackIsFull[] =
@@ -42,6 +46,11 @@ mary_text_table
         "Thank goodness he didn't \r\n"
         "wake up!{Press}";
 
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_PopuriSearchesSleepingPlayersRucksack[] =
+        "Shuffle...shuffle....{Press}";
+#endif
+
     const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_PopuriCannotLeaveGiftBecauseRucksackIsFull[] =
         "Darn it! His Rucksack is \r\n"
         "already full! {Press}\p"
@@ -52,6 +61,11 @@ mary_text_table
         "...{NickName}'s asleep.\r\n"
         "I can't wait to see the \r\n"
         "look on his face!{Press}";
+
+#ifdef UNIFY_REGIONS
+    const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_ElliSearchesSleepingPlayersRucksack[] =
+        "Shuffle...shuffle....{Press}";
+#endif
 
     const char gText_FestivalEvent_WinterThanksgiving_RucksackFull_ElliCannotLeaveGiftBecauseRucksackIsFull[] =
         "Darn it! His Rucksack\r\n"

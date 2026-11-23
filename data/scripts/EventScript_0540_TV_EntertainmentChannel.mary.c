@@ -11,13 +11,9 @@ void EventScript_0540_TV_EntertainmentChannel(void)
     if ((VarGet(VAR_HOUR) == 4 || VarGet(VAR_HOUR) == 16) && VarGet(VAR_MINUTE) == 44)
     {
         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
-#if defined(REGION_JP)
-        CallScript(EventScript_1032_TV_4AMHiddenBroadcast);
-#else
-#ifdef BUGFIX
+#if defined(BUGFIX) || defined(REGION_JP)
         // Transfer to the hidden program, which closes the TV on completion.
         CallScript(EventScript_1032_TV_4AMHiddenBroadcast);
-#endif
 #endif
     }
     else
