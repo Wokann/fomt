@@ -183,7 +183,7 @@ extern u32 const gReferencePageInitialEntryIds[];
 // 12 in the overseas versions, including the C string terminator.
 #if defined(REGION_JP)
 extern char const gText_ReferencePage_Menu[2][9];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_ReferencePage_Menu[2][12];
 #endif
 

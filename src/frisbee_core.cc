@@ -550,7 +550,7 @@ asm_unified(
     ".Lraw_code_0803EE94_4892_0: .word gUnk_084C0850\n"
     ".Lraw_code_0803EE94_4893_0: .word gUnk_0873ED1C\n"
     ".Lraw_code_0803EE94_4894_0: .word gUnk_084A3678\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lraw_code_0803EE94_4886_0: .word gUnk_0872DE44\n"
     ".Lraw_code_0803EE94_4887_0: .word gUnk_08740454\n"
     ".Lraw_code_0803EE94_4888_0: .word gUnk_0873E5B0\n"
@@ -11019,7 +11019,7 @@ asm_unified(
     "    adds r0, r4, #0\n"
 #if defined(REGION_DE)
     "    movs r1, #0x9e\n"
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    movs r1, #0xa0\n"
 #endif
     "    movs r2, #0x10\n"

@@ -115,7 +115,7 @@ NpcCollection::NpcCollection()
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global GetCharacterName__C13NpcCollectionUi\n"
     "    .thumb_func\n"
@@ -719,7 +719,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0318: .word 0x00000414\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start GetCharacterName__C13NpcCollectionUi\n"
     "GetCharacterName__C13NpcCollectionUi: @ 0x0809FE3C\n"
@@ -1320,7 +1320,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0318: .word 0x00000414\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 HarvestSprite const * NpcCollection::GetHarvestSpriteByIndex(u32 index) const
@@ -1344,7 +1344,7 @@ Child const * NpcCollection::GetChild() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    thumb_func_start GetUnk03_2__C13NpcCollection\n"
     "GetUnk03_2__C13NpcCollection: @ 0x0809FDD4\n"
@@ -1418,7 +1418,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0418: .word 0xFFFFFC00\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start GetUnk03_2__C13NpcCollection\n"
     "GetUnk03_2__C13NpcCollection: @ 0x080A039C\n"
@@ -1492,7 +1492,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0418: .word 0xFFFFFC00\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 u32 NpcCollection::GetPartnerCharacterId() const
@@ -1524,7 +1524,7 @@ bool NpcCollection::IsMarried() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    thumb_func_start HasRequiredFriendshipLevels__C13NpcCollection\n"
     "HasRequiredFriendshipLevels__C13NpcCollection: @ 0x0809FF50\n"
@@ -1758,7 +1758,7 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     ".L080A06AC: .word 0xFFFFFC00\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start HasRequiredFriendshipLevels__C13NpcCollection\n"
     "HasRequiredFriendshipLevels__C13NpcCollection: @ 0x080A0518\n"
@@ -1984,7 +1984,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A06AC: .word 0xFFFFFC00\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 Npc * NpcCollection::GetNpc(u32 character_id)
@@ -2328,7 +2328,7 @@ WeddingDate const & NpcCollection::GetWeddingDate() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState\n"
     "    .thumb_func\n"
     "ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState: @ 0x080A0EBC\n"
@@ -2663,7 +2663,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\t.align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState\n"
     "ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState: @ 0x080A1484\n"
@@ -2999,5 +2999,5 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );

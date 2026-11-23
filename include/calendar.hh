@@ -8,7 +8,7 @@ struct GameCalendar;
 #if defined(REGION_JP)
 extern char const gText_Calendar_SeasonNames[4][3];
 extern char const gText_Calendar_WeekdayNames[7][3];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_Calendar_SeasonNames[4][7];
 extern char const gText_Calendar_WeekdayNames[7][5];
 #endif

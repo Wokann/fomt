@@ -93,7 +93,7 @@ Box AnimalActor::GetBox() const
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .thumb_func\n"
     "\n"
     "    .align 2, 0\n"
@@ -5279,7 +5279,7 @@ asm_unified(
     "CanBeHit__C12ChickenActor:\n"
     "    movs r0, #1\n"
     "    bx lr\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start RespondToBell__11AnimalActorRC8Location\n"
@@ -10439,7 +10439,7 @@ asm_unified(
     "CanBeHit__C12ChickenActor:\n"
     "    movs r0, #1\n"
     "    bx lr\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -10451,7 +10451,7 @@ bool ChickenActor::IsSick() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C12ChickenActor\n"
@@ -10543,7 +10543,7 @@ asm_unified(
     ".Ljp_08022810: .word 0xFF80FFFF\n"
     ".Ljp_08022814: .word 0xFF7FFFFF\n"
     ".Ljp_08022818: .word 0x00FFFFFF\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C12ChickenActor\n"
@@ -10635,7 +10635,7 @@ asm_unified(
     ".L08022A7C: .word 0xFF80FFFF\n"
     ".L08022A80: .word 0xFF7FFFFF\n"
     ".L08022A84: .word 0x00FFFFFF\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -10649,7 +10649,7 @@ void ChickenActor::CureSickness()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__12ChickenActor\n"
@@ -12062,7 +12062,7 @@ asm_unified(
     "    bl CanBeMilked__C3Cow\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__12ChickenActor\n"
@@ -13478,7 +13478,7 @@ asm_unified(
     "    bl CanBeMilked__C3Cow\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -13490,7 +13490,7 @@ bool CowActor::IsSick() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C8CowActor\n"
@@ -13651,7 +13651,7 @@ asm_unified(
     "    pop {r4}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C8CowActor\n"
@@ -13812,7 +13812,7 @@ asm_unified(
     "    pop {r4}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -13826,7 +13826,7 @@ void CowActor::CureSickness()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__8CowActor\n"
@@ -15282,7 +15282,7 @@ asm_unified(
     "    bl CanBeSheared__C5Sheep\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__8CowActor\n"
@@ -16743,7 +16743,7 @@ asm_unified(
     "    bl CanBeSheared__C5Sheep\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -16755,7 +16755,7 @@ bool SheepActor::IsSick() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C10SheepActor\n"
@@ -16931,7 +16931,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C10SheepActor\n"
@@ -17107,7 +17107,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -17121,7 +17121,7 @@ void SheepActor::CureSickness()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__10SheepActor\n"
@@ -17357,7 +17357,7 @@ asm_unified(
     "    strh r2, [r0, #6]\n"
     "    bx lr\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__10SheepActor\n"
@@ -17594,7 +17594,7 @@ asm_unified(
     "    strh r2, [r0, #6]\n"
     "    bx lr\n"
     "    .align 2, 0\n"
-    "    .endif\n"
+#endif
 );
 
 void AnimalActor::Update(EntityUpdateContext const & context)

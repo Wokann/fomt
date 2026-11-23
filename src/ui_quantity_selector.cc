@@ -245,7 +245,7 @@ void UiPurchaseQuantitySelector::Update()
         DrawDecimalToTilemap(quantity, &scene->scroll->rows[row + 1][column + 2], 0x24, 0, 32);
 #if defined(REGION_JP)
         DrawDecimalTo2x2Tilemap(quantity * unit_price, &scene->scroll->rows[row][25], 0xA0, 0, 32);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         DrawDecimalTo1x2Tilemap(quantity * unit_price, &scene->scroll->rows[row][25], 0xA0, 0, 32);
 #endif
         ScrollState * scroll = scene->scroll;
@@ -261,7 +261,7 @@ void UiPurchaseQuantitySelector::Hide()
     FillHardwareDma3(0x03FF03FF, &scene->scroll->rows[row + 1][12], 28);
 #if defined(REGION_JP)
     DrawDecimalTo2x2Tilemap(unit_price, &scene->scroll->rows[row][25], 0xA0, 0, 32);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     DrawDecimalTo1x2Tilemap(unit_price, &scene->scroll->rows[row][25], 0xA0, 0, 32);
 #endif
     ScrollState * scroll = scene->scroll;

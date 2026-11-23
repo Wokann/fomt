@@ -8,7 +8,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "\t.global FadeIn__17FarmMapScreenCore\n"
     "\t.thumb_func\n"
@@ -3020,7 +3020,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start FadeIn__17FarmMapScreenCore\n"
     "FadeIn__17FarmMapScreenCore: @ 0x0806EA78\n"
@@ -3406,7 +3406,7 @@ asm_unified(
     "\tbeq .L0806EDC8\n"
     "\tb .L0806EDE2\n"
     "\t.align 2, 0\n"
-    ".ifdef REGION_EU\n"
+#if defined(REGION_EU)
     "@ EU reads the physical archive headers, which are directly labeled in the\n"
     "@ regional resource stream rather than derived from their payload addresses.\n"
     ".L0806ED6C: .word gUnk_085275D0\n"
@@ -3419,7 +3419,7 @@ asm_unified(
     ".L0806ED88: .word gUnk_0852A7EC\n"
     ".L0806ED8C: .word gUnk_08527520\n"
     ".L0806ED90: .word gUnk_0852A9BC\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
     ".L0806ED6C: .word gUnk_085275D0\n"
     ".L0806ED70: .word gUnk_0852AA6C\n"
     ".L0806ED74: .word gUnk_08529794\n"
@@ -3430,7 +3430,7 @@ asm_unified(
     ".L0806ED88: .word gUnk_0852A7EC\n"
     ".L0806ED8C: .word gUnk_08527520\n"
     ".L0806ED90: .word gUnk_0852A9BC\n"
-    ".endif\n"
+#endif
     ".L0806ED94: .word 0x000009DC\n"
     ".L0806ED98:\n"
     "\tlsrs r1, r2, #5\n"
@@ -6055,7 +6055,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\n"
-    ".endif\n"
+#endif
 );
 
 static inline void AddFarmMapLocation(FarmMapScreenCore * map, Location location, u32 entry)
@@ -6075,7 +6075,7 @@ inline FarmMapScreenCore::FarmMapScreenCore(GameStateSaveImage * image, SceneTra
       right_arrow(&arrow_archive, 2, 0x100), left_arrow(&arrow_archive, 3, 0x100),
 #if defined(REGION_JP)
       marker_archive(gUnk_084D977C)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
       marker_archive(gUnk_087537D0)
 #endif
 {
@@ -6563,7 +6563,7 @@ asm_unified(
     ".Lscalar_6_13: .word gUnk_08527094\n"
 #if defined(REGION_JP)
     ".Lscalar_6_14: .word gUnk_084D977C\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lscalar_6_14: .word gUnk_087537D0\n"
 #endif
     ".Lscalar_6_15: .word 0x00001bd8\n"
@@ -7150,7 +7150,7 @@ FarmMapScreenScene::~FarmMapScreenScene()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\t.global Run__18FarmMapScreenScene\n"
     "\t.thumb_func\n"
     "Run__18FarmMapScreenScene:\n"
@@ -7333,7 +7333,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\tthumb_func_start Run__18FarmMapScreenScene\n"
     "Run__18FarmMapScreenScene: @ 0x08070A08\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -7516,7 +7516,7 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    ".endif\n"
+#endif
 );
 
 FarmMapScreenIndoorMarkerOrigin const gFarmMapScreenIndoorMarkerOrigins[] = {
@@ -7548,7 +7548,7 @@ FarmMapScreenBuildingPreview const gFarmMapScreenFarmHousePreviews[] = {
     { gUnk_082B0E10, gUnk_082B40BC, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
     { gUnk_082B0DB0, gUnk_082B405C, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
     { gUnk_082B0D08, gUnk_082B3FB4, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
-#else
+#elif defined(REGION_US)
     { gUnk_08529D74, gUnk_0852D020, 0x000D, 0x0001, 0x04, 0x06, 0x0000 },
     { gUnk_08529D14, gUnk_0852CFC0, 0x0009, 0x0001, 0x08, 0x06, 0x0000 },
     { gUnk_08529C6C, gUnk_0852CF18, 0x0005, 0x0001, 0x0C, 0x07, 0x0000 },
@@ -7565,7 +7565,7 @@ FarmMapScreenBuildingPreview const gFarmMapScreenCoopPreviews[] = {
 #elif defined(REGION_DE)
     { gUnk_082B0C14, gUnk_082B3EC0, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
     { gUnk_082B0BB4, gUnk_082B3E60, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
-#else
+#elif defined(REGION_US)
     { gUnk_08529B78, gUnk_0852CE24, 0x0007, 0x001A, 0x04, 0x06, 0x0000 },
     { gUnk_08529B18, gUnk_0852CDC4, 0x0007, 0x001A, 0x08, 0x06, 0x0000 },
 #endif
@@ -7581,7 +7581,7 @@ FarmMapScreenBuildingPreview const gFarmMapScreenBarnPreviews[] = {
 #elif defined(REGION_DE)
     { gUnk_082B1720, gUnk_082B49CC, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
     { gUnk_082B1684, gUnk_082B4930, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
-#else
+#elif defined(REGION_US)
     { gUnk_0852A684, gUnk_0852D930, 0x001D, 0x0001, 0x06, 0x07, 0x0000 },
     { gUnk_0852A5E8, gUnk_0852D894, 0x001D, 0x0001, 0x0B, 0x07, 0x0000 },
 #endif

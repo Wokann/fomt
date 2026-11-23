@@ -1,6 +1,6 @@
 #include "shop_resource_slots.hh"
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"

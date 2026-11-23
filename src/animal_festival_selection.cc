@@ -7,7 +7,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\t.global ConstructFestivalAnimalSelectionCore\n"
     "\t.thumb_func\n"
     "ConstructFestivalAnimalSelectionCore:\n"
@@ -7370,7 +7370,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start ConstructFestivalAnimalSelectionCore\n"
     "ConstructFestivalAnimalSelectionCore: @ 0x08069F14\n"
@@ -14853,7 +14853,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "    .endif\n"
+#endif
 );
 
 FestivalAnimalSelectionScene::FestivalAnimalSelectionScene(SceneTransitionOwner next,

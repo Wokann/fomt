@@ -24,7 +24,7 @@ SceneOwner TownMapReturnTransition::CreateScene()
         // This other native mode has its own regional resume kind.
 #if defined(REGION_JP)
         request = GameSceneResumeRequest(4);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         request = GameSceneResumeRequest(5);
 #endif
         break;

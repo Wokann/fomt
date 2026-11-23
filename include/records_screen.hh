@@ -97,7 +97,7 @@ struct FishingRecordsPage : RecordsScreenPage {
     u8 unk_4278[0x4994 - 0x4278];
 #elif defined(REGION_DE)
     u8 unk_4278[0x4D14 - 0x4278];
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
     u8 unk_4278[0x4B94 - 0x4278];
 #endif
 };
@@ -110,7 +110,7 @@ struct OtherRecordsPage : RecordsScreenPage {
     u8 unk_4278[0x816C - 0x4278];
 #elif defined(REGION_DE)
     u8 unk_4278[0x8FEC - 0x4278];
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
     u8 unk_4278[0x8E6C - 0x4278];
 #endif
 };
@@ -154,7 +154,7 @@ extern u8 const gUnk_084D81D8[];
 extern u8 const gUnk_084D8258[];
 extern u8 const gUnk_084D8278[];
 extern u8 const gUnk_084D82F8[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_08751F0C[];
 extern u8 const gUnk_08751F8C[];
 extern u8 const gUnk_08751FAC[];
@@ -208,7 +208,7 @@ extern char const gText_Records_MolesWhacked[];
 
 #if defined(REGION_JP)
 extern char const gText_Records_FloorUnit[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_Records_MineDepthPadding[];
 #endif
 

@@ -275,11 +275,11 @@ asm_unified(
     ".align 2, 0\n"
     ".Lcalendar_0_0250: .word __vt_17CalendarSceneCore\n"
     ".Lcalendar_0_0254: .word gUnk_0874F34C\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcalendar_0_0258: .word gUnk_084D668C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lcalendar_0_0258: .word gUnk_087506E0\n"
-    ".endif\n"
+#endif
     ".Lcalendar_0_025c: .word gUiHandCursorArchive\n"
     ".Lcalendar_0_0260: .word __vt_21CalendarTextVariables\n"
     ".Lcalendar_0_0264:\n"
@@ -1681,11 +1681,11 @@ asm_unified(
     ".Lcalendar_3_0430: .word gUiSceneBackgroundLayer1Tilemap\n"
     ".Lcalendar_3_0434: .word gUiSceneBackgroundLayer2Tilemap\n"
     ".Lcalendar_3_0438: .word gUiSceneBackgroundTiles\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcalendar_3_043c: .word gUnk_084D5808\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lcalendar_3_043c: .word gUnk_0874F2EC\n"
-    ".endif\n"
+#endif
     ".Lcalendar_3_0440: .word 0x1c43\n"
     ".Lcalendar_3_0444: .word 0x1d41\n"
     ".Lcalendar_3_0448: .word 0x1e42\n"
@@ -2327,11 +2327,11 @@ asm_unified(
     "movs r1, #0x80\n"
     "movs r2, #2\n"
     "bl DrawGlyph__17CalendarSceneCoreiiii\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r5, #0xa\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #6\n"
-    ".endif\n"
+#endif
     ".Lcalendar_5_024c:\n"
     "movs r0, #0\n"
     "cmp r4, #0\n"

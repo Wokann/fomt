@@ -40,7 +40,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global FadeInTownMap\n"
@@ -202,7 +202,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start FadeInTownMap\n"
@@ -362,7 +362,7 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -411,7 +411,7 @@ extern "C" void CopyBgMapRect(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\tthumb_func_start LoadTownMapBackground\n"
     "LoadTownMapBackground: @ 0x08077EC0\n"
     "\tpush {r4, r5, r6, lr}\n"
@@ -927,7 +927,7 @@ asm_unified(
     ".L080782BC: .word gTownMapHotspots\n"
     ".L080782C0: .word gText_TownMap_Empty\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start LoadTownMapBackground\n"
     "LoadTownMapBackground: @ 0x08077EC0\n"
@@ -1443,7 +1443,7 @@ asm_unified(
     ".L080782BC: .word gTownMapHotspots\n"
     ".L080782C0: .word gText_TownMap_Empty\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -1864,7 +1864,7 @@ asm_unified(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global DrawTownMap\n"
     "    .thumb_func\n"
     "DrawTownMap:\n"
@@ -2477,7 +2477,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".Ljp_08078AE4: .word 0xFFFFFC00\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start DrawTownMap\n"
     "DrawTownMap: @ 0x080785C8\n"
@@ -3502,14 +3502,14 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global _._14TownMapUiScene\n"
     "    .thumb_func\n"
     "_._14TownMapUiScene:\n"
@@ -3536,14 +3536,14 @@ asm_unified(
     "    .align 2, 0\n"
     ".Lraw_code_0803EE94_67321_0: .word __vt_14TownMapUiScene\n"
     "\n"
-    "    .else\n"
-    "    .endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
 );
 
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global Run__14TownMapUiScene\n"
     "    .thumb_func\n"
     "Run__14TownMapUiScene:\n"
@@ -3933,8 +3933,8 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .else\n"
-    "    .endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
 );
 
 

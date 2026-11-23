@@ -333,11 +333,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -443,11 +443,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lclinic_3_02e8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lclinic_3_02e8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lclinic_3_02ec: .word gClinicCatalog\n"
     ".Lclinic_3_02f0: .word __vt_19HardwareBlendObject\n"
     ".Lclinic_3_02f4: .word 0x889\n"
@@ -590,11 +590,11 @@ asm_unified(
     "adds r0, r0, r2\n"
     "adds r1, r4, #0\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #8]\n"
     "ldr r3, .Lclinic_3_0478\n"
     "adds r0, r0, r3\n"

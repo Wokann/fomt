@@ -6,7 +6,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global __10ScrollMenuUc\n"
     "    .thumb_func\n"
     "__10ScrollMenuUc:\n"
@@ -1738,7 +1738,7 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Ljp_0807683C: .word 0x000005B4\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start __10ScrollMenuUc\n"
     "__10ScrollMenuUc: @ 0x08075E7C\n"
@@ -3472,7 +3472,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L08076BDC: .word 0x000005B4\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -3489,7 +3489,7 @@ i16 GetScrollMenuPosition(ScrollMenu const * context)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    thumb_func_start __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
     "__14ScrollMenuPageP10ScrollMenuUiUiPCc: @ 0x0807685C\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -4553,7 +4553,7 @@ asm_unified(
     "    ldr r0, [r0]\n"
     "    bx lr\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
     "__14ScrollMenuPageP10ScrollMenuUiUiPCc: @ 0x08076BFC\n"
@@ -5636,7 +5636,7 @@ asm_unified(
     "\tldr r0, [r0]\n"
     "\tbx lr\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

@@ -28,12 +28,12 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r1}\n"
     "bx r1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_10_6_0030: .word __vt_18FarmingTutorialMap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_10_6_0030: .word __vt_18FarmingTutorialMap\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start LoadTimeOfDayPalette__18FarmingTutorialMapiUi\n"
     "LoadTimeOfDayPalette__18FarmingTutorialMapiUi:\n"
@@ -70,14 +70,14 @@ asm_unified(
     "pop {r4, r5}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_10_7_0048: .word gUnk_0845C4C4\n"
     ".Lmenu_10_7_004c: .word gUnk_08420150\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_10_7_0048: .word gUnk_086D6368\n"
     ".Lmenu_10_7_004c: .word gUnk_08699FF4\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start LoadTilemaps__18FarmingTutorialMap\n"
     "LoadTilemaps__18FarmingTutorialMap:\n"
@@ -232,10 +232,10 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
     "b .Lmenu_10_9_011a\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_10_9_004c: .word gUnk_086D5508\n"
     ".Lmenu_10_9_0050: .word 0x6005fc0\n"
     ".Lmenu_10_9_0054:\n"

@@ -59,7 +59,7 @@ extern u8 const gFontSpecialGlyphC3[12] __attribute__((aligned(4))) = {
     0x28, 0x28, 0x00, 0x44, 0x44, 0x44,
     0x44, 0x44, 0x44, 0x38, 0x00, 0x00,
 };
-#else
+#elif defined(REGION_JP)
 // Input code 0x81CD selects this double-width Shift-JIS glyph.
 extern u8 const gFontSpecialGlyph81CD[24] __attribute__((aligned(4))) = {
     0x18, 0xC0, 0x25, 0x20, 0x42, 0x10,
@@ -126,7 +126,7 @@ i32 DrawCharacterGlyph(void *destination, i32 character)
         DrawGlyph1Tile(gFontSpecialGlyphC3, destination);
         return 1;
     }
-#else
+#elif defined(REGION_JP)
     if (character == 0x81CD) {
         u8 const *glyph = gFontSpecialGlyph81CD;
         void *output = destination;

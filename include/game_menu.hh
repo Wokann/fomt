@@ -35,7 +35,7 @@ extern char const gText_ToolStatus_DescriptionQuoteOpen[];
 extern char const gText_ToolStatus_DescriptionQuoteClose[];
 extern char const gText_ToolStatus_RemainingSquaresPrefix[];
 extern char const gText_ToolStatus_RemainingSquaresSuffix[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_ToolStatus_DescriptionQuotePrefix[];
 extern char const gText_ToolStatus_RemainingSquaresSuffix[];
 #endif
@@ -52,7 +52,7 @@ extern char const gText_ItemStatus_BasketName[];
 extern char const gText_ItemStatus_BasketDescription[];
 #if defined(REGION_JP)
 extern char const gText_ItemStatus_BasketHoldingSuffix[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_ItemStatus_BasketHoldingPrefix[];
 extern char const gText_ItemStatus_BasketHoldingSuffix[];
 #endif
@@ -82,7 +82,7 @@ u8 GetMenuPanelHeaderEnabled(GameMenuPanel const *);
 extern "C" {
 #if defined(REGION_JP)
 extern u8 const gUnk_084DABB8[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_08754C0C[];
 #endif
 }

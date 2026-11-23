@@ -244,6 +244,15 @@
 
 星夜祭当天，农舍脚本 0168 在冬 24 日的正午 12:00 起、18:00 前触发配偶事件 1306。1306 随后在转场观星时将游戏时间设为 21:00。德版原句中的 12 时因此按正午解读，统一模式只把定点说法改为到家期限。 [农舍事件入口 0168](data/scripts/EventScript_0168_LocationTransition_EnterFarmhouseSecondExtensionWithDailyEventDispatch.mary.c#L58-L65) · [观星转场 1306](data/scripts/EventScript_1306_FestivalEvent_StarryNight_WithSpouseAndChild.mary.c#L248-L255)
 
+<a id="non-script-region-selection"></a>
+## 非脚本地区选择边界
+
+原生C／C++的地区选择显式列出剩余地区；内联汇编的地区选择迁到现有CPP `#if`／`#elif`，在原 `asm_unified` 中保留各版完整指令字串，不增加资源接口或新的构建流程。非地区GAS条件与独立汇编中的31个地区块原样保留。纯 `BUGFIX` 的 `#else` 仍表示关闭修复；DE原版与“修复开启或其他地区”混合的表项按实际条件明确列举，不把正确的德版修复落回错误原串。
+
+正常本地化的数据宽度、数组尺寸、对齐、协议识别和显示参数仍按原地区选择；地区条件完整化不改变这些ABI与布局规则，也不替换所选的数值、字符串或汇编指令。已有动物、田地、指针、脚本引擎及翻译修复仍由 `BUGFIX` 控制，本轮不新增非脚本文本复用接口。
+
+[region.h](include/region.h)继续要求且仅允许一个地区，并分别从 `text/jp`、`text/us`、`text/eu`、`text/de` 选择各自维护的文本；DE目录也使用显式地区分支。本文已有的[字宽、数据布局与系统接口](#编码数据布局与系统接口)差异继续保留。`UNIFY_REGIONS` 的可选文本复用和呈现范围仍见[事件脚本](#unify-regions-scripts)，不把正常机器布局或全部海外文本改成日版形式。
+
 ## 已确认错误的源码名称整理
 
 脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。这些常开更名本身保持默认、BUGFIX及统一模式各自的文字、槽位顺序和调用关系；可选结构调整另见上节。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)

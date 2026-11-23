@@ -658,7 +658,7 @@ void FieldPlot::DayUpdate(int weather, GameDate const & date)
             case 0x14:
 #if defined(REGION_JP) && !defined(BUGFIX)
                 if (GetUnk8() != 5)
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 if (date.season != 3 && GetUnk8() != 5)
 #endif
                 {
@@ -981,7 +981,7 @@ void FieldPlot::method_0800AB08(Season season)
                 switch (unk_00_02)
                 {
                     case 0x14:
-#if !defined(REGION_JP) || defined(BUGFIX)
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         unk_00_08 = 7;
                         unk_00_0C = 0;
 #endif

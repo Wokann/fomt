@@ -280,7 +280,7 @@ struct HorseRaceCore : HardwareContext {
     HorseRaceDustPoint dust_points[32];
 #if defined(REGION_JP)
     HorseRaceGlyph glyphs[48];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     HorseRaceGlyph glyphs[148];
 #endif
     i16 glyph_count;
@@ -334,7 +334,7 @@ typedef char HorseRaceSpriteStateSizeCheck[sizeof(HorseRaceSpriteState) == 0x38 
 typedef char HorseRaceContestantTilesSizeCheck[sizeof(HorseRaceContestantTiles) == 24 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char HorseRaceCoreSizeCheck[sizeof(HorseRaceCore) == 0x11DC ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char HorseRaceCoreSizeCheck[sizeof(HorseRaceCore) == 0x14FC ? 1 : -1];
 #endif
 typedef char HorseRaceCoreUiCheck[offsetof(HorseRaceCore, ui_state) == 0x10 ? 1 : -1];
@@ -347,12 +347,12 @@ typedef char HorseRaceCoreContestantTilesCheck[offsetof(HorseRaceCore, contestan
 typedef char HorseRaceCoreUnknownRamCheck[offsetof(HorseRaceCore, dust_points) == 0x6B8 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char HorseRaceCorePlayerHorseCheck[offsetof(HorseRaceCore, player_horse) == 0x11BC ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char HorseRaceCorePlayerHorseCheck[offsetof(HorseRaceCore, player_horse) == 0x14DC ? 1 : -1];
 #endif
 #if defined(REGION_JP)
 typedef char HorseRaceCoreTextVariablesCheck[offsetof(HorseRaceCore, text_variables) == 0x11C0 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char HorseRaceCoreTextVariablesCheck[offsetof(HorseRaceCore, text_variables) == 0x14E0 ? 1 : -1];
 #endif
 
@@ -378,7 +378,7 @@ typedef char HorseRaceCoreSelectionCheck[offsetof(HorseRaceCore, selected_ticket
 typedef char HorseRaceCoreMoneyCheck[offsetof(HorseRaceCore, money) == 0x10F0 ? 1 : -1];
 typedef char HorseRaceCorePhaseCheck[offsetof(HorseRaceCore, phase) == 0x1104 ? 1 : -1];
 typedef char HorseRaceCoreRunnersCheck[offsetof(HorseRaceCore, runners) == 0x110C ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char HorseRaceCoreGlyphCountCheck[offsetof(HorseRaceCore, glyph_count) == 0xBD8 ? 1 : -1];
 typedef char HorseRaceCoreEffectTilesCheck[offsetof(HorseRaceCore, runner_effect_tile_offsets) == 0xBDA ? 1 : -1];
 typedef char HorseRaceCoreOverlayTilesCheck[offsetof(HorseRaceCore, runner_overlay_tile_offsets) == 0xBE2 ? 1 : -1];

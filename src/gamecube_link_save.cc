@@ -136,7 +136,7 @@ void EncodeGameCubeLinkName(GameCubeLinkSaveData const *, u8 * output, char cons
 #if defined(REGION_JP)
         unsigned character = static_cast<u8>(input[1]) | (static_cast<u8>(input[0]) << 8);
         input += 2;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         unsigned character = static_cast<u8>(*input++);
 #endif
         u8 index = 0;
@@ -172,7 +172,7 @@ void DecodeGameCubeLinkName(GameCubeLinkSaveData const *, char * output, u8 cons
         u16 code = gLinkCommunicationCharacterCodeTable[value - 1];
         *cursor++ = code >> 8;
         *cursor++ = code;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         if (static_cast<u32>(value - 1) >= ARRAY_COUNT(gLinkCommunicationCharacterCodeTable) - 1)
             break;
         *cursor++ = gLinkCommunicationCharacterCodeTable[value - 1];
@@ -193,7 +193,7 @@ LinkCommunicationGameCode const gLinkCommunicationGameCodeA4N = {
     (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'P' << 24),
 #elif defined(REGION_DE)
     (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'D' << 24),
-#else
+#elif defined(REGION_US)
     (u32)'A' | ((u32)'4' << 8) | ((u32)'N' << 16) | ((u32)'E' << 24),
 #endif
     0x00000000,
@@ -204,7 +204,7 @@ LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW = {
     (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'J' << 24),
 #elif defined(REGION_EU) || defined(REGION_DE)
     (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'P' << 24),
-#else
+#elif defined(REGION_US)
     (u32)'G' | ((u32)'Y' << 8) | ((u32)'W' << 16) | ((u32)'E' << 24),
 #endif
     0x00000000,

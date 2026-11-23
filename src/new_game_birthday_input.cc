@@ -101,7 +101,7 @@ NewGameBirthdayInputCore::NewGameBirthdayInputCore(GameDate initial_date)
     case SEASON_SUMMER: season_column = 1; break;
     case SEASON_FALL: season_column = 2; break;
     case SEASON_WINTER: season_column = 3; break;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     case SEASON_SPRING: season_column = 0; break;
     case SEASON_SUMMER: season_column = 4; break;
     case SEASON_FALL: season_column = 8; break;
@@ -171,7 +171,7 @@ SceneTransitionOwner RunBirthdayInputCore(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
                     case 1: season = SEASON_SUMMER; break;
                     case 2: season = SEASON_FALL; break;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     case 4: season = SEASON_SUMMER; break;
                     case 8: season = SEASON_FALL; break;
 #endif
@@ -264,7 +264,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
                     core->cursor_row = 4;
                 else
                     core->cursor_row = 5;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 if (core->cursor_column > 3)
                     core->cursor_row = 4;
                 else
@@ -279,7 +279,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
             if (core->cursor_row == 6 || (core->cursor_row == 5 &&
 #if defined(REGION_JP)
                     core->cursor_column > 1))
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     core->cursor_column > 3))
 #endif
                 core->cursor_row = 1;
@@ -299,7 +299,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
             } else
                 core->cursor_column = 6;
         }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         if (core->cursor_row == 0) {
             core->cursor_column -= 4;
             if (core->cursor_column < 0)
@@ -332,7 +332,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
             core->cursor_row++;
             core->cursor_column = 0;
         }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         if (core->cursor_row == 0) {
             core->cursor_column += 4;
             if (core->cursor_column > 12)
@@ -358,7 +358,7 @@ void MoveBirthdayInputCursor(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP) || defined(REGION_DE)
 // The last glyph is reserved for the empty tens place of a single-digit day.
 enum { BirthdayBlankGlyph = ARRAY_COUNT(gNewGameBirthdayInputGlyphs) - 1 };
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
 // The English table reuses the first space in the six-slot "Fall  " field.
 enum { BirthdayBlankGlyph = 26 };
 #endif
@@ -369,7 +369,7 @@ void UpdateBirthdayInputCursor(NewGameBirthdayInputCore * core)
     i32 cell_width = core->cursor_column * 32;
     i32 gutter = core->cursor_column * 2 + 2;
     core->cursor_attributes.x = cell_width + gutter;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     core->cursor_attributes.x = core->cursor_column * 16;
 #endif
     if (core->cursor_row > 0)
@@ -382,7 +382,7 @@ void UpdateBirthdayInputCursor(NewGameBirthdayInputCore * core)
         core->season_column = core->cursor_column;
 #if defined(REGION_JP)
         core->glyphs[0].glyph_index = core->cursor_column + 10;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         switch (core->season_column)
         {
         case 0:
@@ -409,7 +409,7 @@ void UpdateBirthdayInputCursor(NewGameBirthdayInputCore * core)
         i8 const & column = core->cursor_column;
 #if defined(REGION_JP)
         core->day = (core->cursor_row - 1) * 7 + static_cast<u8>(column) + 1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         core->day = column / 2 + (core->cursor_row - 1) * 7 + 1;
 #endif
         i32 day_digits[2];
@@ -418,7 +418,7 @@ void UpdateBirthdayInputCursor(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
         core->glyphs[1].glyph_index = day_digits[1] == 0 ? BirthdayBlankGlyph : day_digits[1];
         core->glyphs[2].glyph_index = day_digits[0];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         core->glyphs[6].glyph_index = day_digits[1] == 0 ? BirthdayBlankGlyph : day_digits[1];
         core->glyphs[7].glyph_index = day_digits[0];
 #endif
@@ -440,7 +440,7 @@ bool ConfirmBirthdayInputSelection(NewGameBirthdayInputCore * core)
             core->cursor_row = (core->day - 1) / 7 + 1;
 #if defined(REGION_JP)
             core->cursor_column = (core->day - 1) % 7;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             core->cursor_column = ((core->day - 1) % 7) * 2 + 1;
 #endif
         } else complete = true;
@@ -459,7 +459,7 @@ bool CancelBirthdayInputSelection(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
             core->glyphs[1].glyph_index = 19;
             core->glyphs[2].glyph_index = 19;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             core->glyphs[6].glyph_index = 34;
             core->glyphs[7].glyph_index = 34;
 #endif
@@ -521,7 +521,7 @@ void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
     core->cursor_attributes.size = 2;
     core->cursor_attributes.shape = 1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     core->cursor_attributes.size = 1;
     core->cursor_attributes.shape = 0;
 #endif
@@ -540,7 +540,7 @@ void InitializeBirthdayInputCursor(NewGameBirthdayInputCore * core)
     i32 cell_width = core->cursor_column * 32;
     i32 gutter = core->cursor_column * 2 + 2;
     core->cursor_attributes.x = cell_width + gutter;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     core->cursor_attributes.x = core->cursor_column * 16;
 #endif
     core->cursor_attributes.y = 40;
@@ -552,7 +552,7 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
     int title[3];
     title[0] = core->season_column + 10;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     int title[8];
     switch (core->season_column) {
     case 0: {
@@ -586,7 +586,7 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
     AppendBirthdayInputGlyph(core, 224, 8, 16, 1);
     for (int i = 0; i < 4; ++i)
         AppendBirthdayInputGlyph(core, 18 + i * 34, 40, i + 10, 3);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     title[6] = static_cast<i8>(core->day / 10) == 0 ? BirthdayBlankGlyph : static_cast<i8>(core->day / 10);
     title[7] = static_cast<i8>(core->day % 10);
     for (int i = 0; i < 6; ++i)
@@ -600,7 +600,7 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
 #if defined(REGION_JP)
             if (day > 9) AppendBirthdayInputGlyph(core, column * 34 + 2, row * 18 + 64, static_cast<u8>(day / 10u), 3);
             AppendBirthdayInputGlyph(core, column * 34 + 18, row * 18 + 64, static_cast<u8>(day % 10u), 3);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             if (day > 9) AppendBirthdayInputGlyph(core, column * 32 + 16, row * 18 + 64, static_cast<u8>(day / 10u), 3);
             AppendBirthdayInputGlyph(core, column * 32 + 24, row * 18 + 64, static_cast<u8>(day % 10u), 3);
 #endif
@@ -608,7 +608,7 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
             if (day > 30) break;
         }
     }
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     for (int i = 0; i < 6; ++i)
         AppendBirthdayInputGlyph(core, i * 8, 40, i + 10, 3);
     for (int i = 0; i < 6; ++i)
@@ -621,7 +621,7 @@ void BuildBirthdayInputGlyphs(NewGameBirthdayInputCore * core)
     enum { CaptionStart = 10 + 4 * 6 + 1 };
 #if defined(REGION_DE)
     int const caption_end = BirthdayBlankGlyph;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     int const caption_end = ARRAY_COUNT(gNewGameBirthdayInputGlyphs);
 #endif
     for (int i = 0; i < caption_end - CaptionStart; ++i)
@@ -647,7 +647,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
     attributes.color_mode = 0;
 #if defined(REGION_JP)
     attributes.shape = 0;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.shape = 2;
 #endif
     attributes.affine_index_low = 0;
@@ -655,7 +655,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
     attributes.vertical_flip = 0;
 #if defined(REGION_JP)
     attributes.size = 1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.size = 0;
 #endif
     attributes.palette_bank = static_cast<u16>(SpritePaletteBank(core->glyph_palette));
@@ -684,7 +684,7 @@ void RenderBirthdayInputSprites(NewGameBirthdayInputCore * core)
                 buffer->sprite_count = count + 1;
             }
         }
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         if (core->cursor_row == 0) {
             core->cursor_attributes.x = core->cursor_column * 16 + 16;
             {

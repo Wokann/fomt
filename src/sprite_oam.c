@@ -3,7 +3,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    @ The preceding unaligned no-ops and packed tile-buffer copy helper are\n"
     "    @ rebuilt from src/font_draw.cc.\n"
     "    @ The following tilemap rectangle filler is also rebuilt there.\n"
@@ -107,7 +107,7 @@ asm_unified(
     ".Lraw_code_0803EE94_1218_8: .word 0xFFFFF3FF\n"
     ".Lraw_code_0803EE94_1218_12: .word 0xFFFF3FFF\n"
     ".Lraw_code_0803EE94_1219_0: .word 0x3FFFFFFF\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start InitializeMosaicSpriteOam\n"
     "InitializeMosaicSpriteOam: @ 0x0804EA94\n"
@@ -207,5 +207,5 @@ asm_unified(
     ".L0804EB58: .word 0xFFFFF3FF\n"
     ".L0804EB5C: .word 0xFFFF3FFF\n"
     ".L0804EB60: .word 0x3FFFFFFF\n"
-    "    .endif\n"
+#endif
 );

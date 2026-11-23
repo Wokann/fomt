@@ -194,7 +194,7 @@ extern char const gText_Cooking_ResultComparison[];
 #if defined(REGION_JP)
 extern char const gText_Cooking_Recipe_LeavePreviousAsIs[];
 extern char const gText_Cooking_Recipe_LeaveNewAsIs[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_Cooking_ImproviseAnyway[];
 extern char const gText_Cooking_Recipe_LeaveAsIs[];
 #endif

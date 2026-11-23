@@ -31,7 +31,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global __12UiTextWindowiiUiUiUiUiUiUi\n"
     "    .thumb_func\n"
@@ -573,8 +573,8 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     "    @ Remaining control-widget code after the recovered border constructor.\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global __12UiTextWindowiiUiUiUiUiUiUi\n"
     "    .thumb_func\n"
@@ -1116,8 +1116,8 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     "    @ Remaining control-widget code after the recovered border constructor.\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "    .global __12UiTextWindowiiUiUiUiUiUiUi\n"
     "    .thumb_func\n"
@@ -1659,7 +1659,7 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     "    @ Remaining control-widget code after the recovered border constructor.\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global __12UiTextWindowiiUiUiUiUiUiUi\n"
     "    .thumb_func\n"
@@ -2201,9 +2201,9 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     "    @ Remaining control-widget code after the recovered border constructor.\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 

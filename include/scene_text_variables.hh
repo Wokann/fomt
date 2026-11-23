@@ -22,7 +22,7 @@ struct GameSceneTextVariables : ScriptTextVariableStore
     };
 #if defined(REGION_JP)
     enum { MAX_VALUE_BYTES = 20 };
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     enum { MAX_VALUE_BYTES = 22 };
 #endif
     GameSceneTextVariables(GameStateSaveImage * image);

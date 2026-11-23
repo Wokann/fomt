@@ -11,7 +11,7 @@
 #define FOMT_TEXT_REGION_DIR jp
 #elif defined(REGION_EU)
 #define FOMT_TEXT_REGION_DIR eu
-#else
+#elif defined(REGION_DE)
 #define FOMT_TEXT_REGION_DIR de
 #endif
 

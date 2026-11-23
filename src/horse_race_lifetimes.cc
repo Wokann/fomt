@@ -11,7 +11,7 @@ UiTextSubstitution HorseRaceTextVariables::Lookup(u32 code)
         char text[8];
 #if defined(REGION_JP)
         FormatFullWidthDecimal(round_number, text, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         FormatSignedDecimal(round_number, text, 0);
 #endif
         return UiTextSubstitution(true, FixedStr<31>(text));

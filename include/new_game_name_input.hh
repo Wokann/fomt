@@ -12,12 +12,12 @@
 // Foreground tile row shared by the two-row button strip and its OAM cursor.
 #if defined(REGION_DE)
 #define NEW_GAME_NAME_INPUT_BUTTON_ROW 18
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
 #define NEW_GAME_NAME_INPUT_BUTTON_ROW 17
 #endif
 #if defined(REGION_JP)
 #define NEW_GAME_NAME_INPUT_PROMPT_WIDTH 6
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #define NEW_GAME_NAME_INPUT_PROMPT_WIDTH 9
 #endif
 

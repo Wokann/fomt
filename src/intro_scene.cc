@@ -101,7 +101,7 @@ IntroSceneCore * ConstructIntroSceneCore(void * object)
     InitializeIntroSceneResourceState(&core->resources[10], intro, 2);
     InitializeIntroSceneResourceState(&core->resources[11], intro, 5);
     InitializeIntroSceneResourceState(&core->resources[12], intro, 8);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     InitializeIntroSceneResourceState(&core->resources[9], intro, 0);
     InitializeIntroSceneResourceState(&core->resources[10], intro, 1);
     InitializeIntroSceneResourceState(&core->resources[11], intro, 4);
@@ -436,7 +436,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                 core->resources[10].x = 0x500000;
 #if defined(REGION_JP)
                 ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
 #endif
                 core->resources[13].x = 0x500000;
@@ -449,7 +449,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                 core->resources[11].x = 0x880000;
 #if defined(REGION_JP)
                 ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
 #endif
                 core->resources[13].x = 0x880000;
@@ -474,7 +474,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 #if defined(REGION_JP)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 4);
 #endif
@@ -485,7 +485,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
 #if defined(REGION_JP)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 2);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         ResolveIndexedResourceHandle(&core->resources[10].handle, 1);
                         ResolveIndexedResourceHandle(&core->resources[11].handle, 5);
 #endif
@@ -506,7 +506,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                 {
 #if defined(REGION_JP)
                     ResolveIndexedResourceHandle(&core->resources[10].handle, 4);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     ResolveIndexedResourceHandle(&core->resources[10].handle, 3);
 #endif
                 }
@@ -514,7 +514,7 @@ int RunIntroSceneSequence(IntroSceneCore * core)
                 {
 #if defined(REGION_JP)
                     ResolveIndexedResourceHandle(&core->resources[11].handle, 7);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     ResolveIndexedResourceHandle(&core->resources[11].handle, 6);
 #endif
                 }
@@ -1178,7 +1178,7 @@ NAKED void InitializeIntroSceneSequenceResources(IntroSceneCore * core)
         "    @ Resource 8 starts at Y=-56 pixels in JP, -96 in the other releases.\n"
 #if defined(REGION_JP)
         ".L08001E5C: .word 0xFFC80000\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         ".L08001E5C: .word 0xFFA00000\n"
 #endif
         ".L08001E60: .word " STRINGIFY(INTRO_SCENE_RESOURCE_OFFSET(9)) " + " STRINGIFY(INTRO_SCENE_RESOURCE_X_OFFSET) "\n"
@@ -1609,7 +1609,7 @@ NAKED void InitializeIntroSceneSequenceResources(IntroSceneCore * core)
         "    adds r0, r4, #0\n"
 #if defined(REGION_JP)
         "    movs r1, #2\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         "    movs r1, #1\n"
 #endif
         "    bl ResolveIndexedResourceHandle\n"
@@ -1743,7 +1743,7 @@ NAKED void InitializeIntroSceneSequenceResources(IntroSceneCore * core)
         "    adds r0, r4, #0\n"
 #if defined(REGION_JP)
         "    movs r1, #5\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         "    movs r1, #4\n"
 #endif
         "    bl ResolveIndexedResourceHandle\n"
@@ -2512,7 +2512,7 @@ NAKED void RenderIntroSceneFrame(IntroSceneCore * core)
         "    adds r0, r3, #0\n"
         "    mov r3, sp\n"
         "    bl DrawIndexedResourceSprites\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         "    mov r1, sp\n"
         "    movs r0, #1\n"
         "    strb r0, [r1, #0x18]\n"
@@ -2521,7 +2521,7 @@ NAKED void RenderIntroSceneFrame(IntroSceneCore * core)
 #if defined(REGION_JP)
         "    ldr r0, .L08002A68 @ =INTRO_SCENE_RESOURCE_OFFSET(0)\n"
         "    adds r4, r7, r0\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         "    ldr r6, .L08002A68 @ =INTRO_SCENE_RESOURCE_OFFSET(0)\n"
         "    adds r4, r7, r6\n"
 #endif

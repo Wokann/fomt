@@ -102,7 +102,7 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
     gText_FishingRecord_GoldenCarp,
 #if defined(REGION_JP) || defined(BUGFIX)
     gText_FishingRecord_SilverCrucian,
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     // BUG: The original overseas name identifies ginbuna as silver carp.
     gText_FishingRecord_SilverCarp,
 #endif
@@ -133,7 +133,7 @@ char const * const gFishingRecordNames[FISHING_RECORD_COUNT] = {
 #if defined(REGION_DE) && !defined(BUGFIX)
     // BUG: The DE ROM reuses the Bonito text pointer for tuna.
     gText_FishingRecord_Bonito,
-#else
+#elif defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     gText_FishingRecord_Tuna,
 #endif
     gText_FishingRecord_OceanSunfish,

@@ -18,7 +18,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global __11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc\n"
     "    .thumb_func\n"
     "__11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc: @ 0x0807575C\n"
@@ -122,7 +122,7 @@ asm_unified(
     ".Ljp_0807581C: .word __vt_25ScrollBufferUploadCommand\n"
     ".Ljp_08075820: .word 0x0000FFFF\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\tthumb_func_start __11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc\n"
     "__11ScrollStateUiP18HardwareLinkedListP20HardwareDisplayStatePUc: @ 0x08075B00\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -225,7 +225,7 @@ asm_unified(
     ".L08075BC0: .word __vt_25ScrollBufferUploadCommand\n"
     ".L08075BC4: .word 0x0000FFFF\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -263,7 +263,7 @@ extern "C" void UploadScrollBufferRows(ScrollState * state, i32 first, i32 last)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global SetScrollPosition\n"
@@ -437,7 +437,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start SetScrollPosition\n"
@@ -610,7 +610,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

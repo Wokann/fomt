@@ -2362,7 +2362,7 @@ CookingRecipeDefinitionPayload const gCookingRecipeDefinitionPayload = {
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global EvaluateCookingRecipe\n"
@@ -2810,7 +2810,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start EvaluateCookingRecipe\n"
@@ -3257,5 +3257,5 @@ asm_unified(
     "\tbx r1\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );

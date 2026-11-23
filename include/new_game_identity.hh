@@ -9,7 +9,7 @@
 #define NEW_GAME_IDENTITY_VALUE_WIDTH 12
 #if defined(REGION_JP)
 #define NEW_GAME_IDENTITY_LABEL_WIDTH NEW_GAME_IDENTITY_VALUE_WIDTH
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #define NEW_GAME_IDENTITY_LABEL_WIDTH 14
 #endif
 
@@ -93,7 +93,7 @@ struct NewGameIdentityCore : HardwareContext {
     virtual ~NewGameIdentityCore() asm("DestroyNewGameIdentityCore");
 #if defined(REGION_JP)
     NewGameIdentityValueBuffer buffers[2 * NEW_GAME_IDENTITY_FIELD_COUNT];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     NewGameIdentityValueBuffer value_buffers[NEW_GAME_IDENTITY_FIELD_COUNT];
     NewGameIdentityLabelBuffer label_buffers[NEW_GAME_IDENTITY_FIELD_COUNT];
 #endif
@@ -117,7 +117,7 @@ typedef char NewGameIdentityCoreValueTilesCheck[
 typedef char NewGameIdentityCoreLabelTilesCheck[
     offsetof(NewGameIdentityCore, buffers) + NEW_GAME_IDENTITY_FIELD_COUNT * sizeof(NewGameIdentityValueBuffer)
         + offsetof(NewGameIdentityValueBuffer, tiles) == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char NewGameIdentityCoreValueBuffersCheck[
     offsetof(NewGameIdentityCore, value_buffers) == sizeof(HardwareContext) ? 1 : -1];
 typedef char NewGameIdentityCoreValueTilesCheck[

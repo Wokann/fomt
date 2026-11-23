@@ -196,7 +196,7 @@ UiStatePayload::UiStatePayload(u32 background, u32 screen, u32 palette_bank,
       choice_index(0), hand_cursor(gUiHandCursorArchive),
 #if defined(REGION_JP)
       choice_cursor(gUnk_084AF4E4),
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
       choice_cursor(gUnk_0872937C),
 #endif
       choice_handle(&choice_cursor, 0, 256), choice_state(shared.Get(7)),
@@ -216,7 +216,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
     "    .thumb_func\n"
@@ -1755,7 +1755,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_08050124: .word __vt_11UiTextInput\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\tthumb_func_start Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
     "Update__14UiStatePayloadP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot: @ 0x0804F7A4\n"
@@ -3293,7 +3293,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L08050398: .word __vt_11UiTextInput\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 void UiStatePayload::Open()
@@ -3641,7 +3641,7 @@ i32 MoveUiChoiceSelection(u32 layout, i32 selection, UiChoiceKeyState keys)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ShowPortrait__14UiStatePayloadUi\n"
@@ -3699,7 +3699,7 @@ asm_unified(
     "    pop {r4, r5}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start ShowPortrait__14UiStatePayloadUi\n"
@@ -3757,7 +3757,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 extern "C" void ClearUiActionStateFlag01DC(void * object)
@@ -3817,7 +3817,7 @@ void UiStatePayload::HideHeartIndicator()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global func_08050C70\n"
     "    .thumb_func\n"
@@ -3866,7 +3866,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_08050A48: .word 0xFFFFFF00\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start func_08050C70\n"
     "func_08050C70: @ 0x08050C70\n"
@@ -3913,7 +3913,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L08050CBC: .word 0xFFFFFF00\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 UiStateOwner::UiStateOwner(u32 arg_1, u32 arg_2, u32 arg_3, u32 arg_4,

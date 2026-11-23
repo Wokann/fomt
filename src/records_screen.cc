@@ -7,7 +7,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\t.global __17RecordsScreenCoreP18GameStateSaveImage\n"
     "\t.thumb_func\n"
     "__17RecordsScreenCoreP18GameStateSaveImage:\n"
@@ -9791,7 +9791,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start __17RecordsScreenCoreP18GameStateSaveImage\n"
     "__17RecordsScreenCoreP18GameStateSaveImage: @ 0x08070B70\n"
@@ -20406,7 +20406,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    "    .endif\n"
+#endif
 );
 
 RecordsScreenScene::RecordsScreenScene(SceneTransitionOwner next, GameStateSaveImage * image)
@@ -20415,7 +20415,7 @@ RecordsScreenScene::RecordsScreenScene(SceneTransitionOwner next, GameStateSaveI
 }
 
 asm_unified(
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global _._18RecordsScreenScene\n"
     "    .thumb_func\n"
     "_._18RecordsScreenScene: @ 0x08075278\n"
@@ -20500,7 +20500,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     ".Ljp_08075308: .word gRecordsScreenMinigameTaskResources\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start _._18RecordsScreenScene\n"
     "_._18RecordsScreenScene: @ 0x0807561C\n"
@@ -20583,7 +20583,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080756AC: .word gRecordsScreenMinigameTaskResources\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 #include FOMT_TEXT_INCLUDE(records_screen.cc)
@@ -20601,7 +20601,7 @@ RecordsScreenTaskResourcePair const gRecordsScreenMinigameTaskResources[] = {
     { gUnk_084D81D8, gUnk_084D8258 },
     { gUnk_084D8278, gUnk_084D82F8 },
     { gUnk_084D7F58, gUnk_084D7FD8 },
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     { gUnk_08751F0C, gUnk_08751F8C },
     { gUnk_0875204C, gUnk_087520CC },
     { gUnk_087520EC, gUnk_0875216C },

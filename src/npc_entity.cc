@@ -812,7 +812,7 @@ NAKED void ANpcEntity::UpdateSchedule(i32 refresh_kind)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08035380\n"
@@ -1573,8 +1573,8 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08035380\n"
@@ -2335,8 +2335,8 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08035380\n"
@@ -3097,7 +3097,7 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08035380\n"
@@ -3858,9 +3858,9 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 EC void SetNpcIdleAnimation(ANpcEntity & self, u32 animation)
@@ -3889,7 +3889,7 @@ EC void SetNpcWalkingAnimation(ANpcEntity & self, u32 animation)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global IsNpcScheduleTransitionDue\n"
@@ -4003,8 +4003,8 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     "    .align 2, 0\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global IsNpcScheduleTransitionDue\n"
@@ -4118,8 +4118,8 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     "    movs\tr0, r0\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global IsNpcScheduleTransitionDue\n"
@@ -4233,7 +4233,7 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global IsNpcScheduleTransitionDue\n"
@@ -4347,9 +4347,9 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     "    .align 2, 0\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 EC void PauseNpcNearLocation(ANpcEntity & self, Location const & other)

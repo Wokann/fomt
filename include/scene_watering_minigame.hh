@@ -229,7 +229,7 @@ extern u8 const gUnk_084C6A70[];
 extern u8 const gUnk_084A3678[];
 extern u8 const gUnk_084B1FCC[];
 extern u8 const gUnk_084C3840[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_0873E5B0[];
 extern u8 const gUnk_087405A0[];
 extern u8 const gUnk_0873D5FC[];

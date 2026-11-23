@@ -1799,11 +1799,11 @@ asm_unified(
     "b .Lgame_map_after_animation_reset_0e80\n"
     ".align 2, 0\n"
     ".Lgame_map_after_animation_reset_0e6c: .word 0x0000214C\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_0e70: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_0e70: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_0e74:\n"
     "cmp r0, #0x2f\n"
     "beq .Lgame_map_after_animation_reset_0e7e\n"
@@ -3240,11 +3240,11 @@ asm_unified(
     "ldr r0, [r7, #0xc]\n"
     "cmp r1, r0\n"
     "beq .Lgame_map_after_animation_reset_196c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl .Lgame_map_after_animation_reset_2ac2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl .Lgame_map_after_animation_reset_2ac2\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_196c:\n"
     "str r1, [sp, #0x1c0]\n"
     "movs r0, #1\n"
@@ -6241,11 +6241,11 @@ asm_unified(
     "b .Lgame_map_after_animation_reset_2fac\n"
     ".align 2, 0\n"
     ".Lgame_map_after_animation_reset_2f8c: .word 0x0000214C\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_2f90: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_2f90: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_2f94:\n"
     "cmp r0, #0x2f\n"
     "beq .Lgame_map_after_animation_reset_2fa4\n"
@@ -6295,11 +6295,11 @@ asm_unified(
     "ldr r0, .Lgame_map_after_animation_reset_2fe8\n"
     "b .Lgame_map_after_animation_reset_305a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_2fe8: .word gUnk_0849AB8C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_2fe8: .word gUnk_08714A30\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_2fec:\n"
     "cmp r4, #0\n"
     "bne .Lgame_map_after_animation_reset_2ff8\n"
@@ -6313,11 +6313,11 @@ asm_unified(
     "lsls r2, r1, #2\n"
     "b .Lgame_map_after_animation_reset_305e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3000: .word gUnk_0849ACBC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3000: .word gUnk_08714B60\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3004:\n"
     "ldr r0, [sp, #0xdc]\n"
     "adds r0, #0x5d\n"
@@ -6329,11 +6329,11 @@ asm_unified(
     "ldr r0, .Lgame_map_after_animation_reset_3018\n"
     "b .Lgame_map_after_animation_reset_305a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3018: .word gUnk_0849AD48\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3018: .word gUnk_08714BEC\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_301c:\n"
     "ldr r0, [sp, #0xd8]\n"
     "cmp r0, #0\n"
@@ -6354,11 +6354,11 @@ asm_unified(
     "ldr r0, .Lgame_map_after_animation_reset_303c\n"
     "b .Lgame_map_after_animation_reset_305a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_303c: .word gUnk_0849D0E0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_303c: .word gUnk_08716F84\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3040:\n"
     "cmp r4, #0\n"
     "bne .Lgame_map_after_animation_reset_304c\n"
@@ -6372,11 +6372,11 @@ asm_unified(
     "lsls r2, r1, #2\n"
     "b .Lgame_map_after_animation_reset_305e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3054: .word gUnk_0849D214\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3054: .word gUnk_087170B8\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3058:\n"
     "ldr r0, [r5, #4]\n"
     ".Lgame_map_after_animation_reset_305a:\n"
@@ -6485,11 +6485,11 @@ asm_unified(
     "bl CopyHardwareDma3\n"
     "b .Lgame_map_after_animation_reset_31ae\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3190: .word gUnk_0845C4C4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3190: .word gUnk_086D6368\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3194:\n"
     "ldr r0, .Lgame_map_after_animation_reset_31bc\n"
     "mov r3, sb\n"
@@ -6526,11 +6526,11 @@ asm_unified(
     "adds r1, r1, r3\n"
     "b .Lgame_map_after_animation_reset_31e4\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_31d4: .word gUnk_08420150\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_31d4: .word gUnk_08699FF4\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_31d8:\n"
     "ldr r0, .Lgame_map_after_animation_reset_31ec\n"
     "adds r1, r5, r4\n"
@@ -6543,11 +6543,11 @@ asm_unified(
     "bl CopyHardwareDma3\n"
     "b .Lgame_map_after_animation_reset_3202\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_31ec: .word gUnk_084213E0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_31ec: .word gUnk_0869B284\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_31f0:\n"
     "ldr r0, .Lgame_map_after_animation_reset_326c\n"
     "adds r1, r5, r4\n"
@@ -6614,11 +6614,11 @@ asm_unified(
     "blo .Lgame_map_after_animation_reset_3252\n"
     "b .Lgame_map_after_animation_reset_37e2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_326c: .word gUnk_0841EC5C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_326c: .word gUnk_08698B00\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3270: .word 0xFFFFFC1F\n"
     ".Lgame_map_after_animation_reset_3274: .word 0x000014A5\n"
     ".Lgame_map_after_animation_reset_3278: .word BlendRgb5PaletteBank\n"
@@ -6690,11 +6690,11 @@ asm_unified(
     "blo .Lgame_map_after_animation_reset_32e4\n"
     "b .Lgame_map_after_animation_reset_37e2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_32fc: .word gUnk_0845D654\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_32fc: .word gUnk_086D74F8\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3300: .word 0xFFFFFC1F\n"
     ".Lgame_map_after_animation_reset_3304: .word 0x000014A5\n"
     ".Lgame_map_after_animation_reset_3308: .word BlendRgb5PaletteBank\n"
@@ -6711,11 +6711,11 @@ asm_unified(
     "ldr r0, .Lgame_map_after_animation_reset_3320\n"
     "b .Lgame_map_after_animation_reset_334c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3320: .word gUnk_08470E40\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3320: .word gUnk_086EACE4\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3324:\n"
     "ldr r0, .Lgame_map_after_animation_reset_333c\n"
     "mov r3, sb\n"
@@ -6729,11 +6729,11 @@ asm_unified(
     "bl CopyHardwareDma3\n"
     "b .Lgame_map_after_animation_reset_351a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_333c: .word gUnk_08470E80\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_333c: .word gUnk_086EAD24\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3340:\n"
     "cmp r6, #0\n"
     "beq .Lgame_map_after_animation_reset_334a\n"
@@ -6757,11 +6757,11 @@ asm_unified(
     "mov r8, r2\n"
     "b .Lgame_map_after_animation_reset_37e2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3368: .word gUnk_08470E60\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3368: .word gUnk_086EAD04\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_336c:\n"
     "ldr r0, .Lgame_map_after_animation_reset_3384\n"
     "mov r3, sb\n"
@@ -6775,11 +6775,11 @@ asm_unified(
     "bl CopyHardwareDma3\n"
     "b .Lgame_map_after_animation_reset_351a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_animation_reset_3384: .word gUnk_08470EA0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_animation_reset_3384: .word gUnk_086EAD44\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_animation_reset_3388:\n"
     "add r0, sp, #0x30\n"
     "mov r8, r0\n"
@@ -8668,11 +8668,11 @@ asm_unified(
     "mov r8, r0\n"
     "b .Lgame_map_after_flag_updates_01ac\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_01a4: .word gUnk_08462DE4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_01a4: .word gUnk_086DCC88\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_01a8:\n"
     "ldr r1, .Lgame_map_after_flag_updates_01b8\n"
     "mov r8, r1\n"
@@ -8684,11 +8684,11 @@ asm_unified(
     "ldr r0, .Lgame_map_after_flag_updates_01bc\n"
     "b .Lgame_map_after_flag_updates_028a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_01b8: .word gUnk_08463F48\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_01b8: .word gUnk_086DDDEC\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_01bc: .word 0x000003CB\n"
     ".Lgame_map_after_flag_updates_01c0:\n"
     "movs r5, #1\n"
@@ -8711,30 +8711,30 @@ asm_unified(
     "mov r8, r1\n"
     "b .Lgame_map_after_flag_updates_0200\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_01e4: .word gUnk_084626D8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_01e4: .word gUnk_086DC57C\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_01e8:\n"
     "ldr r0, .Lgame_map_after_flag_updates_01ec\n"
     "b .Lgame_map_after_flag_updates_01fe\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_01ec: .word gUnk_0846383C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_01ec: .word gUnk_086DD6E0\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_01f0:\n"
     "ldr r1, .Lgame_map_after_flag_updates_01f8\n"
     "mov r8, r1\n"
     "b .Lgame_map_after_flag_updates_0200\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_01f8: .word gUnk_08470E38\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_01f8: .word gUnk_086EACDC\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_01fc:\n"
     "ldr r0, .Lgame_map_after_flag_updates_020c\n"
     ".Lgame_map_after_flag_updates_01fe:\n"
@@ -8746,11 +8746,11 @@ asm_unified(
     "str r0, [sp, #0xc]\n"
     "b .Lgame_map_after_flag_updates_028c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_020c: .word gUnk_08470EE0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_020c: .word gUnk_086EAD84\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_0210:\n"
     "movs r5, #1\n"
     "ldr r0, [r6, #4]\n"
@@ -8772,30 +8772,30 @@ asm_unified(
     "mov r8, r1\n"
     "b .Lgame_map_after_flag_updates_0250\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_0234: .word gUnk_084637EC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_0234: .word gUnk_086DD690\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_0238:\n"
     "ldr r0, .Lgame_map_after_flag_updates_023c\n"
     "b .Lgame_map_after_flag_updates_024e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_023c: .word gUnk_08464950\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_023c: .word gUnk_086DE7F4\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_0240:\n"
     "ldr r1, .Lgame_map_after_flag_updates_0248\n"
     "mov r8, r1\n"
     "b .Lgame_map_after_flag_updates_0250\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_0248: .word gUnk_08470EC0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_0248: .word gUnk_086EAD64\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_024c:\n"
     "ldr r0, .Lgame_map_after_flag_updates_0260\n"
     ".Lgame_map_after_flag_updates_024e:\n"
@@ -8810,11 +8810,11 @@ asm_unified(
     "str r1, [sp, #0x10]\n"
     "b .Lgame_map_after_flag_updates_028c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_0260: .word gUnk_08470EE8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_0260: .word gUnk_086EAD8C\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_0264:\n"
     "movs r5, #1\n"
     "ldr r0, [r6, #4]\n"
@@ -8828,11 +8828,11 @@ asm_unified(
     "mov r8, r0\n"
     "b .Lgame_map_after_flag_updates_0280\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_0278: .word gUnk_084626A8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_0278: .word gUnk_086DC54C\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_027c:\n"
     "ldr r1, .Lgame_map_after_flag_updates_0338\n"
     "mov r8, r1\n"
@@ -8935,11 +8935,11 @@ asm_unified(
     "blo .Lgame_map_after_flag_updates_02cc\n"
     "b .Lgame_map_after_flag_updates_03b0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lgame_map_after_flag_updates_0338: .word gUnk_0846380C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lgame_map_after_flag_updates_0338: .word gUnk_086DD6B0\n"
-    ".endif\n"
+#endif
     ".Lgame_map_after_flag_updates_033c: .word 0x000003C9\n"
     ".Lgame_map_after_flag_updates_0340:\n"
     "movs r5, #0\n"

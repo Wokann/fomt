@@ -18,7 +18,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ResetJoyBusLinkRegisters\n"
@@ -26,7 +26,7 @@ asm_unified(
     "ResetJoyBusLinkRegisters:\n"
     "    bx lr\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start ResetJoyBusLinkRegisters\n"
@@ -71,7 +71,7 @@ asm_unified(
     "\t.else\n"
     "\t.endif\n"
     "\t.endif\n"
-    "    .endif\n"
+#endif
 );
 
 void StartJoyBusCommunication(void)
@@ -108,7 +108,7 @@ void StopJoyBusCommunication(void)
 
 asm_unified(
     ".text\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global UpdateJoyBusCommunication\n"
@@ -1035,7 +1035,7 @@ asm_unified(
     ".L080D02CC: .word REG_JOY_RECV\n"
     ".L080D02D0: .word REG_JOY_TRANS\n"
     ".L080D02D4: .word gJoyBusContext\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\t.ifdef REGION_DE\n"
     "\t.else\n"
     "\t.ifdef REGION_EU\n"
@@ -1972,7 +1972,7 @@ asm_unified(
     "\t.else\n"
     "\t.endif\n"
     "\t.endif\n"
-    "    .endif\n"
+#endif
 );
 
 void FinishJoyBusCommand(u32 result)
@@ -1989,7 +1989,7 @@ void ResetJoyBusCommandResult(void)
 
 asm_unified(
     ".text\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_080D0A94\n"
@@ -2013,7 +2013,7 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     ".L080D033C: .word gJoyBusContext\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\t.ifdef REGION_DE\n"
     "\t.else\n"
     "\t.ifdef REGION_EU\n"
@@ -2049,7 +2049,7 @@ asm_unified(
     "\t.else\n"
     "\t.endif\n"
     "\t.endif\n"
-    "    .endif\n"
+#endif
 );
 
 void EnableJoyBusInterrupt(void)
@@ -2071,7 +2071,7 @@ void DisableJoyBusInterrupt(void)
 
 asm_unified(
     ".text\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global ConfigureJoyBusRegisters\n"
@@ -2131,7 +2131,7 @@ asm_unified(
     ".LJoySetupReceive: .word REG_JOY_RECV\n"
     ".LJoySetupTransmit: .word REG_JOY_TRANS\n"
     ".LJoySetupRestoreIme: .word REG_IME\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\t.ifdef REGION_DE\n"
     "\t.else\n"
     "\t.ifdef REGION_EU\n"
@@ -2320,7 +2320,7 @@ asm_unified(
     ".L080D0B84: .word REG_IME\n"
     "\t.endif\n"
     "\t.endif\n"
-    "    .endif\n"
+#endif
 );
 
 void ResetJoyBusCommandQueue(void)

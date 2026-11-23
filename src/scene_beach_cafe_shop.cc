@@ -328,11 +328,11 @@ asm_unified(
     "lsrs r1, r0, #0x10\n"
     "b .Lbeach_cafe_4_0186\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lbeach_cafe_4_017c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lbeach_cafe_4_017c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lbeach_cafe_4_0180: .word gBeachCafeShopMenu\n"
     ".Lbeach_cafe_4_0184:\n"
     "ldr r1, [sp, #0x18]\n"
@@ -398,11 +398,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"

@@ -152,11 +152,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_2_00b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_2_00b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_2_00b8: .word .Lrefrigerator_2_00bc\n"
     ".Lrefrigerator_2_00bc: .word .Lrefrigerator_2_00d4\n"
     ".word .Lrefrigerator_2_010c\n"
@@ -188,11 +188,11 @@ asm_unified(
     "adds r2, r5, #0\n"
     "b .Lrefrigerator_2_01b2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_2_0108: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_2_0108: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_2_010c:\n"
     "ldr r0, [r4]\n"
     "bl GetArticle__C8HeldItem\n"
@@ -219,11 +219,11 @@ asm_unified(
     "adds r2, r5, #0\n"
     "b .Lrefrigerator_2_01b2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_2_0144: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_2_0144: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_2_0148:\n"
     "ldr r0, [r6, #8]\n"
     "ldr r2, .Lrefrigerator_2_0160\n"
@@ -291,11 +291,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_2_01d8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_2_01d8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start DrawFridgePage__21RefrigeratorSceneCoreUi\n"
     "DrawFridgePage__21RefrigeratorSceneCoreUi:\n"
@@ -342,11 +342,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_3_006c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_3_0060: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_3_0060: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_3_0064:\n"
     "ldr r0, [r6, #0x7c]\n"
     "adds r1, r5, #0\n"
@@ -817,11 +817,11 @@ asm_unified(
     "bl func_080CCDEC\n"
     "b .Lrefrigerator_7_0504\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_7_02c4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_7_02c4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_7_02c8:\n"
     "ldr r5, [r7, #0x7c]\n"
     "adds r0, r7, #0\n"
@@ -966,11 +966,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_7_0504\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_7_0400: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_7_0400: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_7_0404:\n"
     "mov r0, sb\n"
     "bl GetId__C4Food\n"
@@ -1067,11 +1067,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_7_0504\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_7_04d8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_7_04d8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_7_04dc:\n"
     "adds r0, r7, #0\n"
     "adds r0, #0x80\n"
@@ -1669,11 +1669,11 @@ asm_unified(
     "mov r1, sl\n"
     "bl .Lrefrigerator_8_0dde\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0500: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0500: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0504:\n"
     "ldr r5, [r7, #0x7c]\n"
     "adds r0, r7, #0\n"
@@ -1786,11 +1786,11 @@ asm_unified(
     "str r1, [sp]\n"
     "b .Lrefrigerator_8_0a32\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_05fc: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_05fc: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0600:\n"
     "add r0, sp, #4\n"
     "bl GetKind__C12RucksackItem\n"
@@ -1946,11 +1946,11 @@ asm_unified(
     "str r1, [sp]\n"
     "b .Lrefrigerator_8_0bbc\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0758: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0758: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_075c:\n"
     "mov r0, r8\n"
     "bl GetAmount__C9FoodStack\n"
@@ -2168,11 +2168,11 @@ asm_unified(
     "ldr r0, [r3]\n"
     "b .Lrefrigerator_8_0e6a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0940: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0940: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0944:\n"
     "add r0, sp, #4\n"
     "bl IsEmpty__C9FoodStack\n"
@@ -2285,11 +2285,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_8_0f20\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0a3c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0a3c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0a40:\n"
     "movs r1, #0\n"
     "str r1, [sp, #0x30]\n"
@@ -2472,11 +2472,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_8_0f20\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0bc8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0bc8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0bcc:\n"
     "adds r3, r7, #0\n"
     "adds r3, #0x94\n"
@@ -2578,11 +2578,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_8_0f20\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0cb0: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0cb0: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0cb4:\n"
     "mov r0, sb\n"
     "bl IsEmpty__C9FoodStack\n"
@@ -2633,11 +2633,11 @@ asm_unified(
     "ldr r1, [r2]\n"
     "b .Lrefrigerator_8_0dce\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0d28: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0d28: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_8_0d2c:\n"
     "add r4, sp, #0xc\n"
     "adds r0, r4, #0\n"
@@ -2864,11 +2864,11 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_8_0f34: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_8_0f34: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start ConfirmWrappedItemMove__21RefrigeratorSceneCoreii\n"
     "ConfirmWrappedItemMove__21RefrigeratorSceneCoreii:\n"
@@ -3030,11 +3030,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lrefrigerator_9_0408\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_0168: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_0168: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_016c:\n"
     "ldr r0, [r6]\n"
     "mov r1, r8\n"
@@ -3261,11 +3261,11 @@ asm_unified(
     "mov r2, r8\n"
     "b .Lrefrigerator_9_0408\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_0370: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_0370: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_0374:\n"
     "ldr r0, [r6]\n"
     "mov r1, r8\n"
@@ -3339,11 +3339,11 @@ asm_unified(
     "str r7, [sp, #0x34]\n"
     "b .Lrefrigerator_9_0800\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_0414: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_0414: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_0418:\n"
     "ldr r0, [sp, #0x1c]\n"
     "ldr r1, [sp, #0x20]\n"
@@ -3499,11 +3499,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_9_0800\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_056c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_056c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_0570:\n"
     "mov r1, sl\n"
     "ldr r0, [r1]\n"
@@ -3568,11 +3568,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_9_0800\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_05fc: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_05fc: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_0600:\n"
     "mov r0, sp\n"
     "adds r0, #8\n"
@@ -3720,11 +3720,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lrefrigerator_9_0800\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_074c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_074c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrefrigerator_9_0750:\n"
     "mov r1, sl\n"
     "ldr r0, [r1]\n"
@@ -3815,11 +3815,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrefrigerator_9_0818: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrefrigerator_9_0818: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start BeginDiscard__21RefrigeratorSceneCorei\n"
     "BeginDiscard__21RefrigeratorSceneCorei:\n"

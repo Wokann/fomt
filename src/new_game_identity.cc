@@ -274,7 +274,7 @@ asm_unified(
     ".Lidentity_ctor_218: .word gText_NewGameIdentity_BirthDaySuffix\n"
     ".Lidentity_ctor_21C: .word " STRINGIFY(NEW_GAME_IDENTITY_CORE_FIELDS_OFFSET + 32) "\n"
     ".Lidentity_ctor_220: .word " STRINGIFY(NEW_GAME_IDENTITY_CORE_FIELDS_OFFSET + 48) "\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "push {r4, r5, r6, r7, lr}\n"
     "mov r7, sl\n"
     "mov r6, r9\n"
@@ -1092,7 +1092,7 @@ NAKED void InitializeNewGameIdentityScreen(NewGameIdentityCore * core)
         ".Ljp_080056C8: .word (0x10000 - 16)\n"
         ".Ljp_080056CC: .word (" STRINGIFY(NEW_GAME_IDENTITY_CORE_UI_OFFSET) ")\n"
         ".Ljp_080056D0: .word (" STRINGIFY(NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET) ")\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         "    push {r4, r5, r6, r7, lr}\n"
         "    mov r7, sl\n"
         "    mov r6, sb\n"

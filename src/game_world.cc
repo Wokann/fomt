@@ -6995,7 +6995,7 @@ u32 GameSceneWorld::vfunc_48(i32 kind)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global SetWorldSpritePaletteColors\n"
@@ -7897,7 +7897,7 @@ asm_unified(
     ".Lraw_game_state_2246_0: .word 0x00002529\n"
     ".Lraw_game_state_2247_0: .word 0xFFFFFF00\n"
     ".Lraw_game_state_2247_4: .word 0xFFFF0000\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     ".L0801B9E8:\n"
@@ -8798,7 +8798,7 @@ asm_unified(
     ".Lraw_game_state_7989_0: .word 0x00002529\n"
     ".Lraw_game_state_7989_4: .word 0xFFFFFF00\n"
     ".Lraw_game_state_7989_8: .word 0xFFFF0000\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -8837,7 +8837,7 @@ EC bool TryGetFarmPlotAtLocation(GameSceneWorld & world, Location const & locati
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global loc_0801BF2C\n"
     "    .thumb_func\n"
@@ -8966,7 +8966,7 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    thumb_func_start func_0801C198\n"
     "func_0801C198: @ 0x0801C198\n"
@@ -9096,7 +9096,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -9128,7 +9128,7 @@ u32 GameSceneWorld::vfunc_C0(Location const & location)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_0801C3DC\n"
@@ -10103,7 +10103,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     ".L0801C3DC:\n"
@@ -11085,7 +11085,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .endif\n"
+#endif
 );
 
 bool GameSceneWorld::vfunc_EC(u32 map_id, u32 level)
@@ -11122,7 +11122,7 @@ bool GameSceneWorld::vfunc_EC(u32 map_id, u32 level)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global loc_0801CA78\n"
     "    .thumb_func\n"
     "    loc_0801CA78:\n"
@@ -11482,7 +11482,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".Lraw_game_state_3564_2: .word 0x00001028\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start func_0801CCE4\n"
     "func_0801CCE4: @ 0x0801CCE4\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -11845,7 +11845,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".Lraw_game_state_9013_4: .word 0x00001028\n"
-    "    .endif\n"
+#endif
 );
 
 bool GameSceneWorld::vfunc_F0(u32 map_id, u32 level)
@@ -11885,7 +11885,7 @@ bool GameSceneWorld::vfunc_F0(u32 map_id, u32 level)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global loc_0801CE98\n"
     "    .thumb_func\n"
     "    loc_0801CE98:\n"
@@ -12284,7 +12284,7 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start func_0801D104\n"
     "func_0801D104: @ 0x0801D104\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -12683,7 +12683,7 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -13063,7 +13063,7 @@ MaryItemArticleId GameSceneWorld::SwapRecordPlayerAlbum(MaryItemArticleId articl
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_0801DEB4\n"
@@ -13994,7 +13994,7 @@ asm_unified(
     ".LworldActorSaveOffset: .word 0x1038\n"
     ".LworldActorFarmerOffset: .word 0x1BD8\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_0801DEB4\n"
@@ -14925,7 +14925,7 @@ asm_unified(
     ".Lraw_game_state_9728_4: .word 0x00001038\n"
     ".Lraw_game_state_9728_8: .word 0x00001BD8\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -15188,7 +15188,7 @@ asm_unified(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global loc_0801E6A0\n"
     "    .thumb_func\n"
     "    loc_0801E6A0:\n"
@@ -16691,7 +16691,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     ".Lraw_game_state_5329_0: .word 0x00001068\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start func_0801E90C\n"
     "func_0801E90C: @ 0x0801E90C\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -18199,7 +18199,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".L0801F514: .word 0x00001068\n"
     ".L0801F518:\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -18345,7 +18345,7 @@ AEntity * GameSceneWorld::vfunc_130(u32 id)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    thumb_func_start SetWorldWeatherEffect\n"
     "SetWorldWeatherEffect:\n"
@@ -18445,7 +18445,7 @@ asm_unified(
     ".Lworld_construction_jp_0801FB74: .word 0x0000046C\n"
     ".Lworld_construction_jp_0801FB78: .word 0x0000107C\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    thumb_func_start SetWorldWeatherEffect\n"
     "SetWorldWeatherEffect: @ 0x0801FAC8\n"
@@ -18548,5 +18548,5 @@ asm_unified(
     "    @ All overseas virtual-table entries above are direct physical labels.\n"
     "    @ The verified source positions are shared by US, EU, and DE.\n"
     "\n"
-    "    .endif\n"
+#endif
 );

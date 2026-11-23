@@ -44,7 +44,7 @@ extern char const gText_AnimalContest_CowEntryAccepted[];
 extern char const gText_AnimalContest_SheepEntryAccepted[];
 extern char const gText_AnimalContest_ChickenEntryDeclinedQuestion[];
 extern char const gText_AnimalContest_LivestockEntryDeclinedQuestion[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_AnimalContest_EntryAccepted[];
 extern char const gText_AnimalContest_EntryDeclinedQuestion[];
 #endif
@@ -147,7 +147,7 @@ struct FestivalAnimalSelectionCore : HardwareContext {
     UiStateOwner ui;
 #if defined(REGION_JP)
     u8 unk_138[0x3920 - 0x138];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     u8 unk_138[0x3EA0 - 0x138];
 #endif
     FestivalSelectionRecords<FestivalSelectionRow16, 16> rows_3EA0;
@@ -169,18 +169,18 @@ typedef char FestivalSelectionSpriteSizeCheck[sizeof(FestivalSelectionSprite) ==
 typedef char FestivalSelectionCursorSizeCheck[sizeof(FestivalSelectionCursor) == 0x3C ? 1 : -1];
 #if defined(REGION_JP)
 typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x3BF8 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x4178 ? 1 : -1];
 #endif
 typedef char FestivalAnimalSelectionCoreUiCheck[offsetof(FestivalAnimalSelectionCore, ui) == 0x134 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3920 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3EA0 ? 1 : -1];
 #endif
 #if defined(REGION_JP)
 typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x3B30 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x40B0 ? 1 : -1];
 #endif
 

@@ -562,7 +562,7 @@ void RenderHorseRacePrizeSprites(HorseRaceMedalExchangeCore * core)
     attributes.color_mode = 0;
 #if defined(REGION_JP)
     attributes.shape = 0;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.shape = 2;
 #endif
     attributes.affine_index_low = 0;
@@ -570,7 +570,7 @@ void RenderHorseRacePrizeSprites(HorseRaceMedalExchangeCore * core)
     attributes.vertical_flip = 0;
 #if defined(REGION_JP)
     attributes.size = 1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.size = 0;
 #endif
     attributes.palette_bank = static_cast<u16>(PrizePaletteBank(core->glyph_palette));

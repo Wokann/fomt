@@ -38,7 +38,7 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global DecodeGameDayDate\n"
     "    .thumb_func\n"
@@ -225,8 +225,8 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     ".Ljp_0803D2F8: .word gUnk_080F1A66\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global DecodeGameDayDate\n"
     "    .thumb_func\n"
@@ -413,8 +413,8 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     ".Leu_0803D698: .word gUnk_080F1A66\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "    .global DecodeGameDayDate\n"
     "    .thumb_func\n"
@@ -601,7 +601,7 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     ".Lde_0803D57C: .word gUnk_080F1A66\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global DecodeGameDayDate\n"
     "    .thumb_func\n"
@@ -788,9 +788,9 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     ".Lus_0803D684: .word gUnk_080F1A66\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 

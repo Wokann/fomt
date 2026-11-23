@@ -242,11 +242,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -366,11 +366,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwinery_2_028c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwinery_2_028c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lwinery_2_0290: .word gWineryShopCatalog\n"
     ".Lwinery_2_0294: .word __vt_19HardwareBlendObject\n"
     ".Lwinery_2_0298: .word 0x889\n"
@@ -565,11 +565,11 @@ asm_unified(
     "add r0, sb\n"
     "adds r1, r4, #0\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "add r5, sp, #0xb4\n"
     "mov r2, r8\n"
     "ldr r1, [r2]\n"
@@ -909,40 +909,40 @@ asm_unified(
     "ldr r1, [r2]\n"
     "adds r2, r4, #0\n"
     "bl AddAmountOf__6FridgeUiUi\n"
-    ".ifdef REGION_US\n"
-    ".else\n"
-    ".ifdef REGION_EU\n"
-    ".else\n"
+#if defined(REGION_US)
+#elif defined(REGION_JP) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
     "cmp r5, #0\n"
     "beq .Lwinery_delivery_all\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     "ldr r1, .Lwinery_2_073c\n"
-    ".ifdef REGION_US\n"
+#if defined(REGION_US)
     "adds r0, r7, #0\n"
     "bl SetShopMessageText\n"
     "b .Lwinery_2_0748\n"
-    ".else\n"
-    ".ifdef REGION_EU\n"
+#elif defined(REGION_JP) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "adds r0, r7, #0\n"
     "bl SetShopMessageText\n"
     "b .Lwinery_2_0748\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
     "b .Lwinery_show_delivery\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     ".align 2, 0\n"
     ".Lwinery_2_0728: .word 0x684\n"
     ".Lwinery_2_072c: .word gWineryShopCatalog\n"
     ".Lwinery_2_0730: .word 0x1aa8\n"
     ".Lwinery_2_0734: .word 0x1c2c\n"
     ".Lwinery_2_0738: .word 0x1c38\n"
-    ".ifdef REGION_US\n"
+#if defined(REGION_US)
     ".Lwinery_2_073c: .word gText_WineryShop_Delivery\n"
-    ".else\n"
-    ".ifdef REGION_EU\n"
+#elif defined(REGION_JP) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     ".Lwinery_2_073c: .word gText_WineryShop_Delivery\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
     ".Lwinery_2_073c: .word gText_WineryShop_DeliveryRemainder\n"
     ".Lwinery_delivery_all:\n"
     "ldr r1, .Lwinery_delivery_all_text\n"
@@ -952,8 +952,8 @@ asm_unified(
     "b .Lwinery_2_0748\n"
     ".align 2, 0\n"
     ".Lwinery_delivery_all_text: .word gText_WineryShop_DeliveryAll\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     ".Lwinery_2_0740:\n"
     "ldr r1, .Lwinery_2_0768\n"
     "adds r0, r7, #0\n"

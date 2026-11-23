@@ -480,16 +480,16 @@ asm_unified(
     ".Lcooking_core_0_03dc: .word __vt_16CookingSceneCore\n"
     ".Lcooking_core_0_03e0: .word gUnk_08527094\n"
     ".Lcooking_core_0_03e4: .word gUiHandCursorArchive\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcooking_core_0_03e8: .word gUnk_084DABB8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lcooking_core_0_03e8: .word gUnk_08754C0C\n"
-    ".endif\n"
-    ".ifdef REGION_JP\n"
+#endif
+#if defined(REGION_JP)
     ".Lcooking_core_0_03ec: .word gUnk_084DA620\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lcooking_core_0_03ec: .word gUnk_08754674\n"
-    ".endif\n"
+#endif
     ".Lcooking_core_0_03f0: .word 0xfffff000\n"
     ".Lcooking_core_0_03f4: .word 0x2bb0\n"
     ".Lcooking_core_0_03f8: .word 0x33d8\n"
@@ -877,7 +877,7 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     "\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".global func_080951B4\n"
     ".thumb_func\n"
     "func_080951B4:\n"
@@ -11094,7 +11094,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_08099F08: .word 0x00000362\n"
     "\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\tthumb_func_start func_080951B4\n"
     "func_080951B4: @ 0x080951B4\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -21495,7 +21495,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L0809A4D0: .word 0x00000362\n"
     "\n"
-    ".endif\n"
+#endif
 );
 
 

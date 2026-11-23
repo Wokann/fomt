@@ -470,7 +470,7 @@ void InitializeReferenceBookList(ReferencePageSceneCore * core)
     {
 #if defined(REGION_JP)
         u32 byte_index = index * 2;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         u32 byte_index = index;
 #endif
         u32 menu = static_cast<u32>(core->letter_list) & 1;
@@ -478,7 +478,7 @@ void InitializeReferenceBookList(ReferencePageSceneCore * core)
         u8 character[2];
         character[0] = gText_ReferencePage_Menu[menu][byte_index];
         if (character[0])
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         u8 character = gText_ReferencePage_Menu[menu][byte_index];
         if (character)
 #endif
@@ -490,7 +490,7 @@ void InitializeReferenceBookList(ReferencePageSceneCore * core)
 #if defined(REGION_JP)
             u32 lead = character[0] << 8;
             glyph.DrawCharacterExt(0, 0, character[1] | lead, 0, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             glyph.DrawCharacterExt(0, 0, character, 0, 1);
 #endif
             CopyHardwareDma3(glyph.tiles, reinterpret_cast<void *>(OBJ_VRAM0 +
@@ -648,7 +648,7 @@ void InitializeReferenceArticle(ReferencePageSceneCore * core)
             u8 character[2];
             character[0] = text[index * 2];
             if (character[0])
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             u8 character = text[index];
             if (character)
 #endif
@@ -660,7 +660,7 @@ void InitializeReferenceArticle(ReferencePageSceneCore * core)
 #if defined(REGION_JP)
                 u32 lead = character[0] << 8;
                 glyph.DrawCharacterExt(0, 0, character[1] | lead, 0, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 glyph.DrawCharacterExt(0, 0, character, 0, 1);
 #endif
                 CopyHardwareDma3(glyph.tiles, reinterpret_cast<void *>(OBJ_VRAM0 +
@@ -793,7 +793,7 @@ void ExpandReferencePageText(ReferencePageSceneCore * core, char const * text, c
         else
         {
             output[0] = bytes[0];
-#if defined(BUGFIX) && !defined(REGION_JP)
+#if defined(BUGFIX) && (defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE))
             // Neither NUL nor '<' can be a Shift-JIS trailing byte.
             if (bytes[1] == 0)
             {
@@ -847,7 +847,7 @@ void RenderReferencePageSprites(ReferencePageSceneCore * core)
     attributes.color_mode = 0;
 #if defined(REGION_JP)
     attributes.shape = ST_OAM_SQUARE;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.shape = ST_OAM_V_RECTANGLE;
 #endif
     attributes.affine_index_low = 0;
@@ -855,7 +855,7 @@ void RenderReferencePageSprites(ReferencePageSceneCore * core)
     attributes.vertical_flip = 0;
 #if defined(REGION_JP)
     attributes.size = ST_OAM_SIZE_1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     attributes.size = ST_OAM_SIZE_0;
 #endif
     attributes.palette_bank = static_cast<u16>(core->title_sprite_palette.GetIndex());

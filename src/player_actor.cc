@@ -332,7 +332,7 @@ u32 AccumulateMaxWateringCanTier(u32 max_tier, Tool const & tool)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global func_080244B8\n"
     "    .thumb_func\n"
@@ -1051,7 +1051,7 @@ asm_unified(
     "    strb r1, [r0]\n"
     "    bx lr\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "    thumb_func_start func_08024724\n"
     "func_08024724: @ 0x08024724\n"
@@ -1762,7 +1762,7 @@ asm_unified(
     "    strb r1, [r0]\n"
     "    bx lr\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -1776,7 +1776,7 @@ bool PlayerActor::IsClockPausedByAction()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08024A64\n"
@@ -13590,7 +13590,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_08024CD0\n"
@@ -15526,7 +15526,7 @@ asm_unified(
     "\n"
 );
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern "C" NAKED void GivePlayerMineItem(PlayerActor *, u32)
 {
     DEFINE_MINE_REWARD_IDS();
@@ -25383,7 +25383,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 #undef DEFINE_MINE_REWARD_IDS
@@ -25442,7 +25442,7 @@ extern "C" Box GetActorInteractionBounds(AActorEntity const & actor, i32 facing)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global func_0802A9C0\n"
     "    .thumb_func\n"
@@ -25621,7 +25621,7 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "    thumb_func_start func_0802AC2C\n"
     "func_0802AC2C: @ 0x0802AC2C\n"
@@ -25799,7 +25799,7 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -25957,7 +25957,7 @@ void PlayerSpriteController::Update()
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".text\n"
     ".text\n"
     ".text\n"
@@ -26554,7 +26554,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".text\n"
     ".text\n"
     ".text\n"
@@ -27150,7 +27150,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    ".endif\n"
+#endif
 );
 
 
@@ -28197,7 +28197,7 @@ extern "C" FarmingTutorialPlayer * CreateFarmingTutorialPlayer(GameObject * worl
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    thumb_func_start func_0802BFBC\n"
     "func_0802BFBC:\n"
     "    push {r4, r5, lr}\n"
@@ -28288,7 +28288,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start func_0802C228\n"
     "func_0802C228: @ 0x0802C228\n"
     "    push {r4, r5, lr}\n"
@@ -28377,7 +28377,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    ".endif\n"
+#endif
 );
 
 bool FarmingTutorialPlayer::IsActionActive() const
@@ -28387,7 +28387,7 @@ bool FarmingTutorialPlayer::IsActionActive() const
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    thumb_func_start func_0802C070\n"
     "func_0802C070:\n"
     "    bx lr\n"
@@ -40333,7 +40333,7 @@ asm_unified(
     "sub_08031DA8:\n"
     "    adds r0, #0x88\n"
     "    bx lr\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start func_0802C2DC\n"
     "func_0802C2DC: @ 0x0802C2DC\n"
     "    bx lr\n"
@@ -52265,7 +52265,7 @@ asm_unified(
     "sub_08032014:\n"
     "    adds r0, #0x88\n"
     "    bx lr\n"
-    ".endif\n"
+#endif
 );
 
 
@@ -52292,7 +52292,7 @@ asm_unified(
     "    adds r0, #0x60\n"
     "    bx lr\n"
     "\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global func_08031DC0\n"
     "    .thumb_func\n"
     "func_08031DC0:\n"
@@ -52381,7 +52381,7 @@ asm_unified(
     "    strh r2, [r0, #6]\n"
     "    bx lr\n"
     "    @ All JP raw-table targets above are direct physical labels.\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .global func_0803202C\n"
     "    .thumb_func\n"
     "func_0803202C:\n"
@@ -52472,5 +52472,5 @@ asm_unified(
     "    @ All overseas raw-table targets above are direct physical labels.\n"
     "    @ No assembly entry aliases are retained in this module.\n"
     "\n"
-    "    .endif\n"
+#endif
 );

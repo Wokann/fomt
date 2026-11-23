@@ -33,7 +33,7 @@ extern i16 const gFontShiftJisGlyphIndices[7938];
 #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gFontSpecialGlyphBlocks[14][12];
 extern u8 const gFontSpecialGlyphC3[12];
-#else
+#elif defined(REGION_JP)
 extern u8 const gFontSpecialGlyph81CD[24];
 #endif
 

@@ -17,7 +17,7 @@ inline MapClockStatusHudData::MapClockStatusHudData()
     : unk_archive_000(gUnk_0875B444),
 #if defined(REGION_JP)
       unk_archive_030(gUnk_083ED9FC),
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
       unk_archive_030(gUnk_086678A0),
 #endif
       palette_dirty(1), unk_selector(0), unk_state_2D0(2),
@@ -30,7 +30,7 @@ inline MapClockStatusHudData::MapClockStatusHudData()
     date_tiles.SetTile(5, middle_glyph);
     date_tiles.SetTile(first_label_tile, GetMapClockStatusGlyph(28));
     date_tiles.SetTile(6, GetMapClockStatusGlyph(30));
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     date_tiles.SetTile(5, GetMapClockStatusGlyph(29));
 #endif
 #if defined(REGION_JP)
@@ -42,7 +42,7 @@ inline MapClockStatusHudData::MapClockStatusHudData()
     u8 blank[TILE_SIZE_4BPP];
     memset(blank, 0, sizeof(blank));
     time_tiles.SetTile(7, blank);
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     time_tiles.SetTile(3, blank);
 #endif
 }
@@ -202,7 +202,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global UpdateMapClockStatusHudCalendar\n"
     "    .thumb_func\n"
@@ -514,8 +514,8 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global UpdateMapClockStatusHudCalendar\n"
     "    .thumb_func\n"
@@ -915,8 +915,8 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "    .global UpdateMapClockStatusHudCalendar\n"
     "    .thumb_func\n"
@@ -1291,7 +1291,7 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global UpdateMapClockStatusHudCalendar\n"
     "    .thumb_func\n"
@@ -1691,9 +1691,9 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 
@@ -1739,7 +1739,7 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
     u8 const * weekday_tile = GetMapClockStatusGlyph(weekday + 21);
     memcpy(state->time_tiles.tiles[MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE], weekday_tile, TILE_SIZE_4BPP);
     state->time_tiles.dirty = 1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     u32 tiles[3];
     switch (weekday) {
     default:
@@ -1765,7 +1765,7 @@ void SetMapClockStatusHudDayAndWeekday(MapClockStatusHudContent const * hud,
 void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
 {
     MapClockStatusHudData * state = hud->state;
-#if !defined(REGION_DE)
+#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     u32 meridiem = 30;
     if (hour <= 11)
         meridiem = 28;
@@ -1774,7 +1774,7 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
     state->date_tiles.dirty = 1;
 #if defined(REGION_JP)
     u32 display_hour = hour;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     u32 display_hour = 12;
 #endif
     // Meridiem and both digits share this date-component dirty byte.
@@ -1782,14 +1782,14 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
 #if defined(REGION_JP)
     if (display_hour > 11)
         display_hour -= 12;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     if (hour != 12) {
         display_hour = hour;
         if (display_hour > 11)
             display_hour -= 12;
     }
 #endif
-#else
+#elif defined(REGION_DE)
     u32 display_hour = hour;
 #endif
     i32 tens = display_hour / 10;
@@ -1799,7 +1799,7 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
         memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], tile, TILE_SIZE_4BPP);
 #if defined(REGION_DE)
         state->date_tiles.dirty = 1;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         date_dirty = 1;
 #endif
     } else {
@@ -1809,20 +1809,20 @@ void SetMapClockStatusHudHour(MapClockStatusHudContent const * hud, u32 hour)
         memcpy(state->date_tiles.tiles[MAP_CLOCK_DATE_HOUR_TENS_TILE], pixels, TILE_SIZE_4BPP);
 #if defined(REGION_DE)
         state->date_tiles.dirty = 1;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         date_dirty = 1;
 #endif
     }
     u8 const * ones_tile = GetMapClockStatusGlyph(ones);
 #if defined(REGION_DE)
     memcpy(state->time_tiles.tiles[4], ones_tile, TILE_SIZE_4BPP);
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     memcpy(state->date_tiles.tiles[7], ones_tile, TILE_SIZE_4BPP);
 #endif
 #if defined(REGION_DE)
     // The DE ones digit belongs to the separate time component.
     state->time_tiles.dirty = 1;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     date_dirty = 1;
 #endif
 }

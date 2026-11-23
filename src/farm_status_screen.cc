@@ -6,7 +6,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global __20FarmStatusScreenCoreP18GameStateSaveImageUc\n"
     "    .thumb_func\n"
@@ -21796,7 +21796,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    .align 2, 0\n"
     "\n"
@@ -43482,7 +43482,7 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    "    .endif\n"
+#endif
 );
 
 FarmStatusScreenScene::FarmStatusScreenScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 argument)
@@ -43491,7 +43491,7 @@ FarmStatusScreenScene::FarmStatusScreenScene(SceneTransitionOwner next, GameStat
 }
 
 asm_unified(
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\t.global _._21FarmStatusScreenScene\n"
     "\t.thumb_func\n"
     "_._21FarmStatusScreenScene:\n"
@@ -43595,7 +43595,7 @@ asm_unified(
     "\tlsrs r0, r0, #0x1f\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start _._21FarmStatusScreenScene\n"
     "_._21FarmStatusScreenScene: @ 0x08069E58\n"
@@ -43700,7 +43700,7 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 #include FOMT_TEXT_INCLUDE(farm_status_screen.cc)

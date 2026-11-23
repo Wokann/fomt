@@ -687,7 +687,7 @@ FoodInfo const gFoodInfo[] = {
     // BUG: The German XL listing takes the regular medicine name.
 #if defined(REGION_DE) && !defined(BUGFIX)
     /* 0x3A */ { gText_Item_Food_Bodigizer_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
-#else
+#elif defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     /* 0x3A */ { gText_Item_Food_BodigizerXl_Name, true, 100, -1, 350, gText_Item_Food_BodigizerXl_Description },
 #endif
     /* 0x3B */ { gText_Item_Food_Turbojolt_Name, true, 0, -20, 146, gText_Item_Food_Turbojolt_Description },
@@ -772,7 +772,7 @@ FoodInfo const gFoodInfo[] = {
     /* 0x89 */ {
 #if defined(REGION_JP) || defined(BUGFIX)
         gText_Item_Food_FriedBuckwheatNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedBuckwheatNoodles_Description
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         gText_Item_Food_FriedNoodles_Name, false, 60, -2, 391, gText_Item_Food_FriedNoodles_Description
 #endif
     },
@@ -798,7 +798,7 @@ FoodInfo const gFoodInfo[] = {
     /* 0x9B */ { gText_Item_Food_FailedDrink_Name, true, -10, 10, 143, gText_Item_Food_FailedRecipe_Description },
     /* 0x9C */ { gText_Item_Food_FailedPotDish_Name, false, -10, 10, 145, gText_Item_Food_FailedRecipe_Description },
     /* 0x9D */ { gText_Item_Food_FailedDessert_Name, false, -10, 10, 142, gText_Item_Food_FailedRecipe_Description },
-#else
+#elif defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     /* 0x9B */ { gText_Item_Food_FailedDrink_Name, true, -10, 10, 143, gText_Item_Food_FailedDish_Description },
     /* 0x9C */ { gText_Item_Food_FailedPotDish_Name, false, -10, 10, 145, gText_Item_Food_FailedDish_Description },
     /* 0x9D */ { gText_Item_Food_FailedDessert_Name, false, -10, 10, 142, gText_Item_Food_FailedDish_Description },
@@ -835,7 +835,7 @@ ArticleInfo const gArticleInfo[] = {
     /* 0x0A */ {
 #if defined(REGION_JP) || defined(BUGFIX)
         gText_Item_Article_WoolX_Name, 489, gText_Item_Article_WoolX_Description
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         gText_Item_Article_WoolP_Name, 489, gText_Item_Article_WoolP_Description
 #endif
     },
@@ -870,7 +870,7 @@ ArticleInfo const gArticleInfo[] = {
 #if defined(REGION_DE) && !defined(BUGFIX)
     /* 0x26 */ { gText_Item_Tool_GemOfTheKappa_Name, 261, gText_Item_Article_KappaJewel_Description },
     /* 0x27 */ { gText_Item_Tool_GemOfTruth_Name, 455, gText_Item_Article_JewelOfTruth_Description },
-#else
+#elif defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     /* 0x26 */ { gText_Item_Article_KappaJewel_Name, 261, gText_Item_Article_KappaJewel_Description },
     /* 0x27 */ { gText_Item_Article_JewelOfTruth_Name, 455, gText_Item_Article_JewelOfTruth_Description },
 #endif
@@ -1001,7 +1001,7 @@ ProductInfo const gProductInfo[] = {
     /* 0x3D */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH },
     /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
     /* 0x3F */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH },
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     /* 0x3D */ { 50, ProductInfo::KIND_FOOD, ITEM_FOOD_SMALL_FISH },
     /* 0x3E */ { 120, ProductInfo::KIND_FOOD, ITEM_FOOD_MEDIUM_FISH },
     /* 0x3F */ { 200, ProductInfo::KIND_FOOD, ITEM_FOOD_LARGE_FISH },

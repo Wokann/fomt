@@ -13,7 +13,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global Run__21FrisbeeScoreboardCore\n"
     "    .thumb_func\n"
@@ -1542,7 +1542,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start Run__21FrisbeeScoreboardCore\n"
     "Run__21FrisbeeScoreboardCore: @ 0x08051504\n"
@@ -3070,7 +3070,7 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

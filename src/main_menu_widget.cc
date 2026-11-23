@@ -39,7 +39,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot\n"
     "    .thumb_func\n"
@@ -671,8 +671,8 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r1}\n"
     "    bx\tr1\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot\n"
     "    .thumb_func\n"
@@ -1304,8 +1304,8 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r1}\n"
     "    bx\tr1\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot\n"
     "    .thumb_func\n"
@@ -1937,7 +1937,7 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r1}\n"
     "    bx\tr1\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "    .global UpdateImpl__14MainMenuWidgetP17HardwareCoreStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListT4P23HardwareMusicPlayerSlot\n"
     "    .thumb_func\n"
@@ -2569,9 +2569,9 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r1}\n"
     "    bx\tr1\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 

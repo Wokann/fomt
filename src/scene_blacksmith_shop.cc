@@ -331,11 +331,11 @@ asm_unified(
     "str r0, [sp, #0xcc]\n"
     "b .Lblacksmith_3_01f4\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_3_0110: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_3_0110: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_3_0114:\n"
     "str r1, [sp, #0xd8]\n"
     "movs r0, #1\n"
@@ -721,11 +721,11 @@ asm_unified(
     "str r5, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -1037,11 +1037,11 @@ asm_unified(
     "adds r0, r6, #0\n"
     "b .Lblacksmith_4_0366\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_4_02f8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_4_02f8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_4_02fc:\n"
     "mov r4, sp\n"
     "adds r4, #0x41\n"
@@ -1060,11 +1060,11 @@ asm_unified(
     "adds r0, r6, #0\n"
     "b .Lblacksmith_4_0366\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_4_0320: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_4_0320: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_4_0324:\n"
     "ldr r0, [sp, #0xc]\n"
     "cmp r0, #4\n"
@@ -1104,21 +1104,21 @@ asm_unified(
     "bl AppendResourceRow__23BlacksmithShopSceneCoreUiisPCUc\n"
     "b .Lblacksmith_4_03c4\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_4_0370: .word gUnk_084D94D8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_4_0370: .word gUnk_0875352C\n"
-    ".endif\n"
-    ".ifdef REGION_JP\n"
+#endif
+#if defined(REGION_JP)
     ".Lblacksmith_4_0374: .word gUnk_084D5354\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_4_0374: .word gUnk_0874EE38\n"
-    ".endif\n"
-    ".ifdef REGION_JP\n"
+#endif
+#if defined(REGION_JP)
     ".Lblacksmith_4_0378: .word gUnk_084DB100\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_4_0378: .word gUnk_08755154\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_4_037c:\n"
     "adds r0, r6, #0\n"
     "movs r1, #0\n"

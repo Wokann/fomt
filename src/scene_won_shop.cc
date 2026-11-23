@@ -226,11 +226,11 @@ asm_unified(
     "bl GetIconId__C4Tool\n"
     "b .Lwon_shop_3_0116\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwon_shop_3_00fc: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwon_shop_3_00fc: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lwon_shop_3_0100: .word gWonShopCatalog\n"
     ".Lwon_shop_3_0104:\n"
     "mov r4, sp\n"
@@ -303,11 +303,11 @@ asm_unified(
     "str r2, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -937,11 +937,11 @@ asm_unified(
     "adds r0, r0, r5\n"
     "add r1, sp, #8\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "b .Lwon_shop_4_0532\n"
     ".align 2, 0\n"
     ".Lwon_shop_4_04c0: .word 0x1c34\n"
@@ -1265,11 +1265,11 @@ asm_unified(
     ".Lwon_shop_4_0768: .word 0x1bd8\n"
     ".Lwon_shop_4_076c: .word 0x1c2c\n"
     ".Lwon_shop_4_0770: .word 0x1c38\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwon_shop_4_0774: .word gText_WonShop_ArticleDelivery\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwon_shop_4_0774: .word gText_WonShop_Delivery\n"
-    ".endif\n"
+#endif
     ".Lwon_shop_4_0778:\n"
     "ldr r1, .Lwon_shop_4_0784\n"
     ".Lwon_shop_4_077a:\n"
@@ -1277,11 +1277,11 @@ asm_unified(
     "bl SetShopMessageText\n"
     "b .Lwon_shop_4_0790\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwon_shop_4_0784: .word gText_WonShop_ArticleDeliveryMultiple\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwon_shop_4_0784: .word gText_WonShop_DeliveryMultiple\n"
-    ".endif\n"
+#endif
     ".Lwon_shop_4_0788:\n"
     "ldr r1, .Lwon_shop_4_085c\n"
     "adds r0, r6, #0\n"
@@ -1652,11 +1652,11 @@ asm_unified(
     "b .Lwon_shop_4_0aa2\n"
     ".align 2, 0\n"
     ".Lwon_shop_4_0a98: .word 0x1c38\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwon_shop_4_0a9c: .word gText_WonShop_ToolDelivery\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwon_shop_4_0a9c: .word gText_WonShop_Delivery\n"
-    ".endif\n"
+#endif
     ".Lwon_shop_4_0aa0:\n"
     "ldr r1, .Lwon_shop_4_0aac\n"
     ".Lwon_shop_4_0aa2:\n"
@@ -1664,11 +1664,11 @@ asm_unified(
     "bl SetShopMessageText\n"
     "b .Lwon_shop_4_0ab8\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lwon_shop_4_0aac: .word gText_WonShop_ToolDeliveryMultiple\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lwon_shop_4_0aac: .word gText_WonShop_DeliveryMultiple\n"
-    ".endif\n"
+#endif
     ".Lwon_shop_4_0ab0:\n"
     "ldr r1, .Lwon_shop_4_0ad8\n"
     "adds r0, r6, #0\n"

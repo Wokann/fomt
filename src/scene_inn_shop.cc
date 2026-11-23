@@ -404,11 +404,11 @@ asm_unified(
     "lsrs r1, r0, #0x10\n"
     "b .Linn_shop_4_020e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Linn_shop_4_0204: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Linn_shop_4_0204: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Linn_shop_4_0208: .word gInnShopMenu\n"
     ".Linn_shop_4_020c:\n"
     "ldr r1, [sp, #0x18]\n"
@@ -474,11 +474,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"

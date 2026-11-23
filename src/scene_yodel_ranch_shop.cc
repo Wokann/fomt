@@ -176,11 +176,11 @@ asm_unified(
     "b .Lyodel_ranch_2_0126\n"
     ".align 2, 0\n"
     ".Lyodel_ranch_2_010c: .word gLivestockShopCatalog\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lyodel_ranch_2_0110: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lyodel_ranch_2_0110: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lyodel_ranch_2_0114:\n"
     "mov r4, sp\n"
     "adds r4, #0xd5\n"
@@ -280,11 +280,11 @@ asm_unified(
     "str r7, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -1228,7 +1228,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                     animal_descriptions[index].text += gText_LivestockShop_StatusSpacer;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(value, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(value, number, 0);
 #endif
                 (animal_descriptions[index].text += number) += gText_LivestockShop_Age;
@@ -1244,7 +1244,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                     animal_descriptions[index].text += gText_LivestockShop_StatusSpacer;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(birthday.GetDay() + 1, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(birthday.GetDay() + 1, number, 0);
 #endif
                 ((animal_descriptions[index].text += gText_LivestockShop_StatusSpacer)
@@ -1252,7 +1252,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                 value = animals[selected_row].price;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(value, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(value, number, 0);
 #endif
                 (animal_descriptions[index].text += number) += gText_LivestockShop_Currency;
@@ -1262,7 +1262,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                 if (animal->IsSick())
 #if defined(REGION_JP)
                     animal_descriptions[index].text += gText_LivestockShop_StatusSick;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     animal_descriptions[index].text += gText_LivestockShop_SecondaryStatusSick;
 #endif
                 else if (animal->IsUnhappy())
@@ -1274,12 +1274,12 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                     animal_descriptions[index].text += gText_LivestockShop_StatusSpacer;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(value, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(value, number, 0);
 #endif
 #if defined(REGION_JP)
                 (animal_descriptions[index].text += number) += gText_LivestockShop_Age;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 (animal_descriptions[index].text += number) += gText_LivestockShop_SecondaryAge;
 #endif
                 GameDate birthday = save->clock.calendar.date - animal->GetAge();
@@ -1294,7 +1294,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                     animal_descriptions[index].text += gText_LivestockShop_StatusSpacer;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(birthday.GetDay() + 1, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(birthday.GetDay() + 1, number, 0);
 #endif
                 ((animal_descriptions[index].text += gText_LivestockShop_StatusSpacer)
@@ -1302,7 +1302,7 @@ void YodelRanchShopSceneCore::UpdateDescription(u32 selection)
                 value = animals[selected_row].price;
 #if defined(REGION_JP)
                 FormatFullWidthDecimal(value, number, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 FormatSignedDecimal(value, number, 0);
 #endif
                 (animal_descriptions[index].text += number) += gText_LivestockShop_Currency;
@@ -1330,7 +1330,7 @@ u32 YodelRanchShopSceneCore::GetAnimalSalePrice(u32 index, u32 animal_kind) cons
         // JP swaps the gold and platinum sale-price tiers.
         case Livestock::PRODUCT_RANK_4: price = 6000; break;
         case Livestock::PRODUCT_RANK_3: price = 7000; break;
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         case Livestock::PRODUCT_RANK_3: price = 6000; break;
         case Livestock::PRODUCT_RANK_4: price = 7000; break;
 #endif
@@ -1346,7 +1346,7 @@ u32 YodelRanchShopSceneCore::GetAnimalSalePrice(u32 index, u32 animal_kind) cons
 #if defined(REGION_JP) && !defined(BUGFIX)
         case Livestock::PRODUCT_RANK_4: price = 4000; break;
         case Livestock::PRODUCT_RANK_3: price = 5000; break;
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         case Livestock::PRODUCT_RANK_3: price = 4000; break;
         case Livestock::PRODUCT_RANK_4: price = 5000; break;
 #endif
@@ -2083,11 +2083,11 @@ asm_unified(
     "bl GetStoredBushelCount__C4Barn\n"
     "add r1, sp, #0x30\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "add r5, sp, #0x8c\n"
     "ldr r1, [sp, #0x10]\n"
     "adds r0, r5, #0\n"
@@ -2272,11 +2272,11 @@ asm_unified(
     "strb r1, [r0]\n"
     "bl GetId__C4Tool\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #16]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0x10]\n"
-    ".endif\n"
+#endif
     "cmp r0, r1\n"
     "bne .Lyodel_ranch_9_0738\n"
     "movs r2, #1\n"
@@ -2286,25 +2286,25 @@ asm_unified(
     "ldr r0, [r7, #8]\n"
     "adds r0, r0, r4\n"
     "bl GetAmount__C9ToolStack\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "cmp r0, #99\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "cmp r0, #0x63\n"
-    ".endif\n"
+#endif
     "beq .Lyodel_ranch_9_0754\n"
     "ldr r0, [r7, #8]\n"
     "adds r0, r0, r4\n"
     "bl GetAmount__C9ToolStack\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r1, #99\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #0x63\n"
-    ".endif\n"
+#endif
     "subs r5, r1, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lyodel_ranch_9_0754:\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     ".Lyodel_ranch_9_0754:\n"
     "ldr r0, [r7, #8]\n"
     "movs r3, #0xe0\n"
@@ -2381,11 +2381,11 @@ asm_unified(
     "adds r0, r0, r4\n"
     "add r1, sp, #0x24\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "mov r5, sp\n"
     "adds r5, #0x8f\n"
     "ldr r1, [sp, #0x10]\n"
@@ -3050,13 +3050,13 @@ asm_unified(
     "adds r0, r7, r3\n"
     "ldrb r4, [r0]\n"
     "cmp r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lyodel_ranch_9_0ea0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lyodel_ranch_9_0d92\n"
     "b .Lyodel_ranch_9_0ea0\n"
     ".Lyodel_ranch_9_0d92:\n"
-    ".endif\n"
+#endif
     "ldr r5, .Lyodel_ranch_9_0e88\n"
     "adds r4, r7, r5\n"
     "movs r6, #0\n"
@@ -3070,72 +3070,72 @@ asm_unified(
     "adds r0, r7, r2\n"
     "adds r0, r0, r1\n"
     "ldr r0, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r3, sp, #0x24\n"
     "mov r8, r3\n"
     "mov r1, r8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x24\n"
-    ".endif\n"
+#endif
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
     "ldr r3, .Lyodel_ranch_9_0e8c\n"
     "mov sb, r3\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "bl strlen\n"
     "adds r5, r4, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov sb, r5\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r8, r5\n"
-    ".endif\n"
+#endif
     "movs r1, #0x7f\n"
     "subs r6, r1, r0\n"
     "cmp r6, #0\n"
     "beq .Lyodel_ranch_9_0dea\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r0, r8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r0, sb\n"
-    ".endif\n"
+#endif
     "bl strlen\n"
     "adds r5, r0, #0\n"
     "cmp r5, r6\n"
     "bls .Lyodel_ranch_9_0dd8\n"
     "adds r5, r6, #0\n"
     ".Lyodel_ranch_9_0dd8:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r0, sb\n"
     "mov r1, r8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r0, r8\n"
     "mov r1, sb\n"
-    ".endif\n"
+#endif
     "adds r2, r5, #0\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r6, sb\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r6, r8\n"
-    ".endif\n"
+#endif
     "adds r0, r6, r5\n"
     "mov r1, sl\n"
     "strb r1, [r0]\n"
     ".Lyodel_ranch_9_0dea:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, .Lyodel_ranch_jp_9_0e58\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, r4, #0\n"
     "bl strlen\n"
     "adds r2, r4, r0\n"
-    ".endif\n"
+#endif
     "mov r8, r2\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #0x7f\n"
     "subs r6, r1, r0\n"
     "cmp r6, #0\n"
@@ -3158,7 +3158,7 @@ asm_unified(
     ".Lyodel_ranch_9_0e1c:\n"
     "ldr r5, .Lyodel_ranch_9_0e90\n"
     "mov r8, r5\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "bl strlen\n"
     "adds r6, r4, r0\n"
@@ -3181,19 +3181,19 @@ asm_unified(
     "movs r0, #0\n"
     "strb r0, [r1]\n"
     ".Lyodel_ranch_9_0e4e:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r3, .Lyodel_ranch_9_0e88\n"
     "adds r1, r7, r3\n"
     "movs r5, #0xd2\n"
     "lsls r5, r5, #2\n"
     "adds r4, r7, r5\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r6, .Lyodel_ranch_9_0e88\n"
     "adds r1, r7, r6\n"
     "movs r0, #0xd2\n"
     "lsls r0, r0, #2\n"
     "adds r4, r7, r0\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lyodel_ranch_9_0e94\n"
     "ldr r3, .Lyodel_ranch_9_0e98\n"
     "movs r0, #0\n"
@@ -3205,13 +3205,13 @@ asm_unified(
     "adds r0, r4, #0\n"
     "movs r1, #0xb4\n"
     "bl ShowPortrait__C12UiStateOwnerUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r6, .Lyodel_ranch_9_0e9c\n"
     "adds r1, r7, r6\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, .Lyodel_ranch_9_0e9c\n"
     "adds r1, r7, r2\n"
-    ".endif\n"
+#endif
     "movs r0, #0xa\n"
     "str r0, [r1]\n"
     "bl .Lyodel_ranch_9_1744\n"
@@ -3219,23 +3219,23 @@ asm_unified(
     ".Lyodel_ranch_9_0e80: .word 0x72c\n"
     ".Lyodel_ranch_9_0e84: .word 0x6a1\n"
     ".Lyodel_ranch_9_0e88: .word 0x3ab4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lyodel_ranch_jp_9_0e58: .word gText_LivestockShop_PricePrompt\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lyodel_ranch_9_0e8c: .word gText_LivestockShop_PricePromptPrefix\n"
     ".Lyodel_ranch_9_0e90: .word gText_LivestockShop_PricePromptSuffix\n"
-    ".endif\n"
+#endif
     ".Lyodel_ranch_9_0e94: .word gText_LivestockShop_Yes\n"
     ".Lyodel_ranch_9_0e98: .word gText_LivestockShop_No\n"
     ".Lyodel_ranch_9_0e9c: .word 0x6a4\n"
     ".Lyodel_ranch_9_0ea0:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lyodel_ranch_9_0eec\n"
     "adds r0, r7, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r3, .Lyodel_ranch_9_0eec\n"
     "adds r0, r7, r3\n"
-    ".endif\n"
+#endif
     "ldrb r0, [r0]\n"
     "cmp r0, #0\n"
     "bne .Lyodel_ranch_9_0eae\n"
@@ -3247,25 +3247,25 @@ asm_unified(
     "bl DrawCatalog__23YodelRanchShopSceneCore\n"
     "adds r5, r0, #0\n"
     "strh r4, [r7, #0xc]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r2, #0xc9\n"
     "lsls r2, r2, #3\n"
     "adds r1, r7, r2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r6, #0xc9\n"
     "lsls r6, r6, #3\n"
     "adds r1, r7, r6\n"
-    ".endif\n"
+#endif
     "movs r0, #0x28\n"
     "str r0, [r1]\n"
     "ldr r0, [r7, #0x1c]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r3, #0xc\n"
     "ldrsh r1, [r7, r3]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r2, #0xc\n"
     "ldrsh r1, [r7, r2]\n"
-    ".endif\n"
+#endif
     "bl ResetScrollPosition\n"
     "ldr r0, [r7, #0x1c]\n"
     "adds r1, r5, #0\n"
@@ -3273,13 +3273,13 @@ asm_unified(
     "lsls r1, r1, #0x13\n"
     "asrs r1, r1, #0x10\n"
     "bl SetScrollBottomLimit\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, .Lyodel_ranch_9_0ef0\n"
     "adds r0, r7, r5\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r3, .Lyodel_ranch_9_0ef0\n"
     "adds r0, r7, r3\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "str r4, [r7, #0x10]\n"
     "bl .Lyodel_ranch_9_16ce\n"
@@ -3296,28 +3296,28 @@ asm_unified(
     "bne .Lyodel_ranch_9_0f06\n"
     "b .Lyodel_ranch_9_10b0\n"
     ".Lyodel_ranch_9_0f06:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r6, .Lyodel_ranch_9_0f78\n"
     "adds r0, r7, r6\n"
     "ldr r1, [r0, #0x14]\n"
     "mov r8, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r4, .Lyodel_ranch_9_0f78\n"
     "adds r0, r7, r4\n"
     "ldr r5, [r0, #0x14]\n"
     "mov r8, r5\n"
-    ".endif\n"
+#endif
     "bl Hide__26UiPurchaseQuantitySelector\n"
     "add r3, sp, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r2, #0xa9\n"
     "lsls r2, r2, #2\n"
     "adds r4, r7, r2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r6, #0xa9\n"
     "lsls r6, r6, #2\n"
     "adds r4, r7, r6\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x10]\n"
     "lsls r0, r0, #2\n"
     "adds r0, #4\n"
@@ -3331,21 +3331,21 @@ asm_unified(
     "adds r1, r1, r2\n"
     "ldm r1!, {r2, r5, r6}\n"
     "stm r0!, {r2, r5, r6}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldm r1!, {r5, r6}\n"
     "stm r0!, {r5, r6}\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldm r1!, {r2, r5}\n"
     "stm r0!, {r2, r5}\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #8]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lyodel_ranch_9_0f80\n"
     "adds r0, r0, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r6, .Lyodel_ranch_9_0f80\n"
     "adds r0, r0, r6\n"
-    ".endif\n"
+#endif
     "ldr r1, [r3, #8]\n"
     "mov r2, r8\n"
     "muls r2, r1, r2\n"
@@ -4172,7 +4172,7 @@ asm_unified(
     "bl GetName__C4Farm\n"
     "mov sb, r0\n"
     "ldr r2, .Lyodel_ranch_9_16ac\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "adds r6, r7, r2\n"
     "mov r4, sb\n"
     "adds r0, r6, #0\n"
@@ -4183,13 +4183,13 @@ asm_unified(
     "subs r5, r1, r0\n"
     "cmp r5, #0\n"
     "beq .Lyodel_ranch_de_9_1648\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "adds r4, r7, r2\n"
     "mov r8, sb\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "bl strlen\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "adds r4, r0, #0\n"
     "cmp r4, r5\n"
     "bls .Lyodel_ranch_de_9_1636\n"
@@ -4209,9 +4209,9 @@ asm_unified(
     "adds r0, r6, #0\n"
     "bl strlen\n"
     "adds r6, r6, r0\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "adds r6, r4, r0\n"
-    ".endif\n"
+#endif
     "movs r1, #0x7f\n"
     "subs r5, r1, r0\n"
     "cmp r5, #0\n"
@@ -4224,28 +4224,28 @@ asm_unified(
     "adds r4, r5, #0\n"
     ".Lyodel_ranch_9_1634:\n"
     "adds r0, r6, #0\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "mov r1, r8\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "mov r1, sb\n"
-    ".endif\n"
+#endif
     "adds r2, r4, #0\n"
     "bl memcpy\n"
     "adds r1, r6, r4\n"
     "movs r0, #0\n"
     "strb r0, [r1]\n"
     ".Lyodel_ranch_9_1644:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "ldr r1, .Lyodel_ranch_9_16ac\n"
     "adds r4, r7, r1\n"
     "ldr r2, .Lyodel_ranch_9_16b8\n"
     "mov r8, r2\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r3, .Lyodel_ranch_9_16ac\n"
     "adds r4, r7, r3\n"
     "ldr r5, .Lyodel_ranch_9_16b8\n"
     "mov r8, r5\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "bl strlen\n"
     "adds r6, r4, r0\n"
@@ -4268,44 +4268,44 @@ asm_unified(
     "movs r0, #0\n"
     "strb r0, [r1]\n"
     ".Lyodel_ranch_9_167a:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "ldr r3, .Lyodel_ranch_9_16ac\n"
     "adds r1, r7, r3\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r6, .Lyodel_ranch_9_16ac\n"
     "adds r1, r7, r6\n"
-    ".endif\n"
+#endif
     "adds r0, r7, #0\n"
     "bl SetShopMessageText\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "movs r4, #0xd2\n"
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r1, #0xd2\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
-    ".endif\n"
+#endif
     "movs r1, #0xb5\n"
     "bl ShowPortrait__C12UiStateOwnerUi\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "ldr r5, .Lyodel_ranch_9_16bc\n"
     "adds r1, r7, r5\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r2, .Lyodel_ranch_9_16bc\n"
     "adds r1, r7, r2\n"
-    ".endif\n"
+#endif
     "movs r0, #9\n"
     "str r0, [r1]\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "movs r6, #0xd5\n"
     "lsls r6, r6, #3\n"
     "adds r1, r7, r6\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r3, #0xd5\n"
     "lsls r3, r3, #3\n"
     "adds r1, r7, r3\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
     "strb r0, [r1]\n"
     "b .Lyodel_ranch_9_1744\n"
@@ -4315,22 +4315,22 @@ asm_unified(
     ".Lyodel_ranch_9_16ac: .word 0x3ab4\n"
     ".Lyodel_ranch_9_16b0: .word gText_LivestockShop_Empty\n"
     ".Lyodel_ranch_9_16b4: .word gText_LivestockShop_PurchaseDeclinedPrefix\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".Lyodel_ranch_de_9_16f0: .word gText_LivestockShop_AnimalDeliveryLineBreak\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#endif
     ".Lyodel_ranch_9_16b8: .word gText_LivestockShop_AnimalDelivery\n"
     ".Lyodel_ranch_9_16bc: .word 0x6a4\n"
     ".Lyodel_ranch_9_16c0:\n"
     "adds r0, r4, #0\n"
     "bl func_08050E5C\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "ldr r1, .Lyodel_ranch_9_16d8\n"
     "adds r0, r7, r1\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r4, .Lyodel_ranch_9_16d8\n"
     "adds r0, r7, r4\n"
-    ".endif\n"
+#endif
     "movs r1, #1\n"
     "str r1, [r0]\n"
     ".Lyodel_ranch_9_16ce:\n"
@@ -4341,15 +4341,15 @@ asm_unified(
     ".align 2, 0\n"
     ".Lyodel_ranch_9_16d8: .word 0x6a4\n"
     ".Lyodel_ranch_9_16dc:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "movs r2, #0xd4\n"
     "lsls r2, r2, #2\n"
     "adds r0, r7, r2\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r5, #0xd4\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "cmp r0, #3\n"
     "bne .Lyodel_ranch_9_1744\n"
@@ -4359,21 +4359,21 @@ asm_unified(
     "orrs r0, r1\n"
     "cmp r0, #0\n"
     "blt .Lyodel_ranch_9_1744\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "movs r3, #1\n"
     "str r3, [sp, #0xa0]\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r6, #1\n"
     "str r6, [sp, #0xa0]\n"
-    ".endif\n"
+#endif
     "ldr r1, .Lyodel_ranch_9_1718\n"
     "adds r0, r2, #0\n"
     "adds r0, #0xc\n"
     "movs r2, #1\n"
-    ".ifdef REGION_DE\n"
-    ".else\n"
+#if defined(REGION_DE)
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r3, #1\n"
-    ".endif\n"
+#endif
     "bl EndHardwareBlend\n"
     "adds r0, r7, #0\n"
     "bl GetHardwareCommandList\n"
@@ -4391,13 +4391,13 @@ asm_unified(
     "orrs r0, r1\n"
     "cmp r0, #0\n"
     "blt .Lyodel_ranch_9_1744\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "ldr r4, .Lyodel_ranch_9_1740\n"
     "adds r0, r7, r4\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r1, .Lyodel_ranch_9_1740\n"
     "adds r0, r7, r1\n"
-    ".endif\n"
+#endif
     "ldr r4, [r0]\n"
     "ldr r0, [r3, #8]\n"
     "ldr r2, [r0, #0xc]\n"
@@ -4461,7 +4461,7 @@ LivestockShopCatalogEntry const gLivestockShopCatalog[] = {
     { 0x5B, gText_LivestockShop_Empty, 20, gText_LivestockShop_Empty, 0 },
 #if defined(REGION_DE)
     { 0x01, gText_LivestockShop_BuyCowPrimary, 5000, gText_LivestockShop_BuyCow, 1 },
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     { 0x01, gText_LivestockShop_BuyCow, 5000, gText_LivestockShop_BuyCow, 1 },
 #endif
     { 0x02, gText_LivestockShop_BuySheep, 4000, gText_LivestockShop_BuySheep, 1 },

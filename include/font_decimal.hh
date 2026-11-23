@@ -52,7 +52,7 @@ typedef char FontTilemapDecimalCommandPaletteCheck[offsetof(FontTilemapDecimalCo
 typedef char FontTilemapDecimalCommandRowStrideCheck[offsetof(FontTilemapDecimalCommand, row_stride) == 0x18 ? 1 : -1];
 
 // Overseas ROMs insert the one-column, two-row variant. JP has no such class.
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef struct FontTilemapTallDecimalCommand
 #ifdef __cplusplus
     : HardwareLinkBase
@@ -117,7 +117,7 @@ typedef char FontTilemapSingleTileDecimalCommandStrideCheck[offsetof(FontTilemap
 
 EXTERN_C
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     u32 palette, u32 row_stride);
 #endif

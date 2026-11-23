@@ -624,11 +624,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -734,11 +734,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lsupermarket_3_0504: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lsupermarket_3_0504: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lsupermarket_3_0508: .word gSupermarketCropSeedCatalog\n"
     ".Lsupermarket_3_050c: .word __vt_19HardwareBlendObject\n"
     ".Lsupermarket_3_0510: .word 0x889\n"
@@ -885,11 +885,11 @@ asm_unified(
     "adds r0, r0, r4\n"
     "add r1, sp, #0xa4\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #8]\n"
     "ldr r4, .Lsupermarket_3_0688\n"
     "adds r0, r0, r4\n"
@@ -1358,11 +1358,11 @@ asm_unified(
     "bl SetShopMessageText\n"
     "b .Lsupermarket_3_0a48\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lsupermarket_3_0a3c: .word gText_Supermarket_EquipmentDeliveryPartial\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lsupermarket_3_0a3c: .word gText_Supermarket_DeliveryPartial\n"
-    ".endif\n"
+#endif
     ".Lsupermarket_3_0a40:\n"
     "ldr r1, .Lsupermarket_3_0a68\n"
     "adds r0, r7, #0\n"
@@ -1746,11 +1746,11 @@ asm_unified(
     "str r6, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -1909,11 +1909,11 @@ asm_unified(
     "add r0, r8\n"
     "add r1, sp, #0xa4\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "add r5, sp, #0xb4\n"
     "mov r2, sl\n"
     "ldr r1, [r2]\n"
@@ -2052,11 +2052,11 @@ asm_unified(
     "bl memcpy\n"
     "b .Lsupermarket_9_03e0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lsupermarket_9_03b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lsupermarket_9_03b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lsupermarket_9_03b8: .word 0x6a4\n"
     ".Lsupermarket_9_03bc: .word gSupermarketFoodCatalog\n"
     ".Lsupermarket_9_03c0: .word __vt_19HardwareBlendObject\n"
@@ -2220,11 +2220,11 @@ asm_unified(
     "bl SetShopMessageText\n"
     "b .Lsupermarket_9_052c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lsupermarket_9_0520: .word gText_Supermarket_FoodDelivery\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lsupermarket_9_0520: .word gText_Supermarket_DeliveryPartial\n"
-    ".endif\n"
+#endif
     ".Lsupermarket_9_0524:\n"
     "adds r0, r7, #0\n"
     "ldr r1, .Lsupermarket_9_0544\n"
@@ -2241,11 +2241,11 @@ asm_unified(
     "str r1, [r0]\n"
     "b .Lsupermarket_9_05ca\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lsupermarket_9_0544: .word gText_Supermarket_FoodDeliveryPartial\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lsupermarket_9_0544: .word gText_Supermarket_FoodDelivery\n"
-    ".endif\n"
+#endif
     ".Lsupermarket_9_0548: .word 0x70c\n"
     ".Lsupermarket_9_054c:\n"
     "adds r0, r7, #0\n"

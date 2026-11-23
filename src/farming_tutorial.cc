@@ -4157,7 +4157,7 @@ asm_unified(
     "mov r0, sl\n"
     "bl UpdateHardwareInput\n"
 #if defined(REGION_JP)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r4, #217\n"
     "lsls r4, r4, #2\n"
     "adds r6, r7, r4\n"
@@ -4176,7 +4176,7 @@ asm_unified(
     "movs r4, #220\n"
     "lsls r4, r4, #2\n"
     "adds r5, r7, r4\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Ltutorial_run_overseas_041E\n"
     "movs r0, #220\n"
     "lsls r0, r0, #2\n"
@@ -4194,7 +4194,7 @@ asm_unified(
     "movs r0, #219\n"
     "lsls r0, r0, #2\n"
     "adds r4, r7, r0\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "blt .Ltutorial_run_overseas_041E\n"
     "movs r1, #219\n"
     "lsls r1, r1, #2\n"
@@ -4207,7 +4207,7 @@ asm_unified(
     "cmp r0, #1\n"
 #if defined(REGION_JP)
     "beq .Ltutorial_run_0418\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Ltutorial_run_overseas_041E\n"
 #endif
     "ldr r0, [r4, #0]\n"
@@ -4215,7 +4215,7 @@ asm_unified(
     "cmp r0, #2\n"
 #if defined(REGION_JP)
     "beq .Ltutorial_run_0418\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Ltutorial_run_overseas_041E\n"
 #endif
     ".Ltutorial_run_0402:\n"
@@ -4226,7 +4226,7 @@ asm_unified(
     "bl EndHardwareBlend\n"
 #if defined(REGION_JP)
     "movs r2, #217\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r0, #1\n"
     "str r0, [r6, #0]\n"
     ".Ltutorial_run_overseas_041E:\n"
@@ -4241,7 +4241,7 @@ asm_unified(
     "movs r3, #219\n"
     "lsls r3, r3, #2\n"
     "adds r4, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r4, r7, r2\n"
 #endif
     "ldr r0, [r4, #0]\n"
@@ -4278,7 +4278,7 @@ asm_unified(
     "movs r2, #224\n"
     "lsls r2, r2, #2\n"
     "adds r1, r7, r2\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #224\n"
     "lsls r3, r3, #2\n"
     "adds r1, r7, r3\n"
@@ -4297,7 +4297,7 @@ asm_unified(
     "movs r3, #217\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r4, #217\n"
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
@@ -4313,7 +4313,7 @@ asm_unified(
     "ldr r0, [r0, #0]\n"
     "mov pc, r0\n"
 #if defined(REGION_JP)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
 #endif
     ".Ltutorial_run_0498: .word gMaryScriptTable\n"
@@ -4332,7 +4332,7 @@ asm_unified(
 #if defined(REGION_JP)
     ".Ltutorial_run_04CC: .word .Ltutorial_run_063A\n"
     ".Ltutorial_run_04D0: .word .Ltutorial_run_064C\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltutorial_run_04CC: .word .Ltutorial_run_overseas_064A\n"
     ".Ltutorial_run_04D0: .word .Ltutorial_run_063A\n"
 #endif
@@ -4344,7 +4344,7 @@ asm_unified(
     "movs r4, #214\n"
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #214\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
@@ -4362,7 +4362,7 @@ asm_unified(
     "movs r5, #215\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #215\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
@@ -4372,7 +4372,7 @@ asm_unified(
 #if defined(REGION_JP)
     "ldr r0, [sp, #124]\n"
     "str r1, [r0, #0]\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, [sp, #124]\n"
     "str r1, [r2, #0]\n"
 #endif
@@ -4383,7 +4383,7 @@ asm_unified(
     "movs r1, #220\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #220\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
@@ -4403,7 +4403,7 @@ asm_unified(
     "movs r3, #215\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r4, #215\n"
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
@@ -4413,7 +4413,7 @@ asm_unified(
 #if defined(REGION_JP)
     "ldr r4, [sp, #124]\n"
     "str r1, [r4, #0]\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #124]\n"
     "str r1, [r5, #0]\n"
 #endif
@@ -4424,7 +4424,7 @@ asm_unified(
     "movs r5, #219\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #219\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
@@ -4437,7 +4437,7 @@ asm_unified(
     ".Ltutorial_run_0548:\n"
 #if defined(REGION_JP)
     "b .Ltutorial_run_0680\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r2, #217\n"
     "lsls r2, r2, #2\n"
     "adds r1, r7, r2\n"
@@ -4449,7 +4449,7 @@ asm_unified(
     "movs r1, #219\n"
     "lsls r1, r1, #2\n"
     "adds r4, r7, r1\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #219\n"
     "lsls r3, r3, #2\n"
     "adds r4, r7, r3\n"
@@ -4475,7 +4475,7 @@ asm_unified(
     "lsls r2, r2, #2\n"
     "adds r1, r7, r2\n"
     "b .Ltutorial_run_0686\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Ltutorial_run_0680\n"
 #endif
     ".Ltutorial_run_057A:\n"
@@ -4484,7 +4484,7 @@ asm_unified(
     "movs r3, #219\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #219\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
@@ -4499,7 +4499,7 @@ asm_unified(
     "movs r4, #217\n"
     "lsls r4, r4, #2\n"
     "adds r1, r7, r4\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r0, #217\n"
     "lsls r0, r0, #2\n"
     "adds r1, r7, r0\n"
@@ -4511,7 +4511,7 @@ asm_unified(
     "movs r5, #219\n"
     "lsls r5, r5, #2\n"
     "adds r4, r7, r5\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #219\n"
     "lsls r1, r1, #2\n"
     "adds r4, r7, r1\n"
@@ -4529,7 +4529,7 @@ asm_unified(
     "bl Push__20FarmingTutorialScenei\n"
 #if defined(REGION_JP)
     "b .Ltutorial_run_0680\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r2, #217\n"
     "lsls r2, r2, #2\n"
     "adds r1, r7, r2\n"
@@ -4540,7 +4540,7 @@ asm_unified(
     "movs r1, #220\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #220\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
@@ -4558,7 +4558,7 @@ asm_unified(
     "movs r2, #232\n"
     "lsls r2, r2, #2\n"
     "adds r1, r7, r2\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #232\n"
     "lsls r5, r5, #2\n"
     "adds r1, r7, r5\n"
@@ -4586,7 +4586,7 @@ asm_unified(
     "movs r3, #217\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r1, #217\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
@@ -4594,7 +4594,7 @@ asm_unified(
     "str r4, [r0, #0]\n"
     "b .Ltutorial_run_06B6\n"
 #if defined(REGION_JP)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
 #endif
     ".Ltutorial_run_0610: .word 0x0000F0FF\n"
@@ -4604,7 +4604,7 @@ asm_unified(
     "movs r4, #220\n"
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r2, #220\n"
     "lsls r2, r2, #2\n"
     "adds r0, r7, r2\n"
@@ -4619,7 +4619,7 @@ asm_unified(
     "cmp r1, #0\n"
     "bne .Ltutorial_run_06B6\n"
 #if defined(REGION_JP)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #217\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
@@ -4643,7 +4643,7 @@ asm_unified(
     ".Ltutorial_run_063A:\n"
 #if defined(REGION_JP)
     "movs r0, #230\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r0, #231\n"
 #endif
     "lsls r0, r0, #2\n"
@@ -4659,7 +4659,7 @@ asm_unified(
     "movs r3, #231\n"
     "lsls r3, r3, #2\n"
     "adds r4, r7, r3\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r4, r7, r0\n"
 #endif
     "ldr r0, [r4, #0]\n"
@@ -4674,7 +4674,7 @@ asm_unified(
     "lsls r4, r4, #2\n"
     "adds r0, r7, r4\n"
     "b .Ltutorial_run_06B4\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Ltutorial_run_overseas_06C2\n"
 #endif
     ".Ltutorial_run_066A:\n"
@@ -4682,7 +4682,7 @@ asm_unified(
     "movs r5, #218\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r3, #218\n"
     "lsls r3, r3, #2\n"
     "adds r0, r7, r3\n"
@@ -4699,7 +4699,7 @@ asm_unified(
     "movs r0, #217\n"
     "lsls r0, r0, #2\n"
     "adds r1, r7, r0\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r4, #217\n"
     "lsls r4, r4, #2\n"
     "adds r1, r7, r4\n"
@@ -4713,7 +4713,7 @@ asm_unified(
     "movs r1, #218\n"
     "lsls r1, r1, #2\n"
     "adds r0, r7, r1\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #218\n"
     "lsls r5, r5, #2\n"
     "adds r0, r7, r5\n"
@@ -4730,12 +4730,12 @@ asm_unified(
     "lsrs r1, r0, #24\n"
 #if defined(REGION_JP)
     ".Ltutorial_run_06AA:\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
     "cmp r1, #0\n"
     "bne .Ltutorial_run_06B6\n"
 #if defined(REGION_JP)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltutorial_run_overseas_06C2:\n"
 #endif
     "movs r2, #217\n"

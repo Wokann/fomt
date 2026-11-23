@@ -9,7 +9,7 @@ struct GameStateSaveImage;
 // The three names and milestone bytes have protocol-defined capacities.
 #if defined(REGION_JP)
 enum { GAMECUBE_LINK_ENCODED_NAME_SIZE = 8 };
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 enum { GAMECUBE_LINK_ENCODED_NAME_SIZE = 13 };
 #endif
 
@@ -80,7 +80,7 @@ extern LinkCommunicationGameCode const gLinkCommunicationGameCodeGYW;
 
 #if defined(REGION_JP)
 extern u16 const gLinkCommunicationCharacterCodeTable[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gLinkCommunicationCharacterCodeTable[];
 #endif
 

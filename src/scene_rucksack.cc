@@ -2021,11 +2021,11 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Lrucksack_4_00c8: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrucksack_4_00cc: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrucksack_4_00cc: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start DrawItems__16RucksackMenuCoreUi\n"
     "DrawItems__16RucksackMenuCoreUi:\n"
@@ -2119,11 +2119,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrucksack_5_00b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrucksack_5_00b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrucksack_5_00b8: .word .Lrucksack_5_00bc\n"
     ".Lrucksack_5_00bc: .word .Lrucksack_5_00d4\n"
     ".word .Lrucksack_5_0110\n"
@@ -2158,11 +2158,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lrucksack_5_01c2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrucksack_5_010c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrucksack_5_010c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrucksack_5_0110:\n"
     "movs r1, #0x80\n"
     "lsls r1, r1, #1\n"
@@ -2192,11 +2192,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lrucksack_5_01c2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrucksack_5_014c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrucksack_5_014c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lrucksack_5_0150:\n"
     "ldr r0, [r5, #8]\n"
     "ldr r2, .Lrucksack_5_0168\n"
@@ -2267,11 +2267,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lrucksack_5_01e8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lrucksack_5_01e8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start UpdateDescription__16RucksackMenuCorei\n"
     "UpdateDescription__16RucksackMenuCorei:\n"

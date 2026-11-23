@@ -132,7 +132,7 @@ asm_unified(
     "    movs r2, #0\n"
 #if defined(REGION_JP)
     "    bl FormatFullWidthDecimal\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    bl FormatSignedDecimal\n"
 #endif
     "    b .Lscalar_8_19\n"
@@ -143,7 +143,7 @@ asm_unified(
     "    movs r2, #0\n"
 #if defined(REGION_JP)
     "    bl FormatFullWidthDecimal\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    bl FormatSignedDecimal\n"
 #endif
     ".Lscalar_8_19:\n"

@@ -809,7 +809,7 @@ extern "C" void UpdateHorseRaceDialogue(HorseRaceCore * core)
                 else
 #if defined(REGION_JP)
                     func_08050DA0(core->ui_state.value, gText_HorseRace_TicketPurchaseEncouragement, &core->text_variables);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                     func_08050DA0(core->ui_state.value, gText_HorseRace_TicketPurchaseApproval, &core->text_variables);
 #endif
                 break;
@@ -1051,7 +1051,7 @@ extern "C" void BuildHorseRaceTicketGlyphs(HorseRaceCore * core, i32 payout)
     AppendHorseRaceNumber(core, 16, 32, 2, core->round + 1, 1, 0);
 #elif defined(REGION_DE)
     AppendHorseRaceNumber(core, 136, 32, 2, core->round + 1, 1, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
     AppendHorseRaceNumber(core, 32, 32, 2, core->round + 1, 1, 0);
 #endif
     HorseRaceRunner * runner = core->runners;
@@ -1060,7 +1060,7 @@ extern "C" void BuildHorseRaceTicketGlyphs(HorseRaceCore * core, i32 payout)
         i32 y = 48 + index * 16;
 #if defined(REGION_JP)
         AppendHorseRaceNumber(core, 136, y, 2, runner->odds, 2, 11);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         AppendHorseRaceGlyph(core, 136, y, 11, 2);
         AppendHorseRaceNumber(core, 144, y, 2, runner->odds, 2, 10);
 #endif
@@ -1167,7 +1167,7 @@ extern "C" void RenderHorseRaceTicketSprites(HorseRaceCore * core)
         if (core->glyphs[core->glyph_count].glyph_index != static_cast<i32>(ARRAY_COUNT(gHorseRaceTicketCharacterCodes)))
         {
             attributes.palette_bank = HorseRacePaletteBank(core->palette_618);
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             attributes.shape = ST_OAM_V_RECTANGLE;
             attributes.size = ST_OAM_SIZE_0;
 #endif
@@ -1175,7 +1175,7 @@ extern "C" void RenderHorseRaceTicketSprites(HorseRaceCore * core)
         else
         {
             attributes.palette_bank = HorseRacePaletteBank(core->palette_620);
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             attributes.shape = ST_OAM_SQUARE;
             attributes.size = ST_OAM_SIZE_1;
 #endif

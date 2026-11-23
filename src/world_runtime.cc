@@ -25,7 +25,7 @@ GameSceneWorldData::GameSceneWorldData(GameSceneWorldMapOwner source)
       unk_F90(gUnk_084AD4D0),
       unk_FC0(gUnk_084ABF08),
       unk_FF0(gUnk_08479108)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
       unk_DE0(gUnk_086678A0),
       unk_E10(gUnk_0871EF00),
       unk_E40(gUnk_086FAA80),

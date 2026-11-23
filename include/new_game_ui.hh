@@ -83,7 +83,7 @@ struct NewGameTextTileBuffer {
 
 #if defined(REGION_JP)
 typedef NewGameTextTileBuffer<2> UiSpriteGlyphBuffer;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef NewGameTextTileBuffer<1> UiSpriteGlyphBuffer;
 #endif
 

@@ -69,7 +69,7 @@ struct NewGameBirthdayInputCore : HardwareContext {
     NewGameBirthdayInputGlyph glyphs[70];
 #elif defined(REGION_DE)
     NewGameBirthdayInputGlyph glyphs[131];
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
     NewGameBirthdayInputGlyph glyphs[128];
 #endif
     i16 glyph_count;
@@ -86,7 +86,7 @@ typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 
 #elif defined(REGION_DE)
 typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x46C ? 1 : -1];
 typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x460 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
 typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x454 ? 1 : -1];
 typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x448 ? 1 : -1];
 #endif

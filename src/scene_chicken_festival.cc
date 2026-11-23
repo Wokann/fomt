@@ -510,31 +510,31 @@ asm_unified(
     ".Lchicken_festival_0478: .word gActorIndexedResourceArchive\n"
     ".Lchicken_festival_047c: .word 0x77c\n"
     ".Lchicken_festival_0480: .word gUnk_0873DE44\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_0484: .word gUnk_084A3678\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_0484: .word gUnk_0871D51C\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_0488: .word 0x784\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_048c: .word gUnk_084BE2AC\n"
     ".Lchicken_festival_0490: .word gUnk_084C1130\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_048c: .word gUnk_08738144\n"
     ".Lchicken_festival_0490: .word gUnk_0873AFC8\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_0494: .word 0x78c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_0498: .word gUnk_084B7CA8\n"
     ".Lchicken_festival_049c: .word gUnk_084C3014\n"
     ".Lchicken_festival_04a0: .word gUnk_084AF5C8\n"
     ".Lchicken_festival_04a4: .word gUnk_084C6B4C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_0498: .word gUnk_08731B40\n"
     ".Lchicken_festival_049c: .word gUnk_0873CEAC\n"
     ".Lchicken_festival_04a0: .word gUnk_08729460\n"
     ".Lchicken_festival_04a4: .word gUnk_087409E4\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_04a8: .word 0x79c\n"
     ".Lchicken_festival_04ac: .word __vt_19HardwareBlendObject\n"
     ".Lchicken_festival_04b0: .word 0x7a4\n"
@@ -3142,31 +3142,31 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Lchicken_festival_1aa8: .word 0xffffdff0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_1aac: .word gUnk_0848339C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_1aac: .word gUnk_086FD240\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_1ab0: .word 0x200c\n"
     ".Lchicken_festival_1ab4: .word VRAM + 30 * BG_SCREEN_SIZE\n"
     ".Lchicken_festival_1ab8: .word 0x896\n"
     ".Lchicken_festival_1abc: .word gUiScene080B55D0MainTilesLz\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_1ac0: .word gUnk_084832F8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_1ac0: .word gUnk_086FD19C\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_1ac4: .word gUiLayeredSceneAuxMap0\n"
     ".Lchicken_festival_1ac8: .word VRAM + 29 * BG_SCREEN_SIZE\n"
     ".Lchicken_festival_1acc: .word gUiLayeredSceneAuxMap1\n"
     ".Lchicken_festival_1ad0: .word VRAM + 31 * BG_SCREEN_SIZE\n"
     ".Lchicken_festival_1ad4: .word gUiLayeredSceneAuxTiles\n"
     ".Lchicken_festival_1ad8: .word VRAM + BG_CHAR_SIZE\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_1adc: .word gUnk_084B3714\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_1adc: .word gUnk_0872D5AC\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_1ae0: .word BG_PLTT + 7 * PLTT_SIZE_4BPP\n"
     ".Lchicken_festival_1ae4: .word (31 << BF_BG_MAP_BASE_OFFSET) | BGCNT_MOSAIC | (1 << BF_BG_GFX_BASE_OFFSET) | BG_PRIO_1\n"
     ".Lchicken_festival_1ae8: .word (30 << BF_BG_MAP_BASE_OFFSET) | BGCNT_MOSAIC | BG_PRIO_3\n"
@@ -3550,15 +3550,15 @@ asm_unified(
     "movs r0, #0x60\n"
     "strh r0, [r1]\n"
     "ldr r1, [r5]\n"
-    ".ifdef REGION_US\n"
+#if defined(REGION_US)
     "movs r0, #0xa\n"
-    ".else\n"
-    ".ifdef REGION_EU\n"
+#elif defined(REGION_JP) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "movs r0, #0xa\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
     "movs r0, #8\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     "strh r0, [r1, #2]\n"
     "ldr r0, [r5]\n"
     "add r4, sp, #0x140\n"
@@ -6737,11 +6737,11 @@ asm_unified(
     ".Lchicken_festival_3664: .word 0x600f800\n"
     ".Lchicken_festival_3668: .word gUiTwoLayerBackgroundTiles\n"
     ".Lchicken_festival_366c: .word 0x600bfe0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_3670: .word gUnk_084B3F4C\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_3670: .word gUnk_0872DDE4\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_3674: .word 0x1f41\n"
     ".Lchicken_festival_3678: .word 0x1e42\n"
     ".Lchicken_festival_367c: .word OBJ_PLTT\n"
@@ -13167,12 +13167,12 @@ asm_unified(
     ".Lchicken_festival_67b0: .word 0xb3c\n"
     ".Lchicken_festival_67b4: .word gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandQuestion\n"
     ".Lchicken_festival_67b8: .word gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandYes\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lchicken_festival_67bc:\n"
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_ExplanationYes\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lchicken_festival_67bc: .word gText_HarvestSpriteMiniGame_ChickenFestival_UnderstandAgain\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_67c0:\n"
     "movs r2, #0xe3\n"
     "lsls r2, r2, #3\n"
@@ -13208,11 +13208,11 @@ asm_unified(
     "b .Lchicken_festival_681c\n"
     ".align 2, 0\n"
     ".Lchicken_festival_6800:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStartPageBreak\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_RoundOneStart\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_6804:\n"
     "ldr r0, [r4]\n"
     "ldr r1, .Lchicken_festival_6810\n"
@@ -13220,11 +13220,11 @@ asm_unified(
     "b .Lchicken_festival_681c\n"
     ".align 2, 0\n"
     ".Lchicken_festival_6810:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStartPageBreak\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_SemiFinalsStart\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_6814:\n"
     "ldr r0, [r4]\n"
     "ldr r1, .Lchicken_festival_6830\n"
@@ -13240,11 +13240,11 @@ asm_unified(
     "b .Lchicken_festival_6842\n"
     ".align 2, 0\n"
     ".Lchicken_festival_6830:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStartPageBreak\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_FinalsStart\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_6834:\n"
     "ldr r1, .Lchicken_festival_68d4\n"
     "adds r0, r7, r1\n"
@@ -13328,11 +13328,11 @@ asm_unified(
     ".Lchicken_festival_68d4: .word 0xb3c\n"
     ".Lchicken_festival_68d8: .word 0xb33\n"
     ".Lchicken_festival_68dc:\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_StartPageBreak\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".word gText_HarvestSpriteMiniGame_ChickenFestival_Start\n"
-    ".endif\n"
+#endif
     ".Lchicken_festival_68e0: .word 0xb34\n"
     "\n"
     "thumb_func_start func_080BA574\n"

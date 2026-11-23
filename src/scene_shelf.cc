@@ -152,11 +152,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_2_00b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_2_00b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_2_00b8: .word .Lshelf_2_00bc\n"
     ".Lshelf_2_00bc: .word .Lshelf_2_00d4\n"
     ".word .Lshelf_2_010c\n"
@@ -188,11 +188,11 @@ asm_unified(
     "adds r2, r5, #0\n"
     "b .Lshelf_2_01b2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_2_0108: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_2_0108: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_2_010c:\n"
     "ldr r0, [r4]\n"
     "bl GetArticle__C8HeldItem\n"
@@ -219,11 +219,11 @@ asm_unified(
     "adds r2, r5, #0\n"
     "b .Lshelf_2_01b2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_2_0144: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_2_0144: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_2_0148:\n"
     "ldr r0, [r6, #8]\n"
     "ldr r2, .Lshelf_2_0160\n"
@@ -291,11 +291,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_2_01d8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_2_01d8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start DrawShelfPage__14ShelfSceneCoreUi\n"
     "DrawShelfPage__14ShelfSceneCoreUi:\n"
@@ -341,11 +341,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_3_006c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_3_0060: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_3_0060: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_3_0064:\n"
     "ldr r0, [r6, #0x7c]\n"
     "adds r1, r5, #0\n"
@@ -803,11 +803,11 @@ asm_unified(
     "bl func_080CCDEC\n"
     "b .Lshelf_7_04e0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_7_02b0: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_7_02b0: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_7_02b4:\n"
     "ldr r5, [r7, #0x7c]\n"
     "adds r0, r7, #0\n"
@@ -944,11 +944,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_7_04e0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_7_03ec: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_7_03ec: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_7_03f0:\n"
     "mov r0, sp\n"
     "adds r0, #0x2a\n"
@@ -1038,11 +1038,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_7_04e0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_7_04b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_7_04b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_7_04b8:\n"
     "adds r0, r7, #0\n"
     "adds r0, #0x80\n"
@@ -1606,11 +1606,11 @@ asm_unified(
     "mov r1, sb\n"
     "bl .Lshelf_8_0d28\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_04c4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_04c4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_04c8:\n"
     "ldr r5, [r7, #0x7c]\n"
     "adds r0, r7, #0\n"
@@ -1839,11 +1839,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_8_0e76\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_06d0: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_06d0: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_06d4:\n"
     "add r0, sp, #8\n"
     "bl GetAmount__C12ArticleStack\n"
@@ -2050,11 +2050,11 @@ asm_unified(
     "ldr r0, [r3]\n"
     "b .Lshelf_8_0db4\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_08a4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_08a4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_08a8:\n"
     "add r0, sp, #4\n"
     "bl IsEmpty__C12ArticleStack\n"
@@ -2159,11 +2159,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_8_0e76\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_0994: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_0994: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_0998:\n"
     "movs r1, #0\n"
     "str r1, [sp, #0x40]\n"
@@ -2321,11 +2321,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_8_0e76\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_0af0: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_0af0: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_0af4:\n"
     "adds r2, r7, #0\n"
     "adds r2, #0x94\n"
@@ -2435,11 +2435,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_8_0e76\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_0bf0: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_0bf0: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_0bf4:\n"
     "mov r0, r8\n"
     "bl IsEmpty__C12ArticleStack\n"
@@ -2489,11 +2489,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_8_0d0c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_0c68: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_0c68: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_8_0c6c:\n"
     "add r0, sp, #4\n"
     "bl GetArticle__C12ArticleStack\n"
@@ -2728,11 +2728,11 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_8_0e8c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_8_0e8c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start ConfirmWrappedItemMove__14ShelfSceneCoreii\n"
     "ConfirmWrappedItemMove__14ShelfSceneCoreii:\n"
@@ -2871,11 +2871,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lshelf_9_0384\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_013c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_013c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_0140:\n"
     "ldr r0, [r6]\n"
     "mov r1, sb\n"
@@ -3070,11 +3070,11 @@ asm_unified(
     "mov r2, r8\n"
     "b .Lshelf_9_0384\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_0304: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_0304: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_0308:\n"
     "ldr r0, [r6]\n"
     "mov r1, sb\n"
@@ -3136,11 +3136,11 @@ asm_unified(
     "str r7, [sp, #0x20]\n"
     "b .Lshelf_9_06d2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_0390: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_0390: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_0394:\n"
     "ldr r1, [sp, #0x18]\n"
     "ldr r2, [sp, #0x1c]\n"
@@ -3267,11 +3267,11 @@ asm_unified(
     "str r0, [sp]\n"
     "b .Lshelf_9_062c\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_04ac: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_04ac: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_04b0:\n"
     "mov r1, r8\n"
     "ldr r0, [r1]\n"
@@ -3323,11 +3323,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_9_06d2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_0524: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_0524: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_0528:\n"
     "movs r2, #0x80\n"
     "lsls r2, r2, #1\n"
@@ -3447,11 +3447,11 @@ asm_unified(
     "bl func_080CC728\n"
     "b .Lshelf_9_06d2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_0638: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_0638: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lshelf_9_063c:\n"
     "mov r2, r8\n"
     "ldr r0, [r2]\n"
@@ -3529,11 +3529,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lshelf_9_06ec: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lshelf_9_06ec: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start BeginDiscard__14ShelfSceneCorei\n"
     "BeginDiscard__14ShelfSceneCorei:\n"

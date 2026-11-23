@@ -37,7 +37,7 @@ FontTilemapDecimalCommand::~FontTilemapDecimalCommand()
 {
 }
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 void DrawDecimalTo1x2Tilemap(u32 value, u16 * right_tile, u32 base_tile,
     u32 palette, u32 row_stride)
 {
@@ -106,7 +106,7 @@ bool FontTilemapSingleTileDecimalCommand::Run()
     return false;
 }
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 bool FontTilemapTallDecimalCommand::Run()
 {
     DrawDecimalTo1x2Tilemap(value, right_tile, base_tile, palette, row_stride);

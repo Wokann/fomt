@@ -93,7 +93,7 @@ extern "C" DoctorScheduleData const gDoctorScheduleData = {
 #if defined(REGION_JP)
         { 600, &gDoctorScheduleData.payload_storage[9] },
         { 627, &gDoctorScheduleData.payload_storage[1] },
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         { 601, &gDoctorScheduleData.payload_storage[9] },
         { 628, &gDoctorScheduleData.payload_storage[1] },
 #endif
@@ -112,7 +112,7 @@ extern "C" DoctorScheduleData const gDoctorScheduleData = {
 #if defined(REGION_JP)
         { 600, &gDoctorScheduleData.payload_storage[9] },
         { 627, &gDoctorScheduleData.payload_storage[1] },
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         { 601, &gDoctorScheduleData.payload_storage[9] },
         { 628, &gDoctorScheduleData.payload_storage[1] },
 #endif

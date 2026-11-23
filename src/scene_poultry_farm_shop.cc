@@ -10,7 +10,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global __24PoultryFarmShopSceneCoreP18GameStateSaveImageUi\n"
@@ -3888,7 +3888,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start __24PoultryFarmShopSceneCoreP18GameStateSaveImageUi\n"
@@ -7794,7 +7794,7 @@ asm_unified(
     "\tbx r1\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

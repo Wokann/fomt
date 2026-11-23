@@ -74,7 +74,7 @@ struct GameSceneResumeRequest {
         AFTER_FESTIVAL_ANIMAL_SELECTION = 0x2C,
         AFTER_STAFF_CREDITS = 0x2D,
         AFTER_FARMING_TUTORIAL = 0x2E,
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         AFTER_SUPERMARKET_SHOP = 10,
         AFTER_SUPERMARKET_PURCHASE = 11,
         AFTER_WON_SHOP = 12,
@@ -145,7 +145,7 @@ struct HardwareSpriteBufferState;
 
 struct GameScene : AScene {
     GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & request);
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     explicit GameScene(GameStateSaveImage * image);
 #endif
     virtual ~GameScene();

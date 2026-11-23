@@ -180,7 +180,7 @@ extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandYes[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_UnderstandAgain[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_Start[];
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix[];
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix[];
 #endif
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[];

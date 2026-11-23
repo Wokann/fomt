@@ -221,11 +221,11 @@ asm_unified(
     "str r0, [r7, #0x20]\n"
     "b .Lspecial_merchant_2_0210\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lspecial_merchant_2_0160: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lspecial_merchant_2_0160: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lspecial_merchant_2_0164: .word gSpecialMerchantShopCatalog\n"
     ".Lspecial_merchant_2_0168:\n"
     "mov r3, sp\n"
@@ -323,11 +323,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r4\n"
@@ -380,11 +380,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lspecial_merchant_2_0298: .word gUnk_084D95B4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lspecial_merchant_2_0298: .word gUnk_08753608\n"
-    ".endif\n"
+#endif
     ".Lspecial_merchant_2_029c: .word __vt_23IndexedResourceProvider\n"
     "\n"
     "thumb_func_start UpdateDescription__28SpecialMerchantShopSceneCoreUi\n"
@@ -845,11 +845,11 @@ asm_unified(
     "add r0, r8\n"
     "add r1, sp, #8\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "mov r5, sp\n"
     "adds r5, #0x21\n"
     "ldr r1, [sp, #0x18]\n"

@@ -23,14 +23,14 @@ enum {
     MAP_CLOCK_DATE_HOUR_TENS_TILE = 7,
     MAP_CLOCK_TIME_COLON_TILE = 5,
     MAP_CLOCK_TIME_MINUTE_TENS_TILE = 6,
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     MAP_CLOCK_DATE_HOUR_TENS_TILE = 6,
     MAP_CLOCK_TIME_COLON_TILE = 4,
     MAP_CLOCK_TIME_MINUTE_TENS_TILE = 5,
 #endif
 #if defined(REGION_JP)
     MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE = 2,
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     MAP_CLOCK_TIME_WEEKDAY_FIRST_TILE = 0,
 #endif
 };
@@ -73,7 +73,7 @@ void UpdateMapClockStatusWidgetCalendar(MapClockStatusHudWidget const * widget,
 extern u8 const gUnk_0875B444[];
 #if defined(REGION_JP)
 extern u8 const gUnk_083ED9FC[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_086678A0[];
 #endif
 

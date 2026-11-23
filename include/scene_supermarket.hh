@@ -113,7 +113,7 @@ extern char const gText_Supermarket_FoodPurchaseConfirmation[];
 #if defined(REGION_JP)
 extern char const gText_Supermarket_EquipmentDeliveryPartial[];
 extern char const gText_Supermarket_FoodDeliveryPartial[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 // The US-family ROMs reuse this one object for both shop flows.
 extern char const gText_Supermarket_DeliveryPartial[];
 #endif

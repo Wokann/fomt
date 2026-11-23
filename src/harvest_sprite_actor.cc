@@ -51,7 +51,7 @@ extern "C" u16 const gUnk_080F14F0[] = {
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global func_08032BB4\n"
     "    .thumb_func\n"
     "func_08032BB4:\n"
@@ -1801,8 +1801,8 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .global func_08032BB4\n"
     "    .thumb_func\n"
     "func_08032BB4:\n"
@@ -3553,8 +3553,8 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ EU entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .global func_08032BB4\n"
     "    .thumb_func\n"
     "func_08032BB4:\n"
@@ -5305,7 +5305,7 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .global func_08032BB4\n"
     "    .thumb_func\n"
     "func_08032BB4:\n"
@@ -7056,9 +7056,9 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ US/EU/DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 
@@ -7079,7 +7079,7 @@ extern "C" u32 func_08033914(u32 task_experience)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global __18HarvestSpriteActorP10GameObjectUiP13NpcCollectionP4Farm\n"
     "    .thumb_func\n"
@@ -7343,8 +7343,8 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global __18HarvestSpriteActorP10GameObjectUiP13NpcCollectionP4Farm\n"
@@ -7610,8 +7610,8 @@ asm_unified(
     "    bx\tr0\n"
     "\n"
     "    @ EU entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global __18HarvestSpriteActorP10GameObjectUiP13NpcCollectionP4Farm\n"
@@ -7877,7 +7877,7 @@ asm_unified(
     "    bx\tr0\n"
     "\n"
     "    @ DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global __18HarvestSpriteActorP10GameObjectUiP13NpcCollectionP4Farm\n"
@@ -8143,9 +8143,9 @@ asm_unified(
     "    bx\tr0\n"
     "\n"
     "    @ US/EU/DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 
@@ -8958,7 +8958,7 @@ asm_unified(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global func_08034180\n"
     "    .thumb_func\n"
@@ -9078,8 +9078,8 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034180\n"
@@ -9201,8 +9201,8 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ EU entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034180\n"
@@ -9324,7 +9324,7 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034180\n"
@@ -9446,9 +9446,9 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ US/EU/DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 
@@ -9468,7 +9468,7 @@ extern "C" u32 func_08034248(HarvestSpriteActor const * state, u32 value)
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global func_08034260\n"
     "    .thumb_func\n"
@@ -10691,8 +10691,8 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
-    "    .ifdef REGION_EU\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034260\n"
@@ -11917,8 +11917,8 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ EU entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
-    "    .ifdef REGION_DE\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_DE)
+#if defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034260\n"
@@ -13143,7 +13143,7 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     "\n"
     "    .global func_08034260\n"
@@ -14368,9 +14368,9 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    @ US/EU/DE entity UI code, actual Thumb instructions and relocations.\n"
-    "    .endif\n"
-    "    .endif\n"
-    "    .endif\n"
+#endif
+#endif
+#endif
 );
 
 

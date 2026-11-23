@@ -11418,7 +11418,7 @@ asm_unified(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    @\n"
     "    .global func_08045584\n"
     "    .thumb_func\n"
@@ -11514,7 +11514,7 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    .SYNTAX UNIFIED\n"
     "\n"
@@ -11612,7 +11612,7 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 // The JP routine misses the engaged candidate and does not retry all birthday exclusions.
@@ -12212,7 +12212,7 @@ asm_unified(
     ".Lromance480: .word 0x00001CD4\n"
     ".Lromance484: .word 0x00001BD8\n"
     "\n"
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\tthumb_func_start UpdateScriptRomanceEvent\n"
     "UpdateScriptRomanceEvent:\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -28229,7 +28229,7 @@ asm_unified(
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global func_0804E0F8\n"
@@ -28705,7 +28705,7 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".Ljp_0804E2D0: .word 0x00001C70\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start func_0804E0F8\n"
@@ -29178,7 +29178,7 @@ asm_unified(
     "\t@ The full-buffer and rectangle 2D fillers, both four-byte unaligned glyph\n"
     "\t@ fallbacks, and the packed tile-buffer copy helper are rebuilt from\n"
     "\t@ src/font_draw.cc for both regions.\n"
-    "    .endif\n"
+#endif
 );
 
 

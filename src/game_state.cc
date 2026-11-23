@@ -127,7 +127,7 @@ void GameStateSaveImage::SetFlag3() { obtained_mythic_tool = true; }
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    thumb_func_start DayUpdate__18GameStateSaveImage\n"
     "DayUpdate__18GameStateSaveImage:\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -701,7 +701,7 @@ asm_unified(
     ".Ljp_080113E0: .word 0x00001AA8\n"
     ".Ljp_080113E4: .word 0x000034C8\n"
     ".Ljp_080113E8: .word 0x000034DC\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    thumb_func_start DayUpdate__18GameStateSaveImage\n"
     "DayUpdate__18GameStateSaveImage: @ US 0x08010F54\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -1276,7 +1276,7 @@ asm_unified(
     ".L08011404: .word 0x000034C8\n"
     ".L08011408: .word 0x000034DC\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 
@@ -1432,7 +1432,7 @@ failed:
 
 asm_unified(
     ".text\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global __18GameStateSaveImageR10SramAccessUiRUi\n"
     "    .thumb_func\n"
@@ -1771,7 +1771,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_08011910: .word gSramAccessStatus\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    thumb_func_start __18GameStateSaveImageR10SramAccessUiRUi\n"
     "__18GameStateSaveImageR10SramAccessUiRUi: @ 0x08011650\n"
@@ -2109,7 +2109,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".L08011930: .word gSramAccessStatus\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

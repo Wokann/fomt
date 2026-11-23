@@ -17,7 +17,7 @@ StaffCreditsCore::StaffCreditsCore()
     Clear2DGfxBuffer(reinterpret_cast<u32 const &>(size), text_tiles, 0);
 #if defined(REGION_JP)
     unk_714 = -96;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     unk_714 = 256;
 #endif
     unk_716 = 0;
@@ -34,7 +34,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
     "    .global Run__16StaffCreditsCore\n"
@@ -895,7 +895,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
     "\tthumb_func_start Run__16StaffCreditsCore\n"
@@ -1836,7 +1836,7 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

@@ -134,7 +134,7 @@ EXTERN_C
 extern u8 const gUiHandCursorArchive[];
 #if defined(REGION_JP)
 extern u8 const gUnk_084AF4E4[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_0872937C[];
 #endif
 

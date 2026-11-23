@@ -189,7 +189,7 @@ asm_unified(
 );
 
 
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"

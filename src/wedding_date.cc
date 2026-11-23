@@ -28,13 +28,13 @@ u8 const gUnk_FieldRenderSortedValues[] = {
     DATE_FALL_HORSE_RACE,
     DATE_SHEEP_FESTIVAL - 1,
     DATE_SHEEP_FESTIVAL,
-#if !defined(REGION_JP) || defined(BUGFIX)
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     // JP omits the Pumpkin Festival from its wedding exclusions.
     DATE_PUMPKIN_FESTIVAL,
 #endif
     DATE_WINTER_THANKSGIVING,
     DATE_STARRY_NIGHT_FESTIVAL,
-#if !defined(REGION_JP) || defined(BUGFIX)
+#if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     // JP also omits Thomas's stocking-gift day.
     DATE_THOMAS_STOCKING_GIFT,
 #endif

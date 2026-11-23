@@ -11,7 +11,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .global _._22ResourceSpriteRenderer\n"
     "    .thumb_func\n"
     "_._22ResourceSpriteRenderer:\n"
@@ -581,7 +581,7 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start _._22ResourceSpriteRenderer\n"
     "_._22ResourceSpriteRenderer: @ 0x080756D0\n"
@@ -1153,7 +1153,7 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

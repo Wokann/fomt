@@ -460,11 +460,11 @@ asm_unified(
     "str r3, [sp]\n"
     "movs r2, #0xa0\n"
     "movs r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl DrawDecimalTo2x2Tilemap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl DrawDecimalTo1x2Tilemap\n"
-    ".endif\n"
+#endif
     "ldr r0, [r7, #0x1c]\n"
     "ldr r0, [r0, #0x18]\n"
     "adds r0, r0, r5\n"
@@ -486,11 +486,11 @@ asm_unified(
     "movs r1, #0x59\n"
     "b .Lcarpenter_2_0318\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcarpenter_2_0308: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lcarpenter_2_0308: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lcarpenter_2_030c: .word gCarpenterCatalog\n"
     ".Lcarpenter_2_0310:\n"
     "mov r4, sp\n"
@@ -1307,11 +1307,11 @@ asm_unified(
     "bl GetUnk10__C4Farm\n"
     "add r1, sp, #0x34\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r5, .Lcarpenter_5_0478\n"
     "adds r0, r6, r5\n"
     "mov r7, sb\n"
@@ -1484,11 +1484,11 @@ asm_unified(
     "adds r0, r0, r7\n"
     "add r1, sp, #0x34\n"
     "movs r2, #7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r4, .Lcarpenter_5_06a4\n"
     "adds r0, r6, r4\n"
     "movs r5, #0\n"
@@ -2861,15 +2861,15 @@ asm_unified(
     "str r0, [r1]\n"
     "b .Lcarpenter_5_12a0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcarpenter_5_1104: .word gText_Carpenter_AreYouSureNow\n"
-    ".else\n"
-    ".ifdef REGION_DE\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_DE)
     ".Lcarpenter_5_1104: .word gText_Carpenter_AreYouSureNow\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".Lcarpenter_5_1104: .word gText_Carpenter_ConfirmUpgrade\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     ".Lcarpenter_5_1108:\n"
     "movs r1, #0xd4\n"
     "lsls r1, r1, #2\n"
@@ -3003,15 +3003,15 @@ asm_unified(
     "str r0, [r1]\n"
     "b .Lcarpenter_5_12a0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lcarpenter_5_1228: .word gText_Carpenter_AreYouSureNow\n"
-    ".else\n"
-    ".ifdef REGION_DE\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_DE)
     ".Lcarpenter_5_1228: .word gText_Carpenter_AreYouSureNow\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".Lcarpenter_5_1228: .word gText_Carpenter_ConfirmUpgrade\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     ".Lcarpenter_5_122c:\n"
     "movs r1, #0xd4\n"
     "lsls r1, r1, #2\n"
@@ -3161,7 +3161,7 @@ CarpenterCatalogEntry const gCarpenterCatalog[] = {
     { gText_Carpenter_RedDoghouse, 20000, 500, 11, gText_Carpenter_DoghouseCost },
 #if defined(REGION_DE)
     { gText_Carpenter_BlueDoghouse, 20000, 500, 12, gText_Carpenter_BlueDoghouseCost },
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     { gText_Carpenter_BlueDoghouse, 20000, 500, 12, gText_Carpenter_DoghouseCost },
 #endif
     { gText_Carpenter_StrangeDoghouse, 20000, 500, 13, gText_Carpenter_DoghouseCost },

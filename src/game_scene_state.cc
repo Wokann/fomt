@@ -54,7 +54,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "\n"
     "    .global sub_080D8178\n"
     "    .thumb_func\n"
@@ -5779,7 +5779,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Lraw_code_linkonce_1936_2: .word 0x000004DC\n"
     "\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start sub_080D8178\n"
     "sub_080D8178: @ 0x080D8178\n"
@@ -11554,7 +11554,7 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080DB0E8: .word 0x000004DC\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 GameSceneState::~GameSceneState()

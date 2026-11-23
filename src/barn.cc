@@ -538,7 +538,7 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
 #if defined(REGION_JP)
     if (IsReadyToGiveBirth(pregnancy_stall_idx))
     {
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     if (!IsReadyToGiveBirth(pregnancy_stall_idx))
         return -1;
 #endif
@@ -562,7 +562,7 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
         u32 new_affection = rand();
         u32 max_new_affection = parent_cow->GetAffection() / 2;
         new_cow.AddAffection(new_affection % max_new_affection);
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         u32 max_new_affection = parent_cow->GetAffection() / 2;
         if (max_new_affection > 1)
             new_cow.AddAffection(rand() % max_new_affection);
@@ -585,7 +585,7 @@ int Barn::AttemptBirth(u32 pregnancy_stall_idx)
         u32 new_affection = rand();
         u32 max_new_affection = reinterpret_cast<Animal const *>(0)->GetAffection() / 2;
         new_sheep.AddAffection(new_affection % max_new_affection);
-#else
+#elif defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         u32 max_new_affection = parent_sheep->GetAffection() / 2;
         if (max_new_affection > 1)
             new_sheep.AddAffection(rand() % max_new_affection);

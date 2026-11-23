@@ -451,7 +451,7 @@ struct FarmStatusEarningsPage : ScrollMenuPage {
             ".LFarmStatusEarningsPage_draw_12: .word 0x000011bc\n"
         );
     }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     virtual inline NAKED u32 Draw()
     {
         asm_unified(
@@ -673,7 +673,7 @@ struct FarmStatusEarningsPage : ScrollMenuPage {
 #endif
 #if defined(REGION_JP)
     u8 unk_5B8[0xDE8 - 0x5B8];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     u8 unk_5B8[0x1264 - 0x5B8];
 #endif
     FarmStatusEntries<FarmStatusMarkerRow, 61> markers_1264;
@@ -698,7 +698,7 @@ typedef char FarmStatusAnimalPageSizeCheck[sizeof(FarmStatusAnimalPage) == 0x431
 typedef char FarmStatusHarvestSpritesPageSizeCheck[sizeof(FarmStatusHarvestSpritesPage) == 0x22B8 ? 1 : -1];
 #if defined(REGION_JP)
 typedef char FarmStatusEarningsPageSizeCheck[sizeof(FarmStatusEarningsPage) == 0x1580 ? 1 : -1];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 typedef char FarmStatusEarningsPageSizeCheck[sizeof(FarmStatusEarningsPage) == 0x19FC ? 1 : -1];
 #endif
 typedef char FarmStatusToolsPageSizeCheck[sizeof(FarmStatusToolsPage) == 0x9F4 ? 1 : -1];
@@ -744,7 +744,7 @@ extern char const gText_FarmStatus_DayUnit[];
 extern char const gText_FarmStatus_MonthSuffix[];
 extern char const gText_FarmStatus_ToolUpgradeInProgress[];
 extern char const gText_FarmStatus_ToolUpgradeAvailable[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_FarmStatus_CountFieldPadding[];
 extern char const gText_FarmStatus_DayAbbreviation[];
 extern char const gText_FarmStatus_ToolShopLabel[];

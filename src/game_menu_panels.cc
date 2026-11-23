@@ -165,10 +165,10 @@ asm_unified(
     "pop {r4, r5, r6}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_10_0084: .word __vt_23IndexedResourceProvider\n"
     "\n"
     "thumb_func_start SetMenuItemIconData\n"
@@ -216,12 +216,12 @@ asm_unified(
     "pop {r4, r5}\n"
     "pop {r1}\n"
     "bx r1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_13_0038: .word __vt_13GameMenuPanel\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_1_13_0038: .word __vt_13GameMenuPanel\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start _._13GameMenuPanel\n"
     "_._13GameMenuPanel:\n"
@@ -239,12 +239,12 @@ asm_unified(
     "str r1, [sp]\n"
     "str r0, [sp, #4]\n"
     "b .Lmenu_1_14_003c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_14_001c: .word __vt_13GameMenuPanel\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_1_14_001c: .word __vt_13GameMenuPanel\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_14_0020:\n"
     "ldr r0, [sp]\n"
     "ldr r1, [r0, #8]\n"
@@ -572,12 +572,12 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r1}\n"
     "bx r1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_18_00c8: .word __vt_20GameMenuTilemapPanel\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_1_18_00c8: .word __vt_20GameMenuTilemapPanel\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start func_080CB090\n"
     "func_080CB090:\n"
@@ -979,10 +979,10 @@ asm_unified(
     "adds r1, #3\n"
     "str r1, [sp, #0x34]\n"
     "b .Lmenu_1_22_017e\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_22_008c: .word 0x6000680\n"
     ".Lmenu_1_22_0090:\n"
     "str r1, [sp, #0x4c]\n"
@@ -1157,12 +1157,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
     "b .Lmenu_1_22_0296\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_22_01cc: .word 0x5000060\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_1_22_01cc: .word BG_PLTT + 3 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_22_01d0:\n"
     "mov sl, r1\n"
     "movs r0, #1\n"
@@ -1348,10 +1348,10 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_22_0328: .word gMenuGridCellTilePositions\n"
     ".Lmenu_1_22_032c: .word 0x600f000\n"
     ".Lmenu_1_22_0330: .word 0x600f080\n"
@@ -1580,11 +1580,11 @@ asm_unified(
     "str r0, [r5, #4]\n"
     "b .Lmenu_1_23_026a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_23_01a0: .word 0x5000060\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_1_23_01a0: .word BG_PLTT + 3 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_23_01a4:\n"
     "mov sl, r1\n"
     "movs r0, #1\n"
@@ -1770,10 +1770,10 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_23_02fc: .word gMenuGridCellTilePositions\n"
     ".Lmenu_1_23_0300: .word 0x600f000\n"
     ".Lmenu_1_23_0304: .word 0x600f080\n"
@@ -1911,10 +1911,10 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_25_0078: .word gMenuGridHeaderTilePosition\n"
     ".Lmenu_1_25_007c: .word 0x600f080\n"
     ".Lmenu_1_25_0080: .word 0x600f082\n"
@@ -2035,10 +2035,10 @@ asm_unified(
     "adds r6, #0x2c\n"
     "str r6, [sp, #0x30]\n"
     "b .Lmenu_1_27_0130\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_27_005c: .word 0x6000600\n"
     ".Lmenu_1_27_0060:\n"
     "str r1, [sp, #0x34]\n"
@@ -2191,11 +2191,11 @@ asm_unified(
     "str r0, [r5, #4]\n"
     "b .Lmenu_1_27_023e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_27_0170: .word 0x5000040\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_1_27_0170: .word BG_PLTT + 2 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_27_0174:\n"
     "str r1, [sp, #0x34]\n"
     "movs r0, #1\n"
@@ -2433,10 +2433,10 @@ asm_unified(
     "adds r6, #0x2c\n"
     "str r6, [sp, #0x30]\n"
     "b .Lmenu_1_28_012c\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_28_0058: .word 0x6000600\n"
     ".Lmenu_1_28_005c:\n"
     "str r1, [sp, #0x34]\n"
@@ -2589,11 +2589,11 @@ asm_unified(
     "str r0, [r5, #4]\n"
     "b .Lmenu_1_28_023a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_1_28_016c: .word 0x5000040\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_1_28_016c: .word BG_PLTT + 2 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_28_0170:\n"
     "str r1, [sp, #0x34]\n"
     "movs r0, #1\n"
@@ -2843,10 +2843,10 @@ asm_unified(
     "pop {r4, r5, r6}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_1_29_0074: .word gMenuGridHeaderTilePosition\n"
     ".Lmenu_1_29_0078: .word 0x600f000\n"
     ".Lmenu_1_29_007c: .word 0x600f080\n"
@@ -3085,11 +3085,11 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_1_01b0: .word __vt_19GameMenuSpritePanel\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_1_01b0: .word __vt_19GameMenuSpritePanel\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start func_080CC310\n"
     "func_080CC310:\n"
@@ -3725,17 +3725,17 @@ asm_unified(
     "adds r6, #0x38\n"
     "str r6, [sp, #0x40]\n"
     "b .Lmenu_2_6_01a6\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_6_00c4: .word gMenuGridCellTilePositions\n"
     ".Lmenu_2_6_00c8: .word 0xffffff00\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_6_00cc: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_6_00cc: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_6_00d0:\n"
     "str r1, [sp, #0x48]\n"
     "movs r0, #1\n"
@@ -3889,11 +3889,11 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lmenu_2_6_02b2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_6_01e4: .word 0x5000200\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_6_01e4: .word OBJ_PLTT\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_6_01e8:\n"
     "str r1, [sp, #0x50]\n"
     "movs r0, #1\n"
@@ -4148,17 +4148,17 @@ asm_unified(
     "adds r6, #0x2c\n"
     "str r6, [sp, #0x38]\n"
     "b .Lmenu_2_7_0196\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_7_00b4: .word gMenuGridCellTilePositions\n"
     ".Lmenu_2_7_00b8: .word 0xffffff00\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_7_00bc: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_7_00bc: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_7_00c0:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -4312,11 +4312,11 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lmenu_2_7_02a2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_7_01d4: .word 0x5000200\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_7_01d4: .word OBJ_PLTT\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_7_01d8:\n"
     "str r1, [sp, #0x48]\n"
     "movs r0, #1\n"
@@ -4556,10 +4556,10 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_8_0094: .word gMenuGridCellTilePositions\n"
     ".Lmenu_2_8_0098: .word 0xffffff00\n"
     ".Lmenu_2_8_009c: .word 0x600f080\n"
@@ -4613,10 +4613,10 @@ asm_unified(
     "pop {r4, r5}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_9_0060: .word gMenuGridCellTilePositions\n"
     ".Lmenu_2_9_0064: .word 0xffffff00\n"
     ".Lmenu_2_9_0068: .word 0x600f080\n"
@@ -4688,11 +4688,11 @@ asm_unified(
     "str r7, [sp, #0x3c]\n"
     "b .Lmenu_2_10_0162\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_10_0088: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_10_0088: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_10_008c:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -4848,12 +4848,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lmenu_2_10_0272\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_10_01a4: .word 0x5000200\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_2_10_01a4: .word OBJ_PLTT\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_10_01a8:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -5096,11 +5096,11 @@ asm_unified(
     "str r7, [sp, #0x38]\n"
     "b .Lmenu_2_11_015e\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_11_0084: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lmenu_2_11_0084: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_11_0088:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -5256,12 +5256,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lmenu_2_11_026e\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lmenu_2_11_01a0: .word 0x5000200\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lmenu_2_11_01a0: .word OBJ_PLTT\n"
-    ".endif\n"
+#endif
     ".Lmenu_2_11_01a4:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"

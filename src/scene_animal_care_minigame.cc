@@ -488,39 +488,39 @@ asm_unified(
     "b .Lanimal_care_00_0448\n"
     ".align 2, 0\n"
     ".Lanimal_care_00_03d4: .word __vt_27HarvestSpriteAnimalCareCore\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_00_03d8: .word gUnk_084C4718\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_00_03d8: .word gUnk_0873E5B0\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_00_03dc: .word 0x41c\n"
     ".Lanimal_care_00_03e0: .word gUnk_0873DE44\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_00_03e4: .word gUnk_084C6708\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_00_03e4: .word gUnk_087405A0\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_00_03e8: .word 0x424\n"
     ".Lanimal_care_00_03ec: .word gActorIndexedResourceArchive\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_00_03f0: .word gUnk_084C0FBC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_00_03f0: .word gUnk_0873AE54\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_00_03f4: .word 0x42c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_00_03f8: .word gUnk_084A3678\n"
     ".Lanimal_care_00_03fc: .word gUnk_084B1FCC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_00_03f8: .word gUnk_0871D51C\n"
     ".Lanimal_care_00_03fc: .word gUnk_0872BE64\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_00_0400: .word 0x434\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_00_0404: .word gUnk_084C3840\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_00_0404: .word gUnk_0873D6D8\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_00_0408: .word __vt_19HardwareBlendObject\n"
     ".Lanimal_care_00_040c: .word 0x43c\n"
     ".Lanimal_care_00_0410: .word 0x7cc\n"
@@ -1091,11 +1091,11 @@ asm_unified(
     "mov r6, sb\n"
     "mov r5, r8\n"
     "push {r5, r6, r7}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "sub sp, #0xe0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "sub sp, #0xdc\n"
-    ".endif\n"
+#endif
     "mov sb, r0\n"
     "ldr r0, .Lanimal_care_06_0124\n"
     "ldr r0, [r0]\n"
@@ -1130,11 +1130,11 @@ asm_unified(
     "ldrb r0, [r0]\n"
     "add r1, sp, #0x10\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r1, .Lanimal_care_06_0140\n"
     "movs r3, #0xf8\n"
     "lsls r3, r3, #2\n"
@@ -1156,22 +1156,22 @@ asm_unified(
     "ldr r7, .Lanimal_care_06_0150\n"
     "adds r0, r7, #0\n"
     "strh r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x70\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x6c\n"
-    ".endif\n"
+#endif
     "movs r5, #4\n"
     "movs r6, #2\n"
     "movs r1, #0\n"
     "mov r8, r1\n"
     "strh r5, [r0]\n"
     "strh r6, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x70]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x6c]\n"
-    ".endif\n"
+#endif
     "mov r4, sb\n"
     "adds r4, #0xc\n"
     "adds r1, r4, #0\n"
@@ -1179,18 +1179,18 @@ asm_unified(
     "bl Clear2DGfxBuffer\n"
     "movs r2, #1\n"
     "mov sl, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x74\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x70\n"
-    ".endif\n"
+#endif
     "strh r5, [r0]\n"
     "strh r6, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x74]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x70]\n"
-    ".endif\n"
+#endif
     "add r3, sp, #0x10\n"
     "str r3, [sp]\n"
     "mov r5, r8\n"
@@ -1213,18 +1213,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r6, .Lanimal_care_06_0158\n"
     "adds r2, r2, r6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r4, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r7, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r7, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r8, r7\n"
     "ldr r1, [r5, #4]\n"
     "ldr r0, [r5, #0xc]\n"
@@ -1233,11 +1233,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_0102\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -1247,37 +1247,37 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
     "mov r5, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r5, #0x80\n"
     "str r5, [sp, #0xc4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r5, #0x7c\n"
     "str r5, [sp, #0xc0]\n"
-    ".endif\n"
+#endif
     "mov r6, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r6, #0x28\n"
     "str r6, [sp, #0xb8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r6, #0x24\n"
     "str r6, [sp, #0xb4]\n"
-    ".endif\n"
+#endif
     "mov r7, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r7, #0x48\n"
     "str r7, [sp, #0xbc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r7, #0x44\n"
     "str r7, [sp, #0xb8]\n"
-    ".endif\n"
+#endif
     "mov r0, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, #0x4c\n"
     "str r0, [sp, #0xc0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, #0x48\n"
     "str r0, [sp, #0xbc]\n"
-    ".endif\n"
+#endif
     "b .Lanimal_care_06_023a\n"
     ".align 2, 0\n"
     ".Lanimal_care_06_0124: .word gUiSharedPalette\n"
@@ -1295,34 +1295,34 @@ asm_unified(
     ".Lanimal_care_06_0154: .word 0x888\n"
     ".Lanimal_care_06_0158: .word OBJ_VRAM0\n"
     ".Lanimal_care_06_015c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "mov r1, sl\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0x7c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0x78]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r2, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x78]\n"
     "add r1, sp, #0x7c\n"
     "add r0, sp, #0x78\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x74]\n"
     "add r1, sp, #0x78\n"
     "add r0, sp, #0x74\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lanimal_care_06_0176\n"
     "adds r0, r1, #0\n"
@@ -1345,47 +1345,47 @@ asm_unified(
     "mov sl, r0\n"
     ".Lanimal_care_06_0198:\n"
     "adds r6, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r6, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r6, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5]\n"
     "adds r3, r6, #0\n"
     "mov r4, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r4, #0x80\n"
     "str r4, [sp, #0xc4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r4, #0x7c\n"
     "str r4, [sp, #0xc0]\n"
-    ".endif\n"
+#endif
     "mov r6, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r6, #0x28\n"
     "str r6, [sp, #0xb8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r6, #0x24\n"
     "str r6, [sp, #0xb4]\n"
-    ".endif\n"
+#endif
     "mov r7, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r7, #0x48\n"
     "str r7, [sp, #0xbc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r7, #0x44\n"
     "str r7, [sp, #0xb8]\n"
-    ".endif\n"
+#endif
     "mov r0, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, #0x4c\n"
     "str r0, [sp, #0xc0]\n"
     "ldr r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, #0x48\n"
     "str r0, [sp, #0xbc]\n"
     "ldr r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r1\n"
     "beq .Lanimal_care_06_01d8\n"
     ".Lanimal_care_06_01be:\n"
@@ -1400,20 +1400,20 @@ asm_unified(
     ".Lanimal_care_06_01ce:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_01be\n"
     ".Lanimal_care_06_01d8:\n"
     "adds r6, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x7c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x78]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lanimal_care_06_01f4\n"
     "cmp r6, #0\n"
@@ -1463,17 +1463,17 @@ asm_unified(
     "beq .Lanimal_care_06_022e\n"
     "bl free\n"
     ".Lanimal_care_06_022e:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, sl\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r5]\n"
     "str r6, [r5, #4]\n"
     "str r0, [r5, #0xc]\n"
@@ -1494,22 +1494,22 @@ asm_unified(
     "movs r0, #1\n"
     "mov r8, r0\n"
     "str r0, [sp, #0xc]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xc4]\n"
     "movs r1, #0xc8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xc0]\n"
     "movs r1, #0xd0\n"
-    ".endif\n"
+#endif
     "movs r2, #8\n"
     "bl InitializeMosaicSpriteOam\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x80]\n"
     "ldr r1, [sp, #0x84]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x7c]\n"
     "ldr r1, [sp, #0x80]\n"
-    ".endif\n"
+#endif
     "str r0, [r4]\n"
     "str r1, [r4, #4]\n"
     "movs r0, #0x14\n"
@@ -1583,26 +1583,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x28\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x24\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xb8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xb4]\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xb8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xb4]\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r1, r2, r3}\n"
     "stm r4!, {r1, r2, r3}\n"
     "ldm r0!, {r1, r6, r7}\n"
@@ -1629,18 +1629,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r4, .Lanimal_care_06_0388\n"
     "adds r2, r2, r4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r5, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r5, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r5\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -1649,11 +1649,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_0374\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r7}\n"
     "stm r0!, {r2, r3, r7}\n"
     "ldr r1, [r1]\n"
@@ -1669,30 +1669,30 @@ asm_unified(
     ".Lanimal_care_06_0384: .word 0x4b4\n"
     ".Lanimal_care_06_0388: .word OBJ_VRAM0\n"
     ".Lanimal_care_06_038c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "mov r4, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x8c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x88]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x88]\n"
     "add r1, sp, #0x8c\n"
     "add r0, sp, #0x88\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x84]\n"
     "add r1, sp, #0x88\n"
     "add r0, sp, #0x84\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lanimal_care_06_03a6\n"
     "adds r0, r1, #0\n"
@@ -1715,18 +1715,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_03c8:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lanimal_care_06_03f0\n"
     ".Lanimal_care_06_03d6:\n"
@@ -1741,20 +1741,20 @@ asm_unified(
     ".Lanimal_care_06_03e6:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_03d6\n"
     ".Lanimal_care_06_03f0:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x8c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x88]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lanimal_care_06_040c\n"
     "cmp r5, #0\n"
@@ -1804,17 +1804,17 @@ asm_unified(
     "beq .Lanimal_care_06_0446\n"
     "bl free\n"
     ".Lanimal_care_06_0446:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -1833,18 +1833,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lanimal_care_06_046c:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lanimal_care_06_049c\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -1853,11 +1853,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_0492\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -1870,49 +1870,49 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_06_049c: .word OBJ_PLTT + 3 * PLTT_SIZE_4BPP\n"
     ".Lanimal_care_06_04a0:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x94\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x90\n"
-    ".endif\n"
+#endif
     "str r0, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x90\n"
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x8c]\n"
     "ldr r0, [r1]\n"
     "add r2, sp, #0x8c\n"
     "cmp r4, r0\n"
-    ".endif\n"
+#endif
     "bhs .Lanimal_care_06_04bc\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, r1, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r2, r1, #0\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_06_04bc:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [r0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [r2]\n"
-    ".endif\n"
+#endif
     "adds r0, r4, r0\n"
     "cmp r0, #0\n"
     "beq .Lanimal_care_06_04da\n"
@@ -1930,18 +1930,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_04de:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lanimal_care_06_0506\n"
     ".Lanimal_care_06_04ec:\n"
@@ -1956,20 +1956,20 @@ asm_unified(
     ".Lanimal_care_06_04fc:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_04ec\n"
     ".Lanimal_care_06_0506:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0x94]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0x90]\n"
-    ".endif\n"
+#endif
     "cmp r1, #1\n"
     "bne .Lanimal_care_06_0522\n"
     "cmp r5, #0\n"
@@ -2019,17 +2019,17 @@ asm_unified(
     "beq .Lanimal_care_06_055c\n"
     "bl free\n"
     ".Lanimal_care_06_055c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2114,26 +2114,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r1, r6, r7}\n"
     "stm r4!, {r1, r6, r7}\n"
     "ldm r0!, {r2, r3, r6}\n"
@@ -2160,18 +2160,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r4, .Lanimal_care_06_0690\n"
     "adds r2, r2, r4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r5, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r5, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r5\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2180,11 +2180,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_0680\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r7}\n"
     "stm r0!, {r2, r3, r7}\n"
     "ldr r1, [r1]\n"
@@ -2199,28 +2199,28 @@ asm_unified(
     ".Lanimal_care_06_068c: .word 0x4dc\n"
     ".Lanimal_care_06_0690: .word OBJ_VRAM0\n"
     ".Lanimal_care_06_0694:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
     "add r1, sp, #0x9c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
     "add r1, sp, #0x98\n"
-    ".endif\n"
+#endif
     "mov r4, r8\n"
     "str r4, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x98\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x94\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
@@ -2245,18 +2245,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_06d2:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lanimal_care_06_06fa\n"
     ".Lanimal_care_06_06e0:\n"
@@ -2271,20 +2271,20 @@ asm_unified(
     ".Lanimal_care_06_06f0:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_06e0\n"
     ".Lanimal_care_06_06fa:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0x9c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0x98]\n"
-    ".endif\n"
+#endif
     "cmp r1, #1\n"
     "bne .Lanimal_care_06_0716\n"
     "cmp r5, #0\n"
@@ -2334,17 +2334,17 @@ asm_unified(
     "beq .Lanimal_care_06_0750\n"
     "bl free\n"
     ".Lanimal_care_06_0750:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2363,18 +2363,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lanimal_care_06_0776:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lanimal_care_06_07a4\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2383,11 +2383,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_079c\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -2400,31 +2400,31 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_06_07a4: .word OBJ_PLTT + 4 * PLTT_SIZE_4BPP\n"
     ".Lanimal_care_06_07a8:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0xa4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0xa0\n"
-    ".endif\n"
+#endif
     "str r0, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0xa0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x9c\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
@@ -2449,18 +2449,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_07e6:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lanimal_care_06_080e\n"
     ".Lanimal_care_06_07f4:\n"
@@ -2475,20 +2475,20 @@ asm_unified(
     ".Lanimal_care_06_0804:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_07f4\n"
     ".Lanimal_care_06_080e:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0xa4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0xa0]\n"
-    ".endif\n"
+#endif
     "cmp r1, #1\n"
     "bne .Lanimal_care_06_082a\n"
     "cmp r5, #0\n"
@@ -2538,17 +2538,17 @@ asm_unified(
     "beq .Lanimal_care_06_0864\n"
     "bl free\n"
     ".Lanimal_care_06_0864:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2655,26 +2655,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r3, r5, r6}\n"
     "stm r4!, {r3, r5, r6}\n"
     "ldm r0!, {r1, r2, r7}\n"
@@ -2703,18 +2703,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r0, .Lanimal_care_06_09d0\n"
     "adds r2, r2, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r1\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2723,11 +2723,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_09bc\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -2743,28 +2743,28 @@ asm_unified(
     ".Lanimal_care_06_09cc: .word 0x8a8\n"
     ".Lanimal_care_06_09d0: .word OBJ_VRAM0\n"
     ".Lanimal_care_06_09d4:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
     "add r1, sp, #0xac\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
     "add r1, sp, #0xa8\n"
-    ".endif\n"
+#endif
     "movs r5, #1\n"
     "str r5, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r7, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0xa8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0xa4\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
@@ -2789,11 +2789,11 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_0a12:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
     "b .Lanimal_care_06_0a30\n"
@@ -2810,19 +2810,19 @@ asm_unified(
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
     ".Lanimal_care_06_0a30:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_0a1c\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "cmp r1, #1\n"
     "bne .Lanimal_care_06_0a52\n"
     "cmp r5, #0\n"
@@ -2872,17 +2872,17 @@ asm_unified(
     "beq .Lanimal_care_06_0a8c\n"
     "bl free\n"
     ".Lanimal_care_06_0a8c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2901,18 +2901,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lanimal_care_06_0ab2:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lanimal_care_06_0ae0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2921,11 +2921,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_06_0ad8\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -2938,31 +2938,31 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_06_0ae0: .word OBJ_PLTT + 13 * PLTT_SIZE_4BPP\n"
     ".Lanimal_care_06_0ae4:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0xb4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0xb0\n"
-    ".endif\n"
+#endif
     "str r0, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0xb0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0xac\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
@@ -2987,18 +2987,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lanimal_care_06_0b22:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lanimal_care_06_0b4a\n"
     ".Lanimal_care_06_0b30:\n"
@@ -3013,20 +3013,20 @@ asm_unified(
     ".Lanimal_care_06_0b40:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xd8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lanimal_care_06_0b30\n"
     ".Lanimal_care_06_0b4a:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0xb4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0xb0]\n"
-    ".endif\n"
+#endif
     "cmp r1, #1\n"
     "bne .Lanimal_care_06_0b66\n"
     "cmp r5, #0\n"
@@ -3076,17 +3076,17 @@ asm_unified(
     "beq .Lanimal_care_06_0ba0\n"
     "bl free\n"
     ".Lanimal_care_06_0ba0:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xdc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xd8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -3131,11 +3131,11 @@ asm_unified(
     "ldr r1, [r5]\n"
     "movs r0, #0x40\n"
     "strh r0, [r1, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r0, .Lanimal_care_06_0f5c\n"
     "ldm r0!, {r2, r3, r4}\n"
     "stm r1!, {r2, r3, r4}\n"
@@ -3152,13 +3152,13 @@ asm_unified(
     "ldr r7, .Lanimal_care_06_0f58\n"
     "add r7, sb\n"
     "mov r1, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, #0x18\n"
     "str r1, [sp, #0xd4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r1, #0x14\n"
     "str r1, [sp, #0xd0]\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_06_0c26:\n"
     "movs r0, #0x1c\n"
     "bl __builtin_new\n"
@@ -3194,28 +3194,28 @@ asm_unified(
     "movs r3, #1\n"
     "strb r3, [r0, #0x18]\n"
     "ldm r5!, {r1}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r4, [sp, #0xd4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r4, [sp, #0xd0]\n"
-    ".endif\n"
+#endif
     "ldm r4!, {r0}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0xd4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0xd0]\n"
-    ".endif\n"
+#endif
     "strh r0, [r1]\n"
     "movs r0, #1\n"
     "add sl, r0\n"
     "mov r1, sl\n"
     "cmp r1, #4\n"
     "ble .Lanimal_care_06_0c26\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xbc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xb8]\n"
-    ".endif\n"
+#endif
     "ldr r1, .Lanimal_care_06_0f60\n"
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
@@ -3228,11 +3228,11 @@ asm_unified(
     "movs r5, #0\n"
     "mov sl, r5\n"
     "mov r6, sb\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r6, [sp, #0xd0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r6, [sp, #0xcc]\n"
-    ".endif\n"
+#endif
     "movs r7, #0xaa\n"
     "lsls r7, r7, #3\n"
     "add r7, sb\n"
@@ -3285,20 +3285,20 @@ asm_unified(
     "bl __builtin_delete\n"
     ".Lanimal_care_06_0d06:\n"
     "str r4, [r5]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, [sp, #0xd0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, [sp, #0xcc]\n"
-    ".endif\n"
+#endif
     "adds r0, r2, r7\n"
     "ldr r2, [r0]\n"
     "mov r3, sl\n"
     "lsls r1, r3, #3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r4, [sp, #0xbc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r4, [sp, #0xb8]\n"
-    ".endif\n"
+#endif
     "adds r0, r4, r1\n"
     "ldr r0, [r0]\n"
     "strh r0, [r2]\n"
@@ -3306,11 +3306,11 @@ asm_unified(
     "adds r0, r6, r5\n"
     "adds r0, r0, r7\n"
     "ldr r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xc0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xbc]\n"
-    ".endif\n"
+#endif
     "adds r1, r0, r1\n"
     "ldr r0, [r1]\n"
     "strh r0, [r2, #2]\n"
@@ -3338,17 +3338,17 @@ asm_unified(
     "ldr r0, [r0]\n"
     "movs r1, #1\n"
     "strb r1, [r0, #0x18]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, [sp, #0xd0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, [sp, #0xcc]\n"
-    ".endif\n"
+#endif
     "adds r2, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r2, [sp, #0xd0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r2, [sp, #0xcc]\n"
-    ".endif\n"
+#endif
     "movs r3, #4\n"
     "add r8, r3\n"
     "movs r4, #1\n"
@@ -3359,11 +3359,11 @@ asm_unified(
     "movs r6, #0\n"
     "mov sl, r6\n"
     "mov r7, sb\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r7, [sp, #0xcc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r7, [sp, #0xc8]\n"
-    ".endif\n"
+#endif
     "movs r0, #0xc3\n"
     "lsls r0, r0, #3\n"
     "add r0, sb\n"
@@ -3415,11 +3415,11 @@ asm_unified(
     "bl __builtin_delete\n"
     ".Lanimal_care_06_0de0:\n"
     "str r4, [r5]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0xcc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0xc8]\n"
-    ".endif\n"
+#endif
     "movs r2, #0xc3\n"
     "lsls r2, r2, #3\n"
     "adds r0, r1, r2\n"
@@ -3433,11 +3433,11 @@ asm_unified(
     "ldr r1, [r0]\n"
     "mov r0, sp\n"
     "adds r0, r0, r6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "strh r0, [r1]\n"
     "adds r0, r6, r4\n"
@@ -3474,17 +3474,17 @@ asm_unified(
     "ldr r0, [r0]\n"
     "movs r6, #1\n"
     "strb r6, [r0, #0x18]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xcc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xc8]\n"
-    ".endif\n"
+#endif
     "adds r7, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r7, [sp, #0xcc]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r7, [sp, #0xc8]\n"
-    ".endif\n"
+#endif
     "movs r0, #4\n"
     "add r8, r0\n"
     "movs r1, #1\n"
@@ -3495,11 +3495,11 @@ asm_unified(
     "movs r3, #0\n"
     "mov sl, r3\n"
     "mov r4, sb\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0xc8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0xc4]\n"
-    ".endif\n"
+#endif
     "ldr r5, .Lanimal_care_06_0f78\n"
     "add r5, sb\n"
     "mov r8, r5\n"
@@ -3553,20 +3553,20 @@ asm_unified(
     "bl __builtin_delete\n"
     ".Lanimal_care_06_0ed2:\n"
     "str r4, [r5]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, [sp, #0xc8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, [sp, #0xc4]\n"
-    ".endif\n"
+#endif
     "adds r0, r2, r7\n"
     "ldr r1, [r0]\n"
     "mov r0, sp\n"
     "adds r0, r0, r6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "subs r0, #0x11\n"
     "strh r0, [r1]\n"
@@ -3605,17 +3605,17 @@ asm_unified(
     "ldr r0, [r0]\n"
     "movs r5, #1\n"
     "strb r5, [r0, #0x18]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r6, [sp, #0xc8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r6, [sp, #0xc4]\n"
-    ".endif\n"
+#endif
     "adds r6, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r6, [sp, #0xc8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r6, [sp, #0xc4]\n"
-    ".endif\n"
+#endif
     "movs r7, #4\n"
     "add r8, r7\n"
     "movs r0, #1\n"
@@ -3623,11 +3623,11 @@ asm_unified(
     "mov r1, sl\n"
     "cmp r1, #4\n"
     "ble .Lanimal_care_06_0e6c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add sp, #0xe0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add sp, #0xdc\n"
-    ".endif\n"
+#endif
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
     "mov sb, r4\n"
@@ -5639,57 +5639,57 @@ asm_unified(
     "thumb_func_start func_080B0708\n"
     "func_080B0708:\n"
     "push {r4, r5, r6, r7, lr}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r7, r10\n"
     "mov r6, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r7, sl\n"
     "mov r6, sb\n"
-    ".endif\n"
+#endif
     "mov r5, r8\n"
     "push {r5, r6, r7}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "sub sp, #0x44\n"
     "mov r9, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "sub sp, #0x40\n"
     "mov sb, r0\n"
-    ".endif\n"
+#endif
     "cmp r1, #0x3c\n"
     "beq .Lanimal_care_08_0014\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_08_0216\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_08_020a\n"
-    ".endif\n"
+#endif
     ".Lanimal_care_08_0014:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, .Lanimal_care_08_00a8\n"
     "add r5, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, .Lanimal_care_08_009c\n"
     "add r5, sb\n"
-    ".endif\n"
+#endif
     "ldrb r0, [r5]\n"
     "subs r0, #1\n"
     "movs r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r10, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sl, r1\n"
-    ".endif\n"
+#endif
     "strb r0, [r5]\n"
     "lsls r0, r0, #0x18\n"
     "lsrs r0, r0, #0x18\n"
     "cmp r0, #9\n"
     "bne .Lanimal_care_08_0036\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lanimal_care_08_00ac\n"
     "add r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, .Lanimal_care_08_00a0\n"
     "add r0, sb\n"
-    ".endif\n"
+#endif
     "movs r1, #0xc0\n"
     "lsls r1, r1, #1\n"
     "bl SetTempo__23HardwareMusicPlayerSlotUs\n"
@@ -5697,29 +5697,29 @@ asm_unified(
     "ldrb r0, [r5]\n"
     "add r1, sp, #0xc\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldrb r0, [r5]\n"
     "cmp r0, #9\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhi .Lanimal_care_08_0066\n"
     "add r0, sp, #0x14\n"
     "ldr r1, .Lanimal_care_08_00b0\n"
     "movs r2, #3\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhi .Lanimal_care_08_005c\n"
     "add r0, sp, #0x10\n"
     "ldr r1, .Lanimal_care_08_00a4\n"
     "movs r2, #2\n"
-    ".endif\n"
+#endif
     "bl memcpy\n"
     "add r1, sp, #0xc\n"
     "adds r0, r1, #0\n"
     "ldrb r0, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "strb r0, [r1, #2]\n"
     "adds r0, r1, #0\n"
     "ldrb r0, [r0, #1]\n"
@@ -5727,29 +5727,29 @@ asm_unified(
     "movs r0, #0x82\n"
     "strb r0, [r1]\n"
     "movs r0, #0x4f\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "strb r0, [r1, #1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0066:\n"
     "add r0, sp, #0x28\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r0, #0x30\n"
     "strb r0, [r1]\n"
     ".Lanimal_care_08_005c:\n"
     "add r0, sp, #0x24\n"
-    ".endif\n"
+#endif
     "movs r6, #4\n"
     "movs r7, #2\n"
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x28]\n"
     "mov r4, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x24]\n"
     "mov r4, sb\n"
-    ".endif\n"
+#endif
     "adds r4, #0xc\n"
     "adds r1, r4, #0\n"
     "movs r2, #0\n"
@@ -5757,96 +5757,96 @@ asm_unified(
     "ldrb r0, [r5]\n"
     "mov r8, r4\n"
     "cmp r0, #9\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bls .Lanimal_care_08_00b4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bls .Lanimal_care_08_00a8\n"
-    ".endif\n"
+#endif
     "movs r1, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x2c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x28\n"
-    ".endif\n"
+#endif
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x2c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x28]\n"
-    ".endif\n"
+#endif
     "add r2, sp, #0xc\n"
     "str r2, [sp]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r3, r10\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r3, sl\n"
-    ".endif\n"
+#endif
     "str r3, [sp, #4]\n"
     "str r1, [sp, #8]\n"
     "mov r1, r8\n"
     "movs r2, #0\n"
     "movs r3, #0\n"
     "bl DrawStringTo2DGfxBufferExt\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_08_00d2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_08_00c6\n"
-    ".endif\n"
+#endif
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_00a8: .word 0x90b\n"
     ".Lanimal_care_08_00ac: .word 0x80c\n"
     ".Lanimal_care_08_00b0: .word gText_HarvestSpriteAnimalCare_Zero\n"
     ".Lanimal_care_08_00b4:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_009c: .word 0x90b\n"
     ".Lanimal_care_08_00a0: .word 0x80c\n"
     ".Lanimal_care_08_00a4: .word gText_HarvestSpriteAnimalCare_Zero\n"
     ".Lanimal_care_08_00a8:\n"
-    ".endif\n"
+#endif
     "movs r1, #3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x30\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x2c\n"
-    ".endif\n"
+#endif
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x30]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x2c]\n"
-    ".endif\n"
+#endif
     "add r4, sp, #0xc\n"
     "str r4, [sp]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r6, r10\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r6, sl\n"
-    ".endif\n"
+#endif
     "str r6, [sp, #4]\n"
     "str r1, [sp, #8]\n"
     "mov r1, r8\n"
     "movs r2, #0\n"
     "movs r3, #0\n"
     "bl DrawStringTo2DGfxBufferExt\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_00d2:\n"
     "mov r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_00c6:\n"
     "mov r0, sb\n"
-    ".endif\n"
+#endif
     "bl GetHardwareDmaQueue\n"
     "adds r4, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lanimal_care_08_0120\n"
     "add r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, .Lanimal_care_08_0114\n"
     "add r0, sb\n"
-    ".endif\n"
+#endif
     "ldr r1, [r0, #4]\n"
     "bl GetObjTileIndex\n"
     "adds r2, r0, #0\n"
@@ -5854,385 +5854,385 @@ asm_unified(
     "lsls r3, r3, #1\n"
     "adds r5, r4, #0\n"
     "lsls r2, r2, #5\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, .Lanimal_care_08_0124\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, .Lanimal_care_08_0118\n"
-    ".endif\n"
+#endif
     "adds r2, r2, r7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r1, r8\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r8, r0\n"
     "ldr r1, [r5, #4]\n"
     "ldr r0, [r5, #0xc]\n"
     "cmp r1, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_0128\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_011c\n"
-    ".endif\n"
+#endif
     "cmp r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_0116\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_010a\n"
-    ".endif\n"
+#endif
     "adds r0, r1, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0116:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_010a:\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5, #4]\n"
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_08_01ee\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_08_01e2\n"
-    ".endif\n"
+#endif
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0120: .word 0x888\n"
     ".Lanimal_care_08_0124: .word OBJ_VRAM0\n"
     ".Lanimal_care_08_0128:\n"
     "str r1, [sp, #0x3c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_0114: .word 0x888\n"
     ".Lanimal_care_08_0118: .word OBJ_VRAM0\n"
     ".Lanimal_care_08_011c:\n"
     "str r1, [sp, #0x38]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x38]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x34]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5]\n"
     "adds r6, r1, #0\n"
     "subs r0, r6, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x34]\n"
     "add r1, sp, #0x38\n"
     "add r0, sp, #0x34\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x30]\n"
     "add r1, sp, #0x34\n"
     "add r0, sp, #0x30\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhs .Lanimal_care_08_0142\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhs .Lanimal_care_08_0136\n"
-    ".endif\n"
+#endif
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0142:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_0136:\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "adds r0, r4, r0\n"
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_0160\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_0154\n"
-    ".endif\n"
+#endif
     "lsls r4, r0, #4\n"
     "adds r0, r4, #0\n"
     "bl malloc\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r10, r4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sl, r4\n"
-    ".endif\n"
+#endif
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_08_0164\n"
     "mov r0, r10\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_08_0158\n"
     "mov r0, sl\n"
-    ".endif\n"
+#endif
     "bl RetryMemoryAllocation\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_08_0164\n"
     ".Lanimal_care_08_0160:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_08_0158\n"
     ".Lanimal_care_08_0154:\n"
-    ".endif\n"
+#endif
     "movs r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r10, r0\n"
     ".Lanimal_care_08_0164:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sl, r0\n"
     ".Lanimal_care_08_0158:\n"
-    ".endif\n"
+#endif
     "adds r4, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x40]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x3c]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5]\n"
     "adds r3, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0x3c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0x38]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_018c\n"
     ".Lanimal_care_08_0172:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_0180\n"
     ".Lanimal_care_08_0166:\n"
-    ".endif\n"
+#endif
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_0182\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_0176\n"
-    ".endif\n"
+#endif
     "adds r0, r3, #0\n"
     "adds r1, r2, #0\n"
     "ldm r1!, {r4, r6, r7}\n"
     "stm r0!, {r4, r6, r7}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0182:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_0176:\n"
-    ".endif\n"
+#endif
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x3c]\n"
     "cmp r2, r0\n"
     "bne .Lanimal_care_08_0172\n"
     ".Lanimal_care_08_018c:\n"
     "adds r4, r3, #0\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "ldr r0, [sp, #0x38]\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "cmp r2, r0\n"
     "bne .Lanimal_care_08_0166\n"
     ".Lanimal_care_08_0180:\n"
     "adds r4, r3, #0\n"
     "ldr r0, [sp, #0x34]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_08_01a8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_08_019c\n"
-    ".endif\n"
+#endif
     "cmp r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_01a4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_0198\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r2, r3, r6}\n"
     "stm r0!, {r2, r3, r6}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_01a4:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_0198:\n"
-    ".endif\n"
+#endif
     "adds r4, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_08_01ca\n"
     ".Lanimal_care_08_01a8:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_08_01be\n"
     ".Lanimal_care_08_019c:\n"
-    ".endif\n"
+#endif
     "adds r3, r0, #0\n"
     "adds r2, r4, #0\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_01c8\n"
     ".Lanimal_care_08_01b0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_01bc\n"
     ".Lanimal_care_08_01a4:\n"
-    ".endif\n"
+#endif
     "cmp r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_01c0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_01b4\n"
-    ".endif\n"
+#endif
     "adds r0, r2, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r4, r6, r7}\n"
     "stm r0!, {r4, r6, r7}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_01c0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_01b4:\n"
-    ".endif\n"
+#endif
     "subs r3, #1\n"
     "adds r2, #0x10\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_08_01b0\n"
     ".Lanimal_care_08_01c8:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_08_01a4\n"
     ".Lanimal_care_08_01bc:\n"
-    ".endif\n"
+#endif
     "adds r4, r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_01ca:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_01be:\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5, #4]\n"
     "ldr r0, [r5]\n"
     "adds r1, r0, #0\n"
     "cmp r0, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_01da\n"
     ".Lanimal_care_08_01d4:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_01ce\n"
     ".Lanimal_care_08_01c8:\n"
-    ".endif\n"
+#endif
     "adds r1, #0x10\n"
     "cmp r1, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_08_01d4\n"
     ".Lanimal_care_08_01da:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_08_01c8\n"
     ".Lanimal_care_08_01ce:\n"
-    ".endif\n"
+#endif
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lanimal_care_08_01e2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lanimal_care_08_01d6\n"
-    ".endif\n"
+#endif
     "bl free\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_01e2:\n"
     "ldr r0, [sp, #0x40]\n"
     "add r0, r10\n"
     "ldr r7, [sp, #0x40]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_01d6:\n"
     "ldr r0, [sp, #0x3c]\n"
     "add r0, sl\n"
     "ldr r7, [sp, #0x3c]\n"
-    ".endif\n"
+#endif
     "str r7, [r5]\n"
     "str r4, [r5, #4]\n"
     "str r0, [r5, #0xc]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_01ee:\n"
     "ldr r0, .Lanimal_care_08_0228\n"
     "add r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_01e2:\n"
     "ldr r0, .Lanimal_care_08_021c\n"
     "add r0, sb\n"
-    ".endif\n"
+#endif
     "ldrb r0, [r0]\n"
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_08_0216\n"
     "ldr r1, .Lanimal_care_08_022c\n"
     "add r1, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_08_020a\n"
     "ldr r1, .Lanimal_care_08_0220\n"
     "add r1, sb\n"
-    ".endif\n"
+#endif
     "movs r0, #4\n"
     "str r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lanimal_care_08_0230\n"
     "add r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, .Lanimal_care_08_0224\n"
     "add r0, sb\n"
-    ".endif\n"
+#endif
     "movs r1, #0x80\n"
     "lsls r1, r1, #1\n"
     "bl SetTempo__23HardwareMusicPlayerSlotUs\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lanimal_care_08_0234\n"
     "add r0, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, .Lanimal_care_08_0228\n"
     "add r0, sb\n"
-    ".endif\n"
+#endif
     "movs r1, #0xbb\n"
     "bl Start__23HardwareMusicPlayerSlotUs\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0216:\n"
     "add sp, #0x44\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_020a:\n"
     "add sp, #0x40\n"
-    ".endif\n"
+#endif
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r9, r4\n"
     "mov r10, r5\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sb, r4\n"
     "mov sl, r5\n"
-    ".endif\n"
+#endif
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_08_0228: .word 0x90b\n"
     ".Lanimal_care_08_022c: .word 0x838\n"
     ".Lanimal_care_08_0230: .word 0x80c\n"
     ".Lanimal_care_08_0234: .word 0x814\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_08_021c: .word 0x90b\n"
     ".Lanimal_care_08_0220: .word 0x838\n"
     ".Lanimal_care_08_0224: .word 0x80c\n"
     ".Lanimal_care_08_0228: .word 0x814\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start func_080B0934\n"
     "func_080B0934:\n"
@@ -6432,11 +6432,11 @@ asm_unified(
     "thumb_func_start func_080B0AA0\n"
     "func_080B0AA0:\n"
     "push {r4, r5, r6, r7, lr}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r7, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r7, sb\n"
-    ".endif\n"
+#endif
     "mov r6, r8\n"
     "push {r6, r7}\n"
     "adds r3, r0, #0\n"
@@ -6455,11 +6455,11 @@ asm_unified(
     "movs r0, #0x8f\n"
     "lsls r0, r0, #4\n"
     "adds r0, r0, r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r9, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sb, r0\n"
-    ".endif\n"
+#endif
     "adds r1, #0x14\n"
     "adds r1, r1, r3\n"
     "mov ip, r1\n"
@@ -6476,11 +6476,11 @@ asm_unified(
     "movs r0, #0x70\n"
     "strb r0, [r1]\n"
     "lsls r1, r2, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r6, r9\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r6, sb\n"
-    ".endif\n"
+#endif
     "strh r5, [r6]\n"
     "ldr r6, .Lanimal_care_12_0100\n"
     "adds r0, r3, r6\n"
@@ -6508,11 +6508,11 @@ asm_unified(
     "strb r7, [r0]\n"
     "adds r4, #4\n"
     "movs r0, #2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r9, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add sb, r0\n"
-    ".endif\n"
+#endif
     "adds r2, #1\n"
     "cmp r2, #4\n"
     "ble .Lanimal_care_12_0030\n"
@@ -6566,11 +6566,11 @@ asm_unified(
     "strb r2, [r0]\n"
     "pop {r3, r4}\n"
     "mov r8, r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r9, r4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov sb, r4\n"
-    ".endif\n"
+#endif
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
@@ -8513,29 +8513,29 @@ asm_unified(
     "push {r5, r6, r7}\n"
     "sub sp, #0x64\n"
     "adds r7, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lanimal_care_15_00c8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, .Lanimal_care_15_00d4\n"
-    ".endif\n"
+#endif
     "adds r0, r7, r1\n"
     "ldrb r0, [r0]\n"
     "add r1, sp, #0xc\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
     "add r0, sp, #0x14\n"
     "ldr r4, .Lanimal_care_15_00cc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
     "add r0, sp, #0x10\n"
     "ldr r4, .Lanimal_care_15_00d8\n"
-    ".endif\n"
+#endif
     "adds r1, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r2, #0xa\n"
-    ".else\n"
-    ".ifdef REGION_DE\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_DE)
     "movs r2, #6\n"
     "bl memcpy\n"
     "add r0, sp, #0x18\n"
@@ -8548,7 +8548,7 @@ asm_unified(
     "mov r8, r2\n"
     "mov r1, r8\n"
     "movs r2, #0xb\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r2, #6\n"
     "bl memcpy\n"
     "add r0, sp, #0x18\n"
@@ -8561,52 +8561,52 @@ asm_unified(
     "mov r8, r2\n"
     "mov r1, r8\n"
     "movs r2, #0xa\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x20\n"
     "ldr r6, .Lanimal_care_15_00d0\n"
     "adds r1, r6, #0\n"
     "movs r2, #0x12\n"
     "bl memcpy\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "add r5, sp, #0x34\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, r5, #0\n"
     "adds r0, r4, #0\n"
     "ldm r0!, {r2, r3}\n"
     "stm r1!, {r2, r3}\n"
     "ldrh r0, [r0]\n"
     "strh r0, [r1]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [r4]\n"
     "str r1, [sp, #0x34]\n"
     "ldrh r0, [r4, #4]\n"
     "strh r0, [r5, #4]\n"
     "str r1, [sp, #0x34]\n"
     "strh r0, [r5, #4]\n"
-    ".endif\n"
+#endif
     "adds r0, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldm r4!, {r1, r2}\n"
     "stm r0!, {r1, r2}\n"
     "ldrh r1, [r4]\n"
     "strh r1, [r0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r1, r6, #0\n"
     "bl strcat\n"
-    ".endif\n"
+#endif
     "adds r0, r5, #0\n"
     "add r1, sp, #0xc\n"
     "bl strcat\n"
     "adds r0, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, r6, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r1, r8\n"
-    ".endif\n"
+#endif
     "bl strcat\n"
     "movs r3, #1\n"
     "str r3, [sp, #0x5c]\n"
@@ -8652,24 +8652,24 @@ asm_unified(
     "mov r2, r8\n"
     "adds r3, r6, #0\n"
     "bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_15_01bc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_15_01cc\n"
-    ".endif\n"
+#endif
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_00c8: .word 0x90e\n"
     ".Lanimal_care_15_00cc: .word gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix\n"
     ".Lanimal_care_15_00d0: .word gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix\n"
     ".Lanimal_care_15_00d4:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_00d4: .word 0x90e\n"
     ".Lanimal_care_15_00d8: .word gText_HarvestSpriteMiniGame_AnimalHusbandry_ScorePrefix\n"
     ".Lanimal_care_15_00dc: .word gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultPrefix\n"
     ".Lanimal_care_15_00e0: .word gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix\n"
     ".Lanimal_care_15_00e4:\n"
-    ".endif\n"
+#endif
     "adds r0, r7, #0\n"
     "bl UpdateHardwareFrame\n"
     "adds r0, r7, #0\n"
@@ -8708,22 +8708,22 @@ asm_unified(
     "adds r3, r5, #0\n"
     "bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
     "cmp r0, #6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhi .Lanimal_care_15_01bc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhi .Lanimal_care_15_01cc\n"
-    ".endif\n"
+#endif
     "lsls r0, r0, #2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lanimal_care_15_0140\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, .Lanimal_care_15_0150\n"
-    ".endif\n"
+#endif
     "adds r0, r0, r1\n"
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_0140: .word .Lanimal_care_15_0144\n"
     ".Lanimal_care_15_0144:\n"
     ".word .Lanimal_care_15_0160\n"
@@ -8734,7 +8734,7 @@ asm_unified(
     ".word .Lanimal_care_15_01a0\n"
     ".word .Lanimal_care_15_01a0\n"
     ".Lanimal_care_15_0160:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_0150: .word .Lanimal_care_15_0154\n"
     ".Lanimal_care_15_0154:\n"
     ".word .Lanimal_care_15_0170\n"
@@ -8745,51 +8745,51 @@ asm_unified(
     ".word .Lanimal_care_15_01b0\n"
     ".word .Lanimal_care_15_01b0\n"
     ".Lanimal_care_15_0170:\n"
-    ".endif\n"
+#endif
     "ldr r3, [sp, #0x5c]\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_15_0174\n"
     "ldr r0, .Lanimal_care_15_0170\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_15_0184\n"
     "ldr r0, .Lanimal_care_15_0180\n"
-    ".endif\n"
+#endif
     "adds r1, r7, r0\n"
     "movs r0, #2\n"
     "str r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_15_01bc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_15_01cc\n"
-    ".endif\n"
+#endif
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_0170: .word 0x838\n"
     ".Lanimal_care_15_0174:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_0180: .word 0x838\n"
     ".Lanimal_care_15_0184:\n"
-    ".endif\n"
+#endif
     "movs r1, #0x83\n"
     "lsls r1, r1, #3\n"
     "adds r0, r7, r1\n"
     "ldr r0, [r0]\n"
     "bl func_08050D5C\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lanimal_care_15_01bc\n"
     ".Lanimal_care_15_0182:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lanimal_care_15_01cc\n"
     ".Lanimal_care_15_0192:\n"
-    ".endif\n"
+#endif
     "mov r2, sl\n"
     "cmp r2, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_15_01a0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_15_01b0\n"
-    ".endif\n"
+#endif
     "movs r3, #0x83\n"
     "lsls r3, r3, #3\n"
     "adds r4, r7, r3\n"
@@ -8800,20 +8800,20 @@ asm_unified(
     "bl DisableResume__C12UiStateOwner\n"
     "movs r0, #0\n"
     "str r0, [sp, #0x5c]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_01a0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_01b0:\n"
-    ".endif\n"
+#endif
     "ldr r1, [sp, #0x60]\n"
     "adds r1, #1\n"
     "str r1, [sp, #0x60]\n"
     "cmp r1, #0x78\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ble .Lanimal_care_15_01bc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ble .Lanimal_care_15_01cc\n"
-    ".endif\n"
+#endif
     "movs r2, #0x83\n"
     "lsls r2, r2, #3\n"
     "adds r4, r7, r2\n"
@@ -8821,30 +8821,30 @@ asm_unified(
     "bl EnableResume__C12UiStateOwner\n"
     "ldr r0, [r4]\n"
     "bl func_08050D74\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_01bc:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_01cc:\n"
-    ".endif\n"
+#endif
     "adds r0, r7, #0\n"
     "bl func_080AF814\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r3, .Lanimal_care_15_01e0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r3, .Lanimal_care_15_01f0\n"
-    ".endif\n"
+#endif
     "adds r0, r7, r3\n"
     "ldr r0, [r0]\n"
     "cmp r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lanimal_care_15_01ce\n"
     "b .Lanimal_care_15_00d4\n"
     ".Lanimal_care_15_01ce:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lanimal_care_15_01de\n"
     "b .Lanimal_care_15_00e4\n"
     ".Lanimal_care_15_01de:\n"
-    ".endif\n"
+#endif
     "add sp, #0x64\n"
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
@@ -8854,11 +8854,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lanimal_care_15_01e0: .word 0x838\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lanimal_care_15_01f0: .word 0x838\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start func_080B1D34\n"
     "func_080B1D34:\n"
@@ -9581,11 +9581,11 @@ asm_unified(
     "movs r0, #0\n"
     "ldr r1, [sp, #0x110]\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "movs r6, #0\n"
     "mov sb, r6\n"
     "ldr r7, [sp, #0x110]\n"
@@ -11338,11 +11338,11 @@ asm_unified(
     "ldr r0, [r4]\n"
     "ldr r1, [sp, #0x110]\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r1, [sp, #0xf8]\n"
     "lsls r4, r1, #6\n"
     "adds r0, r4, r1\n"
@@ -11616,11 +11616,11 @@ asm_unified(
     "str r0, [r1]\n"
     "ldr r1, [sp, #0x110]\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "mov r5, sb\n"
     "lsls r4, r5, #6\n"
     "adds r0, r4, r5\n"

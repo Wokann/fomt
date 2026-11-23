@@ -188,7 +188,7 @@ extern char const gText_LivestockShop_AnimalDelivery[];
 
 #if defined(REGION_JP)
 extern char const gText_LivestockShop_PricePrompt[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_LivestockShop_PricePromptPrefix[];
 extern char const gText_LivestockShop_PricePromptSuffix[];
 #endif

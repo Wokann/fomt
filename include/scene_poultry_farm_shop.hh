@@ -143,7 +143,7 @@ extern char const gText_PoultryShop_ChickenSold[];
 
 #if defined(REGION_JP)
 extern char const gText_PoultryShop_PricePrompt[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern char const gText_PoultryShop_PricePromptPrefix[];
 #if defined(REGION_DE)
 extern char const gText_PoultryShop_PricePromptSuffix[];

@@ -105,7 +105,7 @@ void GameCubeLinkUiCore::Run()
 #if defined(REGION_DE)
             func_08050E30(&ui, gText_LinkCommunication_ActionQuestion,
                 gText_LinkCommunication_ActionYes, gText_LinkCommunication_ActionNo, nullptr, nullptr, nullptr);
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             func_08050E30(&ui, gText_LinkCommunication_ActionQuestion,
                 gText_LinkCommunication_Yes, gText_LinkCommunication_No, nullptr, nullptr, nullptr);
 #endif

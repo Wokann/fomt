@@ -388,41 +388,41 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_00_0340: .word __vt_27HarvestSpriteHarvestingCore\n"
     ".Lharvesting_00_0344: .word gUnk_084C4718\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_00_0340: .word __vt_27HarvestSpriteHarvestingCore\n"
     ".Lharvesting_00_0344: .word gUnk_0873E5B0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_00_0348: .word 0x41c\n"
     ".Lharvesting_00_034c: .word gUnk_0873DE44\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_00_0350: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_00_0350: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_00_0354: .word 0x424\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_00_0358: .word gUnk_084C6708\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_00_0358: .word gUnk_087405A0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_00_035c: .word gActorIndexedResourceArchive\n"
     ".Lharvesting_00_0360: .word 0x42c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_00_0364: .word gUnk_084A3678\n"
     ".Lharvesting_00_0368: .word gUnk_084B1FCC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_00_0364: .word gUnk_0871D51C\n"
     ".Lharvesting_00_0368: .word gUnk_0872BE64\n"
-    ".endif\n"
+#endif
     ".Lharvesting_00_036c: .word 0x434\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_00_0370: .word gUnk_084C3840\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_00_0370: .word gUnk_0873D6D8\n"
-    ".endif\n"
+#endif
     ".Lharvesting_00_0374: .word __vt_19HardwareBlendObject\n"
     ".Lharvesting_00_0378: .word 0x43c\n"
     ".Lharvesting_00_037c: .word 0x57c\n"
@@ -518,12 +518,12 @@ asm_unified(
     ".Lharvesting_02_00a0: .word 0x43c\n"
     ".Lharvesting_02_00a4: .word 0x889\n"
     ".Lharvesting_02_00a8: .word .Lharvesting_02_00ac\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_02_00ac: .word .Lharvesting_02_00c0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_02_00ac:\n"
     ".word .Lharvesting_02_00c0\n"
-    ".endif\n"
+#endif
     ".word .Lharvesting_02_00c8\n"
     ".word .Lharvesting_02_00d0\n"
     ".word .Lharvesting_02_00d8\n"
@@ -854,11 +854,11 @@ asm_unified(
     "mov r6, sb\n"
     "mov r5, r8\n"
     "push {r5, r6, r7}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "sub sp, #0xb0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "sub sp, #0xac\n"
-    ".endif\n"
+#endif
     "mov sb, r0\n"
     "ldr r0, .Lharvesting_06_0118\n"
     "ldr r0, [r0]\n"
@@ -893,11 +893,11 @@ asm_unified(
     "ldrb r0, [r0]\n"
     "add r1, sp, #0x10\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r1, .Lharvesting_06_0134\n"
     "movs r3, #0xf8\n"
     "lsls r3, r3, #2\n"
@@ -919,22 +919,22 @@ asm_unified(
     "ldr r7, .Lharvesting_06_0144\n"
     "adds r0, r7, #0\n"
     "strh r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x48\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x44\n"
-    ".endif\n"
+#endif
     "movs r5, #4\n"
     "movs r6, #2\n"
     "movs r1, #0\n"
     "mov r8, r1\n"
     "strh r5, [r0]\n"
     "strh r6, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x48]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x44]\n"
-    ".endif\n"
+#endif
     "mov r4, sb\n"
     "adds r4, #0xc\n"
     "adds r1, r4, #0\n"
@@ -942,18 +942,18 @@ asm_unified(
     "bl Clear2DGfxBuffer\n"
     "movs r2, #1\n"
     "mov sl, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x4c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x48\n"
-    ".endif\n"
+#endif
     "strh r5, [r0]\n"
     "strh r6, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x4c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x48]\n"
-    ".endif\n"
+#endif
     "add r3, sp, #0x10\n"
     "str r3, [sp]\n"
     "mov r5, r8\n"
@@ -977,18 +977,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r6, .Lharvesting_06_0148\n"
     "adds r2, r2, r6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r4, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r7, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r7, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r8, r7\n"
     "ldr r1, [r5, #4]\n"
     "ldr r0, [r5, #0xc]\n"
@@ -997,11 +997,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0104\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -1011,26 +1011,26 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
     "mov r5, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r5, #0x58\n"
     "str r5, [sp, #0xa4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r5, #0x54\n"
     "str r5, [sp, #0xa0]\n"
-    ".endif\n"
+#endif
     "mov r6, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r6, #0x28\n"
     "str r6, [sp, #0xa0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r6, #0x24\n"
     "str r6, [sp, #0x9c]\n"
-    ".endif\n"
+#endif
     "b .Lharvesting_06_021c\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0118: .word gUiSharedPalette\n"
     ".Lharvesting_06_011c: .word OBJ_PLTT + 9 * PLTT_SIZE_4BPP\n"
     ".Lharvesting_06_0120: .word OBJ_PLTT + 2 * PLTT_SIZE_4BPP + 5 * 2\n"
@@ -1043,35 +1043,35 @@ asm_unified(
     ".Lharvesting_06_013c: .word 0x4f15\n"
     ".Lharvesting_06_0140: .word 0x7fff\n"
     ".Lharvesting_06_0144: .word 0x52f8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0148: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0148: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_014c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "mov r7, sl\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r7, [sp, #0x54]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r7, [sp, #0x50]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5]\n"
     "subs r0, r1, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x50]\n"
     "add r1, sp, #0x54\n"
     "add r0, sp, #0x50\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x4c]\n"
     "add r1, sp, #0x50\n"
     "add r0, sp, #0x4c\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_0164\n"
     "adds r0, r1, #0\n"
@@ -1094,31 +1094,31 @@ asm_unified(
     "mov sl, r0\n"
     ".Lharvesting_06_0186:\n"
     "adds r6, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r6, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r6, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5]\n"
     "adds r3, r6, #0\n"
     "mov r4, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r4, #0x58\n"
     "str r4, [sp, #0xa4]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r4, #0x54\n"
     "str r4, [sp, #0xa0]\n"
-    ".endif\n"
+#endif
     "mov r6, sp\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r6, #0x28\n"
     "str r6, [sp, #0xa0]\n"
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r6, #0x24\n"
     "str r6, [sp, #0x9c]\n"
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_01ba\n"
     ".Lharvesting_06_01a0:\n"
@@ -1133,20 +1133,20 @@ asm_unified(
     ".Lharvesting_06_01b0:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_01a0\n"
     ".Lharvesting_06_01ba:\n"
     "adds r6, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x54]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x50]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_01d6\n"
     "cmp r6, #0\n"
@@ -1196,17 +1196,17 @@ asm_unified(
     "beq .Lharvesting_06_0210\n"
     "bl free\n"
     ".Lharvesting_06_0210:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, sl\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r5]\n"
     "str r6, [r5, #4]\n"
     "str r0, [r5, #0xc]\n"
@@ -1228,22 +1228,22 @@ asm_unified(
     "movs r0, #1\n"
     "mov r8, r0\n"
     "str r0, [sp, #0xc]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa4]\n"
     "movs r1, #0xc8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa0]\n"
     "movs r1, #0xd0\n"
-    ".endif\n"
+#endif
     "movs r2, #8\n"
     "bl InitializeMosaicSpriteOam\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x58]\n"
     "ldr r1, [sp, #0x5c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x54]\n"
     "ldr r1, [sp, #0x58]\n"
-    ".endif\n"
+#endif
     "str r0, [r4]\n"
     "str r1, [r4, #4]\n"
     "movs r0, #0x14\n"
@@ -1317,26 +1317,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x28\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x24\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x9c]\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x9c]\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r1, r2, r3}\n"
     "stm r4!, {r1, r2, r3}\n"
     "ldm r0!, {r1, r6, r7}\n"
@@ -1363,18 +1363,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r4, .Lharvesting_06_0368\n"
     "adds r2, r2, r4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r5, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r5, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r5\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -1383,11 +1383,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0358\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r7}\n"
     "stm r0!, {r2, r3, r7}\n"
     "ldr r1, [r1]\n"
@@ -1397,42 +1397,42 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_0432\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0360: .word 0x41c\n"
     ".Lharvesting_06_0364: .word 0x464\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0368: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0368: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_036c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "mov r4, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x64]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x60]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x60]\n"
     "add r1, sp, #0x64\n"
     "add r0, sp, #0x60\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x5c]\n"
     "add r1, sp, #0x60\n"
     "add r0, sp, #0x5c\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_0386\n"
     "adds r0, r1, #0\n"
@@ -1455,18 +1455,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_03a8:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_03d0\n"
     ".Lharvesting_06_03b6:\n"
@@ -1481,20 +1481,20 @@ asm_unified(
     ".Lharvesting_06_03c6:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_03b6\n"
     ".Lharvesting_06_03d0:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x64]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x60]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_03ec\n"
     "cmp r5, #0\n"
@@ -1544,17 +1544,17 @@ asm_unified(
     "beq .Lharvesting_06_0426\n"
     "bl free\n"
     ".Lharvesting_06_0426:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -1573,18 +1573,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lharvesting_06_044c:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lharvesting_06_047c\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -1593,11 +1593,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0472\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -1608,36 +1608,36 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_0546\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_047c: .word 0x5000260\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_047c: .word OBJ_PLTT + 3 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0480:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x6c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x68]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x68]\n"
     "add r1, sp, #0x6c\n"
     "add r0, sp, #0x68\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x64]\n"
     "add r1, sp, #0x68\n"
     "add r0, sp, #0x64\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_049a\n"
     "adds r0, r1, #0\n"
@@ -1660,18 +1660,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_04bc:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_04e4\n"
     ".Lharvesting_06_04ca:\n"
@@ -1686,20 +1686,20 @@ asm_unified(
     ".Lharvesting_06_04da:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_04ca\n"
     ".Lharvesting_06_04e4:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x6c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x68]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_0500\n"
     "cmp r5, #0\n"
@@ -1749,17 +1749,17 @@ asm_unified(
     "beq .Lharvesting_06_053a\n"
     "bl free\n"
     ".Lharvesting_06_053a:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -1845,26 +1845,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r1, r6, r7}\n"
     "stm r4!, {r1, r6, r7}\n"
     "ldm r0!, {r2, r3, r6}\n"
@@ -1891,18 +1891,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r4, .Lharvesting_06_066c\n"
     "adds r2, r2, r4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r5, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r5, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r5\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -1911,11 +1911,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0660\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r7}\n"
     "stm r0!, {r2, r3, r7}\n"
     "ldr r1, [r1]\n"
@@ -1925,41 +1925,41 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_0736\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0668: .word 0x4b4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_066c: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_066c: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0670:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "mov r4, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x74]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x70]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x70]\n"
     "add r1, sp, #0x74\n"
     "add r0, sp, #0x70\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x6c]\n"
     "add r1, sp, #0x70\n"
     "add r0, sp, #0x6c\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_068a\n"
     "adds r0, r1, #0\n"
@@ -1982,18 +1982,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_06ac:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_06d4\n"
     ".Lharvesting_06_06ba:\n"
@@ -2008,20 +2008,20 @@ asm_unified(
     ".Lharvesting_06_06ca:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_06ba\n"
     ".Lharvesting_06_06d4:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x74]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x70]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_06f0\n"
     "cmp r5, #0\n"
@@ -2071,17 +2071,17 @@ asm_unified(
     "beq .Lharvesting_06_072a\n"
     "bl free\n"
     ".Lharvesting_06_072a:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2100,18 +2100,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lharvesting_06_0750:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lharvesting_06_0780\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2120,11 +2120,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0776\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -2135,36 +2135,36 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_084a\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0780: .word 0x50002a0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0780: .word OBJ_PLTT + 5 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0784:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x7c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x78]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x78]\n"
     "add r1, sp, #0x7c\n"
     "add r0, sp, #0x78\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x74]\n"
     "add r1, sp, #0x78\n"
     "add r0, sp, #0x74\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_079e\n"
     "adds r0, r1, #0\n"
@@ -2187,18 +2187,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_07c0:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_07e8\n"
     ".Lharvesting_06_07ce:\n"
@@ -2213,20 +2213,20 @@ asm_unified(
     ".Lharvesting_06_07de:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_07ce\n"
     ".Lharvesting_06_07e8:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x7c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x78]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_0804\n"
     "cmp r5, #0\n"
@@ -2276,17 +2276,17 @@ asm_unified(
     "beq .Lharvesting_06_083e\n"
     "bl free\n"
     ".Lharvesting_06_083e:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2365,26 +2365,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r1, r2, r3}\n"
     "stm r4!, {r1, r2, r3}\n"
     "ldm r0!, {r1, r6, r7}\n"
@@ -2411,18 +2411,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r4, .Lharvesting_06_0964\n"
     "adds r2, r2, r4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r5, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r5, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r5\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2431,11 +2431,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0956\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r7}\n"
     "stm r0!, {r2, r3, r7}\n"
     "ldr r1, [r1]\n"
@@ -2447,36 +2447,36 @@ asm_unified(
     "b .Lharvesting_06_0a2e\n"
     ".align 2, 0\n"
     ".Lharvesting_06_0960: .word 0x52c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0964: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0964: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0968:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x84]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x80]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r4, r1, #0\n"
     "subs r0, r4, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x80]\n"
     "add r1, sp, #0x84\n"
     "add r0, sp, #0x80\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x7c]\n"
     "add r1, sp, #0x80\n"
     "add r0, sp, #0x7c\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_0982\n"
     "adds r0, r1, #0\n"
@@ -2499,18 +2499,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_09a4:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r5\n"
     "beq .Lharvesting_06_09cc\n"
     ".Lharvesting_06_09b2:\n"
@@ -2525,20 +2525,20 @@ asm_unified(
     ".Lharvesting_06_09c2:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "bne .Lharvesting_06_09b2\n"
     ".Lharvesting_06_09cc:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x84]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x80]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_09e8\n"
     "cmp r5, #0\n"
@@ -2588,17 +2588,17 @@ asm_unified(
     "beq .Lharvesting_06_0a22\n"
     "bl free\n"
     ".Lharvesting_06_0a22:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2617,18 +2617,18 @@ asm_unified(
     "ldrh r3, [r2, #4]\n"
     ".Lharvesting_06_0a48:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r2, .Lharvesting_06_0a78\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -2637,11 +2637,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0a6e\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -2652,36 +2652,36 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_0b42\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0a78: .word 0x50002c0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0a78: .word OBJ_PLTT + 6 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0a7c:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x8c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x88]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r6]\n"
     "adds r5, r1, #0\n"
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x88]\n"
     "add r1, sp, #0x8c\n"
     "add r0, sp, #0x88\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x84]\n"
     "add r1, sp, #0x88\n"
     "add r0, sp, #0x84\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
     "bhs .Lharvesting_06_0a96\n"
     "adds r0, r1, #0\n"
@@ -2704,18 +2704,18 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_0ab8:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_0ae0\n"
     ".Lharvesting_06_0ac6:\n"
@@ -2730,20 +2730,20 @@ asm_unified(
     ".Lharvesting_06_0ad6:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_0ac6\n"
     ".Lharvesting_06_0ae0:\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x8c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x88]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
     "bne .Lharvesting_06_0afc\n"
     "cmp r5, #0\n"
@@ -2793,17 +2793,17 @@ asm_unified(
     "beq .Lharvesting_06_0b36\n"
     "bl free\n"
     ".Lharvesting_06_0b36:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -2942,26 +2942,26 @@ asm_unified(
     "ldr r0, [r0, #4]\n"
     "adds r0, r0, r2\n"
     "ldrh r2, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldr r3, [r3, #0x10]\n"
     "bl _call_via_r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r0, #0\n"
     "movs r2, #0x20\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r0!, {r3, r6, r7}\n"
     "stm r4!, {r3, r6, r7}\n"
     "ldm r0!, {r1, r2, r3}\n"
@@ -2988,18 +2988,18 @@ asm_unified(
     "lsls r2, r2, #5\n"
     "ldr r0, .Lharvesting_06_0ce8\n"
     "adds r2, r2, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r7, #0\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov sl, r1\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -3008,11 +3008,11 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lharvesting_06_0cce\n"
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x14\n"
-    ".endif\n"
+#endif
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
@@ -3027,13 +3027,13 @@ asm_unified(
     ".Lharvesting_06_0cdc: .word 0x4dc\n"
     ".Lharvesting_06_0ce0: .word 0x504\n"
     ".Lharvesting_06_0ce4: .word 0x91a\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0ce8: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0ce8: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0cec:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
     "add r1, sp, #0x94\n"
     "movs r5, #1\n"
@@ -3042,15 +3042,15 @@ asm_unified(
     "ldr r7, [sp, #0xa8]\n"
     "subs r0, r7, r0\n"
     "asrs r4, r0, #4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "add r0, sp, #0x90\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "cmp r4, r2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r5, #1\n"
     "str r5, [r0]\n"
     "ldr r1, [r6]\n"
@@ -3061,19 +3061,19 @@ asm_unified(
     "ldr r1, [r0]\n"
     "add r2, sp, #0x8c\n"
     "cmp r4, r1\n"
-    ".endif\n"
+#endif
     "bhs .Lharvesting_06_0d08\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, r1, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r2, r0, #0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0d08:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [r0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [r2]\n"
-    ".endif\n"
+#endif
     "adds r0, r4, r0\n"
     "cmp r0, #0\n"
     "beq .Lharvesting_06_0d26\n"
@@ -3091,11 +3091,11 @@ asm_unified(
     "mov r8, r0\n"
     ".Lharvesting_06_0d2a:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
     "b .Lharvesting_06_0d48\n"
@@ -3112,21 +3112,21 @@ asm_unified(
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
     ".Lharvesting_06_0d48:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_0d34\n"
     "adds r5, r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0x94]\n"
     "cmp r1, #1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x90]\n"
     "cmp r0, #1\n"
-    ".endif\n"
+#endif
     "bne .Lharvesting_06_0d6a\n"
     "cmp r5, #0\n"
     "beq .Lharvesting_06_0d66\n"
@@ -3140,11 +3140,11 @@ asm_unified(
     "adds r5, #0x10\n"
     "b .Lharvesting_06_0d8c\n"
     ".Lharvesting_06_0d6a:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r3, r1, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r3, r0, #0\n"
-    ".endif\n"
+#endif
     "adds r2, r5, #0\n"
     "cmp r3, #0\n"
     "beq .Lharvesting_06_0d8a\n"
@@ -3179,17 +3179,17 @@ asm_unified(
     "beq .Lharvesting_06_0da4\n"
     "bl free\n"
     ".Lharvesting_06_0da4:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, r8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r7, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
@@ -3208,19 +3208,19 @@ asm_unified(
     "ldrh r3, [r1, #4]\n"
     ".Lharvesting_06_0dca:\n"
     "adds r6, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "adds r1, r2, #0\n"
     "ldr r2, .Lharvesting_06_0dfc\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r8, r0\n"
     "ldr r1, [r6, #4]\n"
     "ldr r0, [r6, #0xc]\n"
@@ -3240,37 +3240,37 @@ asm_unified(
     "str r0, [r6, #4]\n"
     "b .Lharvesting_06_0ecc\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_06_0dfc: .word 0x5000300\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_06_0dfc: .word OBJ_PLTT + 8 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_06_0e00:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r1, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r1, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r1, sp, #0x9c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r1, sp, #0x98\n"
-    ".endif\n"
+#endif
     "str r0, [r1]\n"
     "ldr r0, [r6]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "subs r0, r5, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x98\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x94\n"
-    ".endif\n"
+#endif
     "str r4, [r0]\n"
     "ldr r2, [r1]\n"
     "mov sl, r1\n"
@@ -3296,18 +3296,18 @@ asm_unified(
     "mov sb, r0\n"
     ".Lharvesting_06_0e40:\n"
     "adds r5, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r5, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r5, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r6]\n"
     "adds r3, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
     "beq .Lharvesting_06_0e68\n"
     ".Lharvesting_06_0e4e:\n"
@@ -3322,11 +3322,11 @@ asm_unified(
     ".Lharvesting_06_0e5e:\n"
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xa8]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa4]\n"
-    ".endif\n"
+#endif
     "cmp r2, r0\n"
     "bne .Lharvesting_06_0e4e\n"
     ".Lharvesting_06_0e68:\n"
@@ -3382,26 +3382,26 @@ asm_unified(
     "beq .Lharvesting_06_0ec0\n"
     "bl free\n"
     ".Lharvesting_06_0ec0:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "add r0, sb\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, [sp, #0xac]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, [sp, #0xa8]\n"
-    ".endif\n"
+#endif
     "str r1, [r6]\n"
     "str r5, [r6, #4]\n"
     "str r0, [r6, #0xc]\n"
     ".Lharvesting_06_0ecc:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add sp, #0xb0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add sp, #0xac\n"
-    ".endif\n"
+#endif
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
     "mov sb, r4\n"
@@ -3640,11 +3640,11 @@ asm_unified(
     ".Lharvesting_07_01c8: .word 0x464\n"
     ".Lharvesting_07_01cc: .word 0x48c\n"
     ".Lharvesting_07_01d0: .word 0x4b4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_07_01d4: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_07_01d4: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_07_01d8:\n"
     "str r1, [sp, #0x44]\n"
     "movs r0, #1\n"
@@ -3799,12 +3799,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r1, #4]\n"
     "b .Lharvesting_07_03c8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_07_02f0: .word 0x50002c0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_07_02f0: .word OBJ_PLTT + 6 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_07_02f4:\n"
     "str r1, [sp, #0x44]\n"
     "movs r0, #1\n"
@@ -4101,11 +4101,11 @@ asm_unified(
     "b .Lharvesting_07_0610\n"
     ".align 2, 0\n"
     ".Lharvesting_07_0538: .word 0x60e\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_07_053c: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_07_053c: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_07_0540:\n"
     "str r1, [sp, #0x44]\n"
     "movs r0, #1\n"
@@ -4260,12 +4260,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r1, #4]\n"
     "b .Lharvesting_07_0730\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_07_0658: .word 0x5000340\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_07_0658: .word OBJ_PLTT + 10 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_07_065c:\n"
     "str r1, [sp, #0x44]\n"
     "movs r0, #1\n"
@@ -4480,25 +4480,25 @@ asm_unified(
     "mov r6, sb\n"
     "mov r5, r8\n"
     "push {r5, r6, r7}\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "sub sp, #0x44\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "sub sp, #0x40\n"
-    ".endif\n"
+#endif
     "mov sb, r0\n"
     "cmp r1, #0x3c\n"
     "beq .Lharvesting_08_0014\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_08_021a\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_08_0212\n"
-    ".endif\n"
+#endif
     ".Lharvesting_08_0014:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r5, .Lharvesting_08_00a8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r5, .Lharvesting_08_00a0\n"
-    ".endif\n"
+#endif
     "add r5, sb\n"
     "ldrb r0, [r5]\n"
     "subs r0, #1\n"
@@ -4519,29 +4519,29 @@ asm_unified(
     "ldrb r0, [r5]\n"
     "add r1, sp, #0xc\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldrb r0, [r5]\n"
     "cmp r0, #9\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhi .Lharvesting_08_0068\n"
     "add r0, sp, #0x14\n"
     "ldr r1, .Lharvesting_08_00ac\n"
     "movs r2, #3\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhi .Lharvesting_08_005e\n"
     "add r0, sp, #0x10\n"
     "ldr r1, .Lharvesting_08_00a4\n"
     "movs r2, #2\n"
-    ".endif\n"
+#endif
     "bl memcpy\n"
     "add r1, sp, #0xc\n"
     "adds r0, r1, #0\n"
     "ldrb r0, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "strb r0, [r1, #2]\n"
     "adds r0, r1, #0\n"
     "ldrb r0, [r0, #1]\n"
@@ -4549,27 +4549,27 @@ asm_unified(
     "movs r0, #0x82\n"
     "strb r0, [r1]\n"
     "movs r0, #0x4f\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "strb r0, [r1, #1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_0068:\n"
     "add r0, sp, #0x28\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "movs r0, #0x30\n"
     "strb r0, [r1]\n"
     ".Lharvesting_08_005e:\n"
     "add r0, sp, #0x24\n"
-    ".endif\n"
+#endif
     "movs r6, #4\n"
     "movs r7, #2\n"
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x28]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x24]\n"
-    ".endif\n"
+#endif
     "mov r4, sb\n"
     "adds r4, #0xc\n"
     "adds r1, r4, #0\n"
@@ -4578,24 +4578,24 @@ asm_unified(
     "ldrb r0, [r5]\n"
     "mov r8, r4\n"
     "cmp r0, #9\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bls .Lharvesting_08_00b0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bls .Lharvesting_08_00a8\n"
-    ".endif\n"
+#endif
     "movs r1, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x2c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x28\n"
-    ".endif\n"
+#endif
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x2c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x28]\n"
-    ".endif\n"
+#endif
     "add r2, sp, #0xc\n"
     "str r2, [sp]\n"
     "mov r3, sl\n"
@@ -4605,31 +4605,31 @@ asm_unified(
     "movs r2, #0\n"
     "movs r3, #0\n"
     "bl DrawStringTo2DGfxBufferExt\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_08_00ce\n"
     ".Lharvesting_08_00a8: .word 0x5fd\n"
     ".Lharvesting_08_00ac: .word gText_HarvestSpriteHarvesting_Zero\n"
     ".Lharvesting_08_00b0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_08_00c6\n"
     ".align 2, 0\n"
     ".Lharvesting_08_00a0: .word 0x5fd\n"
     ".Lharvesting_08_00a4: .word gText_HarvestSpriteHarvesting_Zero\n"
     ".Lharvesting_08_00a8:\n"
-    ".endif\n"
+#endif
     "movs r1, #3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x30\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x2c\n"
-    ".endif\n"
+#endif
     "strh r6, [r0]\n"
     "strh r7, [r0, #2]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x30]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, [sp, #0x2c]\n"
-    ".endif\n"
+#endif
     "add r4, sp, #0xc\n"
     "str r4, [sp]\n"
     "mov r6, sl\n"
@@ -4639,11 +4639,11 @@ asm_unified(
     "movs r2, #0\n"
     "movs r3, #0\n"
     "bl DrawStringTo2DGfxBufferExt\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_00ce:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_00c6:\n"
-    ".endif\n"
+#endif
     "mov r0, sb\n"
     "bl GetHardwareDmaQueue\n"
     "adds r4, r0, #0\n"
@@ -4657,329 +4657,329 @@ asm_unified(
     "lsls r3, r3, #1\n"
     "adds r5, r4, #0\n"
     "lsls r2, r2, #5\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, .Lharvesting_08_011c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, .Lharvesting_08_0114\n"
-    ".endif\n"
+#endif
     "adds r2, r2, r7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r1, r8\n"
     "bl __21DmaTransferDescriptorPCvPvUi\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x18\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "add r0, sp, #0x14\n"
-    ".endif\n"
+#endif
     "mov r8, r0\n"
     "ldr r1, [r5, #4]\n"
     "ldr r0, [r5, #0xc]\n"
     "cmp r1, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_0120\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_0118\n"
-    ".endif\n"
+#endif
     "cmp r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_0114\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_010c\n"
-    ".endif\n"
+#endif
     "adds r0, r1, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r2, r3, r4}\n"
     "stm r0!, {r2, r3, r4}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_0114:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_010c:\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5, #4]\n"
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_08_01e6\n"
     ".Lharvesting_08_011c: .word 0x6010000\n"
     ".Lharvesting_08_0120:\n"
     "str r1, [sp, #0x3c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_08_01de\n"
     ".align 2, 0\n"
     ".Lharvesting_08_0114: .word OBJ_VRAM0\n"
     ".Lharvesting_08_0118:\n"
     "str r1, [sp, #0x38]\n"
-    ".endif\n"
+#endif
     "movs r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r0, [sp, #0x38]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r0, [sp, #0x34]\n"
-    ".endif\n"
+#endif
     "ldr r0, [r5]\n"
     "adds r6, r1, #0\n"
     "subs r0, r6, r0\n"
     "asrs r4, r0, #4\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x34]\n"
     "add r1, sp, #0x38\n"
     "add r0, sp, #0x34\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x30]\n"
     "add r1, sp, #0x34\n"
     "add r0, sp, #0x30\n"
-    ".endif\n"
+#endif
     "cmp r4, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhs .Lharvesting_08_013a\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhs .Lharvesting_08_0132\n"
-    ".endif\n"
+#endif
     "adds r0, r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_013a:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0132:\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "adds r0, r4, r0\n"
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_0158\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_0150\n"
-    ".endif\n"
+#endif
     "lsls r4, r0, #4\n"
     "adds r0, r4, #0\n"
     "bl malloc\n"
     "mov sl, r4\n"
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_08_015c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_08_0154\n"
-    ".endif\n"
+#endif
     "mov r0, sl\n"
     "bl RetryMemoryAllocation\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_08_015c\n"
     ".Lharvesting_08_0158:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_08_0154\n"
     ".Lharvesting_08_0150:\n"
-    ".endif\n"
+#endif
     "movs r0, #0\n"
     "mov sl, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_015c:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0154:\n"
-    ".endif\n"
+#endif
     "adds r4, r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "str r4, [sp, #0x40]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "str r4, [sp, #0x3c]\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5]\n"
     "adds r3, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0x3c]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0x38]\n"
-    ".endif\n"
+#endif
     "cmp r2, r7\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_0184\n"
     ".Lharvesting_08_016a:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_017c\n"
     ".Lharvesting_08_0162:\n"
-    ".endif\n"
+#endif
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_017a\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_0172\n"
-    ".endif\n"
+#endif
     "adds r0, r3, #0\n"
     "adds r1, r2, #0\n"
     "ldm r1!, {r4, r6, r7}\n"
     "stm r0!, {r4, r6, r7}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_017a:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0172:\n"
-    ".endif\n"
+#endif
     "adds r2, #0x10\n"
     "adds r3, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, [sp, #0x3c]\n"
     "cmp r2, r0\n"
     "bne .Lharvesting_08_016a\n"
     ".Lharvesting_08_0184:\n"
     "adds r4, r3, #0\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "ldr r0, [sp, #0x38]\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "cmp r2, r0\n"
     "bne .Lharvesting_08_0162\n"
     ".Lharvesting_08_017c:\n"
     "adds r4, r3, #0\n"
     "ldr r0, [sp, #0x34]\n"
-    ".endif\n"
+#endif
     "cmp r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_08_01a0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_08_0198\n"
-    ".endif\n"
+#endif
     "cmp r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_019c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_0194\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r2, r3, r6}\n"
     "stm r0!, {r2, r3, r6}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_019c:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0194:\n"
-    ".endif\n"
+#endif
     "adds r4, #0x10\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_08_01c2\n"
     ".Lharvesting_08_01a0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_08_01ba\n"
     ".Lharvesting_08_0198:\n"
-    ".endif\n"
+#endif
     "adds r3, r0, #0\n"
     "adds r2, r4, #0\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_01c0\n"
     ".Lharvesting_08_01a8:\n"
     "cmp r2, #0\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "beq .Lharvesting_08_01b8\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_01a0:\n"
     "cmp r2, #0\n"
     "beq .Lharvesting_08_01b0\n"
-    ".endif\n"
+#endif
     "adds r0, r2, #0\n"
     "mov r1, r8\n"
     "ldm r1!, {r4, r6, r7}\n"
     "stm r0!, {r4, r6, r7}\n"
     "ldr r1, [r1]\n"
     "str r1, [r0]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_01b8:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_01b0:\n"
-    ".endif\n"
+#endif
     "subs r3, #1\n"
     "adds r2, #0x10\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_08_01a8\n"
     ".Lharvesting_08_01c0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_08_01a0\n"
     ".Lharvesting_08_01b8:\n"
-    ".endif\n"
+#endif
     "adds r4, r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_01c2:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_01ba:\n"
-    ".endif\n"
+#endif
     "ldr r2, [r5, #4]\n"
     "ldr r0, [r5]\n"
     "adds r1, r0, #0\n"
     "cmp r0, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_01d2\n"
     ".Lharvesting_08_01cc:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_01ca\n"
     ".Lharvesting_08_01c4:\n"
-    ".endif\n"
+#endif
     "adds r1, #0x10\n"
     "cmp r1, r2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_08_01cc\n"
     ".Lharvesting_08_01d2:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_08_01c4\n"
     ".Lharvesting_08_01ca:\n"
-    ".endif\n"
+#endif
     "cmp r0, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lharvesting_08_01da\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lharvesting_08_01d2\n"
-    ".endif\n"
+#endif
     "bl free\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_01da:\n"
     "ldr r0, [sp, #0x40]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_01d2:\n"
     "ldr r0, [sp, #0x3c]\n"
-    ".endif\n"
+#endif
     "add r0, sl\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r7, [sp, #0x40]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r7, [sp, #0x3c]\n"
-    ".endif\n"
+#endif
     "str r7, [r5]\n"
     "str r4, [r5, #4]\n"
     "str r0, [r5, #0xc]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_01e6:\n"
     "ldr r0, .Lharvesting_08_022c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_01de:\n"
     "ldr r0, .Lharvesting_08_0224\n"
-    ".endif\n"
+#endif
     "add r0, sb\n"
     "ldrb r2, [r0]\n"
     "cmp r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_08_021a\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_08_0212\n"
-    ".endif\n"
+#endif
     "movs r1, #0xb4\n"
     "lsls r1, r1, #3\n"
     "add r1, sb\n"
     "movs r0, #4\n"
     "str r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lharvesting_08_0230\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r0, .Lharvesting_08_0228\n"
-    ".endif\n"
+#endif
     "add r0, sb\n"
     "str r2, [r0]\n"
     "movs r0, #0xaf\n"
@@ -4993,13 +4993,13 @@ asm_unified(
     "add r0, sb\n"
     "movs r1, #0xbb\n"
     "bl Start__23HardwareMusicPlayerSlotUs\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_021a:\n"
     "add sp, #0x44\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0212:\n"
     "add sp, #0x40\n"
-    ".endif\n"
+#endif
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
     "mov sb, r4\n"
@@ -5008,13 +5008,13 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_08_022c: .word 0x5fd\n"
     ".Lharvesting_08_0230: .word 0x5ac\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_08_0224: .word 0x5fd\n"
     ".Lharvesting_08_0228: .word 0x5ac\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start func_080BE954\n"
     "func_080BE954:\n"
@@ -5342,12 +5342,12 @@ asm_unified(
     ".align 2, 0\n"
     ".Lharvesting_11_011c: .word 0x57c\n"
     ".Lharvesting_11_0120: .word .Lharvesting_11_0124\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_11_0124: .word .Lharvesting_11_0140\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_11_0124:\n"
     ".word .Lharvesting_11_0140\n"
-    ".endif\n"
+#endif
     ".word .Lharvesting_11_03d2\n"
     ".word .Lharvesting_11_03d2\n"
     ".word .Lharvesting_11_01e8\n"
@@ -5398,10 +5398,10 @@ asm_unified(
     ".Lharvesting_11_0194:\n"
     "ldr r0, [r4]\n"
     "b .Lharvesting_11_01b2\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0198: .word 0x43c\n"
     ".Lharvesting_11_019c: .word 0x889\n"
     ".Lharvesting_11_01a0:\n"
@@ -5433,10 +5433,10 @@ asm_unified(
     "ldr r2, [r2, #0x10]\n"
     "bl _call_via_r2\n"
     "b .Lharvesting_11_03d2\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_01e0: .word 0x43c\n"
     ".Lharvesting_11_01e4: .word 0x889\n"
     ".Lharvesting_11_01e8:\n"
@@ -5473,12 +5473,12 @@ asm_unified(
     "mov pc, r0\n"
     ".align 2, 0\n"
     ".Lharvesting_11_0220: .word .Lharvesting_11_0224\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_11_0224: .word .Lharvesting_11_0244\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_11_0224:\n"
     ".word .Lharvesting_11_0244\n"
-    ".endif\n"
+#endif
     ".word .Lharvesting_11_026c\n"
     ".word .Lharvesting_11_0288\n"
     ".word .Lharvesting_11_02a4\n"
@@ -5500,10 +5500,10 @@ asm_unified(
     "str r4, [sp, #8]\n"
     "bl func_08050E30\n"
     "b .Lharvesting_11_03d2\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0260: .word gText_HarvestSpriteMiniGame_Harvest_ExplanationQuestion\n"
     ".Lharvesting_11_0264: .word gText_HarvestSpriteMiniGame_Harvest_Yes\n"
     ".Lharvesting_11_0268: .word gText_HarvestSpriteMiniGame_Harvest_No\n"
@@ -5601,10 +5601,10 @@ asm_unified(
     "movs r1, #0\n"
     "str r1, [sp, #0x14]\n"
     "b .Lharvesting_11_03d2\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0334: .word gText_HarvestSpriteMiniGame_Harvest_UnderstandQuestion\n"
     ".Lharvesting_11_0338: .word gText_HarvestSpriteMiniGame_Harvest_UnderstandYes\n"
     ".Lharvesting_11_033c: .word gText_HarvestSpriteMiniGame_Harvest_UnderstandAgain\n"
@@ -5743,10 +5743,10 @@ asm_unified(
     "adds r0, r7, r2\n"
     "strb r1, [r0]\n"
     "b .Lharvesting_11_0506\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0448: .word 0x611\n"
     ".Lharvesting_11_044c: .word 0x5ac\n"
     ".Lharvesting_11_0450: .word 0x60e\n"
@@ -5759,10 +5759,10 @@ asm_unified(
     "movs r0, #2\n"
     "str r0, [r1]\n"
     "b .Lharvesting_11_0474\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0464: .word 0x5ac\n"
     ".Lharvesting_11_0468:\n"
     "ldr r3, [sp, #0x14]\n"
@@ -5874,10 +5874,10 @@ asm_unified(
     "ldr r3, .Lharvesting_11_054c\n"
     "adds r1, r7, r3\n"
     "b .Lharvesting_11_0582\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0544: .word 0x612\n"
     ".Lharvesting_11_0548: .word 0x5ac\n"
     ".Lharvesting_11_054c: .word 0x60e\n"
@@ -5913,10 +5913,10 @@ asm_unified(
     "movs r0, #1\n"
     "strb r0, [r1]\n"
     "b .Lharvesting_11_05ec\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_11_0588: .word 0x5ac\n"
     ".Lharvesting_11_058c: .word 0x60e\n"
     ".Lharvesting_11_0590:\n"
@@ -6005,20 +6005,20 @@ asm_unified(
     "ldrb r0, [r0]\n"
     "add r1, sp, #0xc\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
     "add r0, sp, #0x14\n"
     "ldr r4, .Lharvesting_12_00d4\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
     "add r0, sp, #0x10\n"
     "ldr r4, .Lharvesting_12_00e0\n"
-    ".endif\n"
+#endif
     "adds r1, r4, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r2, #0xa\n"
-    ".else\n"
-    ".ifdef REGION_DE\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_DE)
     "movs r2, #5\n"
     "bl memcpy\n"
     "add r0, sp, #0x18\n"
@@ -6031,7 +6031,7 @@ asm_unified(
     "mov r8, r2\n"
     "mov r1, r8\n"
     "movs r2, #0xb\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "movs r2, #6\n"
     "bl memcpy\n"
     "add r0, sp, #0x18\n"
@@ -6044,61 +6044,61 @@ asm_unified(
     "mov r8, r2\n"
     "mov r1, r8\n"
     "movs r2, #0xa\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "add r0, sp, #0x20\n"
     "ldr r6, .Lharvesting_12_00d8\n"
     "adds r1, r6, #0\n"
     "movs r2, #0x12\n"
     "bl memcpy\n"
-    ".else\n"
-    ".endif\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#endif
     "add r5, sp, #0x34\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, r5, #0\n"
     "adds r0, r4, #0\n"
     "ldm r0!, {r2, r3}\n"
     "stm r1!, {r2, r3}\n"
     "ldrh r0, [r0]\n"
     "strh r0, [r1]\n"
-    ".else\n"
-    ".ifdef REGION_DE\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#if defined(REGION_DE)
     "ldr r1, [r4]\n"
     "str r1, [sp, #0x34]\n"
     "ldrb r0, [r4, #4]\n"
     "strb r0, [r5, #4]\n"
     "str r1, [sp, #0x34]\n"
     "strb r0, [r5, #4]\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "ldr r1, [r4]\n"
     "str r1, [sp, #0x34]\n"
     "ldrh r0, [r4, #4]\n"
     "strh r0, [r5, #4]\n"
     "str r1, [sp, #0x34]\n"
     "strh r0, [r5, #4]\n"
-    ".endif\n"
-    ".endif\n"
+#endif
+#endif
     "adds r0, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldm r4!, {r1, r2}\n"
     "stm r0!, {r1, r2}\n"
     "ldrh r1, [r4]\n"
     "strh r1, [r0]\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r1, r6, #0\n"
     "bl strcat\n"
-    ".endif\n"
+#endif
     "adds r0, r5, #0\n"
     "add r1, sp, #0xc\n"
     "bl strcat\n"
     "adds r0, r5, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, r6, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r1, r8\n"
-    ".endif\n"
+#endif
     "bl strcat\n"
     "movs r3, #1\n"
     "str r3, [sp, #0x5c]\n"
@@ -6133,11 +6133,11 @@ asm_unified(
     "adds r4, r0, #0\n"
     "adds r0, r7, #0\n"
     "bl GetHardwareInterruptList\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, .Lharvesting_12_00dc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, .Lharvesting_12_00ec\n"
-    ".endif\n"
+#endif
     "adds r1, r7, r2\n"
     "str r4, [sp]\n"
     "str r0, [sp, #4]\n"
@@ -6152,24 +6152,24 @@ asm_unified(
     "movs r3, #0xb4\n"
     "lsls r3, r3, #3\n"
     "adds r0, r7, r3\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_12_01d8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_12_01e8\n"
-    ".endif\n"
+#endif
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_12_00d4: .word gText_HarvestSpriteMiniGame_Harvest_ScorePrefix\n"
     ".Lharvesting_12_00d8: .word gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix\n"
     ".Lharvesting_12_00dc: .word 0x57c\n"
     ".Lharvesting_12_00e0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_12_00e0: .word gText_HarvestSpriteMiniGame_Harvest_ScorePrefix\n"
     ".Lharvesting_12_00e4: .word gText_HarvestSpriteMiniGame_Harvest_ScoreResultPrefix\n"
     ".Lharvesting_12_00e8: .word gText_HarvestSpriteMiniGame_Harvest_ScoreResultSuffix\n"
     ".Lharvesting_12_00ec: .word 0x57c\n"
     ".Lharvesting_12_00f0:\n"
-    ".endif\n"
+#endif
     "adds r0, r7, #0\n"
     "bl UpdateHardwareFrame\n"
     "adds r0, r7, #0\n"
@@ -6196,11 +6196,11 @@ asm_unified(
     "adds r4, r0, #0\n"
     "adds r0, r7, #0\n"
     "bl GetHardwareInterruptList\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r2, .Lharvesting_12_0148\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, .Lharvesting_12_0158\n"
-    ".endif\n"
+#endif
     "adds r1, r7, r2\n"
     "str r4, [sp]\n"
     "str r0, [sp, #4]\n"
@@ -6211,21 +6211,21 @@ asm_unified(
     "adds r3, r5, #0\n"
     "bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
     "cmp r0, #6\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bhi .Lharvesting_12_01aa\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bhi .Lharvesting_12_01ba\n"
-    ".endif\n"
+#endif
     "lsls r0, r0, #2\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lharvesting_12_014c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r1, .Lharvesting_12_015c\n"
-    ".endif\n"
+#endif
     "adds r0, r0, r1\n"
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_12_0148: .word 0x57c\n"
     ".Lharvesting_12_014c: .word .Lharvesting_12_0150\n"
     ".Lharvesting_12_0150: .word .Lharvesting_12_016c\n"
@@ -6236,7 +6236,7 @@ asm_unified(
     ".word .Lharvesting_12_01aa\n"
     ".word .Lharvesting_12_01aa\n"
     ".Lharvesting_12_016c:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_12_0158: .word 0x57c\n"
     ".Lharvesting_12_015c: .word .Lharvesting_12_0160\n"
@@ -6249,45 +6249,45 @@ asm_unified(
     ".word .Lharvesting_12_01ba\n"
     ".word .Lharvesting_12_01ba\n"
     ".Lharvesting_12_017c:\n"
-    ".endif\n"
+#endif
     "ldr r3, [sp, #0x5c]\n"
     "cmp r3, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_12_017e\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_12_018e\n"
-    ".endif\n"
+#endif
     "movs r0, #0xb4\n"
     "lsls r0, r0, #3\n"
     "adds r1, r7, r0\n"
     "movs r0, #2\n"
     "str r0, [r1]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_12_01aa\n"
     ".Lharvesting_12_017e:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_12_01ba\n"
     ".Lharvesting_12_018e:\n"
-    ".endif\n"
+#endif
     "movs r1, #0x83\n"
     "lsls r1, r1, #3\n"
     "adds r0, r7, r1\n"
     "ldr r0, [r0]\n"
     "bl func_08050D5C\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "b .Lharvesting_12_01aa\n"
     ".Lharvesting_12_018c:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "b .Lharvesting_12_01ba\n"
     ".Lharvesting_12_019c:\n"
-    ".endif\n"
+#endif
     "mov r2, sl\n"
     "cmp r2, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_12_01aa\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_12_01ba\n"
-    ".endif\n"
+#endif
     "movs r3, #0x83\n"
     "lsls r3, r3, #3\n"
     "adds r4, r7, r3\n"
@@ -6298,27 +6298,27 @@ asm_unified(
     "bl DisableResume__C12UiStateOwner\n"
     "movs r0, #0\n"
     "str r0, [sp, #0x5c]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_12_01aa:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_12_01ba:\n"
-    ".endif\n"
+#endif
     "ldr r1, [sp, #0x5c]\n"
     "cmp r1, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_12_01cc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_12_01dc\n"
-    ".endif\n"
+#endif
     "ldr r2, [sp, #0x60]\n"
     "adds r2, #1\n"
     "str r2, [sp, #0x60]\n"
     "cmp r2, #0x78\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ble .Lharvesting_12_01cc\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ble .Lharvesting_12_01dc\n"
-    ".endif\n"
+#endif
     "movs r3, #0x83\n"
     "lsls r3, r3, #3\n"
     "adds r4, r7, r3\n"
@@ -6326,32 +6326,32 @@ asm_unified(
     "bl EnableResume__C12UiStateOwner\n"
     "ldr r0, [r4]\n"
     "bl func_08050D74\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_12_01cc:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_12_01dc:\n"
-    ".endif\n"
+#endif
     "adds r0, r7, #0\n"
     "bl func_080BDF40\n"
     "movs r1, #0xb4\n"
     "lsls r1, r1, #3\n"
     "adds r0, r7, r1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_12_01d8:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_12_01e8:\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "cmp r0, #1\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bne .Lharvesting_12_01e0\n"
     "b .Lharvesting_12_00e0\n"
     ".Lharvesting_12_01e0:\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bne .Lharvesting_12_01f0\n"
     "b .Lharvesting_12_00f0\n"
     ".Lharvesting_12_01f0:\n"
-    ".endif\n"
+#endif
     "add sp, #0x64\n"
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
@@ -6518,11 +6518,11 @@ asm_unified(
     "str r0, [r3, #4]\n"
     "b .Lharvesting_14_01b8\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_14_00e4: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_14_00e4: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_14_00e8:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -6677,12 +6677,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r1, #4]\n"
     "b .Lharvesting_14_03e8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_14_0200: .word 0x5000260\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_14_0200: .word OBJ_PLTT + 3 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_14_0204:\n"
     "str r1, [sp, #0x40]\n"
     "movs r0, #1\n"
@@ -6953,10 +6953,10 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r0}\n"
     "bx r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_14_040c: .word 0x60a\n"
     ".Lharvesting_14_0410: .word 0x60f\n"
     ".Lharvesting_14_0414: .word 0x60e\n"
@@ -7237,11 +7237,11 @@ asm_unified(
     ".Lharvesting_15_0250: .word 0x424\n"
     ".Lharvesting_15_0254: .word 0x1c9\n"
     ".Lharvesting_15_0258: .word 0x48c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_025c: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_15_025c: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_0260:\n"
     "str r1, [sp, #0x104]\n"
     "mov r0, r8\n"
@@ -7396,12 +7396,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lharvesting_15_0442\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_0378: .word 0x5000280\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_15_0378: .word OBJ_PLTT + 4 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_037c:\n"
     "str r1, [sp, #0x104]\n"
     "movs r0, #1\n"
@@ -7609,11 +7609,11 @@ asm_unified(
     "b .Lharvesting_15_05ce\n"
     ".align 2, 0\n"
     ".Lharvesting_15_0504: .word 0x52c\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_0508: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_15_0508: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_050c:\n"
     "str r1, [sp, #0x104]\n"
     "mov r5, r8\n"
@@ -7744,11 +7744,11 @@ asm_unified(
     "movs r0, #0\n"
     "add r1, sp, #0x28\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r6, [sp, #0xc8]\n"
     "lsls r4, r6, #6\n"
     "adds r0, r4, r6\n"
@@ -7866,12 +7866,12 @@ asm_unified(
     "adds r5, #1\n"
     "str r5, [sp, #0xf0]\n"
     "b .Lharvesting_15_07b8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_06ec: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_15_06ec: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_06f0:\n"
     "str r1, [sp, #0x104]\n"
     "movs r0, #1\n"
@@ -8228,11 +8228,11 @@ asm_unified(
     ".align 2, 0\n"
     ".Lharvesting_15_09ac: .word 0x434\n"
     ".Lharvesting_15_09b0: .word 0x554\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_09b4: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_15_09b4: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_09b8:\n"
     "str r1, [sp, #0x104]\n"
     "add r1, sp, #0x94\n"
@@ -8381,12 +8381,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r6, #4]\n"
     "b .Lharvesting_15_0b90\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_0ac4: .word 0x50002e0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_15_0ac4: .word OBJ_PLTT + 7 * PLTT_SIZE_4BPP\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_0ac8:\n"
     "str r1, [sp, #0x104]\n"
     "movs r0, #1\n"
@@ -8592,18 +8592,18 @@ asm_unified(
     "adds r0, r0, r1\n"
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_0c58: .word 0x57c\n"
     ".Lharvesting_15_0c5c: .word .Lharvesting_15_0c60\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_0c60: .word .Lharvesting_15_0c7c\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_15_0c60:\n"
     ".word .Lharvesting_15_0c7c\n"
-    ".endif\n"
+#endif
     ".word .Lharvesting_15_0ca8\n"
     ".word .Lharvesting_15_0ca8\n"
     ".word .Lharvesting_15_0c8a\n"
@@ -8645,10 +8645,10 @@ asm_unified(
     "cmp r0, #1\n"
     "beq .Lharvesting_15_0cd0\n"
     "b .Lharvesting_15_1186\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_0cc0: .word gText_HarvestSpriteMiniGame_Harvest_ScoreSummary\n"
     ".Lharvesting_15_0cc4: .word 0x60b\n"
     ".Lharvesting_15_0cc8:\n"
@@ -8690,11 +8690,11 @@ asm_unified(
     "ldr r0, [r4]\n"
     "add r1, sp, #0x28\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r1, [sp, #0xdc]\n"
     "lsls r4, r1, #6\n"
     "adds r0, r4, r1\n"
@@ -8808,12 +8808,12 @@ asm_unified(
     "adds r0, #0x10\n"
     "str r0, [r5, #4]\n"
     "b .Lharvesting_15_0ecc\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_0e00: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
     ".Lharvesting_15_0e00: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_0e04:\n"
     "str r1, [sp, #0x104]\n"
     "movs r0, #1\n"
@@ -8971,11 +8971,11 @@ asm_unified(
     "str r0, [r1]\n"
     "add r1, sp, #0x28\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "ldr r5, [sp, #0xc8]\n"
     "lsls r4, r5, #6\n"
     "adds r0, r4, r5\n"
@@ -9095,11 +9095,11 @@ asm_unified(
     "str r5, [sp, #0xf0]\n"
     "b .Lharvesting_15_10e6\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lharvesting_15_1018: .word 0x6010000\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lharvesting_15_1018: .word OBJ_VRAM0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_101c:\n"
     "str r1, [sp, #0x104]\n"
     "movs r0, #1\n"
@@ -9261,10 +9261,10 @@ asm_unified(
     "movs r1, #0xb7\n"
     "bl Start__23HardwareMusicPlayerSlotUs\n"
     "b .Lharvesting_15_1150\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lharvesting_15_1140: .word 0x60c\n"
     ".Lharvesting_15_1144:\n"
     "movs r0, #0xb0\n"

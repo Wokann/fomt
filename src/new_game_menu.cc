@@ -11,7 +11,7 @@ extern NewGameMenuLabelRow const gNewGameMenuLabels[6] = {
 #if defined(REGION_JP)
         gText_NewGameMenu_Data1,
         gText_NewGameMenu_Data2,
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         gText_NewGameMenu_ControlOption1,
         gText_NewGameMenu_ControlOption2,
 #endif
@@ -518,7 +518,7 @@ asm_unified(
     ".Ljp_08003B4C: .word gText_NewGameStatus_CloseParen\n"
     ".Ljp_08003B50: .word gText_NewGameStatus_FarmSuffix\n"
     ".Ljp_08003B54: .word 0x00001BD8\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    thumb_func_start FormatNewGameSaveSlotSummary\n"
     "FormatNewGameSaveSlotSummary: @ Original US 0x08003788; body remains native.\n"
@@ -1954,7 +1954,7 @@ asm_unified(
 #if defined(REGION_JP)
     ".L08004838: .word gText_NewGameSave_Affirmative\n"
     ".L0800483C: .word gText_NewGameSave_Negative\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".L08004838: .word gText_NewGameMenu_Yes\n"
     ".L0800483C: .word gText_NewGameMenu_No\n"
 #endif
@@ -2006,7 +2006,7 @@ asm_unified(
 #if defined(REGION_JP)
     ".L08004898: .word gText_NewGameSave_Affirmative\n"
     ".L0800489C: .word gText_NewGameSave_Negative\n"
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".L08004898: .word gText_NewGameMenu_Yes\n"
     ".L0800489C: .word gText_NewGameMenu_No\n"
 #endif

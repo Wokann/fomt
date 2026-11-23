@@ -153,11 +153,11 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Ltool_chest_2_00c8: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_2_00cc: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_2_00cc: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start DrawToolChestPage__18ToolChestSceneCoreUi\n"
     "DrawToolChestPage__18ToolChestSceneCoreUi:\n"
@@ -212,11 +212,11 @@ asm_unified(
     "b .Ltool_chest_3_0080\n"
     ".align 2, 0\n"
     ".Ltool_chest_3_0070: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_3_0074: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_3_0074: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_3_0078:\n"
     "ldr r0, [r6, #0x7c]\n"
     "adds r1, r7, #0x0\n"
@@ -860,11 +860,11 @@ asm_unified(
     "b .Ltool_chest_7_0506\n"
     ".align 2, 0\n"
     ".Ltool_chest_7_0410: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_7_0414: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_7_0414: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_7_0418:\n"
     "mov r2, r8\n"
     "ldr r0, [r2]\n"
@@ -1112,11 +1112,11 @@ asm_unified(
     "b .Ltool_chest_7_06e6\n"
     ".align 2, 0\n"
     ".Ltool_chest_7_064c: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_7_0650: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_7_0650: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_7_0654:\n"
     "mov r4, r8\n"
     "ldr r0, [r4]\n"
@@ -1193,11 +1193,11 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     ".Ltool_chest_7_06fc: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_7_0700: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_7_0700: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start MoveTool__18ToolChestSceneCoreii\n"
     "MoveTool__18ToolChestSceneCoreii:\n"
@@ -2441,11 +2441,11 @@ asm_unified(
     "b .Ltool_chest_8_0fcc\n"
     ".align 2, 0\n"
     ".Ltool_chest_8_0b40: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_8_0b44: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_8_0b44: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_8_0b48:\n"
     "add r0, sp, #0x4\n"
     "bl GetTool__C9ToolStack\n"
@@ -2686,11 +2686,11 @@ asm_unified(
     "b .Ltool_chest_8_0e7c\n"
     ".align 2, 0\n"
     ".Ltool_chest_8_0d74: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_8_0d78: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_8_0d78: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_8_0d7c:\n"
     "adds r0, r7, #0x0\n"
     "adds r0, #0x94\n"
@@ -2808,11 +2808,11 @@ asm_unified(
     "b .Ltool_chest_8_112c\n"
     ".align 2, 0\n"
     ".Ltool_chest_8_0e84: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_8_0e88: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_8_0e88: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_8_0e8c:\n"
     "mov r0, r8\n"
     "bl IsEmpty__C9ToolStack\n"
@@ -2874,11 +2874,11 @@ asm_unified(
     "b .Ltool_chest_8_0fcc\n"
     ".align 2, 0\n"
     ".Ltool_chest_8_0f18: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_8_0f1c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_8_0f1c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Ltool_chest_8_0f20:\n"
     "add r0, sp, #0x4\n"
     "bl GetTool__C9ToolStack\n"
@@ -3114,11 +3114,11 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     ".Ltool_chest_8_1140: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Ltool_chest_8_1144: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Ltool_chest_8_1144: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start ShowCannotDiscard__18ToolChestSceneCorei\n"
     "ShowCannotDiscard__18ToolChestSceneCorei:\n"

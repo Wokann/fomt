@@ -152,7 +152,7 @@ struct FarmMapScreenExteriorStyleData
 extern u8 const gUnk_08527094[];
 #if defined(REGION_JP)
 extern u8 const gUnk_084D977C[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 extern u8 const gUnk_087537D0[];
 #endif
 
@@ -186,7 +186,7 @@ extern u8 const gUnk_082B405C[];
 extern u8 const gUnk_082B40BC[];
 extern u8 const gUnk_082B4930[];
 extern u8 const gUnk_082B49CC[];
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
 extern u8 const gUnk_08529B18[];
 extern u8 const gUnk_08529B78[];
 extern u8 const gUnk_08529C6C[];

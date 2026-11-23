@@ -160,7 +160,7 @@ GameScene::GameScene(GameStateSaveImage * image, GameSceneResumeRequest const & 
 }
 
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 GameScene::GameScene(GameStateSaveImage * image)
 {
     GameSceneState * core = new GameSceneState(this, image, GameSceneResumeRequest(2));
@@ -730,7 +730,7 @@ void GameScene::TextVariableSetNumber(u32 slot, i32 value)
     char text[52];
 #if defined(REGION_JP)
     FormatFullWidthDecimal(value, text, 0);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     FormatSignedDecimal(value, text, 0);
 #endif
     current->text_variables.value->Set(slot, text);
@@ -748,7 +748,7 @@ void GameScene::TextVariableSetNumberFieldWidth(u32 slot, i32 value, u32 width)
     char text[52];
 #if defined(REGION_JP)
     FormatFullWidthDecimal(value, text, width);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     FormatSignedDecimal(value, text, width);
 #endif
     current->text_variables.value->Set(slot, text);
@@ -1997,7 +1997,7 @@ bool GameScene::IsPlayerHoldingTool()
 
 asm_unified(
     ".text\n"
-    "    .ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "    .align 2, 0\n"
     "    .global ShowLivestockNeglectDeathSummary\n"
     "    .thumb_func\n"
@@ -3177,7 +3177,7 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     ".Ljp_0801562C: .word 0x00001C2C\n"
-    "    .else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "    thumb_func_start ShowLivestockNeglectDeathSummary\n"
     "ShowLivestockNeglectDeathSummary: @ 0x08014D9C\n"
@@ -3316,11 +3316,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014EBA:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015128 @ =gText_AnimalMemorial_FarmSuffix\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3344,11 +3344,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014EEC:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L08015128 @ =gText_AnimalMemorial_PassedAway\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .endif\n"
+#endif
     "    mov r8, r1\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3372,11 +3372,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014F1E:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015114 @ =gText_AnimalMemorial_Continue\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L0801512C @ =gText_AnimalMemorial_PassedAway\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3400,11 +3400,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014F50:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015114 @ =gText_AnimalMemorial_Continue\n"
-    "    .endif\n"
+#endif
     "    mov r8, r1\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3428,11 +3428,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014F82:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L0801512C @ =gText_AnimalMemorial_NamesIntro\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3456,11 +3456,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014FB4:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L08015114 @ =gText_AnimalMemorial_Continue\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015130 @ =gText_AnimalMemorial_NamesIntro\n"
-    "    .endif\n"
+#endif
     "    mov r8, r1\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3484,11 +3484,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L08014FE6:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015114 @ =gText_AnimalMemorial_Continue\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3496,11 +3496,11 @@ asm_unified(
     "    ldr r1, .L08015120 @ =0x00000383\n"
     "    subs r5, r1, r0\n"
     "    cmp r5, #0\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    beq .L0801504A\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    beq .L08015018\n"
-    "    .endif\n"
+#endif
     "    mov r0, r8\n"
     "    bl strlen\n"
     "    adds r4, r0, #0\n"
@@ -3515,7 +3515,7 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .ifndef REGION_DE\n"
+#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".L08015018:\n"
     "    ldr r1, .L08015110 @ =gText_AnimalMemorial_LineBreak\n"
     "    mov r8, r1\n"
@@ -3540,7 +3540,7 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .endif\n"
+#endif
     ".L0801504A:\n"
     "    ldr r7, .L08015118 @ =gText_AnimalMemorial_PageBreak\n"
     "    adds r0, r6, #0\n"
@@ -3595,11 +3595,11 @@ asm_unified(
     "    strb r0, [r1]\n"
     ".L080150B8:\n"
     "    mov r6, r8\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015130 @ =gText_AnimalMemorial_PrayerIntro\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015134 @ =gText_AnimalMemorial_PrayerIntro\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -3636,7 +3636,7 @@ asm_unified(
     "    bl strlen\n"
     "    adds r4, r0, #0\n"
     "    cmp r4, r5\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".L08015138:\n"
     "    bls .L0801513C\n"
     "    adds r4, r5, #0\n"
@@ -3648,7 +3648,7 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    b .L08015138\n"
     "    .align 2, 0\n"
     ".L0801510C: .word 0xFFFFFC70\n"
@@ -3673,13 +3673,13 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .endif\n"
+#endif
     ".L0801514C:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015134 @ =gText_AnimalMemorial_PrayerEnding\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015204 @ =gText_AnimalMemorial_PrayerEnding\n"
-    "    .endif\n"
+#endif
     "\tmov r8, r0\n"
     "\tadds r0, r6, #0\n"
     "\tbl strlen\n"
@@ -3696,7 +3696,7 @@ asm_unified(
     "    bl strlen\n"
     "    adds r4, r0, #0\n"
     "    cmp r4, r5\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    b .L0801516E_de\n"
     "    .align 2, 0\n"
     ".L0801510C: .word 0xFFFFFC70\n"
@@ -3710,15 +3710,15 @@ asm_unified(
     ".L0801512C: .word gText_AnimalMemorial_NamesIntro\n"
     ".L08015130: .word gText_AnimalMemorial_PrayerIntro\n"
     ".L08015134: .word gText_AnimalMemorial_PrayerEnding\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    bls .L0801516E\n"
     "    adds r4, r5, #0\n"
-    "    .endif\n"
+#endif
     ".L0801516E_de:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    bls .L0801516E\n"
     "    adds r4, r5, #0\n"
-    "    .endif\n"
+#endif
     ".L0801516E:\n"
     "    adds r0, r7, #0\n"
     "    mov r1, r8\n"
@@ -3793,14 +3793,14 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    ".ifdef REGION_DE\n"
+#if defined(REGION_DE)
     ".L0801520C: .word gText_AnimalMemorial_Continue\n"
     ".L08015208: .word 0x00000383\n"
-    ".else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".L08015204: .word gText_AnimalMemorial_PrayerEnding\n"
     ".L08015208: .word 0x00000383\n"
     ".L0801520C: .word gText_AnimalMemorial_Continue\n"
-    ".endif\n"
+#endif
     "\n"
     "    thumb_func_start RemoveLivestockDeadFromNeglect\n"
     "RemoveLivestockDeadFromNeglect: @ 0x08015210\n"
@@ -4068,11 +4068,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L0801543A:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015690 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L080156A8 @ =gText_AnimalMemorial_FarmSuffix\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -4096,11 +4096,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L0801546C:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L080156A8 @ =gText_AnimalMemorial_NamesIntro\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .endif\n"
+#endif
     "    mov r8, r1\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -4124,11 +4124,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L0801549E:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L08015694 @ =gText_AnimalMemorial_Continue\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L080156AC @ =gText_AnimalMemorial_PassedAway\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -4152,11 +4152,11 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L080154D0:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L08015690 @ =gText_AnimalMemorial_LineBreak\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015694 @ =gText_AnimalMemorial_Continue\n"
-    "    .endif\n"
+#endif
     "    mov r8, r1\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -4164,11 +4164,11 @@ asm_unified(
     "    ldr r1, .L080156A0 @ =0x00000383\n"
     "    subs r5, r1, r0\n"
     "    cmp r5, #0\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    beq .L080155CA\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    beq .L08015502\n"
-    "    .endif\n"
+#endif
     "    mov r0, r8\n"
     "    bl strlen\n"
     "    adds r4, r0, #0\n"
@@ -4183,7 +4183,7 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .ifndef REGION_DE\n"
+#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     ".L08015502:\n"
     "    ldr r0, .L08015690 @ =gText_AnimalMemorial_LineBreak\n"
     "    mov r8, r0\n"
@@ -4280,7 +4280,7 @@ asm_unified(
     "    adds r1, r7, r4\n"
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
-    "    .endif\n"
+#endif
     ".L080155CA:\n"
     "    ldr r7, .L08015698 @ =gText_AnimalMemorial_PageBreak\n"
     "    adds r0, r6, #0\n"
@@ -4335,11 +4335,11 @@ asm_unified(
     "    strb r0, [r1]\n"
     ".L08015638:\n"
     "    mov r6, r8\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L080156AC @ =gText_AnimalMemorial_PrayerIntro\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L080156B4 @ =gText_AnimalMemorial_PrayerIntro\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
@@ -4376,7 +4376,7 @@ asm_unified(
     "    bl strlen\n"
     "    adds r4, r0, #0\n"
     "    cmp r4, r5\n"
-    "    .ifndef REGION_DE\n"
+#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    b .L080156B8\n"
     "    .align 2, 0\n"
     ".L0801568C: .word 0xFFFFFC70\n"
@@ -4390,7 +4390,7 @@ asm_unified(
     ".L080156AC: .word gText_AnimalMemorial_PassedAway\n"
     ".L080156B0: .word gText_AnimalMemorial_NamesIntro\n"
     ".L080156B4: .word gText_AnimalMemorial_PrayerIntro\n"
-    "    .endif\n"
+#endif
     ".L080156B8:\n"
     "    bls .L080156BC\n"
     "    adds r4, r5, #0\n"
@@ -4403,20 +4403,20 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L080156CC:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r0, .L080156B4 @ =gText_AnimalMemorial_PrayerEnding\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r0, .L08015784 @ =gText_AnimalMemorial_PrayerEnding\n"
-    "    .endif\n"
+#endif
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
     "    adds r7, r6, r0\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L080156A0 @ =0x00000383\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015788 @ =0x00000383\n"
-    "    .endif\n"
+#endif
     "    subs r5, r1, r0\n"
     "    cmp r5, #0\n"
     "    beq .L080156FE\n"
@@ -4435,19 +4435,19 @@ asm_unified(
     "    movs r0, #0\n"
     "    strb r0, [r1]\n"
     ".L080156FE:\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r7, .L08015694 @ =gText_AnimalMemorial_Continue\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r7, .L0801578C @ =gText_AnimalMemorial_Continue\n"
-    "    .endif\n"
+#endif
     "    adds r0, r6, #0\n"
     "    bl strlen\n"
     "    adds r6, r6, r0\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    ldr r1, .L080156A0 @ =0x00000383\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    ldr r1, .L08015788 @ =0x00000383\n"
-    "    .endif\n"
+#endif
     "    subs r5, r1, r0\n"
     "    cmp r5, #0\n"
     "    beq .L0801572E\n"
@@ -4507,7 +4507,7 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .ifdef REGION_DE\n"
+#if defined(REGION_DE)
     "    b RemoveNaturallyDeadLivestock\n"
     "    .align 2, 0\n"
     ".L0801568C: .word 0xFFFFFC70\n"
@@ -4520,12 +4520,12 @@ asm_unified(
     ".L080156A8: .word gText_AnimalMemorial_NamesIntro\n"
     ".L080156AC: .word gText_AnimalMemorial_PrayerIntro\n"
     ".L080156B4: .word gText_AnimalMemorial_PrayerEnding\n"
-    "    .else\n"
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     "    .align 2, 0\n"
     ".L08015784: .word gText_AnimalMemorial_PrayerEnding\n"
     ".L08015788: .word 0x00000383\n"
     ".L0801578C: .word gText_AnimalMemorial_Continue\n"
-    "    .endif\n"
+#endif
     "\n"
     "    thumb_func_start RemoveNaturallyDeadLivestock\n"
     "RemoveNaturallyDeadLivestock: @ 0x08015790\n"
@@ -4656,7 +4656,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".L08015898: .word 0x00001C2C\n"
     "\n"
-    "    .endif\n"
+#endif
 );
 
 

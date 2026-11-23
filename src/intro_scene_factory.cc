@@ -2,7 +2,7 @@
 #include "new_game_name_entry.hh"
 #include "new_game_menu.hh"
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #include FOMT_TEXT_INCLUDE(intro_scene_factory.cc)
 #endif
 

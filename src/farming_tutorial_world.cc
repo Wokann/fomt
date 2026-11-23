@@ -1678,11 +1678,11 @@ asm_unified(
     "movs r0, #0xf2\n"
     "lsls r0, r0, #1\n"
     "bl __builtin_new\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl __18FarmingTutorialMap\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl __18FarmingTutorialMap\n"
-    ".endif\n"
+#endif
     "str r0, [sp, #4]\n"
     "ldr r0, .Lfarming_tutorial_world_0d84\n"
     "bl __builtin_new\n"
@@ -1938,11 +1938,11 @@ asm_unified(
     "SetPlot__20FarmingTutorialWorldiiRC9FieldPlot:\n"
     "push {lr}\n"
     "ldr r0, [r0, #4]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl SetPlot__18FarmingTutorialMapiiRC9FieldPlot\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl SetPlot__18FarmingTutorialMapiiRC9FieldPlot\n"
-    ".endif\n"
+#endif
     "pop {r0}\n"
     "bx r0\n"
     "thumb_func_start RefreshChickenCoopIncubator__20FarmingTutorialWorld29MaryChickenCoopIncubatorIndex\n"

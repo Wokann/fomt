@@ -3,7 +3,7 @@
 
 #include "red_black_tree.hh"
 
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 // UpdateShopScreenDisplay builds two temporary maps, keyed by a visible row's
 // tile or palette source pointer. The value selects one of its nine OBJ slots.
 // JP draws the corresponding rows directly and does not create these maps.

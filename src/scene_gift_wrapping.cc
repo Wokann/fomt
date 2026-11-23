@@ -30,13 +30,13 @@ void GiftWrappingSceneCore::DrawTools(u32 count)
             // Upgrade levels are stored by Farmer, not by the inventory slot.
             Tool base_tool = stack.GetTool();
             Tool tool = save->farmer.GetUpgradedTool(base_tool);
-#else
+#elif defined(REGION_JP) || defined(REGION_US)
             Tool tool = stack.GetTool();
 #endif
             u16 icon = tool.GetIconId();
 #if defined(REGION_JP)
             func_080CB304(left_panel.value, index, gUnk_083ED9FC, icon, stack.GetAmount());
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             func_080CB304(left_panel.value, index, gUnk_086678A0, icon, stack.GetAmount());
 #endif
         }
@@ -46,13 +46,13 @@ void GiftWrappingSceneCore::DrawTools(u32 count)
 #if defined(REGION_EU) || defined(REGION_DE) || defined(BUGFIX)
         Tool base_tool = held_tool->GetTool();
         Tool tool = save->farmer.GetUpgradedTool(base_tool);
-#else
+#elif defined(REGION_JP) || defined(REGION_US)
         Tool tool = held_tool->GetTool();
 #endif
         u16 icon = tool.GetIconId();
 #if defined(REGION_JP)
         func_080CBAF0(left_panel.value, gUnk_083ED9FC, icon, held_tool->GetAmount());
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         func_080CBAF0(left_panel.value, gUnk_086678A0, icon, held_tool->GetAmount());
 #endif
     }
@@ -79,7 +79,7 @@ void GiftWrappingSceneCore::DrawItems(u32 count)
                 icon = 0x160;
 #if defined(REGION_JP)
             func_080CC728(right_panel.value, index, gUnk_083ED9FC, icon, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             func_080CC728(right_panel.value, index, gUnk_086678A0, icon, 1);
 #endif
         }
@@ -95,7 +95,7 @@ void GiftWrappingSceneCore::DrawItems(u32 count)
                 icon = 0x160;
 #if defined(REGION_JP)
             func_080CCE58(right_panel.value, gUnk_083ED9FC, icon, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             func_080CCE58(right_panel.value, gUnk_086678A0, icon, 1);
 #endif
             break;
@@ -107,7 +107,7 @@ void GiftWrappingSceneCore::DrawItems(u32 count)
                 icon = 0x160;
 #if defined(REGION_JP)
             func_080CCE58(right_panel.value, gUnk_083ED9FC, icon, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             func_080CCE58(right_panel.value, gUnk_086678A0, icon, 1);
 #endif
             break;
@@ -134,7 +134,7 @@ void GiftWrappingSceneCore::DrawItems(u32 count)
         case HeldItem::KIND_BASKET:
 #if defined(REGION_JP)
             func_080CCE58(right_panel.value, gUnk_083ED9FC, 0x35, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             func_080CCE58(right_panel.value, gUnk_086678A0, 0x35, 1);
 #endif
             break;
@@ -307,7 +307,7 @@ void GiftWrappingSceneCore::WrapItem(i32 selection)
         func_0800F528(held_item);
 #if defined(REGION_JP)
         func_080CCE58(right_panel.value, gUnk_083ED9FC, 0x160, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         func_080CCE58(right_panel.value, gUnk_086678A0, 0x160, 1);
 #endif
     }
@@ -317,7 +317,7 @@ void GiftWrappingSceneCore::WrapItem(i32 selection)
         GameMenuSpritePanel * panel = right_panel.value;
 #if defined(REGION_JP)
         func_080CC728(panel, GetItemIndex(selection, 0), gUnk_083ED9FC, 0x160, 1);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         func_080CC728(panel, GetItemIndex(selection, 0), gUnk_086678A0, 0x160, 1);
 #endif
     }

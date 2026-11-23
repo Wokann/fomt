@@ -208,7 +208,7 @@ void InitializeNameInputScreen(NewGameNameInputCore * core)
     unsigned const count = ARRAY_COUNT(core->keyboard_buffers);
 #if defined(REGION_DE)
     unsigned const frame = 620;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     unsigned const frame = 600;
 #endif
     CopyHardwareDma3(gUiSharedTiles, reinterpret_cast<void *>(BG_VRAM + frame * TILE_SIZE_4BPP), gUiSharedTileByteCount);
@@ -225,7 +225,7 @@ void InitializeNameInputScreen(NewGameNameInputCore * core)
         for (x = 0; x < width; ++x)
 #if defined(REGION_DE)
             *reinterpret_cast<u16 *>(BG_SCREEN_ADDR(24) + y * (32 * sizeof(u16)) + x * sizeof(u16)) = 28;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             *reinterpret_cast<u16 *>(BG_SCREEN_ADDR(24) + y * (32 * sizeof(u16)) + x * sizeof(u16)) = (count - 2) * row_tiles + width + 28;
 #endif
     for (x = 10; x < 16; ++x) {
@@ -248,7 +248,7 @@ void InitializeNameInputScreen(NewGameNameInputCore * core)
     }
 #if defined(REGION_JP)
     unsigned const prompt_x = 4, name_label_x = 80;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     unsigned const prompt_x = 1, name_label_x = 88;
 #endif
     if (core->prompt) {
@@ -291,7 +291,7 @@ void InitializeNameInputCursorSprites(NewGameNameInputCore * core, u32 tile_inde
 #if defined(REGION_JP)
     core->sprites[0].attributes.size = ST_OAM_SIZE_1;
     core->sprites[1].attributes.size = ST_OAM_SIZE_1;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     core->sprites[0].attributes.size = ST_OAM_SIZE_0;
     core->sprites[1].attributes.size = ST_OAM_SIZE_0;
     core->sprites[1].attributes.shape = ST_OAM_V_RECTANGLE;
@@ -382,7 +382,7 @@ void RenderNameInputKeyboard(NewGameNameInputCore * core)
     case 0:
 #if defined(REGION_JP)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_ModeKatakana);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_EndLatin);
 #endif
         break;
@@ -391,7 +391,7 @@ void RenderNameInputKeyboard(NewGameNameInputCore * core)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_ModeSymbols);
 #elif defined(REGION_DE)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_EndLatin);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_EndFullWidth);
 #endif
         break;
@@ -400,7 +400,7 @@ void RenderNameInputKeyboard(NewGameNameInputCore * core)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_ModeHiragana);
 #elif defined(REGION_DE)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_EndLatin);
-#else
+#elif defined(REGION_US) || defined(REGION_EU)
         core->keyboard_buffers[Buttons].DrawString(24, 0, gText_NewGameNameEntry_EndFullWidth);
 #endif
         break;
@@ -408,7 +408,7 @@ void RenderNameInputKeyboard(NewGameNameInputCore * core)
 #if defined(REGION_DE)
     QueueNameInputTiles(GetHardwareDmaQueue(reinterpret_cast<void * const *>(core)),
         core->keyboard_buffers[Buttons].TileData(), reinterpret_cast<void *>(BG_VRAM + Buttons * bytes), bytes);
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     QueueNameInputButtons(GetHardwareDmaQueue(reinterpret_cast<void * const *>(core)),
         core->keyboard_buffers[Buttons], NEW_GAME_NAME_INPUT_KEYBOARD_BUFFER_COUNT * bytes, bytes);
 #endif
@@ -454,7 +454,7 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 {
 #if defined(REGION_JP)
     core->sprites[1].attributes.x = core->sprites[1].column * 16 + 0x90;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     core->sprites[1].attributes.x = core->sprites[1].column * 8 + 0x90;
 #endif
     core->sprites[1].attributes.y = 8;
@@ -465,7 +465,7 @@ void UpdateNameInputCursorSprites(NewGameNameInputCore * core)
 #if defined(REGION_JP)
         core->sprites[0].attributes.size = ST_OAM_SIZE_1;
         core->sprites[0].attributes.shape = ST_OAM_SQUARE;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         core->sprites[0].attributes.size = ST_OAM_SIZE_0;
         core->sprites[0].attributes.shape = ST_OAM_V_RECTANGLE;
 #endif
@@ -489,7 +489,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
     int const bottom_row = NEW_GAME_NAME_ENTRY_ROWS_PER_PAGE;
 #if defined(REGION_DE)
     int const last_column = 4;
-#elif !defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     int const last_column = 12;
 #endif
     u32 input = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(core));
@@ -499,7 +499,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
         core->sprites[0].row--;
         if (static_cast<i8>(core->sprites[0].row) < 0) {
             core->sprites[0].row = bottom_row;
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             core->sprites[0].column = 12;
 #endif
         }
@@ -524,7 +524,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                 if (static_cast<i8>(core->sprites[0].column) > last_column)
                     core->sprites[0].row++;
             }
-#if !defined(REGION_JP)
+#if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             if (static_cast<i8>(core->sprites[0].row) == bottom_row)
                 core->sprites[0].column = 12;
 #endif
@@ -538,7 +538,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                     core->sprites[0].column = 2;
                 else
                     core->sprites[0].column = 12;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 core->sprites[0].column = 12;
 #endif
             } else {
@@ -550,7 +550,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
 #if defined(REGION_US) || defined(REGION_EU)
                     u32 column = core->sprites[0].column;
                     if (static_cast<i8>(column) > last_column)
-#else
+#elif defined(REGION_JP) || defined(REGION_DE)
                     if (static_cast<i8>(core->sprites[0].column) > last_column)
 #endif
                         core->sprites[0].column = 0;
@@ -567,7 +567,7 @@ void MoveNameInputKeyboardCursor(NewGameNameInputCore * core)
                     core->sprites[0].column = 7;
                 else
                     core->sprites[0].column = 2;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                 core->sprites[0].column = 12;
 #endif
             } else {
@@ -610,7 +610,7 @@ void InsertNameInputCharacter(NewGameNameInputCore * core)
         core->sprites[0].row = 6;
         core->sprites[1].column = 5;
     }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     if (core->name[core->sprites[1].column] == character[0])
         core->sprites[1].column++;
     else {
@@ -621,7 +621,7 @@ void InsertNameInputCharacter(NewGameNameInputCore * core)
         core->sprites[0].column = 12;
 #if defined(REGION_DE)
         core->sprites[0].row = 7;
-#else
+#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         core->sprites[0].row = 6;
 #endif
         core->sprites[1].column = 11;
@@ -639,7 +639,7 @@ void EraseNameInputCharacter(NewGameNameInputCore * core, u8 index)
     }
     core->name[10] = 0x81;
     core->name[11] = 0x51;
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     for (; index < 11; index++)
         core->name[index] = core->name[index + 1];
     core->name[11] = '_';
@@ -667,7 +667,7 @@ bool NormalizeNameInput(NewGameNameInputCore * core)
             length = index + 2;
             next = length;
         }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         u32 character = core->normalized_name[index];
         if (character == '_') {
             blank_count++;
@@ -682,7 +682,7 @@ bool NormalizeNameInput(NewGameNameInputCore * core)
     }
 #if defined(REGION_JP)
     if (blank_count == 6)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     if (blank_count == 12)
 #endif
         length = 0;
@@ -696,7 +696,7 @@ bool NormalizeNameInput(NewGameNameInputCore * core)
                 core->normalized_name[index + 1] = 0x40;
             }
         }
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         for (int index = 0; index < length; index++)
             if (core->normalized_name[index] == '_')
                 core->normalized_name[index] = ' ';
@@ -754,7 +754,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
                     placeholder_count++;
             }
             if (placeholder_count == 6)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             for (int index = 0; index < 12; index++)
                 if (core->name[index] == '_')
                     placeholder_count++;
@@ -794,7 +794,7 @@ void ProcessNameInputKeys(NewGameNameInputCore * core)
     } else if (reinterpret_cast<u8 const *>(&input)[1] & (R_BUTTON >> 8)) {
 #if defined(REGION_JP)
         if (core->sprites[1].column != 5)
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         if (core->sprites[1].column != 11)
 #endif
             core->sprites[1].column++;

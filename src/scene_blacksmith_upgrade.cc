@@ -212,11 +212,11 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Lblacksmith_upgrade_2_00c0: .word 0x1bd8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_upgrade_2_00c4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_2_00c4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start DrawItems__29BlacksmithShopResultSceneCoreUi\n"
     "DrawItems__29BlacksmithShopResultSceneCoreUi:\n"
@@ -310,11 +310,11 @@ asm_unified(
     "ldr r0, [r0]\n"
     "mov pc, r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_upgrade_3_00b4: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_3_00b4: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_3_00b8: .word .Lblacksmith_upgrade_3_00bc\n"
     ".Lblacksmith_upgrade_3_00bc: .word .Lblacksmith_upgrade_3_00d4\n"
     ".word .Lblacksmith_upgrade_3_0110\n"
@@ -349,11 +349,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lblacksmith_upgrade_3_01c2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_upgrade_3_010c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_3_010c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_3_0110:\n"
     "movs r1, #0x80\n"
     "lsls r1, r1, #1\n"
@@ -383,11 +383,11 @@ asm_unified(
     "adds r2, r6, #0\n"
     "b .Lblacksmith_upgrade_3_01c2\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_upgrade_3_014c: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_3_014c: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_3_0150:\n"
     "ldr r0, [r5, #8]\n"
     "ldr r2, .Lblacksmith_upgrade_3_0168\n"
@@ -458,11 +458,11 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     ".align 2, 0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     ".Lblacksmith_upgrade_3_01e8: .word gUnk_083ED9FC\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_3_01e8: .word gUnk_086678A0\n"
-    ".endif\n"
+#endif
     "\n"
     "thumb_func_start UpdateDescription__29BlacksmithShopResultSceneCorei\n"
     "UpdateDescription__29BlacksmithShopResultSceneCorei:\n"
@@ -1107,11 +1107,11 @@ asm_unified(
     "str r5, [r0, #0x14]\n"
     "str r5, [r0, #0x18]\n"
     "bl .Lblacksmith_upgrade_9_0fc8\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r0, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_02b8: .word gText_BlacksmithUpgrade_Tools\n"
     ".Lblacksmith_upgrade_9_02bc: .word gText_BlacksmithUpgrade_Items\n"
     ".Lblacksmith_upgrade_9_02c0: .word __vt_23IndexedResourceProvider\n"
@@ -2071,11 +2071,11 @@ asm_unified(
     "movs r0, #3\n"
     "str r0, [r1]\n"
     "bl .Lblacksmith_upgrade_9_025e\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r0, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_0b1c: .word gText_BlacksmithUpgrade_DowngradeConfirmation\n"
     ".Lblacksmith_upgrade_9_0b20:\n"
     "movs r0, #0x84\n"
@@ -2166,11 +2166,11 @@ asm_unified(
     "ldr r0, [sp, #0x44]\n"
     "adds r1, r4, #0\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
-    ".endif\n"
+#endif
     "movs r2, #0x8c\n"
     "lsls r2, r2, #1\n"
     "adds r2, r2, r7\n"
@@ -2201,33 +2201,33 @@ asm_unified(
     "movs r0, #0\n"
     "strb r0, [r1]\n"
     ".Lblacksmith_upgrade_9_0c1e:\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r4, r8\n"
-    ".endif\n"
+#endif
     "ldr r0, .Lblacksmith_upgrade_9_0de4\n"
     "mov sb, r0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r0, r8\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r0, r4, #0\n"
-    ".endif\n"
+#endif
     "bl strlen\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r1, r8\n"
     "adds r4, r1, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r1, r4, r0\n"
     "mov r8, r1\n"
-    ".endif\n"
+#endif
     "movs r1, #0x9f\n"
     "subs r6, r1, r0\n"
     "cmp r6, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "beq .Lblacksmith_upgrade_9_0c88\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "beq .Lblacksmith_upgrade_9_0c56\n"
-    ".endif\n"
+#endif
     "mov r0, sb\n"
     "bl strlen\n"
     "adds r5, r0, #0\n"
@@ -2235,14 +2235,14 @@ asm_unified(
     "bls .Lblacksmith_upgrade_9_0c44\n"
     "adds r5, r6, #0\n"
     ".Lblacksmith_upgrade_9_0c44:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r0, r4, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r0, r8\n"
-    ".endif\n"
+#endif
     "mov r1, sb\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r2, r5, #0\n"
     "bl memcpy\n"
     "mov r2, r8\n"
@@ -2268,7 +2268,7 @@ asm_unified(
     ".Lblacksmith_upgrade_9_0c78:\n"
     "adds r0, r4, #0\n"
     "mov r1, r8\n"
-    ".endif\n"
+#endif
     "adds r2, r5, #0\n"
     "bl memcpy\n"
     "adds r1, r4, r5\n"
@@ -2283,26 +2283,26 @@ asm_unified(
     "mov r5, sl\n"
     "adds r1, r5, #0\n"
     "movs r2, #0\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "bl FormatFullWidthDecimal\n"
     "movs r2, #0x8c\n"
     "lsls r2, r2, #1\n"
     "adds r4, r7, r2\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "bl FormatSignedDecimal\n"
     "movs r1, #0x8c\n"
     "lsls r1, r1, #1\n"
     "adds r4, r7, r1\n"
-    ".endif\n"
+#endif
     "adds r0, r4, #0\n"
     "bl strlen\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r1, r4, r0\n"
     "mov r8, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r2, r4, r0\n"
     "mov r8, r2\n"
-    ".endif\n"
+#endif
     "movs r1, #0x9f\n"
     "subs r6, r1, r0\n"
     "cmp r6, #0\n"
@@ -2318,30 +2318,30 @@ asm_unified(
     "mov r1, sl\n"
     "adds r2, r5, #0\n"
     "bl memcpy\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "mov r2, r8\n"
     "adds r1, r2, r5\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "mov r0, r8\n"
     "adds r1, r0, r5\n"
-    ".endif\n"
+#endif
     "movs r0, #0\n"
     "strb r0, [r1]\n"
     ".Lblacksmith_upgrade_9_0cd6:\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r0, .Lblacksmith_upgrade_9_0dec\n"
     "mov r8, r0\n"
     "adds r0, r4, #0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r6, r4, #0\n"
     "ldr r1, .Lblacksmith_upgrade_9_0dec\n"
     "mov sb, r1\n"
     "adds r0, r6, #0\n"
-    ".endif\n"
+#endif
     "bl strlen\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "adds r6, r4, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "adds r2, r6, r0\n"
     "mov r8, r2\n"
     "movs r1, #0x9f\n"
@@ -2369,7 +2369,7 @@ asm_unified(
     "adds r0, r6, #0\n"
     "bl strlen\n"
     "adds r6, r6, r0\n"
-    ".endif\n"
+#endif
     "movs r1, #0x9f\n"
     "subs r5, r1, r0\n"
     "cmp r5, #0\n"
@@ -2390,13 +2390,13 @@ asm_unified(
     "strb r0, [r1]\n"
     ".Lblacksmith_upgrade_9_0d40:\n"
     "ldr r0, [r7, #8]\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "ldr r1, .Lblacksmith_upgrade_9_0df4\n"
     "adds r0, r0, r1\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "ldr r2, .Lblacksmith_upgrade_9_0df4\n"
     "adds r0, r0, r2\n"
-    ".endif\n"
+#endif
     "ldr r0, [r0]\n"
     "movs r1, #0\n"
     "ldr r2, [sp, #0x44]\n"
@@ -2474,15 +2474,15 @@ asm_unified(
     ".Lblacksmith_upgrade_9_0ddc: .word 0xc350\n"
     ".Lblacksmith_upgrade_9_0de0: .word gText_BlacksmithUpgrade_WorkOrderPrefix\n"
     ".Lblacksmith_upgrade_9_0de4: .word gText_BlacksmithUpgrade_WorkOrderGoldSuffix\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_9_0de8: .word gText_BlacksmithUpgrade_WorkOrderDaysPrefix\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_0dec: .word gText_BlacksmithUpgrade_WorkOrderDaysSuffix\n"
-    ".ifdef REGION_JP\n"
-    ".else\n"
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".Lblacksmith_upgrade_9_0df0: .word gText_BlacksmithUpgrade_WorkOrderQuestion\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_0df4: .word 0x1aa8\n"
     ".Lblacksmith_upgrade_9_0df8: .word gText_BlacksmithUpgrade_InsufficientGoldPageBreak\n"
     ".Lblacksmith_upgrade_9_0dfc: .word gText_BlacksmithUpgrade_InsufficientGold\n"
@@ -2532,11 +2532,11 @@ asm_unified(
     "movs r0, #4\n"
     "str r0, [r1]\n"
     "bl .Lblacksmith_upgrade_9_025e\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r0, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_0e64: .word gText_BlacksmithUpgrade_ResultYes\n"
     ".Lblacksmith_upgrade_9_0e68: .word gText_BlacksmithUpgrade_ResultNo\n"
     ".Lblacksmith_upgrade_9_0e6c:\n"
@@ -2647,11 +2647,11 @@ asm_unified(
     "movs r0, #5\n"
     "str r0, [r1]\n"
     "bl .Lblacksmith_upgrade_9_025e\n"
-    ".ifdef REGION_JP\n"
+#if defined(REGION_JP)
     "movs r0, r0\n"
-    ".else\n"
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     ".align 2, 0\n"
-    ".endif\n"
+#endif
     ".Lblacksmith_upgrade_9_0f54: .word gText_BlacksmithUpgrade_CannotChangeMind\n"
     ".Lblacksmith_upgrade_9_0f58:\n"
     "adds r0, r7, #0\n"
