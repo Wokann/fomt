@@ -189,7 +189,7 @@
 | [03F0](data/scripts/de/EventScript_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) | JP / US=EU / DE | 卡莲的对话在头像表情、切换次数和DE文本分段上存在差异。JP开启BUGFIX时让头像随纠正后的婚姻状态台词一起交换；DE去掉多余台词。[对应修复](BUGFIX.md#audit-a09)。 |
 | [03FD](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) | JP=DE / US=EU | US/EU将玛娜饰品答谢末段改用普通语速，保留演出。第三段海外把儿子邀请同住改成格雷反抗，另见[亲属及留镇理由修复](BUGFIX.md#manna-saibara-family)。 |
 | [0414](data/scripts/de/EventScript_TV_LifeOnTheFarm_Beginner.mary.c) | JP=US=EU / DE | 德版春 19 日节目少一个 break，会继续播放 20 日节目。[缺陷记录](BUGFIX.md#de-farm-tv) |
-| [0418](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 人物介绍节目中的慢速台词数和调用类型不同；DE 第 36 号人物节目没有读取频道输入，随后分派到天气频道。[缺陷记录](BUGFIX.md#de-profile-tv) |
+| [0418](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) | JP / US=EU / DE | 保留正常语速差异；海外case 20／21漏播预告及女儿条目。[漏播](BUGFIX.md#profile-tv-missing-messages)。DE第36项漏接频道输入见[既有修复](BUGFIX.md#de-profile-tv)。 |
 | [0432](data/scripts/us/EventScript_FestivalEvent_NewYearsDayFestivalDialogue_Manna.mary.c) | JP / US=EU=DE | 海外版本改变玛娜新年对话中一处文本速度。 |
 | [0445](data/scripts/de/EventScript_FestivalEvent_SpringHorseRace_SpectatorDialogue_Manna.mary.c) | JP / US=EU / DE | 玛娜赛马场对话的慢速台词数不同。 |
 | [0468](data/scripts/de/EventScript_FestivalEvent_CookingFestival_Judging.mary.c) | JP=US=EU / DE | 料理祭评审的一次等待由其他版的 240 帧变为 DE 的 480 帧。 |

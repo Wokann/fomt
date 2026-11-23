@@ -669,6 +669,13 @@ mary_text_table
         "\r\n"
         "\r\n";
 
+#ifdef BUGFIX
+// Sasha's episode omits the preview for Doug.
+    const char gText_TV_MineralTownFriends_Sasha_NextEpisodePreview[] =
+        "Nächstes Mal stellen \r\n"
+        "wir Doug vor.{Press}";
+
+#endif
     const char gText_TV_MineralTownFriends_Doug_ProfileHeader[] =
         "Dies ist Doug. \r\n"
         "\r\n"
@@ -680,6 +687,12 @@ mary_text_table
         "Gasthof.\"\r\n"
         "Seine Familie ist: \r\n";
 
+#ifdef BUGFIX
+// Doug's episode omits the line introducing his daughter.
+    const char gText_TV_MineralTownFriends_Doug_FamilyDaughter[] =
+        "seine Tochter Ann.\r\n";
+
+#endif
     const char gText_TV_MineralTownFriends_Doug_BiographyPart01[] =
         "Er sorgt sich immer um Ann,\r\n"
         "die er allein erzogen hat.\r\n"
@@ -2027,6 +2040,9 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_BiographyPart01);
             SetTalkPortrait(TALK_PORTRAIT_DOUG_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DOUG);
+#ifdef BUGFIX
+            TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_NextEpisodePreview);
+#endif
             break;
         case 21:
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
@@ -2051,6 +2067,9 @@ void EventScript_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Doug_ProfileHeader);
             SetTalkPortrait(TALK_PORTRAIT_ANN_WEDDING);
             SetTalkNameplateCharacter(CHARACTER_ANN);
+#ifdef BUGFIX
+            TalkMessageSlow(gText_TV_MineralTownFriends_Doug_FamilyDaughter);
+#endif
             SetTalkPortrait(TALK_PORTRAIT_DOUG_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DOUG);
             TalkMessageSlow(gText_TV_MineralTownFriends_Doug_BiographyPart01);

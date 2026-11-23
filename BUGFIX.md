@@ -30,8 +30,8 @@ make -j16 GAME_REGION=JP all
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 37 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 22 |
-| **合计** | | **151** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 23 |
+| **合计** | | **152** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -2954,6 +2954,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [料理对决第2集把糖译成盐](#audit-e19) | US、EU、DE | 已接入 |
 | [英文电视台词残留日文助词](#tv-japanese-particles) | US、EU | 已接入 |
 | [德版别墅春季雨天预报把明天说成今天](#de-villa-tv-spring-rain) | DE | 已接入 |
+| [人物介绍节目漏播下期预告和家庭成员](#profile-tv-missing-messages) | US、EU、DE | 已接入 |
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误
@@ -3435,3 +3436,22 @@ DE 鱼记录中，RockTrout 对应 `Gebirgsforelle`；`Bergforelle` 对应的是
 用相邻预报的首句替换德版雨天首句。
 
 **相关文件：** [别墅电视入口](src/map_terrain.cc) · [DE](data/scripts/de/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [JP 对照](data/scripts/jp/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c) · [US 对照](data/scripts/us/EventScript_TV_EntertainmentChannelWeatherForecast.mary.c)
+
+<a id="profile-tv-missing-messages"></a>
+### 人物介绍节目漏播下期预告和家庭成员
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+镇上别墅的《矿石镇的伙伴们》节目中，`case 20`介绍莎夏后，四版都设为达德的肖像和姓名；JP接着说“下次介绍达德”，海外却直接结束。`case 21`介绍达德时，四版标题都写到“他的家人是”，但海外设置琳的肖像和姓名后立刻换回达德，省略了JP的“女儿琳”。海外保留的达德生平和下期琳的预告是另外两段，不能代替缺失的家庭成员条目。
+
+**判断依据：**
+
+JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓名和家庭名单引言也对应这两个位置。相邻莎夏节目有“女儿卡莲”条目，前后各期采用一致的“下期介绍”句式。
+
+**修复方式：**
+
+开启BUGFIX时，在三个海外版与JP相同的位置补回两份文本及慢速消息调用。US／EU采用 `Next time we'll introduce / Doug.`（下期介绍达德）、`his daughter Ann.`（他的女儿琳）；DE采用 `Nächstes Mal stellen / wir Doug vor.`、`seine Tochter Ann.`，按原节目行宽、换行和等待符排版。沿用本作同语相邻条目的句式，不改节目索引、现有生平或末尾琳的预告。
+
+**相关文件：** [JP](data/scripts/jp/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [US](data/scripts/us/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [EU](data/scripts/eu/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c) · [DE](data/scripts/de/EventScript_TV_MineralTownFriends_CharacterProfiles.mary.c)
