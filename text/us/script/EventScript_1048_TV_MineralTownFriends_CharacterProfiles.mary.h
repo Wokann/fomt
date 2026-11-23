@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_TV_MineralTownFriends_Rick_Opening[] =
+    const char gText_TV_MineralTownFriends_Shared_Opening_2[] =
         "Mineral Town Friends!\r\n"
         "\t\r\n"
         "\t\r\n"
@@ -77,10 +77,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Popuri_FamilySibling[] =
         "her brother Rick, \r\n";
 
-    const char gText_TV_MineralTownFriends_Popuri_FamilyMother[] =
+    const char gText_TV_MineralTownFriends_FamilyMotherLillia_2[] =
         "her mother Lillia,\r\n";
 
-    const char gText_TV_MineralTownFriends_Popuri_FamilyFather[] =
+    const char gText_TV_MineralTownFriends_FamilyFatherRod_2[] =
         "and her dad Rod.\r\n";
 
     const char gText_TV_MineralTownFriends_Popuri_BiographyPart01[] =
@@ -307,10 +307,10 @@ mary_text_table
         "\r\n"
         "With him live: \r\n";
 
-    const char gText_TV_MineralTownFriends_SharedBoldOrChefProfile_HarvestSpriteFamilyMemberStaid[] =
+    const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2[] =
         "Staid　　　　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_BoldProfile_HarvestSpriteFamilyMemberNappy[] =
+    const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_2[] =
         "Nappy　　　　　　　　　\r\n";
 
     const char gText_TV_MineralTownFriends_Bold_HarvestSpriteFamilyOverview[] =
@@ -361,7 +361,7 @@ mary_text_table
         "\r\n"
         "With him live: \r\n";
 
-    const char gText_TV_MineralTownFriends_SharedAquaHoggyOrTimidProfile_HarvestSpriteFamilyMemberNappy[] =
+    const char gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3[] =
         "Nappy \r\n";
 
     const char gText_TV_MineralTownFriends_Aqua_HarvestSpriteFamilyOverview[] =
@@ -669,7 +669,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Sasha_FamilyHusband[] =
         "her husband Jeff and \r\n";
 
-    const char gText_TV_MineralTownFriends_Sasha_FamilyDaughter[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterKaren_2[] =
         "her daughter Karen.\r\n";
 
     const char gText_TV_MineralTownFriends_Sasha_FamilyAndBiography[] =
@@ -861,7 +861,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Anna_BiographyPart01[] =
         "her husband Basil and \r\n";
 
-    const char gText_TV_MineralTownFriends_Anna_FamilyDaughter[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterMary_2[] =
         "her daughter Mary. \r\n";
 
     const char gText_TV_MineralTownFriends_Anna_BiographyPart02[] =
@@ -1008,7 +1008,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Manna_BiographyPart01[] =
         "her husband Duke \r\n";
 
-    const char gText_TV_MineralTownFriends_Manna_FamilyDaughter[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterAja_2[] =
         "and her daughter Aja. \r\n";
 
     const char gText_TV_MineralTownFriends_Manna_BiographyPart03[] =

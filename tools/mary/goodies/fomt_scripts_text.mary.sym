@@ -13440,7 +13440,7 @@ mary_script_symbols
             #if defined(REGION_JP)
                 gText_TV_MineralTownFriends_Shared_Opening,
             #else
-                gText_TV_MineralTownFriends_Rick_Opening,
+                gText_TV_MineralTownFriends_Shared_Opening_2,
             #endif
         #endif
         gText_TV_MineralTownFriends_Rick_ProfileHeader,
@@ -13456,8 +13456,8 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Popuri_ProfileHeaderDefaultBirthday,
         gText_TV_MineralTownFriends_Popuri_FamilySibling,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_Popuri_FamilyMother,
-            gText_TV_MineralTownFriends_Popuri_FamilyFather,
+            gText_TV_MineralTownFriends_FamilyMotherLillia_2,
+            gText_TV_MineralTownFriends_FamilyFatherRod_2,
         #endif
         gText_TV_MineralTownFriends_Popuri_BiographyPart01,
         gText_TV_MineralTownFriends_Popuri_NextEpisodePreview,
@@ -13493,8 +13493,8 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Nappy_NextEpisodePreview,
         gText_TV_MineralTownFriends_Bold_ProfileHeader,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_SharedBoldOrChefProfile_HarvestSpriteFamilyMemberStaid,
-            gText_TV_MineralTownFriends_BoldProfile_HarvestSpriteFamilyMemberNappy,
+            gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2,
+            gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_2,
         #endif
         gText_TV_MineralTownFriends_Bold_HarvestSpriteFamilyOverview,
         gText_TV_MineralTownFriends_Bold_NextEpisodePreview,
@@ -13503,7 +13503,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Chef_NextEpisodePreview,
         gText_TV_MineralTownFriends_Aqua_ProfileHeader,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_SharedAquaHoggyOrTimidProfile_HarvestSpriteFamilyMemberNappy,
+            gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3,
         #endif
         gText_TV_MineralTownFriends_Aqua_HarvestSpriteFamilyOverview,
         gText_TV_MineralTownFriends_Aqua_NextEpisodePreview,
@@ -13550,7 +13550,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Sasha_ProfileHeader,
         gText_TV_MineralTownFriends_Sasha_FamilyHusband,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_Sasha_FamilyDaughter,
+            gText_TV_MineralTownFriends_FamilyDaughterKaren_2,
             gText_TV_MineralTownFriends_Sasha_FamilyAndBiography,
         #elif defined(REGION_JP)
             gText_TV_MineralTownFriends_Sasha_FamilyAndBiography,
@@ -13583,7 +13583,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Anna_ProfileHeader,
         gText_TV_MineralTownFriends_Anna_BiographyPart01,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_Anna_FamilyDaughter,
+            gText_TV_MineralTownFriends_FamilyDaughterMary_2,
         #endif
         gText_TV_MineralTownFriends_Anna_BiographyPart02,
         gText_TV_MineralTownFriends_Anna_NextEpisodePreview,
@@ -13607,7 +13607,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Manna_ProfileHeader,
         gText_TV_MineralTownFriends_Manna_BiographyPart01,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_Manna_FamilyDaughter,
+            gText_TV_MineralTownFriends_FamilyDaughterAja_2,
         #endif
         gText_TV_MineralTownFriends_Manna_BiographyPart03,
         gText_TV_MineralTownFriends_Manna_NextEpisodePreview,

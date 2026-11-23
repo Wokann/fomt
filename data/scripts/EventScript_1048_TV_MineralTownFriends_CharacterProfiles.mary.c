@@ -13,8 +13,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
         case 0:
 #if defined(REGION_JP) || defined(REGION_DE)
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
-#else
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Rick_Opening);
+#elif defined(REGION_US) || defined(REGION_EU)
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening_2);
 #endif
             TalkClose();
             switch (var_0)
@@ -86,15 +86,15 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_LILLIA);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_FamilyMotherLillia);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_Popuri_FamilyMother);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyMotherLillia_2);
 #endif
             ClearTalkNameplate();
             ClearTalkPortrait();
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_FamilyFatherRod);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_Popuri_FamilyFather);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyFatherRod_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_POPURI);
@@ -134,7 +134,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             ClearTalkPortrait();
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Lillia_FamilyHusband);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_TV_MineralTownFriends_Lillia_FamilyHusband);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_LILLIA_HAPPY);
@@ -351,15 +351,15 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_STAID);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_SharedBoldOrChefProfile_HarvestSpriteFamilyMemberStaid);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_BoldProfile_HarvestSpriteFamilyMemberNappy);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_CHEF_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_CHEF);
@@ -405,8 +405,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_STAID);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_SharedBoldOrChefProfile_HarvestSpriteFamilyMemberStaid);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberStaid_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_NAPPY_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_NAPPY);
@@ -458,8 +458,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_SharedAquaHoggyOrTimidProfile_HarvestSpriteFamilyMemberNappy);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_BOLD);
@@ -508,8 +508,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_SharedAquaHoggyOrTimidProfile_HarvestSpriteFamilyMemberNappy);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_BOLD);
@@ -558,8 +558,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_NAPPY);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_SharedAquaHoggyOrTimidProfile_HarvestSpriteFamilyMemberNappy);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_HarvestSpriteFamilyMemberNappy_3);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_BOLD);
@@ -746,7 +746,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_ELLEN);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Stu_FamilyGrandmother);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_TV_MineralTownFriends_Stu_FamilyGrandmother);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_STU_HAPPY);
@@ -859,8 +859,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_KAREN);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterKaren);
-#else
-            TalkMessage(gText_TV_MineralTownFriends_Sasha_FamilyDaughter);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessage(gText_TV_MineralTownFriends_FamilyDaughterKaren_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_SASHA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_SASHA);
@@ -869,7 +869,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_DOUG);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_NextEpisodePreview);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #ifdef BUGFIX
             TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_NextEpisodePreview);
 #endif
@@ -900,7 +900,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_ANN);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_Doug_FamilyDaughter);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #ifdef BUGFIX
             TalkMessageSlow(gText_TV_MineralTownFriends_Doug_FamilyDaughter);
 #endif
@@ -1078,8 +1078,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             SetTalkNameplateCharacter(CHARACTER_MARY);
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterMary);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_Anna_FamilyDaughter);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterMary_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_ANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_ANNA);
@@ -1243,8 +1243,8 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             ClearTalkPortrait();
 #if defined(REGION_JP)
             TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterAja);
-#else
-            TalkMessageSlow(gText_TV_MineralTownFriends_Manna_FamilyDaughter);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterAja_2);
 #endif
             SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_MANNA);
@@ -1374,7 +1374,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
         case 36:
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
-#else
+#elif defined(REGION_DE)
 #ifdef BUGFIX
             // The following switch needs the channel input returned by this call.
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
@@ -1479,7 +1479,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
         case 39:
 #if defined(REGION_JP)
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_SeriesLoop_Opening);
-#else
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
 #endif
             TalkClose();
