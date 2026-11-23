@@ -149,11 +149,20 @@ mary_text_table
     const char gText_NPCEvent_Manna_DialogueAndGiftResponses_AccessoryGiftResponsePart3[] =
         "He demands lots of money \r\n"
         "for his work doesn't he?\r\n"
+#ifdef BUGFIX
+        // Saibara turns down his son's invitation to live together.
+        "He's so proud! His son\r\n"
+        "asked him to come live with\r\n"
+        "him, but Saibara insists,\r\n"
+        "\"I'm staying right here\r\n"
+        "in this town!\"{Press}";
+#else
         "It's because he's such a \r\n"
         "proud man! Gray keeps \r\n"
         "rebelling against him, but\r\n"
         "for some reason he never\r\n"
         "leaves...{Press}";
+#endif
 
     const char gText_NPCEvent_Manna_DialogueAndGiftResponses_AccessoryGiftResponsePart4[] =
         "It doesn't matter now,\r\n"

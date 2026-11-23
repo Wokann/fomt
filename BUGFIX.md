@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 36 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 37 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 22 |
-| **合计** | | **150** |
+| **合计** | | **151** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1332,6 +1332,7 @@ US／EU 分别写 eated、Pinapple
 | [德版珀布利谈新生儿时多播一条英文](#de-popuri-newborn-dialogue) | DE | 已接入 |
 | [德版珀布利在孩子学步事件中重复同一句](#de-popuri-child-first-steps) | DE | 已接入 |
 | [德版玛娜恭维杰夫时夸奖对象颠倒](#de-manna-flatters-jeff) | DE | 已接入 |
+| [玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗](#manna-saibara-family) | US、EU、DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2100,6 +2101,25 @@ JP、US、EU 的第二句感叹孩子长得很快，本作德版玛丽的育儿�
 仅在BUGFIX开启时将德文第一句改为 `Ich könnte mich glatt in dich verlieben!`（我简直要喜欢上你了！），按现有行宽分行，恢复英日同一场景的含义。保留原问价两行、杰夫半价答复、肖像和消息调用顺序。
 
 **相关文件：** [DE](data/scripts/de/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [JP](data/scripts/jp/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_FlattersJeff.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_FlattersJeff.mary.c)
+
+<a id="manna-saibara-family"></a>
+### 玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+送饰品给玛娜时，JP第三段说赛巴拉自尊心强：自己的儿子邀请他一起住，他仍坚持留在镇里。US／EU写成 `Gray keeps rebelling against him, but for some reason he never leaves...`（格雷不断反抗他，但不知为什么他一直没有离开）；DE也写 `Gray rebelliert weiterhin gegen ihn`（格雷不断反抗他）。四版第四段都另说现在有孙子陪着也不错。
+
+**判断依据：**
+
+JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょに住もう`（一起住）和 `わしはこの町に残るのだ！`（我要留在这个镇里）。原文区分邀请同住的儿子与陪在身边的孙子；海外同时改变亲属关系和留镇理由，不能仅靠第四段的“孙子”解释。
+
+**修复方式：**
+
+仅在BUGFIX开启时修正海外第三段，恢复儿子邀请同住、赛巴拉坚持留镇的意思。第四段及赠礼好感、物品扣除、语速和演出调用保持不变。译文依据日版该段含义，不新增事件。
+
+**相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Manna_DialogueAndGiftResponses.mary.c)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明
