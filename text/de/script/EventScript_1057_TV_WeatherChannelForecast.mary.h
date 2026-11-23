@@ -59,7 +59,12 @@ mary_text_table
     const char gText_TV_WeatherChannelForecast_FallToWinterClear[] =
         "Das Wetter für morgen:\r\n"
         "Es wird ein schöner \r\n"
+    // The next day is in winter, not spring.
+#ifdef BUGFIX
+        "milder Wintertag werden. {Press}";
+#else
         "Frühlingstag werden. {Press}";
+#endif
 
     const char gText_TV_WeatherChannelForecast_NoSignalRain[] =
         "Regen!{Press}";

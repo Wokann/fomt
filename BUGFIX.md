@@ -30,8 +30,8 @@
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
 | [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 42 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 25 |
-| **合计** | | **159** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 26 |
+| **合计** | | **160** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -3118,6 +3118,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [冬日暖晴预报被译为早春](#winter-weather-season-wording) | US、EU、DE | 已接入 |
 | [F-3.14节目日期、跨赛季复用与成绩错误](#audit-a10) | JP、US、EU、DE | 已接入 |
 | [JP：《まことクンちぇんじ》第24集说话人写反](#audit-e01) | JP | 已接入 |
 | [DE：同节目第2集漏否定词](#audit-e02) | DE | 已接入 |
@@ -3734,3 +3735,30 @@ JP保留完整的文本及两次`TalkMessageSlow`；海外残留的肖像、姓�
 地区统一模式四版均172个同名、同序文本槽和250次消息调用；默认仍为JP172、US／EU178、DE177槽，保留原版错误和地区播放关系。本锚点保留用于循环重复介绍这一真实修复，不把中性用词或字速一致性计为BUG。
 
 **相关文件：** [共享节目脚本](data/scripts/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.c) · [JP文本](text/jp/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [US文本](text/us/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [EU文本](text/eu/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [DE文本](text/de/script/EventScript_1048_TV_MineralTownFriends_CharacterProfiles.mary.h) · [原生消息速率分派](src/script_engine.cc)
+
+<a id="winter-weather-season-wording"></a>
+### 冬日暖晴预报被译为早春
+
+**受影响版本：** US、EU、DE；普通和娱乐天气频道各三语，共六个原有文本对象。
+
+**原版内容与差异：**
+
+秋30预报冬1，或冬季非30日预报次日晴天时，明日实际仍在冬季。两频道的 `FallToWinterClear` 在JP描述温暖宜人的冬日，海外却把季节说成春天。
+
+| 版本 | 两频道的共同正文及中文参考 |
+| --- | --- |
+| JP | `小春びよりで、すごしやすい一日`（小春日和、舒适宜人的一天），不是进入春季。 |
+| US＝EU | `It will be a pleasant early Spring day.`（将是宜人的早春日）。 |
+| DE | `Es wird ein schöner Frühlingstag werden.`（会是美好的春日）。 |
+
+**判断依据：**
+
+依据实际明日季节分支和同日JP完整预报，而非天气对象名字。本地重制 `SoSFoMTTextDump/SoSFoMTTextDump/JA/msg_Scr_Television.txt` 26098及26143行仍为“小春びより”；US同文件23964–23966行用 `unseasonably warm`、`mild and pleasant`（反常温暖、温和宜人），DE26044–26046行用 `ungewöhnlich warm`、`mild und angenehm für diese Jahreszeit`（这一季节反常温暖、温和舒适），只辅助佐证词义。
+
+**修复方式：**
+
+仅在 `BUGFIX` 下将英语末行改为 `mild Winter day.`（温暖的冬日），德语改为 `milder Wintertag werden.`，与原上一行连成温和冬日的预报。保留两频道原开场、行宽和控制符，不改天气输入、季节case或雨雪、暴雪、台风选择。
+
+另一对象由旧名 `WinterClear` 正名为 `WinterSnow` 属于常开纯命名，字串和对应case未改；不能据此误报晴雪机制也被本项修改。默认六份正文原样保留。
+
+**相关文件：** [普通天气脚本](data/scripts/EventScript_1057_TV_WeatherChannelForecast.mary.c) · [娱乐天气脚本](data/scripts/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.c) · [普通JP](text/jp/script/EventScript_1057_TV_WeatherChannelForecast.mary.h) · [US](text/us/script/EventScript_1057_TV_WeatherChannelForecast.mary.h) · [EU](text/eu/script/EventScript_1057_TV_WeatherChannelForecast.mary.h) · [DE](text/de/script/EventScript_1057_TV_WeatherChannelForecast.mary.h) · [娱乐JP](text/jp/script/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.h) · [US](text/us/script/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.h) · [EU](text/eu/script/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.h) · [DE](text/de/script/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.h)
