@@ -27,7 +27,7 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_Shared_WarmSeasonTyphoon);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
 #endif
                         break;
                     case WEATHER_SNOW:
@@ -54,7 +54,7 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                         break;
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
                         break;
                     case WEATHER_SNOW:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
@@ -82,7 +82,7 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                         break;
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
                         break;
                     case WEATHER_SNOW:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
@@ -107,7 +107,7 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
 #if defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerRain);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SummerRain);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerRain_2);
 #endif
                         break;
                     case WEATHER_TYPHOON:
@@ -115,9 +115,9 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
 #if defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
 #elif defined(REGION_US) || defined(REGION_EU)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SummerTyphoon);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_Shared_WarmSeasonTyphoon);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
 #endif
                         break;
                     case WEATHER_SNOW:
@@ -147,9 +147,9 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
 #if defined(REGION_JP)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonColdSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon_2);
 #endif
                         break;
                     case WEATHER_SNOW:
@@ -177,9 +177,9 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
 #if defined(REGION_JP)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonColdSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon_2);
 #endif
                         break;
                     case WEATHER_SNOW:
@@ -209,9 +209,9 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
 #if defined(REGION_JP)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonColdSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon_2);
 #endif
                         break;
                     case WEATHER_SNOW:
@@ -239,9 +239,9 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_NO_SIGNAL);
 #if defined(REGION_JP)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon);
 #else
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoonColdSeason);
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_NoSignalTyphoon_2);
 #endif
                         break;
                     case WEATHER_SNOW:

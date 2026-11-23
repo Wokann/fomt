@@ -217,7 +217,7 @@ void EventScript_0848_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection(v
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname);
 #else
-            TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNicknameAfterDarlingChoice);
+            TalkMessage(gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2);
 #endif
             TalkClose();
             break;

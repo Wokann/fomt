@@ -55,7 +55,7 @@ mary_text_table
         "I had so much fun today!\r\n"
         "I'll sleep like a log...{Press}";
 
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth[] =
+    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2[] =
         "So you really remembered?!\r\n"
         "You weren't just guessing?\r\n"
         "I'm so happy!{Press}";

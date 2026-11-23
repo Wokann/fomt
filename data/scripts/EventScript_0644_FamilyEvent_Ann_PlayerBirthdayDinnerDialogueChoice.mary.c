@@ -128,7 +128,7 @@ void EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow);
 #else
-                        TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_PlayerGetsOlderAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

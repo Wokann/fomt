@@ -71,7 +71,7 @@ mary_text_table
         "こんな日は、ずっと\r\n"
         "起きていたい気分じゃない？{Press}";
 
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection[] =
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection[] =
         "たまには夜ふかしも\r\n"
         "いいもんだ…{Press}";
 

@@ -197,7 +197,7 @@ mary_text_table
         "besuchen. Er gibt\r\n"
         "gute Ratschläge.{Press}";
 
-    const char gText_NPCEvent_Jeff_DialogueAndGiftResponses_NorthSideTownOutsideTravelHoursCommentsOnEndOfDay[] =
+    const char gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing_2[] =
         "Uff...Endlich ist der\r\n"
         "Tag vorbei! Aber morgen\r\n"
         "wird auch hart!{Press}";

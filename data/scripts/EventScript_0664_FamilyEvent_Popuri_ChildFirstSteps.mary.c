@@ -74,7 +74,7 @@ void EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
 #else
-    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingAndCelebratesGrowth);
+    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
 #endif
     SetTalkNameplateCharacter(CHARACTER_POPURI);
     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
@@ -85,7 +85,7 @@ void EventScript_0664_FamilyEvent_Popuri_ChildFirstSteps(void)
 #ifdef BUGFIX
     TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriMarvelsAtChildGrowingQuickly);
 #else
-    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingAndCelebratesGrowth);
+    TalkMessage(gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning);
 #endif
 #endif
     TalkClose();

@@ -129,10 +129,10 @@ mary_text_table
         "ボクも毎日おままごとじゃ、か\r\n"
         "えってつまらないからね。{Press}";
 
-    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightFirstConversation[] =
         "こんばんは、お兄ちゃん。{Press}";
 
-    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightRepeatConversation[] =
         "ボク、もう寝ないと…{Press}\p"
         "子どもはおそくまで起きている\r\n"
         "と、悪い人に連れさられちゃう\r\n"

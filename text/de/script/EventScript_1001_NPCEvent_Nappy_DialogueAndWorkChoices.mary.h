@@ -240,7 +240,7 @@ mary_text_table
         "für dich, budum.{Press}";
 #endif
 
-    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_Shared_AcceptHarvestingFor1DayOr1Week[] =
+    const char gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week[] =
         "Verstanden.\r\n"
         "Ich ernte eine Woche \r\n"
         "für dich, budum.{Press}";

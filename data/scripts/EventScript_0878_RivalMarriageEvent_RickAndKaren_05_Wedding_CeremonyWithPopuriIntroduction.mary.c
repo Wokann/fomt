@@ -41,7 +41,7 @@ void EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPop
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
 #else
-    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_Shared_PopuriTeasesRickAndRickInvitesPlayer);
+    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
 #endif
     TalkClose();
     WaitFrames(30);
@@ -55,7 +55,7 @@ void EventScript_0878_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPop
 #ifdef BUGFIX
     TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_RickDismissesPopurisTeasingAndInvitesPlayer);
 #else
-    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_Shared_PopuriTeasesRickAndRickInvitesPlayer);
+    TalkMessage(gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis);
 #endif
 #endif
     TalkClose();

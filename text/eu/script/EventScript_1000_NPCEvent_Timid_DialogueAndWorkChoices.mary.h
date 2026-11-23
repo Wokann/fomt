@@ -131,7 +131,7 @@ mary_text_table
         "I'd be willing to do a \r\n"
         "favor for you, budum.{Press}";
 
-    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_NonSpringLowFriendshipRepeatConversationLongSilentPause[] =
+    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2[] =
         "............................{Press}";
 
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_NonSpringFriendship051To100RepeatConversationTiredFromWork[] =

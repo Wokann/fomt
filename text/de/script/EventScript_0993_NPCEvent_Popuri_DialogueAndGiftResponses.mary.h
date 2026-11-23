@@ -418,7 +418,7 @@ mary_text_table
         "Pass gut auf  \r\n"
         "{Baby} auf!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2[] =
         ".........................{Press}";
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation[] =
@@ -485,7 +485,7 @@ mary_text_table
         "Kai hat heute auch \r\n"
         "frei...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation[] =
         "Ah, {Player}.\r\n"
         "Wie geht es dir heute?{Press}";
 
@@ -517,7 +517,7 @@ mary_text_table
         "sich bald nicht mehr vor{Press}\r\n"
         "anderen Mädchen retten!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation[] =
         "Was macht die Farm,\r\n"
         "{Player}?{Press}";
 
@@ -563,7 +563,7 @@ mary_text_table
         "wenn ich zurückkomme, {Press}\r\n"
         "aber er ist es nie...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2[] =
         "Hi, {Player}.\r\n"
         "Wie geht es dir?{Press}";
 
@@ -581,7 +581,7 @@ mary_text_table
         "Warum gehst du nicht \r\n"
         "heim zu deiner süßen Frau?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2[] =
         "Wie bekommt dir das\r\n"
         "Farmleben, {Player}?{Press}";
 

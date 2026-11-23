@@ -169,7 +169,7 @@ mary_text_table
         "Oh, nichts...\r\n"
         "Vergiss es einfach!{Press}";
 
-    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell[] =
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell_2[] =
         "Fertig für heute, \r\n"
         "{Player}? {Press}\p"
         "Du scheinst ein harter \r\n"

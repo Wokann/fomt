@@ -381,7 +381,7 @@ mary_text_table
         "働くと、\r\n"
         "おなかへっちゃうんだよねぇ♡{Press}";
 
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibrarySharedPregnancyOrJpAfterChildbirthFirstConversation[] =
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation[] =
         "あ、{NickName}。\r\n"
         "来てたんだ。{Press}";
 

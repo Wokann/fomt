@@ -33,7 +33,7 @@ mary_text_table
         "朝から雨となり、一日中　　　\r\n"
         "降り続けるもようです。{Press}";
 
-    const char gText_TV_WeatherChannelForecast_NoSignalTyphoonWarmSeason[] =
+    const char gText_TV_WeatherChannelForecast_NoSignalTyphoon[] =
         "台風！{Press}";
 
     const char gText_TV_WeatherChannelForecast_SummerToFallClear[] =

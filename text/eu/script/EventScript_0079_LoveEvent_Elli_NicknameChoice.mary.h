@@ -20,7 +20,7 @@ mary_text_table
     const char gText_LoveEvent_Elli_Nickname_PlayerNameNicknameValue[] =
         "{Player}";
 
-    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname[] =
+    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname[] =
         "OK, it's \r\n"
         "{NickName}, then. {Press}";
 

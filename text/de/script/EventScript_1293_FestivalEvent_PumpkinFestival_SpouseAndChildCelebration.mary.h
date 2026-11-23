@@ -45,7 +45,7 @@ mary_text_table
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliInvitesFamilyToEatSweets[] =
         "Iss jetzt auf!{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithWalkingChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets[] =
         "Mir ist schlecht von den \r\n"
         "vielen Süßigkeiten...ich \r\n"
         "fühle schon die {Press}\r\n"
@@ -73,7 +73,7 @@ mary_text_table
         "Süßes für euch gemacht!\r\n"
         "Esst alles auf!{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithYoungChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction[] =
         "Heute ist das Kürbis-\r\n"
         "festival.{Press}\p"
         "Ich habe Pasteten.\r\n"
@@ -88,19 +88,19 @@ mary_text_table
         "schon probiert. \r\n"
         "Iss auf!{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithoutWalkingChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_2[] =
         "Mir ist schlecht von den\r\n"
         "vielen Süßigkeiten...ich \r\n"
         "fühle schon die {Press}\r\n"
         "Zahnlöcher.{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithoutChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Heute ist das Kürbis-\r\n"
         "festival, ich habe versucht,\r\n"
         "Süßigkeiten zu machen.{Press}\r\n"
         "Koste sie mal. {Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithoutChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_3[] =
         "Mir ist schlecht von den \r\n"
         "vielen Süßigkeiten...ich\r\n"
         "fühle schon die {Press}\r\n"

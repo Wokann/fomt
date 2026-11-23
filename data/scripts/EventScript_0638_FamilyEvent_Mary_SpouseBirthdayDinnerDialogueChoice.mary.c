@@ -128,7 +128,7 @@ void EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth);
 #else
-                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

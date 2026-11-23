@@ -125,7 +125,7 @@ void EventScript_0947_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall(void
 #if defined(REGION_JP)
     TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor);
 #else
-    TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctorAgain);
+    TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2);
 #endif
     TalkClose();
     SetEntityFacing(ENTITY_DOCTOR, FACING_DOWN);

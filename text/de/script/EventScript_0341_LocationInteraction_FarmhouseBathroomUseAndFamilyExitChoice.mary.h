@@ -8,7 +8,7 @@ mary_text_table
         "{Player},\r\n"
         "Wo willst du denn hin?{Press}?";
 
-    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing[] =
+    const char gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2[] =
         "{NickName},\r\n"
         "Wo willst du denn hin?{Press}?";
 

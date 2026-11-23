@@ -8,7 +8,7 @@ mary_text_table
         "I like it!\r\n"
         "It's fun!{Press}";
 
-    const char gText_LoveEvent_Popuri_03_BlueHeart_Stu_RefusesPlayingHouse[] =
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "No way...!{Press}";
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =

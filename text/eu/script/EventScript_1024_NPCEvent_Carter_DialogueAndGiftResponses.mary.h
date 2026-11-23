@@ -176,7 +176,7 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingChoiceDecline[] =
         "Don't listen.";
 
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse[] =
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "In that case...{Press}\p";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =
@@ -212,7 +212,7 @@ mary_text_table
         "'death' with his son failed{Press}\r\n"
         "to solve his problem.{Press}\p";
 
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_SharedFatherSonStoryConclusionOrScaryStoryIntroduction[] =
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction[] =
         "Now let me see...{Press}";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryTransition[] =

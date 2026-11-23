@@ -57,7 +57,7 @@ mary_text_table
     const char gText_ShopEvent_Blacksmith_OrderCounter_GoldHammer[] =
         "Goldhammer";
 
-    const char gText_ShopEvent_Blacksmith_OrderCounter_Shared_MystrileAndMythicHammer[] =
+    const char gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer[] =
         "Mythrilhammer";
 
 #ifdef BUGFIX
@@ -117,7 +117,7 @@ mary_text_table
     const char gText_ShopEvent_Blacksmith_OrderCounter_YarnMaker[] =
         "Garnmaschine";
 
-    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedByHand[] =
+    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected[] =
         "Dein {Var1}\r\n"
         "ist fertig zum\r\n"
         "Mitnehmen.{Press}\r\n"
@@ -132,7 +132,7 @@ mary_text_table
         "Gray liefert die Bestellung.\r\n"
         "{Press}";
 
-    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedIntoRucksack[] =
+    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2[] =
         "{Var1}\r\n"
         "ist fertig zum\r\n"
         "Mitnehmen.{Press}\r\n"

@@ -46,7 +46,7 @@ void EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
 #else
-    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_Shared_AnnThanksPlayerAndDoctorPregnancyExplanation);
+    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
 #endif
     TalkClose();
     FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -77,7 +77,7 @@ void EventScript_0655_FamilyEvent_Ann_PregnancyDiscovery(void)
 #ifdef BUGFIX
     TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_DoctorExplainsAnnIsPregnant);
 #else
-    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_Shared_AnnThanksPlayerAndDoctorPregnancyExplanation);
+    TalkMessage(gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern);
 #endif
 #endif
     TalkClose();

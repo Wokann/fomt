@@ -384,7 +384,7 @@ mary_text_table
         "Deine Arbeit macht  \r\n"
         "dich wirklich hungrig!{Press}";
 
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation[] =
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation[] =
         "Oh, {NickName}.\r\n"
         "Schön, dich zu sehen. {Press}";
 

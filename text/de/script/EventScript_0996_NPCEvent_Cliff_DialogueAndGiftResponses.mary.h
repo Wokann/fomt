@@ -247,7 +247,7 @@ mary_text_table
         "Job war ein Zeichen, dass\r\n"
         "ich in diese Stadt gehöre!{Press}";
 
-    const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeDepartureFirstConversationSilentPause[] =
+    const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2[] =
         ".........................{Press}";
 
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_MissedGrapeJobPlansDepartureRepeatConversation[] =

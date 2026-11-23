@@ -1067,7 +1067,7 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #else
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
 #endif
                                         }
                                         else
@@ -1102,7 +1102,7 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #else
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
 #endif
                                         }
                                         else
@@ -1168,7 +1168,7 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime);
 #else
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2);
 #endif
                                         }
                                         else

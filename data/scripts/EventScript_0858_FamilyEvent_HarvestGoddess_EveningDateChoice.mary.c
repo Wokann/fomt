@@ -191,7 +191,7 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse);
 #else
-                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponseAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

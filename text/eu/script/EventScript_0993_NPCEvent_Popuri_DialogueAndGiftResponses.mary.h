@@ -402,7 +402,7 @@ mary_text_table
         "Take good care of \r\n"
         "{Baby} now!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2[] =
         ".........................{Press}";
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation[] =
@@ -545,7 +545,7 @@ mary_text_table
         "come back, but he {Press}\r\n"
         "never is...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2[] =
         "Hi, {Player}.\r\n"
         "How are you doing?{Press}";
 
@@ -563,7 +563,7 @@ mary_text_table
         "Why don't you go back \r\n"
         "home to your cute wife?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2[] =
         "How is farm life treating\r\n"
         "you, {Player}?{Press}";
 

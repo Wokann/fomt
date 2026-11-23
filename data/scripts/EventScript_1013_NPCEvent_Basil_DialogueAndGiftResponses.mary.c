@@ -532,7 +532,7 @@ void EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation);
 #else
-                                    TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_SharedBasilHouse2FSunnyOrRainyRepeatConversation);
+                                    TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation);
 #endif
                                 }
                                 else
@@ -554,7 +554,7 @@ void EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses(void)
 #ifdef BUGFIX
                                     TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FRainyRepeatConversation);
 #else
-                                    TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_SharedBasilHouse2FSunnyOrRainyRepeatConversation);
+                                    TalkMessage(gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation);
 #endif
 #endif
                                 }

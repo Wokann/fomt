@@ -62,7 +62,7 @@ mary_text_table
         "Du bist wirklich \r\n"
         "süß , {NickName}.{Press}";
 
-    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenBabyBirthdayCorrectAnswerCelebration[] =
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
         "Richtig! Lass \r\n"
         "uns die Nacht \r\n"
         "durchfeiern!{Press}";

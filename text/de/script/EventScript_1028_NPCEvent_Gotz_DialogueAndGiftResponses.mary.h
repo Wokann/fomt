@@ -141,7 +141,7 @@ mary_text_table
         "oder Bären, aber man \r\n"
         "weiß nie.  Verstehst du?{Press}";
 
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrJpNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
         "Du bist anscheinend\r\n"
         "beschäftigt. Weiter so!{Press}";
 
@@ -164,7 +164,7 @@ mary_text_table
         "meister besuchen, man \r\n"
         "muss Beziehungen pflegen!{Press}";
 
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_NorthTownOutsideMayorVisitEncouragesFarmWork[] =
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
         "Arbeite weiter so gut!{Press}";
 
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_TownInteriorLowFriendshipFirstConversationExplainsSaturdayVisits[] =

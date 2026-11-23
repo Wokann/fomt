@@ -115,7 +115,7 @@ void EventScript_0732_NPCEvent_Anna_CookingClass(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime);
 #else
-            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesPuddingLessonUntilNextTime);
+            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
 #endif
             TalkClose();
             break;
@@ -136,7 +136,7 @@ void EventScript_0732_NPCEvent_Anna_CookingClass(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime);
 #else
-            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesPuddingLessonUntilNextTime);
+            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
 #endif
             TalkClose();
             break;

@@ -20,14 +20,14 @@ mary_text_table
     const char gText_LoveEvent_Elli_Nickname_PlayerNameNicknameValue[] =
         "{Player}";
 
-    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname[] =
+    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname[] =
         "ふふふ、わかったわ。\r\n"
         "{NickName}♡、ね。{Press}";
 
     const char gText_LoveEvent_Elli_Nickname_ElliRequestsAnotherNickname[] =
         "なにか、いいよびかたないの？{Press}";
 
-    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsCustomNickname[] =
+    const char gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname_2[] =
         "うん、それじゃ\r\n"
         "{NickName}ね♡{Press}";
 

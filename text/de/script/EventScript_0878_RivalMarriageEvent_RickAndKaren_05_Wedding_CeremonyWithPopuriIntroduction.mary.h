@@ -10,7 +10,7 @@ mary_text_table
         "ist, mache ich mir keine \r\n"
         "Sorgen mehr um sie!{Press}";
 
-    const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_Shared_PopuriTeasesRickAndRickInvitesPlayer[] =
+    const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_CeremonyWithPopuriIntroduction_PopuriTeasesRickThatHerMarriageEnabledHis[] =
         "Also meinst du, es ist \r\n"
         "Popuri zu verdanken, dass\r\n"
         "du heiratest?{Press}";

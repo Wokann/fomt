@@ -121,7 +121,7 @@ mary_text_table
         "Ich habe keine Lust, den\r\n"
         "ganzen Tag Mama zu spielen!{Press}";
 
-    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightRepeatConversation[] =
         "Schlafenszeit...{Press}\p"
         "Wen ich länger auf-\r\n"
         "bleibe, kommen die Monster!{Press}";

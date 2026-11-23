@@ -49,6 +49,6 @@ mary_text_table
         "You're right. \r\n"
         "Take care now. {Press}";
 
-    const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctorAgain[] =
+    const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2[] =
         "Thanks again, Doctor. {Press}";
 };

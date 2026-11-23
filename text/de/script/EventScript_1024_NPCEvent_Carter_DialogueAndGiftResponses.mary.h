@@ -165,7 +165,7 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingChoiceDecline[] =
         "Nicht anhören.";
 
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse[] =
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "Wenn das so ist...{Press}\p";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =
@@ -203,7 +203,7 @@ mary_text_table
         "hilft, das Wort Tod zu{Press}\r\n"
         "vermeiden.{Press}\p";
 
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_Shared_FatherSonConclusionScaryStoryIntroductionOrSnowWhiteTransition[] =
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction[] =
         "Lass mich sehen...{Press}";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryPremise[] =

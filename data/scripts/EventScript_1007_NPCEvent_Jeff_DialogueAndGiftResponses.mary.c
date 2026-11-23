@@ -662,7 +662,7 @@ void EventScript_1007_NPCEvent_Jeff_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing);
 #else
-                                        TalkMessage(gText_NPCEvent_Jeff_DialogueAndGiftResponses_NorthSideTownOutsideTravelHoursCommentsOnEndOfDay);
+                                        TalkMessage(gText_NPCEvent_Jeff_DialogueAndGiftResponses_SupermarketBackRoomAfterClosing_2);
 #endif
                                     }
                                 }

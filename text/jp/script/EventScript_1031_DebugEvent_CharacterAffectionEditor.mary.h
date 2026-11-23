@@ -39,10 +39,10 @@ mary_text_table
     const char gText_DebugEvent_CharacterAffectionEditor_PopurisLoveValueDisplay[] =
         "ポプリさん　愛情度{Var1}";
 
-    const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000WithThousandsSeparator[] =
+    const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000[] =
         "愛情度＋千";
 
-    const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000WithThousandsSeparator[] =
+    const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000[] =
         "愛情度－千";
 
     const char gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList[] =

@@ -167,6 +167,6 @@ mary_text_table
         "talk, as long as I'm {Press}\r\n"
         "not working.{Press}";
 
-    const char gText_ShopEvent_Blacksmith_OrderCounter_Counters[] =
+    const char gText_ShopEvent_Blacksmith_OrderCounter_Counter_2[] =
         "Counters{Press}";
 };

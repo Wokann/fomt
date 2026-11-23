@@ -65,7 +65,7 @@ void EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages(void)
                             case 6:
                             case 7:
                                 TalkOpen();
-                                TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_MidnightNoEventBedtimeAdvice);
+                                TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice);
                                 break;
                         }
                     }
@@ -81,9 +81,9 @@ void EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages(void)
                                 else
                                 {
 #if defined(REGION_JP)
-                                    TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_MidnightNoEventBedtimeAdvice);
-#else
                                     TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice);
+#else
+                                    TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2);
 #endif
                                 }
                                 break;

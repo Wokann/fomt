@@ -56,7 +56,7 @@ mary_text_table
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponseAfterChildbirth[] =
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2[] =
         "Ja, mein Geburtstag!{Press}\p"
         "Du hast nicht gesagt, da\r\n"
         "dachte ich, du hättest\r\n"

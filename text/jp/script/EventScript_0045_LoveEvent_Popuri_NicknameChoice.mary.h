@@ -54,7 +54,7 @@ mary_text_table
     const char gText_LoveEvent_Popuri_Nickname_PopuriThanksPlayerForPermission[] =
         "{NickName}、ありがと。{Press}";
 
-    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterContinuingPoultryFarmWork[] =
+    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife[] =
         "さぁ、\r\n"
         "明日から新生活のスタートだ！{Press}";
 

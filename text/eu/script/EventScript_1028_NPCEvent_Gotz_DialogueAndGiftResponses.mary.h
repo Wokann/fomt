@@ -138,7 +138,7 @@ mary_text_table
         "wolves, but you can't be too\r\n"
         "cautious. Know what I mean?{Press}";
 
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrJpNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
         "It seems you're \r\n"
         "keeping busy. Keep at it!{Press}";
 
@@ -160,7 +160,7 @@ mary_text_table
         "Gotta keep good relations,\r\n"
         "you know!{Press}";
 
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_NorthTownOutsideMayorVisitEncouragesFarmWork[] =
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
         "Keep up the good work!{Press}";
 
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_TownInteriorLowFriendshipFirstConversationExplainsSaturdayVisits[] =

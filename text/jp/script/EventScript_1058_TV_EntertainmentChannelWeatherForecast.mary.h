@@ -33,7 +33,7 @@ mary_text_table
         "朝から雨になって、一日中　　\r\n"
         "降り続けるもようっちょ！{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoonWarmSeason[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
         "台風！{Press}";
 
     const char gText_TV_EntertainmentChannelWeatherForecast_SummerToFallClear[] =
@@ -46,7 +46,7 @@ mary_text_table
         "朝から雨で、少し肌寒い一日に\r\n"
         "なるっちょ！{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2[] =
         "明日の天気予報っちょ！　　　\r\n"
         "台風が直撃するもようっちょ！\r\n"
         "みんな戸締りは厳重にっちょ！\r\n"
@@ -60,13 +60,13 @@ mary_text_table
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalRain[] =
         "雨！{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterClear[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow[] =
         "明日の天気予報っちょ！　　　\r\n"
         "雪が降るっちょ！　　　　　　\r\n"
         "カゼなんかひかないように気を\r\n"
         "つけるっちょ！{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_FallToWinterOrWinterSnowstorm[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "明日の天気予報っちょ！　　　\r\n"
         "大雪になるっちょ！　　　　　\r\n"
         "みんな戸締りは厳重にっちょ！\r\n"

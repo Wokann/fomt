@@ -233,7 +233,7 @@ void EventScript_0036_LoveEvent_Popuri_01_BlackHeart_CatchRunawayChicken(void)
 #if defined(REGION_JP)
             TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome);
 #else
-            TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesChickensHomeAfterDislikedChoice);
+            TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2);
 #endif
             TalkClose();
             SetEntityFacing(ENTITY_POPURI, FACING_DOWN);

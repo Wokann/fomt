@@ -271,7 +271,7 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
 #else
-            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithWalkingChild);
+            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
 #endif
             TalkClose();
             VarSet(VAR_PUMPKIN_FESTIVAL_FARMHOUSE_SPOUSE_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
@@ -320,7 +320,7 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                             SetTalkNameplateCharacter(CHARACTER_MARY);
                             SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                             ShowTalkHeartIndicator(CHARACTER_MARY);
-                            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithYoungChild);
+                            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction);
                             TalkClose();
                             MarkNpcSpokenTo(CHARACTER_MARY);
                             AddCharacterLove(CHARACTER_MARY, 1000);
@@ -359,7 +359,7 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
 #else
-            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithoutWalkingChild);
+            TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_2);
 #endif
             TalkClose();
             VarSet(VAR_PUMPKIN_FESTIVAL_FARMHOUSE_SPOUSE_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
@@ -410,9 +410,9 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                         SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_MARY);
 #if defined(REGION_JP)
-                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithYoungChild);
+                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction);
 #else
-                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithoutChild);
+                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2);
 #endif
                         TalkClose();
                         MarkNpcSpokenTo(CHARACTER_MARY);
@@ -452,7 +452,7 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets);
 #else
-        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweetsWithoutChild);
+        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_3);
 #endif
         TalkClose();
         VarSet(VAR_PUMPKIN_FESTIVAL_FARMHOUSE_SPOUSE_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);

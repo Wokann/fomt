@@ -375,7 +375,7 @@ mary_text_table
         "You sure do \r\n"
         "work up an appetite!{Press}";
 
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibrarySharedPregnancyOrJpAfterChildbirthFirstConversation[] =
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation[] =
         "Oh, {NickName}.\r\n"
         "Nice to see you here. {Press}";
 
@@ -383,7 +383,7 @@ mary_text_table
         "Don't worry. I'm not\r\n"
         "lifting anything heavy.{Press}";
 
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryAfterChildbirthFirstConversation[] =
+    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2[] =
         "Oh, {NickName}.\r\n"
         "Nice to see you. {Press}";
 

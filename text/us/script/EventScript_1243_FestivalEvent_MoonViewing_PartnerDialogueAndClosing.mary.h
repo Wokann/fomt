@@ -69,7 +69,7 @@ mary_text_table
         "can see everything just \r\n"
         "like during the day! {Press}";
 
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection[] =
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection[] =
         "I love spending all night\r\n"
         "moongazing like this...{Press}";
 

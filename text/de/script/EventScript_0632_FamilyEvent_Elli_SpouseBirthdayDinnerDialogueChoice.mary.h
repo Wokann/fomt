@@ -59,13 +59,13 @@ mary_text_table
         "Ich werde schlafen \r\n"
         "wie ein Stein...{Press}";
 
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_CorrectsBirthdayAnswerAfterChildbirth[] =
+    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2[] =
         "Wirst du schon senil in\r\n"
         "deinem Alter?...\r\n"
         "Erschreckend! Es ist{Press}\p"
         "mein Geburtstag, weißt du?{Press}";
 
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth[] =
+    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2[] =
         "Du hast echt daran gedacht?!\r\n"
         "Du hast nicht geraten?\r\n"
         "Ich freue mich so!{Press}";

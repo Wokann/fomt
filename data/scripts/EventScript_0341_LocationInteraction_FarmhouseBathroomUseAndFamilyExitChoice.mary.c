@@ -89,7 +89,7 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
 #elif defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
 #else
-                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing);
+                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                 TalkClose();
                                 return;
@@ -107,7 +107,7 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
 #elif defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
 #else
-                                    TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing);
+                                    TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                     TalkClose();
                                     return;
@@ -125,7 +125,7 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
 #elif defined(REGION_US) || defined(REGION_EU)
                                         TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
 #else
-                                        TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing);
+                                        TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                         TalkClose();
                                         return;
@@ -143,7 +143,7 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
 #elif defined(REGION_US) || defined(REGION_EU)
                                             TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
 #else
-                                            TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing);
+                                            TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                             TalkClose();
                                             return;
@@ -161,7 +161,7 @@ void EventScript_0341_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoic
 #elif defined(REGION_US) || defined(REGION_EU)
                                                 TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_PlayerWhereAreYouGoing);
 #else
-                                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_ChildNickNameWhereAreYouGoing);
+                                                TalkMessage(gText_LocationInteraction_FarmhouseBathroomUseAndFamilyExitChoice_NickNameWhereAreYouGoing_2);
 #endif
                                                 TalkClose();
                                                 return;

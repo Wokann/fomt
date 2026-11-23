@@ -665,7 +665,7 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
 #if defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause);
 #else
-                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_NonSpringLowFriendshipRepeatConversationLongSilentPause);
+                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2);
 #endif
                                 }
                                 else

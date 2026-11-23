@@ -11,7 +11,7 @@ mary_text_table
         "den Energieverlust auszu-{Press}\r\n"
         "gleichen.{Press}";
 
-    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_MidnightNoEventBedtimeAdvice[] =
+    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice[] =
         "Es ist schon spät.\r\n"
         "Ich sollte ins Bett gehen.{Press}";
 
@@ -20,7 +20,7 @@ mary_text_table
         "Ich sollte wenigstens\r\n"
         "etwas schlafen.{Press}";
 
-    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice[] =
+    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2[] =
         "Es wird spät.\r\n"
         "Warum gehst du \r\n"
         "nicht ins Bett?{Press}";

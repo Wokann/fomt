@@ -55,7 +55,7 @@ mary_text_table
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_PlayerGetsOlderAfterChildbirth[] =
+    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2[] =
         "Richtig! Du wirst älter, \r\n"
         "also hast du auch mehr\r\n"
         "Verantwortung!{Press}";

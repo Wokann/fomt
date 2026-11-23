@@ -8,7 +8,7 @@ mary_text_table
         "Gerne!\r\n"
         "Es macht Spaß!{Press}";
 
-    const char gText_LoveEvent_Popuri_03_BlueHeart_Stu_RefusesPlayingHouse[] =
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "Wirklich...?{Press}";
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =
@@ -32,7 +32,7 @@ mary_text_table
         "Wenn das so ist, \r\n"
         "spielen wir was anderes!{Press}";
 
-    const char gText_LoveEvent_Popuri_03_BlueHeart_May_DisappointedByChangingGame[] =
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
         "Aww...{Press}";
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_Carter_UnsureHowToHelp[] =

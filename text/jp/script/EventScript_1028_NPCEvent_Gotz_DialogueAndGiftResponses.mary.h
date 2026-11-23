@@ -142,7 +142,7 @@ mary_text_table
         "わけじゃねぇが、用心にこした\r\n"
         "ことはねぇさ。{Press}";
 
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrJpNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
+    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork[] =
         "よう、おまえもいそがしそうだ\r\n"
         "な。まぁ、がんばれよ。{Press}";
 

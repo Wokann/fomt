@@ -16,7 +16,7 @@ mary_text_table
     const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseCompletedThanks[] =
         "Thanks very much.{Press}";
 
-    const char gText_ShopEvent_Rucksack_PurchaseChoice_AreYouSureNow[] =
+    const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation[] =
         "Are you sure now?{Press}";
 
     const char gText_ShopEvent_Rucksack_PurchaseChoice_InsufficientGoldForSmallRucksack[] =
@@ -27,7 +27,7 @@ mary_text_table
     const char gText_ShopEvent_Rucksack_PurchaseChoice_LargeRucksackPrice[] =
         "Large Rucksacks are 5,000G.";
 
-    const char gText_ShopEvent_Rucksack_PurchaseChoice_ReallyAreYouSure[] =
+    const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation_2[] =
         "Really? Are you sure?{Press}";
 
     const char gText_ShopEvent_Rucksack_PurchaseChoice_InsufficientGoldForLargeRucksack[] =

@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemResponse[] =
+    const char gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse[] =
         "Wie es scheint, hast du \r\n"
         "nichts.  Du solltest \r\n"
         "etwas mitbringen.{Press}";
@@ -26,7 +26,7 @@ mary_text_table
         "Das können wir \r\n"
         "nicht hineintun! {Press}";
 
-    const char gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_DeclinedContributionResponse[] =
+    const char gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse_2[] =
         "Wie es scheint, hast du \r\n"
         "nichts. Du solltest \r\n"
         "etwas mitbringen.{Press}";

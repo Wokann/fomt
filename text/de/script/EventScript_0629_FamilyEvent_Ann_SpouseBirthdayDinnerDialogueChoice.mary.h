@@ -40,7 +40,7 @@ mary_text_table
         "daf r, dass du meinen {Press}\r\n"
         "Geburtstag vergessen hast!{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLaterAfterWrongAnswer[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
         "Ich entschuldige mich \r\n"
         "bes ser sp ter...{Press}";
 
@@ -65,7 +65,7 @@ mary_text_table
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKAfterChildbirth[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2[] =
         "Geht es dir gut, \r\n"
         "{NickName}?{Press}\p"
         "Wenn du nicht krank bist,\r\n"
@@ -74,7 +74,7 @@ mary_text_table
         "dafür, dass du meinen \r\n"
         "Geburtstag vergessen hast!{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_RememberedBirthdayAfterChildbirth[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2[] =
         "Ahhhh...Du hast dran gedacht!\r\n"
         "Du bist immer beschäftigt; \r\n"
         "ich hatte Angst, du würdest{Press}\p"
@@ -82,7 +82,7 @@ mary_text_table
         ".Hätte nicht an dir \r\n"
         "zweifeln sollen!{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_InnCookingAfterChildbirth[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2[] =
         "Sorry, mein Essen ist \r\n"
         "dasselbe wie im Gasthof.{Press}\p"
         "Habe ich von Papa gelernt!{Press}";

@@ -122,7 +122,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
 #else
-                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_Shared_MystrileAndMythicHammer);
+                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
 #endif
                         var_1 = ITEM_TOOL_HAMMER_MYSTRILE;
                         var_0 = BLACKSMITH_PRODUCT_CATEGORY_TOOL;
@@ -134,7 +134,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #ifdef BUGFIX
                         SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MythicHammer);
 #else
-                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_Shared_MystrileAndMythicHammer);
+                        SetTextVariableString(TEXT_VARIABLE_1, gText_ShopEvent_Blacksmith_OrderCounter_MystrileHammer);
 #endif
 #endif
                         var_1 = ITEM_TOOL_HAMMER_MYTHIC;
@@ -232,7 +232,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedByHand);
+                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #endif
                                 TalkClose();
                                 if (IsPlayerHoldingNothing() == TRUE)
@@ -245,7 +245,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedByHand);
+                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #endif
                                 TalkClose();
                                 RestorePlayerAfterScriptedAnimation();
@@ -264,7 +264,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedIntoRucksack);
+                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2);
 #endif
                                 TalkClose();
                                 if (IsPlayerHoldingNothing() == TRUE)
@@ -277,7 +277,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected);
 #else
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollectedIntoRucksack);
+                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedToolOrAccessoryCollected_2);
 #endif
                                 break;
                             case BLACKSMITH_PRODUCT_CATEGORY_MAKER:
@@ -340,7 +340,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_DE)
             TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter);
 #else
-            TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counters);
+            TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter_2);
 #endif
         }
     }
@@ -350,7 +350,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
 #if defined(REGION_JP) || defined(REGION_DE)
         TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter);
 #else
-        TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counters);
+        TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_Counter_2);
 #endif
     }
     TalkClose();

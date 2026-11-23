@@ -53,13 +53,13 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_ConfusedSpouseBirthdayAfterChildbirth[] =
+    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether[] =
         "Lass uns für immer\r\n"
         "zusammenbleiben, OK? \r\n"
         "Egal, wie alt wir auch {Press}\p"
         "werden...{Press}";
 
-    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether[] =
+    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2[] =
         "Wie kannst du meinen\r\n"
         "Geburtstag mit deinem\r\n"
         "verwechseln?!{Press}\p"

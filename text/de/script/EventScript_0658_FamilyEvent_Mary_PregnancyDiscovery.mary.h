@@ -30,7 +30,7 @@ mary_text_table
         "Das kommt überraschend,\r\n"
         "aber ich freue mich!{Press}";
 
-    const char gText_FamilyEvent_Mary_PregnancyDiscovery_Shared_MaryTellsParentsAndPlayerReflectsOnFatherhood[] =
+    const char gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents[] =
         "Meine Eltern werden so\r\n"
         "glücklich sein!\r\n"
         "Ich muss es ihnen{Press}\p"

@@ -576,7 +576,7 @@ void EventScript_1028_NPCEvent_Gotz_DialogueAndGiftResponses(void)
                                 if (VarGet(VAR_DAY_OF_WEEK) == DAY_OF_WEEK_SATURDAY && VarGet(VAR_HOUR) >= 16)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_GOTZ_NORMAL);
-                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrJpNorthTownOutsideMayorVisitCommentsOnPlayersWork);
+                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork);
                                 }
                                 else
                                 {
@@ -602,9 +602,9 @@ void EventScript_1028_NPCEvent_Gotz_DialogueAndGiftResponses(void)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_GOTZ_NORMAL);
 #if defined(REGION_JP)
-                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrJpNorthTownOutsideMayorVisitCommentsOnPlayersWork);
+                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork);
 #else
-                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_NorthTownOutsideMayorVisitEncouragesFarmWork);
+                                    TalkMessage(gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2);
 #endif
                                 }
                                 break;

@@ -61,7 +61,7 @@ mary_text_table
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_ThatsRightLetsSpendTheNight[] =
+    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2[] =
         "Richtig! Lass \r\n"
         "uns die Nacht \r\n"
         "durchfeiern!{Press}";
@@ -71,7 +71,7 @@ mary_text_table
         "Familienjahrestage jetzt  \r\n"
         "immer so feiern... IMMER!{Press}";
 
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdaysAfterChildbirth[] =
+    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2[] =
         "Ha ha ha! Unglaublich, dass \r\n"
         "du unsere Geburtstage \r\n"
         "verwechselt hast!{Press}\r\n"

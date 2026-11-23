@@ -493,7 +493,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(UNIFY_REGIONS)
                                 TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
+                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks_2);
 #endif
                             }
                             break;

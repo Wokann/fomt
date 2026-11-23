@@ -51,7 +51,7 @@ mary_text_table
     const char gText_LoveEvent_Popuri_Nickname_PopuriThanksPlayerForPermission[] =
         "Thanks, {NickName}.{Press}";
 
-    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterContinuingPoultryFarmWork[] =
+    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife[] =
         "Tomorrow is the first day\r\n"
         "of our new life together! {Press}";
 
@@ -60,7 +60,7 @@ mary_text_table
         "leave the house chores \r\n"
         "to me. {Press}";
 
-    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterChoosingFarmhouseWork[] =
+    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife_2[] =
         "Tomorrow is the first day\r\n"
         "of our new life together!{Press}";
 };

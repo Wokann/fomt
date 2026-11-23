@@ -63,7 +63,7 @@ mary_text_table
         "of it...It just surprised \r\n"
         "me, budum...{Press}";
 
-    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryGiftResponse[] =
+    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
         "Thanks much!\r\n"
         "Is this really for me, budum?{Press}";
 

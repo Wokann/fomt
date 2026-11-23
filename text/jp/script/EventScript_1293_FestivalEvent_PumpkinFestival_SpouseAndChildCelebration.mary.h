@@ -80,7 +80,7 @@ mary_text_table
         "作っちゃった。\r\n"
         "一緒に食べよう。{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithYoungChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction[] =
         "今日はね、かぼちゃ祭りらしい\r\n"
         "のよ。{Press}\p"
         "でね、お菓子を作ってみたん\r\n"

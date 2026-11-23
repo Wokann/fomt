@@ -74,7 +74,7 @@ mary_text_table
         "Sorry to make you touch\r\n"
         "a Chicken!{Press}";
 
-    const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesChickensHomeAfterDislikedChoice[] =
+    const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2[] =
         "Let's go home now, \r\n"
         "Chickies! {Press}";
 };

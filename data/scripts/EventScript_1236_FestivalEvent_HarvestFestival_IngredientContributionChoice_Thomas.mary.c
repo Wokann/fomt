@@ -25,7 +25,7 @@ void EventScript_1236_FestivalEvent_HarvestFestival_IngredientContributionChoice
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
 #else
-        TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemResponse);
+        TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
 #endif
         TalkClose();
     }
@@ -251,7 +251,7 @@ void EventScript_1236_FestivalEvent_HarvestFestival_IngredientContributionChoice
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse);
 #else
-                TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_DeclinedContributionResponse);
+                TalkMessage(gText_FestivalEvent_HarvestFestival_IngredientContributionChoice_Thomas_NoHeldItemOrDeclinedResponse_2);
 #endif
                 TalkClose();
                 break;

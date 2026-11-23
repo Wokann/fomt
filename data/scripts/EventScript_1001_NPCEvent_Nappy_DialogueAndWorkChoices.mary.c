@@ -772,7 +772,7 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
 #ifdef BUGFIX
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Day);
 #else
-                                                    TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_Shared_AcceptHarvestingFor1DayOr1Week);
+                                                    TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week);
 #endif
 #endif
                                                     StartHarvestSpriteTask(CHARACTER_NAPPY, HARVEST_SPRITE_TASK_HARVEST, HARVEST_SPRITE_WORK_DAYS_ONE_DAY);
@@ -789,7 +789,7 @@ void EventScript_1001_NPCEvent_Nappy_DialogueAndWorkChoices(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week);
 #else
-                                                    TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_Shared_AcceptHarvestingFor1DayOr1Week);
+                                                    TalkMessage(gText_NPCEvent_Nappy_DialogueAndWorkChoices_AcceptHarvestingFor1Week);
 #endif
                                                     StartHarvestSpriteTask(CHARACTER_NAPPY, HARVEST_SPRITE_TASK_HARVEST, HARVEST_SPRITE_WORK_DAYS_ONE_WEEK);
                                                     break;

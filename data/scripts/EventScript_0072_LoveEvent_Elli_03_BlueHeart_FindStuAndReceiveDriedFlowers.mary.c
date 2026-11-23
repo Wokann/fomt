@@ -216,7 +216,7 @@ void EventScript_0072_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers(
 #if defined(REGION_JP)
             TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu);
 #else
-            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStuAfterSearch);
+            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2);
 #endif
             TalkClose();
             TalkOpen();

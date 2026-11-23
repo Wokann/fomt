@@ -65,7 +65,7 @@ mary_text_table
         "bekommst keinen Preis\r\n"
         "oder so etwas. Tschüss.{Press}";
 
-    const char gText_AchievementEvent_Fishing_MilestoneReward_Shared_CaughtTenOrHundredMillionFishMilestone[] =
+    const char gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone[] =
         "Herzlichen Glückwunsch!{Press}\p"
         "Du hast jetzt 10.000.000\r\n"
         "Fische gefangen!{Press}\p"

@@ -1033,7 +1033,7 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
 #if defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse);
 #else
-                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantLowFriendshipRepeatConversation);
+                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2);
 #endif
                         }
                     }
@@ -1047,7 +1047,7 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
 #if defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse);
 #else
-                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipFirstConversation);
+                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2);
 #endif
                             }
                             else

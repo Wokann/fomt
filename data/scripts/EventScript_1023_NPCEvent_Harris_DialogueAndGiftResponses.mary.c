@@ -559,7 +559,7 @@ void EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation);
 #else
-                                        TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100FirstConversation);
+                                        TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation);
 #endif
                                     }
                                     else
@@ -617,7 +617,7 @@ void EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation);
 #else
-                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100FirstConversation);
+                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2);
 #endif
                             }
                             else
@@ -626,7 +626,7 @@ void EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation);
 #else
-                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100RepeatConversation);
+                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2);
 #endif
                             }
                         }

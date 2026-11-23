@@ -149,7 +149,7 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
 #else
-                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_ConfusedSpouseBirthdayAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -175,7 +175,7 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday);
 #else
-                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_LetsAlwaysBeTogether);
+                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

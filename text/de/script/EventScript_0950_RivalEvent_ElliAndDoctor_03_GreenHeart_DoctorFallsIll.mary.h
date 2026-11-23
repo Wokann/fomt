@@ -34,7 +34,7 @@ mary_text_table
         "Wenn du das tust, \r\n"
         "werde ich sauer! {Press}";
 
-    const char gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToHisMother[] =
+    const char gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToAWife[] =
         "Ha ha... \r\n"
         "Du hörst dich an wie\r\n"
         "meine Mutter. {Press}";

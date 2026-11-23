@@ -7,7 +7,7 @@ mary_text_table
         "いいじゃない。\r\n"
         "おもしろいじゃないの。{Press}";
 
-    const char gText_LoveEvent_Popuri_03_BlueHeart_Stu_RefusesPlayingHouse[] =
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "え～～～、{Press}";
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =

@@ -58,7 +58,7 @@ mary_text_table
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerAfterChildbirth[] =
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2[] =
         "Ha! Manchmal benimmst du\r\n"
         "dich vielleicht ulkig!\r\n"
         "Es ist mein Geburtstag,{Press}\p"

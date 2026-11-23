@@ -118,10 +118,10 @@ mary_text_table
         "I don't like playing mommy\r\n"
         "all day, you know!{Press}";
 
-    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightFirstConversation[] =
         "Hi!{Press}";
 
-    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightRepeatConversation[] =
         "It's my bed time...{Press}\p"
         "If I stay up longer, the \r\n"
         "monsters will come get me!{Press}";

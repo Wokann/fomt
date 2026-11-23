@@ -242,7 +242,7 @@ mary_text_table
         "was a sign I belonged \r\n"
         "in this town!{Press}";
 
-    const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeDepartureFirstConversationSilentPause[] =
+    const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2[] =
         ".........................{Press}";
 
     const char gText_NPCEvent_Cliff_DialogueAndGiftResponses_MissedGrapeJobPlansDepartureRepeatConversation[] =

@@ -56,7 +56,7 @@ mary_text_table
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_ThatsRightLetsSpendTheNight[] =
+    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2[] =
         "That's right! Let's \r\n"
         "spend the night \r\n"
         "celebrating!{Press}";

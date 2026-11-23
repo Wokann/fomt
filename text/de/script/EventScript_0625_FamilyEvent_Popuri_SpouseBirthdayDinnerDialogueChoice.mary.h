@@ -59,12 +59,12 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedAfterChildbirth[] =
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2[] =
         "Du hast daran gedacht!\r\n"
         "Ich dachte irgendwie, \r\n"
         "du vergisst es... Sorry!{Press}";
 
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureAfterChildbirth[] =
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
         "Ich sehe jetzt erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Tag macht schon \r\n"

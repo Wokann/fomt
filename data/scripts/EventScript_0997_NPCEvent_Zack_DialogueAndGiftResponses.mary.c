@@ -643,7 +643,7 @@ void EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                     TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell);
 #else
-                                    TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell);
+                                    TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_OutdoorOrFarmEveningHighFriendshipFarewell_2);
 #endif
                                 }
                             }

@@ -72,7 +72,7 @@ mary_text_table
         "ich kann alles so gut \r\n"
         "sehen wie am Tag! {Press}";
 
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection[] =
+    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection[] =
         "Ich liebe es, die ganze\r\n"
         "Nacht den Mond anzusehen.{Press}";
 

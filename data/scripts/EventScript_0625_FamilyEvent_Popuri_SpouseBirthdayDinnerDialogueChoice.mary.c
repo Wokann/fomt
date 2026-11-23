@@ -150,7 +150,7 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy);
 #else
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
@@ -171,7 +171,7 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou);
 #else
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

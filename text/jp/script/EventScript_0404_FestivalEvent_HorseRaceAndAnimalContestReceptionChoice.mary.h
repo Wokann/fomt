@@ -40,14 +40,14 @@ mary_text_table
         "押すと、買い方の説明が\r\n"
         "出るから見ておくといいよ。{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SoYoureGoingToExchangeYour[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt[] =
         "メダルを景品に替えるんだね。{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouCantDoItWhileHolding[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "手に物を持ったまま\r\n"
         "景品交換はできないよ。{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouWantToExchangeYourMedal[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
         "メダルを景品に替えるのかい？{Press}";
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes[] =

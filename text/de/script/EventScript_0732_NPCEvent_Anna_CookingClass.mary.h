@@ -51,7 +51,7 @@ mary_text_table
         "oder Cornflakes. {Press}\r\n"
         "Probier es mal aus!{Press}";
 
-    const char gText_NPCEvent_Anna_CookingClass_AnnaClosesPuddingLessonUntilNextTime[] =
+    const char gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2[] =
         "Keine Ursache. \r\n"
         "Bis zum nächsten Mal. {Press}";
 

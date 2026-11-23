@@ -111,7 +111,7 @@ mary_text_table
         "Dies ist so eine \r\n"
         "friedliche Stadt...{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100FirstConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation[] =
         "Gibt es Probleme?!{Press}\p"
         "Denke nicht... Nicht in \r\n"
         "einer Stadt wie dieser!{Press}";
@@ -150,11 +150,11 @@ mary_text_table
         "Und samstags kommt \r\n"
         "Gotz zu mir nach Hause.{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100FirstConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
         "Gibt es irgendwo Ärger!?\r\n"
         "Ha! Natürlich nicht!{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100RepeatConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
         "Geh besser nach Hause, \r\n"
         "{Player}. Nachts\r\n"
         "kommen die wilden Hunde.{Press}";

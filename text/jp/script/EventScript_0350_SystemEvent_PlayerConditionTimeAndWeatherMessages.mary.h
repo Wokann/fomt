@@ -10,7 +10,7 @@ mary_text_table
         "何か疲労を回復させる物を\r\n"
         "食べた方がいいかも。{Press}";
 
-    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_MidnightNoEventBedtimeAdvice[] =
+    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice[] =
         "今日はもう遅いから\r\n"
         "寝た方がいいかも。{Press}";
 

@@ -102,7 +102,7 @@ void EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
 #else
-    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_Shared_MaryTellsParentsAndPlayerReflectsOnFatherhood);
+    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
 #endif
     TalkClose();
     SetEntityFacing(ENTITY_PLAYER, FACING_DOWN);
@@ -133,7 +133,7 @@ void EventScript_0658_FamilyEvent_Mary_PregnancyDiscovery(void)
 #ifdef BUGFIX
     TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_PlayerReflectsOnFatherhoodAndLoveForMary);
 #else
-    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_Shared_MaryTellsParentsAndPlayerReflectsOnFatherhood);
+    TalkMessage(gText_FamilyEvent_Mary_PregnancyDiscovery_MaryLooksForwardToTellingParents);
 #endif
 #endif
     TalkClose();

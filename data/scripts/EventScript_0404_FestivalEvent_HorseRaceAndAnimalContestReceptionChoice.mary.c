@@ -143,7 +143,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SoYoureGoingToExchangeYour);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
 #else
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
 #endif
@@ -159,9 +159,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouCantDoItWhileHolding);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
 #else
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceExchangeBlockedWhileHoldingItem);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
 #endif
                             TalkClose();
                         }
@@ -184,7 +184,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                 SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                 SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouWantToExchangeYourMedal);
+                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
 #else
                 TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
 #endif
@@ -201,7 +201,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SoYoureGoingToExchangeYour);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
 #else
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
 #endif
@@ -217,9 +217,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouCantDoItWhileHolding);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem);
 #else
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestExchangeBlockedWhileHoldingItem);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem_2);
 #endif
                             TalkClose();
                         }

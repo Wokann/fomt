@@ -70,7 +70,7 @@ mary_text_table
         "Thanks a lot.{Press}";
 
 #ifndef UNIFY_REGIONS
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks_2[] =
         "Thanks.{Press}";
 #endif
 

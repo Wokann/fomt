@@ -34,7 +34,7 @@ void EventScript_0479_ShopEvent_Rucksack_PurchaseChoice(void)
                         break;
                     case PROMPT_CHOICE_OPTION_2:
                         SetTalkPortrait(TALK_PORTRAIT_JEFF_AFRAID);
-                        TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_AreYouSureNow);
+                        TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation);
                         break;
                 }
             }
@@ -63,9 +63,9 @@ void EventScript_0479_ShopEvent_Rucksack_PurchaseChoice(void)
                         case PROMPT_CHOICE_OPTION_2:
                             SetTalkPortrait(TALK_PORTRAIT_JEFF_AFRAID);
 #if defined(REGION_JP)
-                            TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_AreYouSureNow);
+                            TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation);
 #else
-                            TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_ReallyAreYouSure);
+                            TalkMessage(gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation_2);
 #endif
                             break;
                     }

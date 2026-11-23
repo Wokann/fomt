@@ -136,7 +136,7 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt);
 #else
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_CorrectsBirthdayAnswerAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -162,7 +162,7 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent);
 #else
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

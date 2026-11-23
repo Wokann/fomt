@@ -35,7 +35,7 @@ mary_text_table
         "It will rain all day!　\r\n"
         "Too bad!{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoonWarmSeason[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
         "Typhoon!{Press}";
 
     const char gText_TV_EntertainmentChannelWeatherForecast_SummerToFallClear[] =
@@ -56,28 +56,28 @@ mary_text_table
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalRain[] =
         "Rain!{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoonColdSeason[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon_2[] =
         "Typhoon! {Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterClear[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow[] =
         "This is tomorrow's forecast!\r\n"
         "It will snow, so be careful\r\n"
         "not to catch cold. {Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_FallToWinterOrWinterSnowstorm[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "Here's tomorrow's forecast!\r\n"
         "A snowstorm will hit, so \r\n"
         "lock down all doors and \r\n"
         "windows, and put your\r\n"
         "animals in the Barn!{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterRain[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
         "Here's tomorrow's forecast!\r\n"
         "It will begin raining in \r\n"
         "the morning and not stop\r\n"
         "all day. {Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2[] =
         "Here's tomorrow's forecast!\r\n"
         "It will snow, so be careful\r\n"
         "not to catch cold. {Press}";

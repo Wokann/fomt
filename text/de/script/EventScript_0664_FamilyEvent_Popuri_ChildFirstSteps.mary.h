@@ -14,7 +14,7 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriCelebratesChildsFirstSteps[] =
         "Kannst du das glauben?{Press}";
 
-    const char gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingAndCelebratesGrowth[] =
+    const char gText_FamilyEvent_Popuri_ChildFirstSteps_PopuriSaysChildStartedWalkingThatMorning[] =
         "Er kann seit heute \r\n"
         "morgen laufen!\r\n"
         "Ich habe fast geweint!{Press}";

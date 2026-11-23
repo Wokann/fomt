@@ -71,7 +71,7 @@ mary_text_table
         "I made lots of treats for\r\n"
         "you two! Let's all eat up!{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithYoungChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction[] =
         "Today is the Pumpkin\r\n"
         "Festival.{Press}\p"
         "I baked some pasties.\r\n"
@@ -84,7 +84,7 @@ mary_text_table
         "Don't worry, she already \r\n"
         "tested them. Eat up!{Press}";
 
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroductionWithoutChild[] =
+    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Today is the Pumpkin\r\n"
         "Festival, so I tried making\r\n"
         "some treats. Give them {Press}\r\n"

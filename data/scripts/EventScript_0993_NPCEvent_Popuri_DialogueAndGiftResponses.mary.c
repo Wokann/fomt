@@ -1338,7 +1338,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence);
 #else
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2);
 #endif
                                             }
                                             else
@@ -1465,7 +1465,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation);
 #else
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024FirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation);
 #endif
                                                 }
                                                 else
@@ -1514,7 +1514,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation);
 #else
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099FirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation);
 #endif
                                                             }
                                                             else
@@ -1590,7 +1590,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation);
 #else
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2);
 #endif
                                             }
                                             else
@@ -1624,7 +1624,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                         TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation);
 #else
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2);
 #endif
                                                     }
                                                     else

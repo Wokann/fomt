@@ -53,7 +53,7 @@ mary_text_table
     const char gText_LoveEvent_Popuri_Nickname_PopuriThanksPlayerForPermission[] =
         "Danke, {NickName}.{Press}";
 
-    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterWorkDecision[] =
+    const char gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife[] =
         "Morgen ist der erste Tag\r\n"
         "in unserem neuen Leben! {Press}";
 

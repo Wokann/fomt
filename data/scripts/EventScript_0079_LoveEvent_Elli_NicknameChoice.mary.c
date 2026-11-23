@@ -33,7 +33,7 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
             SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_PlayerNameNicknameValue);
-            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname);
+            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
             TalkClose();
             SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
             WaitFrames(60);
@@ -53,7 +53,7 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_ChoiceHoney);
 #endif
 #endif
-            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname);
+            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
             TalkClose();
             SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
             WaitFrames(60);
@@ -66,7 +66,7 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
             SetPlayerNicknameForSpouse(gText_LoveEvent_Elli_Nickname_ChoiceDarling);
-            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname);
+            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
             TalkClose();
             SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
             WaitFrames(60);
@@ -89,9 +89,9 @@ void EventScript_0079_LoveEvent_Elli_NicknameChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
 #if defined(REGION_JP)
-            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsCustomNickname);
+            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname_2);
 #else
-            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsSelectedNickname);
+            TalkMessage(gText_LoveEvent_Elli_Nickname_ElliConfirmsNickname);
 #endif
             TalkClose();
             SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

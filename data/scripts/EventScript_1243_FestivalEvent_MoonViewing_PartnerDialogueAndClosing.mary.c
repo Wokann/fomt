@@ -220,7 +220,7 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
             WaitFrames(60 * 3);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
-            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection);
+            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection);
             TalkClose();
             DisableScriptedNpcControl();
             ClearEntityEventScript(var_1);
@@ -323,7 +323,7 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
             WaitFrames(60 * 3);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
-            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection);
+            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection);
             TalkClose();
             DisableScriptedNpcControl();
             ClearEntityEventScript(var_1);
@@ -427,7 +427,7 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                 WaitFrames(60 * 3);
                 FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                 TalkOpen();
-                TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection);
+                TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection);
                 TalkClose();
                 DisableScriptedNpcControl();
                 ClearEntityEventScript(var_1);
@@ -486,7 +486,7 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
                 WaitFrames(60 * 3);
                 FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                 TalkOpen();
-                TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection);
+                TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection);
                 TalkClose();
                 DisableScriptedNpcControl();
                 ClearEntityEventScript(var_1);
@@ -544,7 +544,7 @@ void EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing(void)
             WaitFrames(60 * 3);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
-            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliLateNightReflection);
+            TalkMessage(gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_LateNightReflection);
             TalkClose();
             DisableScriptedNpcControl();
             ClearEntityEventScript(var_1);

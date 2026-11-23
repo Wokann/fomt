@@ -619,7 +619,7 @@ void EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses(void)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_STU_NORMAL);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                    TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonFirstConversation);
+                                    TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightFirstConversation);
 #else
                                     TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_Shared_EllenHouseMorningOrOutsideGreeting);
 #endif
@@ -627,7 +627,7 @@ void EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_STU_AFRAID);
-                                    TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseOutsideMorningOrAfternoonRepeatConversation);
+                                    TalkMessage(gText_NPCEvent_Stu_DialogueAndGiftResponses_EllenHouseEveningOrNightRepeatConversation);
                                 }
                             }
                         }

@@ -740,7 +740,7 @@ void EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
 #else
-                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeDepartureFirstConversationSilentPause);
+                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2);
 #endif
                                             }
                                             else
@@ -757,7 +757,7 @@ void EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause);
 #else
-                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeDepartureFirstConversationSilentPause);
+                                                TalkMessage(gText_NPCEvent_Cliff_DialogueAndGiftResponses_FirstAutumnBeforeGrapeInvitationFirstConversationSilentPause_2);
 #endif
                                             }
                                             else

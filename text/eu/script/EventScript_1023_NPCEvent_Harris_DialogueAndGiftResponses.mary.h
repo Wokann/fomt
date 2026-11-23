@@ -109,7 +109,7 @@ mary_text_table
         "This is such a \r\n"
         "peaceful town...{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100FirstConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation[] =
         "Is there any trouble?!{Press}\p"
         "No, I guess not...Not in a \r\n"
         "town like this!...{Press}";
@@ -146,11 +146,11 @@ mary_text_table
         "And, on Saturdays, \r\n"
         "Gotz comes to my house.{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100FirstConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2[] =
         "Is there trouble anywhere!?\r\n"
         "Ha! Of course there isn't!{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_GotzHouseFriendshipAbove100RepeatConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2[] =
 // Replace the untranslated line-break marker with the actual CR/LF control.
 #ifdef BUGFIX
         "You'd better get home now,\r\n"

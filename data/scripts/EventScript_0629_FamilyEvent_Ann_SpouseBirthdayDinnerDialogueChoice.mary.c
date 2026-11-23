@@ -69,7 +69,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater);
 #else
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLaterAfterWrongAnswer);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2);
 #endif
                         TalkClose();
                         DisableScriptedNpcControl();
@@ -132,7 +132,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf);
 #else
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -158,7 +158,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy);
 #else
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_RememberedBirthdayAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
@@ -179,7 +179,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe);
 #else
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_InnCookingAfterChildbirth);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

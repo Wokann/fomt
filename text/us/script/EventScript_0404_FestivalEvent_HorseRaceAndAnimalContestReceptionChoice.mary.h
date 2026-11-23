@@ -41,15 +41,15 @@ mary_text_table
         "description of how to {Press}\r\n"
         "do it. {Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SoYoureGoingToExchangeYour[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt[] =
         "So you're going to exchange\r\n"
         "your medal, eh?{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouCantDoItWhileHolding[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "You can't do it while\r\n"
         "holding something. {Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_YouWantToExchangeYourMedal[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
         "You want to exchange your \r\n"
         "medal for a prize?{Press}";
 

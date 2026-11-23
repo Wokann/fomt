@@ -158,7 +158,7 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
 #if defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe);
 #else
-                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenBabyBirthdayCorrectAnswerCelebration);
+                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

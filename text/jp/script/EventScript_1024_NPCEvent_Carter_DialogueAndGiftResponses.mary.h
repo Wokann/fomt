@@ -169,7 +169,7 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingChoiceDecline[] =
         "聞かない";
 
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse[] =
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "それでは…{Press}\p";
 
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =

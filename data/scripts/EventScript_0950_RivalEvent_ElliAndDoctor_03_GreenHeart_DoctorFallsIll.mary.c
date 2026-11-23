@@ -75,7 +75,7 @@ void EventScript_0950_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll(void
 #if defined(REGION_JP)
     TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToAWife);
 #else
-    TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToHisMother);
+    TalkMessage(gText_RivalEvent_ElliAndDoctor_03_GreenHeart_DoctorFallsIll_DoctorComparesEllisConcernToAWife);
 #endif
     SetTalkPortrait(TALK_PORTRAIT_DOCTOR_NORMAL);
     SetTalkNameplateCharacter(CHARACTER_DOCTOR);

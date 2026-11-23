@@ -445,7 +445,7 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
 #if defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse);
 #else
-                            TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryGiftResponse);
+                            TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2);
 #endif
                             break;
                         case HARVEST_SPRITE_INTERACTION_COSMETIC:

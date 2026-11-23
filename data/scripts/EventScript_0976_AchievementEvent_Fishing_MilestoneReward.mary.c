@@ -119,7 +119,7 @@ void EventScript_0976_AchievementEvent_Fishing_MilestoneReward(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
 #else
-        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Shared_CaughtTenOrHundredMillionFishMilestone);
+        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
 #endif
         TalkClose();
         MarkNpcSpokenTo(CHARACTER_HARVEST_GODDESS);
@@ -143,7 +143,7 @@ void EventScript_0976_AchievementEvent_Fishing_MilestoneReward(void)
 #ifdef BUGFIX
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught100000000FishMilestone);
 #else
-        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Shared_CaughtTenOrHundredMillionFishMilestone);
+        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught10000000FishMilestone);
 #endif
 #endif
         TalkClose();

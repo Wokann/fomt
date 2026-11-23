@@ -81,7 +81,7 @@ mary_text_table
     const char gText_LoveEvent_Elli_03_BlueHeart_StuApologizesAfterReturning[] =
         "I'm sorry, Sis. {Press}";
 
-    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStuAfterSearch[] =
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
         "That's OK, Stu. {Press}";
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenThanksPlayerAfterStusReturn[] =

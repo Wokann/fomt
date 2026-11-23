@@ -54,7 +54,7 @@ void EventScript_0038_LoveEvent_Popuri_03_BlueHeart_PlayHouseWithChildren(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_STU_ANGRY);
     SetTalkNameplateCharacter(CHARACTER_STU);
-    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_Stu_RefusesPlayingHouse);
+    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse);
     TalkClose();
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MAY_HAPPY);
@@ -93,9 +93,9 @@ void EventScript_0038_LoveEvent_Popuri_03_BlueHeart_PlayHouseWithChildren(void)
     SetTalkPortrait(TALK_PORTRAIT_MAY_ANGRY);
     SetTalkNameplateCharacter(CHARACTER_MAY);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_Stu_RefusesPlayingHouse);
+    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse);
 #else
-    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_May_DisappointedByChangingGame);
+    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2);
 #endif
     TalkClose();
     TalkOpen();

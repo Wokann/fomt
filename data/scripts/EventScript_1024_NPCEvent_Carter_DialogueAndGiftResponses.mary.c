@@ -613,7 +613,7 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                             if (GetNpcFriendship(CHARACTER_CARTER) <= 100)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse);
+                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
                                                 TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction);
                                                 SetTalkPortrait(TALK_PORTRAIT_CARTER_AFRAID);
                                                 TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryBody);
@@ -624,9 +624,9 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
 #if defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryConclusion);
 #elif defined(REGION_US) || defined(REGION_EU)
-                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_SharedFatherSonStoryConclusionOrScaryStoryIntroduction);
+                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #else
-                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_Shared_FatherSonConclusionScaryStoryIntroductionOrSnowWhiteTransition);
+                                                TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                             }
                                             else
@@ -635,11 +635,11 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
 #if defined(REGION_JP)
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse);
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryTransition);
 #else
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_Shared_FatherSonConclusionScaryStoryIntroductionOrSnowWhiteTransition);
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                                     TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryPremise);
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_HAPPY);
@@ -655,11 +655,11 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
 #if defined(REGION_JP)
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingDeclineResponse);
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_SharedFatherSonStoryConclusionOrScaryStoryIntroduction);
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #else
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_Shared_FatherSonConclusionScaryStoryIntroductionOrSnowWhiteTransition);
+                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);
 #endif
                                                     TalkMessageSlow(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryPremise);
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_AFRAID);

@@ -34,7 +34,7 @@ mary_text_table
         "Magischer-Süßer-Guter-\r\n"
         "Galaktischer-Bombiger Apfel!{Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberHMSGBName[] =
+    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2[] =
         "Ebenfalls schwer zu \r\n"
         "merken!{Press}";
 
@@ -47,7 +47,7 @@ mary_text_table
         "Himmlisch-Knackig-Ewig-\r\n"
         "Frischer-Geschmackvoller.{Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonPraisesAEPFEName[] =
+    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3[] =
         "Siehst du? Sogar der Name\r\n"
         "ist wundervoll!{Press}";
 

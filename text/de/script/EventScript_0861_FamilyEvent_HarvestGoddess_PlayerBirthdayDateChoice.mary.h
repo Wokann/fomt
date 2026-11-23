@@ -50,7 +50,7 @@ mary_text_table
         "Hmm...\r\n"
         "Tschüss dann.{Press}";
 
-    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthdayWithChild[] =
+    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday_2[] =
         "Mein Geburtstag";
 
     const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday[] =

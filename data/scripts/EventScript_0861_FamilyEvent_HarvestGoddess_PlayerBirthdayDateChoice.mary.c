@@ -138,7 +138,7 @@ void EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice(void)
 #if defined(REGION_JP)
                 var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday);
 #else
-                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthdayWithChild, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday);
+                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday_2, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday);
 #endif
                 switch (var_0)
                 {

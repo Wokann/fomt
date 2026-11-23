@@ -53,7 +53,7 @@ mary_text_table
         "aber verlegen! Ich denke\r\n"
         "{Player} ist besser.{Press}";
 
-    const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNicknameAfterDarlingChoice[] =
+    const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2[] =
         "Also, ab jetzt nenne ich \r\n"
         "dich {Player}.{Press}";
 

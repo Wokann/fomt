@@ -47,7 +47,7 @@ mary_text_table
         "Du willst also deine\r\n"
         "Medaille tauschen, was?{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceExchangeBlockedWhileHoldingItem[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "Du kannst es nicht tun,\r\n"
         "solange du etwas hältst. {Press}";
 
@@ -58,7 +58,7 @@ mary_text_table
         "Du willst deine Medaille \r\n"
         "gegen einen Preis tauschen?{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestExchangeBlockedWhileHoldingItem[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem_2[] =
         "Du kannst es nicht tun,\r\n"
         "solange du etwas hältst.{Press}";
 

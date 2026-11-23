@@ -1288,9 +1288,9 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                             SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                             ShowTalkHeartIndicator(CHARACTER_MARY);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                            TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibrarySharedPregnancyOrJpAfterChildbirthFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #else
-                                            TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #endif
                                         }
                                         else
@@ -1312,11 +1312,11 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                                 SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                                 ShowTalkHeartIndicator(CHARACTER_MARY);
 #if defined(REGION_JP)
-                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibrarySharedPregnancyOrJpAfterChildbirthFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU)
-                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryAfterChildbirthFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2);
 #else
-                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_Shared_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #endif
                                             }
                                             else

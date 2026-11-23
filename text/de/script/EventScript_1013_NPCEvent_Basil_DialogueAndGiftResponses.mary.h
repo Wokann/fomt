@@ -107,7 +107,7 @@ mary_text_table
         "Wir haben echt tolles \r\n"
         "Wetter heute!{Press}";
 
-    const char gText_NPCEvent_Basil_DialogueAndGiftResponses_SharedBasilHouse2FSunnyOrRainyRepeatConversation[] =
+    const char gText_NPCEvent_Basil_DialogueAndGiftResponses_BasilHouse2FSunnyRepeatConversation[] =
         "Menschen sind genau\r\n"
         "wie Pflanzen. Sie \r\n"
         "brauchen Sonne oder {Press}\r\n"

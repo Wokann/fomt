@@ -82,10 +82,10 @@ mary_text_table
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantLowFriendshipFirstConversation[] =
         "Boo...baa....boo...{Press}";
 
-    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantLowFriendshipRepeatConversation[] =
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2[] =
         "Bibaaa!{Press}";
 
-    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantMediumFriendshipFirstConversation[] =
+    const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2[] =
         "Da?...{Press}";
 
     const char gText_NPCEvent_Baby_DialogueAndInteractions_InfantHighFriendshipFirstConversation[] =

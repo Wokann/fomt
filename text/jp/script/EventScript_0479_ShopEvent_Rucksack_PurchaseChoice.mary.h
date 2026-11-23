@@ -16,7 +16,7 @@ mary_text_table
     const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseCompletedThanks[] =
         "ありがとうございました。{Press}";
 
-    const char gText_ShopEvent_Rucksack_PurchaseChoice_AreYouSureNow[] =
+    const char gText_ShopEvent_Rucksack_PurchaseChoice_PurchaseDeclinedConfirmation[] =
         "あれ…いいの？{Press}";
 
     const char gText_ShopEvent_Rucksack_PurchaseChoice_InsufficientGoldForSmallRucksack[] =

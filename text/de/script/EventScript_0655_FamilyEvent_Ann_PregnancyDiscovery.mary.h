@@ -6,7 +6,7 @@ mary_text_table
         "{NickName}, kommst du \r\n"
         "mit mir in die Klinik?{Press}";
 
-    const char gText_FamilyEvent_Ann_PregnancyDiscovery_Shared_AnnThanksPlayerAndDoctorPregnancyExplanation[] =
+    const char gText_FamilyEvent_Ann_PregnancyDiscovery_AnnThanksPlayerForConcern[] =
         "Danke.{Press}";
 
 #ifdef BUGFIX

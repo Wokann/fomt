@@ -115,9 +115,9 @@ void EventScript_0045_LoveEvent_Popuri_NicknameChoice(void)
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterContinuingPoultryFarmWork);
+            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #else
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterWorkDecision);
+            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #endif
             TalkClose();
             CallScript(EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay);
@@ -139,11 +139,11 @@ void EventScript_0045_LoveEvent_Popuri_NicknameChoice(void)
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
             TalkOpen();
 #if defined(REGION_JP)
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterContinuingPoultryFarmWork);
+            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #elif defined(REGION_US) || defined(REGION_EU)
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterChoosingFarmhouseWork);
+            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife_2);
 #else
-            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLifeAfterWorkDecision);
+            TalkMessage(gText_LoveEvent_Popuri_Nickname_AnticipatesNewLife);
 #endif
             TalkClose();
             CallScript(EventScript_0988_SystemEvent_PreserveLocationAndAdvanceToNextDay);
