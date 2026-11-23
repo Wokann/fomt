@@ -479,11 +479,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                 ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse);
-#else
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_AnyMarriageStateNeutralGiftResponse);
-#endif
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse);
                             }
                             else
                             {
@@ -493,9 +489,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
                                 }
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse);
-#else
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_AnyMarriageStateNeutralGiftResponse);
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2);
+#elif defined(REGION_DE)
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse);
 #endif
                             }
                             break;
@@ -538,11 +534,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
                                 ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseFavorableAnimalResponse);
-#else
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateFavorableAnimalResponse);
-#endif
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse);
                             }
                             else
                             {
@@ -551,7 +543,11 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
                                 }
-                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateFavorableAnimalResponse);
+#if defined(REGION_JP)
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse);
+#endif
                             }
                             break;
                         case NPC_INTERACTION_UNFAVORABLE_ANIMAL_RESPONSE:
@@ -1326,11 +1322,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_ANN_AFRAID);
                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
-                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FarmhouseBelowGreenHeartFirstConversationSilence);
-#else
-                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedFarmhouseBelowGreenAndInnRedHeartFirstConversationSilence);
-#endif
+                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence);
                                             }
                                             else
                                             {
@@ -1423,20 +1415,12 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                         if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
-#if defined(REGION_JP)
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation);
-#else
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryFirstConversation);
-#endif
+                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
-#if defined(REGION_JP)
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation);
-#else
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryRepeatConversation);
-#endif
+                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation);
                                         }
                                     }
                                     else
@@ -1564,9 +1548,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
                                             }
 #if defined(REGION_JP)
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation);
-#else
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation_2);
 #endif
                                         }
                                         else
@@ -1576,11 +1560,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                             {
                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
                                             }
-#if defined(REGION_JP)
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation);
-#else
-                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryRepeatConversation);
-#endif
+                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation);
                                         }
                                     }
                                     else
@@ -1658,13 +1638,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
-                                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartFirstConversationGreeting);
-#elif defined(REGION_US) || defined(REGION_EU)
-                                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedInnBlackOrPurpleHeartFirstConversationGreeting);
-#else
-                                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_InnBlackPurpleOrOrangeHeartFirstConversationGreeting);
-#endif
+                                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting);
                                                     }
                                                     else
                                                     {
@@ -1682,11 +1656,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                             SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                                             ShowTalkHeartIndicator(CHARACTER_ANN);
 #if defined(REGION_JP)
-                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartFirstConversationGreeting);
-#elif defined(REGION_US) || defined(REGION_EU)
-                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedInnBlackOrPurpleHeartFirstConversationGreeting);
-#else
-                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_InnBlackPurpleOrOrangeHeartFirstConversationGreeting);
+                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting);
 #endif
                                                         }
                                                         else
@@ -1756,9 +1728,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                                             SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                                                                             ShowTalkHeartIndicator(CHARACTER_ANN);
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartFirstConversationNervousGreeting);
-#else
-                                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_InnBlackPurpleOrOrangeHeartFirstConversationGreeting);
+                                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3);
+#elif defined(REGION_DE)
+                                                                            TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting);
 #endif
                                                                         }
                                                                         else
@@ -1777,9 +1749,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                                                 SetTalkPortrait(TALK_PORTRAIT_ANN_BLUSHING);
                                                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
 #if defined(REGION_JP)
-                                                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartFirstConversationSilence);
-#else
-                                                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedFarmhouseBelowGreenAndInnRedHeartFirstConversationSilence);
+                                                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                                                                TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence);
 #endif
                                                                             }
                                                                             else
@@ -1850,18 +1822,18 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
 #if defined(REGION_JP)
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation);
-#else
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryFirstConversation);
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2);
 #endif
                                     }
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
 #if defined(REGION_JP)
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation);
-#else
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryRepeatConversation);
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation_2);
 #endif
                                     }
                                 }
@@ -1890,11 +1862,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                         {
                                             ShowTalkHeartIndicator(CHARACTER_ANN);
                                         }
-#if defined(REGION_JP)
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation);
-#else
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryFirstConversation);
-#endif
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation);
                                     }
                                     else
                                     {
@@ -1904,9 +1872,9 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                             ShowTalkHeartIndicator(CHARACTER_ANN);
                                         }
 #if defined(REGION_JP)
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation);
-#else
-                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryRepeatConversation);
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                        TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation_2);
 #endif
                                     }
                                 }

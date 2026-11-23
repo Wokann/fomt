@@ -59,7 +59,7 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse[] =
         "Danke! Das ist toll!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_AnyMarriageStateNeutralGiftResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse[] =
         "Danke!{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
@@ -78,7 +78,7 @@ mary_text_table
         "Was machst du denn?!\r\n"
         "Bring das hier raus!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateFavorableAnimalResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse[] =
         "Ohhh...Wie süüüß!{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseUnfavorableAnimalResponse[] =
@@ -389,7 +389,7 @@ mary_text_table
         "sage ihm immer, dass {Press}\r\n"
         "es unmöglich ist. Oder?{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedFarmhouseBelowGreenAndInnRedHeartFirstConversationSilence[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence[] =
         "............{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnBelowGreenHeartRepeatConversation[] =
@@ -429,12 +429,12 @@ mary_text_table
         "Natürlich nicht! Es ist\r\n"
         "schließlich wahr!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Willkommen, {Player}.{Press}\p"
         "Wir schließen um 17 Uhr, also\r\n"
         "bis dann.{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "Heute ist Mutters...\r\n"
         "Mein Vater nimmt sich\r\n"
         "dann immer frei.{Press}";
@@ -500,12 +500,12 @@ mary_text_table
         "Ich denke, dass er nicht\r\n"
         "gerne irgendwo festsitzt...{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Es ist schwer alles zu\r\n"
         "regeln, wenn mein Vater \r\n"
         "nicht da ist. {Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "Dies ist der Tag, an dem\r\n"
         "meine Mutter starb. {Press}\p"
         "Ich kann mich nicht an sie \r\n"
@@ -548,7 +548,7 @@ mary_text_table
         "des Jobs schämen!{Press}\r\n"
         "Er ist so streng zu mir!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_InnBlackPurpleOrOrangeHeartFirstConversationGreeting[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting[] =
         "Willkommen.{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartRepeatConversation[] =
@@ -619,12 +619,12 @@ mary_text_table
         "an dir nehmen und \r\n"
         "selber früher aufstehen!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Willkommen.\r\n"
         "Wir schließen um 17 Uhr, \r\n"
         "denk daran.{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation_2[] =
         "Heute ist Mutters...\r\n"
         "Egal, auf jeden Fall nimmt \r\n"
         "mein Vater sich frei.{Press}";
@@ -637,12 +637,12 @@ mary_text_table
         "Ja, Cliff ist immer\r\n"
         "noch im Gasthof.{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Ohne meinen Vater komme\r\n"
         "ich hier kaum zurecht!\r\n"
         "Wir schließen um 17 Uhr!{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation_2[] =
         "Heute ist der Todestag\r\n"
         "meiner Mutter. {Press}\p"
         "Ich erinnere mich nicht an\r\n"

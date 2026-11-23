@@ -11058,20 +11058,18 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseFavoriteGiftResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseLikedGiftResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse,
-        #if defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_AnyMarriageStateNeutralGiftResponse,
-        #else
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse,
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse,
+        #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseDislikedGiftResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseHatedGiftResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseHatedGiftResponse,
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse,
         #if defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseFavorableAnimalResponse,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2,
         #endif
-        gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateFavorableAnimalResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseUnfavorableAnimalResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseUnfavorableAnimalResponse,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseAccessoryGiftResponse,
@@ -11139,11 +11137,7 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnPregnancyRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnAfterChildbirthFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnAfterChildbirthRepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedFarmhouseBelowGreenAndInnRedHeartFirstConversationSilence,
-        #elif defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_FarmhouseBelowGreenHeartFirstConversationSilence,
-        #endif
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnBelowGreenHeartRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnGreenHeartFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnGreenHeartRepeatConversation,
@@ -11153,13 +11147,8 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnOrangeHeartRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnRedHeartFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnRedHeartRepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn1FMothersDeathAnniversaryRepeatConversation,
-        #elif defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation,
-        #endif
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation,
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship0To24FirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship0To24RepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship25To49FirstConversation,
@@ -11172,13 +11161,12 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship150To199RepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship200OrMoreFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnFriendship200OrMoreRepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn1FMothersDeathAnniversaryRepeatConversation,
-        #elif defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation,
+        #if defined(REGION_JP)
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation,
+        #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation_2,
         #endif
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerMarriedOtherInnLowFriendshipFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerMarriedOtherInnLowFriendshipRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerMarriedOtherInnMediumFriendshipFirstConversation,
@@ -11187,16 +11175,10 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerMarriedOtherInnHighFriendshipRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_FianceInnFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_FianceInnRepeatConversation,
-        #if defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_Shared_InnBlackPurpleOrOrangeHeartFirstConversationGreeting,
-        #elif defined(REGION_US) || defined(REGION_EU)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_SharedInnBlackOrPurpleHeartFirstConversationGreeting,
-        #elif defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartFirstConversationGreeting,
-        #endif
+        gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartRepeatConversation,
         #if defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartFirstConversationGreeting,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlueHeartFirstConversation,
@@ -11205,12 +11187,12 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnGreenHeartRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnYellowHeartFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnYellowHeartRepeatConversation,
-        #if !defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartFirstConversationNervousGreeting,
+        #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartRepeatConversation,
         #if defined(REGION_JP)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartFirstConversationSilence,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartRepeatConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnBackRoomFirstConversation,
@@ -11218,14 +11200,14 @@ mary_script_symbols
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnBackRoomFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnBackRoomRepeatConversation,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FMothersDeathAnniversaryRepeatConversation,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation_2,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FRegularFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FRegularRepeatConversation,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryFirstConversation,
-            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FMothersDeathAnniversaryRepeatConversation,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation,
+            gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation_2,
         #endif
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FLateMorningFirstConversation,
         gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FLateMorningRepeatConversation,

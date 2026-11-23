@@ -63,10 +63,10 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse[] =
         "ありがとう、うれしい！{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse[] =
         "ありがとう！{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2[] =
         "ありがとう。{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
@@ -87,10 +87,10 @@ mary_text_table
         "そういうもんは、ちゃんとすて\r\n"
         "て！{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseFavorableAnimalResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse[] =
         "わー、かわいいね！{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_AnyMarriageStateFavorableAnimalResponse[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2[] =
         "きゃー、かわいいっ！{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseUnfavorableAnimalResponse[] =
@@ -403,7 +403,7 @@ mary_text_table
         "{NickName}も、\r\n"
         "そう思うでしょ？{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FarmhouseBelowGreenHeartFirstConversationSilence[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence[] =
         "…………………{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnBelowGreenHeartRepeatConversation[] =
@@ -443,13 +443,13 @@ mary_text_table
         "だから、だれに聞かれたって平\r\n"
         "気だよ。{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "いらっしゃい、\r\n"
         "{Player}さん。{Press}\p"
         "今日は５時で閉店だから、よろ\r\n"
         "しくね。{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "今日は、母さんの…\r\n"
         "だから、父さんはお休みなの！{Press}";
 
@@ -513,12 +513,12 @@ mary_text_table
         "なんだか、しばりすぎかもって\r\n"
         "思っちゃって…{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryFirstConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "もぉ、父さんがいないとたいへ\r\n"
         "ん。\r\n"
         "あっ、今日は５時までだから！{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseSharedInn1FOr2FMothersDeathAnniversaryRepeatConversation[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "今日は母さんのなくなった日な\r\n"
         "の。{Press}\p"
         "わたしは、母さんの思い出って\r\n"
@@ -561,13 +561,13 @@ mary_text_table
         "しかたがないじゃない。\r\n"
         "ねぇ？{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartFirstConversationGreeting[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting[] =
         "やぁ、いらっしゃい。{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartRepeatConversation[] =
         "注文なら父さんに言ってね。{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartFirstConversationGreeting[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2[] =
         "ああ、いらっしゃい。{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartRepeatConversation[] =
@@ -604,14 +604,14 @@ mary_text_table
         "ねぇねぇ、やっぱり女の子はか\r\n"
         "わいくないとダメだよねぇ。{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartFirstConversationNervousGreeting[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3[] =
         "あ…い…いらっしゃーい。{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartRepeatConversation[] =
         "さいきん考え事して、よく、お\r\n"
         "皿割るんだよねぇ♡{Press}";
 
-    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartFirstConversationSilence[] =
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2[] =
         "………………………{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartRepeatConversation[] =
