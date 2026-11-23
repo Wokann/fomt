@@ -205,10 +205,14 @@ std::vector<std::optional<std::string>> ordered_slots(Tokens &tokens)
 
 ConstScope parse_constant_header(std::string_view source, const Options &options)
 {
-    auto processed = preprocess(source, options);
-    Tokens tokens(lex(processed.text));
+    return parse_constant_header(preprocess(source, options));
+}
+
+ConstScope parse_constant_header(const Preprocessed &source)
+{
+    Tokens tokens(lex(source.text, nullptr, false, &source.locations), &source.locations);
     ConstScope scope;
-    scope.macros = std::move(processed.macros);
+    scope.macros = source.macros;
     std::set<std::pair<std::string, Integer>> values;
     while (!tokens.end())
     {
@@ -248,8 +252,12 @@ CallableTable parse_callable_table(std::string_view source,
                                    const Options &options,
                                    const ConstScope &scope)
 {
-    auto processed = preprocess(source, options, scope.macros);
-    Tokens tokens(lex(processed.text));
+    return parse_callable_table(preprocess(source, options, scope.macros), scope);
+}
+
+CallableTable parse_callable_table(const Preprocessed &source, const ConstScope &scope)
+{
+    Tokens tokens(lex(source.text, nullptr, false, &source.locations), &source.locations);
     tokens.require("mary_callable_table");
     CallableTable result;
     result.scope = scope;
@@ -350,7 +358,12 @@ void ScriptTable::add_constants(ConstScope &scope) const
 
 ScriptTable parse_script_table(std::string_view source, const Options &options)
 {
-    Tokens tokens(lex(preprocess(source, options).text));
+    return parse_script_table(preprocess(source, options));
+}
+
+ScriptTable parse_script_table(const Preprocessed &source)
+{
+    Tokens tokens(lex(source.text, nullptr, false, &source.locations), &source.locations);
     tokens.require("mary_script_table");
     auto result = ScriptTable::from_slots(ordered_slots(tokens));
     if (!tokens.end())

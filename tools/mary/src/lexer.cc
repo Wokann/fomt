@@ -9,7 +9,8 @@
 namespace mary
 {
 
-std::vector<Token> lex(std::string_view source, const Charmap *map, bool legacy)
+std::vector<Token> lex(std::string_view source, const Charmap *map, bool legacy,
+                       const SourceLines *locations)
 {
     std::vector<Token> result;
     std::size_t at = 0, line = 1, column = 1;
@@ -26,7 +27,7 @@ std::vector<Token> lex(std::string_view source, const Charmap *map, bool legacy)
     auto starts = [&](std::string_view value) { return source.substr(at, value.size()) == value; };
     auto fail = [&](const std::string &message)
     {
-        throw std::runtime_error("line " + std::to_string(line) + ", column " +
+        throw std::runtime_error((locations ? locations->describe(line) : "line " + std::to_string(line)) + ", column " +
                                  std::to_string(column) + ": " + message);
     };
     while (at < source.size())
@@ -116,7 +117,17 @@ std::vector<Token> lex(std::string_view source, const Charmap *map, bool legacy)
             {
                 if (text.empty())
                     return;
-                auto bytes = map ? map->encode_text(text) : Bytes(text.begin(), text.end());
+                Bytes bytes;
+                try
+                {
+                    bytes = map ? map->encode_text(text) : Bytes(text.begin(), text.end());
+                }
+                catch (const std::runtime_error &error)
+                {
+                    if (!locations)
+                        throw;
+                    throw std::runtime_error(locations->describe(token.line) + ": " + error.what());
+                }
                 token.bytes.insert(token.bytes.end(), bytes.begin(), bytes.end());
                 text.clear();
             };
@@ -269,7 +280,8 @@ Integer Tokens::integer()
 }
 void Tokens::error(const std::string &message) const
 {
-    throw std::runtime_error("line " + std::to_string(peek().line) + ", column " +
+    auto where = locations ? locations->describe(peek().line) : "line " + std::to_string(peek().line);
+    throw std::runtime_error(where + ", column " +
                              std::to_string(peek().column) + ": " + message);
 }
 

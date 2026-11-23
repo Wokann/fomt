@@ -137,7 +137,9 @@ void source_mapping()
 {
     Options options;
     options.define("MARY_FOMT_JP");
-    auto source = std::string(R"(#include "test.mary.h"
+    auto source = std::string(R"(#if 0
+#include "test.mary.h"
+#endif
 #if defined(REGION_JP)
 #define THRESHOLD 12
 #else
@@ -152,8 +154,8 @@ mary_script(4) void Preview(void)
     }
 }
 )");
-    (void)extract_includes(source);
-    const auto script = parse_mary_c(source, options, {}, nullptr, nullptr).at(0).script;
+    auto processed = preprocess_file(source, "preview.mary.c", options, {});
+    const auto script = parse_mary_c(processed, {}).at(0).script;
     std::vector<CodeSource> locations;
     const auto encoded = encode_script(script, &locations);
     require(encoded == encode_script(script), "source mapping changed RIFF bytes");
@@ -161,7 +163,7 @@ mary_script(4) void Preview(void)
     {
         return entry.condition_start != SIZE_MAX;
     });
-    require(branch != locations.end() && branch->line == 10 && !branch->jump_on_true,
+    require(branch != locations.end() && branch->line == 12 && !branch->jump_on_true,
         "source condition lost its line around an include and a regional macro");
     require(branch->condition_start < branch->pc && encoded.at(24 + branch->pc) == 0x1b,
         "source condition points outside its generated BEQ");

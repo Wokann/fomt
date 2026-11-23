@@ -34,10 +34,13 @@ struct ScriptSymbols
 };
 
 ConstScope parse_constant_header(std::string_view source, const Options &options = {});
+ConstScope parse_constant_header(const Preprocessed &source);
 CallableTable parse_callable_table(std::string_view source,
                                    const Options &options = {},
                                    const ConstScope &scope = {});
 ScriptTable parse_script_table(std::string_view source, const Options &options = {});
+CallableTable parse_callable_table(const Preprocessed &source, const ConstScope &scope);
+ScriptTable parse_script_table(const Preprocessed &source);
 ScriptSymbols parse_text_name_table(std::string_view source, const Options &options = {});
 
 } // namespace mary

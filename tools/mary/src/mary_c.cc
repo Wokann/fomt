@@ -46,8 +46,8 @@ bool assignment(std::string_view value)
 class Parser
 {
   public:
-    Parser(std::vector<Token> input, const ConstScope &scope)
-      : tokens(std::move(input))
+    Parser(std::vector<Token> input, const ConstScope &scope, const SourceLines *locations)
+      : tokens(std::move(input), locations)
       , scope(scope)
     {
     }
@@ -101,6 +101,9 @@ class Parser
             const bool raw = body.size() == 1 && body[0].kind == Statement::Ir;
             auto compiled = compile_script(std::move(body), scope);
             auto text_names = text.second;
+            std::vector<std::size_t> text_lines;
+            for (const auto &text_name : text_names)
+                text_lines.push_back(text_positions.at(text_name));
             if (raw)
                 for (std::size_t i = 0; i < compiled.strings.size(); ++i)
                 {
@@ -111,7 +114,8 @@ class Parser
                     symbol << i;
                     text_names.push_back(symbol.str());
                 }
-            result.push_back({ id, std::move(name), std::move(compiled), std::move(text_names) });
+            result.push_back({ id, std::move(name), std::move(compiled), std::move(text_names),
+                               std::move(text_lines) });
         }
         return result;
     }
@@ -119,6 +123,7 @@ class Parser
   private:
     Tokens tokens;
     const ConstScope &scope;
+    std::map<std::string, std::size_t> text_positions;
     // true means switch; false means loop. This distinguishes C break from
     // the explicit cross-loop mary_break_switch form.
     std::vector<bool> controls;
@@ -147,6 +152,7 @@ class Parser
         if (require_const)
             tokens.require("const");
         tokens.require("char");
+        const auto line = tokens.peek().line;
         auto name = tokens.identifier();
         tokens.require("[");
         tokens.require("]");
@@ -160,6 +166,7 @@ class Parser
             bytes.insert(bytes.end(), part.bytes.begin(), part.bytes.end());
         }
         tokens.require(";");
+        text_positions.emplace(name, line);
         return { std::move(name), Expr::string(std::move(bytes)) };
     }
 
@@ -614,16 +621,29 @@ std::vector<NamedScript> parse_mary_c(std::string_view source,
                                       const ScriptTable *scripts,
                                       const Charmap *map)
 {
+    return parse_mary_c(preprocess(source, options, scope.macros), scope, scripts, map);
+}
+
+std::vector<NamedScript> parse_mary_c(const Preprocessed &source,
+                                     const ConstScope &scope,
+                                     const ScriptTable *scripts,
+                                     const Charmap *map)
+{
     auto combined = scope;
     if (scripts)
         scripts->add_constants(combined);
-    auto processed = preprocess(source, options, combined.macros);
-    return Parser(lex(processed.text, map), combined).scripts(scripts);
+    return Parser(lex(source.text, map, false, &source.locations), combined, &source.locations)
+        .scripts(scripts);
 }
 
 std::vector<std::string> discover_script_names(std::string_view source, const Options &options)
 {
-    auto tokens = lex(preprocess(source, options).text);
+    return discover_script_names(preprocess(source, options));
+}
+
+std::vector<std::string> discover_script_names(const Preprocessed &source)
+{
+    auto tokens = lex(source.text, nullptr, false, &source.locations);
     std::vector<std::string> names;
     for (std::size_t i = 0; i + 5 < tokens.size(); ++i)
         if (tokens[i].text == "void" && tokens[i + 1].kind == TokenKind::Identifier &&

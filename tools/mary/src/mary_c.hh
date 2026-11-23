@@ -14,6 +14,7 @@ struct NamedScript
     std::string name;
     Script script;
     std::vector<std::string> text_names;
+    std::vector<std::size_t> text_lines{};
 };
 
 std::vector<NamedScript> parse_mary_c(std::string_view source,
@@ -22,6 +23,11 @@ std::vector<NamedScript> parse_mary_c(std::string_view source,
                                       const ScriptTable *scripts = nullptr,
                                       const Charmap *map = nullptr);
 std::vector<std::string> discover_script_names(std::string_view source, const Options &options);
+std::vector<NamedScript> parse_mary_c(const Preprocessed &source,
+                                     const ConstScope &scope,
+                                     const ScriptTable *scripts = nullptr,
+                                     const Charmap *map = nullptr);
+std::vector<std::string> discover_script_names(const Preprocessed &source);
 void validate_calls(const std::vector<Statement> &body, const ConstScope &scope);
 
 } // namespace mary

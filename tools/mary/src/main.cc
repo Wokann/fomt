@@ -38,6 +38,7 @@ struct Arguments
 {
     std::string command;
     std::vector<std::string> positional, defines;
+    std::vector<fs::path> include_dirs;
     std::map<std::string, std::string> values;
     std::set<std::string> flags;
     bool flag(const std::string &name) const
@@ -80,6 +81,8 @@ Arguments arguments(const std::vector<std::string> &input)
                                         "library",
                                         "script-table",
                                         "source-map",
+                                        "source-map-version",
+                                        "dep-target",
                                         "constants",
                                         "symbols",
                                         "text-names",
@@ -119,6 +122,16 @@ Arguments arguments(const std::vector<std::string> &input)
         if (!positional_only && item.substr(0, 9) == "--define=")
         {
             result.defines.push_back(item.substr(9));
+            continue;
+        }
+        if (!positional_only && (item == "-I" || item == "--include-dir"))
+        {
+            result.include_dirs.push_back(fs::u8path(next()));
+            continue;
+        }
+        if (!positional_only && item.size() > 2 && item.substr(0, 2) == "-I")
+        {
+            result.include_dirs.push_back(fs::u8path(item.substr(2)));
             continue;
         }
         if (!positional_only && (item == "-o" || item == "-h" || item == "-V"))
@@ -161,9 +174,12 @@ void help()
            "mary generate-script-table symbols MARY_TARGET output\n"
            "mary generate-symbols fomt-jp fomt-us fomt-eu fomt-de mfomt-jp mfomt-us output-dir\n\n"
            "Common: --charmap path, -D NAME[=VALUE], --constants path, --script-table path.\n"
+           "Mary-C: repeat -I DIR to add a quoted include search directory.\n"
            "Compile: --print-ir adds an instruction listing to C-array output.\n"
            "  --source-map FILE with --mary-c --binary writes line and condition metadata.\n"
            "  Use --source-map - to write this metadata to stderr.\n"
+           "  Use --source-map-version 2 for file-aware code, text, and include locations.\n"
+           "Bundle: --dep-target path also makes that target depend on the bundle inputs.\n"
            "Decompile: --mary-c selects .mary.c; --print-ir adds a listing.\n"
            "  Default: neutral script/variable/callable IDs, with lossless numbered IR\n"
            "  when callable shapes are unavailable. --library explicitly supplies shapes.\n"
@@ -215,7 +231,9 @@ SourceRequest request(const Arguments &args, const fs::path &input)
              args.path("script-table"),
              args.path("constants"),
              args.path("charmap"),
-             args.defines };
+             args.defines,
+             args.include_dirs,
+             args.path("dep-target") };
 }
 std::string ir_comment(const Script &script, const Charmap *map)
 {
@@ -224,7 +242,8 @@ std::string ir_comment(const Script &script, const Charmap *map)
 
 void write_source_map(const fs::path &path, const NamedScript &script,
                       const ConstScope &scope, const Charmap *map,
-                      const std::vector<CodeSource> &locations)
+                      const std::vector<CodeSource> &locations, const Preprocessed &source,
+                      std::size_t version)
 {
     const auto type_name = [](const ValueType &type) -> std::string
     {
@@ -238,13 +257,39 @@ void write_source_map(const fs::path &path, const NamedScript &script,
         throw std::runtime_error("invalid callable type");
     };
     std::ostringstream out;
-    out << "MARY-SOURCE-MAP\t1\t" << script.id << '\t' << script.name << '\n';
+    out << "MARY-SOURCE-MAP\t" << version << '\t' << script.id << '\t' << script.name << '\n';
+    if (version == 2)
+        for (std::size_t id = 0; id < source.locations.files.size(); ++id)
+        {
+            out << "file\t" << id << '\t';
+            for (unsigned char ch : source.locations.files[id].generic_u8string())
+                out << hex(ch, 2);
+            out << '\n';
+        }
     for (const auto &location : locations)
     {
-        out << "code\t" << location.pc << '\t' << location.line;
+        const auto origin = source.locations.at(location.line);
+        if (!origin.line || (version == 1 && origin.file != 0))
+            continue;
+        out << "code\t" << location.pc << '\t';
+        if (version == 2)
+            out << origin.file << '\t';
+        out << origin.line;
         if (location.condition_start != SIZE_MAX)
             out << '\t' << location.condition_start << '\t' << location.jump_on_true;
         out << '\n';
+    }
+    if (version == 2)
+    {
+        for (std::size_t slot = 0; slot < script.text_lines.size(); ++slot)
+        {
+            const auto origin = source.locations.at(script.text_lines[slot]);
+            if (origin.line)
+                out << "text-source\t" << slot << '\t' << origin.file << '\t' << origin.line << '\n';
+        }
+        for (const auto &include : source.includes)
+            out << "include\t" << include.from.file << '\t' << include.from.line << '\t'
+                << include.file << '\n';
     }
     for (const auto &entry : scope.callables)
     {
@@ -293,69 +338,35 @@ void compile(const Arguments &args)
 {
     if (args.positional.size() > 1)
         throw std::runtime_error("compile accepts one source file or stdin");
-    fs::path base;
+    fs::path path;
     std::string source;
     if (args.positional.empty())
         source = std::string((std::istreambuf_iterator<char>(std::cin)), {});
     else
     {
-        auto path = fs::u8path(args.positional[0]);
-        base = path.parent_path();
+        path = fs::u8path(args.positional[0]);
         source = read_text(path);
     }
-    auto opts = args.flag("mary-c") ? source_options(args.defines, source) : options(args.defines);
-    auto map = charmap(args, opts);
+    std::optional<Charmap> map;
     const auto source_map = args.path("source-map");
+    const auto map_version = args.number("source-map-version");
     if (source_map && (!args.flag("mary-c") || !args.flag("binary")))
         throw std::runtime_error("--source-map requires --mary-c --binary");
-    std::optional<ConstScope> debug_scope;
+    if (map_version && (!source_map || (*map_version != 1 && *map_version != 2)))
+        throw std::runtime_error("--source-map-version requires --source-map and must be 1 or 2");
+    std::optional<PreparedSource> prepared;
     std::vector<NamedScript> scripts;
     if (args.flag("mary-c"))
     {
-        auto includes = extract_includes(source);
-        ConstScope scope;
-        std::optional<ScriptTable> table;
-        auto resolve = [&](fs::path path) { return path.is_absolute() ? path : base / path; };
-        auto library = args.path("library"), constants = args.path("constants"),
-             script_table = args.path("script-table");
-        auto names = header_names(*selected_target(opts));
-        for (auto &include : includes)
-        {
-            if ((library && include.filename() == fs::u8path(names.callables)) ||
-                (constants && include.filename() == fs::u8path(names.constants)) ||
-                (script_table && include.filename() == fs::u8path(names.scripts)))
-                continue;
-            auto path = resolve(include);
-            auto text = read_text(path);
-            if (text.find("mary_callable_table") != std::string::npos)
-            {
-                if (!library)
-                    library = include;
-            }
-            else if (text.find("mary_script_table") != std::string::npos)
-            {
-                if (!script_table)
-                    script_table = include;
-            }
-            else if (!constants)
-                constants = include;
-            else
-                throw std::runtime_error("include is not a recognized Mary header: " +
-                                         path.u8string());
-        }
-        if (constants)
-            scope = parse_constant_header(read_text(resolve(*constants)), opts);
-        if (library)
-            scope = parse_callable_table(read_text(resolve(*library)), opts, scope).scope;
-        if (script_table)
-            table = parse_script_table(read_text(resolve(*script_table)), opts);
-        scripts =
-            parse_mary_c(source, opts, scope, table ? &*table : nullptr, map ? &*map : nullptr);
-        if (source_map)
-            debug_scope = std::move(scope);
+        prepared = prepare_source(request(args, path), source);
+        map = std::move(prepared->charmap);
+        const auto &table = prepared->table;
+        scripts = parse_mary_c(prepared->source, prepared->scope, table ? &*table : nullptr,
+                               map ? &*map : nullptr);
     }
     else
     {
+        map = charmap(args, options(args.defines));
         ConstScope scope;
         if (auto library = args.path("library"))
             scope = parse_legacy(read_text(*library), map ? &*map : nullptr, {}, false).scope;
@@ -368,7 +379,8 @@ void compile(const Arguments &args)
         std::vector<CodeSource> locations;
         const auto bytes = encode_script(scripts[0].script, source_map ? &locations : nullptr);
         if (source_map)
-            write_source_map(*source_map, scripts[0], *debug_scope, map ? &*map : nullptr, locations);
+            write_source_map(*source_map, scripts[0], prepared->scope, map ? &*map : nullptr,
+                             locations, prepared->source, map_version.value_or(1));
         output(args, bytes);
         return;
     }

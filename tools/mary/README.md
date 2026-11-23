@@ -50,9 +50,42 @@ compiler. The original DSL is also supported.
 ```
 
 Without `--binary`, compile emits C arrays. Binary mode requires exactly one
-script. An omitted input filename reads stdin. `--library`, `--script-table` and
-`--constants` can supply explicit headers; ordinary Mary-C includes resolve
-relative to the input file.
+script. An omitted input filename reads stdin.
+
+Mary-C expands quoted `#include` directives in active branches. It searches the
+including file's directory first, then the directories passed with repeated
+`-I DIR` or `-IDIR` options. Macro definitions and removals carry across
+includes. Relative CLI paths, including `-I`, are resolved from the process
+working directory.
+
+`--constants`, `--library` and `--script-table` load metadata explicitly. Each
+supplied table is loaded once per request. Includes matching its standard
+metadata name or supplied filename use the explicit path.
+
+If `include/ready.mary.h` contains `#define READY 1`, use it in
+`src/example.mary.c` as follows.
+
+```c
+#include "ready.mary.h"
+
+mary_script(1) void Example(void)
+{
+#if READY
+    return;
+#endif
+}
+```
+
+```sh
+./mary compile src/example.mary.c --mary-c --binary -D MARY_FOMT_US \
+  -I include --source-map example.tsv --source-map-version 2 -o example.riff
+```
+
+`--source-map FILE` writes a line map alongside binary Mary-C output. The
+default v1 map uses lines in the main file. Version 2 adds a file table and
+physical locations for CODE, text declarations by STR slot and resolved
+includes. Paths in the file table are UTF-8 encoded as hexadecimal, and lines
+are one-based. Use `--source-map -` to write the map to stderr.
 
 The shared integer header supports checked 64-bit constant expressions,
 object-like and function-like macros, continuations, nested conditions and
@@ -133,6 +166,10 @@ pointer table for the regular assembler/linker. `--layout split` writes each
 RIFF under `riff/` instead of combining it into `scripts.bin`. Dependency paths
 are escaped for Make. Null pointer slots and each physical string declaration
 remain distinct. `-D BUGFIX` selects source repairs where supplied by a project.
+
+Use `--dep-target PATH` when a Make stamp or another target runs the bundle
+command. Mary adds the target to `scripts.d` with the same active inputs,
+including transitive headers.
 
 For future FoMT integration, keep the compiler sources in `tools/mary/` and
 build them with the ordinary host-tool rules. The authoritative compilation

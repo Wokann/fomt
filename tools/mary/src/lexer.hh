@@ -2,6 +2,7 @@
 #define MARY_LEXER_HH
 
 #include "charmap.hh"
+#include "preprocessor.hh"
 #include <string>
 #include <string_view>
 #include <vector>
@@ -28,13 +29,14 @@ struct Token
 
 std::vector<Token> lex(std::string_view source,
                        const Charmap *charmap = nullptr,
-                       bool legacy_strings = false);
+                       bool legacy_strings = false,
+                       const SourceLines *locations = nullptr);
 
 class Tokens
 {
   public:
-    explicit Tokens(std::vector<Token> input)
-      : input(std::move(input))
+    explicit Tokens(std::vector<Token> input, const SourceLines *locations = nullptr)
+      : input(std::move(input)), locations(locations)
     {
     }
     const Token &peek(std::size_t lookahead = 0) const;
@@ -60,6 +62,7 @@ class Tokens
 
   private:
     std::vector<Token> input;
+    const SourceLines *locations;
     std::size_t at = 0;
 };
 

@@ -12,6 +12,15 @@ struct SourceRequest
     fs::path input;
     std::optional<fs::path> library, script_table, constants, charmap;
     std::vector<std::string> defines;
+    std::vector<fs::path> include_dirs;
+    std::optional<fs::path> dep_target;
+};
+struct PreparedSource
+{
+    Preprocessed source;
+    ConstScope scope;
+    std::optional<ScriptTable> table;
+    std::optional<Charmap> charmap;
 };
 struct CompiledSources
 {
@@ -29,7 +38,7 @@ struct HeaderNames
 Options source_options(const std::vector<std::string> &defines, std::string_view source);
 std::optional<std::string> selected_target(const Options &options);
 HeaderNames header_names(std::string_view target);
-std::vector<fs::path> extract_includes(std::string &source);
+PreparedSource prepare_source(const SourceRequest &request, std::string_view source);
 CompiledSources compile_sources(const SourceRequest &request);
 void bundle(const SourceRequest &request, const fs::path &output, bool split);
 std::string render_script_table(const ScriptTable &table, bool guarded = true);
