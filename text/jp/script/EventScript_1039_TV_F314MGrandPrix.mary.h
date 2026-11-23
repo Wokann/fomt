@@ -306,6 +306,7 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第３戦はあしたです。{Press}";
 
+    // Miltonia uses recovery magic; Leatrice has already retired.
     const char gText_TV_F314MGrandPrix_Race03_ResultsPart01[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第３戦の結果をお伝えします。\r\n"
@@ -322,7 +323,11 @@ mary_text_table
         "ジーさん·コスモスさんの光闇\r\n"
         "姉妹の２位争いは、終盤に温存\r\n"
         "しておいたＭＰで回復魔法を使\r\n"
+#ifdef BUGFIX
+        "いまくったミルトニアさんが辛\r\n"
+#else
         "いまくったリアトリスさんが辛\r\n"
+#endif
         "くも２位を守り抜きました。　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "今日は１位～３位のみの発表で\r\n"
@@ -461,6 +466,7 @@ mary_text_table
         "２位　コスモスさん　　　　　\r\n"
         "３位　すみれさん{Press}";
 
+    // Equal totals share fourth place; compare arrows with the previous race.
     const char gText_TV_F314MGrandPrix_Race04_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第４戦の結果をお伝えします。\r\n"
@@ -480,8 +486,13 @@ mary_text_table
         "１位－　すみれさん　　　２４\r\n"
         "２位↑　デイジーさん　　２２\r\n"
         "３位↓　ルピナスさん　　２０\r\n"
+#ifdef BUGFIX
+        "４位↓　ミルトニアさん　１６\r\n"
+        "４位↑　コスモスさん　　１６\r\n"
+#else
         "３位↓　ミルトニアさん　１６\r\n"
         "５位－　コスモスさん　　１６\r\n"
+#endif
         "６位－　アマリリスさん　　３\r\n"
         "６位↑　モレアさん　　　　３\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -583,6 +594,7 @@ mary_text_table
         "２位　すみれさん　　　　　　\r\n"
         "３位　ルピナスさん{Press}";
 
+    // Cosmos falls from the corrected shared fourth place to fifth.
     const char gText_TV_F314MGrandPrix_Race05_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第５戦の結果をお伝えします。\r\n"
@@ -603,7 +615,11 @@ mary_text_table
         "２位↑　ミルトニアさん　２６\r\n"
         "３位－　ルピナスさん　　２４\r\n"
         "４位↓　デイジーさん　　２２\r\n"
+#ifdef BUGFIX
+        "５位↓　コスモスさん　　１９\r\n"
+#else
         "５位－　コスモスさん　　１９\r\n"
+#endif
         "６位－　モレアさん　　　　５\r\n"
         "７位↓　アマリリスさん　　４\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -706,6 +722,7 @@ mary_text_table
         "２位　ミルトニアさん　　　　\r\n"
         "３位　すみれさん{Press}";
 
+    // Sylvia and Lupinus have the same 34 points and share first place.
     const char gText_TV_F314MGrandPrix_Race06_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第６戦の結果をお伝えします。\r\n"
@@ -723,7 +740,11 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "☆トータルポイント－－－－－\r\n"
         "１位－　すみれさん　　　３４\r\n"
+#ifdef BUGFIX
+        "１位↑　ルピナスさん　　３４\r\n"
+#else
         "２位↑　ルピナスさん　　３４\r\n"
+#endif
         "３位↓　ミルトニアさん　３２\r\n"
         "４位－　デイジーさん　　２２\r\n"
         "４位↑　コスモスさん　　２２\r\n"
@@ -1353,6 +1374,42 @@ mary_text_table
         "\r\n"
         "となっております。{Press}";
 
+    // Keep the later localized wording without deleting the first-season comment.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race12_PreviewPart01[] =
+        "Ｆ－３．１４　ＭＧＰの　　　\r\n"
+        "出場人物を紹介します。　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "·デイジーさん　　　　　　　\r\n"
+        "　マシン…牡丹（ぼたん）　　\r\n"
+        "　魔法……光魔法　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "光の翼シャイニングウイングを\r\n"
+        "使えば追いつける人は誰もいな\r\n"
+        "いのか？　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "－－－－－－－－－－－－－－\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "·コスモスさん　　　　　　　\r\n"
+        "　マシン…牡丹（ぼたん）　　\r\n"
+        "　魔法……闇魔法　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "先に紹介したデイジーさんとは\r\n"
+        "双子のお姉さんにあたる人で、\r\n"
+        "得意な魔法も、闇の翼ダークネ\r\n"
+        "スウイングと妹さんとほぼ同じ\r\n"
+        "です。　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "今日はここまで、　　　　　　\r\n"
+        "第２戦はあさってです。{Press}";
+#endif
+
     const char gText_TV_F314MGrandPrix_Race12_ResultsPart01[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第２戦の結果をお伝えします。\r\n"
@@ -1475,6 +1532,7 @@ mary_text_table
         "２位　コスモスさん　　　　　\r\n"
         "３位　ミルトニアさん{Press}";
 
+    // Amaryllis stays seventh; gaining points does not imply a rise in rank.
     const char gText_TV_F314MGrandPrix_Race13_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第３戦の結果をお伝えします。\r\n"
@@ -1498,7 +1556,11 @@ mary_text_table
         "４位↓　リコリスさん　　１０\r\n"
         "５位－　ミルトニアさん　　９\r\n"
         "６位－　モレアさん　　　　４\r\n"
+#ifdef BUGFIX
+        "７位－　アマリリスさん　　３\r\n"
+#else
         "７位↑　アマリリスさん　　３\r\n"
+#endif
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
@@ -1722,6 +1784,7 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第６戦はあしたです。{Press}";
 
+    // Cosmos is Daisy's older twin, as established in the previews.
     const char gText_TV_F314MGrandPrix_Race16_ResultsPart01[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第６戦の結果をお伝えします。\r\n"
@@ -1738,7 +1801,11 @@ mary_text_table
         "なりました。　　　　　　　　\r\n"
         "そして今回のリタイアでデイジ\r\n"
         "ーさんはトータルポイントでも\r\n"
+#ifdef BUGFIX
+        "姉のコスモスさんに追いぬかれ\r\n"
+#else
         "妹のコスモスさんに追いぬかれ\r\n"
+#endif
         "てしまい３位に落ちました。　\r\n"
         "空間交換を使ったリコリスさん\r\n"
         "は次回、休んでしまうのでしょ\r\n"
@@ -2602,6 +2669,7 @@ mary_text_table
         "２位　リコリスさん　　　　　\r\n"
         "３位　ルピナスさん{Press}";
 
+    // Cosmos and Lupinus share fourth place on 18 points.
     const char gText_TV_F314MGrandPrix_Race25_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第５戦の結果をお伝えします。\r\n"
@@ -2623,7 +2691,11 @@ mary_text_table
         "２位↓　デイジーさん　　２７\r\n"
         "３位－　リコリスさん　　２３\r\n"
         "４位－　コスモスさん　　１８\r\n"
+#ifdef BUGFIX
+        "４位↑　ルピナスさん　　１８\r\n"
+#else
         "５位－　ルピナスさん　　１８\r\n"
+#endif
         "６位－　ミルトニアさん　　８\r\n"
         "７位－　すみれさん　　　　５\r\n"
         "８位－　モレアさん　　　　１\r\n"
@@ -2694,6 +2766,7 @@ mary_text_table
         "２位　ユーコミスさん　　　　\r\n"
         "３位　リコリスさん{Press}";
 
+    // Lupinus was already fourth in the corrected previous standings.
     const char gText_TV_F314MGrandPrix_Race26_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第６戦の結果をお伝えします。\r\n"
@@ -2713,7 +2786,11 @@ mary_text_table
         "１位↑　デイジーさん　　３７\r\n"
         "２位↓　ユーコミスさん　３６\r\n"
         "３位－　リコリスさん　　２７\r\n"
+#ifdef BUGFIX
+        "４位－　ルピナスさん　　２１\r\n"
+#else
         "４位↑　ルピナスさん　　２１\r\n"
+#endif
         "５位↓　コスモスさん　　１８\r\n"
         "６位－　ミルトニアさん　　９\r\n"
         "７位－　すみれさん　　　　７\r\n"
@@ -2784,6 +2861,36 @@ mary_text_table
         "２位　リコリスさん　　　　　\r\n"
         "３位　ルピナスさん{Press}";
 
+    // Restore seventh-race results before the two previews; Sylvia has 7 + 2 = 9.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
+        "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
+        "第７戦の結果をお伝えします。\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "☆昨日の結果－－－－－－－－\r\n"
+        "１位　ユーコミスさん　＋１０\r\n"
+        "２位　リコリスさん　　＋　６\r\n"
+        "３位　ルピナスさん　　＋　４\r\n"
+        "４位　ミルトニアさん　＋　３\r\n"
+        "５位　すみれさん　　　＋　２\r\n"
+        "６位　モレアさん　　　＋　１\r\n"
+        "びり　ライラックさん　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "☆トータルポイント－－－－－\r\n"
+        "１位↑　ユーコミスさん　４６\r\n"
+        "２位↓　デイジーさん　　３７\r\n"
+        "３位－　リコリスさん　　３３\r\n"
+        "４位－　ルピナスさん　　２５\r\n"
+        "５位－　コスモスさん　　１８\r\n"
+        "６位－　ミルトニアさん　１２\r\n"
+        "７位－　すみれさん　　　　９\r\n"
+        "８位－　モレアさん　　　　２\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "　　　　　　　　　　　　　　\r\n"
+        "となっております。{Press}";
+#endif
+
     const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
@@ -2816,6 +2923,7 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第８戦はあしたです。{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第７戦の結果をお伝えします。\r\n"
@@ -2837,17 +2945,14 @@ mary_text_table
         "４位－　ルピナスさん　　２５\r\n"
         "５位－　コスモスさん　　１８\r\n"
         "６位－　ミルトニアさん　１２\r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
-#ifdef BUGFIX
-        "７位－　すみれさん　　　　９\r\n"
-#else
         "７位－　すみれさん　　　　８\r\n"
-#endif
         "８位－　モレアさん　　　　２\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
+#endif
 
+    // The third-season wreck is Mayo; keep Licorice's spelling consistent.
     const char gText_TV_F314MGrandPrix_Race28_ResultsPart01[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第８戦の結果をお伝えします。\r\n"
@@ -2855,7 +2960,11 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "レース終盤すみれさんは派手に\r\n"
         "壁に激突してリタイア。　　　\r\n"
+#ifdef BUGFIX
+        "『万葉』（マシンの名前だよ）\r\n"
+#else
         "『四葉』（マシンの名前だよ）\r\n"
+#endif
         "の破片が飛び散り、ちょうどそ\r\n"
         "の後ろにいたユーコミスさんに\r\n"
         "いくつかかすってしまいます。\r\n"
@@ -2879,6 +2988,7 @@ mary_text_table
         "２位　ユーコミスさん　　　　\r\n"
         "３位　デイジーさん{Press}";
 
+    // Carry Sylvia's corrected nine points into the next race.
     const char gText_TV_F314MGrandPrix_Race28_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第８戦の結果をお伝えします。\r\n"
@@ -2902,7 +3012,6 @@ mary_text_table
         "４位－　ルピナスさん　　２７\r\n"
         "５位－　コスモスさん　　２１\r\n"
         "６位－　ミルトニアさん　１３\r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "７位－　すみれさん　　　　９\r\n"
 #else
@@ -2945,6 +3054,7 @@ mary_text_table
         "２位　デイジーさん　　　　　\r\n"
         "３位　コスモスさん{Press}";
 
+    // Carry Sylvia's corrected cumulative score forward.
     const char gText_TV_F314MGrandPrix_Race29_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第９戦の結果をお伝えします。\r\n"
@@ -2966,7 +3076,6 @@ mary_text_table
         "４位－　ルピナスさん　　２７\r\n"
         "５位－　コスモスさん　　２５\r\n"
         "６位－　ミルトニアさん　１３\r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "７位－　すみれさん　　　１１\r\n"
 #else
@@ -3044,6 +3153,7 @@ mary_text_table
         "２位　ユーコミスさん　　　　\r\n"
         "３位　デイジーさん{Press}";
 
+    // Keep Sylvia's corrected final total and Lilac's established spelling.
     const char gText_TV_F314MGrandPrix_Race30_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "最終戦の結果をお伝えします。\r\n"
@@ -3066,7 +3176,6 @@ mary_text_table
         "４位－　ルピナスさん　　２８\r\n"
         "４位↑　コスモスさん　　２８\r\n"
         "６位－　ミルトニアさん　１５\r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "７位－　すみれさん　　　１１\r\n"
 #else
@@ -3077,4 +3186,5 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "となりました。{Press}";
-};
+
+}

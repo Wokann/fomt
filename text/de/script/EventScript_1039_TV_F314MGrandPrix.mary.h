@@ -69,6 +69,7 @@ mary_text_table
         "Der erste Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
+    // Keep this localization's established Lupinus spelling.
     const char gText_TV_F314MGrandPrix_Race01_ResultsPart01[] =
         "Die Ergebnisse des 1.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -76,7 +77,11 @@ mary_text_table
         "              \r\n"
         "Von Anfang an fand das\r\n"
         "Rennen zwischen Sylvia und \r\n"
+#ifdef BUGFIX
+        "Lupinus statt.\r\n"
+#else
         "Lupinos statt.\r\n"
+#endif
         "Sylvias Windmagie ver-\r\n"
         "schaffte ihr früh Führung\r\n"
         "vor Lupinus, \r\n"
@@ -164,6 +169,7 @@ mary_text_table
         "Der zweite Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
+    // Use Lilac consistently within the same localization.
     const char gText_TV_F314MGrandPrix_Race02_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -182,7 +188,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -228,6 +238,7 @@ mary_text_table
         "2. Platz:   Daisy\r\n"
         "3. Platz:   Cosmos{Press}";
 
+    // Lupinus falls from second to third.
     const char gText_TV_F314MGrandPrix_Race02_ResultsPart02[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -250,7 +261,11 @@ mary_text_table
         "      Sylvia   20\r\n"
         "2. (gestiegen): \r\n"
         "      Daisy     9 \r\n"
+#ifdef BUGFIX
+        "3. (gefallen): \r\n"
+#else
         "3. (gestiegen): \r\n"
+#endif
         "      Lupinus   8 \r\n"
         "4. (gefallen): \r\n"
         "      Miltonia  7 \r\n"
@@ -361,8 +376,8 @@ mary_text_table
         "2. Platz:    Miltonia\r\n"
         "3. Platz:    Cosmos{Press}";
 
+    // Lilac is the last finisher, not tied for seventh.
     const char gText_TV_F314MGrandPrix_Race03_ResultsPart02[] =
-// Restore the race number stated by the corresponding JP and EN report.
 #ifdef BUGFIX
         "Die Ergebnisse des 3.\r\n"
 #else
@@ -378,10 +393,15 @@ mary_text_table
         "4. Platz: Daisy   +3\r\n"
         "5. Platz: Moraea   +2\r\n"
         "6. Platz: Amaryllis   +1\r\n"
+#ifdef BUGFIX
+        "7. Platz: Lavender\r\n"
+        "Letzter Platz: Lilac\r\n"
+#else
         "7. Platz (Gleichstand): \r\n"
         "      Lavender\r\n"
         "7. Platz (Gleichstand): \r\n"
         "      Lilac\r\n"
+#endif
         "              \r\n"
         "Punktestand:\r\n"
         "1. (unverändert): \r\n"
@@ -472,7 +492,6 @@ mary_text_table
         "morgen statt.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race04_ResultsPart01[] =
-// Restore the race number stated by the corresponding JP and EN report.
 #ifdef BUGFIX
         "Die Ergebnisse des 4.\r\n"
 #else
@@ -512,8 +531,8 @@ mary_text_table
         "2. Platz:     Cosmos\r\n"
         "3. Platz:     Sylvia{Press}";
 
+    // Equal totals share fourth place; compare arrows with the previous race.
     const char gText_TV_F314MGrandPrix_Race04_ResultsPart02[] =
-// Restore the race number stated by the corresponding JP and EN report.
 #ifdef BUGFIX
         "Die Ergebnisse des 4.\r\n"
 #else
@@ -539,9 +558,17 @@ mary_text_table
         "      Daisy     22 \r\n"
         "3. (gefallen): \r\n"
         "      Lupinus   20 \r\n"
+#ifdef BUGFIX
+        "4. (gefallen): \r\n"
+#else
         "3. (gefallen): \r\n"
+#endif
         "      Miltonia  16 \r\n"
+#ifdef BUGFIX
+        "4. (gestiegen):  \r\n"
+#else
         "5. (unverändert):  \r\n"
+#endif
         "      Cosmos    16 \r\n"
         "6. (unverändert): \r\n"
         "      Amaryllis  3\r\n"
@@ -569,7 +596,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -632,7 +663,6 @@ mary_text_table
         "würden. Diesen Rat schlug \r\n"
         "Daisy natürlich in den \r\n"
         "Wind und nahm wie vorgesehen\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
 #ifdef BUGFIX
         "am Rennen teil. Dann, in der\r\n"
 #else
@@ -664,6 +694,7 @@ mary_text_table
         "2. Platz: Sylvia\r\n"
         "3. Platz: Lupinus{Press}";
 
+    // Cosmos falls from the corrected shared fourth place to fifth.
     const char gText_TV_F314MGrandPrix_Race05_ResultsPart02[] =
         "Die Ergebnisse des 5.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -688,7 +719,11 @@ mary_text_table
         "      Lupinus  24 \r\n"
         "4. (gefallen):  \r\n"
         "      Daisy    22 \r\n"
+#ifdef BUGFIX
+        "5. (gefallen): \r\n"
+#else
         "5. (unverändert): \r\n"
+#endif
         "      Cosmos   19 \r\n"
         "6. (unverändert): \r\n"
         "      Moraea    5\r\n"
@@ -805,6 +840,7 @@ mary_text_table
         "2. Platz:  Miltonia\r\n"
         "3. Platz:  Sylvia{Press}";
 
+    // Sylvia and Lupinus have the same 34 points and share first place.
     const char gText_TV_F314MGrandPrix_Race06_ResultsPart02[] =
         "Die Ergebnisse des 6.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -823,7 +859,11 @@ mary_text_table
         "Punktestand:\r\n"
         "1. (unverändert):   \r\n"
         "      Sylvia   34\r\n"
+#ifdef BUGFIX
+        "1. (gestiegen):   \r\n"
+#else
         "2. (gestiegen):   \r\n"
+#endif
         "      Lupinus  34 \r\n"
         "3. (gefallen):  \r\n"
         "      Miltonia 32 \r\n"
@@ -891,7 +931,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -1090,6 +1134,7 @@ mary_text_table
         "2. Platz: Daisy\r\n"
         "3. Platz: Cosmos{Press}";
 
+    // Daisy has 32 + 6 = 38 points.
     const char gText_TV_F314MGrandPrix_Race08_ResultsPart02[] =
         "Die Ergebnisse des 8.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -1111,7 +1156,6 @@ mary_text_table
         "2. (gefallen): \r\n"
         "      Sylvia    39\r\n"
         "3. (gestiegen):  \r\n"
-// Daisy had 32 points and earned 6; JP correctly totals 38.
 #ifdef BUGFIX
         "      Daisy     38 \r\n"
 #else
@@ -1168,12 +1212,12 @@ mary_text_table
         "Der neunte Wettkampf findet \r\n"
         "übermorgen statt.{Press}";
 
+    // Keep both twins in the ninth-race preview.
     const char gText_TV_F314MGrandPrix_Race09_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
         "              \r\n"
         "              \r\n"
-// Restore Daisy's missing introduction from the existing second-race preview.
 #ifdef BUGFIX
         "·Daisy\r\n"
         " Auf Peony\r\n"
@@ -1205,11 +1249,10 @@ mary_text_table
         "Der neunte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race09_ResultsPart01[] =
         "Die Ergebnisse des 9.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Leider regnete es bei diesem\r\n"
@@ -1229,20 +1272,7 @@ mary_text_table
         "Punkten übernommen. Wie\r\n"
         "schade!\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Miltonia\r\n"
-        "2. Platz: Daisy\r\n"
-        "3. Platz: Cosmos{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race09_ResultsPart01[] =
-        "Die Ergebnisse des 9.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Es mag überraschend\r\n"
@@ -1267,26 +1297,45 @@ mary_text_table
         "nicht mehr ganz so\r\n"
         "motiviert sind...\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+#else
         "              \r\n"
+#endif
         "Rennergebnisse:\r\n"
+#ifdef BUGFIX
+        "1. Platz: Miltonia\r\n"
+        "2. Platz: Daisy\r\n"
+        "3. Platz: Cosmos{Press}";
+#else
         "1. Platz: Licorice\r\n"
         "2. Platz: Miltonia\r\n"
         "3. Platz: Daisy{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race09_ResultsPart02[] =
         "Die Ergebnisse des 9.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Miltonia  +10\r\n"
         "2. Platz: Daisy  +6\r\n"
         "3. Platz: Cosmos  +4\r\n"
@@ -1295,7 +1344,20 @@ mary_text_table
         "6. Platz: Amaryllis  +1\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz: Licorice  +10\r\n"
+        "2. Platz: Miltonia  +6\r\n"
+        "3. Platz: Daisy  +4\r\n"
+        "4. Platz: Cosmos  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Lupinus  +1\r\n"
+        "7. Platz: Lavender\r\n"
+        "8. Platz: Moraea\r\n"
+        "9. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (gestiegen): Miltonia  47\r\n"
         "2. (gefallen): Lupinus  46\r\n"
         "3. (unverändert): Daisy  44\r\n"
@@ -1310,25 +1372,7 @@ mary_text_table
         "    Leatrice  1\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race09_ResultsPart02[] =
-        "Die Ergebnisse des 9.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Licorice  +10\r\n"
-        "2. Platz: Miltonia  +6\r\n"
-        "3. Platz: Daisy  +4\r\n"
-        "4. Platz: Cosmos  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Lupinus  +1\r\n"
-        "7. Platz: Lavender\r\n"
-        "8. Platz: Moraea\r\n"
-        "9. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (unverändert):Licorice 60\r\n"
         "2. (gestiegen):Daisy  42\r\n"
         "3. (gefallen):Lupinus  41\r\n"
@@ -1340,8 +1384,8 @@ mary_text_table
         "9. (unverändert): Lavender 4\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race10_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -1361,7 +1405,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -1376,6 +1424,7 @@ mary_text_table
         "Der letzte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
+    // Lupinus still uses Misuzu before the second-season upgrade.
     const char gText_TV_F314MGrandPrix_Race10_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -1389,9 +1438,8 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
 #ifdef BUGFIX
-        "das bedeuten soll.\r\n"
+        "das bedeuten soll.  \r\n"
 #else
         "das bedeuten soll.           \r\n"
 #endif
@@ -1401,23 +1449,66 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "·Lupinus\r\n"
+#ifdef BUGFIX
+        " Auf Misuzu\r\n"
+#else
         " Auf Maho\r\n"
+#endif
         " Mit Illusionsmagie\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "Alles was sie macht ist\r\n"
+        "Illusion. Wenn du das\r\n"
+        "herausfindest, wird \r\n"
+        "sie machtlos.\r\n"
+#else
         "Lupinus neue Maschine, Maho,\r\n"
         "scheint sicherlich besser\r\n"
         "als die Vorherige, aber\r\n"
         "das kann man auf den\r\n"
         "ersten Blick nicht\r\n"
         "unbedingt sagen.\r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "Das ist alles für heute. \r\n"
         "Der letzte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-// Summer 9 is the first season finale; the shared original describes the second finale.
+#ifndef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race20_ResultsPart01[] =
+        "Die Ergebnisse des letzten\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Dieses Rennen war \r\n"
+        "langweilig, vielleicht weil\r\n"
+        "Licorice die Meisterschaft\r\n"
+        "dieser Saison schon\r\n"
+        "in der Tasche hatte.\r\n"
+        "Nur Licorice und Sylvia\r\n"
+        "haben sich ein richtiges\r\n"
+        "Rennen geliefert. Und \r\n"
+        "obwohl Sylvia keine\r\n"
+        "echte Herausforderung für\r\n"
+        "Licorice war, hat sie doch\r\n"
+        "mit zwei Minuten Vorsprung\r\n"
+        "vor Lupinus den 2. Platz\r\n"
+        "belegt.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz:  Licorice\r\n"
+        "2. Platz:  Sylvia\r\n"
+        "3. Platz: Lupinus{Press}";
+#endif
+
 #ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race10_ResultsPart01[] =
         "Die Ergebnisse des letzten\r\n"
@@ -1452,45 +1543,18 @@ mary_text_table
         "3. Platz: Cosmos{Press}";
 #endif
 
-    const char gText_TV_F314MGrandPrix_Race20_ResultsPart01[] =
-        "Die Ergebnisse des letzten\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Dieses Rennen war \r\n"
-        "langweilig, vielleicht weil\r\n"
-        "Licorice die Meisterschaft\r\n"
-        "dieser Saison schon\r\n"
-        "in der Tasche hatte.\r\n"
-        "Nur Licorice und Sylvia\r\n"
-        "haben sich ein richtiges\r\n"
-        "Rennen geliefert. Und \r\n"
-        "obwohl Sylvia keine\r\n"
-        "echte Herausforderung für\r\n"
-        "Licorice war, hat sie doch\r\n"
-        "mit zwei Minuten Vorsprung\r\n"
-        "vor Lupinus den 2. Platz\r\n"
-        "belegt.\r\n"
-        "              \r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir \r\n"
-        "veröffentlichen die \r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "              \r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz:  Licorice\r\n"
-        "2. Platz:  Sylvia\r\n"
-        "3. Platz: Lupinus{Press}";
-
-// The following day must report the same first-season finale, not second-season scores; use JP/EN results.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race10_ResultsPart02[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Sylvia  +10\r\n"
         "2. Platz: Daisy  +6\r\n"
         "3. Platz: Cosmos  +4\r\n"
@@ -1501,7 +1565,19 @@ mary_text_table
         "8. Platz: Leatrice\r\n"
         "9. Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz:   Licorice  +10\r\n"
+        "2. Platz:   Sylvia  +6\r\n"
+        "3. Platz Lupinus  +4\r\n"
+        "4. Platz: Daisy  +3\r\n"
+        "5. Platz: Cosmos  +2\r\n"
+        "6. Platz: Miltonia  +1\r\n"
+        "7. Platz: Lavender\r\n"
+        "8. Platz: Liliac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (gestiegen): Sylvia  52\r\n"
         "2. (gestiegen): Daisy  50\r\n"
         "3. (gefallen): Lupinus  49\r\n"
@@ -1513,24 +1589,7 @@ mary_text_table
         "9. (unverändert): Leatrice 1\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race10_ResultsPart02[] =
-        "Die Ergebnisse des letzten\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz:   Licorice  +10\r\n"
-        "2. Platz:   Sylvia  +6\r\n"
-        "3. Platz Lupinus  +4\r\n"
-        "4. Platz: Daisy  +3\r\n"
-        "5. Platz: Cosmos  +2\r\n"
-        "6. Platz: Miltonia  +1\r\n"
-        "7. Platz: Lavender\r\n"
-        "8. Platz: Liliac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1.(unverändert): Licorice 70\r\n"
         "2.(unverändert):Daisy  45\r\n"
         "2.(gestiegen):Lupinus  45\r\n"
@@ -1542,9 +1601,10 @@ mary_text_table
         "9.(unverändert): Lavender  4\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race21_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -1582,6 +1642,49 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der erste Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+#endif
+
+    // The second season introduces Yotsuba, not its later Mayo upgrade.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race11_PreviewPart01[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Yotsuba\r\n"
+        " Mit Geistermagie \r\n"
+        "              \r\n"
+        "              \r\n"
+        "Yotsuba, Sylvias neue \r\n"
+        "Maschine, kann sich offen-\r\n"
+        "sichtlich in jede der vier\r\n"
+        "Formen verwandeln,\r\n"
+        "abhängig von der\r\n"
+        "Magie, die sie gerade \r\n"
+        "benutzt. Wir müssen \r\n"
+        "abwarten und sehen, \r\n"
+        "wozu das gut ist.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der erste Wettkampf findet\r\n"
+        "übermorgen statt.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race11_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -1619,11 +1722,10 @@ mary_text_table
         "Der erste Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race11_ResultsPart01[] =
         "Die Ergebnisse des 1.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Licorice gewann gleich ihr\r\n"
@@ -1644,20 +1746,7 @@ mary_text_table
         "darüber. Sylvia wurde\r\n"
         "übrigens Letzte.\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Licorice\r\n"
-        "2. Platz: Daisy\r\n"
-        "3. Platz: Cosmos{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race11_ResultsPart01[] =
-        "Die Ergebnisse des 1.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Es ist nur das 1. Rennen,\r\n"
@@ -1686,18 +1775,60 @@ mary_text_table
         "Licorice belegte schließ-\r\n"
         "lich den 6. Platz.\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz: Licorice\r\n"
+        "2. Platz: Daisy\r\n"
+        "3. Platz: Cosmos{Press}";
+#else
         "              \r\n"
         "1. Platz:    Eucomyth\r\n"
         "2. Platz:    Daisy\r\n"
         "3. Platz:  Cosmos{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
+#ifndef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race21_ResultsPart02[] =
+        "Die Ergebnisse des 1.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Gestrige Rennergebnisse:\r\n"
+        "1. Platz:     Eucomyth  +10\r\n"
+        "2. Platz:     Daisy  +6\r\n"
+        "3. Platz:   Cosmos  +4\r\n"
+        "4. Platz: Lupinus  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Licorice  +1\r\n"
+        "7. Platz: Miltonia\r\n"
+        "8. Platz: Lavender\r\n"
+        "9. Platz: Moraea\r\n"
+        "10. Platz: Lilac\r\n"
+        "              \r\n"
+        "Punktestand:\r\n"
+        "1.: Eucomyth  10\r\n"
+        "2.: Daisy  6\r\n"
+        "3.: Cosmos  4\r\n"
+        "4.: Lupinus  3\r\n"
+        "5.: Sylvia  2\r\n"
+        "6.: Licorice  1\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Und das sind sie.{Press}";
+#endif
+
 #ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race11_ResultsPart02[] =
         "Die Ergebnisse des 1.\r\n"
@@ -1729,34 +1860,6 @@ mary_text_table
         "\r\n"
         "Und das sind sie.{Press}";
 #endif
-
-    const char gText_TV_F314MGrandPrix_Race21_ResultsPart02[] =
-        "Die Ergebnisse des 1.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz:     Eucomyth  +10\r\n"
-        "2. Platz:     Daisy  +6\r\n"
-        "3. Platz:   Cosmos  +4\r\n"
-        "4. Platz: Lupinus  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Licorice  +1\r\n"
-        "7. Platz: Miltonia\r\n"
-        "8. Platz: Lavender\r\n"
-        "9. Platz: Moraea\r\n"
-        "10. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
-        "1.: Eucomyth  10\r\n"
-        "2.: Daisy  6\r\n"
-        "3.: Cosmos  4\r\n"
-        "4.: Lupinus  3\r\n"
-        "5.: Sylvia  2\r\n"
-        "6.: Licorice  1\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Und das sind sie.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race12_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -1792,6 +1895,7 @@ mary_text_table
         "Der zweite Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race22_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -1826,8 +1930,46 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der zweite Wettkampf findet\r\n"
         "morgen statt.{Press}";
+#endif
 
-// Restore this season's race report; the original German text describes a different season.
+#ifndef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race22_ResultsPart01[] =
+        "Die Ergebnisse des 2.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Licorice, die im letzten\r\n"
+        "Rennen mit Maschinen-\r\n"
+        "problemen zu kämpfen\r\n"
+        "hatte, war in Hochform. In\r\n"
+        "der Endrunde benutzte\r\n"
+        "Eucomyth aber anscheinend\r\n"
+        "ihre ultimative Magie\r\n"
+        "und übernahm die Führung,\r\n"
+        "während alle anderen\r\n"
+        "wie eingefroren waren. Der\r\n"
+        "Zeitstopp betraf alle,\r\n"
+        "mich eingeschlossen, so\r\n"
+        "dass nicht einmal ich weiß,\r\n"
+        "was wirklich geschah. \r\n"
+        "Fakt ist, Eucomyth tauchte\r\n"
+        "plötzlich vor Licorice auf\r\n"
+        "und ging somit als Erste\r\n"
+        "über die Ziellinie.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz:      Eucomyth\r\n"
+        "2. Platz:      Licorice\r\n"
+        "3. Platz:    Daisy{Press}";
+#endif
+
+    // Licorice is resting; this scene does not state an injury.
 #ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race12_ResultsPart01[] =
         "Die Ergebnisse des 2.\r\n"
@@ -1864,49 +2006,18 @@ mary_text_table
         "3. Platz: Cosmos{Press}";
 #endif
 
-    const char gText_TV_F314MGrandPrix_Race22_ResultsPart01[] =
-        "Die Ergebnisse des 2.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Licorice, die im letzten\r\n"
-        "Rennen mit Maschinen-\r\n"
-        "problemen zu kämpfen\r\n"
-        "hatte, war in Hochform. In\r\n"
-        "der Endrunde benutzte\r\n"
-        "Eucomyth aber anscheinend\r\n"
-        "ihre ultimative Magie\r\n"
-        "und übernahm die Führung,\r\n"
-        "während alle anderen\r\n"
-        "wie eingefroren waren. Der\r\n"
-        "Zeitstopp betraf alle,\r\n"
-        "mich eingeschlossen, so\r\n"
-        "dass nicht einmal ich weiß,\r\n"
-        "was wirklich geschah. \r\n"
-        "Fakt ist, Eucomyth tauchte\r\n"
-        "plötzlich vor Licorice auf\r\n"
-        "und ging somit als Erste\r\n"
-        "über die Ziellinie.\r\n"
-        "              \r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir \r\n"
-        "veröffentlichen die \r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "              \r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz:      Eucomyth\r\n"
-        "2. Platz:      Licorice\r\n"
-        "3. Platz:    Daisy{Press}";
-
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race12_ResultsPart02[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Lupinus  +10\r\n"
         "2. Platz: Daisy  +6\r\n"
         "3. Platz: Cosmos  +4\r\n"
@@ -1917,7 +2028,19 @@ mary_text_table
         "8. Platz: Lavender\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz: Eucomyth  +10\r\n"
+        "2. Platz: Licorice  +6\r\n"
+        "3. Platz: Daisy  +4\r\n"
+        "4. Platz: Cosmos  +3\r\n"
+        "5. Platz: Lupinus  +2\r\n"
+        "6. Platz: Miltonia  +1\r\n"
+        "7. Platz: Lavender\r\n"
+        "8. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (gestiegen): Lupinus  13\r\n"
         "2. (unverändert): Daisy  12\r\n"
         "3. (gefallen): Licorice  10\r\n"
@@ -1928,24 +2051,7 @@ mary_text_table
         "7. (gestiegen): Amaryllis  1\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race12_ResultsPart02[] =
-        "Die Ergebnisse des 2.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Eucomyth  +10\r\n"
-        "2. Platz: Licorice  +6\r\n"
-        "3. Platz: Daisy  +4\r\n"
-        "4. Platz: Cosmos  +3\r\n"
-        "5. Platz: Lupinus  +2\r\n"
-        "6. Platz: Miltonia  +1\r\n"
-        "7. Platz: Lavender\r\n"
-        "8. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1.(unverändert): Eucomyth 20\r\n"
         "2.(unverändert): Daisy  10\r\n"
         "3.(unverändert):Cosmos  7\r\n"
@@ -1955,9 +2061,10 @@ mary_text_table
         "7.(gestiegen):Miltonia  1\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race22_ResultsPart02_2[] =
         "Die Ergebnisse des 2.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -1984,7 +2091,9 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Und das sind sie.{Press}";
+#endif
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race23_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2022,44 +2131,9 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der dritte Wettkampf findet\r\n"
         "morgen statt.{Press}";
-
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
-    const char gText_TV_F314MGrandPrix_Race13_ResultsPart01[] =
-        "Die Ergebnisse des 3.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "\r\n"
-        "\r\n"
-        "Licorice setzte auch diesmal\r\n"
-        "aus. Anders als zuvor hatte\r\n"
-        "sie diesmal offenbar keine\r\n"
-        "Lust. Beim nächsten Rennen\r\n"
-        "will sie wieder dabei sein.\r\n"
-        "Zunächst schien es erneut\r\n"
-        "ein Kampf zwischen Daisy und\r\n"
-        "Cosmos auf der einen und\r\n"
-        "Lupinus auf der anderen\r\n"
-        "Seite zu werden. Doch auch\r\n"
-        "Miltonia mischte mit. Daisy\r\n"
-        "und Cosmos nutzten eine\r\n"
-        "kurze Lücke für ihre\r\n"
-        "vereinte Magie und\r\n"
-        "entschieden den Kampf.\r\n"
-        "Danach folgten Miltonia und\r\n"
-        "Lupinus.\r\n"
-        "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Daisy\r\n"
-        "2. Platz: Cosmos\r\n"
-        "3. Platz: Miltonia{Press}";
 #endif
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race23_ResultsPart01[] =
         "Die Ergebnisse des 3.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -2097,26 +2171,124 @@ mary_text_table
         "1. Platz:         Licorice\r\n"
         "2. Platz:         Lupinus\r\n"
         "3. Platz:       Daisy{Press}";
+#endif
 
-// Restore this season's race report; the original German text describes a different season.
+    // The third-race second-season preview still uses Yotsuba.
 #ifdef BUGFIX
-    const char gText_TV_F314MGrandPrix_Race13_ResultsPart02[] =
+    const char gText_TV_F314MGrandPrix_Race13_PreviewPart02[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Yotsuba\r\n"
+        " Mit Geistermagie \r\n"
+        "              \r\n"
+        "              \r\n"
+        "Yotsuba, Sylvias neue \r\n"
+        "Maschine, kann sich offen-\r\n"
+        "sichtlich in jede der vier\r\n"
+        "Formen verwandeln,\r\n"
+        "abhängig von der\r\n"
+        "Magie, die sie gerade \r\n"
+        "benutzt. Wir müssen \r\n"
+        "abwarten und sehen, \r\n"
+        "wozu das gut ist.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der dritte Wettkampf findet\r\n"
+        "morgen statt.{Press}";
+#endif
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race13_ResultsPart01[] =
         "Die Ergebnisse des 3.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
         "\r\n"
         "\r\n"
+        "Licorice setzte auch diesmal\r\n"
+        "aus. Anders als zuvor hatte\r\n"
+        "sie diesmal offenbar keine\r\n"
+        "Lust. Beim nächsten Rennen\r\n"
+        "will sie wieder dabei sein.\r\n"
+        "Zunächst schien es erneut\r\n"
+        "ein Kampf zwischen Daisy und\r\n"
+        "Cosmos auf der einen und\r\n"
+        "Lupinus auf der anderen\r\n"
+        "Seite zu werden. Doch auch\r\n"
+        "Miltonia mischte mit. Daisy\r\n"
+        "und Cosmos nutzten eine\r\n"
+        "kurze Lücke für ihre\r\n"
+        "vereinte Magie und\r\n"
+        "entschieden den Kampf.\r\n"
+        "Danach folgten Miltonia und\r\n"
+        "Lupinus.\r\n"
+        "\r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "\r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz: Daisy\r\n"
+        "2. Platz: Cosmos\r\n"
+        "3. Platz: Miltonia{Press}";
+#endif
+
+    // Amaryllis stays seventh; gaining points does not imply a rise in rank.
+    const char gText_TV_F314MGrandPrix_Race13_ResultsPart02[] =
+        "Die Ergebnisse des 3.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
+        "\r\n"
+        "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Daisy  +10\r\n"
         "2. Platz: Cosmos  +6\r\n"
         "3. Platz: Miltonia  +4\r\n"
         "4. Platz: Lupinus  +3\r\n"
         "5. Platz: Amaryllis  +2\r\n"
         "6. Platz: Moraea  +1\r\n"
+#else
+        "1. Platz:  Licorice  +10\r\n"
+        "2. Platz:  Lupinus  +6\r\n"
+        "3. Platz:  Daisy  +4\r\n"
+        "4. Platz: Cosmos  +3\r\n"
+        "5. Platz: Miltonia  +2\r\n"
+        "6. Platz: Sylvia  +1\r\n"
+#endif
         "7. Platz: Lavender\r\n"
+#ifdef BUGFIX
         "8. Platz: Sylvia\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "8. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (gestiegen): Daisy  22\r\n"
         "2. (gefallen): Lupinus  16\r\n"
         "3. (gestiegen): Cosmos  14\r\n"
@@ -2124,27 +2296,11 @@ mary_text_table
         "5. (unverändert):\r\n"
         "    Miltonia  9\r\n"
         "6. (unverändert): Moraea  4\r\n"
-        "7. (gestiegen): Amaryllis  3\r\n"
+        "7. (unverändert):\r\n"
+        "    Amaryllis  3\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race13_ResultsPart02[] =
-        "Die Ergebnisse des 3.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz:  Licorice  +10\r\n"
-        "2. Platz:  Lupinus  +6\r\n"
-        "3. Platz:  Daisy  +4\r\n"
-        "4. Platz: Cosmos  +3\r\n"
-        "5. Platz: Miltonia  +2\r\n"
-        "6. Platz: Sylvia  +1\r\n"
-        "7. Platz: Lavender\r\n"
-        "8. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (unverändert):Eucomyth 20\r\n"
         "2. (gestiegen): Licorice  17\r\n"
         "3. (gefallen): Daisy  14\r\n"
@@ -2154,8 +2310,8 @@ mary_text_table
         "6. (gestiegen): Miltonia  3\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race14_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -2193,7 +2349,42 @@ mary_text_table
         "Der vierte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
-// Restore this season's race report; the original German text describes a different season.
+#ifndef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race24_ResultsPart01[] =
+        "Die Ergebnisse des 4.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Noch bevor das Rennen\r\n"
+        "begann, gab es schon\r\n"
+        "große Aufregung.\r\n"
+        "Lavender sah voraus,\r\n"
+        "dass sie mit  Eucomyth\r\n"
+        "zusammenstoßen - \r\n"
+        "und beide ausfallen würden.\r\n"
+        "Eucomyth respektierte die\r\n"
+        "Vorwarnung und nahm nicht\r\n"
+        "am Rennen teil, genau\r\n"
+        "wie Lavender, vielleicht\r\n"
+        "aus Ehrfurcht vor\r\n"
+        "Eucomyths Entscheidung. \r\n"
+        "Licorice war ebenfalls\r\n"
+        "nicht im Rennen. \r\n"
+        "Angeblich hatte sie \r\n"
+        "Magenprobleme.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "1. Platz:           Daisy\r\n"
+        "2. Platz:           Cosmos\r\n"
+        "3. Platz:         Miltonia{Press}";
+#endif
+
+    // Licorice returns from a break, rather than a stated injury.
 #ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race14_ResultsPart01[] =
         "Die Ergebnisse des 4.\r\n"
@@ -2230,47 +2421,22 @@ mary_text_table
         "3. Platz: Cosmos{Press}";
 #endif
 
-    const char gText_TV_F314MGrandPrix_Race24_ResultsPart01[] =
-        "Die Ergebnisse des 4.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Noch bevor das Rennen\r\n"
-        "begann, gab es schon\r\n"
-        "große Aufregung.\r\n"
-        "Lavender sah voraus,\r\n"
-        "dass sie mit  Eucomyth\r\n"
-        "zusammenstoßen - \r\n"
-        "und beide ausfallen würden.\r\n"
-        "Eucomyth respektierte die\r\n"
-        "Vorwarnung und nahm nicht\r\n"
-        "am Rennen teil, genau\r\n"
-        "wie Lavender, vielleicht\r\n"
-        "aus Ehrfurcht vor\r\n"
-        "Eucomyths Entscheidung. \r\n"
-        "Licorice war ebenfalls\r\n"
-        "nicht im Rennen. \r\n"
-        "Angeblich hatte sie \r\n"
-        "Magenprobleme.\r\n"
-        "              \r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir \r\n"
-        "veröffentlichen die \r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "              \r\n"
-        "1. Platz:           Daisy\r\n"
-        "2. Platz:           Cosmos\r\n"
-        "3. Platz:         Miltonia{Press}";
-
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race14_ResultsPart02[] =
+#ifdef BUGFIX
         "Die Ergebnisse des 4.\r\n"
+#else
+        "Die Ergebnisse des 3.\r\n"
+#endif
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Licorice  +10\r\n"
         "2. Platz: Daisy  +6\r\n"
         "3. Platz: Cosmos  +4\r\n"
@@ -2280,7 +2446,18 @@ mary_text_table
         "7. Platz: Amaryllis\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz:          Daisy  +10\r\n"
+        "2. Platz:          Cosmos  +6\r\n"
+        "3. Platz:          Miltonia  +4\r\n"
+        "4. Platz: Lupinus  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Moraea  +1\r\n"
+        "7. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (unverändert): Daisy  28\r\n"
         "2. (gestiegen): Licorice  20\r\n"
         "3. (unverändert): Cosmos  18\r\n"
@@ -2293,23 +2470,7 @@ mary_text_table
         "8. (gestiegen): Lavender  1\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race14_ResultsPart02[] =
-        "Die Ergebnisse des 3.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz:          Daisy  +10\r\n"
-        "2. Platz:          Cosmos  +6\r\n"
-        "3. Platz:          Miltonia  +4\r\n"
-        "4. Platz: Lupinus  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Moraea  +1\r\n"
-        "7. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (gestiegen): Daisy  24\r\n"
         "2. (gefallen): Eucomyth  20\r\n"
         "3. (gefallen):  Licorice  17\r\n"
@@ -2320,9 +2481,10 @@ mary_text_table
         "8. (gestiegen): Moraea  1\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race25_PreviewPart01_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2357,7 +2519,9 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der fünfte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+#endif
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race25_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2371,12 +2535,7 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
-#ifdef BUGFIX
-        "das bedeuten soll.\r\n"
-#else
         "das bedeuten soll.           \r\n"
-#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
@@ -2398,12 +2557,13 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der fünfte Wettkampf findet\r\n"
         "morgen statt.{Press}";
+#endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
+    // Daisy laps Lavender, not the other way around.
     const char gText_TV_F314MGrandPrix_Race15_ResultsPart01[] =
         "Die Ergebnisse des 5.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Lavender sagte eine\r\n"
@@ -2426,20 +2586,7 @@ mary_text_table
         "die Führung nach Punkten an\r\n"
         "Licorice.\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Licorice\r\n"
-        "2. Platz: Cosmos\r\n"
-        "3. Platz: Lupinus{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race15_ResultsPart01[] =
-        "Die Ergebnisse des 5.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Dieses Rennen hatte den\r\n"
@@ -2467,36 +2614,70 @@ mary_text_table
         "wieder den ersten Platz\r\n"
         "einnimmt.\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+#else
         "              \r\n"
+#endif
         "Rennergebnisse:\r\n"
+#ifdef BUGFIX
+        "1. Platz: Licorice\r\n"
+        "2. Platz: Cosmos\r\n"
+        "3. Platz: Lupinus{Press}";
+#else
         "1. Platz:             Eucomyth\r\n"
         "2. Platz:             Licorice\r\n"
         "3. Platz:           Lupinus{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race15_ResultsPart02[] =
         "Die Ergebnisse des 5.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Licorice  +10\r\n"
         "2. Platz: Cosmos  +6\r\n"
+#else
+        "1. Platz: Eucomyth  +10\r\n"
+        "2. Platz: Licorice  +6\r\n"
+#endif
         "3. Platz: Lupinus  +4\r\n"
+#ifdef BUGFIX
         "4. Platz: Sylvia  +3\r\n"
         "5. Platz: Miltonia  +2\r\n"
         "6. Platz: Amaryllis  +1\r\n"
         "7. Platz: Moraea\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "4. Platz: Daisy  +3\r\n"
+        "5. Platz: Cosmos  +2\r\n"
+        "6. Platz: Miltonia  +1\r\n"
+        "7. Platz: Sylvia\r\n"
+        "8. Platz:  Moraea\r\n"
+        "9. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (gestiegen): Licorice  30\r\n"
         "2. (gefallen): Daisy  28\r\n"
         "3. (unverändert): Cosmos  24\r\n"
@@ -2511,25 +2692,7 @@ mary_text_table
         "9. (gefallen): Lavender  1\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race15_ResultsPart02[] =
-        "Die Ergebnisse des 5.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Eucomyth  +10\r\n"
-        "2. Platz: Licorice  +6\r\n"
-        "3. Platz: Lupinus  +4\r\n"
-        "4. Platz: Daisy  +3\r\n"
-        "5. Platz: Cosmos  +2\r\n"
-        "6. Platz: Miltonia  +1\r\n"
-        "7. Platz: Sylvia\r\n"
-        "8. Platz:  Moraea\r\n"
-        "9. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1.(gestiegen):  Eucomyth 30\r\n"
         "2.(gefallen):  Daisy  27\r\n"
         "3.(unverändert): Licorice 23\r\n"
@@ -2540,9 +2703,10 @@ mary_text_table
         "8.(unverändert): Moraea  1\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race26_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2580,6 +2744,46 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der sechste Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+#endif
+
+    // Yotsuba remains the current second-season machine.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race16_PreviewPart01[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Yotsuba\r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "Yotsuba, kann vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie\r\n"
+        "gerade benutzt wird. Eine\r\n"
+        "gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der sechste Wettkampf findet\r\n"
+        "übermorgen statt.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race16_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -2617,11 +2821,11 @@ mary_text_table
         "Der sechste Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
+    // Cosmos is Daisy's older twin, as established in the previews.
     const char gText_TV_F314MGrandPrix_Race16_ResultsPart01[] =
         "Die Ergebnisse des 6.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Diesmal traf Licorices\r\n"
@@ -2639,20 +2843,7 @@ mary_text_table
         "nächsten Rennen wieder\r\n"
         "pausieren?\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Licorice\r\n"
-        "2. Platz: Cosmos\r\n"
-        "3. Platz: Lupinus{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race16_ResultsPart01[] =
-        "Die Ergebnisse des 6.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Lavender sah voraus,\r\n"
@@ -2673,26 +2864,45 @@ mary_text_table
         "während der letzten Runden\r\n"
         "auf Daisys Lichtflügel.\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+#else
         "              \r\n"
+#endif
         "Rennergebnisse:\r\n"
+#ifdef BUGFIX
+        "1. Platz: Licorice\r\n"
+        "2. Platz: Cosmos\r\n"
+        "3. Platz: Lupinus{Press}";
+#else
         "1. Platz:              Daisy\r\n"
         "2. Platz:              Eucomyth\r\n"
         "3. Platz:            Licorice{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race16_ResultsPart02[] =
         "Die Ergebnisse des 6.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Licorice  +10\r\n"
         "2. Platz: Cosmos  +6\r\n"
         "3. Platz: Lupinus  +4\r\n"
@@ -2701,7 +2911,19 @@ mary_text_table
         "6. Platz: Lavender  +1\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz: Daisy  +10\r\n"
+        "2. Platz: Eucomyth  +6\r\n"
+        "3. Platz: Licorice  +4\r\n"
+        "4. Platz: Lupinus  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Miltonia  +1\r\n"
+        "7. Platz: Moraea\r\n"
+        "8. Platz:  Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (unverändert):\r\n"
         "    Licorice  40\r\n"
         "2. (gestiegen): Cosmos  30\r\n"
@@ -2717,24 +2939,7 @@ mary_text_table
         "    Lavender  2\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race16_ResultsPart02[] =
-        "Die Ergebnisse des 6.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Daisy  +10\r\n"
-        "2. Platz: Eucomyth  +6\r\n"
-        "3. Platz: Licorice  +4\r\n"
-        "4. Platz: Lupinus  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Miltonia  +1\r\n"
-        "7. Platz: Moraea\r\n"
-        "8. Platz:  Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (gestiegen): Daisy 37\r\n"
         "2. (gefallen):  Eucomyth  36\r\n"
         "3. (unverändert):Licorice 27\r\n"
@@ -2745,9 +2950,10 @@ mary_text_table
         "8. (unverändert): Moraea  1\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race27_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2782,12 +2988,16 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der siebte Wettkampf findet\r\n"
         "morgen statt.{Press}";
+#endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race17_ResultsPart01[] =
+#ifdef BUGFIX
         "Die Ergebnisse des 7.\r\n"
+#else
+        "Die Ergebnisse des\r\n"
+#endif
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Wie erwartet setzte Licorice\r\n"
@@ -2804,20 +3014,7 @@ mary_text_table
         "und Cosmos nun mit gleicher\r\n"
         "Punktzahl den zweiten Platz.\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Lupinus\r\n"
-        "2. Platz: Daisy\r\n"
-        "3. Platz: Cosmos{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race17_ResultsPart01[] =
-        "Die Ergebnisse des\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Wie zuvor, kämpften\r\n"
@@ -2841,26 +3038,49 @@ mary_text_table
         "letzten Rennen für ihre\r\n"
         "Schwester aufgezehrt hatte.\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+#else
         "              \r\n"
+#endif
         "Rennergebnisse:\r\n"
+#ifdef BUGFIX
+        "1. Platz: Lupinus\r\n"
+        "2. Platz: Daisy\r\n"
+        "3. Platz: Cosmos{Press}";
+#else
         "1. Platz:            Eucomyth\r\n"
         "2. Platz:            Licorice\r\n"
         "3. Platz:            Lupinus{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
     const char gText_TV_F314MGrandPrix_Race17_ResultsPart02[] =
+#ifdef BUGFIX
         "Die Ergebnisse des 7.\r\n"
+#else
+        "Die Ergebnisse des\r\n"
+#endif
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Lupinus  +10\r\n"
         "2. Platz: Daisy  +6\r\n"
         "3. Platz: Cosmos  +4\r\n"
@@ -2870,7 +3090,18 @@ mary_text_table
         "7. Platz: Moraea\r\n"
         "Letzter Platz: Lilac\r\n"
         "\r\n"
+#else
+        "1. Platz: Eucomyth  +10\r\n"
+        "2. Platz: Licorice  +6\r\n"
+        "3. Platz: Lupinus  +4\r\n"
+        "4. Platz: Miltonia  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Moraea  +1\r\n"
+        "7. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (unverändert):\r\n"
         "    Licorice  40\r\n"
         "2. (unverändert): Cosmos  34\r\n"
@@ -2886,23 +3117,7 @@ mary_text_table
         "    Lavender  4\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race17_ResultsPart02[] =
-        "Die Ergebnisse des\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Eucomyth  +10\r\n"
-        "2. Platz: Licorice  +6\r\n"
-        "3. Platz: Lupinus  +4\r\n"
-        "4. Platz: Miltonia  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Moraea  +1\r\n"
-        "7. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (gestiegen):Eucomyth  46\r\n"
         "2. (gefallen):Daisy  37\r\n"
         "3. (unverändert):Licorice 33\r\n"
@@ -2913,8 +3128,8 @@ mary_text_table
         "8. (unverändert):Moraea  2\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race18_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -2929,7 +3144,6 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
 #ifdef BUGFIX
         "das bedeuten soll.\r\n"
 #else
@@ -2957,6 +3171,7 @@ mary_text_table
         "Der achte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -2992,20 +3207,54 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Das ist alles für heute. \r\n"
-// This second preview airs one day before the race.
-#ifdef BUGFIX
-        "Der achte Wettkampf findet\r\n"
-        "morgen statt.{Press}";
-#else
         "Der achte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
+    // Use the second-season Yotsuba evaluation, not third-season Mayo.
 #ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race18_PreviewPart02[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Yotsuba\r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "Yotsuba, kann vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie\r\n"
+        "gerade benutzt wird. Eine\r\n"
+        "gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der achte Wettkampf findet\r\n"
+        "morgen statt.{Press}";
+#endif
+
+    // Teleporting out of the corner does not exchange places with another racer.
     const char gText_TV_F314MGrandPrix_Race18_ResultsPart01[] =
         "Die Ergebnisse des 8.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
         "Licorice war schnell wieder\r\n"
@@ -3018,27 +3267,14 @@ mary_text_table
         "zwischen die überrundeten\r\n"
         "Lavender und Amaryllis. Es\r\n"
         "sah gefährlich aus, doch mit\r\n"
-        "ihrer Platzwechselmagie\r\n"
+        "ihren Teleportierkräften\r\n"
         "entkam sie aus der letzten\r\n"
         "Kurve und gewann sicher.\r\n"
         "Noch zwei Rennen bleiben.\r\n"
         "Ist Licorice der Gesamtsieg\r\n"
         "schon fast sicher?\r\n"
         "\r\n"
-        "Hier die drei besten\r\n"
-        "Teilnehmer. Wir\r\n"
-        "veröffentlichen die\r\n"
-        "vollständigen Ergebnisse\r\n"
-        "morgen.\r\n"
-        "\r\n"
-        "Rennergebnisse:\r\n"
-        "1. Platz: Licorice\r\n"
-        "2. Platz: Lupinus\r\n"
-        "3. Platz: Daisy{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race18_ResultsPart01[] =
-        "Die Ergebnisse des 8.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
         "Sylvia klatschte gegen\r\n"
@@ -3064,36 +3300,74 @@ mary_text_table
         "in den verbleibenden zwei\r\n"
         "Rennen noch aufholen?\r\n"
         "              \r\n"
+#endif
         "Hier die drei besten\r\n"
+#ifdef BUGFIX
+        "Teilnehmer. Wir\r\n"
+        "veröffentlichen die\r\n"
+#else
         "Teilnehmer. Wir \r\n"
         "veröffentlichen die \r\n"
+#endif
         "vollständigen Ergebnisse\r\n"
         "morgen.\r\n"
+#ifdef BUGFIX
+        "\r\n"
+#else
         "              \r\n"
+#endif
         "Rennergebnisse:\r\n"
+#ifdef BUGFIX
+        "1. Platz: Licorice\r\n"
+        "2. Platz: Lupinus\r\n"
+        "3. Platz: Daisy{Press}";
+#else
         "1. Platz:        Licorice\r\n"
         "2. Platz:        Eucomyth\r\n"
         "3. Platz:        Daisy{Press}";
 #endif
 
-// Restore this season's race report; the original German text describes a different season.
-#ifdef BUGFIX
+    // Third place awards four points, matching the cumulative total.
     const char gText_TV_F314MGrandPrix_Race18_ResultsPart02[] =
+#ifdef BUGFIX
         "Die Ergebnisse des 8.\r\n"
+#endif
         "F-3.14 MGP Rennens sind:\r\n"
+#ifdef BUGFIX
         "\r\n"
         "\r\n"
+#else
+        "              \r\n"
+        "              \r\n"
+#endif
         "Gestrige Rennergebnisse:\r\n"
+#ifdef BUGFIX
         "1. Platz: Licorice  +10\r\n"
         "2. Platz: Lupinus  +6\r\n"
         "3. Platz: Daisy  +4\r\n"
+#else
+        "1. Platz:  Licorice  +10\r\n"
+        "2. Platz:  Eucomyth  +6\r\n"
+        "3. Platz:  Daisy  +4\r\n"
+#endif
         "4. Platz: Cosmos  +3\r\n"
+#ifdef BUGFIX
         "5. Platz: Sylvia  +2\r\n"
+#else
+        "5. Platz: Lupinus  +2\r\n"
+#endif
         "6. Platz: Miltonia  +1\r\n"
         "7. Platz: Moraea\r\n"
+#ifdef BUGFIX
         "8. Platz: Lilac\r\n"
         "\r\n"
+#else
+        "8. Platz: Lavender\r\n"
+        "9. Platz: Lilac\r\n"
+        "              \r\n"
+#endif
         "Punktestand:\r\n"
+#ifdef BUGFIX
         "1. (unverändert):\r\n"
         "    Licorice  50\r\n"
         "2. (unverändert):\r\n"
@@ -3110,24 +3384,7 @@ mary_text_table
         "    Lavender  4\r\n"
         "\r\n"
         "\r\n"
-        "Und das sind sie.{Press}";
 #else
-    const char gText_TV_F314MGrandPrix_Race18_ResultsPart02[] =
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz:  Licorice  +10\r\n"
-        "2. Platz:  Eucomyth  +6\r\n"
-        "3. Platz:  Daisy  +4\r\n"
-        "4. Platz: Cosmos  +3\r\n"
-        "5. Platz: Lupinus  +2\r\n"
-        "6. Platz: Miltonia  +1\r\n"
-        "7. Platz: Moraea\r\n"
-        "8. Platz: Lavender\r\n"
-        "9. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
         "1. (unverändert):Eucomyth 52\r\n"
         "2. (gestiegen):  Licorice  43\r\n"
         "3. (gefallen):   Daisy  41\r\n"
@@ -3138,8 +3395,8 @@ mary_text_table
         "8. (unverändert): Moraea  2\r\n"
         "              \r\n"
         "              \r\n"
-        "Und das sind sie.{Press}";
 #endif
+        "Und das sind sie.{Press}";
 
     const char gText_TV_F314MGrandPrix_Race19_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
@@ -3289,6 +3546,39 @@ mary_text_table
         "Der letzte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race20_ResultsPart01[] =
+        "Die Ergebnisse des letzten\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Dieses Rennen war \r\n"
+        "langweilig, vielleicht weil\r\n"
+        "Licorice die Meisterschaft\r\n"
+        "dieser Saison schon\r\n"
+        "in der Tasche hatte.\r\n"
+        "Nur Licorice und Sylvia\r\n"
+        "haben sich ein richtiges\r\n"
+        "Rennen geliefert. Und \r\n"
+        "obwohl Sylvia keine\r\n"
+        "echte Herausforderung für\r\n"
+        "Licorice war, hat sie doch\r\n"
+        "mit zwei Minuten Vorsprung\r\n"
+        "vor Lupinus den 2. Platz\r\n"
+        "belegt.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz:  Licorice\r\n"
+        "2. Platz:  Sylvia\r\n"
+        "3. Platz: Lupinus{Press}";
+#endif
+
     const char gText_TV_F314MGrandPrix_Race20_ResultsPart02[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3302,7 +3592,11 @@ mary_text_table
         "5. Platz: Cosmos  +2\r\n"
         "6. Platz: Miltonia  +1\r\n"
         "7. Platz: Lavender\r\n"
+#ifdef BUGFIX
+        "8. Platz: Lilac\r\n"
+#else
         "8. Platz: Liliac\r\n"
+#endif
         "              \r\n"
         "Punktestand:\r\n"
         "1. (unverändert): \r\n"
@@ -3325,6 +3619,46 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Und das sind sie.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race21_PreviewPart01[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Mayo \r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "ist die aufgerüstete Version\r\n"
+        "ihrer alten Yotsuba. Sie\r\n"
+        "kann ebenfalls vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie \r\n"
+        "gerade benutzt wird. Auch \r\n"
+        "eine gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der erste Wettkampf findet\r\n"
+        "übermorgen statt.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race21_ResultsPart01[] =
         "Die Ergebnisse des 1.\r\n"
@@ -3368,6 +3702,36 @@ mary_text_table
         "2. Platz:    Daisy\r\n"
         "3. Platz:  Cosmos{Press}";
 
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race21_ResultsPart02[] =
+        "Die Ergebnisse des 1.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Gestrige Rennergebnisse:\r\n"
+        "1. Platz:     Eucomyth  +10\r\n"
+        "2. Platz:     Daisy  +6\r\n"
+        "3. Platz:   Cosmos  +4\r\n"
+        "4. Platz: Lupinus  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Licorice  +1\r\n"
+        "7. Platz: Miltonia\r\n"
+        "8. Platz: Lavender\r\n"
+        "9. Platz: Moraea\r\n"
+        "10. Platz: Lilac\r\n"
+        "              \r\n"
+        "Punktestand:\r\n"
+        "1.: Eucomyth  10\r\n"
+        "2.: Daisy  6\r\n"
+        "3.: Cosmos  4\r\n"
+        "4.: Lupinus  3\r\n"
+        "5.: Sylvia  2\r\n"
+        "6.: Licorice  1\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Und das sind sie.{Press}";
+#endif
+
     const char gText_TV_F314MGrandPrix_Race22_PreviewPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3388,13 +3752,16 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
         "              \r\n"
         "Als Schüler hat Lilac\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
 #ifdef BUGFIX
         "noch keine magischen Kräfte.\r\n"
 #else
@@ -3407,6 +3774,43 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der zweite Wettkampf findet\r\n"
         "morgen statt.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race22_ResultsPart01[] =
+        "Die Ergebnisse des 2.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Licorice, die im letzten\r\n"
+        "Rennen mit Maschinen-\r\n"
+        "problemen zu kämpfen\r\n"
+        "hatte, war in Hochform. In\r\n"
+        "der Endrunde benutzte\r\n"
+        "Eucomyth aber anscheinend\r\n"
+        "ihre ultimative Magie\r\n"
+        "und übernahm die Führung,\r\n"
+        "während alle anderen\r\n"
+        "wie eingefroren waren. Der\r\n"
+        "Zeitstopp betraf alle,\r\n"
+        "mich eingeschlossen, so\r\n"
+        "dass nicht einmal ich weiß,\r\n"
+        "was wirklich geschah. \r\n"
+        "Fakt ist, Eucomyth tauchte\r\n"
+        "plötzlich vor Licorice auf\r\n"
+        "und ging somit als Erste\r\n"
+        "über die Ziellinie.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz:      Eucomyth\r\n"
+        "2. Platz:      Licorice\r\n"
+        "3. Platz:    Daisy{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race22_ResultsPart02[] =
         "Die Ergebnisse des 2.\r\n"
@@ -3438,6 +3842,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
+    // Lupinus has used Maho since the second-season seventh race.
     const char gText_TV_F314MGrandPrix_Race23_PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3451,26 +3856,123 @@ mary_text_table
         "Ich habe sie nie etwas\r\n"
         "beschwören sehen, also\r\n"
         "weiß ich nicht genau, was\r\n"
+#ifdef BUGFIX
+        "das bedeuten soll.\r\n"
+#else
         "das bedeuten soll.         \r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
         "·Lupinus\r\n"
+#ifdef BUGFIX
+        " Auf Maho\r\n"
+#else
         " Auf Misuzu\r\n"
+#endif
         " Mit Illusionsmagie\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "Lupinus neue Maschine, Maho,\r\n"
+        "scheint sicherlich besser\r\n"
+        "als die Vorherige, aber\r\n"
+        "das kann man auf den\r\n"
+        "ersten Blick nicht\r\n"
+        "unbedingt sagen.\r\n"
+#else
         "Alles was sie macht, ist\r\n"
         "Illusion. Wenn du das\r\n"
         "herausfindest, wird sie \r\n"
         "machtlos.\r\n"
+#endif
         "              \r\n"
         "              \r\n"
         "Das ist alles für heute. \r\n"
         "Der dritte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race23_PreviewPart02[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Mayo \r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "ist die aufgerüstete Version\r\n"
+        "ihrer alten Yotsuba. Sie\r\n"
+        "kann ebenfalls vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie \r\n"
+        "gerade benutzt wird. Auch \r\n"
+        "eine gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der dritte Wettkampf findet\r\n"
+        "morgen statt.{Press}";
+#endif
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race23_ResultsPart01[] =
+        "Die Ergebnisse des 3.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Eucomyth musste wohl\r\n"
+        "noch vom letzten Rennen\r\n"
+        "erschöpft sein, in dem\r\n"
+        "sie ihre ultimative Zeit-\r\n"
+        "magie angewandt hatte. \r\n"
+        "Warum auch immer, sie\r\n"
+        "war nicht in der Lage, den\r\n"
+        "Blauen Drachen auszu-\r\n"
+        "schalten, den Moraea dieses\r\n"
+        "Mal beschwor und wurde \r\n"
+        "von der Strecke gefegt. \r\n"
+        "Moraea selbst wurde\r\n"
+        "in die Nebeneffekte\r\n"
+        "verwickelt, was sie eben-\r\n"
+        "falls ausschaltete und\r\n"
+        "damit freie Bahn für\r\n"
+        "Licorice schuf. Lupinus \r\n"
+        "konterte nach Kräften, aber\r\n"
+        "ohne Erfolg. Licorice\r\n"
+        "erlangte ihren 1. Sieg\r\n"
+        "in dieser Saison.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "Rennergebnisse:\r\n"
+        "1. Platz:         Licorice\r\n"
+        "2. Platz:         Lupinus\r\n"
+        "3. Platz:       Daisy{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race23_ResultsPart02[] =
         "Die Ergebnisse des 3.\r\n"
@@ -3502,8 +4004,48 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race24_ResultsPart01[] =
+        "Die Ergebnisse des 4.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Noch bevor das Rennen\r\n"
+        "begann, gab es schon\r\n"
+        "große Aufregung.\r\n"
+        "Lavender sah voraus,\r\n"
+        "dass sie mit  Eucomyth\r\n"
+        "zusammenstoßen - \r\n"
+        "und beide ausfallen würden.\r\n"
+        "Eucomyth respektierte die\r\n"
+        "Vorwarnung und nahm nicht\r\n"
+        "am Rennen teil, genau\r\n"
+        "wie Lavender, vielleicht\r\n"
+        "aus Ehrfurcht vor\r\n"
+        "Eucomyths Entscheidung. \r\n"
+        "Licorice war ebenfalls\r\n"
+        "nicht im Rennen. \r\n"
+        "Angeblich hatte sie \r\n"
+        "Magenprobleme.\r\n"
+        "              \r\n"
+        "Hier die drei besten\r\n"
+        "Teilnehmer. Wir \r\n"
+        "veröffentlichen die \r\n"
+        "vollständigen Ergebnisse\r\n"
+        "morgen.\r\n"
+        "              \r\n"
+        "1. Platz:           Daisy\r\n"
+        "2. Platz:           Cosmos\r\n"
+        "3. Platz:         Miltonia{Press}";
+#endif
+
+    // These are the fourth-race results, not the third.
     const char gText_TV_F314MGrandPrix_Race24_ResultsPart02[] =
+#ifdef BUGFIX
+        "Die Ergebnisse des 4.\r\n"
+#else
         "Die Ergebnisse des 3.\r\n"
+#endif
         "F-3.14 MGP Rennens sind:\r\n"
         "              \r\n"
         "              \r\n"
@@ -3549,7 +4091,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -3563,6 +4109,44 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der fünfte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race25_PreviewPart02[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Moraea\r\n"
+        " Auf Natsuki\r\n"
+        " Mit Beschwörungsmagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Ich habe sie nie etwas\r\n"
+        "beschwören sehen, also\r\n"
+        "weiß ich nicht genau, was\r\n"
+        "das bedeuten soll.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Lupinus\r\n"
+        " Auf Maho\r\n"
+        " Mit Illusionsmagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Lupinus neue Maschine, Maho,\r\n"
+        "scheint sicherlich besser\r\n"
+        "als die Vorherige, aber\r\n"
+        "das kann man auf den\r\n"
+        "ersten Blick nicht\r\n"
+        "unbedingt sagen.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der fünfte Wettkampf findet\r\n"
+        "morgen statt.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race25_ResultsPart01[] =
         "Die Ergebnisse des 5.\r\n"
@@ -3605,6 +4189,7 @@ mary_text_table
         "2. Platz:       Licorice\r\n"
         "3. Platz:       Lupinus{Press}";
 
+    // Cosmos and Lupinus share fourth place on 18 points.
     const char gText_TV_F314MGrandPrix_Race25_ResultsPart02[] =
         "Die Ergebnisse des 5.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3630,7 +4215,11 @@ mary_text_table
         "    Licorice  23\r\n"
         "4. (unverändert): \r\n"
         "    Cosmos    18\r\n"
+#ifdef BUGFIX
+        "4. (gestiegen): \r\n"
+#else
         "5. (unverändert): \r\n"
+#endif
         "    Lupinus   18\r\n"
         "6. (unverändert): \r\n"
         "    Miltonia   8\r\n"
@@ -3641,6 +4230,46 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Und das sind sie.{Press}";
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race26_PreviewPart01[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Mayo \r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "ist die aufgerüstete Version\r\n"
+        "ihrer alten Yotsuba. Sie\r\n"
+        "kann ebenfalls vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie \r\n"
+        "gerade benutzt wird. Auch \r\n"
+        "eine gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der sechste Wettkampf findet\r\n"
+        "übermorgen statt.{Press}";
+#endif
 
     const char gText_TV_F314MGrandPrix_Race26_ResultsPart01[] =
         "Die Ergebnisse des 6.\r\n"
@@ -3676,6 +4305,7 @@ mary_text_table
         "2. Platz:    Eucomyth\r\n"
         "3. Platz:    Licorice{Press}";
 
+    // Lupinus was already fourth in the corrected previous standings.
     const char gText_TV_F314MGrandPrix_Race26_ResultsPart02[] =
         "Die Ergebnisse des 6.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3698,7 +4328,11 @@ mary_text_table
         "    Eucomyth  36\r\n"
         "3. (unverändert): \r\n"
         "    Licorice  27\r\n"
+#ifdef BUGFIX
+        "4. (unverändert):  \r\n"
+#else
         "4. (gestiegen):  \r\n"
+#endif
         "    Lupinus   21\r\n"
         "5. (gefallen): \r\n"
         "    Cosmos    18\r\n"
@@ -3732,7 +4366,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -3747,8 +4385,8 @@ mary_text_table
         "Der siebte Wettkampf findet\r\n"
         "morgen statt.{Press}";
 
+    // Both twins rest after spending too much MP in the previous race.
     const char gText_TV_F314MGrandPrix_Race27_ResultsPart01[] =
-// Restore the race number stated by the corresponding JP and EN report.
 #ifdef BUGFIX
         "Die Ergebnisse des 7.\r\n"
 #else
@@ -3773,10 +4411,18 @@ mary_text_table
         "schon vorher ab.\r\n"
         "Daisy und Cosmos nahmen\r\n"
         "heute nicht am Rennen\r\n"
+#ifdef BUGFIX
+        "teil. Daisy hatte zu viel\r\n"
+        "Magie verbraucht. Cosmos\r\n"
+        "hatte ihre magischen Kräfte\r\n"
+        "im letzten Rennen für ihre\r\n"
+        "Schwester aufgezehrt.\r\n"
+#else
         "teil. Letztere, weil sie\r\n"
         "ihre magischen Kräfte im\r\n"
         "letzten Rennen für ihre\r\n"
         "Schwester aufgezehrt hatte.\r\n"
+#endif
         "              \r\n"
         "Hier die drei besten\r\n"
         "Teilnehmer. Wir \r\n"
@@ -3789,36 +4435,7 @@ mary_text_table
         "2. Platz:       Licorice\r\n"
         "3. Platz:       Lupinus{Press}";
 
-// This existing German results text belongs to race 27, not the unrelated race 3 preview.
-#ifdef BUGFIX
-    const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
-        "Die Ergebnisse des 7.\r\n"
-        "F-3.14 MGP Rennens sind:\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Gestrige Rennergebnisse:\r\n"
-        "1. Platz: Eucomyth  +10\r\n"
-        "2. Platz: Licorice  +6\r\n"
-        "3. Platz: Lupinus  +4\r\n"
-        "4. Platz: Miltonia  +3\r\n"
-        "5. Platz: Sylvia  +2\r\n"
-        "6. Platz: Moraea  +1\r\n"
-        "7. Platz: Lilac\r\n"
-        "              \r\n"
-        "Punktestand:\r\n"
-        "1. (gestiegen):Eucomyth  46\r\n"
-        "2. (gefallen):Daisy  37\r\n"
-        "3. (unverändert):Licorice 33\r\n"
-        "4. (unverändert):Lupinus 25\r\n"
-        "5. (unverändert):Cosmos 18\r\n"
-        "6. (unverändert):Miltonia 12\r\n"
-        "7. (unverändert):Sylvia  9\r\n"
-        "8. (unverändert):Moraea  2\r\n"
-        "              \r\n"
-        "              \r\n"
-        "Und das sind sie.{Press}";
-#endif
-
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race18_PreviewPart01_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3854,7 +4471,79 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der achte Wettkampf findet\r\n"
         "übermorgen statt.{Press}";
+#endif
 
+    // Restore seventh-race results before the two previews; Sylvia has 7 + 2 = 9.
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
+        "Die Ergebnisse des 7.\r\n"
+        "F-3.14 MGP Rennens sind:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Gestrige Rennergebnisse:\r\n"
+        "1. Platz: Eucomyth  +10\r\n"
+        "2. Platz: Licorice  +6\r\n"
+        "3. Platz: Lupinus  +4\r\n"
+        "4. Platz: Miltonia  +3\r\n"
+        "5. Platz: Sylvia  +2\r\n"
+        "6. Platz: Moraea  +1\r\n"
+        "7. Platz: Lilac\r\n"
+        "              \r\n"
+        "Punktestand:\r\n"
+        "1. (gestiegen):Eucomyth  46\r\n"
+        "2. (gefallen):Daisy  37\r\n"
+        "3. (unverändert):Licorice 33\r\n"
+        "4. (unverändert):Lupinus 25\r\n"
+        "5. (unverändert):Cosmos 18\r\n"
+        "6. (unverändert):Miltonia 12\r\n"
+        "7. (unverändert):Sylvia  9\r\n"
+        "8. (unverändert):Moraea  2\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Und das sind sie.{Press}";
+#endif
+
+#ifdef BUGFIX
+    const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
+        "Teilnehmer im F-3.14 MGP\r\n"
+        "sind die Folgenden:\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Sylvia\r\n"
+        " Auf Mayo \r\n"
+        " Mit Geistermagie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sylvias neue Maschine,\r\n"
+        "ist die aufgerüstete Version\r\n"
+        "ihrer alten Yotsuba. Sie\r\n"
+        "kann ebenfalls vier ver-\r\n"
+        "schiedene Formen annehmen,\r\n"
+        "je nachdem, welche Magie \r\n"
+        "gerade benutzt wird. Auch \r\n"
+        "eine gute Maschine.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "--------------\r\n"
+        "              \r\n"
+        "              \r\n"
+        "·Miltonia\r\n"
+        " Auf Sprite\r\n"
+        " Mit Weißer Magie\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Sie benutzt Heilungsmagie,\r\n"
+        "also zieht sie ein hartes\r\n"
+        "Rennen vor und heilt sich\r\n"
+        "dann später selber.\r\n"
+        "              \r\n"
+        "              \r\n"
+        "Das ist alles für heute. \r\n"
+        "Der achte Wettkampf findet\r\n"
+        "morgen statt.{Press}";
+#endif
+
+    // The third-season wreck is Mayo; keep Licorice's spelling consistent.
     const char gText_TV_F314MGrandPrix_Race28_ResultsPart01[] =
         "Die Ergebnisse des 8.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3864,14 +4553,22 @@ mary_text_table
         "Ende des Rennens vor\r\n"
         "eine Mauer und beendete\r\n"
         "so ihr Rennen spektakulär.\r\n"
+#ifdef BUGFIX
+        "Teile ihrer Maschine Mayo\r\n"
+#else
         "Teile ihrer Maschine Yotsuba\r\n"
+#endif
         "flogen durch die Gegend,\r\n"
         "einige trafen Eucomyth, die\r\n"
         "zu der Zeit direkt hinter\r\n"
         "ihr fuhr.\r\n"
         "Eucomyths Maschine Kyoko\r\n"
         "begann zu versagen, so dass\r\n"
+#ifdef BUGFIX
+        "sie schließlich von Licorice\r\n"
+#else
         "sie schließlich von Licorce\r\n"
+#endif
         "überholt wurde und als\r\n"
         "Zweite ins Ziel ging.\r\n"
         "Eucomyth ist trotzdem \r\n"
@@ -3894,6 +4591,7 @@ mary_text_table
         "2. Platz:     Eucomyth\r\n"
         "3. Platz:     Daisy{Press}";
 
+    // Carry Sylvia's corrected nine points into the next race.
     const char gText_TV_F314MGrandPrix_Race28_ResultsPart02[] =
         "Die Ergebnisse des 8.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -3924,7 +4622,6 @@ mary_text_table
         "6. (unverändert): \r\n"
         "    Miltonia  13\r\n"
         "7. (unverändert): \r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "    Sylvia     9\r\n"
 #else
@@ -3936,6 +4633,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
+#ifndef BUGFIX
     const char gText_TV_F314MGrandPrix_Race09_PreviewPart02_2[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
@@ -3969,9 +4667,10 @@ mary_text_table
         "Das ist alles für heute. \r\n"
         "Der neunte Wettkampf findet\r\n"
         "morgen statt.{Press}";
+#endif
 
+    // Eucomyth attempts to lap them but cannot get past their duel.
     const char gText_TV_F314MGrandPrix_Race29_ResultsPart01[] =
-// Restore the race number stated by the corresponding JP and EN report.
 #ifdef BUGFIX
         "Die Ergebnisse des 9.\r\n"
 #else
@@ -3982,8 +4681,13 @@ mary_text_table
         "              \r\n"
         "Als Lupinus und Miltonia\r\n"
         "um den 5. Platz kämpften,\r\n"
+#ifdef BUGFIX
+        "wollte Eucomyth sie\r\n"
+        "überrunden. \r\n"
+#else
         "wurden sie von Eucomyth\r\n"
         "überrundet. \r\n"
+#endif
         "Die pure Intensität\r\n"
         "ihres Duells machte es\r\n"
         "für Eucomyth unmöglich,\r\n"
@@ -4018,6 +4722,7 @@ mary_text_table
         "2. Platz:        Daisy\r\n"
         "3. Platz:        Cosmos{Press}";
 
+    // Carry Sylvia's corrected cumulative score forward.
     const char gText_TV_F314MGrandPrix_Race29_ResultsPart02[] =
         "Die Ergebnisse des 9.\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -4046,7 +4751,6 @@ mary_text_table
         "6. (unverändert): \r\n"
         "    Miltonia  13\r\n"
         "7. (unverändert): \r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "    Sylvia  11\r\n"
 #else
@@ -4080,7 +4784,11 @@ mary_text_table
         "--------------\r\n"
         "              \r\n"
         "              \r\n"
+#ifdef BUGFIX
+        "·Lilac\r\n"
+#else
         "·Liliac\r\n"
+#endif
         " Auf Karin\r\n"
         " Magieschüler\r\n"
         "              \r\n"
@@ -4142,6 +4850,7 @@ mary_text_table
         "2. Platz:      Eucomyth\r\n"
         "3. Platz:      Daisy{Press}";
 
+    // Keep Sylvia's corrected final total and Lilac's established spelling.
     const char gText_TV_F314MGrandPrix_Race30_ResultsPart02[] =
         "Die Ergebnisse des letzten\r\n"
         "F-3.14 MGP Rennens sind:\r\n"
@@ -4171,7 +4880,6 @@ mary_text_table
         "6. (unverändert): \r\n"
         "    Miltonia  15\r\n"
         "7. (unverändert): \r\n"
-// Carry forward Sylvia's corrected race-7 total: seven previous points plus two, not eight.
 #ifdef BUGFIX
         "    Sylvia    11\r\n"
 #else
@@ -4184,4 +4892,5 @@ mary_text_table
         "              \r\n"
         "              \r\n"
         "Und das sind sie.{Press}";
-};
+
+}
