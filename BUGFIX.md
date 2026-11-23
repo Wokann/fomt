@@ -1326,7 +1326,7 @@ US／EU 分别写 eated、Pinapple
 | [安娜普通赠礼答谢误提生日](#anna-gift-birthday) | US、EU | 已接入 |
 | [卡特葡萄园兼职提示及选项残留德语](#carter-untranslated) | US、EU | 已接入 |
 | [精灵香水答谢残留日文](#nappy-perfume) | US、EU | 已接入 |
-| [扎克牧场生活夸奖残留日文](#zack-untranslated) | US、EU | 已接入 |
+| [扎克牧场生活夸奖多播日文](#zack-untranslated) | US、EU | 已接入 |
 | [人物和物件名称的英文拼写错误](#english-spelling) | US、EU | 已接入 |
 | [玩家拒绝采葡萄时杜克向未到场的克里夫讲话](#winery-job-decline-duke-dialogue) | US、EU、DE | 已接入 |
 | [德版珀布利谈新生儿时多播一条英文](#de-popuri-newborn-dialogue) | DE | 已接入 |
@@ -1988,21 +1988,21 @@ JP为告知兼职机会；本作其他村民有对应英文选项，重制版有
 **相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Nappy_DialogueAndWorkChoices.mary.c)
 
 <a id="zack-untranslated"></a>
-### 扎克牧场生活夸奖残留日文
+### 扎克牧场生活夸奖多播日文
 
 **受影响版本：** US、EU。
 
 **原版内容与差异：**
 
-{Player}、けっこう牧場がにあってんじゃねぇか？…これでも、ほめてんだぜ～。仍以日文显示。
+US／EU在农场高好感复谈先播放日文两页，再播放英文 `The farming life seems to suit you pretty well, {Player}!`（牧场生活似乎挺适合你）。JP只调用一份日文；DE只调用现有德文夸奖。
 
 **判断依据：**
 
-JP含义是牧场生活很适合玩家，下一页明确这是夸奖。
+后续英文已经是该日文的本地化对应句，虽然省略了“我这是在夸你”的第二层意思，也不能把前置日文再翻译后一起播放，否则会重复夸奖。DE同样使用较短的本地化文本，不据此补译。
 
 **修复方式：**
 
-按GBA日文直译并保留原两页及最后的夸奖说明，不额外添加情绪台词。
+开启BUGFIX时，仅从US／EU移除多余的日文对象及其消息调用，保留已有英文原句和调用。关闭开关时保留原日文对象与两次调用，以维持原版内容。JP与DE文字、调用和页数不变。
 
 **相关文件：** [JP](data/scripts/jp/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [US](data/scripts/us/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [EU](data/scripts/eu/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c) · [DE](data/scripts/de/EventScript_NPCEvent_Zack_DialogueAndGiftResponses.mary.c)
 

@@ -182,15 +182,8 @@ mary_text_table
         "{Player},\r\n"
         "I'm working now!{Press}";
 
+#ifndef BUGFIX
     const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn[] =
-// Translate the Japanese dialogue while preserving its two pages.
-#ifdef BUGFIX
-        "{Player},\r\n"
-        "farm life suits you pretty\r\n"
-        "well, doesn't it?{Press}\p"
-        "I'm complimenting you,\r\n"
-        "you know.{Press}";
-#else
         "{Player}、\r\n"
         "けっこう牧場がにあってんじゃ\r\n"
         "ねぇか？{Press}\p"
@@ -869,7 +862,10 @@ void EventScript_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ZACK_AFRAID);
+#ifndef BUGFIX
+                                        // The next line already praises the player in English.
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn);
+#endif
                                         TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_PraisesPlayerAsFarmer);
                                     }
                                 }
