@@ -9668,10 +9668,12 @@ mary_script_symbols
         gText_NPCEvent_Zack_DialogueAndGiftResponses_BlacksmithHighFriendshipRepeatConversation_WithdrawsGiftQuestion,
         #if defined(REGION_JP)
             gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipShipmentGreeting,
+        #elif defined(REGION_DE)
+            gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell,
         #endif
         gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute,
         gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+        #if defined(REGION_US) || defined(REGION_EU)
             gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn,
         #elif defined(REGION_JP)
             gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipShipmentGreeting,

@@ -174,19 +174,19 @@ mary_text_table
         "Oh, nichts...\r\n"
         "Vergiss es einfach!{Press}";
 
-    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute[] =
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell[] =
         "Fertig für heute, \r\n"
         "{Player}? {Press}\p"
         "Du scheinst ein harter \r\n"
         "Arbeiter zu sein. Weiter so!{Press}";
 
-    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking[] =
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute[] =
         "Soll ich zuerst dahin gehen\r\n"
         "und das mitnehmen oder\r\n"
         "lieber dorthin und das{Press}\r\n"
         "andere Zeug holen...?{Press}";
 
-    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn[] =
+    const char gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking[] =
         "{Player},\r\n"
         "Ich arbeite jetzt!{Press}";
 
@@ -832,7 +832,7 @@ void EventScript_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_ZACK_NORMAL);
-                                    TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute);
+                                    TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell);
                                 }
                             }
                             else
@@ -847,9 +847,9 @@ void EventScript_NPCEvent_Zack_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ZACK_NORMAL);
-                                        TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking);
+                                        TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute);
                                         SetTalkPortrait(TALK_PORTRAIT_ZACK_ANGRY);
-                                        TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn);
+                                        TalkMessage(gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking);
                                     }
                                 }
                                 else

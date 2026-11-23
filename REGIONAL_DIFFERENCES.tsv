@@ -8283,8 +8283,9 @@
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_DaytimeShipmentGreeting	JP / US=EU / DE	8215	8103	8103	8096
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_DislikedGiftResponse	JP / US=EU / DE	8215	8103	8103	8096
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_ExplainsGregsFishingRodAndQuest	JP / US=EU / DE	8215	8103	8103	8096
+具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmEveningHighFriendshipFarewell	DE / 缺 JP,US,EU	—	—	—	8096
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_PraisesPlayerAsFarmer	JP / US=EU / DE	8215	8103	8103	8096
-具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn	US=EU / DE / 缺 JP	—	8103	8103	8096
+具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipRepeatConversation_UntranslatedJapaneseLeadIn	US=EU / 缺 JP,DE	—	8103	8103	—
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmHighFriendshipShipmentGreeting	JP / 缺 US,EU,DE	8215	—	—	—
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_PlansPickupRoute	JP / US=EU / DE	8215	8103	8103	8096
 具名文本对象	gText_NPCEvent_Zack_DialogueAndGiftResponses_FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking	JP / US=EU / DE	8215	8103	8103	8096

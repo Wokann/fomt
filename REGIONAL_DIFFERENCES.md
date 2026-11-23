@@ -197,6 +197,10 @@
 
 ## 已确认错误的源码名称整理
 
+扎克的DE文本有三处旧名称错位：收货路线应为`FarmLowFriendshipRepeatConversation_PlansPickupRoute`，提醒自己正在工作应为`FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking`，农场晚间高好感道别应为`FarmEveningHighFriendshipFarewell`。仅修正定义、实际调用及Mary原版反编译名称表，不改变德文文本或调用顺序。
+
+JP的`FarmLowFriendshipShipmentGreeting`与`FarmHighFriendshipShipmentGreeting`是两份独立的农场首谈问候；US／EU／DE在这两处及室外白天高好感分支均复用各自的`DaytimeShipmentGreeting`，不缺实际对话。具名对象统计显示海外没有这两个独立符号，不应据此补造文本或符号别名。
+
 命名依据依次采用本作已有的正确本地化文本、重制版对应名称；两者都不存在时才考虑重新翻译日文。地区正式名称不同本身不构成错误，不以日文直译或音译统一覆盖已有本地化名称。源码以英文鱼名命名，不附记录编号或另拼鱼种后缀；过长名称采用明确记录且经确认的界面短写。数值 ID、对象顺序及默认行为不变。
 
 | 原标识符 | 修正与依据 |
