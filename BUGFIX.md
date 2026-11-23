@@ -28,10 +28,10 @@
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 39 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 42 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 25 |
-| **合计** | | **156** |
+| **合计** | | **159** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1298,6 +1298,9 @@ US／EU 分别写 eated、Pinapple
 <a id="localization-text"></a>
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [赏月英语的所有格和短语拼写错误](#moon-viewing-english-spelling) | US、EU | 已接入 |
+| [卡特父子故事结束后误播恐怖故事开场](#carter-father-son-story-closing) | US、EU、DE | 已接入 |
+| [德版卡莲生日晚餐结束后重复配偶对白](#karen-spouse-birthday-closing) | DE | 已接入 |
 | [羊祭接待桌使用牛祭提示](#sheep-reception-text) | US、EU、DE | 已接入 |
 | [德版琳怀孕时医生复用答谢](#audit-a01) | DE | 已接入 |
 | [德版玛丽怀孕末尾复用妻子台词](#audit-a02) | DE | 已接入 |
@@ -2229,6 +2232,80 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 这些修复不依赖结构统一。`UNIFY_REGIONS` 才统一151槽及同义文本复用；两个开关均关闭时保留各版原文字、槽位和调用。
 
 **相关文件：** [共用脚本](data/scripts/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h)
+
+<a id="karen-spouse-birthday-closing"></a>
+### 德版卡莲生日晚餐结束后重复配偶对白
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+在卡莲生日晚餐的正确回答流程中，无孩子和已有孩子的两条分支，卡莲对话结束、场景淡出并移除事件图标后，都还会播放玩家的收尾独白。
+
+| 版本 | 玩家收尾位置实际播放的文字 |
+|---|---|
+| JP | `楽しかった…今日はよくねむれそうだ…`（很开心……今晚似乎能睡好……）。 |
+| US＝EU | `I had so much fun today! I'll sleep like a log...`（今天真开心！我会睡得很沉……）。 |
+| DE | 无孩子时重复卡莲前面的结婚纪念日台词：`Gut, wir werden unseren Hochzeitstag jetzt immer so feiern... IMMER!`（好，我们今后永远这样庆祝结婚纪念日！）；已有孩子时重复家庭纪念日版本。 |
+
+**判断依据：**
+
+错误发生在同一流程的玩家独白位置，并非卡莲正常婚姻对白的另一种译法。JP、US、EU此处均为回顾晚餐的玩家收尾；DE却复用此前已播放的卡莲台词，且没有对应的玩家收尾条目。
+
+DE其它配偶的同类生日事件已有完整的本地化收尾。直接采用珀布利生日脚本0625中的 `Ich hatte so viel Spaß! Ich werde schlafen wie ein Stein...`（真开心！我会睡得很沉……），沿用原来的三行和末尾 `{Press}`，无需新写译文。
+
+**修复方式：**
+
+开启 `BUGFIX` 后，仅DE补入 `IHadSoMuchFunToday` 文本条目，两个收尾位置与JP、US、EU共用正确的玩家独白调用；原本卡莲的结婚／家庭纪念日对白正文不改。关闭时保留DE原有条目数、槽序及错误重复调用。
+
+**相关文件：** [共用脚本](data/scripts/EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP文本](text/jp/script/EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice.mary.h) · [US文本](text/us/script/EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice.mary.h) · [EU文本](text/eu/script/EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice.mary.h) · [DE文本](text/de/script/EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice.mary.h) · [德文收尾来源0625](text/de/script/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.h)
+
+<a id="carter-father-son-story-closing"></a>
+### 卡特父子故事结束后误播恐怖故事开场
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+卡特日常对话的低好感路线中，玩家选择听故事，父子故事及解释播完后的收尾位置，JP使用独立告别句，海外却复用另一段恐怖故事的开场。
+
+| 版本 | 父子故事结束处的原文与中文参考 |
+| --- | --- |
+| JP | `それでは、また…`（那么，下次再见……）。 |
+| US＝EU | `Now let me see...`（让我想想……）。 |
+| DE | `Lass mich sehen...`（让我想想……）。 |
+
+**判断依据：**
+
+核对实际菜单选择、完整父子故事和后续离场位置；同一海外旧短串在恐怖故事开场是正确用法，不能直接改其正文。本地重制转储 `SoSFoMTTextDump/SoSFoMTTextDump/US/msg_Scr_Talk.txt` 9723–9724行以 `Think on that. I bid you a blessed day.`（请想想这点，祝你安好）收尾，DE同文件10372–10373行也以思考和告别结束；只佐证这里是结尾，不把重制长祝福移入GBA。
+
+**修复方式：**
+
+仅在 `BUGFIX` 下为海外三版增加独立 `FatherSonStoryConclusion`，只替换故事结束处调用。英文用JP短句的最小直译 `Well then, see you again...`（那么，下次再见……），德文用 `Also dann, bis bald...`（那么，回头见……）。原恐怖故事开场及正文不改，默认仍保留原错误复用；不借用其他人物的告别句。
+
+常开的 `StorytellingIntroduction`、`ScaryStoryIntroduction` 是依实际用途整理的名字，与本项新修文分开。
+
+**相关文件：** [共用脚本](data/scripts/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.c) · [JP](text/jp/script/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.h) · [US](text/us/script/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.h) · [EU](text/eu/script/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.h) · [DE](text/de/script/EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses.mary.h)
+
+<a id="moon-viewing-english-spelling"></a>
+### 赏月英语的所有格和短语拼写错误
+
+**受影响版本：** US、EU；共六个物理文本对象。
+
+**原版内容与差异：**
+
+| 位置 | JP及DE对照 | US＝EU原文及问题 |
+| --- | --- | --- |
+| Popuri收尾 | JP `ちがう星にいるみたい`（像在另一个星球）；DE `Sein Licht lässt alles anders aussehen.`（它的光使一切看起来不同）。 | `It's light makes everything different.` 中需要所有格its（它的），不能用it is的缩写it's。两版各一对象。 |
+| Mary收尾及附加感想 | JP说母亲也许不愿来、讨厌夜里的山；DE为 `Oder Mama wollte doch nicht kommen.`（也许妈妈不想来了）。 | 两个位置均写 `to come a all.`，应为 `to come at all.`（压根不来），缺少t。两版各两对象。 |
+
+**修复方式：**
+
+开启 `BUGFIX` 时，只把 `It's light` 改为 `Its light`，把两处 `come a all` 改为 `come at all`。其余原句、换行和控制停顿不变，不新增文本槽；默认保留原拼写。
+
+日文与德文仅作意思对照，JP比喻和海外表达不同不因此判为错误。其余长夜感想、Mary谈父母、团子答谢和各自停顿保留正常本地化，不展开重译。
+
+**相关文件：** [场景与调用](data/scripts/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.c) · [JP](text/jp/script/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.h) · [US](text/us/script/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.h) · [EU](text/eu/script/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.h) · [DE](text/de/script/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.h)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明

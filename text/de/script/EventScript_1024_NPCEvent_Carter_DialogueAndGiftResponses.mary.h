@@ -203,6 +203,12 @@ mary_text_table
         "hilft, das Wort Tod zu{Press}\r\n"
         "vermeiden.{Press}\p";
 
+#ifdef BUGFIX
+    // Close the finished story instead of introducing another one.
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryConclusion[] =
+        "Also dann, bis bald...{Press}";
+#endif
+
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction[] =
         "Lass mich sehen...{Press}";
 

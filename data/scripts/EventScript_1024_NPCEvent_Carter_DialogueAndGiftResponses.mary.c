@@ -621,7 +621,7 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryInterpretationPrompt);
                                                 SetTalkPortrait(TALK_PORTRAIT_CARTER_HAPPY);
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryInterpretation);
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryConclusion);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                 TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);

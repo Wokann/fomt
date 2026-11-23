@@ -52,6 +52,14 @@ mary_text_table
         "Hochzeitstag jetzt immer\r\n"
         "so feiern... IMMER!{Press}";
 
+#ifdef BUGFIX
+    // Karen's anniversary line was repeated as the player's closing thought.
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday[] =
+        "Ich hatte so viel Spaß!\r\n"
+        "Ich werde schlafen \r\n"
+        "wie ein Stein...{Press}";
+#endif
+
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 

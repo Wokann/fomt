@@ -212,6 +212,12 @@ mary_text_table
         "'death' with his son failed{Press}\r\n"
         "to solve his problem.{Press}\p";
 
+#ifdef BUGFIX
+    // Close the finished story instead of introducing another one.
+    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryConclusion[] =
+        "Well then, see you again...{Press}";
+#endif
+
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction[] =
         "Now let me see...{Press}";
 

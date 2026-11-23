@@ -103,9 +103,9 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
                         RemoveEventIcon(EVENT_ICON_SLOT_1);
                         TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurAnniversaries);
 #endif
                         TalkClose();
@@ -182,9 +182,9 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
                         RemoveEventIcon(EVENT_ICON_SLOT_1);
                         TalkOpen();
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday);
-#else
+#elif defined(REGION_DE)
                         TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily);
 #endif
                         TalkClose();

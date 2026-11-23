@@ -48,7 +48,12 @@ mary_text_table
         "usual? {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection[] =
+    // Use the possessive its for the moon's light.
+#ifdef BUGFIX
+        "Its light makes everything\r\n"
+#else
         "It's light makes everything\r\n"
+#endif
         "different. {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_AnnClosingReflection[] =
@@ -61,7 +66,12 @@ mary_text_table
         "Mom, but maybe they found\r\n"
         "a better spot. {Press}\p"
         "Or, maybe Mom decided not\r\n"
+    // Restore the missing letter in at all.
+#ifdef BUGFIX
+        "to come at all. She hates \r\n"
+#else
         "to come a all. She hates \r\n"
+#endif
         "the mountain at night. {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliClosingReflection[] =
@@ -119,7 +129,12 @@ mary_text_table
         "Mom, but maybe they found\r\n"
         "a better spot. {Press}\p"
         "Or, maybe Mom decided not \r\n"
+    // Restore the missing letter in at all.
+#ifdef BUGFIX
+        "to come at all. She hates \r\n"
+#else
         "to come a all. She hates \r\n"
+#endif
         "the mountain at night. {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplingsAlternative[] =
