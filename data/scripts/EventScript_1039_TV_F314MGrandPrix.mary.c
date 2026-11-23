@@ -26,7 +26,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_05:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
 #endif
@@ -42,9 +42,9 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_09:
 #if defined(REGION_JP) || defined(REGION_DE)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #endif
                     break;
                 case DAY_10:
@@ -70,7 +70,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_17:
 #if defined(REGION_JP) || defined(REGION_DE)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
 #endif
@@ -130,7 +130,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_04:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #endif
@@ -143,7 +143,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_07:
 #if defined(REGION_JP) || defined(REGION_DE)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
 #endif
@@ -158,7 +158,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race10And20ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_ResultsPart01);
 #endif
 #endif
                     break;
@@ -169,7 +169,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race11And21PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_PreviewPart01);
 #endif
                     break;
                 case DAY_12:
@@ -185,17 +185,17 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race11_ResultsPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race11And21ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart02);
 #endif
 #endif
                     break;
                 case DAY_15:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race12And22PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01);
 #endif
                     break;
                 case DAY_16:
@@ -206,7 +206,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_PreviewPart02_2);
 #endif
 #endif
                     break;
@@ -217,7 +217,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race12And22ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart01);
 #endif
 #endif
                     break;
@@ -226,15 +226,15 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_19:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01_2);
 #else
 #ifdef BUGFIX
                     // Reuse the matching third-race preview, not second-race results.
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart02_2);
 #endif
 #endif
                     break;
@@ -242,7 +242,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race13And23PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart02);
 #endif
                     break;
                 case DAY_21:
@@ -252,7 +252,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race13And23ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_ResultsPart01);
 #endif
 #endif
                     break;
@@ -272,7 +272,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race14_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race14And24ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race24_ResultsPart01);
 #endif
 #endif
                     break;
@@ -281,15 +281,15 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_27:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race15_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01_2);
 #else
 // This season still has Amaryllis, not the later entrant Eucomyth.
 #ifdef BUGFIX
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race15_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart01_2);
 #endif
 #endif
                     break;
@@ -297,7 +297,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race15And25PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart02);
 #endif
                     break;
                 case DAY_29:
@@ -315,7 +315,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race16_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race16And26PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_PreviewPart01);
 #endif
                     break;
                 case DAY_02:
@@ -338,7 +338,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race07_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race17_PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_PreviewPart02_2);
 #endif
 #endif
                     break;
@@ -350,7 +350,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_09:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #endif
@@ -359,7 +359,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
 #endif
                     break;
                 case DAY_11:
@@ -373,7 +373,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_14:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #endif
@@ -386,9 +386,9 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_17:
 #if defined(REGION_JP) || defined(REGION_DE)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race10_PreviewPart01_2);
 #endif
                     break;
                 case DAY_18:
@@ -398,7 +398,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race10And20ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race20_ResultsPart01);
 #endif
                     break;
                 case DAY_20:
@@ -408,7 +408,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race11And21PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_PreviewPart01);
 #endif
                     break;
                 case DAY_22:
@@ -421,16 +421,16 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race11And21ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race21_ResultsPart02);
 #endif
                     break;
                 case DAY_25:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01_2);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race12And22PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race12_PreviewPart01);
 #endif
                     break;
                 case DAY_26:
@@ -440,7 +440,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race12And22ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart01);
 #endif
                     break;
                 case DAY_28:
@@ -450,16 +450,16 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart01);
 #elif defined(REGION_US) || defined(REGION_EU)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart01);
 #endif
                     break;
                 case DAY_30:
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race13And23PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart02);
 #endif
                     break;
             }
@@ -471,7 +471,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race13And23ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_ResultsPart01);
 #endif
                     break;
                 case DAY_02:
@@ -487,7 +487,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race24_ResultsPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race14And24ResultsPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race24_ResultsPart01);
 #endif
                     break;
                 case DAY_06:
@@ -500,7 +500,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race15And25PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race25_PreviewPart02);
 #endif
                     break;
                 case DAY_09:
@@ -513,7 +513,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_PreviewPart01);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race16And26PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race26_PreviewPart01);
 #endif
                     break;
                 case DAY_12:
@@ -540,7 +540,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     // Restore result day 18, then the two previews on days 19 and 20.
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #endif
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart02);
@@ -548,7 +548,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart01);
 #endif
 #endif
                     break;
@@ -556,12 +556,12 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #if defined(REGION_JP)
 #ifdef BUGFIX
                     // Restore result day 18, then the two previews on days 19 and 20.
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
 #endif
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race18_PreviewPart01_2);
 #endif
                     break;
                 case DAY_20:
@@ -575,7 +575,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race28_PreviewPart02);
 #endif
                     break;
                 case DAY_21:
@@ -589,11 +589,11 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     break;
                 case DAY_24:
 #if defined(REGION_JP)
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #elif defined(REGION_US) || defined(REGION_EU)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race29_PreviewPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race09_PreviewPart02_2);
 #endif
                     break;
                 case DAY_25:

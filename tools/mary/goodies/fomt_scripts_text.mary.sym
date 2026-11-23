@@ -12674,7 +12674,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race02_PreviewPart02,
             gText_TV_F314MGrandPrix_Race02_ResultsPart01,
             gText_TV_F314MGrandPrix_Race02_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01,
+            gText_TV_F314MGrandPrix_Race03_PreviewPart01,
             gText_TV_F314MGrandPrix_Race03_PreviewPart02,
             gText_TV_F314MGrandPrix_Race03_ResultsPart01,
             gText_TV_F314MGrandPrix_Race03_ResultsPart02,
@@ -12682,7 +12682,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race04_PreviewPart02,
             gText_TV_F314MGrandPrix_Race04_ResultsPart01,
             gText_TV_F314MGrandPrix_Race04_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01,
+            gText_TV_F314MGrandPrix_Race05_PreviewPart01,
             gText_TV_F314MGrandPrix_Race05_PreviewPart02,
             gText_TV_F314MGrandPrix_Race05_ResultsPart01,
             gText_TV_F314MGrandPrix_Race05_ResultsPart02,
@@ -12702,38 +12702,38 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race09_PreviewPart02,
             gText_TV_F314MGrandPrix_Race09_ResultsPart01,
             gText_TV_F314MGrandPrix_Race09_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01,
+            gText_TV_F314MGrandPrix_Race10_PreviewPart01,
             gText_TV_F314MGrandPrix_Race10_PreviewPart02,
-            gText_TV_F314MGrandPrix_Shared_Race10And20ResultsPart01,
+            gText_TV_F314MGrandPrix_Race20_ResultsPart01,
             gText_TV_F314MGrandPrix_Race10_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race11And21PreviewPart01,
+            gText_TV_F314MGrandPrix_Race21_PreviewPart01,
             gText_TV_F314MGrandPrix_Race11_PreviewPart02,
             gText_TV_F314MGrandPrix_Race11_ResultsPart01,
-            gText_TV_F314MGrandPrix_Shared_Race11And21ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race12And22PreviewPart01,
-            gText_TV_F314MGrandPrix_Race12_PreviewPart02,
-            gText_TV_F314MGrandPrix_Shared_Race12And22ResultsPart01,
+            gText_TV_F314MGrandPrix_Race21_ResultsPart02,
+            gText_TV_F314MGrandPrix_Race12_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race22_PreviewPart02_2,
+            gText_TV_F314MGrandPrix_Race22_ResultsPart01,
             gText_TV_F314MGrandPrix_Race12_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race13_PreviewPart01,
-            gText_TV_F314MGrandPrix_Shared_Race13And23PreviewPart02,
-            gText_TV_F314MGrandPrix_Shared_Race13And23ResultsPart01,
+            gText_TV_F314MGrandPrix_Race22_ResultsPart02_2,
+            gText_TV_F314MGrandPrix_Race23_PreviewPart02,
+            gText_TV_F314MGrandPrix_Race23_ResultsPart01,
             gText_TV_F314MGrandPrix_Race13_ResultsPart02,
             gText_TV_F314MGrandPrix_Race14_PreviewPart01,
-            gText_TV_F314MGrandPrix_Shared_Race14And24ResultsPart01,
+            gText_TV_F314MGrandPrix_Race24_ResultsPart01,
             gText_TV_F314MGrandPrix_Race14_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race15_PreviewPart01,
-            gText_TV_F314MGrandPrix_Shared_Race15And25PreviewPart02,
+            gText_TV_F314MGrandPrix_Race25_PreviewPart01_2,
+            gText_TV_F314MGrandPrix_Race25_PreviewPart02,
             gText_TV_F314MGrandPrix_Race15_ResultsPart01,
             gText_TV_F314MGrandPrix_Race15_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race16And26PreviewPart01,
+            gText_TV_F314MGrandPrix_Race26_PreviewPart01,
             gText_TV_F314MGrandPrix_Race16_PreviewPart02,
             gText_TV_F314MGrandPrix_Race16_ResultsPart01,
             gText_TV_F314MGrandPrix_Race16_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race17_PreviewPart02,
+            gText_TV_F314MGrandPrix_Race27_PreviewPart02_2,
             gText_TV_F314MGrandPrix_Race17_ResultsPart01,
             gText_TV_F314MGrandPrix_Race17_ResultsPart02,
             gText_TV_F314MGrandPrix_Race18_PreviewPart01,
-            gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart02,
+            gText_TV_F314MGrandPrix_Race28_PreviewPart02,
             gText_TV_F314MGrandPrix_Race18_ResultsPart01,
             gText_TV_F314MGrandPrix_Race18_ResultsPart02,
             gText_TV_F314MGrandPrix_Race19_PreviewPart01,
@@ -12744,7 +12744,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race21_ResultsPart01,
             gText_TV_F314MGrandPrix_Race22_PreviewPart02,
             gText_TV_F314MGrandPrix_Race22_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02,
+            gText_TV_F314MGrandPrix_Race23_PreviewPart01,
             gText_TV_F314MGrandPrix_Race23_ResultsPart02,
             gText_TV_F314MGrandPrix_Race24_ResultsPart02,
             gText_TV_F314MGrandPrix_Race25_PreviewPart01,
@@ -12754,10 +12754,10 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race26_ResultsPart02,
             gText_TV_F314MGrandPrix_Race27_PreviewPart02,
             gText_TV_F314MGrandPrix_Race27_ResultsPart01,
-            gText_TV_F314MGrandPrix_Race28_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race18_PreviewPart01_2,
             gText_TV_F314MGrandPrix_Race28_ResultsPart01,
             gText_TV_F314MGrandPrix_Race28_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race29_PreviewPart02,
+            gText_TV_F314MGrandPrix_Race09_PreviewPart02_2,
             gText_TV_F314MGrandPrix_Race29_ResultsPart01,
             gText_TV_F314MGrandPrix_Race29_ResultsPart02,
             gText_TV_F314MGrandPrix_Race30_PreviewPart01,
@@ -12769,7 +12769,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race01_ResultsPart01,
         gText_TV_F314MGrandPrix_Race01_ResultsPart02,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01,
+            gText_TV_F314MGrandPrix_Race02_PreviewPart01,
         #else
             gText_TV_F314MGrandPrix_Race02_PreviewPart01,
         #endif
@@ -12777,9 +12777,9 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race02_ResultsPart01,
         gText_TV_F314MGrandPrix_Race02_ResultsPart02,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01,
+            gText_TV_F314MGrandPrix_Race03_PreviewPart01,
         #else
-            gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01,
+            gText_TV_F314MGrandPrix_Race03_PreviewPart01,
         #endif
         gText_TV_F314MGrandPrix_Race03_PreviewPart02,
         gText_TV_F314MGrandPrix_Race03_ResultsPart01,
@@ -12789,7 +12789,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race04_ResultsPart01,
         gText_TV_F314MGrandPrix_Race04_ResultsPart02,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01,
+            gText_TV_F314MGrandPrix_Race05_PreviewPart01,
         #else
             gText_TV_F314MGrandPrix_Race05_PreviewPart01,
         #endif
@@ -12810,14 +12810,14 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race08_ResultsPart02,
         gText_TV_F314MGrandPrix_Race09_PreviewPart01,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02,
+            gText_TV_F314MGrandPrix_Race09_PreviewPart02,
         #else
             gText_TV_F314MGrandPrix_Race09_PreviewPart02,
         #endif
         gText_TV_F314MGrandPrix_Race09_ResultsPart01,
         gText_TV_F314MGrandPrix_Race09_ResultsPart02,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01,
+            gText_TV_F314MGrandPrix_Race10_PreviewPart01,
         #else
             gText_TV_F314MGrandPrix_Race10_PreviewPart01,
         #endif
@@ -12834,7 +12834,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race12_ResultsPart01,
         gText_TV_F314MGrandPrix_Race12_ResultsPart02,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_F314MGrandPrix_Race13_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race03_PreviewPart01_2,
         #endif
         gText_TV_F314MGrandPrix_Race13_PreviewPart02,
         gText_TV_F314MGrandPrix_Race13_ResultsPart01,
@@ -12843,7 +12843,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race14_ResultsPart01,
         gText_TV_F314MGrandPrix_Race14_ResultsPart02,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_F314MGrandPrix_Race15_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race05_PreviewPart01_2,
         #endif
         gText_TV_F314MGrandPrix_Race15_ResultsPart01,
         gText_TV_F314MGrandPrix_Race15_ResultsPart02,
@@ -12854,7 +12854,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race17_ResultsPart01,
         gText_TV_F314MGrandPrix_Race17_ResultsPart02,
         #if defined(REGION_JP)
-            gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01,
+            gText_TV_F314MGrandPrix_Race18_PreviewPart01,
         #else
             gText_TV_F314MGrandPrix_Race18_PreviewPart01,
         #endif
@@ -12865,7 +12865,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race19_ResultsPart01,
         gText_TV_F314MGrandPrix_Race19_ResultsPart02,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_F314MGrandPrix_Race20_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race10_PreviewPart01_2,
         #endif
         gText_TV_F314MGrandPrix_Race20_PreviewPart02,
         gText_TV_F314MGrandPrix_Race20_ResultsPart01,
@@ -12874,7 +12874,7 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race21_ResultsPart01,
         gText_TV_F314MGrandPrix_Race21_ResultsPart02,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_F314MGrandPrix_Race22_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race12_PreviewPart01_2,
         #endif
         gText_TV_F314MGrandPrix_Race22_PreviewPart02,
         gText_TV_F314MGrandPrix_Race22_ResultsPart01,
@@ -12903,7 +12903,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race28_PreviewPart02,
             gText_TV_F314MGrandPrix_Race27_ResultsPart02,
         #else
-            gText_TV_F314MGrandPrix_Race28_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race18_PreviewPart01_2,
             gText_TV_F314MGrandPrix_Race28_PreviewPart02,
         #endif
         gText_TV_F314MGrandPrix_Race28_ResultsPart01,
