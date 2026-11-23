@@ -62,6 +62,12 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse[] =
         "Danke!{Press}";
 
+// Keep this dialogue scene in its own text slot.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2[] =
+        "Danke!{Press}";
+#endif
+
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
         "Ich sollte kein Geschenk\r\n"
         "ablehnen, aber...{Press}";
@@ -80,6 +86,12 @@ mary_text_table
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse[] =
         "Ohhh...Wie süüüß!{Press}";
+
+// Keep this dialogue scene in its own text slot.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2[] =
+        "Ohhh...Wie süüüß!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseUnfavorableAnimalResponse[] =
         "Igittigitt! \r\n"
@@ -134,7 +146,13 @@ mary_text_table
         "Verwendung für Parfüm.{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_UnmarriedPerfumeGiftResponsePart2[] =
+// Translate the English opening and start the next sentence on a fresh page.
+#ifdef BUGFIX
+        "Wie umsichtig von dir!{Press}\p"
+        "Aber du willst es mir\r\n"
+#else
         "How thoughtful of you!{Press}Aber du willst es mir\r\n"
+#endif
         "wirklich geben? Wenn\r\n"
         "das so ist... Danke!{Press}";
 
@@ -171,7 +189,12 @@ mary_text_table
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseBlueFeatherResponse[] =
         "Heißt das, was ich \r\n"
+// Use the conjunction dass in the subordinate clause.
+#ifdef BUGFIX
+        "denke, dass es heißt? \r\n"
+#else
         "denke, das es heißt? \r\n"
+#endif
         "Herzlichen Glückwunsch!{Press}\p"
         "Ich bin sicher, sie\r\n"
         "wartet auf dich!{Press}";
@@ -237,9 +260,16 @@ mary_text_table
         "verändert...{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpousePregnancyStage4FirstConversation[] =
+// The clinic visit was yesterday, and the birth is only a possibility.
+#ifdef BUGFIX
+        "Sie haben gestern in der\r\n"
+        "Klinik gesagt, dass das Baby\r\n"
+        "morgen kommen könnte!{Press}";
+#else
         "Sie haben heute in der\r\n"
         "Klinik gesagt, dass das \r\n"
         "Baby morgen kommt!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpousePregnancyStage4RepeatConversation[] =
         "Also, der Doktor und Elli\r\n"
@@ -256,14 +286,25 @@ mary_text_table
         "Babies schlafen nur!{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseChildFamilySceneStageFirstConversation[] =
+// The baby's features are becoming clearer, without a resemblance comparison.
+#ifdef BUGFIX
+        "Seine Gesichtszüge werden\r\n"
+        "immer deutlicher!{Press}";
+#else
         "Sein Gesicht ähnelt \r\n"
         "deinem immer mehr!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseChildFamilySceneStageRepeatConversation[] =
         "Mein Vater denkt, er\r\n"
         "sieht aus wie er früher,\r\n"
         "aber ich denke, er {Press}\r\n"
+// Ann compares the baby to both parents, not just the player.
+#ifdef BUGFIX
+        "kommt nach uns.{Press}";
+#else
         "kommt nach dir.{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseChildNotYetWalkingFirstConversation[] =
         "Ich denke, {Baby}\r\n"
@@ -299,9 +340,16 @@ mary_text_table
         "Lass mich einfach allein!{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseGreenHeartMorningFirstConversation[] =
+// This dialogue does not require the player to have a baby.
+#ifdef BUGFIX
+        "Ich muss die ganze\r\n"
+        "Hausarbeit heute Morgen\r\n"
+        "erledigen!{Press}";
+#else
         "Ich muss die ganze \r\n"
         "Hausarbeit erledigen, \r\n"
         "bevor das Baby aufwacht!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseGreenHeartMorningRepeatConversation[] =
         "Was ist los?\r\n"
@@ -393,8 +441,13 @@ mary_text_table
         "............{Press}";
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnBelowGreenHeartRepeatConversation[] =
+// Translate the English line left in the German dialogue.
+#ifdef BUGFIX
+        "Geh mir doch aus dem Weg!{Press}";
+#else
         "Will you just get\r\n"
         "out of my way?!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_PlayerSpouseInnGreenHeartFirstConversation[] =
         "Brauchst du etwas,\r\n"
@@ -431,8 +484,14 @@ mary_text_table
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Willkommen, {Player}.{Press}\p"
+// Keep the closing-time reminder within the dialogue width.
+#ifdef BUGFIX
+        "Wir schließen um 17 Uhr,\r\n"
+        "also bis dann.{Press}";
+#else
         "Wir schließen um 17 Uhr, also\r\n"
         "bis dann.{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "Heute ist Mutters...\r\n"
@@ -500,10 +559,18 @@ mary_text_table
         "Ich denke, dass er nicht\r\n"
         "gerne irgendwo festsitzt...{Press}";
 
+// Reuse the complete anniversary response on both floors.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
+        "Ohne meinen Vater komme\r\n"
+        "ich hier kaum zurecht!\r\n"
+        "Wir schließen um 17 Uhr!{Press}";
+#else
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Es ist schwer alles zu\r\n"
         "regeln, wenn mein Vater \r\n"
         "nicht da ist. {Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation[] =
         "Dies ist der Tag, an dem\r\n"
@@ -544,9 +611,17 @@ mary_text_table
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_FianceInnRepeatConversation[] =
         "Mein Vater hat mir gesagt,\r\n"
+// Her father objects to romantic behavior at work, not embarrassment.
+#ifdef BUGFIX
+        "ich soll bei der Arbeit\r\n"
+        "nicht so verliebt{Press}\p"
+        "dreinschauen! Ich kann\r\n"
+        "nichts dafür, oder?{Press}";
+#else
         "ich soll mich nicht wegen \r\n"
         "des Jobs schämen!{Press}\r\n"
         "Er ist so streng zu mir!{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting[] =
         "Willkommen.{Press}";
@@ -554,6 +629,12 @@ mary_text_table
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnBlackHeartRepeatConversation[] =
         "Wenn du etwas bestellen \r\n"
         "möchtest, sprich mit Vater.{Press}";
+
+// Keep this dialogue scene in its own text slot.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2[] =
+        "Willkommen.{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnPurpleHeartRepeatConversation[] =
         "Nimm dir Zeit.{Press}";
@@ -588,10 +669,22 @@ mary_text_table
         "sich \"niedlich\" {Press}\r\n"
         "anziehen sollten?{Press}";
 
+// Keep this dialogue scene in its own text slot.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3[] =
+        "Willkommen.{Press}";
+#endif
+
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnOrangeHeartRepeatConversation[] =
         "Ich grüble zur Zeit viel.\r\n"
         "Das ist gut... aber ich\r\n"
         "zerbreche viel Geschirr!{Press}";
+
+// Keep this dialogue scene in its own text slot.
+#ifdef BUGFIX
+    const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2[] =
+        "............{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_InnRedHeartRepeatConversation[] =
         "...Oh, tut mir Leid!\r\n"
@@ -619,6 +712,8 @@ mary_text_table
         "an dir nehmen und \r\n"
         "selber früher aufstehen!{Press}";
 
+// Reuse the first-floor anniversary responses under BUGFIX.
+#ifndef BUGFIX
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2[] =
         "Willkommen.\r\n"
         "Wir schließen um 17 Uhr, \r\n"
@@ -628,6 +723,7 @@ mary_text_table
         "Heute ist Mutters...\r\n"
         "Egal, auf jeden Fall nimmt \r\n"
         "mein Vater sich frei.{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInn2FRegularFirstConversation[] =
         "Ich muss Cliffs Zimmer \r\n"
@@ -637,6 +733,8 @@ mary_text_table
         "Ja, Cliff ist immer\r\n"
         "noch im Gasthof.{Press}";
 
+// Reuse the first-floor anniversary responses under BUGFIX.
+#ifndef BUGFIX
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation[] =
         "Ohne meinen Vater komme\r\n"
         "ich hier kaum zurecht!\r\n"
@@ -648,6 +746,7 @@ mary_text_table
         "Ich erinnere mich nicht an\r\n"
         "sie, aber mein Vater \r\n"
         "wird sehr traurig.{Press}";
+#endif
 
     const char gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInn2FLateMorningFirstConversation[] =
         "Saubermachen macht mir \r\n"

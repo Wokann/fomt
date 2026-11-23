@@ -28,10 +28,10 @@ make -j16 GAME_REGION=JP all
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
 | [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 38 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 39 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 24 |
-| **合计** | | **154** |
+| **合计** | | **155** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -1345,6 +1345,7 @@ US／EU 分别写 eated、Pinapple
 | [德版玛娜恭维杰夫时夸奖对象颠倒](#de-manna-flatters-jeff) | DE | 已接入 |
 | [玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗](#manna-saibara-family) | US、EU、DE | 已接入 |
 | [卡莲对话中的错译、残句与笔误](#karen-dialogue-text) | US、EU、DE | 已接入 |
+| [琳对话中的错译、漏句与笔误](#ann-dialogue-text) | US、EU、DE | 已接入 |
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示
@@ -2184,6 +2185,68 @@ JP第三段明确使用 `自分の息子`（自己的儿子）、`いっしょ�
 开启 `BUGFIX` 时，按表在各版 GBA 台词上局部更正或补句，保留玩家昵称 `{NickName}` 和孩子名字 `{Baby}` 的占位符，按本作对话框的行宽分行。关闭时使用各版原台词。
 
 **相关文件：** [共用脚本](data/scripts/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.h)
+
+<a id="ann-dialogue-text"></a>
+### 琳对话中的错译、漏句与笔误
+
+**受影响版本：** US、EU、DE。下表合计 13 个位置，US、EU 各影响 10 个播放位置，DE 影响 9 个；其中忌日首谈复用已有完整句，实际改写正文为 US、EU 各 9 处、DE 8 处。JP 无需修文。
+
+**原版内容与差异：**
+
+下表各位置的 US 与 EU 原文相同，合用一列；摘录省略屏内换行、翻页和按键标记。每行只修所列错误，保留其余 GBA 原文。 [JP 原文](text/jp/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [US 原文和修订](text/us/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [EU 原文和修订](text/eu/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [DE 原文和修订](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h)
+
+| 场景 | JP 原文与释义 | US、EU 和 DE 原文与释义 | `BUGFIX` 开启后的处理 |
+| --- | --- | --- | --- |
+| **漏翻** · 琳嫁给玩家，旅馆一楼低于绿心的普通复谈 | 「ああ～、もう！ ジャマ！」（啊～，真是的！碍事！） | **US＝EU／DE** `Will you just get out of my way?!`（你就不能让开吗？！），DE 整句仍为英文。 | 仅 DE 改为 `Geh mir doch aus dem Weg!`（你就让开吧！）。 |
+| **漏翻** · 琳未嫁给玩家或克里夫，香水答谢第二段 | 「え、…そんなことない？ …ありがとう。大切にする。」（诶，……不是这样？……谢谢，我会珍惜的。） | **US＝EU** `But you really want to give it to me? In that case...Thanks!`（但你真的想送给我？这样的话……谢谢！）<br>**DE** `How thoughtful of you!`（你真体贴！）之后接 `Aber du willst es mir wirklich geben? Wenn das so ist... Danke!`（但你真的想送给我？这样的话……谢谢！），开头仍为英文。 | 仅 DE 把英语首句换成同文件已有的 `Wie umsichtig von dir!`（你真周到！）；其余德文保留；译句后的原有 {Press} 接 \p 分页，再显示原三行德文。 |
+| **时间错译** · 临产阶段，农舍早晨首谈 | 「きのう、病院に行って来たら、明日くらいに赤ちゃんが産まれるかもって！」（昨天去医院，他们说宝宝可能明天左右出生！） | **US＝EU** `Today at the Clinic, they said the baby would be born tomorrow!`（今天在诊所，他们说宝宝明天会出生！）<br>**DE** `Sie haben heute in der Klinik gesagt, dass das Baby morgen kommt!`（他们今天在诊所说，宝宝明天出生！）。两者均把昨天写成今天。 | 英文用 `Yesterday at the Clinic, they said the baby might be born tomorrow!`，德文用 `Sie haben gestern in der Klinik gesagt, dass das Baby morgen kommen könnte!`（昨天在诊所，他们说宝宝可能明天出生！）。 |
+| **错译** · 婚后绿心，农舍早晨普通首谈 | 「さて、と。朝の間に仕事しなくちゃ。」（好啦，得趁早上把活儿做完。） | **US＝EU** `I've got to get all the housework done before the baby wakes!`<br>**DE** `Ich muss die ganze Hausarbeit erledigen, bevor das Baby aufwacht!`<br>两者均为“得在宝宝醒来前做完家务”，新增了已有宝宝的前提。 | 英文用 `I've got to get all the housework done this morning!`，德文用 `Ich muss die ganze Hausarbeit heute Morgen erledigen!`（我得在今早把家务做完！）。 |
+| **错译** · 孩子年龄计数 60–109，农舍早晨首谈 | 「だんだん顔がはっきりとしてきたよねぇ。」（五官渐渐清晰起来了呢。） | **US＝EU** `His face is becoming more and more like yours!`<br>**DE** `Sein Gesicht ähnelt deinem immer mehr!`<br>两者均为“他的脸越来越像你了”，把五官发育改为长相比较。 | 英文用 `His face is becoming more and more defined!`，德文用 `Seine Gesichtszüge werden immer deutlicher!`（他的五官越来越清晰了！）。 |
+| **省译** · 同一孩子年龄阶段，农舍早晨复谈 | 「父さんがさ、オレのわかいころにそっくりだって！ わたしと{NickName}に、にてるに決まってるよねー！」（爸爸说孩子像年轻时的他！不过当然像我和你才对嘛！） | **US＝EU** `My dad thinks he looks like him when he was young, but I think he takes after you.`<br>**DE** `Mein Vater denkt, er sieht aus wie er früher, aber ich denke, er kommt nach dir.`<br>两者均先说外公觉得孩子像年轻时的自己，结尾却只说像玩家，漏去琳。 | 只把英文 `you` 改为 `us`、德文 `dir` 改为 `uns`（像我们俩）；保留原句、换行和按键标记，不增加称呼变量。 |
+| **漏句** · 秋 5 日母亲忌日，旅馆一楼首谈；琳未嫁给玩家或克里夫 | 「もぉ、父さんがいないとたいへん。あっ、今日は５時までだから！」（真是的，爸爸不在就忙不过来。啊，今天只到五点哦！）；JP 两层共用。 | **US＝EU 一楼** `It's hard to take care of things when my dad isn't here.`（爸爸不在，很难照应。）<br>**DE 一楼** `Es ist schwer alles zu regeln, wenn mein Vater nicht da ist.`（爸爸不在，很难安排好一切。）<br>海外二楼完整句分别为 `I can barely cope without my dad here! We close at 5 sharp!`、`Ohne meinen Vater komme ich hier kaum zurecht! Wir schließen um 17 Uhr!`（爸爸不在忙不过来！五点／17 点打烊！）。 | 海外两层共用原二楼完整句，补回一楼缺失的打烊时间；不改写完整句，也不另拼新增长句。 |
+| **错译** · 订婚后，旅馆一楼普通复谈 | 「『仕事中、デレデレするんじゃない！』って、父さんに怒られちゃった。だって、しかたがないじゃない。ねぇ？」（爸爸训我说：“干活时别一脸甜蜜！”可我也没办法呀，你说呢？） | **US＝EU** `My father told me not to get embarrassed on the job! He's so strict with me!`（爸爸叫我上班别害臊，他对我真严格！）<br>**DE** `Mein Vater hat mir gesagt, ich soll mich nicht wegen des Jobs schämen! Er ist so streng zu mir!`（爸爸叫我别为这份工作羞耻，他对我真严格！）。两者均失去恋爱中的甜蜜及无可奈何的反问。 | 英文用 `My father told me not to get all lovey-dovey at work! But I can't help it, can I?`，德文用 `Mein Vater hat mir gesagt, ich soll bei der Arbeit nicht so verliebt dreinschauen! Ich kann nichts dafür, oder?`（爸爸叫我工作时别一脸恋爱中的样子！可我也没办法呀，你说呢？）。 |
+| **语法** · 琳未嫁给玩家，收到不喜欢的动物 | 「うわっ！ びっくりした！ もう、いたずらはやめてよね！」（哇！吓我一跳！别再捉弄我了！） | **US＝EU** `Stop playing scaring me like that!`，`playing scaring` 两个动词残接。<br>**DE** `Hör auf, mich so zu erschrecken!`（别这样吓我！），语句正常。 | 英文只删除 `playing`，成为 `Stop scaring me like that!`（别这样吓我！）。 |
+| **笔误** · 嫁给克里夫，旅馆一楼友情至少 200 的普通首谈 | 「いらっしゃい、{Player}さん。元気でやってる？」（欢迎，{Player}。最近还好吗？） | **US＝EU** `Welcome, {Player}. Hare are you?`，问候句误写 `Hare`。<br>**DE** `Willkommen, {Player}. Wie geht es dir?`（欢迎，{Player}。你好吗？）。 | 英文只将 `Hare` 改为 `How`，成为 `How are you?`（你好吗？）。 |
+| **语法** · 同一情敌婚后友情分支，普通复谈 | 「クリフは今、本当に幸せなんだと思う？ …なんだか、しばりすぎかもって思っちゃって…」（你觉得克里夫现在真的幸福吗？……总觉得是不是把他管得太紧了……） | **US＝EU** `I think maybe he's doesn't like being tied down...`（我想，也许他不喜欢受束缚……），`he's doesn't` 多出 `'s`。<br>**DE** `Ich denke, dass er nicht gerne irgendwo festsitzt...`（我想他不喜欢困在一个地方……）。 | 英文只将 `he's` 改为 `he`，保留原有叙述角度。 |
+| **笔误** · 玩家已娶别人，旅馆一楼低友情普通复谈 | 「奥さんが家にいると帰るのが楽しみじゃない？」（妻子在家等着，不会很期待回家吗？） | **US＝EU** `Don't you look forward to going home, with you wife waiting there for you?`，`you wife` 缺少所有格的 `r`。<br>**DE** `Freust du dich nicht auf zu Hause, wenn deine Frau schon auf dich wartet?`（妻子已在家等着，难道你不盼着回家吗？）。 | 英文只把 `you wife` 改为 `your wife`（你的妻子）。 |
+| **语法** · 已嫁克里夫时看到蓝色羽毛 | 「やったぁ、おめでとう。はやく行ってきなよ。…きっと{Player}くんの事、待っていると思うよ。」（太好了，恭喜！快去吧。……对方一定也在等你。） | **US＝EU** `Does that mean what I think it means? Congratulations!`（是我想的那个意思吗？恭喜！）。<br>**DE** `Heißt das, was ich denke, das es heißt?`（是我想的那个意思吗？），第二个 `das` 应为从句连词。 | 仅 DE 将第二个 `das` 改为 `dass`，第一个代词 `das` 及后文祝贺保持原样。 |
+
+本条同时统一 `BUGFIX` 开启后的文本结构：四版以 JP 的 151 个条目为准，采用相同的文本声明名、声明顺序和有效脚本调用。原有共用文本不因此全部判为 BUG，正常的本地化用词、感叹方式与省略号点数仍予保留。
+
+| 版本 | `BUGFIX` 关闭时的文本条目 | `BUGFIX` 开启时的文本条目 |
+| --- | ---: | ---: |
+| JP | 151 | 151 |
+| US | 152 | 151 |
+| EU | 152 | 151 |
+| DE | 150 | 151 |
+
+US／EU 为可爱动物回应、紫心欢迎和未婚红心沉默补足三个独立文本槽；DE 同样补足这三个槽，另为非玩家配偶的中性收礼和橙心欢迎补足两个槽。新增槽分别沿用本版 GBA 已有的回应、沉默或欢迎句，即使正文相同，也按各自场景独立命名和调用；不为橙心欢迎另加结巴语气。JP 原有条目、正文和调用不改。
+
+忌日共四组对白按 JP 的复用关系整理。未嫁给玩家或克里夫的首谈按上表共用含五点打烊的完整句；开启时，该完整主句移至 JP 对应的声明位置，关闭时仍在海外原有位置。其余三组保留原一楼主句，二楼改为共用：嫁给克里夫的首谈保有玩家姓名和五点打烊提示，复谈直接说明母亲忌日及父亲休息；未嫁给玩家或克里夫的复谈保有母亲去世、自己没有母亲记忆和父亲难过的完整意思。对应二楼原句只是同义改写，故不另增译文。这四组海外 `_2` 均只在关闭开关时保留，开启时各由两层共用对应主句。
+
+另对 DE 嫁给克里夫的忌日首谈复用主句做必要分行调整：原行 `Wir schließen um 17 Uhr, also` 为 29 格，超过 28 格行宽；仅开启 `BUGFIX` 时拆成 `Wir schließen um 17 Uhr,`（24 格）和 `also bis dann.`（14 格），词句、标点与末尾按键标记不变。关闭时保留原行；这处纯分行调整不计入上表 13 处内容改写。
+
+**判断依据：**
+
+台词含义以 GBA JP 为依据，漏翻及笔误以各槽上下文与语法判断。香水补译直接沿用 DE 同文件春感谢祭答谢已有的 `Wie umsichtig von dir!`（你真周到！）。临产首谈的确定错误是就诊日期由昨天变成今天，英文 `would` 本身并不等于绝对断言；修文同时明确日文原有的可能性。
+
+农舍三类早谈均由实际脚本分支确定：临产首谈为怀孕事件完成、分娩未开始、怀孕计日至少 59；绿心普通首谈为爱心 30000–39999，且未进入前置怀孕或育儿专题分支，不能预设已有孩子；五官首谈与像父母的复谈为分娩完成、孩子年龄计数 60–109。以上均为早晨 6:00–11:59，并由冬 23 日特别对白优先处理。年龄阶段的台词不要求家庭场景事件已经发生。旅馆低心复谈同样只修普通分支，不覆盖怀孕或育儿专题。 [脚本条件](data/scripts/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [心色、临产及年龄阈值](include/fomt_constants.mary.h)
+
+秋 5 日未嫁给玩家或克里夫的忌日首谈，JP 两层原本就共用完整句，海外二楼也已保有五点打烊的信息；因此直接复用本版完整句。这里修正对白信息，不改变旅馆实际营业逻辑。既有爱心显示问题见[玩家已娶别人仍显示琳的爱心](#ann-heart)，既有字面控制记号见[原文残留 ret>／<RET> 换行记号](#text-control-literals)。
+
+重制版参考取自本地与仓库同级的 `SoSFoMTTextDump/SoSFoMTTextDump/` 目录下各语言的 `msg_Scr_Talk.txt`，只作以下含义佐证；译文仍在 GBA 既有句子上小改，沿用 GBA 称呼与文本控制方式。
+
+| 场景 | 重制版参考摘录与释义 |
+| --- | --- |
+| 昨天就诊，可能明天出生 | `US/msg_Scr_Talk.txt` 5382–5383 `When I went to the Clinic yesterday`、`might be born tomorrow!`；`DE/msg_Scr_Talk.txt` 5724–5725 `Als ich gestern in der Klinik war`、`morgen schon kommen könnte!`（昨天去诊所，他们说宝宝可能明天出生）。 |
+| 五官渐清晰，孩子像父母双方 | `US/msg_Scr_Talk.txt` 5392–5399 `face is getting more and more defined`、`take after you and me`；`DE/msg_Scr_Talk.txt` 5734–5741 `bekommt immer mehr Kontur`、`sieht dir und mir ähnlich`（五官越来越清晰；孩子像你和我）。 |
+| 忌日当天五点打烊 | `US/msg_Scr_Talk.txt` 5556–5557 `we close at 5:00 PM today`；`DE/msg_Scr_Talk.txt` 5904–5905 `wir schließen heute übrigens um 17 Uhr`（今天下午五点／17 点打烊）。 |
+
+**修复方式：**
+
+开启 `BUGFIX` 时按表局部修正受影响语种，按 GBA 对话框行宽分行，并按上述 JP 条目结构统一声明及调用。忌日完整句统一使用 `NotRivalSpouseInnMothersDeathAnniversaryFirstConversation` 主基名，海外原一楼缺句使用 `_2`，仅在关闭开关的原版调用中保留；开启时一楼、二楼共同调用主基名，不新增补句文本。关闭时保留各版原台词、条目数及其播放关系。上述 13 个文字位置与文本结构统一合记为本条，不重复登记已有爱心与控制记号条目。
+
+**相关文件：** [共用脚本](data/scripts/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.c) · [日版文本](text/jp/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [美版文本](text/us/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [欧版文本](text/eu/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h) · [德版文本](text/de/script/EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses.mary.h)
 
 <a id="category-guides"></a>
 ## 指南结构、正文与玩法说明

@@ -488,7 +488,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
                                 }
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse_2);
 #elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NeutralGiftResponse);
@@ -543,7 +543,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_ANN);
                                 }
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse_2);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_FavorableAnimalResponse);
@@ -1547,7 +1547,8 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                             {
                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
                                             }
-#if defined(REGION_JP)
+// Use the complete anniversary line, including the inn's closing time.
+#if defined(BUGFIX) || defined(REGION_JP)
                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryFirstConversation_2);
@@ -1655,7 +1656,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
                                                             ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_2);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting);
@@ -1727,7 +1728,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                                         {
                                                                             SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                                                                             ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(BUGFIX) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting_3);
 #elif defined(REGION_DE)
                                                                             TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationGreeting);
@@ -1748,7 +1749,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                                                             {
                                                                                 SetTalkPortrait(TALK_PORTRAIT_ANN_BLUSHING);
                                                                                 ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                                                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence_2);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                                                                 TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_InnFirstConversationSilence);
@@ -1821,7 +1822,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                     if (WasNpcSpokenToJustNow(CHARACTER_ANN) == FALSE)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryFirstConversation_2);
@@ -1830,7 +1831,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_RivalSpouseInnMothersDeathAnniversaryRepeatConversation_2);
@@ -1871,7 +1872,7 @@ void EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses(void)
                                         {
                                             ShowTalkHeartIndicator(CHARACTER_ANN);
                                         }
-#if defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                         TalkMessage(gText_NPCEvent_Ann_DialogueAndGiftResponses_NotRivalSpouseInnMothersDeathAnniversaryRepeatConversation_2);
