@@ -596,7 +596,7 @@ mary_text_table
         "帰ってこなきゃ、カワイイむす\r\n"
         "めの花嫁姿が見られないよ。{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer[] =
         "あっ、{Player}さんは、\r\n"
         "父さんを見た事無いんだよね？{Press}\p"
         "父さん、{Player}さんを\r\n"

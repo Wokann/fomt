@@ -1624,7 +1624,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding);
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer);
                                             }
                                         }
                                         else

@@ -261,140 +261,140 @@ mary_text_table
         "Ich bin so aufgeregt!!{Press}";
 
 #ifndef BUGFIX
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversationUntranslatedEnglishLeadIn[] =
         "A//hhh....He's so cuuute!{Press}";
 #endif
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation[] =
         "Ahhh....Er ist sooo süß!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation[] =
         "{Baby} ist so \r\n"
         "niedlich...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation[] =
         "Wie süüüüß!\r\n"
         "Ich glaube, er wird \r\n"
         "später sehr hübsch werden!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation[] =
         "Du hast als Baby\r\n"
         "sicher genauso ausgesehen \r\n"
         "wie {Baby} jetzt!{Press}\p"
         "Er kommt nach dir!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation[] =
         "Jetzt macht er \r\n"
         "Babylaute! \r\n"
         "Ich liebe ihn so...!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation[] =
         "Ich würde alles für\r\n"
         "{Baby} tun.... Du\r\n"
         "nicht auch, {NickName}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation[] =
         "{Baby} kann\r\n"
         "schon laufen! Er ist so\r\n"
         "weit für sein Alter?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation[] =
         "Wenn er älter wird,\r\n"
         "übernimmt er die Farm.{Press}\p"
         "Wird das nicht wunderbar?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation[] =
         "Er spricht nun ein bisschen!\r\n"
         "Wen hast du lieber,\r\n"
         "Papa oder Mama?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation[] =
         "Wen magst du lieber,\r\n"
         "mich oder {Baby}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence[] =
         "............................{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation[] =
         "Ich habe es satt!\r\n"
         "Ich will nach Hause!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation[] =
         "Guten Morgen,\r\n"
         "{NickName}.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation[] =
         "Ich langweile mich, wenn \r\n"
         "du nicht mit mir sprichst!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation[] =
         "Kann ich nach Hause gehen...\r\n"
         "Nur ein bisschen?...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation[] =
         "Du verbringst nicht viel\r\n"
         "Zeit zu Hause, \r\n"
         "{NickName}.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation[] =
         "Guten Morgen!\r\n"
         "Jeder auf der Geflügel-\r\n"
         "farm steht früh auf, also{Press}\r\n"
         "bin ich es gewohnt!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation[] =
         "Auf geht's, an die Arbeit!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation[] =
         "Ich habe viele Eier von\r\n"
         "Mama bekommen, du\r\n"
         "magst sie hoffentlich!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation[] =
         "Ich mache tolle \r\n"
         "Spiegeleier!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation[] =
         "Guten Morgen, {NickName}!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation[] =
         "Sollten wir mit\r\n"
         "{Dog} \r\n"
         "spazieren gehen?{Press}\p"
         "Ich glaube, er hat genug\r\n"
         "Auslauf auf der Farm!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation[] =
         "Ich lebe gerne auf einer\r\n"
         "Farm, weil das Essen so \r\n"
         "so frisch ist!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation[] =
         "Die einzigen frischen\r\n"
         "Sachen auf der Geflügel-\r\n"
         "farm sind Eier und Mais!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation[] =
         "Guten Morgen!{Press}\p"
         "Hast du von mir geträumt,\r\n"
         "{NickName}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation[] =
         "Arbeite hart, aber nicht\r\n"
         "zu hart, ok!?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation[] =
         "Ich liebe es zuzusehen, \r\n"
         "wie dir mein Essen schmeckt,\r\n"
         "{NickName}.{Press}\p"
         "Du putzt es nur so weg!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation[] =
         "Mein Bruder ist so \r\n"
         "pingelig beim Essen!{Press}\p"
         "Arme Karen!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation[] =
         "Willkommen, {NickName}.{Press}\p"
         "Mein Mutter sagt, ich habe \r\n"
         "ein weicheres \r\n"
@@ -403,111 +403,111 @@ mary_text_table
         "dass das geschieht,\r\n"
         "wenn man schwanger ist!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation[] =
         "Mach dir keine Sorgen, \r\n"
         "dass ich zu hart arbeite!{Press}\p"
         "Ich bin schon \r\n"
         "vernünftig!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation[] =
         "Hi, {NickName}!\r\n"
         "Wie geht es {Baby}?{Press}\p"
         "Ist er einsam ohne mich?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation[] =
         "Pass gut auf  \r\n"
         "{Baby} auf!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation[] =
         ".........................{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation[] =
         "Weshalb bist du\r\n"
         "überhaupt gekommen?!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation[] =
         "Ich versuche, meine \r\n"
         "Arbeit zu machen, also\r\n"
         "nerv mich nicht!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation[] =
         "Ich sage dir, du sollst\r\n"
         "mich nicht ablenken!{Press}\p"
         "Du bist unmöglich, \r\n"
         "{NickName}.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation[] =
         "Hi, {NickName}.\r\n"
         "Was ist los?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation[] =
         "Ich versuche, meine \r\n"
         "Arbeit zu machen! Geh\r\n"
         "du an deine Arbeit!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation[] =
         "Willkommen, {NickName}!\r\n"
         "Hi-hi...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation[] =
         "Ich weiß nicht warum,\r\n"
         "aber es ist mir pein-\r\n"
         "lich, wenn du in {Press}\r\n"
         "den Laden kommst!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation[] =
         "Willkommen, {NickName}!\r\n"
         "Schau, wie hart ich \r\n"
         "arbeite!...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation[] =
         "Ich arbeite hart für\r\n"
         "dich, {NickName}...!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation[] =
         "Hi, {Player}.\r\n"
         "Die Geflügelfarm ist\r\n"
         "heute leider geschlossen.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation[] =
         "Ich? Nein, meine Mutter\r\n"
         "lässt mich nicht einmal\r\n"
         "das Geld im Laden anfassen!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation[] =
         "Wieder Regen...?\r\n"
         "Wo ich lebe, regnet\r\n"
         "es nicht so viel...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation[] =
         "Wir können uns wohl\r\n"
         "nur ausruhen.{Press}\p"
         "Kai hat heute auch \r\n"
         "frei...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024FirstConversation[] =
         "Ah, {Player}.\r\n"
         "Wie geht es dir heute?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation[] =
         "Ich komme nur im Sommer,\r\n"
         "also vermisse ich die\r\n"
         "Leute hier!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation[] =
         "Du siehst so beschäftigt \r\n"
         "aus wie immer, {Player}.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation[] =
         "Wo ich mit Kai lebe,\r\n"
         "ist es immer Sommer.\r\n"
         "Sehe ich braun aus?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation[] =
         "Hey, {Player}!\r\n"
         "Alles klar bei dir?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation[] =
         "Manchmal möchte ich im\r\n"
         "Frühling oder Herbst \r\n"
         "zurückkommen...{Press}\r\n"
@@ -517,205 +517,205 @@ mary_text_table
         "sich bald nicht mehr vor{Press}\r\n"
         "anderen Mädchen retten!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099FirstConversation[] =
         "Was macht die Farm,\r\n"
         "{Player}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation[] =
         "Ich wünschte, ich wäre \r\n"
         "noch von Tieren umgeben,\r\n"
         "so wie du, {Player}.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation[] =
         "Hi, {Player}.\r\n"
         "Ich höre, du leistest\r\n"
         "gute Arbeit auf deiner Farm.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation[] =
         "Eigentlich wollte ich die\r\n"
         "Stadt immer verlassen...\r\n"
         "Aber jetzt weiß ich sie{Press}\r\n"
         "mehr zu schätzen.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation[] =
         "Du siehst jedes Jahr\r\n"
         "erwachsener aus, \r\n"
         "{Player}.{Press}\p"
         "Das ist wohl nur\r\n"
         "natürlich...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation[] =
         "Ich versuche Kai zu\r\n"
         "überreden, im Haus zu\r\n"
         "wohnen, aber er will{Press}\r\n"
         "im Gasthof bleiben!{Press}\p"
         "Warum wohl...?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation[] =
         "Hi, {Player}.\r\n"
         "Ich wünschte manchmal,\r\n"
         "ich würde öfter als nur{Press}\r\n"
         "im Sommer herkommen!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation[] =
         "Ich hoffe immer, mein\r\n"
         "Vater wird da sein,  \r\n"
         "wenn ich zurückkomme, {Press}\r\n"
         "aber er ist es nie...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation[] =
         "Hi, {Player}.\r\n"
         "Wie geht es dir?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation[] =
         "Bestell deiner Frau \r\n"
         "Grüße von mir.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation[] =
         "Schuftest du noch \r\n"
         "auf der Farm, {Player}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation[] =
         "Was machst du\r\n"
         "denn hier?{Press}\p"
         "Warum gehst du nicht \r\n"
         "heim zu deiner süßen Frau?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation[] =
         "Wie bekommt dir das\r\n"
         "Farmleben, {Player}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation[] =
         "Du behandelst deine\r\n"
         "Frau so gut! \r\n"
         "Bin ganz eifersüchtig...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding[] =
         "Hi-hi...\r\n"
         "Wir heiraten...!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding[] =
         "Ich wünschte nur, Vater\r\n"
         "würde wiederkommen...{Press}\p"
         "Wie kann er die Hochzeit\r\n"
         "seiner Tochter verpassen!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer[] =
         "Du hast meinen Vater\r\n"
         "nie getroffen, {Player}?{Press}\p"
         "Was er wohl von dir \r\n"
         "halten würde...?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation[] =
         "...Hallo!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation[] =
         "Brauchtest du etwas?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation[] =
         "Hast du Spaß auf \r\n"
         "deiner Farm?\r\n"
         "Mir ist langweilig...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation[] =
         "Sag es niemandem!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation[] =
         "Du bist viel netter als\r\n"
         "mein Bruder, \r\n"
         "weißt du das?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation[] =
         "Mein Bruder hängt so\r\n"
         "an mir! \r\n"
         "Kannst du das glauben?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation[] =
         "Wie ist es da, wo du\r\n"
         "lebst, {Player}?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation[] =
         "Ich will viele\r\n"
         "Orte besuchen!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation[] =
         "Ich bin so beeindruckt, \r\n"
         "dass du deine Farm\r\n"
         "ganz allein schmeißt!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation[] =
         "Mein Bruder mag dich\r\n"
         "und ich auch!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation[] =
         "Was denkst du\r\n"
         "über mich...?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation[] =
         "Alle denken, ich wäre \r\n"
         "noch ein Kind...{Press}\p"
         "Denkst du das auch?{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation[] =
         "Du behandelst mich\r\n"
         "besser wie einen Erwach-\r\n"
         "senen, {Player}!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation[] =
         "Ich mochte eigentlich \r\n"
         "nur hübsche Männer, aber\r\n"
         "jetzt mag ich auch stille{Press}\r\n"
         "Männer wie dich...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation[] =
         "Ich entspanne mich \r\n"
         "immer mehr in meinem \r\n"
         "eigenen Zimmer...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation[] =
         "Ich werde müde...{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation[] =
         "Was denkst du, wozu \r\n"
         "Kirchen gut sind?{Press}\p"
         "Immer wenn ich Carter\r\n"
         "frage, gibt er mir keine \r\n"
         "direkte Antwort!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation[] =
         "Diese Kirche wurde gebaut,\r\n"
         "als ich ein Kind war.{Press}\p"
         "Mein Bruder hat mich\r\n"
         "immer hergebracht. {Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation[] =
         "Meine Mutter kümmert\r\n"
         "sich um das Geschäft,\r\n"
         "mein Bruder um die Hühner.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation[] =
         "Mein Vater vertraut\r\n"
         "meinem Bruder so sehr!{Press}\p"
         "Er würde mir trotzdem\r\n"
         "nichts beibringen.{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation[] =
         "Ich liebe das Meer. \r\n"
         "Der Mineralstrand ist  \r\n"
         "am allerschönsten!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation[] =
         "Kais Vater besitzt \r\n"
         "Restaurants in vielen \r\n"
         "Städten.{Press}\p"
         "Wusste ich nicht!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation[] =
         "Ich liebe den Sommer!\r\n"
         "Der Strand im Sommer ist\r\n"
         "das Paradies für mich!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_MineralBeachCottageRestaurantRecommendation[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation[] =
         "Hast du jemals in der \r\n"
         "Strandhütte gegessen?{Press}\p"
         "Die haben Dinge, die du\r\n"

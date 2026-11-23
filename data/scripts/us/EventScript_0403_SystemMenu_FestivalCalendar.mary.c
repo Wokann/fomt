@@ -143,7 +143,7 @@ void EventScript_0403_SystemMenu_FestivalCalendar(void)
                     case DAY_28:
                     case DAY_29:
                     case DAY_30:
-                        TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview);
+                        TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview);
                         break;
                 }
                 break;
@@ -175,7 +175,7 @@ void EventScript_0403_SystemMenu_FestivalCalendar(void)
                     case DAY_23:
                     case DAY_24:
                     case DAY_25:
-                        TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview);
+                        TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview);
                         break;
                     case DAY_26:
                     case DAY_27:

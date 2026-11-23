@@ -65,7 +65,7 @@ mary_text_table
         "Aww, thanks!\r\n"
         "What a great gift!{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks[] =
         "Thanks a lot.{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =

@@ -115,7 +115,7 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
             }
             else
             {
-                var_0 = TalkChoice3(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_YourBirthday, gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday);
+                var_0 = TalkChoice3(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_MyBirthday, gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_YourBirthday, gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday);
                 switch (var_0)
                 {
                     case CHOICE_OPTION_1:
@@ -126,7 +126,7 @@ void EventScript_0635_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_KAREN);
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday);
+                        TalkMessage(gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer);
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                         RemoveEventIcon(EVENT_ICON_SLOT_0);

@@ -2028,8 +2028,13 @@ mary_script_symbols
         gText_SystemMenu_ClockCalendarDisplay_Friday,
         gText_SystemMenu_ClockCalendarDisplay_Saturday,
         gText_SystemMenu_ClockCalendarDisplay_CurrentDate,
-        gText_SystemMenu_ClockCalendarDisplay_MorningTimeSpacedZeroPaddedMinutes,
-        gText_SystemMenu_ClockCalendarDisplay_MorningTimeSpacedMinutes,
+        #if defined(REGION_DE)
+            gText_SystemMenu_ClockCalendarDisplay_TimeWithZeroPaddedMinutes,
+            gText_SystemMenu_ClockCalendarDisplay_TimeWithMinutes,
+        #else
+            gText_SystemMenu_ClockCalendarDisplay_MorningTimeSpacedZeroPaddedMinutes,
+            gText_SystemMenu_ClockCalendarDisplay_MorningTimeSpacedMinutes,
+        #endif
         #if defined(REGION_JP)
             gText_SystemMenu_ClockCalendarDisplay_MorningTimeZeroPaddedMinutes,
             gText_SystemMenu_ClockCalendarDisplay_MorningTimeMinutes,
@@ -2701,7 +2706,7 @@ mary_script_symbols
             gText_SystemMenu_RecipeBook_ChoiceKitchen,
             gText_SystemMenu_RecipeBook_ChoiceRecipeBook2,
             gText_SystemMenu_RecipeBook_ChoiceRecipeBook3,
-            gText_SystemMenu_RecipeBook_ChoiceRecipeBook4,
+            gText_SystemMenu_RecipeBook_MenuPage4,
         #else
             gText_SystemMenu_RecipeBook_KitchenRequired,
             gText_SystemMenu_RecipeBook_MenuPage1SixChoiceLayout,
@@ -2979,8 +2984,13 @@ mary_script_symbols
         gText_SystemMenu_CalendarDateAndTimeDisplay_Friday,
         gText_SystemMenu_CalendarDateAndTimeDisplay_Saturday,
         gText_SystemMenu_CalendarDateAndTimeDisplay_CurrentDate,
-        gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes,
-        gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes,
+        #if defined(REGION_DE)
+            gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes,
+            gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes,
+        #else
+            gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes,
+            gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes,
+        #endif
         #if defined(REGION_JP)
             gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeZeroPaddedMinutes,
             gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeMinutes,
@@ -3393,7 +3403,11 @@ mary_script_symbols
         gText_SystemMenu_FestivalCalendar_HarvestFestivalListing,
         gText_SystemMenu_FestivalCalendar_FallHorseRaceListing,
         gText_SystemMenu_FestivalCalendar_SheepFestivalListing,
-        gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview,
+        #if defined(REGION_JP) || defined(REGION_DE)
+            gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview,
+        #else
+            gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview,
+        #endif
         #if defined(REGION_JP) || defined(REGION_DE)
             gText_SystemMenu_FestivalCalendar_YearEndEventsEarlyWinter,
         #endif
@@ -3643,8 +3657,13 @@ mary_script_symbols
         gText_LocationInteraction_InspectBeachCottageClock_Friday,
         gText_LocationInteraction_InspectBeachCottageClock_Saturday,
         gText_LocationInteraction_InspectBeachCottageClock_DateFormat,
-        gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes,
-        gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes,
+        #if defined(REGION_DE)
+            gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes,
+            gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes,
+        #else
+            gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes,
+            gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes,
+        #endif
         #if defined(REGION_JP)
             gText_LocationInteraction_InspectBeachCottageClock_MorningTimeZeroPaddedMinutes,
             gText_LocationInteraction_InspectBeachCottageClock_MorningTimeMinutes,
@@ -4500,8 +4519,13 @@ mary_script_symbols
         gText_LocationInteraction_InspectTownCottageClock_Friday,
         gText_LocationInteraction_InspectTownCottageClock_Saturday,
         gText_LocationInteraction_InspectTownCottageClock_DateFormat,
-        gText_LocationInteraction_InspectTownCottageClock_MorningTimeSpacedZeroPaddedMinutes,
-        gText_LocationInteraction_InspectTownCottageClock_MorningTimeSpacedMinutes,
+        #if defined(REGION_DE)
+            gText_LocationInteraction_InspectTownCottageClock_TimeWithZeroPaddedMinutes,
+            gText_LocationInteraction_InspectTownCottageClock_TimeWithMinutes,
+        #else
+            gText_LocationInteraction_InspectTownCottageClock_MorningTimeSpacedZeroPaddedMinutes,
+            gText_LocationInteraction_InspectTownCottageClock_MorningTimeSpacedMinutes,
+        #endif
         #if defined(REGION_JP)
             gText_LocationInteraction_InspectTownCottageClock_MorningTimeZeroPaddedMinutes,
             gText_LocationInteraction_InspectTownCottageClock_MorningTimeMinutes,
@@ -4803,23 +4827,43 @@ mary_script_symbols
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AllDoneDontBeAStranger,
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsMary,
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_MarysAlreadyMarriedToGrayHere,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf,
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward,
+        #if defined(REGION_DE)
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf,
+        #else
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf,
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward,
+        #endif
         #if defined(REGION_JP)
             gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_WhiteGrassRewardFarewell,
         #endif
-        gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved,
+        #if defined(REGION_DE)
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward,
+        #else
+            gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved,
+        #endif
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIReallyLiked,
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIDidntReally,
         gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIReallyDidnt,
@@ -5374,7 +5418,7 @@ mary_script_symbols
             gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_CorrectsBirthdayAnswerAfterChildbirth,
         #endif
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliBabyBirthdayCorrectAnswerReaction,
+            gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth,
         #elif defined(REGION_JP)
             gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday,
         #endif
@@ -5409,8 +5453,13 @@ mary_script_symbols
         gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_HaHaHaICantBelieve,
         gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe,
         gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurAnniversaries,
-        gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday,
-        gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
+        #if defined(REGION_DE)
+            gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
+            gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer,
+        #else
+            gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday,
+            gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
+        #endif
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenBabyBirthdayCorrectAnswerCelebration,
         #elif defined(REGION_JP)
@@ -6400,7 +6449,7 @@ mary_script_symbols
         gText_NPCEvent_Cliff_PermanentWineryJob_CliffAcceptsPermanentJob,
         gText_NPCEvent_Cliff_PermanentWineryJob_CliffThanksPlayerForWineryOpportunity,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Cliff_PermanentWineryJob_DukeWelcomesCliffToWinery,
+            gText_NPCEvent_Cliff_PermanentWineryJob_DukeSaysNoNeedToApologizeAndReturnsToWork,
         #elif defined(REGION_JP)
             gText_NPCEvent_Cliff_PermanentWineryJob_DukeSaysNoNeedToApologizeAndReturnsToWork,
         #endif
@@ -7964,9 +8013,15 @@ mary_script_symbols
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceFinishedWork,
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceStillWorking,
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_DateQuestion,
-        gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary,
-        gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday,
-        gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday,
+        #if defined(REGION_JP)
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary,
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday,
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday,
+        #else
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday,
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary,
+            gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday,
+        #endif
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_IncorrectWeddingAnniversaryResponse,
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_PlayerRegretsIncorrectAnswer,
         gText_FamilyEvent_HarvestGoddess_EveningDateChoice_IncorrectPlayerBirthdayResponse,
@@ -8437,7 +8492,7 @@ mary_script_symbols
     EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue
     {
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopurisWedding,
+            gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopuriBecomingABride,
         #elif defined(REGION_JP)
             gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopuriBecomingABride,
         #endif
@@ -9367,107 +9422,221 @@ mary_script_symbols
         gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePregnancyStage03RepeatConversation,
         gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePregnancyStage04BirthImminentFirstConversation,
         gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePregnancyStage04BirthImminentRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation,
-        #endif
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation,
-        #endif
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation,
-        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation,
-        #endif
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation,
-        gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation,
         #if defined(REGION_DE)
-            gText_NPCEvent_Popuri_DialogueAndGiftResponses_MineralBeachCottageRestaurantRecommendation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversationUntranslatedEnglishLeadIn,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation,
+        #else
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation,
+        #endif
+        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            #if defined(REGION_DE)
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation,
+            #else
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation,
+            #endif
+        #endif
+        #if defined(REGION_DE)
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation,
+        #else
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation,
+        #endif
+        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            #if defined(REGION_DE)
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation,
+            #else
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation,
+            #endif
+        #endif
+        #if defined(REGION_DE)
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation,
+        #else
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation,
+        #endif
+        #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            #if defined(REGION_DE)
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation,
+            #else
+                gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation,
+            #endif
+        #endif
+        #if defined(REGION_DE)
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation,
+        #else
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation,
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation,
+        #endif
+        #if defined(REGION_DE)
+            gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation,
         #endif
     },
 
@@ -10566,7 +10735,7 @@ mary_script_symbols
         gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseFavoriteGiftResponse,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseLikedGiftResponse,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseLikedGiftResponse,
-        gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse,
+        gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse,
         #endif
@@ -10651,7 +10820,7 @@ mary_script_symbols
         gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketRedHeartFirstConversation,
         gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseSupermarketRedHeartRepeatConversation,
         #if defined(REGION_DE)
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationEncouragesMarriage,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversationAsksAboutMarriedLife,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversationWorriesAboutChickens,
@@ -10664,7 +10833,7 @@ mary_script_symbols
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerFianceSupermarketRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlackHeartFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlackHeartRepeatConversation,
-            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartRepeatConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlueHeartFirstConversation,
             gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlueHeartRepeatConversation,
@@ -10705,8 +10874,13 @@ mary_script_symbols
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PoultryFarmHouseSecondFloorConversation,
         #else
         gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation,
-        gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation,
-        gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation,
+        #if defined(REGION_JP)
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation,
+        #else
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation,
+            gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation,
+        #endif
         gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerMarriedOtherLowOrMediumFriendshipFirstConversation,
@@ -11807,7 +11981,7 @@ mary_script_symbols
             gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation,
         #elif defined(REGION_JP)
             gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation,
-            gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100RepeatConversation,
+            gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation,
         #endif
         gText_NPCEvent_Harris_DialogueAndGiftResponses_YodelRanchHouseFirstConversation,
         gText_NPCEvent_Harris_DialogueAndGiftResponses_YodelRanchHouseRepeatConversation,
@@ -12518,7 +12692,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race02_PreviewPart02,
             gText_TV_F314MGrandPrix_Race02_ResultsPart01,
             gText_TV_F314MGrandPrix_Race02_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race03_PreviewPart01,
+            gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01,
             gText_TV_F314MGrandPrix_Race03_PreviewPart02,
             gText_TV_F314MGrandPrix_Race03_ResultsPart01,
             gText_TV_F314MGrandPrix_Race03_ResultsPart02,
@@ -12526,7 +12700,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race04_PreviewPart02,
             gText_TV_F314MGrandPrix_Race04_ResultsPart01,
             gText_TV_F314MGrandPrix_Race04_ResultsPart02,
-            gText_TV_F314MGrandPrix_Race05_PreviewPart01,
+            gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01,
             gText_TV_F314MGrandPrix_Race05_PreviewPart02,
             gText_TV_F314MGrandPrix_Race05_ResultsPart01,
             gText_TV_F314MGrandPrix_Race05_ResultsPart02,
@@ -12588,7 +12762,7 @@ mary_script_symbols
             gText_TV_F314MGrandPrix_Race21_ResultsPart01,
             gText_TV_F314MGrandPrix_Race22_PreviewPart02,
             gText_TV_F314MGrandPrix_Race22_ResultsPart02,
-            gText_TV_F314MGrandPrix_Shared_Race03PreviewPart01AndRace27ResultsPart02,
+            gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02,
             gText_TV_F314MGrandPrix_Race23_ResultsPart02,
             gText_TV_F314MGrandPrix_Race24_ResultsPart02,
             gText_TV_F314MGrandPrix_Race25_PreviewPart01,
@@ -12612,11 +12786,19 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race01_PreviewPart02,
         gText_TV_F314MGrandPrix_Race01_ResultsPart01,
         gText_TV_F314MGrandPrix_Race01_ResultsPart02,
-        gText_TV_F314MGrandPrix_Race02_PreviewPart01,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01,
+        #else
+            gText_TV_F314MGrandPrix_Race02_PreviewPart01,
+        #endif
         gText_TV_F314MGrandPrix_Race02_PreviewPart02,
         gText_TV_F314MGrandPrix_Race02_ResultsPart01,
         gText_TV_F314MGrandPrix_Race02_ResultsPart02,
-        gText_TV_F314MGrandPrix_Race03_PreviewPart01,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01,
+        #else
+            gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01,
+        #endif
         gText_TV_F314MGrandPrix_Race03_PreviewPart02,
         gText_TV_F314MGrandPrix_Race03_ResultsPart01,
         gText_TV_F314MGrandPrix_Race03_ResultsPart02,
@@ -12624,7 +12806,11 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race04_PreviewPart02,
         gText_TV_F314MGrandPrix_Race04_ResultsPart01,
         gText_TV_F314MGrandPrix_Race04_ResultsPart02,
-        gText_TV_F314MGrandPrix_Race05_PreviewPart01,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01,
+        #else
+            gText_TV_F314MGrandPrix_Race05_PreviewPart01,
+        #endif
         gText_TV_F314MGrandPrix_Race05_PreviewPart02,
         gText_TV_F314MGrandPrix_Race05_ResultsPart01,
         gText_TV_F314MGrandPrix_Race05_ResultsPart02,
@@ -12641,10 +12827,18 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race08_ResultsPart01,
         gText_TV_F314MGrandPrix_Race08_ResultsPart02,
         gText_TV_F314MGrandPrix_Race09_PreviewPart01,
-        gText_TV_F314MGrandPrix_Race09_PreviewPart02,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02,
+        #else
+            gText_TV_F314MGrandPrix_Race09_PreviewPart02,
+        #endif
         gText_TV_F314MGrandPrix_Race09_ResultsPart01,
         gText_TV_F314MGrandPrix_Race09_ResultsPart02,
-        gText_TV_F314MGrandPrix_Race10_PreviewPart01,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01,
+        #else
+            gText_TV_F314MGrandPrix_Race10_PreviewPart01,
+        #endif
         gText_TV_F314MGrandPrix_Race10_PreviewPart02,
         gText_TV_F314MGrandPrix_Race10_ResultsPart01,
         gText_TV_F314MGrandPrix_Race10_ResultsPart02,
@@ -12677,7 +12871,11 @@ mary_script_symbols
         gText_TV_F314MGrandPrix_Race16_ResultsPart02,
         gText_TV_F314MGrandPrix_Race17_ResultsPart01,
         gText_TV_F314MGrandPrix_Race17_ResultsPart02,
-        gText_TV_F314MGrandPrix_Race18_PreviewPart01,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01,
+        #else
+            gText_TV_F314MGrandPrix_Race18_PreviewPart01,
+        #endif
         gText_TV_F314MGrandPrix_Race18_PreviewPart02,
         gText_TV_F314MGrandPrix_Race18_ResultsPart01,
         gText_TV_F314MGrandPrix_Race18_ResultsPart02,
@@ -12719,8 +12917,13 @@ mary_script_symbols
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             gText_TV_F314MGrandPrix_Race27_ResultsPart02,
         #endif
-        gText_TV_F314MGrandPrix_Race28_PreviewPart01,
-        gText_TV_F314MGrandPrix_Race28_PreviewPart02,
+        #if defined(REGION_JP)
+            gText_TV_F314MGrandPrix_Race28_PreviewPart02,
+            gText_TV_F314MGrandPrix_Race27_ResultsPart02,
+        #else
+            gText_TV_F314MGrandPrix_Race28_PreviewPart01,
+            gText_TV_F314MGrandPrix_Race28_PreviewPart02,
+        #endif
         gText_TV_F314MGrandPrix_Race28_ResultsPart01,
         gText_TV_F314MGrandPrix_Race28_ResultsPart02,
         gText_TV_F314MGrandPrix_Race29_ResultsPart01,
@@ -13250,14 +13453,18 @@ mary_script_symbols
     EventScript_1048_TV_MineralTownFriends_CharacterProfiles
     {
         #if defined(REGION_DE)
-            gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening,
+            gText_TV_MineralTownFriends_Shared_Opening,
         #else
-            gText_TV_MineralTownFriends_Rick_Opening,
+            #if defined(REGION_JP)
+                gText_TV_MineralTownFriends_Shared_Opening,
+            #else
+                gText_TV_MineralTownFriends_Rick_Opening,
+            #endif
         #endif
         gText_TV_MineralTownFriends_Rick_ProfileHeader,
         gText_TV_MineralTownFriends_Rick_FamilySibling,
-        gText_TV_MineralTownFriends_Rick_FamilyMother,
-        gText_TV_MineralTownFriends_Rick_FamilyFather,
+        gText_TV_MineralTownFriends_FamilyMotherLillia,
+        gText_TV_MineralTownFriends_FamilyFatherRod,
         gText_TV_MineralTownFriends_Rick_BiographyPart01,
         gText_TV_MineralTownFriends_Rick_NextEpisodePreview,
         #if defined(REGION_US) || defined(REGION_EU)
@@ -13349,7 +13556,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Stu_NextEpisodePreview,
         gText_TV_MineralTownFriends_Jeff_ProfileHeader,
         gText_TV_MineralTownFriends_Jeff_FamilyWife,
-        gText_TV_MineralTownFriends_Jeff_FamilyDaughter,
+        gText_TV_MineralTownFriends_FamilyDaughterKaren,
         gText_TV_MineralTownFriends_Jeff_BiographyPart01,
         gText_TV_MineralTownFriends_Jeff_NextEpisodePreview,
         gText_TV_MineralTownFriends_Karen_ProfileHeaderBirthdayShiftedForPlayerConflict,
@@ -13362,7 +13569,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Sasha_FamilyHusband,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             gText_TV_MineralTownFriends_Sasha_FamilyDaughter,
-            gText_TV_MineralTownFriends_Sasha_BiographyPart01,
+            gText_TV_MineralTownFriends_Sasha_FamilyAndBiography,
         #elif defined(REGION_JP)
             gText_TV_MineralTownFriends_Sasha_FamilyAndBiography,
             gText_TV_MineralTownFriends_Sasha_NextEpisodePreview,
@@ -13382,7 +13589,7 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Kappa_NextEpisodePreview,
         gText_TV_MineralTownFriends_Basil_ProfileHeader,
         gText_TV_MineralTownFriends_Basil_FamilyWife,
-        gText_TV_MineralTownFriends_Basil_BiographyPart01,
+        gText_TV_MineralTownFriends_FamilyDaughterMary,
         gText_TV_MineralTownFriends_Basil_BiographyPart02,
         gText_TV_MineralTownFriends_Basil_NextEpisodePreview,
         gText_TV_MineralTownFriends_Mary_ProfileHeaderBirthdayShiftedForPlayerConflict,
@@ -13412,13 +13619,13 @@ mary_script_symbols
         gText_TV_MineralTownFriends_Harris_NextEpisodePreview,
         gText_TV_MineralTownFriends_Duke_ProfileHeader,
         gText_TV_MineralTownFriends_Duke_FamilyWife,
-        gText_TV_MineralTownFriends_Duke_BiographyPart01,
+        gText_TV_MineralTownFriends_FamilyDaughterAja,
         gText_TV_MineralTownFriends_Duke_BiographyPart02,
         gText_TV_MineralTownFriends_Duke_NextEpisodePreview,
         gText_TV_MineralTownFriends_Manna_ProfileHeader,
         gText_TV_MineralTownFriends_Manna_BiographyPart01,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_TV_MineralTownFriends_Manna_BiographyPart02,
+            gText_TV_MineralTownFriends_Manna_FamilyDaughter,
         #endif
         gText_TV_MineralTownFriends_Manna_BiographyPart03,
         gText_TV_MineralTownFriends_Manna_NextEpisodePreview,

@@ -37,10 +37,10 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilySibling);
             SetTalkPortrait(TALK_PORTRAIT_LILLIA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_LILLIA);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilyMother);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyMotherLillia);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilyFather);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyFatherRod);
             SetTalkPortrait(TALK_PORTRAIT_RICK_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_RICK);
             TalkMessageSlow(gText_TV_MineralTownFriends_Rick_BiographyPart01);
@@ -739,7 +739,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_FamilyWife);
             SetTalkPortrait(TALK_PORTRAIT_KAREN_WEDDING);
             SetTalkNameplateCharacter(CHARACTER_KAREN);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_FamilyDaughter);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterKaren);
             SetTalkPortrait(TALK_PORTRAIT_JEFF_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_JEFF);
             TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_BiographyPart01);
@@ -817,7 +817,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessage(gText_TV_MineralTownFriends_Sasha_FamilyDaughter);
             SetTalkPortrait(TALK_PORTRAIT_SASHA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_SASHA);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_FamilyAndBiography);
             SetTalkPortrait(TALK_PORTRAIT_DOUG_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DOUG);
 #ifdef BUGFIX
@@ -946,7 +946,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Basil_FamilyWife);
             SetTalkPortrait(TALK_PORTRAIT_MARY_WEDDING);
             SetTalkNameplateCharacter(CHARACTER_MARY);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Basil_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterMary);
             SetTalkPortrait(TALK_PORTRAIT_BASIL_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_BASIL);
             TalkMessageSlow(gText_TV_MineralTownFriends_Basil_BiographyPart02);
@@ -1148,7 +1148,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Duke_FamilyWife);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Duke_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterAja);
             SetTalkPortrait(TALK_PORTRAIT_DUKE_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DUKE);
             TalkMessageSlow(gText_TV_MineralTownFriends_Duke_BiographyPart02);
@@ -1182,7 +1182,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart01);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart02);
+            TalkMessageSlow(gText_TV_MineralTownFriends_Manna_FamilyDaughter);
             SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_MANNA);
             TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart03);

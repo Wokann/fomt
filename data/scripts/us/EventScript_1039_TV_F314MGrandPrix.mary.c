@@ -38,7 +38,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_ResultsPart02);
                     break;
                 case DAY_09:
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01);
                     break;
                 case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart02);
@@ -288,7 +288,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart02);
                     break;
                 case DAY_29:
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01);
                     break;
                 case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23_PreviewPart02);

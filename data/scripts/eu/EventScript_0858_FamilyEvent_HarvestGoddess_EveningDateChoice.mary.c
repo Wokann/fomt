@@ -31,9 +31,9 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
             {
 #ifdef BUGFIX
                 // The existing overseas strings mean anniversary, player, then goddess.
-                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary);
-#else
                 var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday);
+#else
+                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday);
 #endif
                 switch (var_0)
                 {
@@ -141,7 +141,7 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
             }
             else
             {
-                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday);
+                var_0 = TalkChoice3(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday, gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday);
                 switch (var_0)
                 {
                     case CHOICE_OPTION_1:

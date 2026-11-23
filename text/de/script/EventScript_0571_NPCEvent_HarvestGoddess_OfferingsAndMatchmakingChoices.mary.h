@@ -381,76 +381,76 @@ mary_text_table
         "stattdessen. Mach bloß \r\n"
         "keinen Ärger! {Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch[] =
         "Komm jederzeit wieder.{Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
         "Ich sorge dafür, dass \r\n"
         "sich Mary mehr zu dir \r\n"
         "hingezogen fühlt. .{Press}\r\n"
         "Eine Sekunde...{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri[] =
         "OK, es ist Popuri.{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere[] =
         "Popuri ist schon mit \r\n"
         "Kai verheiratet! {Press}\p"
         "Hier, ich gebe dir dies\r\n"
         "stattdessen. Mach bloß \r\n"
         "keinen Ärger! {Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically[] =
         "Ich sorge dafür, dass \r\n"
         "sich Popuri mehr zu dir \r\n"
         "hingezogen fühlt. {Press}\r\n"
         "Eine Sekunde...{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn[] =
         "OK, es ist Ann.{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere[] =
         "Ann ist schon mit \r\n"
         "Cliff verheiratet! {Press}\p"
         "Hier, ich gebe dir dies\r\n"
         "stattdessen. Mach bloß \r\n"
         "keinen Ärger! {Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically[] =
         "Ich sorge dafür, dass \r\n"
         "sich Ann mehr zu dir \r\n"
         "hingezogen fühlt. {Press}\r\n"
         "Eine Sekunde...{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren[] =
         "OK, es ist Karen.{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere[] =
         "Karen ist schon mit \r\n"
         "Rick verheiratet! {Press}\p"
         "Hier, ich gebe dir dies\r\n"
         "stattdessen. Mach bloß\r\n"
         "keinen Ärger! {Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically[] =
         "Ich sorge dafür, dass \r\n"
         "sich Karen mehr zu dir \r\n"
         "hingezogen fühlt.{Press}\r\n"
         "Eine Sekunde...{Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA[] =
         "Das ist super!!\r\n"
         "Vielen Dank! {Press}\p"
         "Hier, nimm dies als \r\n"
         "meinen Dank. {Press}";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf[] =
         "Wirklich? Du magst keines \r\n"
         "der Mädchen hier?\r\n"
         "Welche Zeitverschwendung...{Press}\r\n"
         "Komm trotzdem wieder! {Press}\p";
 
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved[] =
+    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward[] =
         "Weil du mich sooft \r\n"
         "besucht hast, \r\n"
         "überreiche ich dir {Press}\r\n"

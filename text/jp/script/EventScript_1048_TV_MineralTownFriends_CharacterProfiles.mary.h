@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_TV_MineralTownFriends_Rick_Opening[] =
+    const char gText_TV_MineralTownFriends_Shared_Opening[] =
         "ミネラルタウンのなかまたち！\r\n"
         "　　　　　　　　　　　　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -20,10 +20,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Rick_FamilySibling[] =
         "妹のポプリと、　　　　　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_Rick_FamilyMother[] =
+    const char gText_TV_MineralTownFriends_FamilyMotherLillia[] =
         "お母さんのリリアさん。　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_Rick_FamilyFather[] =
+    const char gText_TV_MineralTownFriends_FamilyFatherRod[] =
         "後はお父さんのロッドさん。　\r\n";
 
     const char gText_TV_MineralTownFriends_Rick_BiographyPart01[] =
@@ -551,7 +551,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Jeff_FamilyWife[] =
         "嫁さんのサーシャと、　　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_Jeff_FamilyDaughter[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterKaren[] =
         "娘のカレン。　　　　　　　　\r\n";
 
     const char gText_TV_MineralTownFriends_Jeff_BiographyPart01[] =
@@ -727,7 +727,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Basil_FamilyWife[] =
         "嫁さんのアンナと、　　　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_Basil_BiographyPart01[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterMary[] =
         "娘のマリー。　　　　　　　　\r\n";
 
     const char gText_TV_MineralTownFriends_Basil_BiographyPart02[] =
@@ -907,7 +907,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Duke_FamilyWife[] =
         "嫁さんのマナさん。　　　　　\r\n";
 
-    const char gText_TV_MineralTownFriends_Duke_BiographyPart01[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterAja[] =
         "後は娘のアージュさん。　　\r\n";
 
     const char gText_TV_MineralTownFriends_Duke_BiographyPart02[] =

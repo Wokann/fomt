@@ -262,7 +262,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race03_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
         "              \r\n"
@@ -551,7 +551,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race05_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
         "              \r\n"
@@ -3438,7 +3438,7 @@ mary_text_table
         "              \r\n"
         "Und das sind sie.{Press}";
 
-    const char gText_TV_F314MGrandPrix_Shared_Race03PreviewPart01AndRace27ResultsPart02[] =
+    const char gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02[] =
         "Teilnehmer im F-3.14 MGP\r\n"
         "sind die Folgenden:\r\n"
         "              \r\n"

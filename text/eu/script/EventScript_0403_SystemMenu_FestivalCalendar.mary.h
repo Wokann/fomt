@@ -93,7 +93,7 @@ mary_text_table
         "Sheep!               Mayor\r\n"
         "{Press}";
 
-    const char gText_SystemMenu_FestivalCalendar_YearEndEventsFallPreview[] =
+    const char gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview[] =
         "☆Year End Festival and\r\n"
         "Year End Noodles{Press}\p"
         "Come celebrate the end of\r\n"

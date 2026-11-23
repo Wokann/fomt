@@ -37,9 +37,9 @@ mary_text_table
         "Jahr {Var1}\r\n"
         "{Var2} Tag {Var3} ({Var4}){Press}";
 
-    const char gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes[] =
+    const char gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes[] =
         "{Var1}:0{Var2} Uhr{Press}";
 
-    const char gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes[] =
+    const char gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes[] =
         "{Var1}:{Var2} Uhr{Press}";
 };

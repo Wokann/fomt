@@ -135,7 +135,7 @@ void EventScript_0976_AchievementEvent_Fishing_MilestoneReward(void)
         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
 #ifdef BUGFIX
-        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_CaughtHundredMillionFishMilestone);
+        TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Caught100000000FishMilestone);
 #else
         TalkMessage(gText_AchievementEvent_Fishing_MilestoneReward_Shared_CaughtTenOrHundredMillionFishMilestone);
 #endif

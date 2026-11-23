@@ -1061,12 +1061,12 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically);
                                             TalkClose();
                                             SetEntityAnim(ENTITY_HARVEST_GODDESS, ANIMATION_HARVEST_GODDESS_IDLE);
                                             WaitFrames(10);
@@ -1084,20 +1084,20 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                     case CHOICE_OPTION_3:
                                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_ANGRY);
-                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere);
+                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsPopuri);
                                         if (VarGet(VAR_POPURI_KAI_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_POPURI_KAI_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED)
                                         {
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_PopurisAlreadyMarriedToKaiHere);
                                             PlaySong(AUDIO_START, AUDIO_SFX_PICK_UP_ITEM);
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakePopuriFeelMoreRomantically);
                                             TalkClose();
                                             SetEntityAnim(ENTITY_HARVEST_GODDESS, ANIMATION_HARVEST_GODDESS_IDLE);
                                             WaitFrames(10);
@@ -1115,10 +1115,10 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                     case CHOICE_OPTION_4:
                                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_ANGRY);
-                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere);
+                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsAnn);
                                         if (VarGet(VAR_ANN_CLIFF_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_ANN_CLIFF_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED)
                                         {
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_AnnsAlreadyMarriedToCliffHere);
                                             PlaySong(AUDIO_START, AUDIO_SFX_PICK_UP_ITEM);
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
@@ -1128,7 +1128,7 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeAnnFeelMoreRomantically);
                                             TalkClose();
                                             SetEntityAnim(ENTITY_HARVEST_GODDESS, ANIMATION_HARVEST_GODDESS_IDLE);
                                             WaitFrames(10);
@@ -1146,20 +1146,20 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                     case CHOICE_OPTION_5:
                                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_ANGRY);
-                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere);
+                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ConfirmsKaren);
                                         if (VarGet(VAR_RICK_KAREN_WEDDING_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_RICK_KAREN_WEDDING_POPURI_INTRO_EVENT_STATE) == EVENT_LIFECYCLE_COMPLETED || VarGet(VAR_RICK_KAREN_RIVAL_MARRIAGE_STATE) == MARRIAGE_STATE_MARRIED)
                                         {
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_KarensAlreadyMarriedToRickHere);
                                             PlaySong(AUDIO_START, AUDIO_SFX_PICK_UP_ITEM);
                                             SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                             SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTimeAfterAlreadyMarriedMatch);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
-                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA);
+                                            TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeKarenFeelMoreRomantically);
                                             TalkClose();
                                             SetEntityAnim(ENTITY_HARVEST_GODDESS, ANIMATION_HARVEST_GODDESS_IDLE);
                                             WaitFrames(10);
@@ -1177,7 +1177,7 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                                     case CHOICE_OPTION_6:
                                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf);
+                                        TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ThisIsSoGreatThanksA);
                                         PlaySong(AUDIO_START, AUDIO_SFX_PICK_UP_ITEM);
                                         SetPlayerHeldFood(ITEM_FOOD_RELAX_TEA_LEAVES);
                                         AddCharacterLove(CHARACTER_HARVEST_GODDESS, 3000);
@@ -1191,14 +1191,14 @@ void EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices(voi
                             case CHOICE_OPTION_2:
                                 SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                                 SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_NORMAL);
-                                TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward);
+                                TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ReallyYouDontLikeAnyOf);
                                 break;
                         }
                     }
                 }
                 else
                 {
-                    TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ByTheWayIJustLoved);
+                    TalkMessage(gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_LaterTenOfferingWhiteGrassReward);
                     PlaySong(AUDIO_START, AUDIO_SFX_PICK_UP_ITEM);
                     SetPlayerHeldFood(ITEM_FOOD_WHITE_GRASS);
                     SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);

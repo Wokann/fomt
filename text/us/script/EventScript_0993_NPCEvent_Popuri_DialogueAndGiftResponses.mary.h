@@ -581,7 +581,7 @@ mary_text_table
         "How can he miss his own\r\n"
         "daughter's wedding!{Press}";
 
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling[] =
+    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer[] =
         "You've never met my father,\r\n"
         "have you, {Player}?{Press}\p"
         "I wonder what he would \r\n"

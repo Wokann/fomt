@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening[] =
+    const char gText_TV_MineralTownFriends_Shared_Opening[] =
         "Freunde von Mineralstadt!\r\n"
         "\r\n"
         "\r\n"
@@ -27,10 +27,10 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Rick_FamilySibling[] =
         "seine Schwester Popuri, \r\n";
 
-    const char gText_TV_MineralTownFriends_Rick_FamilyMother[] =
+    const char gText_TV_MineralTownFriends_FamilyMotherLillia[] =
         "seine Mutter Lillia\r\n";
 
-    const char gText_TV_MineralTownFriends_Rick_FamilyFather[] =
+    const char gText_TV_MineralTownFriends_FamilyFatherRod[] =
         "und sein Vater Rod.\r\n";
 
     const char gText_TV_MineralTownFriends_Rick_BiographyPart01[] =
@@ -631,7 +631,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Jeff_FamilyWife[] =
         "seine Frau Sasha und \r\n";
 
-    const char gText_TV_MineralTownFriends_Jeff_FamilyDaughter[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterKaren[] =
         "seine Tochter Karen. \r\n";
 
     const char gText_TV_MineralTownFriends_Jeff_BiographyPart01[] =
@@ -705,7 +705,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Sasha_FamilyDaughter[] =
         "ihre Tochter Karen.\r\n";
 
-    const char gText_TV_MineralTownFriends_Sasha_BiographyPart01[] =
+    const char gText_TV_MineralTownFriends_Sasha_FamilyAndBiography[] =
         "Im Gegensatz zu ihrem\r\n"
         "Mann ist sie zufrieden\r\n"
         "und bestimmt.\r\n"
@@ -828,7 +828,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Basil_FamilyWife[] =
         "seine Frau Anna und \r\n";
 
-    const char gText_TV_MineralTownFriends_Basil_BiographyPart01[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterMary[] =
         "seine Tochter Mary.\r\n";
 
     const char gText_TV_MineralTownFriends_Basil_BiographyPart02[] =
@@ -1027,7 +1027,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Duke_FamilyWife[] =
         "seine Frau Manna  \r\n";
 
-    const char gText_TV_MineralTownFriends_Duke_BiographyPart01[] =
+    const char gText_TV_MineralTownFriends_FamilyDaughterAja[] =
         "seine Tochter Aja. \r\n";
 
     const char gText_TV_MineralTownFriends_Duke_BiographyPart02[] =
@@ -1057,7 +1057,7 @@ mary_text_table
     const char gText_TV_MineralTownFriends_Manna_BiographyPart01[] =
         "ihr Mann Duke \r\n";
 
-    const char gText_TV_MineralTownFriends_Manna_BiographyPart02[] =
+    const char gText_TV_MineralTownFriends_Manna_FamilyDaughter[] =
         "und ihre Tochter Aja. \r\n";
 
     const char gText_TV_MineralTownFriends_Manna_BiographyPart03[] =

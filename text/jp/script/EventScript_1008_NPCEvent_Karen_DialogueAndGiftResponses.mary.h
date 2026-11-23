@@ -64,7 +64,7 @@ mary_text_table
         "わ、ありがとう。\r\n"
         "いただいとくわ。{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks[] =
         "ありがとう。{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_PlayerSpouseDislikedGiftResponse[] =
@@ -450,13 +450,13 @@ mary_text_table
         "{Player}さん。{Press}\p"
         "日曜は実家のお手つだいなの。{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation[] =
         "{Player}さんは、\r\n"
         "どうして結婚しないの？{Press}\p"
         "奥さんがいた方が、牧場も楽に\r\n"
         "なるんじゃない？{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerSingleSunnyRepeatConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePlayerMarriedOtherSunnyRepeatConversation[] =
         "奥さんとは上手くいってる？{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseRainyRepeatConversation[] =

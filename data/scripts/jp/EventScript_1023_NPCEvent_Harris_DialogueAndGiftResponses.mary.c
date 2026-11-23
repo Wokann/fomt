@@ -562,7 +562,7 @@ void EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses(void)
                                     else
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_HARRIS_HAPPY);
-                                        TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100RepeatConversation);
+                                        TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation);
                                     }
                                 }
                             }

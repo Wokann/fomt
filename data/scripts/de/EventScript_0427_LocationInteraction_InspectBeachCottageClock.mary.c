@@ -58,22 +58,22 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);
             }
         }
         else
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);
             }
         }
     }
@@ -85,22 +85,22 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);
             }
         }
         else
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);
             }
         }
     }

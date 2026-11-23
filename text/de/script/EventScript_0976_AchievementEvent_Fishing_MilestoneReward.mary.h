@@ -75,7 +75,7 @@ mary_text_table
 
 #ifdef BUGFIX
     // This separate milestone is 100 million, not the preceding 10 million.
-    const char gText_AchievementEvent_Fishing_MilestoneReward_CaughtHundredMillionFishMilestone[] =
+    const char gText_AchievementEvent_Fishing_MilestoneReward_Caught100000000FishMilestone[] =
         "Herzlichen Glückwunsch!{Press}\p"
         "Du hast jetzt 100.000.000\r\n"
         "Fische gefangen!{Press}\p"

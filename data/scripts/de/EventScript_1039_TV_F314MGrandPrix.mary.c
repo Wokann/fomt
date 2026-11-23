@@ -38,7 +38,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race02_ResultsPart02);
                     break;
                 case DAY_09:
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01);
                     break;
                 case DAY_10:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart02);
@@ -62,7 +62,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race04_ResultsPart02);
                     break;
                 case DAY_17:
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01);
                     break;
                 case DAY_18:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart02);
@@ -182,7 +182,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                 case DAY_19:
 #ifdef BUGFIX
                     // Reuse the matching third-race preview, not second-race results.
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race03_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race13_PreviewPart01);
 #endif
@@ -219,7 +219,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                 case DAY_27:
 // This season still has Amaryllis, not the later entrant Eucomyth.
 #ifdef BUGFIX
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race05_PreviewPart01);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01);
 #else
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race15_PreviewPart01);
 #endif
@@ -328,7 +328,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race22_ResultsPart02);
                     break;
                 case DAY_29:
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03PreviewPart01AndRace27ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02);
                     break;
                 case DAY_30:
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race13And23PreviewPart02);
@@ -393,7 +393,7 @@ void EventScript_1039_TV_F314MGrandPrix(void)
 #ifdef BUGFIX
                     var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race27_ResultsPart02);
 #else
-                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Shared_Race03PreviewPart01AndRace27ResultsPart02);
+                    var_0 = ShowTelevisionMessage(gText_TV_F314MGrandPrix_Race23PreviewPart01AndOriginalRace27ResultsPart02);
 #endif
                     break;
                 case DAY_19:

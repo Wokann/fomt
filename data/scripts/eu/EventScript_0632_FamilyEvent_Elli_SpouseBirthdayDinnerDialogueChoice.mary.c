@@ -152,7 +152,7 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliBabyBirthdayCorrectAnswerReaction);
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth);
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
                         WaitFrames(60);

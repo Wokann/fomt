@@ -247,7 +247,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "And there you have it.{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race03_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race03And23PreviewPart01[] =
         "Racers in the F-3.14 MGP\r\n"
         "are as follows:\r\n"
         "　　　　　　　　　　　　　　\r\n"

@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopurisWedding[] =
+    const char gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopuriBecomingABride[] =
 // Lillia is reflecting on her daughter's wedding, not marrying Kai herself.
 #ifdef BUGFIX
         "Popuri als Braut...\r\n"

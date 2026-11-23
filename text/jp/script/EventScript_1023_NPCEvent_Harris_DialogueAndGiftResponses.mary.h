@@ -125,7 +125,7 @@ mary_text_table
         "なんて、\r\n"
         "そんなわけないですね。{Press}";
 
-    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100RepeatConversation[] =
+    const char gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorBefore18SunnyFriendshipAbove100RepeatConversation[] =
         "さぁてと、今日も１日がんばる\r\n"
         "ぞ！{Press}";
 

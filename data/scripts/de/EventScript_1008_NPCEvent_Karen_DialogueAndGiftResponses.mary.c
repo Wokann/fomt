@@ -482,7 +482,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                 ShowTalkHeartIndicator(CHARACTER_KAREN);
-                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse);
+                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks);
                             }
                             else
                             {
@@ -1407,7 +1407,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                             }
                                             else
                                             {
@@ -1424,7 +1424,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                             }
                                             else
                                             {
@@ -1442,7 +1442,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                         }
                                         else
                                         {
@@ -1543,7 +1543,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-                                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
                                                     }
                                                     else
                                                     {
@@ -1658,7 +1658,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                         }
                                         else
                                         {
@@ -1676,7 +1676,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                         if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                         }
                                         else
                                         {
@@ -1690,7 +1690,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     if (WasNpcSpokenToJustNow(CHARACTER_KAREN) == FALSE)
                                     {
                                         SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
-                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                        TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation);
                                     }
                                     else
                                     {
@@ -1708,7 +1708,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                                     {
                                         ShowTalkHeartIndicator(CHARACTER_KAREN);
                                     }
-                                    TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation);
+                                    TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation);
                                 }
                                 else
                                 {

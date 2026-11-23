@@ -14,13 +14,13 @@ mary_text_table
         "Do you know what day it \r\n"
         "is today? {Press}";
 
-    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary[] =
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday[] =
         "Your birthday";
 
-    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday[] =
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceWeddingAnniversary[] =
         "Our anniversary";
 
-    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceHarvestGoddessBirthday[] =
+    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoicePlayerBirthday[] =
         "My birthday";
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_IncorrectWeddingAnniversaryResponse[] =

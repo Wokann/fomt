@@ -65,7 +65,7 @@ mary_text_table
         "Erschreckend! Es ist{Press}\p"
         "mein Geburtstag, weißt du?{Press}";
 
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliBabyBirthdayCorrectAnswerReaction[] =
+    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ElliOwnBirthdayCorrectAnswerReactionAfterChildbirth[] =
         "Du hast echt daran gedacht?!\r\n"
         "Du hast nicht geraten?\r\n"
         "Ich freue mich so!{Press}";

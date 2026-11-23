@@ -17,7 +17,7 @@ void EventScript_0902_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaD
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_LILLIA_NORMAL);
         SetTalkNameplateCharacter(CHARACTER_LILLIA);
-        TalkMessage(gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopurisWedding);
+        TalkMessage(gText_RivalMarriageEvent_PopuriAndKai_05_Wedding_FollowupLilliaDialogue_LilliaReflectsOnPopuriBecomingABride);
         TalkClose();
         SetEntityFacing(ENTITY_LILLIA, FACING_LEFT);
         MarkNpcSpokenTo(CHARACTER_LILLIA);

@@ -1020,15 +1020,15 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
 #ifndef BUGFIX
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversationUntranslatedEnglishLeadIn);
 #endif
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageFirstConversation);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseNewbornStageRepeatConversation);
                                             }
                                         }
                                         else
@@ -1039,13 +1039,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageFirstConversation);
                                                 }
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseInfantStageRepeatConversation);
                                                 }
                                             }
                                             else
@@ -1056,13 +1056,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageFirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePreWalkingChildStageRepeatConversation);
                                                     }
                                                 }
                                                 else
@@ -1073,13 +1073,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageFirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseWalkingChildStageRepeatConversation);
                                                         }
                                                     }
                                                     else
@@ -1090,13 +1090,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageFirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseOlderChildStageRepeatConversation);
                                                             }
                                                         }
                                                     }
@@ -1112,13 +1112,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation);
                                             }
                                         }
                                         else
@@ -1131,13 +1131,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningFirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_AFRAID);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartMorningRepeatConversation);
                                                     }
                                                 }
                                                 else
@@ -1148,13 +1148,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_AFRAID);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonFirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseGreenHeartAfternoonRepeatConversation);
                                                         }
                                                     }
                                                 }
@@ -1169,13 +1169,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningFirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartMorningRepeatConversation);
                                                         }
                                                     }
                                                     else
@@ -1186,13 +1186,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonFirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseYellowHeartAfternoonRepeatConversation);
                                                             }
                                                         }
                                                     }
@@ -1207,13 +1207,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningFirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartMorningRepeatConversation);
                                                             }
                                                         }
                                                         else
@@ -1224,13 +1224,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonFirstConversation);
                                                                 }
                                                                 else
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseOrangeHeartAfternoonRepeatConversation);
                                                                 }
                                                             }
                                                         }
@@ -1245,13 +1245,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningFirstConversation);
                                                                 }
                                                                 else
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartMorningRepeatConversation);
                                                                 }
                                                             }
                                                             else
@@ -1262,13 +1262,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonFirstConversation);
                                                                     }
                                                                     else
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseRedHeartAfternoonRepeatConversation);
                                                                     }
                                                                 }
                                                             }
@@ -1292,13 +1292,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation);
+                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyFirstConversation);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmDuringPregnancyRepeatConversation);
                                         }
                                     }
                                 }
@@ -1312,13 +1312,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthFirstConversation);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseVisitsPoultryFarmAfterChildbirthRepeatConversation);
                                             }
                                         }
                                     }
@@ -1330,13 +1330,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartFirstConversation);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmBelowGreenHeartRepeatConversation);
                                             }
                                         }
                                         else
@@ -1347,13 +1347,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartFirstConversation);
                                                 }
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmGreenHeartRepeatConversation);
                                                 }
                                             }
                                             else
@@ -1364,13 +1364,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartFirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmYellowHeartRepeatConversation);
                                                     }
                                                 }
                                                 else
@@ -1381,13 +1381,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartFirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmOrangeHeartRepeatConversation);
                                                         }
                                                     }
                                                     else
@@ -1398,13 +1398,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartFirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpousePoultryFarmRedHeartRepeatConversation);
                                                             }
                                                         }
                                                     }
@@ -1423,12 +1423,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                         if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation);
+                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation);
                                         }
                                         else
                                         {
                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation);
+                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayRepeatConversation);
                                         }
                                     }
                                     else
@@ -1438,12 +1438,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayFirstConversation);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmRainyDayRepeatConversation);
                                             }
                                         }
                                         else
@@ -1453,12 +1453,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024FirstConversation);
                                                 }
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation);
                                                 }
                                             }
                                             else
@@ -1468,12 +1468,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049FirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship025To049RepeatConversation);
                                                     }
                                                 }
                                                 else
@@ -1483,12 +1483,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074FirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_AFRAID);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship050To074RepeatConversation);
                                                         }
                                                     }
                                                     else
@@ -1498,12 +1498,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099FirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation);
                                                             }
                                                         }
                                                         else
@@ -1513,12 +1513,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                 if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149FirstConversation);
                                                                 }
                                                                 else
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship100To149RepeatConversation);
                                                                 }
                                                             }
                                                             else
@@ -1529,12 +1529,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199FirstConversation);
                                                                     }
                                                                     else
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship150To199RepeatConversation);
                                                                     }
                                                                 }
                                                                 else
@@ -1544,12 +1544,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                         if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                                         {
                                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation);
+                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusFirstConversation);
                                                                         }
                                                                         else
                                                                         {
                                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
-                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation);
+                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship200PlusRepeatConversation);
                                                                         }
                                                                     }
                                                                 }
@@ -1570,12 +1570,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099FirstConversation);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship000To099RepeatConversation);
                                             }
                                         }
                                         else
@@ -1585,12 +1585,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199FirstConversation);
                                                 }
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship100To199RepeatConversation);
                                                 }
                                             }
                                             else
@@ -1600,12 +1600,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusFirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerMarriedOtherCandidatePoultryFarmFriendship200PlusRepeatConversation);
                                                     }
                                                 }
                                             }
@@ -1619,15 +1619,15 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeFirstConversationBeforeWedding);
                                             }
                                             else
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationExplainsFatherIsTraveling);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWishesFatherCouldAttendWedding);
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation);
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_FianceeRepeatConversationWondersWhatFatherWouldThinkOfPlayer);
                                             }
                                         }
                                         else
@@ -1638,13 +1638,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartFirstConversation);
                                                 }
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation);
+                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlackHeartRepeatConversation);
                                                 }
                                             }
                                             else
@@ -1655,13 +1655,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartFirstConversation);
                                                     }
                                                     else
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation);
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedPurpleHeartRepeatConversation);
                                                     }
                                                 }
                                                 else
@@ -1672,13 +1672,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartFirstConversation);
                                                         }
                                                         else
                                                         {
                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation);
+                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedBlueHeartRepeatConversation);
                                                         }
                                                     }
                                                     else
@@ -1689,13 +1689,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartFirstConversation);
                                                             }
                                                             else
                                                             {
                                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation);
+                                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedGreenHeartRepeatConversation);
                                                             }
                                                         }
                                                         else
@@ -1706,13 +1706,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartFirstConversation);
                                                                 }
                                                                 else
                                                                 {
                                                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation);
+                                                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedYellowHeartRepeatConversation);
                                                                 }
                                                             }
                                                             else
@@ -1723,13 +1723,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartFirstConversation);
                                                                     }
                                                                     else
                                                                     {
                                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation);
+                                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedOrangeHeartRepeatConversation);
                                                                     }
                                                                 }
                                                                 else
@@ -1740,13 +1740,13 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                                         {
                                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_BLUSHING);
                                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation);
+                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartFirstConversation);
                                                                         }
                                                                         else
                                                                         {
                                                                             SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
                                                                             ShowTalkHeartIndicator(CHARACTER_POPURI);
-                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation);
+                                                                            TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedRedHeartRepeatConversation);
                                                                         }
                                                                     }
                                                                 }
@@ -1768,7 +1768,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomFirstConversation);
                             }
                             else
                             {
@@ -1777,7 +1777,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmBedroomRepeatConversation);
                             }
                             break;
                         case MAP_CHURCH:
@@ -1788,7 +1788,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchFirstConversation);
                             }
                             else
                             {
@@ -1797,7 +1797,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_ChurchRepeatConversation);
                             }
                             break;
                         case MAP_MOTHERS_HILL_MIDDLE:
@@ -1811,7 +1811,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteFirstConversation);
                             }
                             else
                             {
@@ -1820,7 +1820,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 {
                                     ShowTalkHeartIndicator(CHARACTER_POPURI);
                                 }
-                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation);
+                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_TownOutdoorRouteRepeatConversation);
                             }
                             break;
                         case MAP_MINERAL_BEACH:
@@ -1829,12 +1829,12 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                 if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation);
+                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachFirstConversation);
                                 }
                                 else
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation);
+                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpouseMineralBeachRepeatConversation);
                                 }
                             }
                             else
@@ -1846,7 +1846,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                     {
                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
                                     }
-                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation);
+                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachFirstConversation);
                                 }
                                 else
                                 {
@@ -1855,7 +1855,7 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                     {
                                         ShowTalkHeartIndicator(CHARACTER_POPURI);
                                     }
-                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_MineralBeachCottageRestaurantRecommendation);
+                                    TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_UnmarriedMineralBeachRepeatConversation);
                                 }
                             }
                             break;

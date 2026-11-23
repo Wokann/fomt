@@ -482,7 +482,7 @@ void EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses(void)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_KAREN_NORMAL);
                                 ShowTalkHeartIndicator(CHARACTER_KAREN);
-                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse);
+                                TalkMessage(gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks);
                             }
                             else
                             {

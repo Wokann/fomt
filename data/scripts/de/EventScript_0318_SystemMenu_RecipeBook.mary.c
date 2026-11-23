@@ -113,7 +113,7 @@ void EventScript_0318_SystemMenu_RecipeBook(void)
                 else
                 {
                     TalkOpen();
-                    var_0 = TalkChoice6(gText_SystemMenu_RecipeBook_ChoiceKitchen, gText_SystemMenu_RecipeBook_ChoiceRecipeBook1, gText_SystemMenu_RecipeBook_ChoiceRecipeBook2, gText_SystemMenu_RecipeBook_ChoiceRecipeBook3, gText_SystemMenu_RecipeBook_ChoiceRecipeBook4, gText_SystemMenu_RecipeBook_Exit);
+                    var_0 = TalkChoice6(gText_SystemMenu_RecipeBook_ChoiceKitchen, gText_SystemMenu_RecipeBook_ChoiceRecipeBook1, gText_SystemMenu_RecipeBook_ChoiceRecipeBook2, gText_SystemMenu_RecipeBook_ChoiceRecipeBook3, gText_SystemMenu_RecipeBook_MenuPage4, gText_SystemMenu_RecipeBook_Exit);
                     switch (var_0)
                     {
                         case CHOICE_OPTION_1:

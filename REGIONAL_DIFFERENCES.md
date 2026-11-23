@@ -197,6 +197,8 @@
 
 ## 已确认错误的源码名称整理
 
+脚本文本标签按台词和实际调用范围统一。女神日期菜单按选项原文校正海外标签，日版卡莲的晴天复谈区分劝婚和询问夫妻相处，德版珀布利的错位标签按各自的对话分支校正。跨场景共用的文本沿用原槽，字串、分页或用途不同的独立槽分别保留。默认和 BUGFIX 两态均沿用各自的文字、槽位顺序和调用关系。Mary 原版反编译目录按各地区的默认槽位同步登记名称。 [女神日期菜单](data/scripts/jp/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c) · [卡莲晴天复谈](data/scripts/jp/EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses.mary.c) · [德版珀布利](data/scripts/de/EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses.mary.c)
+
 扎克的DE文本有三处旧名称错位：收货路线应为`FarmLowFriendshipRepeatConversation_PlansPickupRoute`，提醒自己正在工作应为`FarmLowFriendshipRepeatConversation_RemindsPlayerHeIsWorking`，农场晚间高好感道别应为`FarmEveningHighFriendshipFarewell`。仅修正定义、实际调用及Mary原版反编译名称表，不改变德文文本或调用顺序。
 
 JP的`FarmLowFriendshipShipmentGreeting`与`FarmHighFriendshipShipmentGreeting`是两份独立的农场首谈问候；US／EU／DE在这两处及室外白天高好感分支均复用各自的`DaytimeShipmentGreeting`，不缺实际对话。具名对象统计显示海外没有这两个独立符号，不应据此补造文本或符号别名。

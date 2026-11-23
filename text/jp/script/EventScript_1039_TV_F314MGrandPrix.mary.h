@@ -122,7 +122,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race02_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race02And12And22PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -242,7 +242,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race03_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race03And13PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -488,7 +488,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race05_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race05And15PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -1015,7 +1015,7 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第９戦はあさってです。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race09_PreviewPart02[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race09And19And29PreviewPart02[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -1106,7 +1106,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race10_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race10And20PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -1841,7 +1841,7 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "となっております。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race18_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Shared_Race18And28PreviewPart01[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2784,7 +2784,7 @@ mary_text_table
         "２位　リコリスさん　　　　　\r\n"
         "３位　ルピナスさん{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race28_PreviewPart01[] =
+    const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
         "Ｆ－３．１４　ＭＧＰの　　　\r\n"
         "出場人物を紹介します。　　　\r\n"
         "　　　　　　　　　　　　　　\r\n"
@@ -2816,7 +2816,7 @@ mary_text_table
         "今日はここまで、　　　　　　\r\n"
         "第８戦はあしたです。{Press}";
 
-    const char gText_TV_F314MGrandPrix_Race28_PreviewPart02[] =
+    const char gText_TV_F314MGrandPrix_Race27_ResultsPart02[] =
         "Ｆ－３．１４　ＭＧＰ　　　　\r\n"
         "第７戦の結果をお伝えします。\r\n"
         "　　　　　　　　　　　　　　\r\n"

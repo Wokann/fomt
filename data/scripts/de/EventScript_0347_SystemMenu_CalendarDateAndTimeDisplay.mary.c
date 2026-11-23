@@ -58,22 +58,22 @@ void EventScript_0347_SystemMenu_CalendarDateAndTimeDisplay(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes);
             }
         }
         else
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes);
             }
         }
     }
@@ -85,22 +85,22 @@ void EventScript_0347_SystemMenu_CalendarDateAndTimeDisplay(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes);
             }
         }
         else
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes);
             }
             else
             {
-                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes);
+                TalkAppendMessage(gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes);
             }
         }
     }

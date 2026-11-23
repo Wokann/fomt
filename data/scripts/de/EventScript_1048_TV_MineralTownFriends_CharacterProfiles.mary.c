@@ -12,7 +12,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
     switch (VarGet(VAR_TV_MINERAL_TOWN_FRIENDS_PROFILE_INDEX))
     {
         case 0:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -37,10 +37,10 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilySibling);
             SetTalkPortrait(TALK_PORTRAIT_LILLIA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_LILLIA);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilyMother);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyMotherLillia);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Rick_FamilyFather);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyFatherRod);
             SetTalkPortrait(TALK_PORTRAIT_RICK_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_RICK);
             TalkMessageSlow(gText_TV_MineralTownFriends_Rick_BiographyPart01);
@@ -49,7 +49,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Rick_NextEpisodePreview);
             break;
         case 1:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -93,7 +93,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Popuri_NextEpisodePreview);
             break;
         case 2:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -130,7 +130,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Lillia_NextEpisodePreview);
             break;
         case 3:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -158,7 +158,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Cliff_NextEpisodePreview);
             break;
         case 4:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -189,7 +189,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Zack_NextEpisodePreview);
             break;
         case 5:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -220,7 +220,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Doctor_NextEpisodePreview);
             break;
         case 6:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -266,7 +266,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Staid_NextEpisodePreview);
             break;
         case 7:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -312,7 +312,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Nappy_NextEpisodePreview);
             break;
         case 8:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -358,7 +358,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Bold_NextEpisodePreview);
             break;
         case 9:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -404,7 +404,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Chef_NextEpisodePreview);
             break;
         case 10:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -450,7 +450,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Aqua_NextEpisodePreview);
             break;
         case 11:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -496,7 +496,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Hoggy_NextEpisodePreview);
             break;
         case 12:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -542,7 +542,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Timid_NextEpisodePreview);
             break;
         case 13:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -577,7 +577,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_HarvestGoddess_NextEpisodePreview);
             break;
         case 14:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -605,7 +605,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Gourmet_NextEpisodePreview);
             break;
         case 15:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -639,7 +639,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Ellen_NextEpisodePreview);
             break;
         case 16:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -680,7 +680,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Elli_NextEpisodePreview);
             break;
         case 17:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -714,7 +714,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Stu_NextEpisodePreview);
             break;
         case 18:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -739,7 +739,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_FamilyWife);
             SetTalkPortrait(TALK_PORTRAIT_KAREN_WEDDING);
             SetTalkNameplateCharacter(CHARACTER_KAREN);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_FamilyDaughter);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterKaren);
             SetTalkPortrait(TALK_PORTRAIT_JEFF_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_JEFF);
             TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_BiographyPart01);
@@ -748,7 +748,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Jeff_NextEpisodePreview);
             break;
         case 19:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -789,7 +789,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Karen_NextEpisodePreview);
             break;
         case 20:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -817,7 +817,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessage(gText_TV_MineralTownFriends_Sasha_FamilyDaughter);
             SetTalkPortrait(TALK_PORTRAIT_SASHA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_SASHA);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_Sasha_FamilyAndBiography);
             SetTalkPortrait(TALK_PORTRAIT_DOUG_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DOUG);
 #ifdef BUGFIX
@@ -825,7 +825,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
 #endif
             break;
         case 21:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -858,7 +858,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Doug_NextEpisodePreview);
             break;
         case 22:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -896,7 +896,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Ann_NextEpisodePreview);
             break;
         case 23:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -921,7 +921,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Kappa_NextEpisodePreview);
             break;
         case 24:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -946,7 +946,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Basil_FamilyWife);
             SetTalkPortrait(TALK_PORTRAIT_MARY_WEDDING);
             SetTalkNameplateCharacter(CHARACTER_MARY);
-            TalkMessageSlow(gText_TV_MineralTownFriends_Basil_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterMary);
             SetTalkPortrait(TALK_PORTRAIT_BASIL_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_BASIL);
             TalkMessageSlow(gText_TV_MineralTownFriends_Basil_BiographyPart02);
@@ -955,7 +955,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Basil_NextEpisodePreview);
             break;
         case 25:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -996,7 +996,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Mary_NextEpisodePreview);
             break;
         case 26:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1030,7 +1030,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Anna_NextEpisodePreview);
             break;
         case 27:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1061,7 +1061,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Won_NextEpisodePreview);
             break;
         case 28:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1092,7 +1092,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Thomas_NextEpisodePreview);
             break;
         case 29:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1123,7 +1123,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Harris_NextEpisodePreview);
             break;
         case 30:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1148,7 +1148,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Duke_FamilyWife);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Duke_BiographyPart01);
+            TalkMessageSlow(gText_TV_MineralTownFriends_FamilyDaughterAja);
             SetTalkPortrait(TALK_PORTRAIT_DUKE_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_DUKE);
             TalkMessageSlow(gText_TV_MineralTownFriends_Duke_BiographyPart02);
@@ -1157,7 +1157,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Duke_NextEpisodePreview);
             break;
         case 31:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1182,7 +1182,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart01);
             ClearTalkNameplate();
             ClearTalkPortrait();
-            TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart02);
+            TalkMessageSlow(gText_TV_MineralTownFriends_Manna_FamilyDaughter);
             SetTalkPortrait(TALK_PORTRAIT_MANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_MANNA);
             TalkMessageSlow(gText_TV_MineralTownFriends_Manna_BiographyPart03);
@@ -1191,7 +1191,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Manna_NextEpisodePreview);
             break;
         case 32:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1219,7 +1219,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Carter_NextEpisodePreview);
             break;
         case 33:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1247,7 +1247,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Kai_NextEpisodePreview);
             break;
         case 34:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1278,7 +1278,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Gray_NextEpisodePreview);
             break;
         case 35:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1311,9 +1311,9 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
         case 36:
 #ifdef BUGFIX
             // The following switch needs the channel input returned by this call.
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
 #else
-            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            TalkMessageSlow(gText_TV_MineralTownFriends_Shared_Opening);
 #endif
             TalkClose();
             switch (var_0)
@@ -1342,7 +1342,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Gotz_NextEpisodePreview);
             break;
         case 37:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1376,7 +1376,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_May_NextEpisodePreview);
             break;
         case 38:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {
@@ -1410,7 +1410,7 @@ void EventScript_1048_TV_MineralTownFriends_CharacterProfiles(void)
             TalkMessageSlow(gText_TV_MineralTownFriends_Barley_NextEpisodePreview);
             break;
         case 39:
-            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_AllCharacterProfileOpening);
+            var_0 = ShowTelevisionMessage(gText_TV_MineralTownFriends_Shared_Opening);
             TalkClose();
             switch (var_0)
             {

@@ -63,7 +63,7 @@ mary_text_table
         "Ohhh, danke!\r\n"
         "Ein tolles Geschenk!{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_AnyMarriageStateNeutralGiftResponse[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NeutralGiftThanks[] =
         "Vielen Dank.{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_NonPlayerSpouseNeutralGiftResponse[] =
@@ -465,7 +465,7 @@ mary_text_table
         "Ich bin am Abend \r\n"
         "wieder zurück, ok?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpousePoultryFarmSundayFirstConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_RivalSpouseFirstConversation[] =
         "Hi, {Player}.\r\n"
         "Sonntags helfe ich gerne \r\n"
         "im Haus meiner Eltern.{Press}";
@@ -521,7 +521,7 @@ mary_text_table
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketBlackHeartRepeatConversation[] =
         "Was kann ich für dich tun?{Press}";
 
-    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstConversation[] =
+    const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartFirstOrNorthSideTownMorningConversation[] =
         "Hallo.{Press}";
 
     const char gText_NPCEvent_Karen_DialogueAndGiftResponses_UnmarriedSupermarketPurpleHeartRepeatConversation[] =

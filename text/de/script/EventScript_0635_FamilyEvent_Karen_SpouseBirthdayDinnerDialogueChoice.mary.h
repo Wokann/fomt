@@ -52,10 +52,10 @@ mary_text_table
         "Hochzeitstag jetzt immer\r\n"
         "so feiern... IMMER!{Press}";
 
-    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday[] =
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
+    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =
         "Ha ha ha! Unglaublich, dass du \r\n"
         "unsere Geburtstage \r\n"
         "verwechselt hast!{Press}\r\n"

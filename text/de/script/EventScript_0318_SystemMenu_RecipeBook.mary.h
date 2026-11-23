@@ -18,6 +18,6 @@ mary_text_table
     const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook3[] =
         "Rezeptbuch 3";
 
-    const char gText_SystemMenu_RecipeBook_ChoiceRecipeBook4[] =
+    const char gText_SystemMenu_RecipeBook_MenuPage4[] =
         "Rezeptbuch 4";
 };
