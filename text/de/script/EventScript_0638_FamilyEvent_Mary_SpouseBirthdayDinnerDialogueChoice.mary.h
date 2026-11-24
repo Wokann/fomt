@@ -33,16 +33,15 @@ mary_text_table
         "Ich entschuldige mich \r\n"
         "besser später...{Press}";
 
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
 #if defined(BUGFIX)
     // JP praises a novel hero and asks to celebrate, without an insult.
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
         "Ha! Du sagst lustige Dinge.\r\n"
         "Mit dir wird es nie öde.\r\n"
         "Wie ein Romanheld!{Press}\p"
         "Komm, feiere meinen\r\n"
         "Geburtstag mit mir!{Press}";
 #else
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
         "Ha! Manchmal benimmst du\r\n"
         "dich vielleicht ulkig!\r\n"
         "Es ist mein Geburtstag, {Press}\r\n"
@@ -68,22 +67,21 @@ mary_text_table
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-#if defined(BUGFIX)
 #ifndef UNIFY_REGIONS
-    // JP praises a novel hero and asks to celebrate, without an insult.
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
+#if defined(BUGFIX)
+    // JP praises a novel hero and asks to celebrate, without an insult.
         "Ha! Du sagst lustige Dinge.\r\n"
         "Mit dir wird es nie öde.\r\n"
         "Wie ein Romanheld!{Press}\p"
         "Komm, feiere meinen\r\n"
         "Geburtstag mit mir!{Press}";
-#endif
 #else
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
         "Ha! Manchmal benimmst du\r\n"
         "dich vielleicht ulkig!\r\n"
         "Es ist mein Geburtstag,{Press}\p"
         "du Trottel.{Press}";
+#endif
 #endif
 
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherDoesn[] =

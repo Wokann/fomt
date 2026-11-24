@@ -42,15 +42,14 @@ mary_text_table
         "I don't know why, but I was\r\n"
         "sure you'd forget...Sorry!{Press}";
 
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
 #if defined(BUGFIX)
     // A birthday does not make her mature overnight.
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
         "I look more mature to\r\n"
         "you, don't I...?{Press}\p"
         "Well, one birthday won't\r\n"
         "change me right away!{Press}";
 #else
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
         "I look more mature to\r\n"
         "you, don't I...?{Press}\p"
         "Well, one day does too\r\n"

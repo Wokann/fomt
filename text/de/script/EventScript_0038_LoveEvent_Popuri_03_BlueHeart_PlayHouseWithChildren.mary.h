@@ -8,11 +8,10 @@ mary_text_table
         "Gerne!\r\n"
         "Es macht Spaß!{Press}";
 
-#if defined(UNIFY_REGIONS)
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
+#if defined(UNIFY_REGIONS)
         "Aww...{Press}";
 #else
-    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "Wirklich...?{Press}";
 #endif
 

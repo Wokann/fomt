@@ -31,16 +31,15 @@ mary_text_table
         "I'd better apologize \r\n"
         "later...{Press}";
 
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
 #if defined(BUGFIX)
     // JP praises a novel hero and asks to celebrate, without an insult.
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
         "Ha! You say funny things.\r\n"
         "I never get bored with you.\r\n"
         "Like the hero of a novel!{Press}\p"
         "It's my birthday.\r\n"
         "Let's celebrate together!{Press}";
 #else
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
         "Ha! Sometimes you really are\r\n"
         "like a character in a story!\r\n"
         "It's my birthday, silly!{Press}";
@@ -63,21 +62,20 @@ mary_text_table
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
-#if defined(BUGFIX)
 #ifndef UNIFY_REGIONS
-    // JP praises a novel hero and asks to celebrate, without an insult.
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
+#if defined(BUGFIX)
+    // JP praises a novel hero and asks to celebrate, without an insult.
         "Ha! You say funny things.\r\n"
         "I never get bored with you.\r\n"
         "Like the hero of a novel!{Press}\p"
         "It's my birthday.\r\n"
         "Let's celebrate together!{Press}";
-#endif
 #else
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
         "Ha! Sometimes you really are\r\n"
         "like a character in a story!\r\n"
         "It's my birthday, silly{Press}";
+#endif
 #endif
 
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherDoesn[] =

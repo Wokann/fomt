@@ -53,13 +53,12 @@ mary_text_table
         "Ich werde schlafen \r\n"
         "wie ein Stein...{Press}";
 
-#if defined(UNIFY_REGIONS)
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday[] =
+#if defined(UNIFY_REGIONS)
         "Wie kannst du meinen\r\n"
         "Geburtstag mit deinem\r\n"
         "verwechseln?! Unglaublich!{Press}";
 #else
-    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday[] =
         "Wie kannst du meinen\r\n"
         "Geburtstag mit deinem\r\n"
         "verwechseln?!{Press}";

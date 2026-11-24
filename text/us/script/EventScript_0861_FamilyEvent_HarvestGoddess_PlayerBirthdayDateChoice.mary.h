@@ -17,12 +17,11 @@ mary_text_table
     const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceWeddingAnniversary[] =
         "Our anniversary";
 
+    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday[] =
 #if defined(BUGFIX)
     // The answer is the player's birthday, not an anniversary.
-    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday[] =
         "My birthday";
 #else
-    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday[] =
         "My anniversary";
 #endif
 

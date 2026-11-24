@@ -55,11 +55,10 @@ mary_text_table
         "Sniff...sniff....\r\n"
         "I'm sorry, Sis...{Press}";
 
-#if defined(UNIFY_REGIONS)
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
+#if defined(UNIFY_REGIONS)
         "That's OK, Stu. {Press}";
 #else
-    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
         "I forgive you, Stu. {Press}";
 #endif
 

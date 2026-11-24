@@ -32,16 +32,15 @@ mary_text_table
         "Ich entschuldige mich \r\n"
         "besser später...{Press}";
 
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
 #if defined(BUGFIX)
     // JP offers food and reassurance instead of blaming the player.
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Geht es dir gut,\r\n"
         "{NickName}? Du arbeitest\r\n"
         "zu viel. Hier, iss das.{Press}\p"
         "Du weißt doch, dass heute\r\n"
         "mein Geburtstag ist, oder?{Press}";
 #else
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Geht es dir gut, \r\n"
         "{NickName}?{Press}\p"
         "Wenn du nicht krank bist,\r\n"
@@ -77,18 +76,16 @@ mary_text_table
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-#if defined(BUGFIX)
 #ifndef UNIFY_REGIONS
-    // JP offers food and reassurance instead of blaming the player.
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
+#if defined(BUGFIX)
+    // JP offers food and reassurance instead of blaming the player.
         "Geht es dir gut,\r\n"
         "{NickName}? Du arbeitest\r\n"
         "zu viel. Hier, iss das.{Press}\p"
         "Du weißt doch, dass heute\r\n"
         "mein Geburtstag ist, oder?{Press}";
-#endif
 #else
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Geht es dir gut, \r\n"
         "{NickName}?{Press}\p"
         "Wenn du nicht krank bist,\r\n"
@@ -96,6 +93,7 @@ mary_text_table
         "Entschuldigung,{Press}\r\n"
         "dafür, dass du meinen \r\n"
         "Geburtstag vergessen hast!{Press}";
+#endif
 #endif
 
 #ifndef UNIFY_REGIONS

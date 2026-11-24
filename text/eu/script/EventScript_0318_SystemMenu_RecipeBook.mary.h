@@ -18,21 +18,22 @@ mary_text_table
 
     const char gText_SystemMenu_RecipeBook_MenuPage3_2[] =
         "Recipe Book3";
+#endif
 
     const char gText_SystemMenu_RecipeBook_MenuPage2[] =
+#ifdef UNIFY_REGIONS
+        "Recipe Book2";
+#else
         "Recipe Book 2";
+#endif
 
     const char gText_SystemMenu_RecipeBook_MenuPage3[] =
+#ifdef UNIFY_REGIONS
+        "Recipe Book3";
+#else
         "Recipe Book 3";
 #endif
 
-#ifdef UNIFY_REGIONS
-    const char gText_SystemMenu_RecipeBook_MenuPage2[] =
-        "Recipe Book2";
-
-    const char gText_SystemMenu_RecipeBook_MenuPage3[] =
-        "Recipe Book3";
-#endif
 
     const char gText_SystemMenu_RecipeBook_MenuPage4[] =
         "Recipe Book 4";

@@ -39,28 +39,26 @@ mary_text_table
         "Heute ist mein Geburtstag,\r\n"
         "du Trottel!{Press}";
 
-#if defined(UNIFY_REGIONS)
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday[] =
+#if defined(UNIFY_REGIONS)
         "Du hast daran gedacht!\r\n"
         "Ich dachte irgendwie, \r\n"
         "du vergisst es... Sorry!{Press}";
 #else
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday[] =
         "Du hast daran gedacht!\r\n"
         "Ich weiß nicht warum, \r\n"
         "aber ich dachte, du {Press}\r\n"
         "vergisst es... Sorry!{Press}";
 #endif
 
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
 #if defined(BUGFIX)
     // A birthday does not make her mature overnight.
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
         "Ich sehe nun erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Geburtstag macht\r\n"
         "mich nicht gleich erwachsen!{Press}";
 #else
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
         "Ich sehe nun erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Tag macht schon \r\n"
@@ -82,21 +80,20 @@ mary_text_table
         "du vergisst es... Sorry!{Press}";
 #endif
 
-#if defined(BUGFIX)
 #ifndef UNIFY_REGIONS
-    // A birthday does not make her mature overnight.
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
+#if defined(BUGFIX)
+    // A birthday does not make her mature overnight.
         "Ich sehe jetzt erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Geburtstag macht\r\n"
         "mich nicht gleich erwachsen!{Press}";
-#endif
 #else
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
         "Ich sehe jetzt erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Tag macht schon \r\n"
         "einen Unterschied!{Press}";
+#endif
 #endif
 
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherAre[] =

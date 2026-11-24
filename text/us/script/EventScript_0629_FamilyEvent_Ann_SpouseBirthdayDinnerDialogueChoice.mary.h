@@ -31,16 +31,15 @@ mary_text_table
         "I'd better apologize \r\n"
         "later...{Press}";
 
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
 #if defined(BUGFIX)
     // JP offers food and reassurance instead of blaming the player.
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "{NickName}, are you OK?\r\n"
         "You're working too hard.\r\n"
         "Here, eat this.{Press}\p"
         "You do remember that\r\n"
         "it's my birthday, right?{Press}";
 #else
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Are you feeling OK, \r\n"
         "{NickName}? {Press}\p"
         "If you're not sick, you've\r\n"
