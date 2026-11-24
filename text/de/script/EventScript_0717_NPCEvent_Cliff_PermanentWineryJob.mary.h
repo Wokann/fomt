@@ -67,9 +67,9 @@ mary_text_table
     const char gText_NPCEvent_Cliff_PermanentWineryJob_WineryNeedsHelpAfterAjaLeft[] =
         "Seit Aja in die Stadt \r\n"
         "gegangen ist, ist es sehr\r\n"
-// Manna is speaking about working with Duke, not with herself.
+// Manna speaks about Duke; the original line also omits the umlaut in fuer.
 #ifdef BUGFIX
-        "schwer f r Duke\r\n"
+        "schwer für Duke\r\n"
 #else
         "schwer f r Manna\r\n"
 #endif

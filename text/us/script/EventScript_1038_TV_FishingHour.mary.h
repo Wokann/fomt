@@ -95,7 +95,12 @@ mary_text_table
         "your one-stop-shop\r\n"
         "of fishing knowledge!\r\n"
         "\r\n"
+    // The regular episodes name the same host Angler Jake.
+#ifdef BUGFIX
+        "Today Angler Jake is on \r\n"
+#else
         "Today Anger Jake is on \r\n"
+#endif
         "vacation, so we'll have a\r\n"
         "special episode instead.\r\n"
         "\r\n"
@@ -223,7 +228,12 @@ mary_text_table
         "your one-stop-shop\r\n"
         "of fishing knowledge!\r\n"
         "\r\n"
+    // The regular episodes name the same host Angler Jake.
+#ifdef BUGFIX
+        "Today Angler Jake is on \r\n"
+#else
         "Today Anger Jake is on \r\n"
+#endif
         "vacation, so we'll have a\r\n"
         "special episode instead.\r\n"
         "\r\n"
@@ -341,7 +351,12 @@ mary_text_table
         "your one-stop-shop\r\n"
         "of fishing knowledge!\r\n"
         "\r\n"
+    // The regular episodes name the same host Angler Jake.
+#ifdef BUGFIX
+        "Today Angler Jake is on \r\n"
+#else
         "Today Anger Jake is on \r\n"
+#endif
         "vacation, so we'll have a\r\n"
         "special episode instead.\r\n"
         "\r\n"
@@ -452,7 +467,12 @@ mary_text_table
         "your one-stop-shop\r\n"
         "of fishing knowledge!\r\n"
         "\r\n"
+    // The regular episodes name the same host Angler Jake.
+#ifdef BUGFIX
+        "Today Angler Jake is on \r\n"
+#else
         "Today Anger Jake is on \r\n"
+#endif
         "vacation, so we'll have a\r\n"
         "special episode instead.\r\n"
         "\r\n"

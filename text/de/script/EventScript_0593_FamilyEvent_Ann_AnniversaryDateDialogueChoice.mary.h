@@ -34,12 +34,26 @@ mary_text_table
         "Hier bitte, {NickName}.{Press}";
 
     const char gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt[] =
+#if defined(BUGFIX)
+    // The deferred gift needs the empty-hands prompt.
+        "Ich möchte dir etwas\r\n"
+        "schenken, also mach\r\n"
+        "deine Hände leer, OK?{Press}";
+#else
         "Ich hatte so viel Spaß!\r\n"
         "Ich werde schlafen \r\n"
         "wie ein Stein...{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+#if defined(BUGFIX)
+    // Forgetting the anniversary makes Ann withhold the gift.
+        "Den Hochzeitstag vergessen?\r\n"
+        "Ich hatte ein Geschenk,\r\n"
+        "das du jetzt nicht bekommst!{Press}";
+#else
         "Ich möchte dir etwas \r\n"
         "schenken, also mach \r\n"
         "deine Hände leer, OK?{Press}";
+#endif
 };

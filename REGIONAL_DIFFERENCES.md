@@ -216,6 +216,10 @@
 
 五入口在U下：0286、0403用 `TalkAppendMessage`，0346、0535、0539用 `TalkMessage`。GBA原生入口分别传速率0和0x100，共用GameScene::TalkMessage；这是可选速率统一，不再作为必要的消息接口分裂，也不登记新BUG。[原生消息入口](src/script_engine.cc) · [农舍椅子](data/scripts/EventScript_0346_LocationInteraction_InspectUpgradedFarmhouseChair.mary.c) · [节日日历](data/scripts/EventScript_0403_SystemMenu_FestivalCalendar.mary.c)。重制msg_Scr_Map三语也有连续8条时间形式和对应家具／年终通知，只佐证文字；wait／page标记不证明调用函数、次数或速率。
 
+常开纯命名另修正25个具体符号：0473去除实际50G咖喱粉选项的100G误导标签；0589／0593／0597／0601／0605把菜单及回应中互倒的PlayerBirthday／SpouseBirthday按JP角色成对置换；0644／0647将错误海外婴儿语牵引的GooGoo恢复为WorkCompletionPrompt；1040按开新一局／平局重猜分别使用NewRoundCountdown／DrawReplayCountdown。仅符号和引用同步，正文、物理槽序、菜单判定与消息调用不变，不作为玩法修复。
+
+1079无马／幼马的泛化邀请属于[资格提示修复](BUGFIX.md#horse-race-ineligible-invitation)：BF已按JP原本NoHorse／YoungHorse分流，幼马明确需要成年马，U自动继承；default保原Shared和槽序。此处没有为海外旧共用反向增加JP对象。其余本轮[婚纪错位](BUGFIX.md#anniversary-misplaced-de-responses)、[艾利关怀](BUGFIX.md#elli-anniversary-care)、[婚礼工作选项](BUGFIX.md#de-rival-wedding-work-choice)及[电视翅尾反义](BUGFIX.md#princess-wings-and-tail)也都由BUGFIX修正，U无需另设一套纠错正文。
+
 家庭生日的同义／排版变体回JP同一角色；0811真实校译后恢复一份长名喘气反应。default／仅修复仍可保留原物理变体。常开命名按实际用途整理：0404通用奖牌确认不再限定HorseRace，1058普通夏季台风恢复SummerTyphoon，不因海外共用而命名为春夏交界的_2。
 
 后段仅U采用的正文选择包括：牧场问候补JP第二问；1057夏雨用普通雨预报，1058短雨选择本版较完整早晨预报；1243卡莲沿JP两感想角色选原文，珀布利恢复月光如异星的比喻、艾利在原品尝段末补感谢；1293玛丽给食物按JP角色选点心表达。未证明错误的雷暴增句、其他合法感想与短说法保留在default／仅修复，不全记作漏译或逻辑BUG。[天气](data/scripts/EventScript_1057_TV_WeatherChannelForecast.mary.c) · [娱乐天气](data/scripts/EventScript_1058_TV_EntertainmentChannelWeatherForecast.mary.c) · [赏月](data/scripts/EventScript_1243_FestivalEvent_MoonViewing_PartnerDialogueAndClosing.mary.c) · [南瓜祭配偶对话](data/scripts/EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration.mary.c)。重制只为含义佐证，不据资源表推断GBA应多播或少播消息。

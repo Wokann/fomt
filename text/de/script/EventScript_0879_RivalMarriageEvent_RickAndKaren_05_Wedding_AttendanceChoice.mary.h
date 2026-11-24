@@ -10,7 +10,12 @@ mary_text_table
         "Ok!";
 
     const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_AttendanceChoice_ChoiceKeepWorking[] =
+#if defined(BUGFIX)
+    // The player still has work, rather than assigning work to Carter.
+        "Ich muss arbeiten.";
+#else
         "Ich habe Arbeit für dich.";
+#endif
 
     const char gText_RivalMarriageEvent_RickAndKaren_05_Wedding_AttendanceChoice_CarterBeginsWeddingCelebration[] =
         "Dann lass uns feiern! {Press}";

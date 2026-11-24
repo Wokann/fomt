@@ -37,14 +37,31 @@ mary_text_table
         "Hier bitte, {NickName}.{Press}";
 
     const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt[] =
+#if defined(BUGFIX)
+    // The deferred gift needs the empty-hands prompt.
+        "Ich möchte dir etwas\r\n"
+        "schenken, also mach\r\n"
+        "deine Hände leer, OK?{Press}";
+#else
         "Ich hatte so viel Spaß!\r\n"
         "Ich werde schlafen \r\n"
         "wie ein Stein...{Press}";
+#endif
 
     const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+#if defined(BUGFIX)
+    // JP worries about illness and asks the player to rest.
+        "Du scherzt, oder?!\r\n"
+        "Geht es dir gut?{Press}\r\n"
+        "Du hast vielleicht Fieber.{Press}\p"
+        "Es ist unser Hochzeitstag,\r\n"
+        "aber das muss jetzt warten.\r\n"
+        "Ruh dich heute aus.{Press}";
+#else
         "Du scherzt, oder?!\r\n"
         "Du hast besser Fieber,\r\n"
         "ansonsten gibt es keine {Press}\r\n"
         "Entschuldigung hierfür!{Press}\p"
         "Es ist unser Hochzeitstag! {Press}";
+#endif
 };

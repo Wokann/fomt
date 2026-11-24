@@ -191,8 +191,14 @@ mary_text_table
         "              \r\n"
         "Aber du siehst nicht viel\r\n"
         "anders als wir Menschen aus.\r\n"
+    // The wings and tail are his differences from humans.
+#ifdef BUGFIX
+        "Bis auf Flügel und Schwanz\r\n"
+        "am Rücken bist du wie wir.\r\n"
+#else
         "Du hast keine Flügel oder\r\n"
         "einen Schwanz oder so was.\r\n"
+#endif
         "Ich dachte, ein Dämonen- \r\n"
         "meister wäre größer,\r\n"
         "hätte viele Arme und \r\n"

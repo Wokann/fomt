@@ -23,7 +23,7 @@ void EventScript_1079_FestivalEvent_HorseRace_EntryInvitation(void)
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
         SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(UNIFY_REGIONS) || defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
         TalkMessage(gText_FestivalEvent_HorseRace_EntryInvitation_NoHorse);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
         TalkMessage(gText_FestivalEvent_HorseRace_EntryInvitation_SharedNoHorseOrYoungHorse);
@@ -38,7 +38,7 @@ void EventScript_1079_FestivalEvent_HorseRace_EntryInvitation(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(UNIFY_REGIONS) || defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
             TalkMessage(gText_FestivalEvent_HorseRace_EntryInvitation_YoungHorse);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
             TalkMessage(gText_FestivalEvent_HorseRace_EntryInvitation_SharedNoHorseOrYoungHorse);

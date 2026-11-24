@@ -28,12 +28,12 @@
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
-| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 18 |
+| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 19 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 48 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 51 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
-| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 26 |
-| **合计** | | **168** |
+| [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 27 |
+| **合计** | | **173** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -461,6 +461,7 @@ JP 同时采用海外版的入冬重置和冬季停长逻辑。
 | [女神猜拳显示手势与实际分支不一致](#goddess-rps-options) | US、EU、DE | 已接入 |
 | [海外艾利产后生日选项错位](#audit-a07) | US、EU、DE | 已接入 |
 | [海外女神产前生日选项错位](#audit-a08) | US、EU、DE | 已接入 |
+| [德版婚礼暂缓出席选项把自己工作译成给对方工作](#de-rival-wedding-work-choice) | DE | 已接入 |
 | [钓获提示长名称覆盖行首](#fishing-message-width) | US、EU、DE | 已接入 |
 | [德版联机确认选项残留英语](#de-link-options) | DE | 已接入 |
 | [德版收获结果误用喂食栏目](#de-harvest-labels) | DE | 已接入 |
@@ -637,6 +638,25 @@ JP为纪念日、玩家生日、女神生日；海外现有字符串足够恢复
 只调整产前菜单参数顺序，产后已经正确的菜单和判定保持不变。 BUGFIX关闭时保留原文本及引用。
 
 **相关文件：** [女神生日两套菜单](data/scripts/EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice.mary.c)
+
+<a id="de-rival-wedding-work-choice"></a>
+### 德版婚礼暂缓出席选项把自己工作译成给对方工作
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+0879、0919、0957拒绝立即出席婚礼的选项写 `Ich habe Arbeit für dich.`（我有工作给你），将玩家尚有工作变成给卡特派工作。JP为 `まだ仕事がのこっている`，US／EU为 `I've got work to do.`（我还有工作）。
+
+**判断依据：**
+
+GBA第二选项实际设置暂缓出席标志，卡特随后让玩家工作结束再来；同版0899、0937已有正确选项 `Ich muss arbeiten.`。本轮未找到重制三场婚礼的明确三语对应段，结论由GBA调用分支和本作其他正确德语闭合，不借相近婚礼对白证明。
+
+**修复方式：**
+
+仅在BUGFIX下将三处选项改用 `Ich muss arbeiten.`（我得工作），保留菜单位置、无Press形式及原暂缓逻辑；U自动继承，默认不变。
+
+**相关文件：** [0879](data/scripts/EventScript_0879_RivalMarriageEvent_RickAndKaren_05_Wedding_AttendanceChoice.mary.c) · [0919](data/scripts/EventScript_0919_RivalMarriageEvent_AnnAndCliff_05_Wedding_AttendanceChoice.mary.c) · [0957](data/scripts/EventScript_0957_RivalMarriageEvent_ElliAndDoctor_05_Wedding_AttendanceChoice.mary.c)
 
 <a id="fishing-message-width"></a>
 ### 钓获提示长名称覆盖行首
@@ -1316,23 +1336,23 @@ JP／US／EU 分隔标题与说明，同版其他汤类也如此
 **相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="food-spelling"></a>
-### 拼写：苹果 `0x28`、菠萝汁 `0x64`
+### 食品名称及甜点说明的英文拼写
 
 **受影响版本：** US、EU。
 
 **原版内容与差异：**
 
-US／EU 分别写 eated、Pinapple
+US／EU 分别写 `eated`、`Pinapple`；1012烤苹果食谱另把 `dessert`（甜点）写成 `desert`（沙漠）。
 
 **判断依据：**
 
-同版物品已有 eaten、Pineapple
+同版物品已有 `eaten`、`Pineapple`；食谱JP明确为 `デザート`（甜点），DE为 `Nachtisch`（甜点）。重制 `msg_Scr_Talk.txt` JA6597、US5908、DE6278同场景也介绍苹果加平底锅的甜食，但英文未逐字使用dessert，只佐证食谱含义；不据此替换本作地区料理名。
 
 **修复方式：**
 
-只修正错误拼写
+只修正错误拼写；食谱在BUGFIX下仅加回 `dessert` 缺少的s，保留既有Baked Apple名称修复、原句及控制。
 
-**相关文件：** [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
+**相关文件：** [烤苹果食谱](data/scripts/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.c) · [US食谱](text/us/script/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.h) · [EU食谱](text/eu/script/EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes.mary.h) · [物品与出货表](src/item.cc) · [JP](text/jp/item_1.cc) · [US](text/us/item_1.cc) · [EU](text/eu/item_1.cc) · [DE](text/de/item_1.cc) · [JP](text/jp/item_2.cc) · [US](text/us/item_2.cc) · [EU](text/eu/item_2.cc) · [DE](text/de/item_2.cc) · [JP](text/jp/item_3.cc) · [US](text/us/item_3.cc) · [EU](text/eu/item_3.cc) · [DE](text/de/item_3.cc)
 
 <a id="category-dialogue"></a>
 ## 剧情对话、人物与称呼
@@ -1340,6 +1360,9 @@ US／EU 分别写 eated、Pinapple
 <a id="localization-text"></a>
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [德版婚纪领礼提示及答错回应使用其他场景正文](#anniversary-misplaced-de-responses) | DE | 已接入 |
+| [艾利婚纪答错后的身体关切被改成责备](#elli-anniversary-care) | US、EU、DE | 已接入 |
+| [赛马无马及幼马分支共用误导性参赛邀请](#horse-race-ineligible-invitation) | US、EU、DE | 已接入 |
 | [德版深夜独白变成对玩家的劝问](#de-late-night-self-talk) | DE | 已接入 |
 | [海外加工机领取提示重复送货句](#blacksmith-maker-ready-message) | US、EU、DE | 已接入 |
 | [海外珀布利生日感想将不能立即成熟译为肯定](#popuri-birthday-maturity-wording) | US、EU、DE | 已接入 |
@@ -1388,6 +1411,63 @@ US／EU 分别写 eated、Pinapple
 | [玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗](#manna-saibara-family) | US、EU、DE | 已接入 |
 | [卡莲对话中的错译、残句与笔误](#karen-dialogue-text) | US、EU、DE | 已接入 |
 | [琳对话中的错译、漏句与笔误](#ann-dialogue-text) | US、EU、DE | 已接入 |
+
+<a id="anniversary-misplaced-de-responses"></a>
+### 德版婚纪领礼提示及答错回应使用其他场景正文
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+0593琳、0597艾利在答对结婚纪念日却手持物品时，本应提示先空手领礼；DE却播 `Ich hatte so viel Spaß! Ich werde schlafen wie ein Stein...`（玩得很高兴，要睡得很沉），误用晚餐独白。0593答“自己的生日”后的生气回应还误用 `Ich möchte dir etwas schenken ...`（我想送礼，请空手），丢失“忘了婚纪，所以不送礼”的拒绝。
+
+**判断依据：**
+
+持物分支和答错分支的实际调用由GBA脚本区分；JP分别为收起手中物品，以及忘记婚纪后撤回礼物，US／EU也保留这两种意思。重制 `msg_Scr_Other.txt` JA10663–10669、US8527–8530、DE9008–9012仍为琳因忘记婚纪撤回礼物；JA10679–10681、US8537–8538、DE9020–9022为先空手领礼。艾利的同类持物错误由GBA原句和分支确认，不把琳的重制段冒称艾利逐字来源。
+
+**修复方式：**
+
+BF为两人的持物对象复用本版现成空手领礼原句；琳的错误生日回应改为 `Den Hochzeitstag vergessen? Ich hatte ein Geschenk, das du jetzt nicht bekommst!`（忘了结婚纪念日？我准备了礼物，但现在不给你）。两类角色各自独立，default原文和代码保留，U继承修复。
+
+**相关文件：** [0593](data/scripts/EventScript_0593_FamilyEvent_Ann_AnniversaryDateDialogueChoice.mary.c) · [0597](data/scripts/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.c)
+
+<a id="elli-anniversary-care"></a>
+### 艾利婚纪答错后的身体关切被改成责备
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP先问 `体の具合は大丈夫？`（身体没事吧），猜测发烧，并说 `今日は安静にしててね。`（今天静养吧）；海外改成 `there's no excuse for this!`／`ansonsten gibt es keine Entschuldigung hierfür!`（否则没有借口），缺少静养关切。英语开头另有 `Your kidding` 笔误。
+
+**判断依据：**
+
+GBA该分支是玩家把婚纪答成自己的生日，JP完整正文明确关怀；扣好感与生气头像不等于可以把字面关切反译成责备，也没有疾病状态读取或强制休息。重制同场 `msg_Scr_Other.txt` JA10786–10797、US8603–8609、DE9103–9110已重写为对玩笑和忘记婚纪的失望，没有发烧及静养句；本修复依据GBA JP，不冒称重制保留同句。
+
+**修复方式：**
+
+BF保留原开头语气，英语改 `You're kidding, aren't you?!`，随后补身体是否舒服、可能发烧、婚纪先放一边与今天休养；德语保 `Du scherzt, oder?!` 并恢复对应关怀。保持海外原有三个Press和一个分页的顺序，不新增消息调用或疾病机制；U自动继承，默认原文不动。
+
+**相关文件：** [0597](data/scripts/EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice.mary.c)
+
+<a id="horse-race-ineligible-invitation"></a>
+### 赛马无马及幼马分支共用误导性参赛邀请
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+海外在无马和只有幼马两种不报名分支，共用 `If you've got a Horse, you should consider competing!`（有马就应该考虑报名）一类邀请，幼马句也没有成年条件。JP分两角色：无马时“要是有马，本来希望你参赛”，幼马时 `大人のウマがいればエントリーしてもらいたかった`（要是有成年马，本来希望你报名）。
+
+**判断依据：**
+
+GBA这两分支只准备NPC名单，不给玩家报名选择，成年马才进入报名流程。重制 `msg_Scr_Year.txt` JA90–95、US81–86、DE89–94均明确成年马：`If only you had an adult horse ...`／`Wenn du nur ein ausgewachsenes Pferd ...`（要是你有成年马就好了）。它只佐证资格含义，不把重制的时间安排移植到GBA。
+
+**修复方式：**
+
+BF在海外沿JP已有NoHorse／YoungHorse角色分流。英文分别为 `If you had a Horse`／`If you had an adult Horse`，再说本希望玩家报名；德文分别用 `Wenn du ein Pferd hättest`／`Mit einem erwachsenen Pferd`，保留赛程通知和原确认、分页。default保留原Shared对象及调用；U继承BF并沿JP原本两槽，不新增JP并集对象。成年马报名、奖励和NPC名单逻辑不变。
+
+**相关文件：** [1079](data/scripts/EventScript_1079_FestivalEvent_HorseRace_EntryInvitation.mary.c)
 
 <a id="de-late-night-self-talk"></a>
 ### 德版深夜独白变成对玩家的劝问
@@ -1461,7 +1541,7 @@ GBA JP提供完整原义。重制 `msg_Scr_Other.txt` JA11498–11505、US9073�
 
 **修复方式：**
 
-重译对应海外全文为关切过劳、请吃食物、确认其实记得生日；英语含“You’re working too hard.”／“Here, eat this.”，德语含 `Du arbeitest zu viel.`／`Hier, iss das.`（工作过头了／来吃这个）。保留称呼与正确控制；DE两槽均修，仅修复仍保留原槽和调用。
+重译对应海外全文为关切过劳、请吃食物、确认其实记得生日；英语含“You’re working too hard.”／“Here, eat this.”，德语含 `Du arbeitest zu viel.`／`Hier, iss das.`（工作过头了／来吃这个）。保留称呼与正确控制；DE两槽均修，仅修复仍保留原槽和调用。DE仍在BF被调用的另一道歉物理槽 `_2` 写成 `bes ser sp ter...`，补为本版主槽已有的 `besser später...`（之后再道歉）；U原本共用正确主槽，不能代替BF-only也修正破字。
 
 **相关文件：** [脚本](data/scripts/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP](text/jp/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [US](text/us/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [EU](text/eu/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [DE](text/de/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h)
 
@@ -2009,7 +2089,7 @@ US 缺所有格 `Your`，EU 已修正，可直接作为同系列依据。
 
 **修复方式：**
 
-仅把这处Manna改为Duke，保留其余句子。
+把这处Manna改为Duke；DE同一既有修复体中的 `schwer f r Duke` 还缺少für的ü，补为 `schwer für Duke`（只有杜克和我很辛苦），不改变其余句子。此拼写可由本作其他für用法确认；本轮未匹配到重制同句，不冒称重制提供整段依据。默认原称谓与破字均保留，U自动继承。
 
 **相关文件：** [共享脚本](data/scripts/EventScript_0717_NPCEvent_Cliff_PermanentWineryJob.mary.c)
 
@@ -2183,17 +2263,17 @@ US／EU在农场高好感复谈先播放日文两页，再播放英文 `The farm
 
 **原版内容与差异：**
 
-出现Sopha、Barely、Lillian、ready Basil、anythign等与对象或句意不符的写法。
+出现Sopha、Barely、Lillian、ready Basil、anythign等与对象或句意不符的写法；1026格雷谈Mary父亲的故事写成 `alll the time`（总是），1038四个特辑把主持人 `Angler Jake` 误拼成 `Anger Jake`；0605玛丽在答成玩家生日时误写 `You're birthday!?`（你是生日），应为所有格 `Your birthday!?`（你的生日）。
 
 **判断依据：**
 
-Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应人物确认；不把正常地区译名差异当作错误。
+Sofa、Barley、Lillia、Basil及anything可由本作其他正确文本和对应人物确认。1026的JP为经常听到Mary父亲的故事，重制 `msg_Scr_Talk.txt` JA12053、US10849、DE11559也保留该人物关系；GBA DE省略频率不另判错误。1038常规12集已有 `Angler Jake`（钓鱼专家Jake），JP特辑与常规集均为釣り太郎、DE均为Angler Jake；重制 `msg_Scr_Television.txt` JA9706、US8686、DE9733也称同一主持休假，但Mr. Fisher／Herr Fischer是重制译名，不替换GBA的Jake。
 
 **修复方式：**
 
-仅修对应单词，不改角色ID或脚本条件。
+仅修对应单词，不改角色ID或脚本条件。1026把BF分支的 `alll` 改为 `all`，保留既有超宽尾空格修复；1038第4、8、12、16集只补回 `Angler` 的l，保留各特辑完整内容和已有鱼王条件修复。0605只修Your的所有格，不改生日菜单与好感判定；0597的Your／You're另随[完整关怀修复](#elli-anniversary-care)处理。默认原拼写不变。
 
-**相关文件：** [共享脚本](data/scripts/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [共享脚本](data/scripts/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](text/jp/scene_special_merchant_shop.cc) · [US](text/us/scene_special_merchant_shop.cc) · [EU](text/eu/scene_special_merchant_shop.cc) · [DE](text/de/scene_special_merchant_shop.cc) · [共享脚本](data/scripts/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [共享脚本](data/scripts/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
+**相关文件：** [格雷对白](data/scripts/EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses.mary.c) · [钓鱼节目](data/scripts/EventScript_1038_TV_FishingHour.mary.c) · [US钓鱼文本](text/us/script/EventScript_1038_TV_FishingHour.mary.h) · [EU钓鱼文本](text/eu/script/EventScript_1038_TV_FishingHour.mary.h) · [共享脚本](data/scripts/EventScript_0236_LocationInteraction_InspectClinic1FSofa.mary.c) · [共享脚本](data/scripts/EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses.mary.c) · [JP](text/jp/scene_special_merchant_shop.cc) · [US](text/us/scene_special_merchant_shop.cc) · [EU](text/eu/scene_special_merchant_shop.cc) · [DE](text/de/scene_special_merchant_shop.cc) · [共享脚本](data/scripts/EventScript_1090_FestivalEvent_SpringHorseRace_SpectatorDialogue_Ann.mary.c) · [共享脚本](data/scripts/EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses.mary.c)
 
 <a id="winery-job-decline-duke-dialogue"></a>
 ### 玩家拒绝采葡萄时杜克向未到场的克里夫讲话
@@ -3280,6 +3360,7 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [《我亲爱的公主》第4集否认魔王已有的翅膀和尾巴](#princess-wings-and-tail) | US、EU、DE | 已接入 |
 | [冬日暖晴预报被译为早春](#winter-weather-season-wording) | US、EU、DE | 已接入 |
 | [F-3.14节目日期、跨赛季复用与成绩错误](#audit-a10) | JP、US、EU、DE | 已接入 |
 | [JP：《まことクンちぇんじ》第24集说话人写反](#audit-e01) | JP | 已接入 |
@@ -3306,6 +3387,25 @@ JP 种植指南的秋季作物清单列有红薯，海外三版漏列。
 | [人物介绍节目漏播下期预告和家庭成员](#profile-tv-missing-messages) | US、EU、DE | 已接入 |
 | [人物介绍节目生日与人物数据不符](#profile-tv-birthdays) | 四版（各项受影响版本不同） | 已接入 |
 | [人物介绍节目循环开场重复介绍](#profile-tv-shared-text) | US、EU、DE（JP为共用与呈现对照） | 已接入 |
+
+<a id="princess-wings-and-tail"></a>
+### 《我亲爱的公主》第4集否认魔王已有的翅膀和尾巴
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+公主对刚自称魔王的候选者说，JP为 `違うのって背中に羽根と尻尾が生えてるところぐらいだし。`（与人类不同的地方，只是背后长着翅膀和尾巴）。US／EU却说 `you don't have wings or a tail`，DE为 `Du hast keine Flügel oder einen Schwanz`（你没有翅膀或尾巴），将原意否定。
+
+**判断依据：**
+
+GBA第22集英文仍提到他的翅膀妨碍仰卧，与上述否定矛盾。重制 `msg_Scr_Television.txt` JA1151同样说背后的翅膀和尾巴；US1065、DE1191把误认的黑披风描述为翅膀，并写出背后的长尾。重制英德为自由改写，只用于确认他有翼尾，不移植披风等新增细节，也不据转储推断GBA调用。
+
+**修复方式：**
+
+仅在BUGFIX下纠正这处否定。英文沿原句改为 `I mean, apart from the wings and tail on your back.`，德文为 `Bis auf Flügel und Schwanz am Rücken bist du wie wir.`（除了背上的翅膀和尾巴，你和我们一样）。保留其后更大身形、多臂、奇异光环的设问、原空白行及确认符。U自动继承；默认原文及全部模式的槽序、调用不变。
+
+**相关文件：** [共享脚本](data/scripts/EventScript_1034_TV_MyDearPrincess.mary.c) · [JP](text/jp/script/EventScript_1034_TV_MyDearPrincess.mary.h) · [US](text/us/script/EventScript_1034_TV_MyDearPrincess.mary.h) · [EU](text/eu/script/EventScript_1034_TV_MyDearPrincess.mary.h) · [DE](text/de/script/EventScript_1034_TV_MyDearPrincess.mary.h)
 
 <a id="audit-a10"></a>
 ### F-3.14节目日期、跨赛季复用与成绩错误

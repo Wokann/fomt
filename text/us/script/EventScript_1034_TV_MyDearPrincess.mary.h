@@ -169,9 +169,16 @@ mary_text_table
         "　　　　　　　　　　　　　　\r\n"
         "But you don't look all that\r\n"
         "different from us humans. I\r\n"
+    // The wings and tail are his differences from humans.
+#ifdef BUGFIX
+        "mean, apart from the wings\r\n"
+        "and tail on your back. A\r\n"
+        "demon lord ought to\r\n"
+#else
         "mean you don't have wings or\r\n"
         "a tail, or anything like\r\n"
         "that. A demon lord ought to\r\n"
+#endif
         "be bigger, and have a bunch\r\n"
         "of arms, and give off a\r\n"
         "weird aura or something,\r\n"

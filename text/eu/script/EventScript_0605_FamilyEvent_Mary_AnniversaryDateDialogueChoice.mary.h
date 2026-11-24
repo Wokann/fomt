@@ -36,7 +36,12 @@ mary_text_table
         "hands, OK?{Press}";
 
     const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+#if defined(BUGFIX)
+    // The birthday takes the possessive Your, not You are.
+        "Your birthday!?\r\n"
+#else
         "You're birthday!?\r\n"
+#endif
         "That's the most insensitive \r\n"
         "thing I've ever heard!{Press}\p"
         "Now you're not getting\r\n"

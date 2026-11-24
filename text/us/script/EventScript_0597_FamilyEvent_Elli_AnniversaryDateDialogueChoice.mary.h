@@ -39,9 +39,18 @@ mary_text_table
         "hands, OK?{Press}";
 
     const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+#if defined(BUGFIX)
+    // JP worries about illness and asks the player to rest.
+        "You're kidding, aren't you?!\r\n"
+        "Are you feeling all right?{Press}\r\n"
+        "Do you have a fever?{Press}\p"
+        "It's our anniversary, but\r\n"
+        "that can wait. Rest today.{Press}";
+#else
         "Your kidding, aren't you?!\r\n"
         "Do you have a fever,\r\n"
         "because if you don't {Press}\r\n"
         "there's no excuse for this!{Press}\p"
         "It's our anniversary, silly!{Press}";
+#endif
 };

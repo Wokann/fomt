@@ -137,9 +137,9 @@ mary_text_table
 
     const char gText_NPCEvent_Gray_DialogueAndGiftResponses_TownMorningMarriedToMaryFirstConversationDiscussesBasilsStories[] =
         "I hear neat stories from\r\n"
-// A trailing space exceeds the 28-column row and overwrites its first glyph.
+    // Correct "alll"; the trailing space also overwrites the first glyph.
 #ifdef BUGFIX
-        "Mary's father alll the time.{Press}";
+        "Mary's father all the time.{Press}";
 #else
         "Mary's father alll the time. {Press}";
 #endif

@@ -52,7 +52,12 @@ mary_text_table
 #ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
         "Ich entschuldige mich \r\n"
+#if defined(BUGFIX)
+    // Restore the complete words besser spaeter.
+        "besser später...{Press}";
+#else
         "bes ser sp ter...{Press}";
+#endif
 #endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy[] =

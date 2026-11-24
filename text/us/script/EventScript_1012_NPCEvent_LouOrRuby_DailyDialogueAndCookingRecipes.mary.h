@@ -184,7 +184,12 @@ mary_text_table
 #endif
         "All you need are Apples\r\n"
         "and a Frying Pan.{Press}\p"
+    // The recipe is a dessert, not a desert.
+#ifdef BUGFIX
+        "It's great as a dessert. \r\n"
+#else
         "It's great as a desert. \r\n"
+#endif
         "Add sugar if you want.{Press}";
 
     const char gText_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes_Inn2FLowFriendshipFirstConversation[] =
