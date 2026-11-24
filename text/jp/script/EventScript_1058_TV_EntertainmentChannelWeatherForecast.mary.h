@@ -53,7 +53,7 @@ mary_text_table
         "朝から雨で、少し肌寒い一日に\r\n"
         "なるっちょ！{Press}";
 
-    const char gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon[] =
         "明日の天気予報っちょ！　　　\r\n"
         "台風が直撃するもようっちょ！\r\n"
         "みんな戸締りは厳重にっちょ！\r\n"

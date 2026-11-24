@@ -62,7 +62,7 @@ mary_text_table
         "und regnerischer Tag.{Press}";
 
 #ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon[] =
         "Hier das Wetter für morgen!\r\n"
         "Ein Taifun wird vorbei-\r\n"
         "ziehen, also halte alle\r\n"

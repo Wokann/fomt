@@ -32,7 +32,7 @@ mary_text_table
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater[] =
         "後であやまっておこう…{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "{NickName}、だいじょうぶ？\r\n"
         "仕事のしすぎだよ。ほら、\r\n"
         "これ食べて。{Press}\p"
@@ -53,7 +53,7 @@ mary_text_table
         "思って、ちょっとドキドキして\r\n"
         "いたんだ。{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes[] =
         "父さんに教えてもらった\r\n"
         "メニューだから、どうしても\r\n"
         "宿屋のメニューと同じ物に{Press}\r\n"
@@ -67,7 +67,7 @@ mary_text_table
         "{Baby}の誕生日";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "{NickName}、だいじょうぶ？\r\n"
         "仕事のしすぎだよ。ほら、\r\n"
         "これ食べて。{Press}\p"
@@ -83,7 +83,7 @@ mary_text_table
         "思って、ちょっとドキドキして\r\n"
         "いたんだ。{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2[] =
         "父さんに教えてもらった\r\n"
         "メニューだから、どうしても\r\n"
         "宿屋のメニューと同じ物に{Press}\r\n"

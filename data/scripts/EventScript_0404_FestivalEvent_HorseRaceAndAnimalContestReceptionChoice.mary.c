@@ -142,7 +142,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation);
                             TalkClose();
                             FadeOutScreen(SCREEN_FADE_STYLE_WHITE_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                             OpenHorseRaceMedalExchange();
@@ -176,9 +176,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                 SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                 SetTalkNameplateCharacter(CHARACTER_THOMAS);
 #if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
+                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry);
 #elif defined(REGION_DE)
-                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
+                TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation);
 #endif
                 TalkClose();
                 TalkOpen();
@@ -195,9 +195,9 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
 #if defined(UNIFY_REGIONS)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation);
 #elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation);
 #elif defined(REGION_DE)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt);
+                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry);
 #endif
                             TalkClose();
                             FadeOutScreen(SCREEN_FADE_STYLE_WHITE_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

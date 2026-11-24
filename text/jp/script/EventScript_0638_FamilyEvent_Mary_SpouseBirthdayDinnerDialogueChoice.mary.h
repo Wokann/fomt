@@ -30,7 +30,7 @@ mary_text_table
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater[] =
         "後であやまっておこう…{Press}";
 
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth[] =
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer[] =
         "おもしろい事言うのね。\r\n"
         "あなた見ているとあきないわ。\r\n"
         "ホントに小説の主人公みたい。{Press}\p"
@@ -55,7 +55,7 @@ mary_text_table
         "{Baby}の誕生日";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2[] =
+    const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
         "おもしろい事言うのね。\r\n"
         "あなた見ているとあきないわ。\r\n"
         "ホントに小説の主人公みたい。{Press}\p"

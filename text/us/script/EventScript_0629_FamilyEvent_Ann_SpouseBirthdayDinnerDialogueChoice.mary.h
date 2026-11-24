@@ -31,7 +31,7 @@ mary_text_table
         "I'd better apologize \r\n"
         "later...{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Are you feeling OK, \r\n"
         "{NickName}? {Press}\p"
         "If you're not sick, you've\r\n"
@@ -50,7 +50,7 @@ mary_text_table
         "I was afraid you wouldn't.{Press}\p"
         "I shouldn't have doubted!{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes[] =
         "Sorry all my food is the\r\n"
         "same as at the Inn. {Press}\p"
         "I learned it all from dad!{Press}";
@@ -63,7 +63,7 @@ mary_text_table
         "{Baby}'s birthday";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Are you feeling OK, \r\n"
         "{NickName}? {Press}\p"
         "If you're not sick, you've\r\n"
@@ -76,7 +76,7 @@ mary_text_table
         "I was afraid you wouldn't.{Press}\p"
         "I shouldn't have doubted!{Press}";
 
-    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2[] =
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2[] =
         "Sorry all my food is the\r\n"
         "same as at the Inn. {Press}\p"
         "I learned it all from dad!{Press}";

@@ -60,7 +60,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday);
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
@@ -101,7 +101,7 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes);
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
@@ -130,9 +130,9 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
 #if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2);
 #elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -177,9 +177,9 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
 #if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2);
 #elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe);
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

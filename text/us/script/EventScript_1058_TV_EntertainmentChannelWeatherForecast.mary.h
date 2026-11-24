@@ -57,7 +57,7 @@ mary_text_table
         "it will be a cold day.{Press}";
 
 #ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2[] =
+    const char gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon[] =
         "Here's tomorrow's forecast!\r\n"
         "A typhoon will be passing\r\n"
         "through, so lock down all\r\n"

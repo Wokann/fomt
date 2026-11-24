@@ -40,7 +40,7 @@ mary_text_table
         "押すと、買い方の説明が\r\n"
         "出るから見ておくといいよ。{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation[] =
         "メダルを景品に替えるんだね。{Press}";
 
 #ifdef UNIFY_REGIONS
@@ -52,7 +52,7 @@ mary_text_table
         "手に物を持ったまま\r\n"
         "景品交換はできないよ。{Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry[] =
         "メダルを景品に替えるのかい？{Press}";
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes[] =

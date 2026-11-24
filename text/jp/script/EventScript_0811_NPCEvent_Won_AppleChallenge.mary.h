@@ -23,7 +23,7 @@ mary_text_table
         "·デリシャス·ワンダフルりん\r\n"
         "ご！{Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName[] =
         "はぁはぁはぁ…\r\n"
         "という名前ある。{Press}";
 
@@ -40,7 +40,7 @@ mary_text_table
         "ルりんご！{Press}";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
         "はぁはぁはぁ…\r\n"
         "という名前ある。{Press}";
 #endif
@@ -58,7 +58,7 @@ mary_text_table
         "んご！{Press}";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
         "はぁはぁはぁ…\r\n"
         "という名前ある。{Press}";
 #endif

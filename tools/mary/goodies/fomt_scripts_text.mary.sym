@@ -3429,16 +3429,16 @@ mary_script_symbols
         gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_SoYoureNotReadyAfterAll,
         gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_BettingScreenSelectButtonInstructions,
         #if defined(REGION_DE)
-            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt,
+            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes,
-            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt,
+            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem_2,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt,
         #else
-            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt,
+            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem,
-            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt,
+            gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry,
             gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MenuExchangeMedalsForPrizes,
             #if defined(REGION_US) || defined(REGION_EU)
                 gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_CowContestJudgingStartPrompt,
@@ -5329,12 +5329,12 @@ mary_script_symbols
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ItsMyBirthdayHowCanYou,
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater,
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatItsMyBirthdayTodayYou,
-        gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy,
+        gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday,
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou,
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday,
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
         #if defined(REGION_DE)
-            gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2,
+            gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday_2,
             gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2,
         #endif
         gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherAre,
@@ -5370,18 +5370,18 @@ mary_script_symbols
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_YourBirthday,
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ItMayNotMatterToYou,
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater,
-        gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf,
+        gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday,
         #if defined(REGION_DE)
             gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2,
         #endif
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy,
-        gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe,
+        gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes,
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday,
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
         #if defined(REGION_DE)
-            gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AreYouFeelingOKNickNameIf_2,
+            gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2,
             gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2,
-            gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_SorryAllMyFoodIsThe_2,
+            gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2,
         #endif
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ItDoesntTakeMuchToRemember,
         gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_HurryUpAndFinishTodayIs,
@@ -5493,13 +5493,13 @@ mary_script_symbols
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_YourBirthday,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_OurAnniversaryHuhInThatCase,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater,
-        gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth,
+        gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_ThatsRightTodayImAYear,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_ItsNoFunHavingYourBirthday,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_BabySBirthday,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2,
+            gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2,
         #endif
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherDoesn,
         gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_HurryUpAndFinishTodayIs,
@@ -7638,16 +7638,16 @@ mary_script_symbols
         gText_NPCEvent_Won_AppleChallenge_WonExplainsApplesAreSpecial,
         gText_NPCEvent_Won_AppleChallenge_WonIntroducesSUGDWApple,
         gText_NPCEvent_Won_AppleChallenge_WonExpandsSUGDWName,
-        gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName,
+        gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName,
         gText_NPCEvent_Won_AppleChallenge_WonIntroducesHMSGBApple,
         gText_NPCEvent_Won_AppleChallenge_WonExpandsHMSGBName,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2,
+            gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2,
         #endif
         gText_NPCEvent_Won_AppleChallenge_WonIntroducesAEPFEApple,
         gText_NPCEvent_Won_AppleChallenge_WonExpandsAEPFEName,
         #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3,
+            gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3,
         #endif
         gText_NPCEvent_Won_AppleChallenge_WonUrgesPlayerToTasteApple,
         gText_NPCEvent_Won_AppleChallenge_WonOffersEachAppleFor500G,
@@ -13959,7 +13959,7 @@ mary_script_symbols
         gText_TV_EntertainmentChannelWeatherForecast_SummerToFallClear,
         gText_TV_EntertainmentChannelWeatherForecast_SummerToFallRain,
         #if defined(REGION_JP)
-            gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2,
+            gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon,
         #endif
         gText_TV_EntertainmentChannelWeatherForecast_FallToWinterClear,
         gText_TV_EntertainmentChannelWeatherForecast_NoSignalRain,

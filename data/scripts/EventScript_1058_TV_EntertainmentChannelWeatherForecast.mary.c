@@ -105,7 +105,7 @@ void EventScript_1058_TV_EntertainmentChannelWeatherForecast(void)
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_WEATHER_TYPHOON);
 #if defined(UNIFY_REGIONS) || defined(REGION_JP)
-                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon_2);
+                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SummerTyphoon);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                         var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SpringToSummerTyphoon);
 #endif

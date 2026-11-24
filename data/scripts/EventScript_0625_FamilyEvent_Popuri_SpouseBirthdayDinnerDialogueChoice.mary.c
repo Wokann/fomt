@@ -80,7 +80,7 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy);
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday);
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
                         WaitFrames(60);
@@ -148,9 +148,9 @@ void EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice(void
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
 #if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2);
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday_2);
 #elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy);
+                        TalkMessage(gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

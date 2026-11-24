@@ -29,16 +29,16 @@ void EventScript_0811_NPCEvent_Won_AppleChallenge(void)
     SetTalkPortrait(TALK_PORTRAIT_WON_NORMAL);
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonExpandsSUGDWName);
     SetTalkPortrait(TALK_PORTRAIT_WON_ANGRY);
-    TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName);
+    TalkMessage(gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName);
     SetTalkPortrait(TALK_PORTRAIT_WON_HAPPY);
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonIntroducesHMSGBApple);
     SetTalkPortrait(TALK_PORTRAIT_WON_NORMAL);
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonExpandsHMSGBName);
     SetTalkPortrait(TALK_PORTRAIT_WON_ANGRY);
 #if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2);
+    TalkMessage(gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2);
 #elif defined(REGION_JP)
-    TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName);
+    TalkMessage(gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName);
 #endif
     SetTalkPortrait(TALK_PORTRAIT_WON_HAPPY);
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonIntroducesAEPFEApple);
@@ -46,9 +46,9 @@ void EventScript_0811_NPCEvent_Won_AppleChallenge(void)
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonExpandsAEPFEName);
     SetTalkPortrait(TALK_PORTRAIT_WON_ANGRY);
 #if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3);
+    TalkMessage(gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3);
 #elif defined(REGION_JP)
-    TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName);
+    TalkMessage(gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName);
 #endif
     SetTalkPortrait(TALK_PORTRAIT_WON_NORMAL);
     TalkMessage(gText_NPCEvent_Won_AppleChallenge_WonUrgesPlayerToTasteApple);

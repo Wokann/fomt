@@ -20,7 +20,7 @@ mary_text_table
         "Super Ultra Great Delicious\r\n"
         "Wonderful Apple!{Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName[] =
         "Sometimes I can't remember\r\n"
         "all of it...! {Press}";
 
@@ -33,7 +33,7 @@ mary_text_table
         "Miracle Sweet Gorgeous \r\n"
         "Beautiful  Apple!{Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_2[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
         "That one is hard to \r\n"
         "remember, too!{Press}";
 
@@ -46,7 +46,7 @@ mary_text_table
         "Angel Eternal Pure \r\n"
         "Fresh Elegant Apple. {Press}";
 
-    const char gText_NPCEvent_Won_AppleChallenge_WonStrugglesToRememberSUGDWName_3[] =
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
         "See? Even the name \r\n"
         "is wonderful!{Press}";
 

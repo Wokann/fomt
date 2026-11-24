@@ -60,7 +60,7 @@ void EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_MARY);
                         SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                         ShowTalkHeartIndicator(CHARACTER_MARY);
-                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth);
+                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer);
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
@@ -126,9 +126,9 @@ void EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                         ShowTalkHeartIndicator(CHARACTER_MARY);
 #if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth_2);
+                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2);
 #elif defined(REGION_JP)
-                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsPlayerBirthdayAnswerBeforeChildbirth);
+                        TalkMessage(gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

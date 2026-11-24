@@ -34,7 +34,7 @@ mary_text_table
         "ポプリの誕生日だよ？もうっ、\r\n"
         "{NickName}のバカッ！{Press}";
 
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy[] =
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday[] =
         "覚えてくれてたんだ！そんな\r\n"
         "そぶり、見せなかったからすっ\r\n"
         "かり忘れられてると思ってた。{Press}\p"
@@ -54,7 +54,7 @@ mary_text_table
         "{Baby}の誕生日";
 
 #if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_YouRememberedIDontKnowWhy_2[] =
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday_2[] =
         "覚えてくれてたんだ！そんな\r\n"
         "そぶり、見せなかったからすっ\r\n"
         "かり忘れられてると思ってた。{Press}\p"

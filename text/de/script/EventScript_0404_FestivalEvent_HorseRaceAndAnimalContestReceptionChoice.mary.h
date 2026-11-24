@@ -43,7 +43,7 @@ mary_text_table
         "bung, wie man Wetten {Press}\r\n"
         "platziert. {Press}";
 
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_HorseRaceMedalExchangePrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation[] =
         "Du willst also deine\r\n"
         "Medaille tauschen, was?{Press}";
 
@@ -58,7 +58,7 @@ mary_text_table
         "solange du etwas hältst. {Press}";
 
 #ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry[] =
         "Du willst also deine\r\n"
         "Medaille tauschen, was?{Press}";
 #endif
@@ -67,7 +67,7 @@ mary_text_table
         "Medaille gegen Preis.";
 
 #ifndef UNIFY_REGIONS
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangePrompt[] =
+    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry[] =
         "Du willst deine Medaille \r\n"
         "gegen einen Preis tauschen?{Press}";
 
