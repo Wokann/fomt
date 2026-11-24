@@ -281,9 +281,7 @@ void EventScript_0487_ShopEvent_Blacksmith_OrderCounter(void)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedAccessoryScheduledForDeliveryBecauseRucksackFull);
                                 break;
                             case BLACKSMITH_PRODUCT_CATEGORY_MAKER:
-#if defined(UNIFY_REGIONS)
-                                TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerStatus);
-#elif defined(REGION_JP)
+#if defined(BUGFIX) || defined(REGION_JP)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerReady);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                 TalkMessage(gText_ShopEvent_Blacksmith_OrderCounter_GrayWillDeliverCompletedMaker);

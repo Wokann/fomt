@@ -20,9 +20,16 @@ mary_text_table
         "Super Ultra Great Delicious\r\n"
         "Wonderful Apple!{Press}";
 
+#if defined(BUGFIX)
+    // He is panting after the long name, not forgetting it.
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName[] =
+        "*pant* *pant* *pant*...\r\n"
+        "That's its name.{Press}";
+#else
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName[] =
         "Sometimes I can't remember\r\n"
         "all of it...! {Press}";
+#endif
 
     const char gText_NPCEvent_Won_AppleChallenge_WonIntroducesHMSGBApple[] =
         "This is the second one: \r\n"
@@ -33,9 +40,16 @@ mary_text_table
         "Miracle Sweet Gorgeous \r\n"
         "Beautiful  Apple!{Press}";
 
+#if defined(BUGFIX)
+    // He is panting after the long name, not forgetting it.
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
+        "*pant* *pant* *pant*...\r\n"
+        "That's its name.{Press}";
+#else
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
         "That one is hard to \r\n"
         "remember, too!{Press}";
+#endif
 
     const char gText_NPCEvent_Won_AppleChallenge_WonIntroducesAEPFEApple[] =
         "Finally, I have this. \r\n"
@@ -46,9 +60,16 @@ mary_text_table
         "Angel Eternal Pure \r\n"
         "Fresh Elegant Apple. {Press}";
 
+#if defined(BUGFIX)
+    // He is panting after the long name, not forgetting it.
+    const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
+        "*pant* *pant* *pant*...\r\n"
+        "That's its name.{Press}";
+#else
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
         "See? Even the name \r\n"
         "is wonderful!{Press}";
+#endif
 
     const char gText_NPCEvent_Won_AppleChallenge_WonUrgesPlayerToTasteApple[] =
         "Of course, you have to eat\r\n"

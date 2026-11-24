@@ -28,12 +28,12 @@
 | --- | --- | ---: |
 | [流程控制、读取边界与联机](#category-control) | 循环终止、表读取边界、频道输入、协议和窗口状态。 | 8 |
 | [养成、经济与事件条件](#category-mechanics) | 实际恢复、价格、好感度、种植、矿层掉落及事件条件。 | 11 |
-| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 16 |
+| [菜单选项、记录与显示](#category-interface) | 选项对应、图标、计数标签、帮助与操作提示。 | 18 |
 | [道具身份、名称与说明](#category-items) | 道具指针复用、物品名称、用途、配料与说明文字。 | 24 |
-| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 42 |
+| [剧情对话、人物与称呼](#category-dialogue) | 对话调用、人物身份、时间和剧情含义。 | 48 |
 | [指南结构、正文与玩法说明](#category-guides) | 标题、解锁边界、缺失介绍及指南规则。 | 33 |
 | [电视节目内容](#category-television) | 节目错序、成绩、机制提示和故事文字。 | 26 |
-| **合计** | | **160** |
+| **合计** | | **168** |
 
 <a id="category-control"></a>
 ## 流程控制、读取边界与联机
@@ -453,6 +453,8 @@ JP 同时采用海外版的入冬重置和冬季停长逻辑。
 
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [德版女神三处告别遗漏末尾分页](#de-goddess-farewell-page) | DE | 已接入 |
+| [海外女神玩家生日选项误写为纪念日](#goddess-player-birthday-option) | US、EU、DE | 已接入 |
 | [包装画面把升级农具画成基础农具](#wrapping-tool-icons) | JP、US | 已接入 |
 | [动物照料栏目显示了收获最高记录](#overseas-animal-care-record) | US、EU、DE | 已接入 |
 | [料理材料的包装说明未送入窗口](#cooking-wrapped-description) | US、EU、DE | 已接入 |
@@ -469,6 +471,44 @@ JP 同时采用海外版的入冬重置和冬季停长逻辑。
 | [赛马购票帮助指向不存在的 OK 选项](#horse-race-ticket-confirm-help) | US、EU、DE | 已接入 |
 | [鸡祭出界警告多出否定词](#chicken-festival-ring-warning) | US、EU | 已接入 |
 | [德版酒庄帮工选项把拒绝拆成两项](#de-winery-work-options) | DE | 已接入 |
+
+<a id="de-goddess-farewell-page"></a>
+### 德版女神三处告别遗漏末尾分页
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+0571三处后段告别调用 `Komm jederzeit wieder.{Press}`（随时再来），比同版主句 `Komm jederzeit wieder.{Press}\p` 少末尾分页。US／EU主句为 `Come again any time.{Press}\p`；JP为 `んじゃまたいつでも来てね。{Press}`（那随时再来吧）。
+
+**判断依据：**
+
+本项按GBA同版完整主句及三处实际调用修复。重制 `msg_Scr_Other.txt` JA373–377／431–433、US264–267／315–317、DE267–270／318–320行支持泛用“再来”告别；重制控制机制不同，不能据其wait标记决定GBA末尾分页。
+
+**修复方式：**
+
+仅修复时将DE三处归到带末尾\p的现成主句，保留完整控制序列。默认仍保留原调用和控制。
+
+**相关文件：** [脚本](data/scripts/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.c) · [JP](text/jp/script/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.h) · [US](text/us/script/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.h) · [EU](text/eu/script/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.h) · [DE](text/de/script/EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices.mary.h)
+
+<a id="goddess-player-birthday-option"></a>
+### 海外女神玩家生日选项误写为纪念日
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP相应选项 `自分の誕生日`（自己的生日），海外主槽却为 `My anniversary`／`Mein Jahrestag`（我的纪念日），另一个变体已有正确 `My birthday`／`Mein Geburtstag`（我的生日）；实际答案分支仍按生日判断。
+
+**判断依据：**
+
+GBA JP菜单、日期条件和海外现成birthday变体可确认。重制 `msg_Scr_Other.txt` JA10477–10483、US8403–8409、DE8871–8877行也有生日／纪念日分开的公共菜单，另有女神祝玩家生日快乐；这些材料不证明公共菜单由重制女神此入口调用。
+
+**修复方式：**
+
+仅修复把错误主槽改为已有My birthday／Mein Geburtstag，真正的结婚纪念日选项不动。原答题逻辑和槽位次序不改。
+
+**相关文件：** [脚本](data/scripts/EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice.mary.c) · [JP](text/jp/script/EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice.mary.h) · [US](text/us/script/EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice.mary.h) · [EU](text/eu/script/EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice.mary.h) · [DE](text/de/script/EventScript_0861_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice.mary.h)
 
 <a id="wrapping-tool-icons"></a>
 ### 包装画面把升级农具画成基础农具
@@ -1300,6 +1340,12 @@ US／EU 分别写 eated、Pinapple
 <a id="localization-text"></a>
 | 问题 | 受影响版本 | 开关支持 |
 | --- | --- | --- |
+| [德版深夜独白变成对玩家的劝问](#de-late-night-self-talk) | DE | 已接入 |
+| [海外加工机领取提示重复送货句](#blacksmith-maker-ready-message) | US、EU、DE | 已接入 |
+| [海外珀布利生日感想将不能立即成熟译为肯定](#popuri-birthday-maturity-wording) | US、EU、DE | 已接入 |
+| [海外琳生日答错后的关切被改成责备](#ann-birthday-overwork-concern) | US、EU、DE | 已接入 |
+| [海外玛丽生日调侃漏掉小说主人公与共同庆生](#mary-birthday-character-comparison) | US、EU、DE | 已接入 |
+| [海外霍安念长苹果名后的喘气被改写](#won-long-apple-name-reaction) | US、EU、DE | 已接入 |
 | [赏月英语的所有格和短语拼写错误](#moon-viewing-english-spelling) | US、EU | 已接入 |
 | [卡特父子故事结束后误播恐怖故事开场](#carter-father-son-story-closing) | US、EU、DE | 已接入 |
 | [德版卡莲生日晚餐结束后重复配偶对白](#karen-spouse-birthday-closing) | DE | 已接入 |
@@ -1342,6 +1388,120 @@ US／EU 分别写 eated、Pinapple
 | [玛娜谈赛巴拉时把儿子邀请同住改成孙子反抗](#manna-saibara-family) | US、EU、DE | 已接入 |
 | [卡莲对话中的错译、残句与笔误](#karen-dialogue-text) | US、EU、DE | 已接入 |
 | [琳对话中的错译、漏句与笔误](#ann-dialogue-text) | US、EU、DE | 已接入 |
+
+<a id="de-late-night-self-talk"></a>
+### 德版深夜独白变成对玩家的劝问
+
+**受影响版本：** DE。
+
+**原版内容与差异：**
+
+0350同一玩家深夜提示的两个随机结果，JP共用 `今日はもう遅いから`／`寝た方がいいかも。`（已经很晚，还是睡觉比较好）；US／EU分别为 `I should get to bed.`、`I’d better go to bed.`（我该上床了）。DE一处说 `Ich sollte ins Bett gehen.`（我该去睡觉），另一处却问 `Warum gehst du nicht ins Bett?`（你为什么不去睡觉？），把自言自语改成对第二人发问。
+
+**判断依据：**
+
+说话角色和两个随机结果以GBA脚本为准。重制 `msg_Scr_Map.txt` JA1984–1985、US1816、DE1859–1860行也是第一人称睡觉建议；例如德语 `Ich sollte mich aufs Ohr hauen.`（我该睡觉了）。转储不证明随机分支或指针复用。
+
+**修复方式：**
+
+仅修复时将DE后一个调用改用已有第一人称主句，不新增文字。关闭修复时保留原调用。
+
+**相关文件：** [脚本](data/scripts/EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages.mary.c) · [JP](text/jp/script/EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages.mary.h) · [US](text/us/script/EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages.mary.h) · [EU](text/eu/script/EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages.mary.h) · [DE](text/de/script/EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages.mary.h)
+
+<a id="blacksmith-maker-ready-message"></a>
+### 海外加工机领取提示重复送货句
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+0487的STORAGE领取状态、MAKER类别，JP先说 `出来上がったぞ。`（做好了），再说明Gray送货；US／EU却连续两次调用 `I asked Gray to deliver it.`（我请Gray送去了），DE也重复 `Gray liefert die Bestellung.`（Gray送订单）。各版现成的CompletedMakerReady完成通知没有在首句使用。
+
+**判断依据：**
+
+GBA实际调用及各版已有完成通知直接对应。重制 `msg_Scr_Map.txt` JA1912–1917、US1758–1760、DE1794–1797行也分别包含完成通知和交付／安装说明；重制英德安装者改成“我”，这里只佐证两种信息的区别，不移植其交付正文。
+
+**修复方式：**
+
+海外首句改用已有完成通知，随后保留Gray送货句。英语是 `The {Var1} ... is done now.`，德语 `{Var1} ist fertig wie bestellt.`（所订的物品已经做好），原额外Press控制不变。JP和实际给予物品不改。
+
+**相关文件：** [脚本](data/scripts/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.c) · [JP](text/jp/script/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.h) · [US](text/us/script/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.h) · [EU](text/eu/script/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.h) · [DE](text/de/script/EventScript_0487_ShopEvent_Blacksmith_OrderCounter.mary.h)
+
+<a id="popuri-birthday-maturity-wording"></a>
+### 海外珀布利生日感想将不能立即成熟译为肯定
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP生日感想后半 `誕生日だからって、すぐには`／`ムリか。`（即使过生日，也不能立刻成熟吧）；US／EU却说 `Well, one day does too make a difference!`，DE两槽均说 `ein Tag macht schon einen Unterschied!`（一天确实会有区别），肯定了原句所否定的立即变化。
+
+**判断依据：**
+
+以GBA JP完整上下文为主。重制 `msg_Scr_Other.txt` JA11423–11430、US9025–9028、DE9573–9577行也认为只增长年龄不能马上说成熟；其“一年／一起变老”扩写不移植GBA。
+
+**修复方式：**
+
+只修海外后半：英语为“Well, one birthday won’t change me right away!”、德语“Tja, ein Geburtstag macht mich nicht gleich erwachsen!”（一个生日不会让我立刻成熟）。实际源码使用ASCII撇号及原换行；DE两原槽均修。仅修复保留原槽及调用。
+
+**相关文件：** [脚本](data/scripts/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP](text/jp/script/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.h) · [US](text/us/script/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.h) · [EU](text/eu/script/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.h) · [DE](text/de/script/EventScript_0625_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice.mary.h)
+
+<a id="ann-birthday-overwork-concern"></a>
+### 海外琳生日答错后的关切被改成责备
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP答错生日回应先问 `{NickName}、だいじょうぶ？`、`仕事のしすぎだよ。ほら、これ食べて。`（没事吧？工作太多了，来吃这个），再相信玩家其实记得生日。US／EU原句用“If you’re not sick, ... no excuse”（没病就没借口）责备忘记；DE两槽同样说 `Wenn du nicht krank bist, gibt es keine Entschuldigung ...`，漏掉过劳和喂食，改变关切语气。
+
+**判断依据：**
+
+GBA JP提供完整原义。重制 `msg_Scr_Other.txt` JA11498–11505、US9073–9077、DE9628–9633也保留过劳关切和相信只是口误；重制没有GBA“来吃这个”，喂食依据仍是GBA JP，不把Mary另一生日段错配为Ann。
+
+**修复方式：**
+
+重译对应海外全文为关切过劳、请吃食物、确认其实记得生日；英语含“You’re working too hard.”／“Here, eat this.”，德语含 `Du arbeitest zu viel.`／`Hier, iss das.`（工作过头了／来吃这个）。保留称呼与正确控制；DE两槽均修，仅修复仍保留原槽和调用。
+
+**相关文件：** [脚本](data/scripts/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP](text/jp/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [US](text/us/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [EU](text/eu/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h) · [DE](text/de/script/EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice.mary.h)
+
+<a id="mary-birthday-character-comparison"></a>
+### 海外玛丽生日调侃漏掉小说主人公与共同庆生
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+JP答错生日时说 `おもしろい事言うのね。`（说话真有趣）、`あなた見ているとあきないわ。`（看着你不会腻）、`小説の主人公みたい。`（像小说主人公），最后邀请一起庆生。US／EU缩成故事人物和 `silly`（傻瓜）；DE缩成滑稽和 `du Trottel`（你这笨蛋），遗漏正面调侃与邀请，DE也没有小说比喻。
+
+**判断依据：**
+
+本项按GBA JP场景校译。重制同场在 `msg_Scr_Other.txt` JA11753–11761、US9244–9248、DE9817–9821已改写为过劳造成口误，没有找到小说主人公句；只能对照场景与语气，不能声称重制直接提供修正文。
+
+**修复方式：**
+
+海外全文恢复说话有趣、看不腻、小说人物、一起庆生，去掉silly／Trottel；英语为 `Like the hero of a novel!`，德语为 `Wie ein Romanheld!`（像小说主人公）。两个家庭分支的海外原槽均修，仅修复保持原槽及调用。
+
+**相关文件：** [脚本](data/scripts/EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice.mary.c) · [JP](text/jp/script/EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice.mary.h) · [US](text/us/script/EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice.mary.h) · [EU](text/eu/script/EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice.mary.h) · [DE](text/de/script/EventScript_0638_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice.mary.h)
+
+<a id="won-long-apple-name-reaction"></a>
+### 海外霍安念长苹果名后的喘气被改写
+
+**受影响版本：** US、EU、DE。
+
+**原版内容与差异：**
+
+介绍三个苹果长名后，JP三处共用 `はぁはぁはぁ…`／`という名前ある。`（呼、呼、呼……就是这个名字）。US／EU却分别说记不全、这个也难记、连名字都美妙；DE的 `vergesse ich Teile des Namens`、`schwer zu merken`、`der Name ist wundervoll`同样没有喘气收尾。
+
+**判断依据：**
+
+GBA JP原文及三次实际调用为主。重制 `msg_Scr_Other.txt` JA4159–4160也是喘气后收束名字，US3386有 `*pant* *pant* *pant*`，DE3569–3570有 `*keuch* *keuch* *keuch*`（均为喘气），支持长名后的反应；转储不能证明重制三个苹果的调用或指针复用。
+
+**修复方式：**
+
+英语三原槽修为喘气加“That’s its name.”、德语喘气加 `So heißt er.`（就是这个名字）。仅修复保留原各槽位置和三次调用。
+
+**相关文件：** [脚本](data/scripts/EventScript_0811_NPCEvent_Won_AppleChallenge.mary.c) · [JP](text/jp/script/EventScript_0811_NPCEvent_Won_AppleChallenge.mary.h) · [US](text/us/script/EventScript_0811_NPCEvent_Won_AppleChallenge.mary.h) · [EU](text/eu/script/EventScript_0811_NPCEvent_Won_AppleChallenge.mary.h) · [DE](text/de/script/EventScript_0811_NPCEvent_Won_AppleChallenge.mary.h)
 
 <a id="sheep-reception-text"></a>
 ### 羊祭接待桌使用牛祭提示

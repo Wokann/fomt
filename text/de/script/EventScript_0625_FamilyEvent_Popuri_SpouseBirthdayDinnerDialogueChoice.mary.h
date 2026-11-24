@@ -45,11 +45,20 @@ mary_text_table
         "aber ich dachte, du {Press}\r\n"
         "vergisst es... Sorry!{Press}";
 
+#if defined(BUGFIX)
+    // A birthday does not make her mature overnight.
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
+        "Ich sehe nun erwachsener\r\n"
+        "aus, oder nicht...?{Press}\p"
+        "Tja, ein Geburtstag macht\r\n"
+        "mich nicht gleich erwachsen!{Press}";
+#else
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou[] =
         "Ich sehe nun erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Tag macht schon \r\n"
         "einen Unterschied!{Press}";
+#endif
 
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_IHadSoMuchFunToday[] =
         "Ich hatte so viel Spaß!\r\n"
@@ -64,11 +73,20 @@ mary_text_table
         "Ich dachte irgendwie, \r\n"
         "du vergisst es... Sorry!{Press}";
 
+#if defined(BUGFIX)
+    // A birthday does not make her mature overnight.
+    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
+        "Ich sehe jetzt erwachsener\r\n"
+        "aus, oder nicht...?{Press}\p"
+        "Tja, ein Geburtstag macht\r\n"
+        "mich nicht gleich erwachsen!{Press}";
+#else
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
         "Ich sehe jetzt erwachsener\r\n"
         "aus, oder nicht...?{Press}\p"
         "Tja, ein Tag macht schon \r\n"
         "einen Unterschied!{Press}";
+#endif
 
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherAre[] =
         "Was bist du bloß \r\n"

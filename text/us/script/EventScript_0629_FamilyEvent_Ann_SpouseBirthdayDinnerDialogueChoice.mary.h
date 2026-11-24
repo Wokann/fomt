@@ -31,12 +31,22 @@ mary_text_table
         "I'd better apologize \r\n"
         "later...{Press}";
 
+#if defined(BUGFIX)
+    // JP offers food and reassurance instead of blaming the player.
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
+        "{NickName}, are you OK?\r\n"
+        "You're working too hard.\r\n"
+        "Here, eat this.{Press}\p"
+        "You do remember that\r\n"
+        "it's my birthday, right?{Press}";
+#else
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Are you feeling OK, \r\n"
         "{NickName}? {Press}\p"
         "If you're not sick, you've\r\n"
         "no excuse for forgetting\r\n"
         "my birthday!{Press}";
+#endif
 
 #if defined(UNIFY_REGIONS)
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
@@ -63,12 +73,22 @@ mary_text_table
         "{Baby}'s birthday";
 
 #if defined(UNIFY_REGIONS)
+#if defined(BUGFIX)
+    // JP offers food and reassurance instead of blaming the player.
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
+        "{NickName}, are you OK?\r\n"
+        "You're working too hard.\r\n"
+        "Here, eat this.{Press}\p"
+        "You do remember that\r\n"
+        "it's my birthday, right?{Press}";
+#else
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Are you feeling OK, \r\n"
         "{NickName}? {Press}\p"
         "If you're not sick, you've\r\n"
         "no excuse for forgetting\r\n"
         "my birthday!{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2[] =
         "Awww...You remembered!\r\n"

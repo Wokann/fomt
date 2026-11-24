@@ -32,6 +32,15 @@ mary_text_table
         "Ich entschuldige mich \r\n"
         "besser später...{Press}";
 
+#if defined(BUGFIX)
+    // JP offers food and reassurance instead of blaming the player.
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
+        "Geht es dir gut,\r\n"
+        "{NickName}? Du arbeitest\r\n"
+        "zu viel. Hier, iss das.{Press}\p"
+        "Du weißt doch, dass heute\r\n"
+        "mein Geburtstag ist, oder?{Press}";
+#else
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday[] =
         "Geht es dir gut, \r\n"
         "{NickName}?{Press}\p"
@@ -39,6 +48,7 @@ mary_text_table
         "gibt es keine Entschuldigung\r\n"
         "daf r, dass du meinen {Press}\r\n"
         "Geburtstag vergessen hast!{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
         "Ich entschuldige mich \r\n"
@@ -65,6 +75,15 @@ mary_text_table
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
+#if defined(BUGFIX)
+    // JP offers food and reassurance instead of blaming the player.
+    const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
+        "Geht es dir gut,\r\n"
+        "{NickName}? Du arbeitest\r\n"
+        "zu viel. Hier, iss das.{Press}\p"
+        "Du weißt doch, dass heute\r\n"
+        "mein Geburtstag ist, oder?{Press}";
+#else
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Geht es dir gut, \r\n"
         "{NickName}?{Press}\p"
@@ -73,6 +92,7 @@ mary_text_table
         "Entschuldigung,{Press}\r\n"
         "dafür, dass du meinen \r\n"
         "Geburtstag vergessen hast!{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2[] =
         "Ahhhh...Du hast dran gedacht!\r\n"
