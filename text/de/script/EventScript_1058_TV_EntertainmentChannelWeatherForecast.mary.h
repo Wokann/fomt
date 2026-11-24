@@ -32,6 +32,12 @@ mary_text_table
         "Region. {Press}";
 
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain[] =
+#ifdef UNIFY_REGIONS
+        "Hier das Wetter für morgen!\r\n"
+        "Morgen früh beginnt es zu \r\n"
+        "regnen und hört den\r\n"
+        "ganzen Tag nicht auf. {Press}";
+#else
 #ifdef BUGFIX
         "Hier das Wetter für morgen!\r\n"
 #else
@@ -39,13 +45,6 @@ mary_text_table
 #endif
         "Regen den ganzen Tag! \r\n"
         "Zu schade!{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
-        "Hier das Wetter für morgen!\r\n"
-        "Morgen früh beginnt es zu \r\n"
-        "regnen und hört den\r\n"
-        "ganzen Tag nicht auf. {Press}";
 #endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
@@ -95,14 +94,12 @@ mary_text_table
         "pass auf, dass du dich \r\n"
         "nicht erkältest. {Press}";
 
-#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "Hier das Wetter für morgen!\r\n"
         "Ein Schneesturm zieht auf, \r\n"
         "also schließe alle Türen \r\n"
         "und Fenster und bring die\r\n"
         "Tiere in die Scheune!{Press}";
-#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
@@ -112,18 +109,11 @@ mary_text_table
         "ganzen Tag nicht auf. {Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2[] =
         "Hier das Wetter für morgen!\r\n"
         "Es wird schneien, also\r\n"
         "pass auf, dass du dich \r\n"
         "nicht erkältest. {Press}";
-#ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
-        "Hier das Wetter für morgen!\r\n"
-        "Ein Schneesturm zieht auf, \r\n"
-        "also schließe alle Türen \r\n"
-        "und Fenster und bring die\r\n"
-        "Tiere in die Scheune!{Press}";
 #endif
-
 };

@@ -168,14 +168,6 @@ mary_text_table
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction[] =
         "Wenn das so ist...{Press}\p";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_2[] =
-        "Lass mich sehen...{Press}";
-
-    const char gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_3[] =
-        "Lass mich sehen...{Press}";
-#endif
-
     const char gText_NPCEvent_Carter_DialogueAndGiftResponses_FatherSonStoryIntroduction[] =
         "Dies ist die Geschichte \r\n"
         "einer ganz normalen Familie.{Press}";

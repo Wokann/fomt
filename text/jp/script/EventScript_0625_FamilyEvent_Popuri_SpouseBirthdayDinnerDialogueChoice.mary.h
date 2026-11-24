@@ -53,19 +53,6 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ThanksPlayerForRememberingBirthday_2[] =
-        "覚えてくれてたんだ！そんな\r\n"
-        "そぶり、見せなかったからすっ\r\n"
-        "かり忘れられてると思ってた。{Press}\p"
-        "…そんなわけないよね♡{Press}";
-
-    const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_ILookMoreMatureToYou_2[] =
-        "ポプリもちょっと大人っぽく\r\n"
-        "なったかな？{Press}\p"
-        "誕生日だからって、すぐには\r\n"
-        "ムリか。{Press}";
-#endif
 
     const char gText_FamilyEvent_Popuri_SpouseBirthdayDinnerDialogueChoice_WhatKindOfAFatherAre[] =
         "もう、ひどいパパでちゅねー。\r\n"

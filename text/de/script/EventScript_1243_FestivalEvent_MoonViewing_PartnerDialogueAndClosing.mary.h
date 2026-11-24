@@ -44,42 +44,25 @@ mary_text_table
         "Ist das nicht schön?{Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection[] =
-        "Finde das nur ich oder\r\n"
-        "sieht der Mond heute noch \r\n"
-        "schöner aus als sonst?{Press}";
-
 #ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_2[] =
-        "Der Mond sieht heute \r\n"
-        "ganz besonders schön\r\n"
-        "aus, oder?{Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_3[] =
         "Warum sehen wir den\r\n"
         "Mond heute so klar?{Press}\p"
         "Warum nur\r\n"
         "heute Nacht?{Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_4[] =
+#else
         "Finde das nur ich oder\r\n"
         "sieht der Mond heute noch \r\n"
-        "schöner aus als{Press}\r\n"
-        "sonst?{Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_5[] =
-        "Ich liebe es, die ganze \r\n"
-        "Nacht den Mond anzusehen.{Press}";
+        "schöner aus als sonst?{Press}";
 #endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection[] =
+#ifdef UNIFY_REGIONS
+        "Sein Licht lässt alles\r\n"
+        "wie auf einem anderen\r\n"
+        "Planeten aussehen. {Press}";
+#else
         "Sein Licht lässt alles\r\n"
         "anders aussehen. {Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection_2[] =
-        "Im Mondschein sieht alles\r\n"
-        "so bleich und geheimnis-\r\n"
-        "voll aus!{Press}";
 #endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_AnnClosingReflection[] =
@@ -131,12 +114,22 @@ mary_text_table
         "Sie sind himmlisch! {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings[] =
+#ifdef UNIFY_REGIONS
+        "Mondklöße! \r\n"
+        "Ich habe heute selber ver-\r\n"
+        "sucht, welche zu machen, {Press}\r\n"
+        "aber sie sind nicht so gut.{Press}\p"
+        "Wie, ich kann deine haben?{Press}\p"
+        "Mmmm... Die sind himmlisch!\r\n"
+        "Danke!{Press}";
+#else
         "Mondklöße! \r\n"
         "Ich habe heute selber ver-\r\n"
         "sucht, welche zu machen, {Press}\r\n"
         "aber sie sind nicht so gut.{Press}\p"
         "Wie, ich kann deine haben?{Press}\p"
         "Mmmm... Die sind himmlisch!{Press}";
+#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenAdditionalReflection[] =
@@ -230,14 +223,4 @@ mary_text_table
         "Ich liebe es, die ganze \r\n"
         "Nacht den Mond anzusehen.{Press}";
 #endif
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings_2[] =
-        "Mondklöße! \r\n"
-        "Ich habe heute selber ver-\r\n"
-        "sucht welche zu machen, {Press}\r\n"
-        "aber sie sind nicht so gut.{Press}\p"
-        "Wie, ich kann deine haben?{Press}\p"
-        "Mmmm... Die sind himmlisch!{Press}";
-#endif
-
 };

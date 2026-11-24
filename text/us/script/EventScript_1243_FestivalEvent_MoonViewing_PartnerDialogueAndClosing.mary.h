@@ -42,35 +42,23 @@ mary_text_table
         "Isn't that lovely? {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection[] =
-        "Is it just me, or does the\r\n"
-        "moon look even more \r\n"
-        "beautiful tonight than {Press}\r\n"
-        "usual? {Press}";
-
 #ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_2[] =
-        "The moon looks extra \r\n"
-        "beautiful tonight, doesn't\r\n"
-        "it? {Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_3[] =
         "Why can we see the moon\r\n"
         "so clearly tonight?{Press}\p"
         "Why is it just\r\n"
         "tonight?{Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_4[] =
+#else
         "Is it just me, or does the\r\n"
         "moon look even more \r\n"
         "beautiful tonight than {Press}\r\n"
         "usual? {Press}";
-
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenClosingReflection_5[] =
-        "I love spending all night \r\n"
-        "moongazing like this...{Press}";
 #endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection[] =
+#ifdef UNIFY_REGIONS
+        "Its light makes it feel like\r\n"
+        "we're on another planet. {Press}";
+#else
     // Use the possessive its for the moon's light.
 #ifdef BUGFIX
         "Its light makes everything\r\n"
@@ -78,12 +66,6 @@ mary_text_table
         "It's light makes everything\r\n"
 #endif
         "different. {Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_PopuriClosingReflection_2[] =
-        "The moonlight makes \r\n"
-        "everything look so pale and\r\n"
-        "mysterious!...{Press}";
 #endif
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_AnnClosingReflection[] =
@@ -137,12 +119,22 @@ mary_text_table
         "They're delicious! {Press}";
 
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings[] =
+#ifdef UNIFY_REGIONS
+        "Moon Dumplings! \r\n"
+        "I tried to make some myself\r\n"
+        "today, but they didn't \r\n"
+        "turn out so well...{Press}\p"
+        "You mean I can have yours?{Press}\p"
+        "Mmmm...They're delicious!\r\n"
+        "Thank you!{Press}";
+#else
         "Moon Dumplings! \r\n"
         "I tried to make some myself\r\n"
         "today, but they didn't {Press}\r\n"
         "turn out so well...{Press}\p"
         "You mean I can have yours?{Press}\p"
         "Mmmm...They're delicious! {Press}";
+#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_KarenAdditionalReflection[] =
@@ -196,14 +188,4 @@ mary_text_table
         "I love spending all night \r\n"
         "moongazing like this...{Press}";
 #endif
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_MoonViewing_PartnerDialogueAndClosing_ElliReceivesMoonDumplings_2[] =
-        "Moon Dumplings! \r\n"
-        "I tried to make some myself\r\n"
-        "today, but they didn't \r\n"
-        "turn out so well...{Press}\p"
-        "You mean I can have yours?{Press}\p"
-        "Mmmm...They're delicious! {Press}";
-#endif
-
 };

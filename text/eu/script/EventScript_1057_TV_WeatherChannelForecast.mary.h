@@ -11,29 +11,12 @@ mary_text_table
         "with rain falling all day \r\n"
         "tomorrow. {Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_TV_WeatherChannelForecast_SpringToSummerRain_2[] =
-        "Heavy thunder and lightning!\r\n"
-        "Tonight will be cloudy, \r\n"
-        "with rain falling all day \r\n"
-        "tomorrow. {Press}";
-#endif
-
     const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon[] =
         "This is tomorrow's forecast!\r\n"
         "A typhoon will be passing\r\n"
         "through, so lock all your\r\n"
         "doors and windows, and put\r\n"
         "your animals in the Barn!{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2[] =
-        "This is tomorrow's forecast!\r\n"
-        "A typhoon will be passing\r\n"
-        "through, so lock down all\r\n"
-        "doors and windows, and put\r\n"
-        "your animals in the Barn!{Press}";
-#endif
 
     const char gText_TV_WeatherChannelForecast_NoSignalSnow[] =
         "Snow {Press}";

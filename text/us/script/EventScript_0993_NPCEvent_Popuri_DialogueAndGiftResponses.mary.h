@@ -308,11 +308,6 @@ mary_text_table
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence[] =
         "............................{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2[] =
-        ".........................{Press}";
-#endif
-
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation[] =
         "I'm sick of this!\r\n"
         "I just want to go home!{Press}";
@@ -487,12 +482,6 @@ mary_text_table
         "Ah, {Player}.\r\n"
         "How are you today?{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2[] =
-        "Hi, {Player}.\r\n"
-        "How are you doing?{Press}";
-#endif
-
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation[] =
         "I only get to come in the\r\n"
         "Summer, so I miss the \r\n"
@@ -522,13 +511,13 @@ mary_text_table
         "over him!{Press}";
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation[] =
+#ifdef UNIFY_REGIONS
+        "How is your farm,\r\n"
+        "{Player}?\r\n"
+        "Is everything the same?{Press}";
+#else
         "How is your farm,\r\n"
         "{Player}?{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2[] =
-        "How is farm life treating\r\n"
-        "you, {Player}?{Press}";
 #endif
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation[] =

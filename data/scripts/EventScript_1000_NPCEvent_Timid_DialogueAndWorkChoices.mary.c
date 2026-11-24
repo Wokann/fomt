@@ -662,10 +662,10 @@ void EventScript_1000_NPCEvent_Timid_DialogueAndWorkChoices(void)
                                 if (GetNpcFriendship(CHARACTER_TIMID) <= 50)
                                 {
                                     SetTalkPortrait(TALK_PORTRAIT_TIMID_SCARED);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                     TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                    TalkMessage(gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2);
 #endif
                                 }
                                 else

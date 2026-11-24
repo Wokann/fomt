@@ -86,12 +86,18 @@ mary_text_table
         "Esst alles auf!{Press}";
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction[] =
+#ifdef UNIFY_REGIONS
+        "Heute ist das Kürbis-\r\n"
+        "festival, ich habe versucht,\r\n"
+        "Süßigkeiten zu machen.{Press}\r\n"
+        "Koste sie mal. {Press}";
+#else
         "Heute ist das Kürbis-\r\n"
         "festival.{Press}\p"
         "Ich habe Pasteten.\r\n"
         "Möchtest du probieren?{Press}";
+#endif
 
-#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
         "Heute ist das Kürbis- \r\n"
         "festival, darum haben Oma\r\n"
@@ -100,7 +106,6 @@ mary_text_table
         "Keine Sorge, sie hat sie \r\n"
         "schon probiert. \r\n"
         "Iss auf!{Press}";
-#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_2[] =
@@ -110,11 +115,13 @@ mary_text_table
         "Zahnlöcher.{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Heute ist das Kürbis-\r\n"
         "festival, ich habe versucht,\r\n"
         "Süßigkeiten zu machen.{Press}\r\n"
         "Koste sie mal. {Press}";
+#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_PlayerOvereatsPumpkinSweets_3[] =
@@ -123,15 +130,4 @@ mary_text_table
         "fühle schon die {Press}\r\n"
         "Zahnlöcher.{Press}";
 #endif
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
-        "Heute ist das Kürbis- \r\n"
-        "festival, darum haben Oma\r\n"
-        "und ich jede Menge {Press}\r\n"
-        "Süßes gemacht.{Press}\p"
-        "Keine Sorge, sie hat sie \r\n"
-        "schon probiert. \r\n"
-        "Iss auf!{Press}";
-#endif
-
 };

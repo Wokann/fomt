@@ -65,13 +65,6 @@ mary_text_table
         "こんないいものをもらっても\r\n"
         "いいの？{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
-        "ありがとうなの。\r\n"
-        "こんないいものをもらっても\r\n"
-        "いいの？{Press}";
-#endif
-
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_PerfumeGiftResponse[] =
         "ありがとうなの。\r\n"
         "大事にするの。{Press}";

@@ -53,9 +53,11 @@ mary_text_table
         "aber verlegen! Ich denke\r\n"
         "{Player} ist besser.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2[] =
         "Also, ab jetzt nenne ich \r\n"
         "dich {Player}.{Press}";
+#endif
 
     const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_RequestsCustomNickname[] =
         "Etwas anderes ist besser?\r\n"

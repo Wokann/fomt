@@ -58,12 +58,6 @@ mary_text_table
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2[] =
-        "そうよ、おめでとう！\r\n"
-        "今日はパーッといっしょに\r\n"
-        "のもう。{Press}";
-#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily[] =
         "でも…本当に３人の記念日は、\r\n"
@@ -71,14 +65,6 @@ mary_text_table
         "たいんだ。{Press}\p"
         "これからも、ずーっとね。{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2[] =
-        "ははははっ、やだぁ。\r\n"
-        "わたしの誕生日と自分の誕生日\r\n"
-        "をまちがえるなんて。{Press}\p"
-        "{NickName}っておかしい\r\n"
-        "ヤツ！！{Press}";
-#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingPlayerAndChildBirthdays[] =
         "ははははっ、やだぁ。\r\n"

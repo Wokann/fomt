@@ -126,11 +126,6 @@ mary_text_table
         "is done now.{Press}\r\n"
         "{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_ShopEvent_Blacksmith_OrderCounter_CompletedMakerStatus[] =
-        "I asked Gray to deliver it.\r\n"
-        "{Press}";
-#endif
 
     const char gText_ShopEvent_Blacksmith_OrderCounter_GrayWillDeliverCompletedMaker[] =
         "I asked Gray to deliver it.\r\n"

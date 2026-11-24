@@ -80,9 +80,9 @@ void EventScript_0350_SystemEvent_PlayerConditionTimeAndWeatherMessages(void)
                                 }
                                 else
                                 {
-#if defined(REGION_JP) || (defined(BUGFIX) && defined(REGION_DE))
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || (defined(BUGFIX) && defined(REGION_DE))
                                     TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice);
-#elif defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
                                     TalkMessage(gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2);
 #endif
                                 }

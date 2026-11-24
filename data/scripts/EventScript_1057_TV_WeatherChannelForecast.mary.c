@@ -104,18 +104,18 @@ void EventScript_1057_TV_WeatherChannelForecast(void)
                         break;
                     case WEATHER_RAIN:
                         SetTelevisionProgram(TELEVISION_PROGRAM_WEATHER_RAIN);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerRain_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerRain);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerRain_2);
 #endif
                         break;
                     case WEATHER_TYPHOON:
                         SetTelevisionProgram(TELEVISION_PROGRAM_WEATHER_TYPHOON);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU)
-                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
+#elif defined(REGION_US) || defined(REGION_EU)
+                        var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2);
 #elif defined(REGION_DE)
                         var_0 = ShowTelevisionMessage(gText_TV_WeatherChannelForecast_SpringToSummerTyphoon);
 #endif

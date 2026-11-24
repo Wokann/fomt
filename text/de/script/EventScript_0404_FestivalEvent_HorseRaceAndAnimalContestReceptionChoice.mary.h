@@ -47,11 +47,6 @@ mary_text_table
         "Du willst also deine\r\n"
         "Medaille tauschen, was?{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation[] =
-        "Du willst deine Medaille \r\n"
-        "gegen einen Preis tauschen?{Press}";
-#endif
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "Du kannst es nicht tun,\r\n"

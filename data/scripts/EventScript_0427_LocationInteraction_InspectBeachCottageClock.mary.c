@@ -57,7 +57,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
 #elif defined(REGION_DE)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
@@ -65,7 +65,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
             }
             else
             {
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
 #elif defined(REGION_DE)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);
@@ -76,7 +76,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeZeroPaddedMinutes);
 #elif defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedZeroPaddedMinutes);
@@ -86,7 +86,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
             }
             else
             {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeMinutes);
 #elif defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_MorningTimeSpacedMinutes);
@@ -108,7 +108,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeSpacedZeroPaddedMinutes);
 #elif defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeZeroPaddedMinutes);
@@ -118,7 +118,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
             }
             else
             {
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeSpacedMinutes);
 #elif defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeMinutes);
@@ -131,7 +131,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
         {
             if (VarGet(VAR_MINUTE) < 10)
             {
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeZeroPaddedMinutes);
 #elif defined(REGION_DE)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithZeroPaddedMinutes);
@@ -139,7 +139,7 @@ void EventScript_0427_LocationInteraction_InspectBeachCottageClock(void)
             }
             else
             {
-#if defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_AfternoonTimeMinutes);
 #elif defined(REGION_DE)
                 TalkAppendMessage(gText_LocationInteraction_InspectBeachCottageClock_TimeWithMinutes);

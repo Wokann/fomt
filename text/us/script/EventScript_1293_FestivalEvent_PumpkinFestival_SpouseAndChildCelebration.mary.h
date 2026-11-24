@@ -81,32 +81,30 @@ mary_text_table
         "you two! Let's all eat up!{Press}";
 
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction[] =
+#ifdef UNIFY_REGIONS
+        "Today is the Pumpkin\r\n"
+        "Festival, so I tried making\r\n"
+        "some treats. Give them {Press}\r\n"
+        "a try. {Press}";
+#else
         "Today is the Pumpkin\r\n"
         "Festival.{Press}\p"
         "I baked some pasties.\r\n"
         "Would you like some?{Press}";
+#endif
 
-#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
         "Today is the Pumpkin \r\n"
         "Festival, so Grandma and I\r\n"
         "made a whole lot of treats.{Press}\p"
         "Don't worry, she already \r\n"
         "tested them. Eat up!{Press}";
-#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2[] =
         "Today is the Pumpkin\r\n"
         "Festival, so I tried making\r\n"
         "some treats. Give them {Press}\r\n"
         "a try. {Press}";
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_ElliIntroductionWithoutWalkingChild[] =
-        "Today is the Pumpkin \r\n"
-        "Festival, so Grandma and I\r\n"
-        "made a whole lot of treats.{Press}\p"
-        "Don't worry, she already \r\n"
-        "tested them. Eat up!{Press}";
 #endif
-
 };

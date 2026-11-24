@@ -14,18 +14,9 @@ mary_text_table
         "うー、夜になると遊びに行きた\r\n"
         "くなっちゃうわ…{Press}";
 
-#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen40000To49999_Mary30000To39999_FirstConversation[] =
         "おやすみ。{Press}";
-#endif
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Karen40000To49999_FirstConversation[] =
-        "おやすみ。{Press}";
-
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To39999_FirstConversation[] =
-        "おやすみ。{Press}";
-#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_IfYouDontGoToSleep[] =
         "早く寝ないと明日たいへんよ。{Press}";
@@ -138,18 +129,9 @@ mary_text_table
         "先に寝ておいて。\r\n"
         "わたし、あまりねむくないの。{Press}";
 
-#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_MaryAndElli40000To49999_FirstConversation[] =
         "おやすみなさい。{Press}";
-#endif
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary40000To49999_FirstConversation[] =
-        "おやすみなさい。{Press}";
-
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Elli40000To49999_FirstConversation[] =
-        "おやすみなさい。{Press}";
-#endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_DontWorryIWontGoAnywhere[] =
         "だいじょうぶよ、{Press}\r\n"

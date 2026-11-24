@@ -92,10 +92,10 @@ void EventScript_0038_LoveEvent_Popuri_03_BlueHeart_PlayHouseWithChildren(void)
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_MAY_ANGRY);
     SetTalkNameplateCharacter(CHARACTER_MAY);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
     TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse);
+#elif defined(REGION_DE)
+    TalkMessage(gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2);
 #endif
     TalkClose();
     TalkOpen();

@@ -102,10 +102,10 @@ void EventScript_1031_DebugEvent_CharacterAffectionEditor(void)
                             do
                             {
                                 SetTextVariableNumber(TEXT_VARIABLE_1, GetCharacterLove(CHARACTER_ELLI));
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_EllisLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_EllisLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_EllisLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
 #endif
                                 switch (var_0)
                                 {
@@ -143,10 +143,10 @@ void EventScript_1031_DebugEvent_CharacterAffectionEditor(void)
                             do
                             {
                                 SetTextVariableNumber(TEXT_VARIABLE_1, GetCharacterLove(CHARACTER_MARY));
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_MarysLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_MarysLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_MarysLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
 #endif
                                 switch (var_0)
                                 {
@@ -184,10 +184,10 @@ void EventScript_1031_DebugEvent_CharacterAffectionEditor(void)
                             do
                             {
                                 SetTextVariableNumber(TEXT_VARIABLE_1, GetCharacterLove(CHARACTER_KAREN));
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_KarensLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_KarensLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_KarensLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
 #endif
                                 switch (var_0)
                                 {
@@ -225,10 +225,10 @@ void EventScript_1031_DebugEvent_CharacterAffectionEditor(void)
                             do
                             {
                                 SetTextVariableNumber(TEXT_VARIABLE_1, GetCharacterLove(CHARACTER_HARVEST_GODDESS));
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_GoddessLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_GoddessLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                var_0 = TalkPromptChoice4(gText_DebugEvent_CharacterAffectionEditor_GoddessLoveValueDisplay, gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2, gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList, gText_DebugEvent_CharacterAffectionEditor_ReturnToMainMenu);
 #endif
                                 switch (var_0)
                                 {

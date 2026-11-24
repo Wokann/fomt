@@ -56,10 +56,12 @@ mary_text_table
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
         "That's right! Let's \r\n"
         "spend the night \r\n"
         "celebrating!{Press}";
+#endif
 
 #if defined(UNIFY_REGIONS)
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =

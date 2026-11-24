@@ -125,10 +125,10 @@ void EventScript_0650_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_KAREN);
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
@@ -168,10 +168,10 @@ void EventScript_0650_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_KAREN);
                         SetTalkPortrait(TALK_PORTRAIT_KAREN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_KAREN);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

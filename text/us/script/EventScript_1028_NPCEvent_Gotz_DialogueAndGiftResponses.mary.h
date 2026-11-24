@@ -142,11 +142,6 @@ mary_text_table
         "It seems you're \r\n"
         "keeping busy. Keep at it!{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
-        "Keep up the good work!{Press}";
-#endif
-
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestWorkFirstConversationSearchesForLumberTrees[] =
         "I'm looking for good Lumber\r\n"
         "trees. Then I'll see about \r\n"

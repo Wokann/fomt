@@ -27,11 +27,10 @@ mary_text_table
 #endif
 
 #ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Karen40000To49999_FirstConversation[] =
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_Karen40000To49999_Mary30000To39999_FirstConversation[] =
         "Good night.{Press}";
 
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary30000To39999_FirstConversation[] =
-        "Good night. {Press}";
+
 #endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_IfYouDontGoToSleep[] =
@@ -159,11 +158,10 @@ mary_text_table
         "not tired now. {Press}";
 
 #ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Mary40000To49999_FirstConversation[] =
-        "Good night. {Press}";
-
-    const char gText_NPCEvent_Spouse_BedtimeDialogue_Elli40000To49999_FirstConversation[] =
+    const char gText_NPCEvent_Spouse_BedtimeDialogue_Shared_MaryAndElli40000To49999_FirstConversation[] =
         "Good night.{Press}";
+
+
 #endif
 
     const char gText_NPCEvent_Spouse_BedtimeDialogue_DontWorryIWontGoAnywhere[] =

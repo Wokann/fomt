@@ -8,13 +8,14 @@ mary_text_table
         "Gerne!\r\n"
         "Es macht Spaß!{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
+        "Aww...{Press}";
+#else
     const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse[] =
         "Wirklich...?{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_LoveEvent_Popuri_03_BlueHeart_ReluctantResponse_2[] =
-        "Aww...{Press}";
 #endif
+
 
     const char gText_LoveEvent_Popuri_03_BlueHeart_May_AssignsFamilyRoles[] =
         "Heute ist Carter der Vater \r\n"

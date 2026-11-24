@@ -61,22 +61,26 @@ mary_text_table
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2[] =
         "Richtig! Lass \r\n"
         "uns die Nacht \r\n"
         "durchfeiern!{Press}";
+#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily[] =
         "Gut, wir werden unsere \r\n"
         "Familienjahrestage jetzt  \r\n"
         "immer so feiern... IMMER!{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2[] =
         "Ha ha ha! Unglaublich, dass \r\n"
         "du unsere Geburtstage \r\n"
         "verwechselt hast!{Press}\r\n"
         "Du bist wirklich \r\n"
         "süß , {NickName}.{Press}";
+#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingPlayerAndChildBirthdays[] =
         "Ha ha ha! Unglaublich, dass \r\n"

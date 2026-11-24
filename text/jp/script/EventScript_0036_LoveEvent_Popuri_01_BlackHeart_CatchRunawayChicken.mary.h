@@ -64,11 +64,6 @@ mary_text_table
         "コッコ、帰るよ。\r\n"
         "おいで。{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2[] =
-        "コッコ、帰るよ。\r\n"
-        "おいで。{Press}";
-#endif
 
     const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_QuestionsChickenDislike[] =
         "え～～～！！\r\n"

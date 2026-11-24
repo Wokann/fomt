@@ -56,12 +56,6 @@ mary_text_table
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
-        "そうよ、あたり！！\r\n"
-        "ね、いっしょにいわって\r\n"
-        "くれるでしょ？{Press}";
-#endif
 
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =
         "ははははっ、やだぁ。\r\n"

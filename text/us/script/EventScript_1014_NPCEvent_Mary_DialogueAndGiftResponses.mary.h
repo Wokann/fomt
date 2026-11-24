@@ -379,20 +379,14 @@ mary_text_table
         "Oh, {NickName}.\r\n"
         "Nice to see you here. {Press}";
 
-#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyRepeatConversation[] =
         "Don't worry. I'm not\r\n"
         "lifting anything heavy.{Press}";
-#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2[] =
         "Oh, {NickName}.\r\n"
         "Nice to see you. {Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyRepeatConversation[] =
-        "Don't worry. I'm not\r\n"
-        "lifting anything heavy.{Press}";
 #endif
 
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryAfterChildbirthRepeatConversation[] =

@@ -31,16 +31,15 @@ mary_text_table
         "entire region. {Press}";
 
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain[] =
-        "Tomorrow's weather!\r\n"
-        "It will rain all day!　\r\n"
-        "Too bad!{Press}";
-
 #ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
         "Here's tomorrow's forecast!\r\n"
         "It will begin raining in \r\n"
         "the morning and not stop\r\n"
         "all day. {Press}";
+#else
+        "Tomorrow's weather!\r\n"
+        "It will rain all day!　\r\n"
+        "Too bad!{Press}";
 #endif
 
     const char gText_TV_EntertainmentChannelWeatherForecast_NoSignalTyphoon[] =
@@ -88,14 +87,12 @@ mary_text_table
         "It will snow, so be careful\r\n"
         "not to catch cold. {Press}";
 
-#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
         "Here's tomorrow's forecast!\r\n"
         "A snowstorm will hit, so \r\n"
         "lock down all doors and \r\n"
         "windows, and put your\r\n"
         "animals in the Barn!{Press}";
-#endif
 
 #ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2[] =
@@ -105,17 +102,10 @@ mary_text_table
         "all day. {Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2[] =
         "Here's tomorrow's forecast!\r\n"
         "It will snow, so be careful\r\n"
         "not to catch cold. {Press}";
-#ifdef UNIFY_REGIONS
-    const char gText_TV_EntertainmentChannelWeatherForecast_WinterSnowstorm[] =
-        "Here's tomorrow's forecast!\r\n"
-        "A snowstorm will hit, so \r\n"
-        "lock down all doors and \r\n"
-        "windows, and put your\r\n"
-        "animals in the Barn!{Press}";
 #endif
-
 };

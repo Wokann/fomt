@@ -103,11 +103,6 @@ mary_text_table
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause[] =
         ".........................{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Timid_DialogueAndWorkChoices_LowFriendshipRepeatConversationSilentPause_2[] =
-        "............................{Press}";
-#endif
-
     const char gText_NPCEvent_Timid_DialogueAndWorkChoices_SpringFriendship051To100RepeatConversationLikesSpringAndTeaParty[] =
         "I love Spring!...\r\n"
         "It has birds, flowers, and\r\n"

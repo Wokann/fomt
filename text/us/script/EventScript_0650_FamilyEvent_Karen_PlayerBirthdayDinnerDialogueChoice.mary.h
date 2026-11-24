@@ -56,23 +56,18 @@ mary_text_table
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_HappyBirthdayLetsHaveAGlass_2[] =
         "That's right! Let's \r\n"
         "spend the night \r\n"
         "celebrating!{Press}";
+#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_WellWeWillCelebrateOurFamily[] =
         "Well, we will celebrate our\r\n"
         "family anniversaries just  \r\n"
         "like this...Forever!{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingSpousesBirthdays_2[] =
-        "Ha ha ha! I can't \r\n"
-        "believe you mixed up our \r\n"
-        "birthdays! You sure are {Press}\r\n"
-        "cute, {NickName}.{Press}";
-#endif
 
     const char gText_FamilyEvent_Karen_PlayerBirthdayDinnerDialogueChoice_TeasesPlayerForConfusingPlayerAndChildBirthdays[] =
         "Ha ha ha! I can't \r\n"

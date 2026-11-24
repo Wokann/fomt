@@ -409,10 +409,10 @@ void EventScript_1293_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration(vo
                         SetTalkNameplateCharacter(CHARACTER_MARY);
                         SetTalkPortrait(TALK_PORTRAIT_MARY_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        TalkMessage(gText_FestivalEvent_PumpkinFestival_SpouseAndChildCelebration_MaryIntroduction_2);
 #endif
                         TalkClose();
                         MarkNpcSpokenTo(CHARACTER_MARY);

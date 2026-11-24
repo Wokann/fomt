@@ -329,11 +329,6 @@ mary_text_table
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence[] =
         "………………………{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2[] =
-        "………………………{Press}";
-#endif
-
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseFarmhouseBelowGreenHeartRepeatConversation[] =
         "もう、こんなのやだー。\r\n"
         "ポプリ、お家に帰りたーい。{Press}";
@@ -498,12 +493,6 @@ mary_text_table
         "あ、{Player}さん。\r\n"
         "元気でやってる？{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2[] =
-        "あ、{Player}さん。\r\n"
-        "元気でやってる？{Press}";
-#endif
-
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship000To024RepeatConversation[] =
         "ポプリ、夏にしか来ないから、\r\n"
         "なんだか町の人が、なつかしく\r\n"
@@ -535,12 +524,6 @@ mary_text_table
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation[] =
         "{Player}さん、牧場どお？\r\n"
         "変わりない？{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2[] =
-        "{Player}さん、牧場どお？\r\n"
-        "変わりない？{Press}";
-#endif
 
     const char gText_NPCEvent_Popuri_DialogueAndGiftResponses_RivalSpousePoultryFarmFriendship075To099RepeatConversation[] =
         "{Player}さんはいいなぁ。\r\n"

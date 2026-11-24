@@ -194,10 +194,10 @@ void EventScript_1058_TV_EntertainmentChannelWeatherForecast(void)
                         break;
                     case WEATHER_RAIN:
                         SetTelevisionProgram(TELEVISION_PROGRAM_WEATHER_RAIN);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SpringRain);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_SpringRain_2);
 #endif
                         break;
                     case WEATHER_TYPHOON:
@@ -240,10 +240,10 @@ void EventScript_1058_TV_EntertainmentChannelWeatherForecast(void)
                         break;
                     case WEATHER_SNOW:
                         SetTelevisionProgram(TELEVISION_PROGRAM_WEATHER_SNOW);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_WinterSnow);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        var_0 = ShowTelevisionMessage(gText_TV_EntertainmentChannelWeatherForecast_WinterSnow_2);
 #endif
                         break;
                     case WEATHER_SNOWSTORM:

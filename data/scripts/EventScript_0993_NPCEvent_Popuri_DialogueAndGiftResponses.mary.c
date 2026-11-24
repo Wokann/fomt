@@ -1335,10 +1335,10 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                                                 ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PlayerSpouseBelowGreenHeartFirstConversationAngrySilence_2);
 #endif
                                             }
                                             else
@@ -1587,10 +1587,10 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                             if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_POPURI_NORMAL);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                                TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedGeneralGreetingFirstConversation_2);
 #endif
                                             }
                                             else
@@ -1621,10 +1621,10 @@ void EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses(void)
                                                     if (WasNpcSpokenToJustNow(CHARACTER_POPURI) == FALSE)
                                                     {
                                                         SetTalkPortrait(TALK_PORTRAIT_POPURI_HAPPY);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                         TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                                        TalkMessage(gText_NPCEvent_Popuri_DialogueAndGiftResponses_PoultryFarmSharedFarmProgressFirstConversation_2);
 #endif
                                                     }
                                                     else

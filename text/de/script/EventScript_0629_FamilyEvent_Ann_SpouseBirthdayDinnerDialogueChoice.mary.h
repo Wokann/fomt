@@ -50,9 +50,11 @@ mary_text_table
         "Geburtstag vergessen hast!{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2[] =
         "Ich entschuldige mich \r\n"
         "bes ser sp ter...{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy[] =
         "Ahhhh... Du hast dran gedacht!\r\n"
@@ -76,6 +78,7 @@ mary_text_table
         "{Baby}s Geburtstag";
 
 #if defined(BUGFIX)
+#ifndef UNIFY_REGIONS
     // JP offers food and reassurance instead of blaming the player.
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Geht es dir gut,\r\n"
@@ -83,6 +86,7 @@ mary_text_table
         "zu viel. Hier, iss das.{Press}\p"
         "Du weißt doch, dass heute\r\n"
         "mein Geburtstag ist, oder?{Press}";
+#endif
 #else
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2[] =
         "Geht es dir gut, \r\n"
@@ -94,6 +98,7 @@ mary_text_table
         "Geburtstag vergessen hast!{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2[] =
         "Ahhhh...Du hast dran gedacht!\r\n"
         "Du bist immer beschäftigt; \r\n"
@@ -101,11 +106,14 @@ mary_text_table
         "nicht daran denken\r\n"
         ".Hätte nicht an dir \r\n"
         "zweifeln sollen!{Press}";
+#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2[] =
         "Sorry, mein Essen ist \r\n"
         "dasselbe wie im Gasthof.{Press}\p"
         "Habe ich von Papa gelernt!{Press}";
+#endif
 
     const char gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ItDoesntTakeMuchToRemember[] =
 // A trailing space exceeds the 28-column row and overwrites its first glyph.

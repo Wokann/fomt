@@ -230,10 +230,10 @@ void EventScript_0036_LoveEvent_Popuri_01_BlackHeart_CatchRunawayChicken(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_POPURI_SURPRISED);
             SetTalkNameplateCharacter(CHARACTER_POPURI);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessage(gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2);
 #endif
             TalkClose();
             SetEntityFacing(ENTITY_POPURI, FACING_DOWN);

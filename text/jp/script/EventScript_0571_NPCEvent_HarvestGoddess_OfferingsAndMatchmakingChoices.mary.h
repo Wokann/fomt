@@ -386,10 +386,6 @@ mary_text_table
         "これあげるから、\r\n"
         "我慢しましょうね。{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2[] =
-        "んじゃまたいつでも来てね。{Press}";
-#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
         "んじゃマリーちゃんの愛情度を\r\n"

@@ -57,22 +57,6 @@ mary_text_table
         "楽しかった…\r\n"
         "今日はよくねむれそうだ…{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2[] =
-        "こんなにわかいうちから、\r\n"
-        "物忘れ？ちょっと心配になって\r\n"
-        "きたわ…{Press}\p"
-        "よりによって、自分の誕生日だ\r\n"
-        "なんて…いい？今日は、\r\n"
-        "わたしの誕生日なの。{Press}";
-
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2[] =
-        "わたしの誕生日？\r\n"
-        "…今あてずっぽうで言った\r\n"
-        "でしょ？{Press}\p"
-        "ホントに覚えてたの？\r\n"
-        "………うれしい！{Press}";
-#endif
 
     const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_ChoiceBabyBirthday[] =
         "{Baby}の誕生日";

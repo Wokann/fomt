@@ -450,11 +450,7 @@ void EventScript_1002_NPCEvent_Bold_DialogueAndWorkChoices(void)
                             break;
                         case HARVEST_SPRITE_INTERACTION_COSMETIC:
                             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);
-#ifdef UNIFY_REGIONS
-                            TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2);
-#else
                             TalkMessage(gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse);
-#endif
                             break;
                         case HARVEST_SPRITE_INTERACTION_PERFUME:
                             SetTalkPortrait(TALK_PORTRAIT_BOLD_NORMAL);

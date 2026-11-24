@@ -43,6 +43,20 @@ mary_text_table
     const char gText_SystemMenu_ClockCalendarDisplay_MorningTimeSpacedMinutes[] =
         "{Var1}:{Var2} AM{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_SystemMenu_ClockCalendarDisplay_MorningTimeZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} AM{Press}";
+
+    const char gText_SystemMenu_ClockCalendarDisplay_MorningTimeMinutes[] =
+        "{Var1}:{Var2} AM{Press}";
+
+    const char gText_SystemMenu_ClockCalendarDisplay_AfternoonTimeSpacedZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} PM{Press}";
+
+    const char gText_SystemMenu_ClockCalendarDisplay_AfternoonTimeSpacedMinutes[] =
+        "{Var1}:{Var2} PM{Press}";
+#endif
+
     const char gText_SystemMenu_ClockCalendarDisplay_AfternoonTimeZeroPaddedMinutes[] =
         "{Var1}:0{Var2} PM{Press}";
 

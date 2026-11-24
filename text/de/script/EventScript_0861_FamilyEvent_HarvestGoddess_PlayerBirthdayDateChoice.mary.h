@@ -56,8 +56,10 @@ mary_text_table
         "Hmm...\r\n"
         "Tschüss dann.{Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday_2[] =
         "Mein Geburtstag";
+#endif
 
     const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday[] =
         "{Baby}s Geburtstag";

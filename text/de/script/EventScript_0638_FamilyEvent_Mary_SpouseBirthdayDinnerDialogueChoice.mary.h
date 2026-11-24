@@ -69,6 +69,7 @@ mary_text_table
         "{Baby}s Geburtstag";
 
 #if defined(BUGFIX)
+#ifndef UNIFY_REGIONS
     // JP praises a novel hero and asks to celebrate, without an insult.
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
         "Ha! Du sagst lustige Dinge.\r\n"
@@ -76,6 +77,7 @@ mary_text_table
         "Wie ein Romanheld!{Press}\p"
         "Komm, feiere meinen\r\n"
         "Geburtstag mit mir!{Press}";
+#endif
 #else
     const char gText_FamilyEvent_Mary_SpouseBirthdayDinnerDialogueChoice_CorrectsMistakenBirthdayAnswer_2[] =
         "Ha! Manchmal benimmst du\r\n"

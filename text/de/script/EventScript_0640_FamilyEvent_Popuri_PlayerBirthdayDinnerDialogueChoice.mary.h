@@ -53,10 +53,17 @@ mary_text_table
         "Ich werde schlafen \r\n"
         "wie ein Stein...{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday[] =
+        "Wie kannst du meinen\r\n"
+        "Geburtstag mit deinem\r\n"
+        "verwechseln?! Unglaublich!{Press}";
+#else
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday[] =
         "Wie kannst du meinen\r\n"
         "Geburtstag mit deinem\r\n"
         "verwechseln?!{Press}";
+#endif
 
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
@@ -69,11 +76,13 @@ mary_text_table
         "werden...{Press}";
 #endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2[] =
         "Wie kannst du meinen\r\n"
         "Geburtstag mit deinem\r\n"
         "verwechseln?!{Press}\p"
         "Unglaublich!{Press}";
+#endif
 
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_WhatAreYouTalkingAboutHow[] =
         "Wovon redest du denn!?\r\n"

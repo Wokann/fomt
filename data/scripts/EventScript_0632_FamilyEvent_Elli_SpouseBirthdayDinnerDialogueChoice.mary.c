@@ -129,10 +129,10 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -155,10 +155,10 @@ void EventScript_0632_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ELLI);
                         SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ELLI);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

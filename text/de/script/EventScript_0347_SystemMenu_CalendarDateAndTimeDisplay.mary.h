@@ -37,9 +37,35 @@ mary_text_table
         "Jahr {Var1}\r\n"
         "{Var2} Tag {Var3} ({Var4}){Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeSpacedMinutes[] =
+        "{Var1}:{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_MorningTimeMinutes[] =
+        "{Var1}:{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_AfternoonTimeSpacedZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_AfternoonTimeSpacedMinutes[] =
+        "{Var1}:{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_AfternoonTimeZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} Uhr{Press}";
+
+    const char gText_SystemMenu_CalendarDateAndTimeDisplay_AfternoonTimeMinutes[] =
+        "{Var1}:{Var2} Uhr{Press}";
+#else
     const char gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithZeroPaddedMinutes[] =
         "{Var1}:0{Var2} Uhr{Press}";
 
     const char gText_SystemMenu_CalendarDateAndTimeDisplay_TimeWithMinutes[] =
         "{Var1}:{Var2} Uhr{Press}";
+#endif
 };

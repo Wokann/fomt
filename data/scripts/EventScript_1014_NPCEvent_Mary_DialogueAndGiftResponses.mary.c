@@ -1311,10 +1311,10 @@ void EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses(void)
                                             {
                                                 SetTalkPortrait(TALK_PORTRAIT_MARY_NORMAL);
                                                 ShowTalkHeartIndicator(CHARACTER_MARY);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU)
-                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU)
+                                                TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2);
 #elif defined(REGION_DE)
                                                 TalkMessage(gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation);
 #endif

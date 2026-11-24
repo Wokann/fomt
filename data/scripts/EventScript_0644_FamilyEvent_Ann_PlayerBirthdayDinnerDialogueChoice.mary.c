@@ -125,10 +125,10 @@ void EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

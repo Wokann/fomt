@@ -64,12 +64,6 @@ mary_text_table
         "get...{Press}";
 #endif
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2[] =
-        "How can you confuse my\r\n"
-        "birthday with your own?!\r\n"
-        "You're unbelievable!{Press}";
-#endif
 
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_WhatAreYouTalkingAboutHow[] =
         "What are you talking \r\n"

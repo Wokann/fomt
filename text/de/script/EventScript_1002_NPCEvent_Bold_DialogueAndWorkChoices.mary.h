@@ -72,24 +72,10 @@ mary_text_table
         "budum?{Press}";
 #endif
 
-#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse[] =
         "Vielen Dank!\r\n"
         "Ist das wirklich für mich, \r\n"
         "budum?{Press}";
-#endif
-
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse[] =
-        "Vielen Dank!\r\n"
-        "Das ist für mich, \r\n"
-        "budum?{Press}";
-
-    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
-        "Vielen Dank!\r\n"
-        "Ist das wirklich für mich, \r\n"
-        "budum?{Press}";
-#endif
 
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_PerfumeGiftResponse[] =
         "Ich werde es immer in \r\n"

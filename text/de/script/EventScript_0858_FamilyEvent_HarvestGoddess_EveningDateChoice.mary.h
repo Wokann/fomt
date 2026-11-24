@@ -63,11 +63,13 @@ mary_text_table
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday[] =
         "{Baby}s Geburtstag";
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2[] =
         "Ja, mein Geburtstag!{Press}\p"
         "Du hast nicht gesagt, da\r\n"
         "dachte ich, du hättest\r\n"
         "es vergessen. {Press}";
+#endif
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_HarvestGoddessJokesAboutHerAge[] =
         "Wie alt bin ich...?\r\n"

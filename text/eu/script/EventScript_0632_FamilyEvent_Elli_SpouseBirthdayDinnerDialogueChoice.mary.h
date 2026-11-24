@@ -55,18 +55,13 @@ mary_text_table
         "I had so much fun today!\r\n"
         "I'll sleep like a log...{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_AreYouAlreadyBecomingSenileAt_2[] =
-        "Are you already becoming\r\n"
-        "senile at your age?...\r\n"
-        "That's worrying...{Press}\p"
-        "It's my birthday, remember?{Press}";
-#endif
 
+#ifndef UNIFY_REGIONS
     const char gText_FamilyEvent_Elli_SpouseBirthdayDinnerDialogueChoice_YouReallyDidRememberYouWerent_2[] =
         "So you really remembered?!\r\n"
         "You weren't just guessing?\r\n"
         "I'm so happy!{Press}";
+#endif
 
 #ifdef BUGFIX
     // Match the post-birth choices to the existing response branches.

@@ -58,12 +58,6 @@ mary_text_table
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}'s birthday";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_ThatsRightYoureGettingOlderNow_2[] =
-        "That's right! You're getting\r\n"
-        "older now, so you have\r\n"
-        "more responsibilities, too!{Press}";
-#endif
 
     const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_StopFoolingMeIKnowYou[] =
         "Stop fooling me!\r\n"

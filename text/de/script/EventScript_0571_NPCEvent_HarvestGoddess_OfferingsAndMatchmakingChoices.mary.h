@@ -391,8 +391,10 @@ mary_text_table
         "stattdessen. Mach bloß \r\n"
         "keinen Ärger! {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2[] =
         "Komm jederzeit wieder.{Press}";
+#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
         "Ich sorge dafür, dass \r\n"

@@ -7,7 +7,7 @@
 void EventScript_0346_LocationInteraction_InspectUpgradedFarmhouseChair(void)
 {
     TalkOpen();
-#if defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
     TalkMessage(gText_LocationInteraction_InspectUpgradedFarmhouseChair);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     TalkAppendMessage(gText_LocationInteraction_InspectUpgradedFarmhouseChair);

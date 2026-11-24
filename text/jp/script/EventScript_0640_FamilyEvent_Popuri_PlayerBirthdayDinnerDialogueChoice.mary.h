@@ -51,12 +51,6 @@ mary_text_table
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}の誕生日";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2[] =
-        "今日は{NickName}の誕生日\r\n"
-        "だよ。ポプリの誕生日とまち\r\n"
-        "がえるなんて！ひどーい。{Press}";
-#endif
 
     const char gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_WhatAreYouTalkingAboutHow[] =
         "ええ？　　　　　　　　　　　\r\n"

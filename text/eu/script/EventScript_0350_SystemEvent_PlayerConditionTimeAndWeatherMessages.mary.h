@@ -15,11 +15,6 @@ mary_text_table
         "It's already late.\r\n"
         "I should get to bed.{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_LateNightBedtimeAdvice_2[] =
-        "It's getting late.\r\n"
-        "I’d better go to bed.{Press}";
-#endif
 
     const char gText_SystemEvent_PlayerConditionTimeAndWeatherMessages_PredawnSleepAdvice[] =
         "It will be morning soon...\r\n"

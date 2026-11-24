@@ -614,19 +614,19 @@ void EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses(void)
                             if (WasNpcSpokenToJustNow(CHARACTER_HARRIS) == FALSE)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_HARRIS_NORMAL);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_SharedOutdoorBefore18SunnyOrGotzHouseFriendshipAbove100FirstConversation_2);
 #endif
                             }
                             else
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_HARRIS_NORMAL);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                TalkMessage(gText_NPCEvent_Harris_DialogueAndGiftResponses_OutdoorAfter18RepeatConversation_2);
 #endif
                             }
                         }

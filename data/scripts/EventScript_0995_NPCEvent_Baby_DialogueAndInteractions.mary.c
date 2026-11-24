@@ -1030,10 +1030,10 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                         else
                         {
                             SetTalkPortrait(TALK_PORTRAIT_BABY_INDIGNATED);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                             TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                            TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantDislikedGiftOrYoungChildLowFriendshipRepeatResponse_2);
 #endif
                         }
                     }
@@ -1044,10 +1044,10 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                             if (WasNpcSpokenToJustNow(CHARACTER_CHILD) == FALSE)
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_NORMAL);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantHatedGiftResponse_2);
 #endif
                             }
                             else
@@ -1070,9 +1070,7 @@ void EventScript_0995_NPCEvent_Baby_DialogueAndInteractions(void)
                             else
                             {
                                 SetTalkPortrait(TALK_PORTRAIT_BABY_NORMAL);
-#if defined(UNIFY_REGIONS)
-                                TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_InfantFavoriteGiftOrHighFriendshipRepeatResponse);
 #elif defined(REGION_DE)
                                 TalkMessage(gText_NPCEvent_Baby_DialogueAndInteractions_Shared_InfantMediumFriendshipOrYoungChildFavoriteOrLikedResponse);

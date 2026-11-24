@@ -397,12 +397,6 @@ mary_text_table
         "Oh, {NickName}.\r\n"
         "Schön, dich zu sehen. {Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyOrAfterChildbirthFirstConversation_2[] =
-        "Oh, {NickName}.\r\n"
-        "Schön, dich zu sehen. {Press}";
-#endif
-
     const char gText_NPCEvent_Mary_DialogueAndGiftResponses_PlayerSpouseLibraryPregnancyRepeatConversation[] =
         "Keine Sorge. Ich\r\n"
         "hebe nichts Schweres.{Press}";

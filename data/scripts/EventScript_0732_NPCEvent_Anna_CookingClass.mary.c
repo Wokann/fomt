@@ -112,10 +112,10 @@ void EventScript_0732_NPCEvent_Anna_CookingClass(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_ANNA);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime);
+#elif defined(REGION_DE)
+            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
 #endif
             TalkClose();
             break;
@@ -133,10 +133,10 @@ void EventScript_0732_NPCEvent_Anna_CookingClass(void)
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ANNA_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_ANNA);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
             TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime);
+#elif defined(REGION_DE)
+            TalkMessage(gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2);
 #endif
             TalkClose();
             break;

@@ -634,9 +634,7 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 if (GetNpcFriendship(CHARACTER_CARTER) > 100 && GetNpcFriendship(CHARACTER_CARTER) <= 200)
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
-#if defined(UNIFY_REGIONS)
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_SnowWhiteStoryTransition);
@@ -656,9 +654,7 @@ void EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses(void)
                                                 else
                                                 {
                                                     SetTalkPortrait(TALK_PORTRAIT_CARTER_NORMAL);
-#if defined(UNIFY_REGIONS)
-                                                    TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction_3);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_StorytellingIntroduction);
 #elif defined(REGION_US) || defined(REGION_EU)
                                                     TalkMessage(gText_NPCEvent_Carter_DialogueAndGiftResponses_ScaryStoryIntroduction);

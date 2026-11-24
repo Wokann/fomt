@@ -42,10 +42,12 @@ mary_text_table
         "Galaktischer-Bombiger Apfel!{Press}";
 
 #if defined(BUGFIX)
+#ifndef UNIFY_REGIONS
     // He is panting after the long name, not forgetting it.
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
         "*keuch* *keuch* *keuch*...\r\n"
         "So heißt er.{Press}";
+#endif
 #else
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_2[] =
         "Ebenfalls schwer zu \r\n"
@@ -62,10 +64,12 @@ mary_text_table
         "Frischer-Geschmackvoller.{Press}";
 
 #if defined(BUGFIX)
+#ifndef UNIFY_REGIONS
     // He is panting after the long name, not forgetting it.
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
         "*keuch* *keuch* *keuch*...\r\n"
         "So heißt er.{Press}";
+#endif
 #else
     const char gText_NPCEvent_Won_AppleChallenge_ReactsToLongAppleName_3[] =
         "Siehst du? Sogar der Name\r\n"

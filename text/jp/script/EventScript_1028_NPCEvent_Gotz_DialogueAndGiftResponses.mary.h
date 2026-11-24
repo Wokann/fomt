@@ -146,12 +146,6 @@ mary_text_table
         "よう、おまえもいそがしそうだ\r\n"
         "な。まぁ、がんばれよ。{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestSaturdayEveningOrNorthTownOutsideMayorVisitCommentsOnPlayersWork_2[] =
-        "よう、おまえもいそがしそうだ\r\n"
-        "な。まぁ、がんばれよ。{Press}";
-#endif
-
     const char gText_NPCEvent_Gotz_DialogueAndGiftResponses_ForestWorkFirstConversationSearchesForLumberTrees[] =
         "よぉ。オレは今、資材にするた\r\n"
         "めの木を探しているんだ。後、\r\n"

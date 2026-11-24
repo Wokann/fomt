@@ -49,6 +49,8 @@ mary_text_table
         "Du hast Recht. \r\n"
         "Pass auf dich auf. {Press}";
 
+#ifndef UNIFY_REGIONS
     const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2[] =
         "Danke noch mal, Doktor. {Press}";
+#endif
 };

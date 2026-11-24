@@ -178,9 +178,9 @@ void EventScript_0403_SystemMenu_FestivalCalendar(void)
                     case DAY_23:
                     case DAY_24:
                     case DAY_25:
-#if (defined(UNIFY_REGIONS) && (defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU))) || defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
                         TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsEarlyWinter);
-#elif (defined(UNIFY_REGIONS) && (defined(REGION_DE))) || defined(REGION_DE)
+#elif defined(REGION_DE)
                         TalkMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsEarlyWinter);
 #elif defined(REGION_US) || defined(REGION_EU)
                         TalkAppendMessage(gText_SystemMenu_FestivalCalendar_YearEndEventsFallOrWinterPreview);

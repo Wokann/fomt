@@ -168,10 +168,10 @@ void EventScript_0640_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice(void
                         SetTalkNameplateCharacter(CHARACTER_POPURI);
                         SetTalkPortrait(TALK_PORTRAIT_POPURI_ANGRY);
                         ShowTalkHeartIndicator(CHARACTER_POPURI);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Popuri_PlayerBirthdayDinnerDialogueChoice_HowCanYouConfuseMyBirthday_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

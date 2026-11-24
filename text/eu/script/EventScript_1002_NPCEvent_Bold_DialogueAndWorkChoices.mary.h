@@ -74,13 +74,6 @@ mary_text_table
         "Is this really for me, \r\n"
         "budum?{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_NPCEvent_Bold_DialogueAndWorkChoices_AccessoryOrCosmeticGiftResponse_2[] =
-        "Thanks much!\r\n"
-        "Is this really for me, \r\n"
-        "budum?{Press}";
-#endif
-
     const char gText_NPCEvent_Bold_DialogueAndWorkChoices_PerfumeGiftResponse[] =
         "I'll treasure it always,\r\n"
         "budum!{Press}";

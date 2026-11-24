@@ -192,9 +192,7 @@ void EventScript_0404_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice(voi
                             TalkOpen();
                             SetTalkPortrait(TALK_PORTRAIT_THOMAS_NORMAL);
                             SetTalkNameplateCharacter(CHARACTER_THOMAS);
-#if defined(UNIFY_REGIONS)
-                            TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation);
 #elif defined(REGION_DE)
                             TalkMessage(gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeInquiry);

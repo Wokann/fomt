@@ -53,11 +53,6 @@ mary_text_table
         "embarrassed to say! I think \r\n"
         "{Player} is better.{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_ConfirmsDefaultNickname_2[] =
-        "So, from now on I'll call\r\n"
-        "you {Player}. {Press}";
-#endif
 
     const char gText_WeddingEvent_HarvestGoddess_CeremonyAndNicknameSelection_RequestsCustomNickname[] =
         "Something else is better? \r\n"

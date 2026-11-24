@@ -66,10 +66,10 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         RemoveEventIcon(EVENT_ICON_SLOT_0);
                         RemoveEventIcon(EVENT_ICON_SLOT_1);
                         TalkOpen();
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_IdBetterApologizeLater_2);
 #endif
                         TalkClose();
                         DisableScriptedNpcControl();
@@ -129,10 +129,10 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_WorriesAboutOverworkAndRemindsBirthday_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -155,10 +155,10 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_HAPPY);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_AwwwYouRememberedYoureSoBusy_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);
@@ -176,10 +176,10 @@ void EventScript_0629_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice(void)
                         SetTalkNameplateCharacter(CHARACTER_ANN);
                         SetTalkPortrait(TALK_PORTRAIT_ANN_SURPRISED);
                         ShowTalkHeartIndicator(CHARACTER_ANN);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_Ann_SpouseBirthdayDinnerDialogueChoice_ExplainsFoodUsesFathersInnRecipes_2);
 #endif
                         TalkClose();
                         FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

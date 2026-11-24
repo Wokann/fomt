@@ -65,13 +65,14 @@ mary_text_table
         "Schnief...schnief....\r\n"
         "Tut mir Leid...{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
+        "Schon gut, Stu. {Press}";
+#else
     const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu[] =
         "Ich verzeihe dir, Stu.{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2[] =
-        "Schon gut, Stu. {Press}";
 #endif
+
 
     const char gText_LoveEvent_Elli_03_BlueHeart_EllenTellsStuElliForgivesHim[] =
         "Elli sagt, dass sie dir\r\n"

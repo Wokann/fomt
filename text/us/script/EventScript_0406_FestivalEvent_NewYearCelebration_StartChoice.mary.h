@@ -21,14 +21,12 @@ mary_text_table
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice[] =
         "Start";
 
-    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice_2[] =
-        "Start.";
+
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice[] =
         "Wait a minute";
 
-    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice_2[] =
-        "Hold on a second.";
+
 #endif
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ThomasStartsRiceCakeFestival[] =

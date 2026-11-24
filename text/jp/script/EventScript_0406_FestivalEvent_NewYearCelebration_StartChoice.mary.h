@@ -12,18 +12,10 @@ mary_text_table
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice[] =
         "始める";
 
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalStartChoice_2[] =
-        "始める";
-#endif
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice[] =
         "ちょっと待って";
 
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_NewYearCelebration_StartChoice_Shared_RiceCakeAndNoodleFestivalWaitChoice_2[] =
-        "ちょっと待って";
-#endif
 
     const char gText_FestivalEvent_NewYearCelebration_StartChoice_ThomasStartsRiceCakeFestival[] =
         "じゃ、始めようか。\r\n"

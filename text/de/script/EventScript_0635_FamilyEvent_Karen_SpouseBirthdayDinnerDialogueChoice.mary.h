@@ -63,12 +63,6 @@ mary_text_table
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_BabySBirthday[] =
         "{Baby}s Geburtstag";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_ThatsRightYoullCelebrateWithMe_2[] =
-        "Richtig! Lass \r\n"
-        "uns die Nacht \r\n"
-        "durchfeiern!{Press}";
-#endif
 
     const char gText_FamilyEvent_Karen_SpouseBirthdayDinnerDialogueChoice_KarenLaughsAtWrongBirthdayAnswer[] =
         "Ha ha ha! Unglaublich, dass du \r\n"

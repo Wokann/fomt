@@ -11,27 +11,11 @@ mary_text_table
         "広がり、明日は一日中雨が　　\r\n"
         "降り続けるでしょう。{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_TV_WeatherChannelForecast_SpringToSummerRain_2[] =
-        "明日の天気予報ですっ！　　　\r\n"
-        "今夜から朝にかけて、雲が　　\r\n"
-        "広がり、明日は一日中雨が　　\r\n"
-        "降り続けるでしょう。{Press}";
-#endif
-
     const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon[] =
         "明日の天気予報ですっ！　　　\r\n"
         "台風が直撃するもようです！　\r\n"
         "みなさん、戸締りは厳重に！　\r\n"
         "動物は小屋に入れましょう！！{Press}";
-
-#ifdef UNIFY_REGIONS
-    const char gText_TV_WeatherChannelForecast_SpringToSummerTyphoon_2[] =
-        "明日の天気予報ですっ！　　　\r\n"
-        "台風が直撃するもようです！　\r\n"
-        "みなさん、戸締りは厳重に！　\r\n"
-        "動物は小屋に入れましょう！！{Press}";
-#endif
 
     const char gText_TV_WeatherChannelForecast_NoSignalSnow[] =
         "雪！{Press}";

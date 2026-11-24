@@ -52,14 +52,6 @@ mary_text_table
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_ChoiceChildBirthday[] =
         "{Baby}の誕生日";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2[] =
-        "そうよ。わたしの誕生日\r\n"
-        "なのよ。{Press}\p"
-        "{Player}ちゃんが\r\n"
-        "だまってるから、\r\n"
-        "わすれたと思ったわ。{Press}";
-#endif
 
     const char gText_FamilyEvent_HarvestGoddess_EveningDateChoice_HarvestGoddessJokesAboutHerAge[] =
         "わたしって、何歳だったの\r\n"

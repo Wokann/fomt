@@ -51,9 +51,5 @@ mary_text_table
     const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_DoctorAgreesAndTellsEllenToTakeCare[] =
         "そうだね。\r\n"
         "それじゃ、お大事に。{Press}";
-#if defined(UNIFY_REGIONS)
-    const char gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2[] =
-        "ありがとう、ドクター。{Press}";
-#endif
 
 };

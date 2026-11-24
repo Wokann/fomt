@@ -122,10 +122,10 @@ void EventScript_0947_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall(void
     TalkOpen();
     SetTalkPortrait(TALK_PORTRAIT_ELLEN_HAPPY);
     SetTalkNameplateCharacter(CHARACTER_ELLEN);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
     TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+    TalkMessage(gText_RivalEvent_ElliAndDoctor_02_BlueHeart_EllensHouseCall_EllenThanksDoctor_2);
 #endif
     TalkClose();
     SetEntityFacing(ENTITY_DOCTOR, FACING_DOWN);

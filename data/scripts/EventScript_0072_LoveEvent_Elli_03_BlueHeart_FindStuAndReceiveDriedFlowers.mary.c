@@ -213,10 +213,10 @@ void EventScript_0072_LoveEvent_Elli_03_BlueHeart_FindStuAndReceiveDriedFlowers(
             TalkOpen();
             SetTalkPortrait(TALK_PORTRAIT_ELLI_HAPPY);
             SetTalkNameplateCharacter(CHARACTER_ELLI);
-#if defined(UNIFY_REGIONS) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2);
-#elif defined(REGION_JP)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP)
             TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            TalkMessage(gText_LoveEvent_Elli_03_BlueHeart_ElliForgivesStu_2);
 #endif
             TalkClose();
             TalkOpen();

@@ -46,10 +46,6 @@ mary_text_table
         "あっそう、\r\n"
         "じゃねー。{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoicePlayerBirthday_2[] =
-        "自分の誕生日";
-#endif
 
     const char gText_FamilyEvent_HarvestGoddess_PlayerBirthdayDateChoice_ChoiceChildBirthday[] =
         "{Baby}の誕生日";

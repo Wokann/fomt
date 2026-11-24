@@ -63,11 +63,6 @@ mary_text_table
         "Gehen wir nach Hause,\r\n"
         "Hühnchen!{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_InvitesRunawayChickenHome_2[] =
-        "Gehen wir heim, \r\n"
-        "meine Hühnchen! {Press}";
-#endif
 
     const char gText_LoveEvent_Popuri_01_BlackHeart_Popuri_QuestionsChickenDislike[] =
         "Aber warum?!\r\n"

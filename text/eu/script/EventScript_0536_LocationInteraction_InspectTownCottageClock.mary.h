@@ -43,6 +43,20 @@ mary_text_table
     const char gText_LocationInteraction_InspectTownCottageClock_MorningTimeSpacedMinutes[] =
         "{Var1}:{Var2} AM{Press}";
 
+#if defined(UNIFY_REGIONS)
+    const char gText_LocationInteraction_InspectTownCottageClock_MorningTimeZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} AM{Press}";
+
+    const char gText_LocationInteraction_InspectTownCottageClock_MorningTimeMinutes[] =
+        "{Var1}:{Var2} AM{Press}";
+
+    const char gText_LocationInteraction_InspectTownCottageClock_AfternoonTimeSpacedZeroPaddedMinutes[] =
+        "{Var1}:0{Var2} PM{Press}";
+
+    const char gText_LocationInteraction_InspectTownCottageClock_AfternoonTimeSpacedMinutes[] =
+        "{Var1}:{Var2} PM{Press}";
+#endif
+
     const char gText_LocationInteraction_InspectTownCottageClock_AfternoonTimeZeroPaddedMinutes[] =
         "{Var1}:0{Var2} PM{Press}";
 

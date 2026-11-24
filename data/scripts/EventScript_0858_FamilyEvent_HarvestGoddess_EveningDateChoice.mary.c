@@ -183,10 +183,10 @@ void EventScript_0858_FamilyEvent_HarvestGoddess_EveningDateChoice(void)
                         TalkOpen();
                         SetTalkNameplateCharacter(CHARACTER_HARVEST_GODDESS);
                         SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
-#if defined(UNIFY_REGIONS) || defined(REGION_DE)
-                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2);
-#elif defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
+#if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
                         TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse);
+#elif defined(REGION_DE)
+                        TalkMessage(gText_FamilyEvent_HarvestGoddess_EveningDateChoice_CorrectHarvestGoddessBirthdayResponse_2);
 #endif
                         TalkClose();
                         SetEntityAnim(ENTITY_PLAYER, ANIMATION_PLAYER_LOWER_HEAD);

@@ -42,18 +42,8 @@ mary_text_table
     const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000[] =
         "愛情度＋千";
 
-#ifdef UNIFY_REGIONS
-    const char gText_DebugEvent_CharacterAffectionEditor_IncreaseLoveBy1000_2[] =
-        "愛情度＋千";
-#endif
-
     const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000[] =
         "愛情度－千";
-
-#ifdef UNIFY_REGIONS
-    const char gText_DebugEvent_CharacterAffectionEditor_DecreaseLoveBy1000_2[] =
-        "愛情度－千";
-#endif
 
     const char gText_DebugEvent_CharacterAffectionEditor_ReturnToCharacterList[] =
         "戻る";

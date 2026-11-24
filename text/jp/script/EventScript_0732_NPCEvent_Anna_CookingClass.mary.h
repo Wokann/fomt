@@ -59,11 +59,6 @@ mary_text_table
         "とか入れてもおいしいわよ。\r\n"
         "ためしてみてね。{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_NPCEvent_Anna_CookingClass_AnnaClosesLessonUntilNextTime_2[] =
-        "いいえ、どういたしまして。\r\n"
-        "じゃ、また今度ね。{Press}";
-#endif
 
     const char gText_NPCEvent_Anna_CookingClass_AnnaTeachesCheesecake[] =
         "そうねぇ、今日はチーズケーキ\r\n"

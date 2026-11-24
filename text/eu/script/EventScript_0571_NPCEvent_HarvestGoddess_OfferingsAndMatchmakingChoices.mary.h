@@ -382,10 +382,6 @@ mary_text_table
         "instead. Just don't cause\r\n"
         "any trouble!{Press}";
 
-#if defined(UNIFY_REGIONS)
-    const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_ComeAgainAnyTime_2[] =
-        "Come again any time.{Press}\p";
-#endif
 
     const char gText_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices_IllMakeMaryFeelMoreRomantically[] =
         "I'll make Mary feel more \r\n"

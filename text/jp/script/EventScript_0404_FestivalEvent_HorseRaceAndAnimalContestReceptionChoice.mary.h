@@ -43,10 +43,6 @@ mary_text_table
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_MedalExchangeConfirmation[] =
         "メダルを景品に替えるんだね。{Press}";
 
-#ifdef UNIFY_REGIONS
-    const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_AnimalContestMedalExchangeConfirmation[] =
-        "メダルを景品に替えるんだね。{Press}";
-#endif
 
     const char gText_FestivalEvent_HorseRaceAndAnimalContestReceptionChoice_ExchangeBlockedWhileHoldingItem[] =
         "手に物を持ったまま\r\n"
