@@ -5,16 +5,16 @@ mary_text_table
         "Do you know what makes\r\n"
         "today special?{Press}";
 
-    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
+    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
         "Your birthday";
 
     const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice[] =
         "Our anniversary";
 
-    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
+    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
         "My birthday";
 
-    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
         "My birthday? \r\n"
         "No, it's our anniversary, \r\n"
         "silly! I can't believe you {Press}\r\n"
@@ -38,7 +38,7 @@ mary_text_table
         "present, so empty your \r\n"
         "hands, OK?{Press}";
 
-    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
+    const char gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
         "Your kidding, aren't you?!\r\n"
         "Do you have a fever,\r\n"
         "because if you don't {Press}\r\n"

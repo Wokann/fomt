@@ -3990,7 +3990,7 @@ mary_script_symbols
     // Script ID: 0473
     EventScript_0473_ShopEvent_Supermarket_CurryPowderPurchase
     {
-        gText_ShopEvent_Supermarket_CurryPowderPurchase_WelcomeCurryPowderIs100GEach,
+        gText_ShopEvent_Supermarket_CurryPowderPurchase_CurryPowderPriceAndQuantityPrompt,
         gText_ShopEvent_Supermarket_CurryPowderPurchase_TooBadButYourHandsAre,
         gText_ShopEvent_Supermarket_CurryPowderPurchase_TooBadButYouDontHave,
     },
@@ -4996,14 +4996,14 @@ mary_script_symbols
     EventScript_0589_FamilyEvent_Popuri_AnniversaryDateDialogueChoice
     {
         gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_OpeningQuestion,
-        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
-        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
         gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_SpouseBirthdayChoice,
-        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
+        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
+        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
+        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
         gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_CorrectAnniversaryResponse,
         gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_ImmediateGiftDelivery,
         gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt,
-        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
+        gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
     },
 
     // Script ID: 0590
@@ -5030,14 +5030,14 @@ mary_script_symbols
     EventScript_0593_FamilyEvent_Ann_AnniversaryDateDialogueChoice
     {
         gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_OpeningQuestion,
-        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
-        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
         gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_SpouseBirthdayChoice,
-        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
+        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
+        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
+        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
         gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_CorrectAnniversaryResponse,
         gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_ImmediateGiftDelivery,
         gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt,
-        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
+        gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
     },
 
     // Script ID: 0594
@@ -5064,14 +5064,14 @@ mary_script_symbols
     EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice
     {
         gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_OpeningQuestion,
-        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
-        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
         gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_SpouseBirthdayChoice,
-        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
+        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
+        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
+        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
         gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_CorrectAnniversaryResponse,
         gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_ImmediateGiftDelivery,
         gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt,
-        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
+        gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
     },
 
     // Script ID: 0598
@@ -5098,14 +5098,14 @@ mary_script_symbols
     EventScript_0601_FamilyEvent_Karen_AnniversaryDateDialogueChoice
     {
         gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_OpeningQuestion,
-        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
-        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
         gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_SpouseBirthdayChoice,
-        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
+        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
+        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
+        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
         gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_CorrectAnniversaryResponse,
         gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_ImmediateGiftDelivery,
         gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt,
-        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
+        gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
     },
 
     // Script ID: 0602
@@ -5132,14 +5132,14 @@ mary_script_symbols
     EventScript_0605_FamilyEvent_Mary_AnniversaryDateDialogueChoice
     {
         gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_OpeningQuestion,
-        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
-        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
         gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_SpouseBirthdayChoice,
-        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
+        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice,
+        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_PlayerBirthdayChoice,
+        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
         gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_CorrectAnniversaryResponse,
         gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_ImmediateGiftDelivery,
         gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_HandsOccupiedDeferredGiftPrompt,
-        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse,
+        gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse,
     },
 
     // Script ID: 0606
@@ -5561,7 +5561,7 @@ mary_script_symbols
     // Script ID: 0644
     EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice
     {
-        gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_GooGoo,
+        gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_WorkCompletionPrompt,
         gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_Yes,
         gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_No,
         gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_YouKnowWhatDayItIs,
@@ -5596,7 +5596,7 @@ mary_script_symbols
     // Script ID: 0647
     EventScript_0647_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice
     {
-        gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_GooGoo,
+        gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_WorkCompletionPrompt,
         gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_Yes,
         gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_No,
         gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_YouThinkThisMealIsDifferent,
@@ -12927,8 +12927,8 @@ mary_script_symbols
         #if defined(REGION_DE)
             gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown,
         #else
-            gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown,
-            gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown,
+            gText_TV_HarvestGoddessRockPaperScissors_NewRoundCountdown,
+            gText_TV_HarvestGoddessRockPaperScissors_DrawReplayCountdown,
         #endif
         #if defined(REGION_JP)
             gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock,

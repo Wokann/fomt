@@ -48,7 +48,7 @@ void EventScript_0593_FamilyEvent_Ann_AnniversaryDateDialogueChoice(void)
     TalkMessage(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_OpeningQuestion);
     TalkClose();
     TalkOpen();
-    var_0 = TalkChoice3(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_PlayerBirthdayChoice, gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice, gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_SpouseBirthdayChoice);
+    var_0 = TalkChoice3(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_SpouseBirthdayChoice, gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice, gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_PlayerBirthdayChoice);
     switch (var_0)
     {
         case CHOICE_OPTION_1:
@@ -58,7 +58,7 @@ void EventScript_0593_FamilyEvent_Ann_AnniversaryDateDialogueChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ANN);
             SetTalkPortrait(TALK_PORTRAIT_ANN_ANGRY);
             ShowTalkHeartIndicator(CHARACTER_ANN);
-            TalkMessage(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse);
+            TalkMessage(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse);
             TalkClose();
             VarSet(VAR_ANN_ANNIVERSARY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -118,7 +118,7 @@ void EventScript_0593_FamilyEvent_Ann_AnniversaryDateDialogueChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ANN);
             SetTalkPortrait(TALK_PORTRAIT_ANN_ANGRY);
             ShowTalkHeartIndicator(CHARACTER_ANN);
-            TalkMessage(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse);
+            TalkMessage(gText_FamilyEvent_Ann_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse);
             TalkClose();
             VarSet(VAR_ANN_ANNIVERSARY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

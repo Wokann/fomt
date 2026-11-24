@@ -16,7 +16,7 @@ void EventScript_0473_ShopEvent_Supermarket_CurryPowderPurchase(void)
         TalkOpen();
         SetTalkPortrait(TALK_PORTRAIT_JEFF_NORMAL);
         SetTalkNameplateCharacter(CHARACTER_JEFF);
-        TalkMessage(gText_ShopEvent_Supermarket_CurryPowderPurchase_WelcomeCurryPowderIs100GEach);
+        TalkMessage(gText_ShopEvent_Supermarket_CurryPowderPurchase_CurryPowderPriceAndQuantityPrompt);
         if (GetMoney() >= 50)
         {
             if (CanReceiveFood(ITEM_FOOD_CURRY_POWDER) == TRUE)

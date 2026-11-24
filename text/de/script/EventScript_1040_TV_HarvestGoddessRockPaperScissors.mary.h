@@ -13,7 +13,7 @@ mary_text_table
         "Spielen wir, {Player}!{Press}";
 
 #ifdef UNIFY_REGIONS
-    const char gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_NewRoundCountdown[] =
 #else
     const char gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown[] =
 #endif
@@ -25,7 +25,7 @@ mary_text_table
 #endif
 
 #ifdef UNIFY_REGIONS
-    const char gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_DrawReplayCountdown[] =
         "Eins... Zwei... Drei!...{Press}\r\n";
 #endif
 

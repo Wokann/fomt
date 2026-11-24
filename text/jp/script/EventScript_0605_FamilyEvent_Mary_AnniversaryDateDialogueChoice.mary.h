@@ -5,16 +5,16 @@ mary_text_table
         "よく眠れた？今日が何の日か\r\n"
         "わかってるよね。{Press}";
 
-    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
+    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
         "マリーの誕生日";
 
     const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice[] =
         "結婚記念日";
 
-    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
+    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
         "自分の誕生日";
 
-    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
         "わたしの誕生日？\r\n"
         "…………そう、わかったわ。{Press}\p"
         "{NickName}は結婚記念日も\r\n"
@@ -38,7 +38,7 @@ mary_text_table
         "プレゼントあげるから、\r\n"
         "手に持ってる物しまってね。{Press}";
 
-    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
+    const char gText_FamilyEvent_Mary_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
         "えー、{NickName}の誕生日？\r\n"
         "そんなわけないじゃない…\r\n"
         "大事な日を忘れるなんて…{Press}\p"

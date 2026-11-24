@@ -48,7 +48,7 @@ void EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice(void)
     TalkMessage(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_OpeningQuestion);
     TalkClose();
     TalkOpen();
-    var_0 = TalkChoice3(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice, gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice, gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_SpouseBirthdayChoice);
+    var_0 = TalkChoice3(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_SpouseBirthdayChoice, gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice, gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_PlayerBirthdayChoice);
     switch (var_0)
     {
         case CHOICE_OPTION_1:
@@ -58,7 +58,7 @@ void EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             SetTalkPortrait(TALK_PORTRAIT_ELLI_ANGRY);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-            TalkMessage(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse);
+            TalkMessage(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse);
             TalkClose();
             VarSet(VAR_ELLI_ANNIVERSARY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);
@@ -118,7 +118,7 @@ void EventScript_0597_FamilyEvent_Elli_AnniversaryDateDialogueChoice(void)
             SetTalkNameplateCharacter(CHARACTER_ELLI);
             SetTalkPortrait(TALK_PORTRAIT_ELLI_ANGRY);
             ShowTalkHeartIndicator(CHARACTER_ELLI);
-            TalkMessage(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse);
+            TalkMessage(gText_FamilyEvent_Elli_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse);
             TalkClose();
             VarSet(VAR_ELLI_ANNIVERSARY_EVENT_STATE, EVENT_LIFECYCLE_COMPLETED);
             FadeOutScreen(SCREEN_FADE_STYLE_BLACK_MOSAIC, SCREEN_FADE_SPEED_NORMAL);

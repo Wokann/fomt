@@ -5,16 +5,16 @@ mary_text_table
         "Weißt du, was heute ist?\r\n"
         "Ich bin so aufgeregt...!!{Press}";
 
-    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
+    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
         "Dein Geburtstag";
 
     const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice[] =
         "Unser Jahrestag";
 
-    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
+    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
         "Mein Geburtstag";
 
-    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
         "Mein Geburtstag?!...\r\n"
         "Ich hoffe, du scherzt!\r\n"
         "Wie auch immer, jetzt{Press}\r\n"
@@ -36,7 +36,7 @@ mary_text_table
         "Ich werde schlafen\r\n"
         "wie ein Stein...{Press}";
 
-    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
+    const char gText_FamilyEvent_Popuri_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
         "Huh? Was für ein Ehemann\r\n"
         "denkt, dass der Jahrestag \r\n"
         "sein eigener{Press}\r\n"

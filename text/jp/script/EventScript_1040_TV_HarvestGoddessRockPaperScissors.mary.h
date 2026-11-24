@@ -14,10 +14,10 @@ mary_text_table
         "ってわけで、わたしと　　　　\r\n"
         "じゃんけんしましょ。{Press}";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_NewRoundCountdown[] =
         "じゃんけんぽん！{Press}\r\n";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_DrawReplayCountdown[] =
         "あいこでしょ！{Press}\r\n";
 
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =

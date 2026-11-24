@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_GooGoo[] =
+    const char gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_WorkCompletionPrompt[] =
         "Bist du mit deiner \r\n"
         "Arbeit fertig?{Press}";
 

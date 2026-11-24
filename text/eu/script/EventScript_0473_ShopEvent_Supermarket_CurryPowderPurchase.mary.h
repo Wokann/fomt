@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_ShopEvent_Supermarket_CurryPowderPurchase_WelcomeCurryPowderIs100GEach[] =
+    const char gText_ShopEvent_Supermarket_CurryPowderPurchase_CurryPowderPriceAndQuantityPrompt[] =
         "Welcome!\r\n"
 #ifdef BUGFIX
         "Curry Powder is 50G each.\r\n"

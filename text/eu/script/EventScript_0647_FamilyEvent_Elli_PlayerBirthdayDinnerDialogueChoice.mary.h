@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_GooGoo[] =
+    const char gText_FamilyEvent_Elli_PlayerBirthdayDinnerDialogueChoice_WorkCompletionPrompt[] =
 // The wife asks whether work is finished here; this is not the baby's speech.
 #ifdef BUGFIX
         "Have you finished work?{Press}";

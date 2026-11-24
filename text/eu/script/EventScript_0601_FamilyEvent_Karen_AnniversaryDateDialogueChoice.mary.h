@@ -5,16 +5,16 @@ mary_text_table
         "{NickName}. Sleep well? \r\n"
         "Do you know what today is?{Press}";
 
-    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
+    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
         "Your birthday";
 
     const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_WeddingAnniversaryChoice[] =
         "Our anniversary";
 
-    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_SpouseBirthdayChoice[] =
+    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_PlayerBirthdayChoice[] =
         "My birthday";
 
-    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
+    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
         "My birthday? \r\n"
         "No, it's our anniversary, \r\n"
         "silly! I can't believe you {Press}\r\n"
@@ -38,7 +38,7 @@ mary_text_table
         "present, so empty your \r\n"
         "hands, OK?{Press}";
 
-    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectSpouseBirthdayResponse[] =
+    const char gText_FamilyEvent_Karen_AnniversaryDateDialogueChoice_IncorrectPlayerBirthdayResponse[] =
         "Is that a joke!?\r\n"
         "I can't believe how \r\n"
         "self-centered you are!{Press}\p"

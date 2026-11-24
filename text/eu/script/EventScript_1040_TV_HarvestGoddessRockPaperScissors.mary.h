@@ -11,10 +11,10 @@ mary_text_table
         "Rock-Paper-Scissors show!\r\n"
         "Let's play, {Player}.{Press}";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_NewRoundCountdown[] =
         "One...Two...Three!...{Press}\r\n";
 
-    const char gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown[] =
+    const char gText_TV_HarvestGoddessRockPaperScissors_DrawReplayCountdown[] =
         "One...Two...Three...{Press}\r\n";
 
     const char gText_TV_HarvestGoddessRockPaperScissors_ChoiceRock[] =

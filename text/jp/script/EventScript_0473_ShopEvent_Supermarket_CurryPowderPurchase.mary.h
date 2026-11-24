@@ -1,6 +1,6 @@
 mary_text_table
 {
-    const char gText_ShopEvent_Supermarket_CurryPowderPurchase_WelcomeCurryPowderIs100GEach[] =
+    const char gText_ShopEvent_Supermarket_CurryPowderPurchase_CurryPowderPriceAndQuantityPrompt[] =
         "いらっしゃい。\r\n"
         "「カレー粉」は１コ５０Ｇ\r\n"
         "だけど何個買うの？{Press}\p";

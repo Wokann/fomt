@@ -58,7 +58,7 @@ void EventScript_1040_TV_HarvestGoddessRockPaperScissors(void)
                 case HARVEST_GODDESS_GAME_ROUND_WIN:
                     SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
 #if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                    TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_PlayerCountdown);
+                    TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_NewRoundCountdown);
 #elif defined(REGION_DE)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown);
 #endif
@@ -66,7 +66,7 @@ void EventScript_1040_TV_HarvestGoddessRockPaperScissors(void)
                 case HARVEST_GODDESS_GAME_ROUND_DRAW:
                     SetTalkPortrait(TALK_PORTRAIT_HARVEST_GODDESS_HAPPY);
 #if defined(UNIFY_REGIONS) || defined(REGION_JP) || defined(REGION_US) || defined(REGION_EU)
-                    TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_GoddessCountdown);
+                    TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_DrawReplayCountdown);
 #elif defined(REGION_DE)
                     TalkMessage(gText_TV_HarvestGoddessRockPaperScissors_Shared_PlayerAndGoddessCountdown);
 #endif

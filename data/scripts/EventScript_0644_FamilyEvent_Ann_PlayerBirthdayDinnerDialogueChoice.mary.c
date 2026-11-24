@@ -13,7 +13,7 @@ void EventScript_0644_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice(void)
     SetTalkNameplateCharacter(CHARACTER_ANN);
     SetTalkPortrait(TALK_PORTRAIT_ANN_NORMAL);
     ShowTalkHeartIndicator(CHARACTER_ANN);
-    TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_GooGoo);
+    TalkMessage(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_WorkCompletionPrompt);
     TalkClose();
     TalkOpen();
     var_0 = TalkChoice2(gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_Yes, gText_FamilyEvent_Ann_PlayerBirthdayDinnerDialogueChoice_No);
