@@ -17,6 +17,7 @@ struct PoultryShopChickenSaleEntry {
 
 // Native 12 x 2 4bpp label storage; the first word is not initialized/read.
 struct PoultryShopNameTiles {
+    PoultryShopNameTiles() {}
     u32 unk_00;
     u32 tiles[12 * 2 * 8];
 };
