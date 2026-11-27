@@ -14,7 +14,7 @@
 #endif
 
 // Each 4bpp tile is 32 bytes. The native buffer has one u32 prefix; the
-// bootstrap has two words. The C++ checks below verify these ABI facts.
+// bootstrap has two words.
 #define NEW_GAME_IDENTITY_VALUE_TILE_BYTES (NEW_GAME_IDENTITY_VALUE_WIDTH * NEW_GAME_IDENTITY_TILE_HEIGHT * 32)
 #define NEW_GAME_IDENTITY_LABEL_TILE_BYTES (NEW_GAME_IDENTITY_LABEL_WIDTH * NEW_GAME_IDENTITY_TILE_HEIGHT * 32)
 #define NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES (4 + NEW_GAME_IDENTITY_VALUE_TILE_BYTES)
@@ -80,7 +80,8 @@ struct NewGameIdentityCore : HardwareContext {
     NewGameIdentityLabelBuffer label_buffers[NEW_GAME_IDENTITY_FIELD_COUNT];
 #endif
     u32 unk_1A28;
-    UiStateOwner * ui_state;
+    // Own the confirmation window; it is destroyed before the hardware context.
+    GameSceneTalkWindowOwner ui_state;
     HardwareMusicPlayerSlot music;
     FixedStr<15> fields[NEW_GAME_IDENTITY_FIELD_COUNT];
     u8 unk_1A74;
@@ -90,15 +91,10 @@ struct NewGameIdentityCore : HardwareContext {
 };
 
 
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-#endif
-
-
 EXTERN_C
 
-// Form construction and UI setup retain their native assembly. The
-// running core and scene below share their real allocation and return-owner ABI.
+// UI setup retains native assembly. Construction and the running core/scene
+// share their real allocation and return-owner ABI.
 // Both constructors pass the existing packed date by value: season in bits
 // 0..1 and the zero-based day in bits 2..6. Bit 7 is not part of the date.
 // Construct the bootstrap, uninitialized tile buffers and owned UI, then
