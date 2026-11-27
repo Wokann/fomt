@@ -312,7 +312,7 @@ struct GameEventState {
     bool thanksgiving_gift_exchanged_with_elli : 1;
     bool thanksgiving_gift_exchanged_with_ann : 1;
     u32 festival_horse_race_invitation_event_state : 2;
-    bool festival_horse_race_player_entry_selected : 1;
+    u32 festival_horse_race_player_entry_selected : 1;
     u32 spring_festival_horse_race_festival_active : 2;
     bool spring_festival_horse_race_result : 1;
     u32 cooking_festival_invitation_event_state : 2;
@@ -322,7 +322,7 @@ struct GameEventState {
     bool cooking_festival_player_entered : 1;
     u32 cooking_festival_player_dish_rating : 3;
     u32 frisbee_tournament_invitation_event_state : 2;
-    bool frisbee_tournament_player_dog_entry_selected : 1;
+    u32 frisbee_tournament_player_dog_entry_selected : 1;
     u32 beach_day_festival_active : 2;
     bool frisbee_tournament_result : 1;
     u32 chicken_festival_invitation_event_state : 2;
@@ -346,7 +346,7 @@ struct GameEventState {
     u32 moon_viewing_festival_event_state : 2;
     bool unk_54_7 : 1;
     u32 fall_festival_horse_race_invitation_event_state : 2;
-    bool fall_festival_horse_race_player_entry_selected : 1;
+    u32 fall_festival_horse_race_player_entry_selected : 1;
     u32 fall_festival_horse_race_festival_active : 2;
     bool fall_festival_horse_race_result : 1;
     u32 sheep_festival_invitation_event_state : 2;

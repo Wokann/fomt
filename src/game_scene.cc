@@ -6440,93 +6440,39 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    thumb_func_start GetContestAnimalIndex__9GameScene14MaryAnimalKind\n"
-    "GetContestAnimalIndex__9GameScene14MaryAnimalKind:\n"
-    "    push {lr}\n"
-    "    ldr r2, [r0, #4]\n"
-    "    cmp r1, #(.LgetContestHorse - .LgetContestHandlers) / 4 - 1\n"
-    "    bhi .LnoContestAnimal\n"
-    "    lsls r0, r1, #2\n"
-    "    ldr r1, .L08016B10 @ =.LgetContestHandlers\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".L08016B10: .word .LgetContestHandlers\n"
-    ".LgetContestHandlers: @ jump table\n"
-    "    .word .LgetContestHorse @ ANIMAL_KIND_HORSE\n"
-    "    .word .LgetContestBarn @ ANIMAL_KIND_COW\n"
-    "    .word .LgetContestBarn @ ANIMAL_KIND_SHEEP\n"
-    "    .word .LgetContestChicken @ ANIMAL_KIND_CHICKEN\n"
-    "    .word .LgetContestDog @ ANIMAL_KIND_DOG\n"
-    ".LgetContestHorse:\n"
-    "    adds r0, r2, #0\n"
-    "    adds r0, #0x8c\n"
-    "    ldr r2, [r0]\n"
-    "    ldr r1, .L08016B50 @ =0x0000219A\n"
-    "    adds r0, r2, r1\n"
-    "    ldrb r1, [r0]\n"
-    "    movs r0, #2\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bne .LfixedContestAnimal\n"
-    "    ldr r1, .L08016B54 @ =0x000021A1\n"
-    "    adds r0, r2, r1\n"
-    "    ldrb r1, [r0]\n"
-    "    movs r0, #4\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bne .LfixedContestAnimal\n"
-    ".LnoContestAnimal:\n"
-    "    movs r1, #1\n"
-    "    rsbs r1, r1, #0\n"
-    "    b .L08016B9C\n"
-    "    .align 2, 0\n"
-    ".L08016B50: .word 0x0000219A\n"
-    ".L08016B54: .word 0x000021A1\n"
-    ".LgetContestDog:\n"
-    "    adds r0, r2, #0\n"
-    "    adds r0, #0x8c\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r1, .L08016B74 @ =0x0000219C\n"
-    "    adds r0, r0, r1\n"
-    "    ldrb r1, [r0]\n"
-    "    movs r0, #0x10\n"
-    "    ands r0, r1\n"
-    "    movs r1, #1\n"
-    "    rsbs r1, r1, #0\n"
-    "    cmp r0, #0\n"
-    "    beq .L08016B9C\n"
-    ".LfixedContestAnimal:\n"
-    "    movs r1, #0\n"
-    "    b .L08016B9C\n"
-    "    .align 2, 0\n"
-    ".L08016B74: .word 0x0000219C\n"
-    ".LgetContestBarn:\n"
-    "    adds r0, r2, #0\n"
-    "    adds r0, #0x8c\n"
-    "    ldr r0, [r0]\n"
-    "    movs r1, #0xbe\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r0, r0, r1\n"
-    "    bl method_0800D058__C4Barn\n"
-    "    b .L08016B9A\n"
-    ".LgetContestChicken:\n"
-    "    adds r0, r2, #0\n"
-    "    adds r0, #0x8c\n"
-    "    ldr r0, [r0]\n"
-    "    movs r1, #0x82\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r0, r0, r1\n"
-    "    bl GetUnkEnt__C4Coop\n"
-    ".L08016B9A:\n"
-    "    adds r1, r0, #0\n"
-    ".L08016B9C:\n"
-    "    adds r0, r1, #0\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
 );
+
+MaryAnimalSlotIndex GameScene::GetContestAnimalIndex(MaryAnimalKind animal_kind)
+{
+    GameSceneState * current = state;
+    MaryAnimalSlotIndex result;
+    switch (animal_kind) {
+    case ANIMAL_KIND_HORSE:
+        if (current->save->event_state.festival_horse_race_player_entry_selected
+            || current->save->event_state.fall_festival_horse_race_player_entry_selected)
+            result = ANIMAL_SLOT_1;
+        else
+            result = ANIMAL_SLOT_NOT_SELECTED;
+        break;
+    default:
+        result = ANIMAL_SLOT_NOT_SELECTED;
+        break;
+    case ANIMAL_KIND_DOG:
+        if (current->save->event_state.frisbee_tournament_player_dog_entry_selected)
+            result = ANIMAL_SLOT_1;
+        else
+            result = ANIMAL_SLOT_NOT_SELECTED;
+        break;
+    case ANIMAL_KIND_COW:
+    case ANIMAL_KIND_SHEEP:
+        result = static_cast<MaryAnimalSlotIndex>(current->save->farm.barn.method_0800D058());
+        break;
+    case ANIMAL_KIND_CHICKEN:
+        result = static_cast<MaryAnimalSlotIndex>(current->save->farm.coop.GetUnkEnt());
+        break;
+    }
+    return result;
+}
 
 
 
