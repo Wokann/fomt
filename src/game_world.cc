@@ -17017,7 +17017,7 @@ void RefreshWorldVase(GameSceneWorld & world)
             GameSceneGroupSprite * sprite = world.vase_sprite.Get();
             if (sprite != nullptr) {
                 sprite->group = ReadWorldVaseResourceGroup(world.vfunc_64(), icon_id);
-                sprite->unk_48 = 1;
+                sprite->upload_pending = 1;
             } else {
                 world.vase_sprite = new GameSceneGroupSprite(world.vfunc_64(), icon_id,
                     &world, 2, 0x1B);

@@ -2,6 +2,7 @@
 #include "world_prop_entities.hh"
 
 #include "entity_ui.hh"
+#include "animal_actor.hh"
 #include "event_state.hh"
 #include <stdlib.h>
 
@@ -53,16 +54,13 @@ CoopEggVisualController::CoopEggVisualController(CoopEggEntity * entity)
 {
 }
 
-asm_unified(
-    ".text\n"
-);
 
 void CoopEggVisualController::Update()
 {
 }
 
+
 asm_unified(
-    "    .align 2, 0\n"
     "    thumb_func_start Draw__23CoopEggVisualControllerRC17EntityDrawContext\n"
     "Draw__23CoopEggVisualControllerRC17EntityDrawContext:\n"
     "    push\t{r4, r5, r6, r7, lr}\n"
@@ -148,6 +146,7 @@ asm_unified(
     "    bx\tr0\n"
 );
 
+
 ShippingBasketEntity::ShippingBasketEntity(GameObject * world, MoreItems * contents)
     : AEntity(world, contents->GetLocation()), contents(contents)
 {
@@ -163,9 +162,6 @@ EntityVisualController * ShippingBasketEntity::CreateVisualController()
     return new ShippingBasketVisualController(this);
 }
 
-asm_unified(
-    ".text\n"
-);
 
 #include "item.hh"
 void ShippingBasketEntity::AppendItem(Product const & product)
@@ -189,9 +185,6 @@ ShippingBasketVisualController::ShippingBasketVisualController(ShippingBasketEnt
 {
 }
 
-asm_unified(
-    ".text\n"
-);
 
 void ShippingBasketVisualController::Update()
 {
@@ -204,164 +197,35 @@ void ShippingBasketVisualController::StartItemBounce()
     bounce_countdown = 10;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start Draw__30ShippingBasketVisualControllerRC17EntityDrawContext\n"
-    "Draw__30ShippingBasketVisualControllerRC17EntityDrawContext:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    sub\tsp, #28\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr\tr3, [r4, #0]\n"
-    "    movs\tr0, #10\n"
-    "    ldrsh\tr2, [r3, r0]\n"
-    "    movs\tr5, #12\n"
-    "    ldrsh\tr0, [r1, r5]\n"
-    "    subs\tr2, r2, r0\n"
-    "    mov\tr8, r2\n"
-    "    movs\tr0, #14\n"
-    "    ldrsh\tr3, [r3, r0]\n"
-    "    movs\tr2, #14\n"
-    "    ldrsh\tr0, [r1, r2]\n"
-    "    subs\tr2, r3, r0\n"
-    "    ldr\tr0, [r1, #0]\n"
-    "    ldr\tr1, [r1, #8]\n"
-    "    mov\tip, r1\n"
-    "    str\tr0, [sp, #20]\n"
-    "    str\tr1, [sp, #24]\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #84\t@ 0x54\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08037FB4\n"
-    "    subs\tr2, #2\n"
-    ".Lus_08037FB4:\n"
-    "    movs\tr0, #128\t@ 0x80\n"
-    "    lsls\tr0, r0, #8\n"
-    "    subs\tr7, r0, r3\n"
-    "    adds\tr5, r4, #0\n"
-    "    adds\tr5, #8\n"
-    "    adds\tr6, r4, #0\n"
-    "    adds\tr6, #48\t@ 0x30\n"
-    "    ldr\tr3, [r4, #8]\n"
-    "    ldr\tr1, [r4, #16]\n"
-    "    negs\tr0, r1\n"
-    "    orrs\tr0, r1\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Lus_08037FF0\n"
-    "    ldrh\tr0, [r5, #12]\n"
-    "    adds\tr1, r4, #0\n"
-    "    adds\tr1, #24\n"
-    "    str\tr7, [sp, #0]\n"
-    "    str\tr6, [sp, #4]\n"
-    "    str\tr3, [sp, #8]\n"
-    "    str\tr0, [sp, #12]\n"
-    "    str\tr1, [sp, #16]\n"
-    "    mov\tr0, ip\n"
-    "    mov\tr1, r8\n"
-    "    movs\tr3, #170\t@ 0xaa\n"
-    "    ldr r4, .Lus_08037FEC\n"
-    "    bl _call_via_r4\n"
-    "    b .Lus_08037FF2\n"
-    ".Lus_08037FEC: .word SubmitWorldSpriteRecords\n"
-    ".Lus_08037FF0:\n"
-    "    movs\tr0, #0\n"
-    ".Lus_08037FF2:\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803801C\n"
-    "    adds\tr4, r5, #0\n"
-    "    adds\tr4, #72\t@ 0x48\n"
-    "    ldrb\tr0, [r4, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803801C\n"
-    "    ldr\tr1, [sp, #20]\n"
-    "    adds\tr2, r6, #0\n"
-    "    adds\tr2, #8\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl QueueTileUpload__19GameSceneSpriteBaseR16HardwareDmaQueueRC24IndexedResourceTileRange\n"
-    "    adds\tr1, r6, #0\n"
-    "    adds\tr1, #16\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr2, #1\n"
-    "    bl UploadPalettes__19GameSceneSpriteBaseRC27IndexedResourcePaletteRangeUc\n"
-    "    movs\tr0, #0\n"
-    "    strb\tr0, [r4, #0]\n"
-    ".Lus_0803801C:\n"
-    "    add\tsp, #28\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-);
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start __13DogBallEntityP10GameObjectP8Location\n"
-    "__13DogBallEntityP10GameObjectP8Location:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr6, r0, #0\n"
-    "    adds\tr5, r1, #0\n"
-    "    adds\tr4, r2, #0\n"
-    "    bl __7AEntityP10GameObjectRC8Location\n"
-    "    ldr r0, .Lus_08038094\n"
-    "    str\tr0, [r6, #20]\n"
-    "    str\tr4, [r6, #24]\n"
-    "    movs\tr0, #0\n"
-    "    str\tr0, [r6, #28]\n"
-    "    adds\tr1, r6, #0\n"
-    "    adds\tr1, #37\t@ 0x25\n"
-    "    strb\tr0, [r1, #0]\n"
-    "    adds\tr1, #1\n"
-    "    strb\tr0, [r1, #0]\n"
-    "    movs\tr0, #49\t@ 0x31\n"
-    "    strh\tr0, [r6, #40]\t@ 0x28\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    ldr\tr2, [r0, #64]\t@ 0x40\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr1, #43\t@ 0x2b\n"
-    "    bl _call_via_r2\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Lus_08038088\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    ldrh\tr1, [r6, #4]\n"
-    "    cmp\tr0, r1\n"
-    "    bne .Lus_08038088\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsDogActorCarryingBall\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08038088\n"
-    "    ldr\tr1, [r4, #8]\n"
-    "    ldr\tr2, [r4, #12]\n"
-    "    ldrh\tr3, [r4, #34]\t@ 0x22\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #32\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl SetCarriedPosition__13DogBallEntityiiUiUi\n"
-    ".Lus_08038088:\n"
-    "    adds\tr0, r6, #0\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lus_08038094: .word __vt_13DogBallEntity\n"
-);
+void ShippingBasketVisualController::Draw(EntityDrawContext const & context)
+{
+    i32 x = (entity->GetQ16X() >> 16) - context.camera_x;
+    i32 pixel_y = entity->GetQ16Y() >> 16;
+    i32 y = pixel_y - context.camera_y;
+    GameSceneSpriteDrawContext sprites(context.queue, context.buffer);
+    if (bounce_countdown != 0)
+        y -= 2;
+    u32 sort_key = 0x8000 - pixel_y;
+    sprite.Draw(sprites, x, y, 0xAA, sort_key);
+}
+
+
+DogBallEntity::DogBallEntity(GameObject * world, Location * saved_location)
+    : AEntity(world, *saved_location), saved_location(saved_location), height_q16(0),
+      in_flight(false), carried(false), animation(49)
+{
+    DogActor * dog = static_cast<DogActor *>(world->GetEntity(ENTITY_FARM_DOG));
+    if (dog != 0 && dog->GetMap() == GetMap() && IsDogActorCarryingBall(dog))
+        SetCarriedPosition(dog->GetQ16X(), dog->GetQ16Y(), dog->GetAnim(), dog->GetFacing());
+}
+
 
 DogBallEntity::~DogBallEntity()
 {
     *saved_location = GetLocation();
 }
 
-asm_unified(
-    ".text\n"
-);
 
 void DogBallEntity::Throw(u32 direction)
 {
@@ -655,9 +519,6 @@ EntityVisualController * DogBallEntity::CreateVisualController()
     return new DogBallVisualController(this);
 }
 
-asm_unified(
-    ".text\n"
-);
 
 Box DogBallEntity::GetBox() const
 {
@@ -826,9 +687,6 @@ DogBallVisualController::DogBallVisualController(DogBallEntity * entity)
 {
 }
 
-asm_unified(
-    ".text\n"
-);
 
 void DogBallVisualController::Update()
 {
@@ -1101,10 +959,6 @@ extern "C" bool HasEntityStarSparkleEffect(AEntity * entity)
     return false;
 }
 
-asm_unified(
-    ".text\n"
-    "\n"
-);
 
 asm_unified(
     ".text\n"
@@ -1872,6 +1726,7 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
 );
+
 
 extern "C" void CreateControllerNewYearSunriseEffect(EntityEventEffectController & controller)
 {
