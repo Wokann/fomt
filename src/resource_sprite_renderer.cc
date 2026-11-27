@@ -1,6 +1,45 @@
 #include "resource_sprite_renderer.hh"
 
 #include <new>
+#include <functional>
+
+static inline ResourceSpriteTileConstIterator FindResourceTileCacheEntry(
+    ResourceSpriteTileCache const & cache, void const * const & source)
+{
+    ResourceSpriteTileNode const * candidate = cache.header;
+    ResourceSpriteTileNode const * node = static_cast<ResourceSpriteTileNode const *>(candidate->parent);
+    std::less<void const *> less;
+    while (node != nullptr) {
+        if (!less(node->entry.source, source)) {
+            candidate = node;
+            node = static_cast<ResourceSpriteTileNode const *>(node->left);
+        } else {
+            node = static_cast<ResourceSpriteTileNode const *>(node->right);
+        }
+    }
+    if (candidate == cache.header || less(source, candidate->entry.source))
+        candidate = cache.header;
+    return ResourceSpriteTileConstIterator(candidate);
+}
+
+static inline ResourceSpritePaletteConstIterator FindResourcePaletteCacheEntry(
+    ResourceSpritePaletteCache const & cache, void const * const & source)
+{
+    ResourceSpritePaletteNode const * candidate = cache.header;
+    ResourceSpritePaletteNode const * node = static_cast<ResourceSpritePaletteNode const *>(candidate->parent);
+    std::less<void const *> less;
+    while (node != nullptr) {
+        if (!less(node->entry.source, source)) {
+            candidate = node;
+            node = static_cast<ResourceSpritePaletteNode const *>(node->left);
+        } else {
+            node = static_cast<ResourceSpritePaletteNode const *>(node->right);
+        }
+    }
+    if (candidate == cache.header || less(source, candidate->entry.source))
+        candidate = cache.header;
+    return ResourceSpritePaletteConstIterator(candidate);
+}
 
 ResourceSpriteRenderer::ResourceSpriteRenderer()
     : storage(new ResourceSpriteRendererStorage)
@@ -442,139 +481,8 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Lraw_code_0803EE94_61593_2: .word 0x05000200\n"
-    "    thumb_func_start FindResourceSpriteTileIndex\n"
-    "FindResourceSpriteTileIndex:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #4\n"
-    "    ldr r5, [r0]\n"
-    "    str r1, [sp]\n"
-    "    adds r6, r5, #4\n"
-    "    mov r7, sp\n"
-    "    ldr r4, [r6, #4]\n"
-    "    ldr r2, [r4, #4]\n"
-    ".Lraw_code_0803EE94_61594_6:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_61596_2\n"
-    "    movs r3, #0\n"
-    "    ldr r0, [r2, #0x10]\n"
-    "    cmp r0, r1\n"
-    "    bhs .Lraw_code_0803EE94_61595_4\n"
-    "    movs r3, #1\n"
-    ".Lraw_code_0803EE94_61595_4:\n"
-    "    cmp r3, #0\n"
-    "    bne .Lraw_code_0803EE94_61595_14\n"
-    "    adds r4, r2, #0\n"
-    "    ldr r2, [r4, #8]\n"
-    "    b .Lraw_code_0803EE94_61594_6\n"
-    ".Lraw_code_0803EE94_61595_14:\n"
-    "    ldr r2, [r2, #0xc]\n"
-    "    b .Lraw_code_0803EE94_61594_6\n"
-    ".Lraw_code_0803EE94_61596_2:\n"
-    "    ldr r3, [r6, #4]\n"
-    "    cmp r4, r3\n"
-    "    beq .Lraw_code_0803EE94_61597_8\n"
-    "    movs r2, #0\n"
-    "    ldr r1, [r7]\n"
-    "    ldr r0, [r4, #0x10]\n"
-    "    cmp r1, r0\n"
-    "    bhs .Lraw_code_0803EE94_61597_4\n"
-    "    movs r2, #1\n"
-    ".Lraw_code_0803EE94_61597_4:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_61597_10\n"
-    ".Lraw_code_0803EE94_61597_8:\n"
-    "    adds r4, r3, #0\n"
-    ".Lraw_code_0803EE94_61597_10:\n"
-    "    ldr r1, [r5, #8]\n"
-    "    eors r1, r4\n"
-    "    rsbs r0, r1, #0\n"
-    "    orrs r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_0803EE94_61601_0\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetObjTileIndex\n"
-    "    b .Lraw_code_0803EE94_61601_4\n"
-    ".Lraw_code_0803EE94_61601_0:\n"
-    "    movs r0, #1\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_0803EE94_61601_4:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start FindResourceSpritePaletteBank\n"
-    "FindResourceSpritePaletteBank:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #4\n"
-    "    ldr r5, [r0]\n"
-    "    str r1, [sp]\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #0x18\n"
-    "    mov r7, sp\n"
-    "    ldr r4, [r6, #4]\n"
-    "    ldr r2, [r4, #4]\n"
-    ".Lraw_code_0803EE94_61603_0:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_61604_12\n"
-    "    movs r3, #0\n"
-    "    ldr r0, [r2, #0x10]\n"
-    "    cmp r0, r1\n"
-    "    bhs .Lraw_code_0803EE94_61603_14\n"
-    "    movs r3, #1\n"
-    ".Lraw_code_0803EE94_61603_14:\n"
-    "    cmp r3, #0\n"
-    "    bne .Lraw_code_0803EE94_61604_8\n"
-    "    adds r4, r2, #0\n"
-    "    ldr r2, [r4, #8]\n"
-    "    b .Lraw_code_0803EE94_61603_0\n"
-    ".Lraw_code_0803EE94_61604_8:\n"
-    "    ldr r2, [r2, #0xc]\n"
-    "    b .Lraw_code_0803EE94_61603_0\n"
-    ".Lraw_code_0803EE94_61604_12:\n"
-    "    ldr r3, [r6, #4]\n"
-    "    cmp r4, r3\n"
-    "    beq .Lraw_code_0803EE94_61606_2\n"
-    "    movs r2, #0\n"
-    "    ldr r1, [r7]\n"
-    "    ldr r0, [r4, #0x10]\n"
-    "    cmp r1, r0\n"
-    "    bhs .Lraw_code_0803EE94_61605_14\n"
-    "    movs r2, #1\n"
-    ".Lraw_code_0803EE94_61605_14:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_61606_4\n"
-    ".Lraw_code_0803EE94_61606_2:\n"
-    "    adds r4, r3, #0\n"
-    ".Lraw_code_0803EE94_61606_4:\n"
-    "    ldr r1, [r5, #0x1c]\n"
-    "    eors r1, r4\n"
-    "    rsbs r0, r1, #0\n"
-    "    orrs r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_0803EE94_61609_2\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x14\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "    bl GetObjPaletteBank\n"
-    "    b .Lraw_code_0803EE94_61610_0\n"
-    ".Lraw_code_0803EE94_61609_2:\n"
-    "    movs r0, #1\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_0803EE94_61610_0:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
 
-void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferState * buffer,
-    IndexedResourceGroupResult const * group, i32 x, i32 y)
-{
-    DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
-}
+);
 
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1008,142 +916,36 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     ".L08075A10: .word OBJ_PLTT\n"
-    "    thumb_func_start FindResourceSpriteTileIndex\n"
-    "FindResourceSpriteTileIndex:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #4\n"
-    "    ldr r5, [r0]\n"
-    "    str r1, [sp]\n"
-    "    adds r6, r5, #4\n"
-    "    mov r7, sp\n"
-    "    ldr r4, [r6, #4]\n"
-    "    ldr r2, [r4, #4]\n"
-    ".Lraw_code_0803EE94_185174_4:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_185176_0\n"
-    "    movs r3, #0\n"
-    "    ldr r0, [r2, #0x10]\n"
-    "    cmp r0, r1\n"
-    "    bhs .Lraw_code_0803EE94_185175_2\n"
-    "    movs r3, #1\n"
-    ".Lraw_code_0803EE94_185175_2:\n"
-    "    cmp r3, #0\n"
-    "    bne .Lraw_code_0803EE94_185175_12\n"
-    "    adds r4, r2, #0\n"
-    "    ldr r2, [r4, #8]\n"
-    "    b .Lraw_code_0803EE94_185174_4\n"
-    ".Lraw_code_0803EE94_185175_12:\n"
-    "    ldr r2, [r2, #0xc]\n"
-    "    b .Lraw_code_0803EE94_185174_4\n"
-    ".Lraw_code_0803EE94_185176_0:\n"
-    "    ldr r3, [r6, #4]\n"
-    "    cmp r4, r3\n"
-    "    beq .Lraw_code_0803EE94_185177_6\n"
-    "    movs r2, #0\n"
-    "    ldr r1, [r7]\n"
-    "    ldr r0, [r4, #0x10]\n"
-    "    cmp r1, r0\n"
-    "    bhs .Lraw_code_0803EE94_185177_2\n"
-    "    movs r2, #1\n"
-    ".Lraw_code_0803EE94_185177_2:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_185177_8\n"
-    ".Lraw_code_0803EE94_185177_6:\n"
-    "    adds r4, r3, #0\n"
-    ".Lraw_code_0803EE94_185177_8:\n"
-    "    ldr r1, [r5, #8]\n"
-    "    eors r1, r4\n"
-    "    rsbs r0, r1, #0\n"
-    "    orrs r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_0803EE94_185180_2\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "\tbl GetObjTileIndex\n"
-    "    b .Lraw_code_0803EE94_185181_2\n"
-    ".Lraw_code_0803EE94_185180_2:\n"
-    "    movs r0, #1\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_0803EE94_185181_2:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start FindResourceSpritePaletteBank\n"
-    "FindResourceSpritePaletteBank:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #4\n"
-    "    ldr r5, [r0]\n"
-    "    str r1, [sp]\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #0x18\n"
-    "    mov r7, sp\n"
-    "    ldr r4, [r6, #4]\n"
-    "    ldr r2, [r4, #4]\n"
-    ".Lraw_code_0803EE94_185182_14:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_185184_10\n"
-    "    movs r3, #0\n"
-    "    ldr r0, [r2, #0x10]\n"
-    "    cmp r0, r1\n"
-    "    bhs .Lraw_code_0803EE94_185183_12\n"
-    "    movs r3, #1\n"
-    ".Lraw_code_0803EE94_185183_12:\n"
-    "    cmp r3, #0\n"
-    "    bne .Lraw_code_0803EE94_185184_6\n"
-    "    adds r4, r2, #0\n"
-    "    ldr r2, [r4, #8]\n"
-    "    b .Lraw_code_0803EE94_185182_14\n"
-    ".Lraw_code_0803EE94_185184_6:\n"
-    "    ldr r2, [r2, #0xc]\n"
-    "    b .Lraw_code_0803EE94_185182_14\n"
-    ".Lraw_code_0803EE94_185184_10:\n"
-    "    ldr r3, [r6, #4]\n"
-    "    cmp r4, r3\n"
-    "    beq .Lraw_code_0803EE94_185186_0\n"
-    "    movs r2, #0\n"
-    "    ldr r1, [r7]\n"
-    "    ldr r0, [r4, #0x10]\n"
-    "    cmp r1, r0\n"
-    "    bhs .Lraw_code_0803EE94_185185_12\n"
-    "    movs r2, #1\n"
-    ".Lraw_code_0803EE94_185185_12:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_0803EE94_185186_2\n"
-    ".Lraw_code_0803EE94_185186_0:\n"
-    "    adds r4, r3, #0\n"
-    ".Lraw_code_0803EE94_185186_2:\n"
-    "    ldr r1, [r5, #0x1c]\n"
-    "    eors r1, r4\n"
-    "    rsbs r0, r1, #0\n"
-    "    orrs r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_0803EE94_185189_2\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x14\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "\tbl GetObjPaletteBank\n"
-    "    b .Lraw_code_0803EE94_185189_6\n"
-    ".Lraw_code_0803EE94_185189_2:\n"
-    "    movs r0, #1\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_0803EE94_185189_6:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
+
 );
+
+#endif
+
+i32 FindResourceSpriteTileIndex(ResourceSpriteRenderer const * renderer,
+    IndexedResourceTileUnit const * source)
+{
+    ResourceSpriteRendererStorage * storage = renderer->storage;
+    ResourceSpriteTileConstIterator entry = FindResourceTileCacheEntry(storage->tile_cache, source);
+    ResourceSpriteTileConstIterator end(storage->tile_cache.header);
+    return entry != end
+        ? static_cast<i32>(GetObjTileIndex(&storage->tiles, entry.node->entry.handle)) : -1;
+}
+
+i32 FindResourceSpritePaletteBank(ResourceSpriteRenderer const * renderer,
+    IndexedResourcePaletteBank const * source)
+{
+    ResourceSpriteRendererStorage * storage = renderer->storage;
+    ResourceSpritePaletteConstIterator entry = FindResourcePaletteCacheEntry(storage->palette_cache, source);
+    ResourceSpritePaletteConstIterator end(storage->palette_cache.header);
+    return entry != end
+        ? static_cast<i32>(GetObjPaletteBank(&storage->palettes, entry.node->entry.handle)) : -1;
+}
 
 void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferState * buffer,
     IndexedResourceGroupResult const * group, i32 x, i32 y)
 {
     DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
 }
-
-#endif
 
 u8 const gResourceSpritePackedCellSizes[] = {
     0x50, 0xFA, 0x21, 0xB6, 0x84, 0xE9,

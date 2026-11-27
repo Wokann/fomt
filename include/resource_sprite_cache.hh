@@ -10,25 +10,25 @@
 // The cache key is the source tile/palette address. The value is the pool
 // allocation handle, not a ROM pointer or a hardware tile/palette index.
 struct ResourceSpriteTileEntry {
-    IndexedResourceTileUnit const * source;
+    void const * source;
     u32 handle;
 };
 
 struct ResourceSpritePaletteEntry {
-    IndexedResourcePaletteBank const * source;
+    void const * source;
     u32 handle;
 };
 
 // Requests may change their key. A linked node keeps that key immutable.
 struct ResourceSpriteTileStoredEntry {
-    IndexedResourceTileUnit const * const source;
+    void const * const source;
     u32 handle;
     ResourceSpriteTileStoredEntry(ResourceSpriteTileEntry const & value)
         : source(value.source), handle(value.handle) {}
 };
 
 struct ResourceSpritePaletteStoredEntry {
-    IndexedResourcePaletteBank const * const source;
+    void const * const source;
     u32 handle;
     ResourceSpritePaletteStoredEntry(ResourceSpritePaletteEntry const & value)
         : source(value.source), handle(value.handle) {}
@@ -92,6 +92,36 @@ struct ResourceSpritePaletteInsertResult {
     bool inserted;
 };
 
+// Read-only lookup results borrow the existing tree nodes.
+struct ResourceSpriteTileConstIterator {
+    explicit ResourceSpriteTileConstIterator(ResourceSpriteTileNode const * value) : node(value) {}
+    ResourceSpriteTileNode const * node;
+};
+inline bool operator==(ResourceSpriteTileConstIterator const & first,
+    ResourceSpriteTileConstIterator const & second)
+{
+    return first.node == second.node;
+}
+inline bool operator!=(ResourceSpriteTileConstIterator const & first,
+    ResourceSpriteTileConstIterator const & second)
+{
+    return first.node != second.node;
+}
+struct ResourceSpritePaletteConstIterator {
+    explicit ResourceSpritePaletteConstIterator(ResourceSpritePaletteNode const * value) : node(value) {}
+    ResourceSpritePaletteNode const * node;
+};
+inline bool operator==(ResourceSpritePaletteConstIterator const & first,
+    ResourceSpritePaletteConstIterator const & second)
+{
+    return first.node == second.node;
+}
+inline bool operator!=(ResourceSpritePaletteConstIterator const & first,
+    ResourceSpritePaletteConstIterator const & second)
+{
+    return first.node != second.node;
+}
+
 struct ResourceSpriteRendererStorage {
     ResourceSpriteRendererStorage() asm("ConstructResourceSpriteRendererStorage");
     ObjTilePoolOwner tiles;
@@ -99,7 +129,6 @@ struct ResourceSpriteRendererStorage {
     ObjPalettePoolOwner palettes;
     ResourceSpritePaletteCache palette_cache;
 };
-
 
 EXTERN_C
 
