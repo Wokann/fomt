@@ -39,7 +39,7 @@ SECTIONS
     .text :
     ALIGN(4)
     {
-        src/crt0.o(.text);
+        asm/crt0.o(.text);
         src/main.o(.text);
         src/sram_image.o(.text);
         src/interrupt.o(.text);
@@ -266,7 +266,7 @@ SECTIONS
         asm/compression.o(.text);
         src/libc_random.o(.text);
         asm/compression_packets.o(.text);
-        src/m4a_1.o(.text);
+        asm/m4a_1.o(.text);
         src/m4a.o(.text);
         asm/gbasvc.o(.text);
         src/libsram.o(.text);

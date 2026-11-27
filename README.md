@@ -38,8 +38,9 @@ For Linux/WSL, Windows/MSYS2, and macOS setup and build instructions, see
 
 - `src/` and `include/` contain game modules and their declarations. Shared
   code uses regional conditionals for version differences.
-- `asm/` contains standalone assembly. Modules being recovered may also keep
-  file-scope assembly alongside their C/C++ definitions.
+- `asm/` contains standalone startup, platform and sound-driver assembly.
+  Modules awaiting high-level recovery keep their assembly in the owning
+  C/C++ files.
 - `text/<region>/` contains regional game text. Reference Guide pages live in
   `reference_guide/` and Mary script text tables live in `script/`.
   Each numbered script in `data/scripts/` includes its text header when
