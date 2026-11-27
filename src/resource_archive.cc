@@ -106,13 +106,3 @@ u16 IndexedResourceArchive::GetGroupDescriptorCount() const
 {
     return group_descriptor_count;
 }
-
-// Keep the native out-of-line entry alongside the inline C++ callers.
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start GetEntryDescriptorCount__C22IndexedResourceArchive\n"
-    "GetEntryDescriptorCount__C22IndexedResourceArchive:\n"
-    "    ldrh r0, [r0, #0x20]\n"
-    "    bx lr\n"
-);

@@ -470,7 +470,8 @@ $(BUILD_DIR)/src/harvest_sprite_actor_lifetimes.o: CXXFLAGS += -fno-weak -fno-im
 $(BUILD_DIR)/src/world_prop_lifetimes.o: CXXFLAGS += -fno-weak
 
 
-$(BUILD_DIR)/src/hardware_blend_tables.o: CXXFLAGS += -fno-weak
+$(BUILD_DIR)/src/hardware_blend_tables.o \
+$(BUILD_DIR)/src/resource_archive.o: CXXFLAGS += -fno-weak
 
 # These out-of-line definitions own their class tables without forcing inline members.
 $(BUILD_DIR)/src/game_scene.o \
@@ -484,7 +485,6 @@ $(BUILD_DIR)/src/game_world_interface.o \
 $(BUILD_DIR)/src/scene_sprite_tables.o \
 $(BUILD_DIR)/src/scene_sprite.o \
 $(BUILD_DIR)/src/intro_story_scene.o \
-$(BUILD_DIR)/src/resource_archive.o \
 $(BUILD_DIR)/src/hardware_manager_tables.o \
 $(BUILD_DIR)/src/hardware_context.o \
 $(BUILD_DIR)/src/hardware_context_tables.o \
