@@ -538,142 +538,72 @@ bool BlacksmithShopResultSceneCore::IsUpgradeOre(Article ore) const
     return true;
 }
 
+u32 BlacksmithShopResultSceneCore::CompareUpgradeLevel(u32 tool_id, u32 ore_id) const
+{
+    u32 current_level = tool_id & 7;
+    u32 target_level = 0;
+    u32 result = 0;
+    switch (ore_id) {
+    case ITEM_ARTICLE_COPPER:
+        target_level = 1;
+        break;
+    case ITEM_ARTICLE_SILVER:
+        target_level = 2;
+        break;
+    case ITEM_ARTICLE_GOLD:
+        target_level = 3;
+        break;
+    case ITEM_ARTICLE_MYSTRILE:
+        target_level = 4;
+        break;
+    case ITEM_ARTICLE_MYTHIC_STONE:
+        target_level = 7;
+        break;
+    }
+    if (current_level == target_level)
+        result = 1;
+    else if (current_level > target_level)
+        result = 2;
+    else if (current_level < target_level)
+        result = 3;
+    return result;
+}
+
+u32 BlacksmithShopResultSceneCore::GetUpgradeWorkDays(u32 tool_id, u32 ore_id) const
+{
+    u32 current_level = tool_id & 7;
+    u32 target_level = 0;
+    u32 result = 0;
+    switch (ore_id) {
+    case ITEM_ARTICLE_COPPER:
+        target_level = 1;
+        break;
+    case ITEM_ARTICLE_SILVER:
+        target_level = 2;
+        break;
+    case ITEM_ARTICLE_GOLD:
+        target_level = 3;
+        break;
+    case ITEM_ARTICLE_MYSTRILE:
+        target_level = 4;
+        break;
+    case ITEM_ARTICLE_MYTHIC_STONE:
+        target_level = 7;
+        break;
+    }
+    if (current_level == target_level) {
+        result = 0;
+    } else if (current_level > target_level) {
+        result = 1;
+    } else if (current_level < target_level) {
+        result = target_level - current_level;
+        if (current_level == 6 && target_level == 7)
+            result = 2;
+    }
+    return result;
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start CompareUpgradeLevel__C29BlacksmithShopResultSceneCoreUiUi\n"
-    "CompareUpgradeLevel__C29BlacksmithShopResultSceneCoreUiUi:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r1, #0\n"
-    "movs r0, #7\n"
-    "ands r4, r0\n"
-    "movs r3, #0\n"
-    "movs r5, #0\n"
-    "adds r0, r2, #0\n"
-    "subs r0, #0x12\n"
-    "cmp r0, #0xa\n"
-    "bhi .Lblacksmith_upgrade_7_0062\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lblacksmith_upgrade_7_0020\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_upgrade_7_0020: .word .Lblacksmith_upgrade_7_0024\n"
-    ".Lblacksmith_upgrade_7_0024: .word .Lblacksmith_upgrade_7_0050\n"
-    ".word .Lblacksmith_upgrade_7_0054\n"
-    ".word .Lblacksmith_upgrade_7_0058\n"
-    ".word .Lblacksmith_upgrade_7_005c\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0062\n"
-    ".word .Lblacksmith_upgrade_7_0060\n"
-    ".Lblacksmith_upgrade_7_0050:\n"
-    "movs r3, #1\n"
-    "b .Lblacksmith_upgrade_7_0062\n"
-    ".Lblacksmith_upgrade_7_0054:\n"
-    "movs r3, #2\n"
-    "b .Lblacksmith_upgrade_7_0062\n"
-    ".Lblacksmith_upgrade_7_0058:\n"
-    "movs r3, #3\n"
-    "b .Lblacksmith_upgrade_7_0062\n"
-    ".Lblacksmith_upgrade_7_005c:\n"
-    "movs r3, #4\n"
-    "b .Lblacksmith_upgrade_7_0062\n"
-    ".Lblacksmith_upgrade_7_0060:\n"
-    "movs r3, #7\n"
-    ".Lblacksmith_upgrade_7_0062:\n"
-    "cmp r4, r3\n"
-    "bne .Lblacksmith_upgrade_7_006a\n"
-    "movs r5, #1\n"
-    "b .Lblacksmith_upgrade_7_0078\n"
-    ".Lblacksmith_upgrade_7_006a:\n"
-    "cmp r4, r3\n"
-    "bls .Lblacksmith_upgrade_7_0072\n"
-    "movs r5, #2\n"
-    "b .Lblacksmith_upgrade_7_0078\n"
-    ".Lblacksmith_upgrade_7_0072:\n"
-    "cmp r4, r3\n"
-    "bhs .Lblacksmith_upgrade_7_0078\n"
-    "movs r5, #3\n"
-    ".Lblacksmith_upgrade_7_0078:\n"
-    "adds r0, r5, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "\n"
-    "thumb_func_start GetUpgradeWorkDays__C29BlacksmithShopResultSceneCoreUiUi\n"
-    "GetUpgradeWorkDays__C29BlacksmithShopResultSceneCoreUiUi:\n"
-    "push {r4, r5, lr}\n"
-    "adds r3, r1, #0\n"
-    "movs r0, #7\n"
-    "ands r3, r0\n"
-    "movs r4, #0\n"
-    "movs r5, #0\n"
-    "adds r0, r2, #0\n"
-    "subs r0, #0x12\n"
-    "cmp r0, #0xa\n"
-    "bhi .Lblacksmith_upgrade_8_0062\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lblacksmith_upgrade_8_0020\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_upgrade_8_0020: .word .Lblacksmith_upgrade_8_0024\n"
-    ".Lblacksmith_upgrade_8_0024: .word .Lblacksmith_upgrade_8_0050\n"
-    ".word .Lblacksmith_upgrade_8_0054\n"
-    ".word .Lblacksmith_upgrade_8_0058\n"
-    ".word .Lblacksmith_upgrade_8_005c\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0062\n"
-    ".word .Lblacksmith_upgrade_8_0060\n"
-    ".Lblacksmith_upgrade_8_0050:\n"
-    "movs r4, #1\n"
-    "b .Lblacksmith_upgrade_8_0062\n"
-    ".Lblacksmith_upgrade_8_0054:\n"
-    "movs r4, #2\n"
-    "b .Lblacksmith_upgrade_8_0062\n"
-    ".Lblacksmith_upgrade_8_0058:\n"
-    "movs r4, #3\n"
-    "b .Lblacksmith_upgrade_8_0062\n"
-    ".Lblacksmith_upgrade_8_005c:\n"
-    "movs r4, #4\n"
-    "b .Lblacksmith_upgrade_8_0062\n"
-    ".Lblacksmith_upgrade_8_0060:\n"
-    "movs r4, #7\n"
-    ".Lblacksmith_upgrade_8_0062:\n"
-    "cmp r3, r4\n"
-    "bne .Lblacksmith_upgrade_8_006a\n"
-    "movs r5, #0\n"
-    "b .Lblacksmith_upgrade_8_0082\n"
-    ".Lblacksmith_upgrade_8_006a:\n"
-    "cmp r3, r4\n"
-    "bls .Lblacksmith_upgrade_8_0072\n"
-    "movs r5, #1\n"
-    "b .Lblacksmith_upgrade_8_0082\n"
-    ".Lblacksmith_upgrade_8_0072:\n"
-    "cmp r3, r4\n"
-    "bhs .Lblacksmith_upgrade_8_0082\n"
-    "subs r5, r4, r3\n"
-    "cmp r3, #6\n"
-    "bne .Lblacksmith_upgrade_8_0082\n"
-    "cmp r4, #7\n"
-    "bne .Lblacksmith_upgrade_8_0082\n"
-    "movs r5, #2\n"
-    ".Lblacksmith_upgrade_8_0082:\n"
-    "adds r0, r5, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "\n"
     "thumb_func_start Run__29BlacksmithShopResultSceneCore\n"
     "Run__29BlacksmithShopResultSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
