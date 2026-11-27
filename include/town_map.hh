@@ -284,6 +284,10 @@ struct TownMapUiCore : HardwareContext {
 
 EXTERN_C
 
+void FadeInTownMap(TownMapUiCore * core);
+void FadeOutTownMap(TownMapUiCore * core);
+void DrawTownMap(TownMapUiCore * core);
+
 void AddTownMapMarker(TownMapUiCore * core, Location const * location, u32 resource_id);
 void EraseTownMapMarkerNodes(TownMapMarkerCounts * counts, TownMapMarkerNode * node);
 // The iterator copy constructor gives the native return-storage ABI.
