@@ -35,11 +35,7 @@ void UpdateWorldAmbientSpriteAnimation(WorldAmbientSprite * self)
 
 void SetWorldAmbientSpriteAnimation(WorldAmbientSprite * self, u32 animation)
 {
-    if (self->animation != animation)
-    {
-        self->sprite.SetAnimation(animation);
-        self->animation = animation;
-    }
+    self->SetAnimation(animation);
 }
 
 GameObject * GetWorldAmbientSpriteWorld(WorldAmbientSprite const * self)

@@ -25,9 +25,9 @@ struct GameStateActorRecord {
     /* +08 */ i16 x;
     /* +0A */ i16 y;
     // Kind 6 writes both signed nibbles; restoration reads only the first.
-    /* +0C */ i32 current_position : 4;
-    i32 next_position : 4;
-    u32 unk_0C : 24;
+    /* +0C */ i8 current_position : 4;
+    i8 next_position : 4;
+    u8 unk_0D[3];
 };
 
 
@@ -78,6 +78,14 @@ struct WorldAmbientSprite {
     /* vt+10 */ virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
         HardwareDmaQueue * queue) = 0;
     /* vt+14 */ virtual void SaveState(GameStateActorRecord & record) const = 0;
+
+    void SetAnimation(u32 index)
+    {
+        if (animation != index) {
+            sprite.SetAnimation(index);
+            animation = index;
+        }
+    }
 
     /* +00 */ GameObject * world;
     /* +04 */ u16 animation;

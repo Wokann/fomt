@@ -2,6 +2,7 @@
 #include "world_ambient_sprites.hh"
 #include "random.hh"
 #include "actor_movement.hh"
+#include <stdlib.h>
 
 asm(".include \"asm/macro.inc\"\n");
 
@@ -871,51 +872,15 @@ asm_unified(
     "    .align 2, 0\n"
 );
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start SaveState__C17WorldAmbientKind6R20GameStateActorRecord\n"
-    "SaveState__C17WorldAmbientKind6R20GameStateActorRecord:\n"
-    "    push {r4, lr}\n"
-    "    mov ip, r0\n"
-    "    ldrb r2, [r1, #0]\n"
-    "    movs r3, #16\n"
-    "    negs r3, r3\n"
-    "    adds r0, r3, #0\n"
-    "    ands r0, r2\n"
-    "    movs r2, #6\n"
-    "    orrs r0, r2\n"
-    "    strb r0, [r1, #0]\n"
-    "    mov r2, ip\n"
-    "    ldr r0, [r2, #80]\n"
-    "    str r0, [r1, #4]\n"
-    "    mov r0, ip\n"
-    "    adds r0, #84\n"
-    "    ldrh r0, [r0, #0]\n"
-    "    strh r0, [r1, #8]\n"
-    "    mov r0, ip\n"
-    "    adds r0, #86\n"
-    "    ldrh r0, [r0, #0]\n"
-    "    strh r0, [r1, #10]\n"
-    "    mov r0, ip\n"
-    "    adds r0, #120\n"
-    "    ldrb r2, [r0, #0]\n"
-    "    movs r4, #15\n"
-    "    adds r0, r4, #0\n"
-    "    ands r0, r2\n"
-    "    ldrb r2, [r1, #12]\n"
-    "    ands r3, r2\n"
-    "    orrs r3, r0\n"
-    "    mov r0, ip\n"
-    "    adds r0, #121\n"
-    "    ldrb r0, [r0, #0]\n"
-    "    lsls r0, r0, #4\n"
-    "    ands r3, r4\n"
-    "    orrs r3, r0\n"
-    "    strb r3, [r1, #12]\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-);
+void WorldAmbientKind6::SaveState(GameStateActorRecord & record) const
+{
+    record.kind = KIND;
+    record.direction = motion.direction;
+    record.x = motion.x;
+    record.y = motion.y;
+    record.current_position = current_position;
+    record.next_position = next_position;
+}
 
 void WorldAmbientKind6::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
     HardwareDmaQueue * queue)
@@ -923,317 +888,76 @@ void WorldAmbientKind6::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
     DrawWorldAmbientSprite(this, world, buffer, queue, motion.x, motion.y, vertical_offset, 1);
 }
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start Update__17WorldAmbientKind6\n"
-    "Update__17WorldAmbientKind6:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #98\n"
-    "    movs r4, #0\n"
-    "    ldrsb r4, [r6, r4]\n"
-    "    cmp r4, #1\n"
-    "    beq .Lambient_3_3\n"
-    "    cmp r4, #1\n"
-    "    bgt .Lambient_3_0\n"
-    "    cmp r4, #0\n"
-    "    beq .Lambient_3_2\n"
-    "    subs r6, #27\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_0:\n"
-    "    cmp r4, #2\n"
-    "    beq .Lambient_3_9\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #71\n"
-    "    cmp r4, #3\n"
-    "    bne .Lambient_3_1\n"
-    "    b .Lambient_3_20\n"
-    ".Lambient_3_1:\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_2:\n"
-    "    movs r0, #2\n"
-    "    bl RandomBelow\n"
-    "    adds r0, #30\n"
-    "    lsls r1, r0, #4\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    strh r1, [r0, #0]\n"
-    "    adds r0, #38\n"
-    "    strh r4, [r0, #0]\n"
-    "    movs r0, #1\n"
-    "    b .Lambient_3_4\n"
-    ".Lambient_3_3:\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #96\n"
-    "    ldrh r0, [r1, #0]\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r1, #0]\n"
-    "    lsls r0, r0, #16\n"
-    "    asrs r0, r0, #16\n"
-    "    cmp r0, #0\n"
-    "    bge .Lambient_3_5\n"
-    "    movs r0, #2\n"
-    ".Lambient_3_4:\n"
-    "    strb r0, [r6, #0]\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #71\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_5:\n"
-    "    movs r2, #180\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #71\n"
-    "    cmp r0, r2\n"
-    "    bgt .Lambient_3_6\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_6:\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #134\n"
-    "    ldrh r0, [r1, #0]\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r1, #0]\n"
-    "    lsls r0, r0, #16\n"
-    "    cmp r0, #0\n"
-    "    ble .Lambient_3_7\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_7:\n"
-    "    strh r2, [r1, #0]\n"
-    "    bl rand\n"
-    "    asrs r0, r0, #4\n"
-    "    movs r1, #3\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bne .Lambient_3_8\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_8:\n"
-    "    adds r0, r5, #0\n"
-    "    movs r1, #206\n"
-    "    bl PlayWorldAmbientSpriteSound\n"
-    "    b .Lambient_3_21\n"
-    ".Lambient_3_9:\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #121\n"
-    "    movs r1, #0\n"
-    "    ldrsb r1, [r2, r1]\n"
-    "    movs r0, #1\n"
-    "    negs r0, r0\n"
-    "    cmp r1, r0\n"
-    "    bne .Lambient_3_10\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #120\n"
-    "    ldrb r0, [r0, #0]\n"
-    "    adds r0, #1\n"
-    "    movs r1, #3\n"
-    "    ands r0, r1\n"
-    "    strb r0, [r2, #0]\n"
-    ".Lambient_3_10:\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #100\n"
-    "    ldrb r2, [r2, #0]\n"
-    "    lsls r2, r2, #24\n"
-    "    asrs r2, r2, #24\n"
-    "    adds r0, r5, #0\n"
-    "    bl SelectWorldAmbientSpawnPosition\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #104\n"
-    "    movs r2, #0\n"
-    "    ldrsh r1, [r0, r2]\n"
-    "    lsls r1, r1, #16\n"
-    "    str r1, [r5, #108]\n"
-    "    adds r0, #2\n"
-    "    movs r3, #0\n"
-    "    ldrsh r2, [r0, r3]\n"
-    "    lsls r2, r2, #16\n"
-    "    str r2, [r5, #112]\n"
-    "    ldr r0, [r5, #88]\n"
-    "    subs r1, r1, r0\n"
-    "    str r1, [r5, #124]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #128\n"
-    "    ldr r0, [r5, #92]\n"
-    "    subs r2, r2, r0\n"
-    "    str r2, [r1, #0]\n"
-    "    ldr r0, [r5, #124]\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lambient_3_11\n"
-    "    negs r1, r0\n"
-    ".Lambient_3_11:\n"
-    "    asrs r7, r1, #17\n"
-    "    adds r1, r2, #0\n"
-    "    cmp r2, #0\n"
-    "    bge .Lambient_3_12\n"
-    "    negs r1, r2\n"
-    ".Lambient_3_12:\n"
-    "    asrs r6, r1, #17\n"
-    "    cmp r7, r6\n"
-    "    ble .Lambient_3_15\n"
-    "    cmp r0, #0\n"
-    "    bge .Lambient_3_13\n"
-    "    str r4, [r5, #80]\n"
-    "    b .Lambient_3_14\n"
-    ".Lambient_3_13:\n"
-    "    movs r0, #3\n"
-    "    str r0, [r5, #80]\n"
-    ".Lambient_3_14:\n"
-    "    ldr r0, [r5, #124]\n"
-    "    adds r1, r7, #0\n"
-    "    bl __divsi3\n"
-    "    str r0, [r5, #124]\n"
-    "    adds r4, r5, #0\n"
-    "    adds r4, #128\n"
-    "    ldr r0, [r4, #0]\n"
-    "    adds r1, r7, #0\n"
-    "    bl __divsi3\n"
-    "    str r0, [r4, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    strh r7, [r0, #0]\n"
-    "    b .Lambient_3_18\n"
-    ".Lambient_3_15:\n"
-    "    cmp r2, #0\n"
-    "    bge .Lambient_3_16\n"
-    "    movs r0, #1\n"
-    "    b .Lambient_3_17\n"
-    ".Lambient_3_16:\n"
-    "    movs r0, #0\n"
-    ".Lambient_3_17:\n"
-    "    str r0, [r5, #80]\n"
-    "    ldr r0, [r5, #124]\n"
-    "    adds r1, r6, #0\n"
-    "    bl __divsi3\n"
-    "    str r0, [r5, #124]\n"
-    "    adds r4, r5, #0\n"
-    "    adds r4, #128\n"
-    "    ldr r0, [r4, #0]\n"
-    "    adds r1, r6, #0\n"
-    "    bl __divsi3\n"
-    "    str r0, [r4, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    strh r6, [r0, #0]\n"
-    ".Lambient_3_18:\n"
-    "    ldr r4, .Lambient_3_22\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    adds r6, r5, #0\n"
-    "    adds r6, #71\n"
-    "    cmp r0, r4\n"
-    "    beq .Lambient_3_19\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #48\n"
-    "    adds r1, r4, #0\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #68\n"
-    "    movs r2, #0\n"
-    "    movs r0, #1\n"
-    "    strb r0, [r1, #0]\n"
-    "    adds r1, #2\n"
-    "    strb r2, [r1, #0]\n"
-    "    strb r0, [r6, #0]\n"
-    "    strh r4, [r5, #4]\n"
-    ".Lambient_3_19:\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #98\n"
-    "    movs r0, #3\n"
-    "    strb r0, [r1, #0]\n"
-    "    adds r1, #34\n"
-    "    movs r0, #8\n"
-    "    strb r0, [r1, #0]\n"
-    ".Lambient_3_20:\n"
-    "    ldr r0, [r5, #88]\n"
-    "    ldr r1, [r5, #124]\n"
-    "    adds r0, r0, r1\n"
-    "    str r0, [r5, #88]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #128\n"
-    "    ldr r0, [r5, #92]\n"
-    "    ldr r1, [r1, #0]\n"
-    "    adds r0, r0, r1\n"
-    "    str r0, [r5, #92]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #96\n"
-    "    ldrh r0, [r1, #0]\n"
-    "    subs r0, #1\n"
-    "    movs r7, #0\n"
-    "    strh r0, [r1, #0]\n"
-    "    lsls r0, r0, #16\n"
-    "    cmp r0, #0\n"
-    "    bgt .Lambient_3_21\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #121\n"
-    "    ldrb r1, [r2, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #120\n"
-    "    strb r1, [r0, #0]\n"
-    "    movs r0, #255\n"
-    "    strb r0, [r2, #0]\n"
-    "    ldr r0, [r5, #108]\n"
-    "    str r0, [r5, #88]\n"
-    "    ldr r0, [r5, #112]\n"
-    "    str r0, [r5, #92]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #98\n"
-    "    strb r7, [r0, #0]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #132\n"
-    "    movs r0, #248\n"
-    "    strb r0, [r1, #0]\n"
-    "    movs r4, #169\n"
-    "    lsls r4, r4, #2\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    cmp r0, r4\n"
-    "    beq .Lambient_3_21\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #48\n"
-    "    adds r1, r4, #0\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #68\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    strb r7, [r0, #0]\n"
-    "    strb r1, [r6, #0]\n"
-    "    strh r4, [r5, #4]\n"
-    ".Lambient_3_21:\n"
-    "    ldr r0, [r5, #88]\n"
-    "    asrs r0, r0, #16\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #84\n"
-    "    strh r0, [r1, #0]\n"
-    "    ldr r0, [r5, #92]\n"
-    "    asrs r0, r0, #16\n"
-    "    adds r1, #2\n"
-    "    strh r0, [r1, #0]\n"
-    "    ldrb r0, [r6, #0]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lambient_3_23\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #48\n"
-    "    bl UpdateIndexedResourceHandle\n"
-    "    lsls r0, r0, #30\n"
-    "    cmp r0, #0\n"
-    "    bge .Lambient_3_24\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #68\n"
-    "    movs r0, #1\n"
-    "    strb r0, [r1, #0]\n"
-    "    b .Lambient_3_24\n"
-    "    .align 2, 0\n"
-    ".Lambient_3_22: .word 0x000002a9\n"
-    ".Lambient_3_23:\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r6, #0]\n"
-    ".Lambient_3_24:\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-);
+void WorldAmbientKind6::Update()
+{
+    switch (motion.state) {
+    case 0:
+        motion.direction_ticks = (RandomBelow(2) + 30) * 60;
+        sound_ticks = 0;
+        motion.state = 1;
+        break;
+    case 1:
+        if (--motion.direction_ticks < 0) {
+            motion.state = 2;
+        } else if (motion.direction_ticks > 360) {
+            if (--sound_ticks <= 0) {
+                sound_ticks = 360;
+                if ((rand() >> 4) & 3)
+                    PlayWorldAmbientSpriteSound(this, 206);
+            }
+        }
+        break;
+    case 2: {
+        if (next_position == -1)
+            next_position = (current_position + 1) & 3;
+        SelectWorldAmbientSpawnPosition(this, &target, next_position);
+        target.x_q16 = target.x * 65536;
+        target.y_q16 = target.y * 65536;
+        velocity_x_q16 = target.x_q16 - motion.x_q16;
+        velocity_y_q16 = target.y_q16 - motion.y_q16;
+        i32 x_velocity = velocity_x_q16;
+        i32 y_velocity = velocity_y_q16;
+        i32 x_steps = abs(x_velocity) >> 17;
+        i32 y_steps = abs(y_velocity) >> 17;
+        if (x_steps > y_steps) {
+            if (x_velocity < 0)
+                motion.direction = FACING_LEFT;
+            else
+                motion.direction = FACING_RIGHT;
+            velocity_x_q16 /= x_steps;
+            velocity_y_q16 /= x_steps;
+            motion.direction_ticks = x_steps;
+        } else {
+            if (y_velocity < 0)
+                motion.direction = FACING_UP;
+            else
+                motion.direction = FACING_DOWN;
+            velocity_x_q16 /= y_steps;
+            velocity_y_q16 /= y_steps;
+            motion.direction_ticks = y_steps;
+        }
+        SetAnimation(0x2A9);
+        motion.state = 3;
+        vertical_offset = 8;
+    }
+    case 3:
+        motion.x_q16 += velocity_x_q16;
+        motion.y_q16 += velocity_y_q16;
+        if (--motion.direction_ticks <= 0) {
+            current_position = next_position;
+            next_position = -1;
+            motion.x_q16 = target.x_q16;
+            motion.y_q16 = target.y_q16;
+            motion.state = 0;
+            vertical_offset = -8;
+            SetAnimation(0x2A4);
+        }
+        break;
+    }
+    motion.x = motion.x_q16 >> 16;
+    motion.y = motion.y_q16 >> 16;
+    sprite.UpdateAnimation();
+}
 
 asm_unified(
     ".text\n"
