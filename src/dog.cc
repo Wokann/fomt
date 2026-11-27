@@ -45,9 +45,9 @@ void Dog::SetReaction(AnimalReactionPayload const * param)
     unk_20 = 2;
 }
 
-void Dog::method_0809BB70(UnkBarnAnimal2C_x2 const * param)
+void Dog::SetBallChaseState(AnimalApproachPayload const * param)
 {
-    unk_24 = *param;
+    approach = *param;
     unk_20 = 3;
 }
 

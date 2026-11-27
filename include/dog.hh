@@ -21,7 +21,7 @@ struct Dog : public Pet
     void method_0809BB48(UnkBarnAnimal2C const * param);
     void SetApproachState(AnimalApproachPayload const * param);
     void SetReaction(AnimalReactionPayload const * param);
-    void method_0809BB70(UnkBarnAnimal2C_x2 const * param);
+    void SetBallChaseState(AnimalApproachPayload const * param);
     void method_0809BB80(UnkBarnAnimal2C const * param);
     void method_0809BB8C(UnkBarnAnimal2C_x2 const * param);
     void method_0809BB9C(UnkBarnAnimal2C const * param);
