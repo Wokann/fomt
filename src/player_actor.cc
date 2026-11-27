@@ -1024,26 +1024,7 @@ asm_unified(
     "    bx lr\n"
     "    .align 2, 0\n"
     "\n"
-    "    .global func_08024A1C\n"
-    "    .thumb_func\n"
-    "func_08024A1C:\n"
-    "    adds r2, r0, #0\n"
-    "    adds r2, #0x3c\n"
-    "    movs r1, #8\n"
-    "    strb r1, [r2]\n"
-    "    adds r0, #0x3d\n"
-    "    movs r1, #0xff\n"
-    "    strb r1, [r0]\n"
-    "    bx lr\n"
-    "\n"
-    "    .global func_08024A2C\n"
-    "    .thumb_func\n"
-    "func_08024A2C:\n"
-    "    adds r0, #0x3c\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    bx lr\n"
-    "\n"
+
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1739,26 +1720,20 @@ asm_unified(
     "    bx lr\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start func_08024C88\n"
-    "func_08024C88: @ 0x08024C88\n"
-    "    adds r2, r0, #0\n"
-    "    adds r2, #0x3c\n"
-    "    movs r1, #8\n"
-    "    strb r1, [r2]\n"
-    "    adds r0, #0x3d\n"
-    "    movs r1, #0xff\n"
-    "    strb r1, [r0]\n"
-    "    bx lr\n"
-    "\n"
-    "    thumb_func_start func_08024C98\n"
-    "func_08024C98: @ 0x08024C98\n"
-    "    adds r0, #0x3c\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    bx lr\n"
-    "\n"
+
 );
 #endif
+
+void PlayerActor::EnterHotSpringBathingState()
+{
+    action_state = 8;
+    unk_3D = 0xFF;
+}
+
+void PlayerActor::ExitHotSpringBathingState()
+{
+    action_state = 0;
+}
 
 bool PlayerActor::IsClockPausedByAction()
 {
@@ -52209,117 +52184,40 @@ void PlayerActor::SetUpdateSuspended(u8 suspended)
     update_suspended = suspended;
 }
 
-asm_unified(
-    ".text\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global GetCaughtFish__11PlayerActor\n"
-    "    .thumb_func\n"
-    "GetCaughtFish__11PlayerActor:\n"
-    "    adds r0, #0x60\n"
-    "    bx lr\n"
-    "\n"
-#if defined(REGION_JP)
-    "    .global func_08031DC0\n"
-    "    .thumb_func\n"
-    "func_08031DC0:\n"
-    "    adds r0, #0xc1\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08031DC8\n"
-    "    .thumb_func\n"
-    "func_08031DC8:\n"
-    "    adds r0, #0xb0\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08031DD0\n"
-    "    .thumb_func\n"
-    "func_08031DD0:\n"
-    "    adds r0, #0xac\n"
-    "    ldr r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08031DD8\n"
-    "    .thumb_func\n"
-    "func_08031DD8:\n"
-    "    adds r0, #0xa8\n"
-    "    ldr r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08031DE0\n"
-    "    .thumb_func\n"
-    "func_08031DE0:\n"
-    "    adds r0, #0xb1\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08031DE8\n"
-    "    .thumb_func\n"
-    "func_08031DE8:\n"
-    "    adds r0, #0x7a\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .global func_0803202C\n"
-    "    .thumb_func\n"
-    "func_0803202C:\n"
-    "    adds r0, #0xc1\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08032034\n"
-    "    .thumb_func\n"
-    "func_08032034:\n"
-    "    adds r0, #0xb0\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_0803203C\n"
-    "    .thumb_func\n"
-    "func_0803203C:\n"
-    "    adds r0, #0xac\n"
-    "    ldr r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08032044\n"
-    "    .thumb_func\n"
-    "func_08032044:\n"
-    "    adds r0, #0xa8\n"
-    "    ldr r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_0803204C\n"
-    "    .thumb_func\n"
-    "func_0803204C:\n"
-    "    adds r0, #0xb1\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08032054\n"
-    "    .thumb_func\n"
-    "func_08032054:\n"
-    "    adds r0, #0x7a\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#endif
+FishingCatchResult const * PlayerActor::GetCaughtFish()
+{
+    return &caught_fish;
+}
+
+u8 PlayerActor::vfunc_94() const
+{
+    return unk_C1;
+}
+
+bool PlayerActor::IsPresentedItemGiftWrapped()
+{
+    return presented_item_wrapped;
+}
+
+i32 PlayerActor::GetPresentedItemId()
+{
+    return presented_item_id;
+}
+
+MaryHeldItemKind PlayerActor::GetPresentedItemKind()
+{
+    return presented_item_kind;
+}
+
+MaryAnimalSlotIndex PlayerActor::GetInteractingAnimalIndex()
+{
+    return static_cast<MaryAnimalSlotIndex>(interacting_animal_index);
+}
+
+bool PlayerActor::IsHoldingTool()
+{
+    return holding_tool;
+}
 
 bool PlayerActor::IsRidingHorse()
 {
@@ -52329,17 +52227,14 @@ bool PlayerActor::IsRidingHorse()
     return riding;
 }
 
+u8 PlayerActor::vfunc_3C() const
+{
+    return unk_C0;
+}
+
 #if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
-    "    .global func_08031E08\n"
-    "    .thumb_func\n"
-    "func_08031E08:\n"
-    "    adds r0, #0xc0\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
     "    .global func_08031E10\n"
     "    .thumb_func\n"
     "func_08031E10:\n"
@@ -52357,14 +52252,6 @@ asm_unified(
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
-    "    .global func_08032074\n"
-    "    .thumb_func\n"
-    "func_08032074:\n"
-    "    adds r0, #0xc0\n"
-    "    ldrb r0, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
     "    .global func_0803207C\n"
     "    .thumb_func\n"
     "func_0803207C:\n"

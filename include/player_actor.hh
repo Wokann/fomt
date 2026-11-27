@@ -2,13 +2,13 @@
 #define PLAYER_ACTOR_HH
 
 #include "player_actor_lifetimes.hh"
+#include "fishing.hh"
 
 // Verified player actor interface and payload through the update-state byte.
 // Native construction and action bodies are retained as assembly in player_actor.cc.
 // The concrete payload below remains partial: never allocate it or infer
 // its native size. The untouched +0x30 word has unknown declaration ownership.
 // The player owns this native catch record; this interface only borrows it.
-struct FishingCatchResult;
 struct RucksackItem;
 struct Article;
 struct Food;
@@ -66,13 +66,25 @@ struct PlayerActor : PlayerActorBase {
     }
 
     u8 action_state;
-    u8 unk_3D[0x3F];
+    u8 unk_3D;
+    u8 unk_3E[0x60 - 0x3E];
+    FishingCatchResult caught_fish;
+    u8 unk_78;
+    u8 unk_79;
+    bool holding_tool;
     u16 unk_7C;
     u8 unk_7E[0x0A];
     u8 held_actor_graphic_state;
     u8 unk_89[0xA4 - 0x89];
     u8 unk_A4;
-    u8 unk_A5[0xC2 - 0xA5];
+    u8 unk_A5[0xA8 - 0xA5];
+    MaryHeldItemKind presented_item_kind;
+    i32 presented_item_id;
+    bool presented_item_wrapped;
+    u8 interacting_animal_index;
+    u8 unk_B2[0xC0 - 0xB2];
+    u8 unk_C0;
+    u8 unk_C1;
     u8 update_suspended;
 
 private:
