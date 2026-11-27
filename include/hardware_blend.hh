@@ -37,7 +37,6 @@ struct HardwareBlendController {
     void End(i16 step, u32 mode, u32 mosaic);
     i16 SetStep(i16 step);
     i16 GetStep() const;
-    // The body remains native assembly; every exit returns false or true.
     bool Update();
 #endif
 };
