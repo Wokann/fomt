@@ -1403,85 +1403,30 @@ asm_unified(
     "    .align 2, 0\n"
 );
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start Draw__28WorldAmbientSpriteControllerRC17EntityDrawContext\n"
-    "Draw__28WorldAmbientSpriteControllerRC17EntityDrawContext:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r9\n"
-    "    mov r6, r8\n"
-    "    push {r6, r7}\n"
-    "    ldr r2, [r0, #0]\n"
-    "    ldr r2, [r2, #0]\n"
-    "    mov r9, r2\n"
-    "    ldr r2, [r1, #8]\n"
-    "    mov r8, r2\n"
-    "    ldr r7, [r1, #0]\n"
-    "    adds r5, r0, #0\n"
-    "    adds r5, #12\n"
-    "    ldr r1, [r0, #8]\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r1, r1, r0\n"
-    "    adds r6, r1, #0\n"
-    "    adds r6, #12\n"
-    "    cmp r5, r6\n"
-    "    beq .Lambient_5_2\n"
-    ".Lambient_5_0:\n"
-    "    ldr r1, [r5, #0]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lambient_5_1\n"
-    "    ldr r0, [r1, #76]\n"
-    "    ldr r4, [r0, #16]\n"
-    "    adds r0, r1, #0\n"
-    "    mov r1, r9\n"
-    "    mov r2, r8\n"
-    "    adds r3, r7, #0\n"
-    "    bl _call_via_r4\n"
-    ".Lambient_5_1:\n"
-    "    adds r5, #4\n"
-    "    cmp r5, r6\n"
-    "    bne .Lambient_5_0\n"
-    ".Lambient_5_2:\n"
-    "    pop {r3, r4}\n"
-    "    mov r8, r3\n"
-    "    mov r9, r4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-);
+void WorldAmbientSpriteController::Draw(EntityDrawContext const & context)
+{
+    GameObject * world = entity->GetGameObject();
+    WorldSpriteDrawBuffer * buffer = context.buffer;
+    HardwareDmaQueue * queue = context.queue;
+    SpriteOwner * first = Data();
+    SpriteOwner * last = End();
+    while (first != last) {
+        if (first->Get())
+            (*first)->Draw(world, buffer, queue);
+        ++first;
+    }
+}
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start Update__28WorldAmbientSpriteController\n"
-    "Update__28WorldAmbientSpriteController:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r4, #12\n"
-    "    ldr r1, [r0, #8]\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r1, r1, r0\n"
-    "    adds r5, r1, #0\n"
-    "    adds r5, #12\n"
-    "    cmp r4, r5\n"
-    "    beq .Lambient_6_2\n"
-    ".Lambient_6_0:\n"
-    "    ldr r2, [r4, #0]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lambient_6_1\n"
-    "    ldr r0, [r2, #76]\n"
-    "    ldr r1, [r0, #12]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    ".Lambient_6_1:\n"
-    "    adds r4, #4\n"
-    "    cmp r4, r5\n"
-    "    bne .Lambient_6_0\n"
-    ".Lambient_6_2:\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-);
+void WorldAmbientSpriteController::Update()
+{
+    SpriteOwner * first = Data();
+    SpriteOwner * last = End();
+    while (first != last) {
+        if (first->Get())
+            (*first)->Update();
+        ++first;
+    }
+}
 
 asm_unified(
     ".text\n"

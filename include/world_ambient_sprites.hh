@@ -60,7 +60,11 @@ struct WorldAmbientSpriteOwners {
 
     WorldAmbientSpriteOwners() : count(0) {}
     Owner * Data() { return reinterpret_cast<Owner *>(storage); }
-    Owner * End() { return Data() + count; }
+    Owner * End()
+    {
+        return reinterpret_cast<Owner *>(reinterpret_cast<u8 *>(this)
+            + (offsetof(WorldAmbientSpriteOwners, storage) + count * sizeof(Owner)));
+    }
     Owner & operator[](u32 index)
     {
         return *reinterpret_cast<Owner *>(reinterpret_cast<u8 *>(this)
