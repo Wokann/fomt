@@ -27,6 +27,9 @@ struct FarmingTutorialHeldGraphic {
 // a separate archive selection; 0xFFFF suppresses the extra sprite.
 struct FarmingTutorialPlayerSpriteController : EntitySpriteController {
     FarmingTutorialPlayerSpriteController(AActorEntity * entity);
+    void SetItemResourceAndIndex(u32 index);
+    void SetActorResource(u32 index);
+    void SetItemResource(u32 index);
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 

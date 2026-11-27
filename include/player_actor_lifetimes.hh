@@ -129,13 +129,17 @@ struct FarmingTutorialPlayerBase : AActorEntity {
 struct PlayerSpriteController : EntitySpriteController {
     PlayerSpriteController(PlayerActor * player);
 
+    void RequestPaletteRefresh();
+    void SetActorResource(u32 index);
+    void SetItemResource(u32 index);
+
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
     GameSceneIndexedSprite held_actor_sprite;
     PlayerSpriteSlots slots;
     u8 next_slot;
-    u8 unk_281;
+    u8 palette_refresh_requested;
 };
 
 
