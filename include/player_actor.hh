@@ -3,7 +3,6 @@
 
 #include "player_actor_lifetimes.hh"
 
-
 // Verified player actor interface and payload through the update-state byte.
 // Native construction and action bodies are retained as assembly in player_actor.cc.
 // The concrete payload below remains partial: never allocate it or infer
@@ -71,13 +70,14 @@ struct PlayerActor : PlayerActorBase {
     u16 unk_7C;
     u8 unk_7E[0x0A];
     u8 held_actor_graphic_state;
-    u8 unk_89[0x39];
+    u8 unk_89[0xA4 - 0x89];
+    u8 unk_A4;
+    u8 unk_A5[0xC2 - 0xA5];
     u8 update_suspended;
 
 private:
     PlayerActor();
 };
-
 
 EXTERN_C
 // The actual native implementation still serves the player virtual slot.
@@ -156,7 +156,6 @@ extern "C" u32 const gLakeMineCollectionProducts[14];
 extern "C" i32 const gPlayerSpritePaletteKinds[3];
 extern "C" i32 const gFarmingTutorialPlayerSpritePaletteKinds[];
 extern "C" u8 const gPlayerToolSpiralRanks[][15];
-
 
 extern char const gCppRuntimeError_AnimalDataSecond[];
 

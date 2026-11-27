@@ -2,11 +2,6 @@
 #include "game_state.hh"
 #include <algorithm>
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectWonSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -33,10 +28,6 @@ extern "C" u32 SelectWonSchedule(void const * context)
 
     return 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" WonScheduleData const gWonScheduleData = {
     // descriptor

@@ -1,11 +1,6 @@
 #include "npc_schedule_jeff.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectJeffSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -34,10 +29,6 @@ extern "C" u32 SelectJeffSchedule(void const * context)
 
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 // This is the immediately following, larger instance of the same selector
 // family. The repeated entries intentionally retain their original pointers:

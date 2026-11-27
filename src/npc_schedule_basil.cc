@@ -1,11 +1,6 @@
 #include "npc_schedule_basil.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectBasilSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -39,10 +34,6 @@ extern "C" u32 SelectBasilSchedule(void const * context)
 
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" BasilScheduleData const gBasilScheduleData = {
     // descriptor

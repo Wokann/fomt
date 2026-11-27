@@ -6,7 +6,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     "\n"
-    "\t.align 2, 0\n"
     "\n"
 );
 

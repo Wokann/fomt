@@ -6,7 +6,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 RefrigeratorSceneCore::RefrigeratorSceneCore(GameStateSaveImage * image)
@@ -17,10 +16,6 @@ RefrigeratorSceneCore::RefrigeratorSceneCore(GameStateSaveImage * image)
     , phase(0)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 RefrigeratorSceneCore::~RefrigeratorSceneCore()
 {
@@ -337,10 +332,6 @@ void RefrigeratorSceneCore::ShowNextPage()
 {
     DrawFridgePage(func_080CEB80(tilemap.value));
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_080CEBC0(void *);
 void RefrigeratorSceneCore::ShowPreviousPage()
@@ -4716,8 +4707,6 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
 );
-
-
 
 RefrigeratorScene::RefrigeratorScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new RefrigeratorSceneCore(image)), continuation(next)

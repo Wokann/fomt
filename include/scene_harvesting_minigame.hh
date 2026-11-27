@@ -49,7 +49,6 @@ struct HarvestingMinigameTileHandles {
     ObjTileCollectionEntry unk_40;
 };
 
-
 #pragma interface "scene_harvesting_minigame.hh"
 // The native constructor calls HardwareContext, stores this class's vptr at
 // +4, and owns the resources declared below. Unrecovered RAM fields remain
@@ -105,15 +104,11 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     bool succeeded;
     u8 unk_611[0x614 - 0x611];
     u32 sprite_variant;
-    u8 unk_618[0x61C - 0x618];
+    u32 unk_618;
     u8 experience;
 };
 
-
-
-
 // The UI methods below still have native implementations with these actual ABIs.
-
 
 extern char const gText_HarvestSpriteHarvesting_Zero[];
 extern u32 const gUnk_080BE954Values[7];

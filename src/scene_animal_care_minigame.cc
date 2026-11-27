@@ -12557,59 +12557,28 @@ u16 func_080B3990(HarvestSpriteAnimalCareCore * self)
         self->sprite_variant * 0x54;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u16 func_080B39BC(HarvestSpriteAnimalCareCore * core, u32 index)
 {
     u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0;
-    u32 offset = index * 4;
-    /* +0x870 falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
-       the real field layout there is not established (H3 exception). */
-    u8 const * base = (u8 const *)core + 0x870;
-    base += offset;
-    return table[*(u32 const *)base];
+    return table[core->unk_870[index]];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u16 func_080B39D8(HarvestSpriteAnimalCareCore * core, u32 index)
 {
     u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1;
-    u32 offset = index * 4;
-    /* +0x848 falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
-       the real field layout there is not established (H3 exception). */
-    u8 const * base = (u8 const *)core + 0x848;
-    base += offset;
-    return table[*(u32 const *)base];
+    return table[core->unk_848[index]];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u16 func_080B39F4(HarvestSpriteAnimalCareCore * core, u32 index)
 {
     u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2;
-    u32 offset = index * 4;
-    /* +0x85C falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
-       the real field layout there is not established (H3 exception). */
-    u8 const * base = (u8 const *)core + 0x85C;
-    base += offset;
-    return table[*(u32 const *)base];
+    return table[core->timers[index]];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u16 func_080B3A10(HarvestSpriteAnimalCareCore const * core)
 {
     u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3;
-    return table[*(u32 const *)core->unk_934];
+    return table[core->unk_934];
 }
 
 asm_unified(
@@ -12835,46 +12804,25 @@ HarvestSpriteAnimalCareUiScene::HarvestSpriteAnimalCareUiScene(HarvestSpriteAnim
     core = new HarvestSpriteAnimalCareCore(setup);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 HarvestSpriteAnimalCareUiScene::~HarvestSpriteAnimalCareUiScene()
 {
     delete core;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SceneTransitionOwner HarvestSpriteAnimalCareUiScene::Run()
 {
     return core->Run();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool HarvestSpriteAnimalCareUiScene::Succeeded()
 {
     return core->Succeeded();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 HarvestSpriteAnimalCareUiScene::GetUnkRecordValue()
 {
     return core->unk_910;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 // These value groups are copied directly by still-native callers.  Their
 // high-level gameplay roles remain unknown, so the names identify only the

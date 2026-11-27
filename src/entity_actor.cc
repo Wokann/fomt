@@ -75,8 +75,6 @@ extern "C" EntityUiScreenOffset const gUnk_080F1328[] ALIGN(1) = {
     { 7, -41 },
 };
 
-
-
 extern "C" u32 GetActorAnimationDuration(IndexedResourceProvider * resource, u32 index)
 {
     IndexedResourceResult const & entries = resource->Resolve(index);
@@ -775,7 +773,6 @@ extern "C" u32 func_08032900(u32 kind, u32 x, i32 y)
 // All six native methods are shared by JP, US, EU and DE.
 asm_unified(
     ".text\n"
-    "    .align 2, 0\n"
     "\n"
 );
 

@@ -29,7 +29,7 @@ struct JoyBusContext {
     u32 unk_20;
     u32 unk_24;
     /* +28 */ u8 unk_28[4];   // byte-ordered command payload
-    u32 unk_2C;
+    u8 unk_2C[4];             // byte-ordered response payload
     u32 unk_30;
     u32 read_index;
     u32 write_index;
@@ -38,7 +38,6 @@ struct JoyBusContext {
     u32 result;
     u32 unk_184;
 };
-
 
 EXTERN_C
 

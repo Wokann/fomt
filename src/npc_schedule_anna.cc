@@ -1,45 +1,32 @@
 #include "npc_schedule_anna.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectAnnaSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
-    u8 flags;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
-    flags = ((u8 const *)context)[0x21CA];
-    if ((i32)(flags << 27) < 0)
+    if (save.event_state.mary_and_gray_rival_wedding_routing_state)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 5;
     if (weekday == 1)
     {
-        if (*(u32 const *)((u8 const *)context + 8) == 0)
+        if (save.clock.weather_today == 0)
             return 3;
         else
             return 4;
     }
-    if (*(u32 const *)((u8 const *)context + 8) == 0)
+    if (save.clock.weather_today == 0)
         return 1;
     return 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" AnnaScheduleData const gAnnaScheduleData = {
     // descriptor

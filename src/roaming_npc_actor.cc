@@ -91,8 +91,6 @@ extern "C" u16 const gUnk_080F1644[] = {
     0x0207, 0x020B, 0x020F, 0x0000,
 };
 
-
-
 RoamingNpcActor::RoamingNpcActor(GameObject * game_object,
     ActorLocation * saved_location, u32 animation, u32 unk_3C)
     : AActorEntity(game_object, *saved_location, 2, animation),
@@ -136,10 +134,6 @@ void RoamingNpcActor::SetRoamingSpeed(i32 speed)
     x_speed_q16 = x_speed;
     y_speed_q16 = y_speed;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool RoamingNpcActor::IsVisualAnimationComplete() const
 {
@@ -330,10 +324,6 @@ void RoamingNpcActor::SetAvoidanceBox(Box const & box)
 {
     avoidance_box = box;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void RoamingNpcActor::ClearAvoidanceBox()
 {
@@ -615,10 +605,6 @@ void RoamingNpcActor::vfunc_14()
     unk_40 = false;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 Box RoamingNpcActor::GetBox() const
 {
     return Box(-7, -9, 7, 5, x_q16 >> 16, y_q16 >> 16);
@@ -805,10 +791,6 @@ u32 SouthTownRoamingNpc1::GetBehaviorAnimation(u32 behavior) const
 {
     return gUnk_080F1560[behavior];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 i32 SouthTownRoamingNpc1::GetBehaviorSpeed(u32 behavior) const
 {
@@ -1003,10 +985,6 @@ u32 SouthTownRoamingNpc2::GetBehaviorAnimation(u32 behavior) const
     return gUnk_080F15A4[behavior];
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 i32 SouthTownRoamingNpc2::GetBehaviorSpeed(u32 behavior) const
 {
     switch (behavior)
@@ -1103,10 +1081,6 @@ EntityVisualController * YodelRanchHouseRoamingNpc::CreateVisualController()
     return new EntitySpriteController(this, 2, 27, 0, 8, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void YodelRanchHouseRoamingNpc::ResetLocation()
 {
     ActorLocation location;
@@ -1116,10 +1090,6 @@ void YodelRanchHouseRoamingNpc::ResetLocation()
     if (anim_id != animation)
         SetAnim(animation);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 YodelRanchHouseRoamingNpc::GetBehaviorAnimation(u32 behavior) const
 {
@@ -1242,18 +1212,10 @@ void InnSecondFloorRoamingNpc::ResetLocation()
         SetAnim(animation);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 InnSecondFloorRoamingNpc::GetBehaviorAnimation(u32 behavior) const
 {
     return gUnk_080F1644[behavior];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 i32 InnSecondFloorRoamingNpc::GetBehaviorSpeed(u32 behavior) const
 {

@@ -35,7 +35,6 @@ inline void TownMapMarkers::PushBack(TownMapMarker const & value)
     }
 }
 
-
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
@@ -364,7 +363,6 @@ asm_unified(
     "\n"
 #endif
 );
-
 
 extern "C" void CopyBgMap30x13(void const *, u32 map_block, u16 const * source)
 {
@@ -1446,7 +1444,6 @@ asm_unified(
 #endif
 );
 
-
 extern "C" bool TownMapHotspotContains(
     void const *, u32 cursor_x, u32 cursor_y, TownMapHotspot const * hotspot)
 {
@@ -1864,7 +1861,9 @@ asm_unified(
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .global DrawTownMap\n"
     "    .thumb_func\n"
     "DrawTownMap:\n"
@@ -2477,7 +2476,9 @@ asm_unified(
     "\t.align 2, 0\n"
     ".Ljp_08078AE4: .word 0xFFFFFC00\n"
     "\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "\tthumb_func_start DrawTownMap\n"
     "DrawTownMap: @ 0x080785C8\n"
@@ -3486,27 +3487,21 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-#endif
 );
-
-
+#endif
 
 asm_unified(
     ".text\n"
-#if defined(REGION_JP)
 );
+#if defined(REGION_JP)
 
 TownMapUiScene::~TownMapUiScene()
 {
     delete core;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
-);
-
 
 asm_unified(
     ".text\n"
@@ -3903,7 +3898,6 @@ asm_unified(
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
 );
-
 
 // TownMapUiScene copies these four IDs then resolves each from the Town Map
 // indexed resource archive before its UI is created.

@@ -96,18 +96,10 @@ GameMenuItemIcon * InitializeMenuItemIconFromData(GameMenuItemIcon * icon, Index
     return icon;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void SetMenuItemIconQuantity(GameMenuItemIcon * icon, u32 quantity)
 {
     icon->quantity = quantity;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 GetMenuItemIconQuantity(GameMenuItemIcon const * icon)
 {
@@ -195,10 +187,6 @@ void SetMenuItemIconData(GameMenuItemIcon * icon, IndexedResourceTileUnit const 
     icon->palette = palette;
     icon->quantity = quantity;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void ClearMenuItemIcon(GameMenuItemIcon * icon)
 {
@@ -917,10 +905,6 @@ GameMenuItemIcon * GetMenuPanelItemIcon(GameMenuPanel * panel, u32 index)
     GameMenuPanelState * s = &((GameMenuTilemapPanel *)panel)->state;
     return &s->icons.items[index];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 GameMenuItemIcon * GetMenuPanelHeaderIcon(GameMenuPanel * panel)
 {
@@ -2873,8 +2857,6 @@ asm_unified(
     ".Lmenu_1_29_007c: .word 0x600f080\n"
 );
 
-
-
 MenuGridPosition GetMenuGridLeftCellPosition(GameMenuPanel const *, i32 index)
 {
     return gMenuGridCellPositions[index];
@@ -3637,10 +3619,6 @@ extern "C" GameMenuItemIcon * func_080CC70C(GameMenuPanel * panel, u32 index)
     GameMenuPanelState * s = &((GameMenuTilemapPanel *)panel)->state;
     return &s->icons.items[index];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" GameMenuItemIcon * func_080CC720(GameMenuPanel * panel)
 {
@@ -5578,8 +5556,6 @@ asm_unified(
     ".Lmenu_2_13_0058: .word 0xffffff00\n"
     ".Lmenu_2_13_005c: .word 0x600f080\n"
 );
-
-
 
 MenuGridPosition GetMenuGridRightCellPosition(GameMenuPanel const *, i32 index)
 {

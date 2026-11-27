@@ -1,40 +1,27 @@
 #include "npc_schedule_manna.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
-#include "npc_schedule_manna.hh"
-#include "game_state.hh"
 extern "C" u32 SelectMannaSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 5;
-    if ((i32)(((u8 const *)context)[0x21CA] << 25) < 0)
+    if (save.event_state.ann_and_cliff_rival_wedding_routing_state)
         return 0;
-    if (*(u32 const *)((u8 const *)context + 8) == 0)
+    if (save.clock.weather_today == 0)
     {
         if (weekday == 6)
         {
-            /* +0x2174 is GameStateSaveImage::event_state (offset 0x214C)
-               + 0x28, a 32-bit cell in the GameEventState bitfield region;
-               mask selects bits 12-18. Exact named bitfield not resolved
-               yet (H3 exception). */
-            if ((*(u32 const *)((u8 const *)context + 0x2174) & (0xC2u << 11))
-                == (0x82u << 11))
+            if ((u32)save.event_state.told_cliff_about_grape_harvest_job == 1
+                && save.event_state.cliff_permanent_winery_job_event_state == 2)
                 return 4;
             return 3;
         }
@@ -42,10 +29,6 @@ extern "C" u32 SelectMannaSchedule(void const * context)
     }
     return 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" MannaScheduleData const gMannaScheduleData = {
     // descriptor

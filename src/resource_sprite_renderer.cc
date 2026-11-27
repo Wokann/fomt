@@ -11,7 +11,9 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .global _._22ResourceSpriteRenderer\n"
     "    .thumb_func\n"
     "_._22ResourceSpriteRenderer:\n"
@@ -574,9 +576,8 @@ void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferS
     DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "\tthumb_func_start _._22ResourceSpriteRenderer\n"
     "_._22ResourceSpriteRenderer: @ 0x080756D0\n"
@@ -1142,13 +1143,7 @@ void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferS
     DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
-
-
-
 
 u8 const gResourceSpritePackedCellSizes[] = {
     0x50, 0xFA, 0x21, 0xB6, 0x84, 0xE9,

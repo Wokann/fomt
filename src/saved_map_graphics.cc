@@ -8,7 +8,6 @@ FieldRenderSeasonalRecordRange const gFieldRenderSeasonalRecordRanges[NUM_SEASON
         { FIELD_ITEM_RECORD_WINTER_BEGIN, FIELD_ITEM_RECORD_WINTER_END },
     };
 
-
 // func_080AAF28 indexes this as [native_record_index][variant].  The two
 // columns are both consumed by the native field-render path, but their
 // gameplay roles remain undecoded.
@@ -46,17 +45,12 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 u16 func_080AAF28(u32 record_index, u8 variant)
 {
     return gUnk_FieldRenderLookupValues[record_index][variant];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 EC u32 SelectSavedWorldMapData(GameSceneSavedMap * map)
 {
@@ -67,10 +61,8 @@ EC u32 SelectSavedWorldMapData(GameSceneSavedMap * map)
     return SelectMapDataId(map->map, season, house, coop, barn);
 }
 
-
 asm_unified(
     ".text\n"
-    ".align 2, 0\n"
 );
 
 #include "hardware_dma.hh"
@@ -83,17 +75,9 @@ void func_080AAF9C(GameSceneWorldMap * map, u32 enabled)
     CopyHardwareDma3(map->tile_attributes, (void *)enabled, 0xB000);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 #include "world_map.hh"
 #include "map_data.hh"
 u8 func_080AAFB8(GameSceneWorldMap * map)
 {
     return GetMapData(map->map_data_id)->flags;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);

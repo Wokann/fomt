@@ -6,7 +6,9 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .global __10ScrollMenuUc\n"
     "    .thumb_func\n"
     "__10ScrollMenuUc:\n"
@@ -1720,7 +1722,9 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Ljp_0807683C: .word 0x000005B4\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "\tthumb_func_start __10ScrollMenuUc\n"
     "__10ScrollMenuUc: @ 0x08075E7C\n"
@@ -3437,10 +3441,8 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L08076BDC: .word 0x000005B4\n"
     "\n"
-#endif
 );
-
-
+#endif
 
 void SetScrollMenuPosition(ScrollMenu * context, i16 scroll_position)
 {
@@ -3454,7 +3456,9 @@ i16 GetScrollMenuPosition(ScrollMenu const * context)
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    thumb_func_start __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
     "__14ScrollMenuPageP10ScrollMenuUiUiPCc: @ 0x0807685C\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -4498,10 +4502,6 @@ void ScrollMenuPage::SetPosition(i16 position)
     scroll_position = position;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 #include "scroll_state.hh"
 i16 ScrollMenuPage::GetMaximumScrollPosition() const
 {
@@ -4509,27 +4509,18 @@ i16 ScrollMenuPage::GetMaximumScrollPosition() const
     return limit - 0xA0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ScrollState * ScrollMenuPage::GetScrollState() const
 {
     return scroll;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ScrollMenu * ScrollMenuPage::GetMenu() const
 {
     return menu;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "\tthumb_func_start __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
     "__14ScrollMenuPageP10ScrollMenuUiUiPCc: @ 0x08076BFC\n"
@@ -5592,10 +5583,6 @@ void ScrollMenuPage::SetPosition(i16 position)
     scroll_position = position;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 #include "scroll_state.hh"
 i16 ScrollMenuPage::GetMaximumScrollPosition() const
 {
@@ -5603,30 +5590,17 @@ i16 ScrollMenuPage::GetMaximumScrollPosition() const
     return limit - 0xA0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ScrollState * ScrollMenuPage::GetScrollState() const
 {
     return scroll;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ScrollMenu * ScrollMenuPage::GetMenu() const
 {
     return menu;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
-
-
 
 // Native digit glyphs follow the actual queue API standard-library dependency.
 

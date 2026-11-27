@@ -8,17 +8,12 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 WineryShopSceneCore::WineryShopSceneCore(GameStateSaveImage * image)
     : ShopScreenCore(image), phase(0), has_purchased(false), description()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 WineryShopSceneCore::~WineryShopSceneCore()
 {
@@ -1064,8 +1059,6 @@ asm_unified(
     ".align 2, 0\n"
     ".Lwinery_2_0850: .word __vt_23IndexedResourceProvider\n"
 );
-
-
 
 WineryShopScene::WineryShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new WineryShopSceneCore(image)), continuation(next)

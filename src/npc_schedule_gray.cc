@@ -1,41 +1,29 @@
 #include "npc_schedule_gray.hh"
 #include "game_state.hh"
-
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
-#include "npc_schedule_gray.hh"
 #include "bachelorette.hh"
 extern "C" u32 SelectGraySchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
     u32 count;
-    if ((i32)(((u8 const *)context)[0x21CA] << 27) < 0)
+
+    if (save.event_state.mary_and_gray_rival_wedding_routing_state)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
-    /* Offset form kept on purpose: +0x1E28 is GameStateSaveImage::npcs.mary
-       (NpcCollection offset 0x154, confirmed by the member table in
-       npc_collection.hh). The struct form changes register allocation and
-       no longer matches; see PROGRESS round 181. Tracked as a pending fix. */
-    count = ((Bachelorette const *)((u8 const *)context + 0x1E28))->GetRivalEventCount();
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
+    count = save.npcs.mary.GetRivalEventCount();
     if (count > 4)
     {
         if ((u8)IsNpcScheduleDateListed(season, day))
             return 9;
         if (weekday == 4)
         {
-            if (*(u32 const *)((u8 const *)context + 8) == 0)
+            if (save.clock.weather_today == 0)
                 return 6;
             else
                 return 7;
@@ -54,10 +42,6 @@ extern "C" u32 SelectGraySchedule(void const * context)
     }
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" GrayScheduleData const gGrayScheduleData = {
     // descriptor

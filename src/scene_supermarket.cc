@@ -9,7 +9,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 SupermarketSceneCore::SupermarketSceneCore(GameStateSaveImage * image)
@@ -20,17 +19,9 @@ SupermarketSceneCore::SupermarketSceneCore(GameStateSaveImage * image)
     has_purchased = false;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SupermarketSceneCore::~SupermarketSceneCore()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
 
@@ -1444,19 +1435,9 @@ SupermarketScene::SupermarketScene(SceneTransitionOwner next,
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SupermarketScene::~SupermarketScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 SceneTransitionOwner SupermarketScene::Run()
 {
@@ -1466,7 +1447,6 @@ SceneTransitionOwner SupermarketScene::Run()
 
 asm_unified(
     ".text\n"
-    ".align 2, 0\n"
 );
 
 SupermarketPurchaseSceneCore::SupermarketPurchaseSceneCore(
@@ -1475,17 +1455,9 @@ SupermarketPurchaseSceneCore::SupermarketPurchaseSceneCore(
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SupermarketPurchaseSceneCore::~SupermarketPurchaseSceneCore()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 #include "shop_ui.hh"
 void SupermarketPurchaseSceneCore::UpdateDescription(u32 index)
@@ -2234,19 +2206,9 @@ SupermarketPurchaseScene::SupermarketPurchaseScene(
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SupermarketPurchaseScene::~SupermarketPurchaseScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 SceneTransitionOwner SupermarketPurchaseScene::Run()
 {

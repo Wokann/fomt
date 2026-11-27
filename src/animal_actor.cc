@@ -34,7 +34,6 @@ void AActorEntity::SetMovementSpeed(i32 speed_q16)
     y_speed_q16 = y_speed;
 }
 
-
 void AnimalActor::RequestSound(u32 song_id)
 {
     if (sound_requested || !IsOnCurrentMap())
@@ -180,9 +179,11 @@ void AnimalActor::RespondToPush(u32 facing, u32 frames)
 {
 }
 
-asm_unified(    ".text\n"
+asm_unified(
     ".include \"asm/macro.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .thumb_func\n"
     "\n"
     "    .align 2, 0\n"
@@ -2644,18 +2645,10 @@ Box DogActor::GetBox() const
     return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u32 func_080213B0(void * self)
 {
     return 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_080213B4(u32 kind)
 {
@@ -4384,10 +4377,6 @@ extern "C" u32 func_080220B4(u32 value)
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u32 func_080220C8(u32 kind)
 {
     switch (kind)
@@ -5213,7 +5202,9 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start __8DogActorP10GameObjectP3DogP8Location\n"
@@ -10235,15 +10226,13 @@ asm_unified(
     "    .align 2, 0\n"
     ".L080229B8:\n"
 
-#endif
 );
+#endif
 
 bool ChickenActor::CanBeHit() const
 {
     return true;
 }
-
-
 
 bool ChickenActor::IsSick() const
 {
@@ -10439,8 +10428,6 @@ asm_unified(
 #endif
 );
 
-
-
 void ChickenActor::CureSickness()
 {
     livestock->ResetSick();
@@ -10450,7 +10437,9 @@ void ChickenActor::CureSickness()
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__12ChickenActor\n"
@@ -10522,18 +10511,10 @@ Box ChickenActor::GetBox() const
     return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u32 func_080228EC(void * self)
 {
     return 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_080228F0(u32 kind)
 {
@@ -11831,18 +11812,13 @@ bool CowActor::CanBeBrushed() const
     return !livestock->HasBeenBrushedToday();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool CowActor::CanBeMilked() const
 {
     return livestock->CanBeMilked();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__12ChickenActor\n"
@@ -13220,21 +13196,12 @@ bool CowActor::CanBeBrushed() const
     return !livestock->HasBeenBrushedToday();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool CowActor::CanBeMilked() const
 {
     return livestock->CanBeMilked();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
-
-
 
 bool CowActor::IsSick() const
 {
@@ -13243,7 +13210,9 @@ bool CowActor::IsSick() const
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C8CowActor\n"
@@ -13405,7 +13374,9 @@ asm_unified(
     "    pop {r4}\n"
     "    pop {r1}\n"
     "    bx r1\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C8CowActor\n"
@@ -13567,10 +13538,8 @@ asm_unified(
     "    pop {r4}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-#endif
 );
-
-
+#endif
 
 void CowActor::CureSickness()
 {
@@ -13581,7 +13550,9 @@ void CowActor::CureSickness()
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__8CowActor\n"
@@ -13707,10 +13678,6 @@ extern "C" u32 func_08023584(u32 kind)
     }
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_08023598(u32 kind)
 {
@@ -15009,18 +14976,13 @@ bool SheepActor::CanBeBrushed() const
     return !livestock->HasBeenBrushedToday();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool SheepActor::CanBeSheared() const
 {
     return livestock->CanBeSheared();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__8CowActor\n"
@@ -16454,21 +16416,12 @@ bool SheepActor::CanBeBrushed() const
     return !livestock->HasBeenBrushedToday();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool SheepActor::CanBeSheared() const
 {
     return livestock->CanBeSheared();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
-
-
 
 bool SheepActor::IsSick() const
 {
@@ -16477,7 +16430,9 @@ bool SheepActor::IsSick() const
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C10SheepActor\n"
@@ -16654,7 +16609,9 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global CanBeAttackedByWildDog__C10SheepActor\n"
@@ -16831,10 +16788,8 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-#endif
 );
-
-
+#endif
 
 void SheepActor::CureSickness()
 {
@@ -16845,7 +16800,9 @@ void SheepActor::CureSickness()
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__10SheepActor\n"
@@ -16972,10 +16929,6 @@ extern "C" u32 func_08024258(u32 value)
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u32 func_0802426C(u32 kind)
 {
     switch (kind)
@@ -17066,10 +17019,6 @@ extern "C" void func_08024308(Box * out, i32 x, i32 y)
     out->y2 = y + 5;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_0802431C(Box * out, i32 x, i32 y)
 {
     out->x1 = x - 7;
@@ -17078,9 +17027,8 @@ extern "C" void func_0802431C(Box * out, i32 x, i32 y)
     out->y2 = y + 5;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global ReactToDogAttack__10SheepActor\n"
@@ -17317,8 +17265,8 @@ asm_unified(
     "    strh r2, [r0, #6]\n"
     "    bx lr\n"
     "    .align 2, 0\n"
-#endif
 );
+#endif
 
 void AnimalActor::Update(EntityUpdateContext const & context)
 {

@@ -31,7 +31,6 @@ inline void PlayerSpriteSlots::Push(PlayerSpriteSlot const & slot)
 
 #include FOMT_TEXT_INCLUDE(player_actor.cc)
 
-
 // Keep the native jump table in the order of its shared mine codes.
 #define MINE_REWARD_CASE(table, code, target) \
     "    .if (. - " #table ") != (" STRINGIFY(code) " * 4)\n" \
@@ -266,8 +265,6 @@ extern "C" u8 const gPlayerToolSpiralRanks[][15] ALIGN(1) = {
     { 0xD2, 0xD1, 0xD0, 0xCF, 0xCE, 0xCD, 0xCC, 0xCB, 0xCA, 0xC9, 0xC8, 0xC7, 0xC6, 0xC5, 0xC4 },
 };
 
-
-
 // Native action-state values, independent of sprite-animation resource IDs.
 static inline bool IsActionInRange(i32 state, i32 first, i32 last)
 {
@@ -332,7 +329,9 @@ u32 AccumulateMaxWateringCanTier(u32 max_tier, Tool const & tool)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "    .global func_080244B8\n"
     "    .thumb_func\n"
@@ -1003,10 +1002,6 @@ extern "C" void func_080249E8(AActorEntity * self)
     StopActorSpriteEffect(*self);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_080249F8(AActorEntity * self)
 {
     self->normal_update_suspended = false;
@@ -1049,7 +1044,9 @@ asm_unified(
     "    strb r1, [r0]\n"
     "    bx lr\n"
     "\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start func_08024724\n"
     "func_08024724: @ 0x08024724\n"
@@ -1760,10 +1757,8 @@ asm_unified(
     "    strb r1, [r0]\n"
     "    bx lr\n"
     "\n"
-#endif
 );
-
-
+#endif
 
 bool PlayerActor::IsClockPausedByAction()
 {
@@ -1774,7 +1769,9 @@ bool PlayerActor::IsClockPausedByAction()
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global func_08024A64\n"
@@ -11529,7 +11526,7 @@ asm_unified(
 
 extern "C" void PlayerPrepareForScriptedAnimation(PlayerActor * player)
 {
-    player->unk_89[0xA4 - 0x89] = 0;
+    player->unk_A4 = 0;
     player->held_actor_graphic_state = 0;
     player->SetAnim(0x192);
 }
@@ -13583,7 +13580,9 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_08024CD0\n"
@@ -23320,7 +23319,7 @@ asm_unified(
 
 extern "C" void PlayerPrepareForScriptedAnimation(PlayerActor * player)
 {
-    player->unk_89[0xA4 - 0x89] = 0;
+    player->unk_A4 = 0;
     player->held_actor_graphic_state = 0;
     player->SetAnim(0x192);
 }
@@ -25371,14 +25370,12 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-#endif
 );
+#endif
 
 #undef DEFINE_MINE_REWARD_IDS
 #undef DEFINE_MINE_REWARD_ID
 #undef MINE_REWARD_CASE
-
-
 
 u32 PlayerActor::GetMaxWateringCanCapacity() const
 {
@@ -25790,8 +25787,6 @@ asm_unified(
 #endif
 );
 
-
-
 void UpdatePlayerPedometer(PlayerActor const & player)
 {
     u32 previous = player.farmer->GetStepCount();
@@ -25850,19 +25845,19 @@ bool IsActorTerrainBlocked(AActorEntity const & actor)
     Box & box = box_value;
     if (IsMapTerrainBoxBlocked(terrain, box))
         return true;
-    // Native mine collision tests bits 2..16 together; individual flag meanings remain unknown.
+    // Mine collision checks the two terrain attribute fields; their individual roles remain unknown.
     if (map >= MAP_SPRING_MINE_FLOOR_0 && map <= MAP_LAKE_MINE_FLOOR_255) {
         FieldRenderTileAttributes const * tile = GetTerrainTile(terrain, box.x1 / 8, box.y1 / 8);
-        if (tile != nullptr && (*reinterpret_cast<u32 const *>(tile) & 0x1FFFC) != 0)
+        if (tile != nullptr && (tile->unk_00_02 != 0 || (u32)tile->unk_02_00 != 0))
             return true;
         tile = GetTerrainTile(terrain, box.x1 / 8, (box.y2 - 1) / 8);
-        if (tile != nullptr && (*reinterpret_cast<u32 const *>(tile) & 0x1FFFC) != 0)
+        if (tile != nullptr && (tile->unk_00_02 != 0 || (u32)tile->unk_02_00 != 0))
             return true;
         tile = GetTerrainTile(terrain, (box.x2 - 1) / 8, box.y1 / 8);
-        if (tile != nullptr && (*reinterpret_cast<u32 const *>(tile) & 0x1FFFC) != 0)
+        if (tile != nullptr && (tile->unk_00_02 != 0 || (u32)tile->unk_02_00 != 0))
             return true;
         tile = GetTerrainTile(terrain, (box.x2 - 1) / 8, (box.y2 - 1) / 8);
-        if (tile != nullptr && (*reinterpret_cast<u32 const *>(tile) & 0x1FFFC) != 0)
+        if (tile != nullptr && (tile->unk_00_02 != 0 || (u32)tile->unk_02_00 != 0))
             return true;
     }
     return false;
@@ -27141,12 +27136,10 @@ asm_unified(
 #endif
 );
 
-
 PlayerActorBase::PlayerActorBase(GameObject * world, GameStateSaveImage * save)
     : AActorEntity(world, save->farmer.GetLocation(), 2, 0x192)
 {
 }
-
 
 FarmingTutorialPlayerBase::FarmingTutorialPlayerBase(GameObject * world)
     : AActorEntity(world, ActorLocation(Location(MAP_NONE, 0, 0), FACING_DOWN), 2, 0)
@@ -27160,7 +27153,6 @@ FarmingTutorialPlayer::FarmingTutorialPlayer(GameObject * world)
 {
     AEntity::vfunc_10();
 }
-
 
 EntityVisualController * FarmingTutorialPlayer::CreateVisualController()
 {
@@ -27796,11 +27788,6 @@ void FarmingTutorialPlayer::UseHeldItem()
     action_active = true;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 FarmingTutorialPlayerSpriteController::FarmingTutorialPlayerSpriteController(AActorEntity * entity)
     : EntitySpriteController(entity, 6, gFarmingTutorialPlayerSpritePaletteKinds,
           3, ENTITY_AUX_RENDER_DEFAULT, 0, 0, true),
@@ -28132,7 +28119,6 @@ asm_unified(
     ".L0802C20C: .word 0x0000FFFF\n"
 );
 
-
 extern "C" FarmingTutorialPlayer * CreateFarmingTutorialPlayer(GameObject * world)
 {
     return new FarmingTutorialPlayer(world);
@@ -28330,8 +28316,8 @@ bool FarmingTutorialPlayer::IsActionActive() const
 
 asm_unified(
     ".text\n"
-#if defined(REGION_JP)
 );
+#if defined(REGION_JP)
 
 extern "C" void func_0802C070(void * self)
 {
@@ -40276,7 +40262,9 @@ asm_unified(
     "sub_08031DA8:\n"
     "    adds r0, #0x88\n"
     "    bx lr\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    thumb_func_start func_0802C2DC\n"
     "func_0802C2DC: @ 0x0802C2DC\n"
     "    bx lr\n"
@@ -52208,12 +52196,8 @@ asm_unified(
     "sub_08032014:\n"
     "    adds r0, #0x88\n"
     "    bx lr\n"
-#endif
 );
-
-
-
-
+#endif
 
 u8 PlayerActor::GetUpdateSuspended() const
 {

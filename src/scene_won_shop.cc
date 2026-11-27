@@ -10,7 +10,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 WonShopSceneCore::WonShopSceneCore(GameStateSaveImage * image)
@@ -20,10 +19,6 @@ WonShopSceneCore::WonShopSceneCore(GameStateSaveImage * image)
     phase = 0;
     has_purchased = false;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 WonShopSceneCore::~WonShopSceneCore()
 {
@@ -1760,8 +1755,6 @@ asm_unified(
     "bx r0\n"
 );
 
-
-
 WonShopScene::WonShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new WonShopSceneCore(image)), continuation(next)
 {
@@ -1770,18 +1763,11 @@ WonShopScene::WonShopScene(SceneTransitionOwner next, GameStateSaveImage * image
 asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 WonShopScene::~WonShopScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 SceneTransitionOwner WonShopScene::Run()
 {
@@ -1792,18 +1778,12 @@ SceneTransitionOwner WonShopScene::Run()
 asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 bool WonShopSceneCore::IsArticle(i32 index) const
 {
     return index <= 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 WonShopCatalogEntry const gWonShopCatalog[] = {
     { ITEM_ARTICLE_BALL, 100 },

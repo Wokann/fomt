@@ -108,7 +108,9 @@ void StopJoyBusCommunication(void)
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    .global UpdateJoyBusCommunication\n"
@@ -231,10 +233,6 @@ void func_080D0444(u32 a, u32 b)
     gJoyBusContext->unk_04 = a;
     gJoyBusContext->unk_08 = b;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void func_080D0454(u32 mode)
 {
@@ -446,10 +444,6 @@ void func_080D05DC(void)
     EnqueueJoyBusCommand(&command);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void func_080D0644(u32 value, u32 mode)
 {
     gJoyBusContext->unk_28[0] = value & 0xFF;
@@ -460,21 +454,13 @@ void func_080D0644(u32 value, u32 mode)
     func_080D05DC();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 func_080D0678(void)
 {
-    return (u32)((u8 const *)gJoyBusContext)[0x2C]
-        | ((u32)((u8 const *)gJoyBusContext)[0x2D] << 8)
-        | ((u32)((u8 const *)gJoyBusContext)[0x2E] << 16)
-        | ((u32)((u8 const *)gJoyBusContext)[0x2F] << 24);
+    return (u32)gJoyBusContext->unk_2C[0]
+        | ((u32)gJoyBusContext->unk_2C[1] << 8)
+        | ((u32)gJoyBusContext->unk_2C[2] << 16)
+        | ((u32)gJoyBusContext->unk_2C[3] << 24);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern void func_080D0A94(u32 command);
 void func_080D06A8(void)
@@ -482,18 +468,10 @@ void func_080D06A8(void)
     func_080D0A94(0xB);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 func_080D06B4(void)
 {
     return gJoyBusContext->unk_14 == 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 func_080D06D0(void)
 {
@@ -957,7 +935,9 @@ asm_unified(
     ".L080D02CC: .word REG_JOY_RECV\n"
     ".L080D02D0: .word REG_JOY_TRANS\n"
     ".L080D02D4: .word gJoyBusContext\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\t.ifdef REGION_DE\n"
     "\t.else\n"
     "\t.ifdef REGION_EU\n"
@@ -1086,10 +1066,6 @@ void func_080D0444(u32 a, u32 b)
     gJoyBusContext->unk_04 = a;
     gJoyBusContext->unk_08 = b;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void func_080D0454(u32 mode)
 {
@@ -1301,10 +1277,6 @@ void func_080D05DC(void)
     EnqueueJoyBusCommand(&command);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void func_080D0644(u32 value, u32 mode)
 {
     gJoyBusContext->unk_28[0] = value & 0xFF;
@@ -1315,21 +1287,13 @@ void func_080D0644(u32 value, u32 mode)
     func_080D05DC();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 func_080D0678(void)
 {
-    return (u32)((u8 const *)gJoyBusContext)[0x2C]
-        | ((u32)((u8 const *)gJoyBusContext)[0x2D] << 8)
-        | ((u32)((u8 const *)gJoyBusContext)[0x2E] << 16)
-        | ((u32)((u8 const *)gJoyBusContext)[0x2F] << 24);
+    return (u32)gJoyBusContext->unk_2C[0]
+        | ((u32)gJoyBusContext->unk_2C[1] << 8)
+        | ((u32)gJoyBusContext->unk_2C[2] << 16)
+        | ((u32)gJoyBusContext->unk_2C[3] << 24);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern void func_080D0A94(u32 command);
 void func_080D06A8(void)
@@ -1337,18 +1301,10 @@ void func_080D06A8(void)
     func_080D0A94(0xB);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 func_080D06B4(void)
 {
     return gJoyBusContext->unk_14 == 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 func_080D06D0(void)
 {
@@ -1818,8 +1774,8 @@ asm_unified(
     "\t.else\n"
     "\t.endif\n"
     "\t.endif\n"
-#endif
 );
+#endif
 
 void FinishJoyBusCommand(u32 result)
 {
@@ -1835,10 +1791,8 @@ void ResetJoyBusCommandResult(void)
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
-    "    .align 2, 0\n"
-    "\n"
-);
 
 void func_080D0A94(u32 result)
 {
@@ -1847,18 +1801,7 @@ void func_080D0A94(u32 result)
     gJoyBusContext->unk_17C = 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\t.ifdef REGION_DE\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t.else\n"
-    "\t.endif\n"
-    "\t.endif\n"
-    "    .align 2, 0\n"
-    "\n"
-);
 
 void func_080D0A94(u32 result)
 {
@@ -1867,10 +1810,7 @@ void func_080D0A94(u32 result)
     gJoyBusContext->unk_17C = 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
 
 void EnableJoyBusInterrupt(void)
 {

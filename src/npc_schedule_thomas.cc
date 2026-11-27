@@ -1,35 +1,22 @@
 #include "npc_schedule_thomas.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
-#include "npc_schedule_thomas.hh"
-#include "game_state.hh"
 extern "C" u32 SelectThomasSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
-    /* +0x2178 is GameStateSaveImage::event_state (offset 0x214C) + 0x2C,
-       a bitfield cell whose bits 12-14/17 are compared; +0x217A is
-       event_state + 0x2E, from which bits 2-3 are extracted. The exact
-       named bitfields are not resolved yet (H3 exception). */
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if (season == 3 && day == 2
-        && (*(u32 const *)((u8 const *)context + 0x2178) & (0x86u << 11))
-            == (0x80u << 6))
+        && save.event_state.thomas_random_item_request_event_state == 2
+        && (u32)save.event_state.thomas_random_item_request_choice == 0)
     {
-        if ((((u32)((u8 const *)context)[0x217A] << 27) >> 30) != 2)
+        if (save.event_state.thomas_random_item_request_delivery_state != 2)
             return 7;
         return 0;
     }
@@ -37,24 +24,20 @@ extern "C" u32 SelectThomasSchedule(void const * context)
         return 6;
     if (weekday == 6)
     {
-        if (*(u32 const *)((u8 const *)context + 8) == 0)
+        if (save.clock.weather_today == 0)
             return 2;
         else
             return 3;
     }
     if (weekday == 0)
     {
-        if (*(u32 const *)((u8 const *)context + 8) == 0)
+        if (save.clock.weather_today == 0)
             return 4;
         else
             return 5;
     }
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" ThomasScheduleData const gThomasScheduleData = {
     // descriptor

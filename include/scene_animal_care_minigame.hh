@@ -60,7 +60,6 @@ struct AnimalCareMinigameTileHandles {
     ObjTileCollectionEntry unk_50;
 };
 
-
 #pragma interface "scene_animal_care_minigame.hh"
 struct HarvestSpriteAnimalCareCore;
 
@@ -145,13 +144,9 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     bool succeeded;
     u8 unk_92D[0x930 - 0x92D];
     u32 sprite_variant;
-    u8 unk_934[0x938 - 0x934];
+    u32 unk_934;
     u8 experience;
 };
-
-
-
-
 
 extern u32 const gUnk_080AE894InitialValues[5];
 extern u32 const gUnk_080AE894LayoutValues[10];

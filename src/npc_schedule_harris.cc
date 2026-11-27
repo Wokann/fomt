@@ -1,27 +1,17 @@
 #include "npc_schedule_harris.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectHarrisSchedule(void const * context)
 {
-    if ((i32)(((u8 const *)context)[0x21CA] << 26) < 0)
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    if (save.event_state.elli_and_doctor_rival_wedding_routing_state)
         return 0;
-    u8 date[4];
-    u8 const * raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    if ((u8)IsNpcScheduleDateListed(raw[1], raw[2]))
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    if ((u8)IsNpcScheduleDateListed(date.season, date.day))
         return 2;
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" HarrisScheduleData const gHarrisScheduleData = {
     // descriptor

@@ -27,8 +27,6 @@ extern "C" u16 const gUnk_080F1684[][4] = {
     { 0x0002, 0x0005, 0x00F0, 0x0000 },
 };
 
-
-
 CoopEggEntity::CoopEggEntity(GameObject * world, Location const & location)
     : AEntity(world, location)
 {
@@ -179,18 +177,10 @@ void ShippingBasketEntity::AppendItem(Product const & product)
         visual->StartItemBounce();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 Box ShippingBasketEntity::GetBox() const
 {
     return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ShippingBasketVisualController::ShippingBasketVisualController(ShippingBasketEntity * entity)
     : EntityVisualController(entity),
@@ -208,10 +198,6 @@ void ShippingBasketVisualController::Update()
     if (bounce_countdown != 0)
         --bounce_countdown;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void ShippingBasketVisualController::StartItemBounce()
 {
@@ -384,10 +370,6 @@ void DogBallEntity::Throw(u32 direction)
     vertical_velocity_q16 = 0xC0 << 10;
     in_flight = true;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool DogBallEntity::IsInFlight() const
 {
@@ -662,19 +644,11 @@ void DogBallEntity::Update(EntityUpdateContext const & context)
     UpdateFlight();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void DogBallEntity::UpdateWhileSuspended(EntityUpdateContext const & context)
 {
     AEntity::UpdateWhileSuspended(context);
     UpdateFlight();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 EntityVisualController * DogBallEntity::CreateVisualController()
 {
@@ -690,18 +664,10 @@ Box DogBallEntity::GetBox() const
     return Box(-4, -4, 4, 4, x_q16 >> 16, y_q16 >> 16);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 i32 DogBallEntity::GetHeight() const
 {
     return height_q16 >> 16;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void DogBallEntity::SetCarriedPosition(i32 x_q16, i32 y_q16, u32 dog_animation, u32 direction)
 {
@@ -852,10 +818,6 @@ void DogBallEntity::StopBeingCarried()
     }
     carried = false;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 DogBallVisualController::DogBallVisualController(DogBallEntity * entity)
     : EntityVisualController(entity),
@@ -1142,7 +1104,6 @@ extern "C" bool HasEntityStarSparkleEffect(AEntity * entity)
 asm_unified(
     ".text\n"
     "\n"
-    "    .align 2, 0\n"
 );
 
 asm_unified(

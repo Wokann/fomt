@@ -499,10 +499,6 @@ i32 GetWorldAmbientSpriteSine(WorldAmbientSprite const * self, i16 phase)
     return gWorldAmbientSineTable[phase];
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 i32 GetWorldAmbientSpriteCosine(WorldAmbientSprite const * self, i16 phase)
 {
     return gWorldAmbientSineTable[(phase + 64) & 0xFF];
@@ -1033,7 +1029,6 @@ asm_unified(
     "    .align 2, 0\n"
     ".Lambient_106: .word __vt_18WorldAmbientKind12\n"
 );
-
 
 extern "C" WorldAmbientSpawnPosition const gWorldAmbientSpawnPositions[] ALIGN(2) = {
     { 180, 428 },

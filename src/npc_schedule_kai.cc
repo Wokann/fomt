@@ -1,11 +1,6 @@
 #include "npc_schedule_kai.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectKaiSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -44,10 +39,6 @@ extern "C" u32 SelectKaiSchedule(void const * context)
 
     return 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" KaiScheduleData const gKaiScheduleData = {
     // descriptor

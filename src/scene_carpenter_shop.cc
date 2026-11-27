@@ -8,7 +8,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 CarpenterShopSceneCore::CarpenterShopSceneCore(GameStateSaveImage * image)
@@ -19,10 +18,6 @@ CarpenterShopSceneCore::CarpenterShopSceneCore(GameStateSaveImage * image)
       lumber_bin_was_full(false)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 CarpenterShopSceneCore::~CarpenterShopSceneCore()
 {
@@ -3039,8 +3034,6 @@ asm_unified(
     "bx r0\n"
 );
 
-
-
 CarpenterShopScene::CarpenterShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new CarpenterShopSceneCore(image)), continuation(next)
 {
@@ -3048,18 +3041,11 @@ CarpenterShopScene::CarpenterShopScene(SceneTransitionOwner next, GameStateSaveI
 
 asm_unified(
     ".text\n"
-    ".align 2, 0\n"
 );
 
 CarpenterShopScene::~CarpenterShopScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 SceneTransitionOwner CarpenterShopScene::Run()
 {

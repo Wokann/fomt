@@ -2,10 +2,6 @@
 
 asm(".include \"asm/macro.inc\"\n");
 
-asm_unified(
-    ".text\n"
-);
-
 #include "world_ambient_sprites.hh"
 i16 GetWorldAmbientSpriteAnimationStep(WorldAmbientSprite const * self)
 {
@@ -13,27 +9,15 @@ i16 GetWorldAmbientSpriteAnimationStep(WorldAmbientSprite const * self)
     return handle->scroll_delta;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void SetWorldAmbientSpriteAnimationStep(WorldAmbientSprite * self, i16 step)
 {
     self->sprite.handle.SetScrollDelta(step);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 bool WouldWorldAmbientSpriteAnimationWrap(WorldAmbientSprite const * self)
 {
     return WouldIndexedResourceHandleWrap(&self->sprite.handle);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool IsWorldAmbientSpriteAnimationPlaying(WorldAmbientSprite const * self)
 {
@@ -44,18 +28,10 @@ bool IsWorldAmbientSpriteAnimationPlaying(WorldAmbientSprite const * self)
     return playing;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void UpdateWorldAmbientSpriteAnimation(WorldAmbientSprite * self)
 {
     self->sprite.UpdateAnimation();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void SetWorldAmbientSpriteAnimation(WorldAmbientSprite * self, u32 animation)
 {
@@ -66,15 +42,7 @@ void SetWorldAmbientSpriteAnimation(WorldAmbientSprite * self, u32 animation)
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 GameObject * GetWorldAmbientSpriteWorld(WorldAmbientSprite const * self)
 {
     return self->world;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);

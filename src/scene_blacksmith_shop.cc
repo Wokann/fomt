@@ -8,7 +8,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 static inline bool ComputeBlacksmithHasPurchased(u8 input, u32 order_price)
@@ -28,10 +27,6 @@ BlacksmithShopSceneCore::BlacksmithShopSceneCore(
       order_price(order_price), work_days(work_days)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 BlacksmithShopSceneCore::~BlacksmithShopSceneCore()
 {
@@ -2987,8 +2982,6 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
 );
-
-
 
 BlacksmithShopScene::BlacksmithShopScene(SceneTransitionOwner next,
     GameStateSaveImage * image, u8 input, u32 tool_id, u32 ore_id, u32 order_price, u32 work_days)

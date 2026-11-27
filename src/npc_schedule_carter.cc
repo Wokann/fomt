@@ -1,40 +1,33 @@
 #include "npc_schedule_carter.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectCarterSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
-    u8 const * ctx = (u8 const *)context;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
-    if (ctx[0x21CA] & 0x7C)
+    if ((u32)save.event_state.rick_and_karen_rival_wedding_routing_state != 0
+        || (u32)save.event_state.popuri_and_kai_rival_wedding_routing_state != 0
+        || (u32)save.event_state.mary_and_gray_rival_wedding_routing_state != 0
+        || (u32)save.event_state.elli_and_doctor_rival_wedding_routing_state != 0
+        || (u32)save.event_state.ann_and_cliff_rival_wedding_routing_state != 0)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date, (GameCalendar const *)(ctx + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if (season == 2 && day == 3)
         return 9;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 8;
     if (weekday == 1 || weekday == 3)
         return 1;
-    if (*(u32 const *)(ctx + 8) == 0)
+    if (save.clock.weather_today == 0)
         return 2;
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" CarterScheduleData const gCarterScheduleData = {
     // descriptor

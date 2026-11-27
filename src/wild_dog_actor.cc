@@ -9,7 +9,6 @@ extern "C" u16 const gWildDogMotionAnimations[] = {
     0x09BF, 0x09C3, 0x09C7, 0x09CB, 0x09CF,
 };
 
-
 // Slot 45 owns this visiting dog. The imported ENTITY_FRISBEE name
 // conflicts with the factory, livestock targeting and dog animation frames.
 asm_unified(
@@ -104,17 +103,9 @@ bool IsWildDogExitCorridor(i32 x, i32 y)
         return true;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void WildDogState0::Update(WildDogActor * actor, ActorMovementBounds * bounds)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 WildDogState0::GetMotion(WildDogActor const * actor) const
 {
@@ -974,10 +965,6 @@ u32 WildDogState4::GetMotion(WildDogActor const * actor) const
     return 2;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 WildDogActor::WildDogActor(GameObject * world, Unk_Actor_0809BFE8 * saved)
     : AnimalActor(world, Actor(*saved).location, 0x9C7), saved_model(saved)
 {
@@ -1476,10 +1463,6 @@ bool WildDogActor::CanBeHit() const
     return saved_model->unk_0C != 4;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void WildDogActor::ReactToToolHit()
 {
     if (saved_model->unk_0C == 1)
@@ -1499,10 +1482,6 @@ void WildDogActor::ReactToToolHit()
 
     RequestSound(0xAA);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void WildDogActor::ReactToDogAttack()
 {
@@ -1524,26 +1503,12 @@ void WildDogActor::ReactToDogAttack()
     RequestSound(0xAA);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 WildDogState2::GetMotion(WildDogActor const * actor) const
 {
     return 2;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 WildDogBehavior * GetCurrentWildDogBehavior(WildDogActor const * actor)
 {
-    u32 offset = actor->saved_model->unk_0C * 4;
-    u8 const * base = (u8 const *)(offset + (u32)actor);
-    return *(WildDogBehavior * const *)(base + 0x38);
+    return actor->behaviors[actor->saved_model->unk_0C].Get();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);

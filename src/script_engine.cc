@@ -11415,7 +11415,6 @@ asm_unified(
     "    bx r1\n"
 );
 
-
 asm_unified(
     ".text\n"
 #if defined(REGION_JP)
@@ -12589,7 +12588,6 @@ asm_unified(
     "\n"
 #endif
 );
-
 
 asm_unified(
     ".text\n"
@@ -18901,7 +18899,6 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
 );
-
 
 asm_unified(
     ".text\n"
@@ -28226,13 +28223,10 @@ asm_unified(
     ".L0804E0F4: .word 0x0000214C\n"
 );
 
-
 asm_unified(
     ".text\n"
-#if defined(REGION_JP)
-    "    .align 2, 0\n"
-    "\n"
 );
+#if defined(REGION_JP)
 
 #include "game_state_types.hh"
 #include "farm.hh"
@@ -28671,10 +28665,8 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".Ljp_0804E2D0: .word 0x00001C70\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .align 2, 0\n"
-    "\n"
 );
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 
 #include "game_state_types.hh"
 #include "farm.hh"
@@ -29111,8 +29103,7 @@ asm_unified(
     "\t@ The full-buffer and rectangle 2D fillers, both four-byte unaligned glyph\n"
     "\t@ fallbacks, and the packed tile-buffer copy helper are rebuilt from\n"
     "\t@ src/font_draw.cc for both regions.\n"
-#endif
 );
-
+#endif
 
 #include FOMT_TEXT_INCLUDE(script_engine.cc)

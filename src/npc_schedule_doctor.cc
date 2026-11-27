@@ -1,11 +1,6 @@
 #include "npc_schedule_doctor.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectDoctorSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -40,10 +35,6 @@ extern "C" u32 SelectDoctorSchedule(void const * context)
 
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 // Recovered schedule data at US ROM 0x080F3010 (JP 0x080F286C).
 // The two regional payloads differ only in relocated function/data pointers.

@@ -81,7 +81,6 @@ struct WateringMinigameTileHandles {
     ObjTileCollectionEntry unk_58;
 };
 
-
 #pragma interface "scene_watering_minigame.hh"
 // The native constructor calls HardwareContext, stores this class's vptr at
 // +4, and owns the resources declared below. Unrecovered RAM fields remain
@@ -141,22 +140,19 @@ struct HarvestSpriteWateringCore : HardwareContext {
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
     WateringMinigameTileHandles tiles;
-    u8 unk_89C[0x96A - 0x89C];
+    u8 unk_89C[0x8BC - 0x89C];
+    u32 unk_8BC;
+    u8 unk_8C0[0x96A - 0x8C0];
     bool succeeded;
     u8 unk_96B[0x974 - 0x96B];
     u32 unk_974;
     u8 unk_978[0x980 - 0x978];
     u32 sprite_variant;
-    u8 unk_984[0x988 - 0x984];
+    u32 unk_984;
     u8 experience;
 };
 
-
-
-
-
 // The UI methods below still have native implementations with these actual ABIs.
-
 
 extern u16 const gUnk_080C3B18Values[8][2];
 extern char const gText_HarvestSpriteWatering_Zero[];

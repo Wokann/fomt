@@ -1,41 +1,26 @@
 #include "npc_schedule_doug.hh"
 #include "game_state.hh"
-
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 #include "npc_collection.hh"
 extern "C" u32 SelectDougSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u32 spouse;
-    if ((i32)(((u8 const *)context)[0x21CA] << 25) < 0)
+
+    if (save.event_state.ann_and_cliff_rival_wedding_routing_state)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 2;
-    /* Offset form kept on purpose: +0x1CD4 is GameStateSaveImage::npcs
-       (confirmed by the offsetof check in game_state_types.hh). Writing
-       it as &save->npcs changes register allocation (r5 -> r1) and stops
-       matching; see PROGRESS round 180. Tracked as a pending struct fix. */
-    spouse = ((NpcCollection const *)((u8 const *)context + 0x1CD4))->GetSpouseCharacterId();
+    spouse = save.npcs.GetSpouseCharacterId();
     if (season == 2 && day == 5 && spouse != 25)
         return 3;
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 // The following selector descriptors were recovered from the contiguous
 // script-adjacent UI resource block.  Their nested C++ objects preserve every

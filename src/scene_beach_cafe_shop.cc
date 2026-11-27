@@ -8,7 +8,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 BeachCafeShopSceneCore::BeachCafeShopSceneCore(GameStateSaveImage * image)
@@ -16,26 +15,14 @@ BeachCafeShopSceneCore::BeachCafeShopSceneCore(GameStateSaveImage * image)
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 BeachCafeShopSceneCore::~BeachCafeShopSceneCore()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 BeachCafeShopOrderOwner BeachCafeShopSceneCore::TakeOrder()
 {
     return order;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void BeachCafeShopSceneCore::UpdateDescription(u32 selection)
 {
@@ -726,8 +713,6 @@ asm_unified(
     ".Lbeach_cafe_4_0554: .word __vt_23IndexedResourceProvider\n"
 );
 
-
-
 BeachCafeShopScene::BeachCafeShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new BeachCafeShopSceneCore(image)), continuation(next)
 {
@@ -774,7 +759,6 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
 );
-
 
 #include FOMT_TEXT_INCLUDE(scene_beach_cafe_shop_1.cc)
 

@@ -99,7 +99,3 @@ asm_unified(
 FarmMapScreenIndoorMarkers::~FarmMapScreenIndoorMarkers()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);

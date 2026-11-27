@@ -1,43 +1,32 @@
 #include "npc_schedule_stu.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectStuSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
-    if ((i32)(((u8 const *)context)[0x21CA] << 26) < 0)
+    if (save.event_state.elli_and_doctor_rival_wedding_routing_state)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if (season == 2 && day == 30
-        && (((u8 const *)context)[0x21A2] >> 6) != 2)
+        && save.event_state.pumpkin_festival_stu_treat_visit_state != 2)
         return 5;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 4;
-    if ((i32)(((u8 const *)context)[0x215A] << 28) < 0)
+    if (save.event_state.popuri_blue_heart_event_choice)
         return 0;
     if (weekday == 1 || weekday == 3)
         return 3;
-    if (*(u32 const *)((u8 const *)context + 8) == 0)
+    if (save.clock.weather_today == 0)
         return 1;
     return 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" StuScheduleData const gStuScheduleData = {
     // descriptor

@@ -959,7 +959,6 @@ asm_unified(
     ".Lchicken_festival_084c: .word 0x73c\n"
 );
 
-
 bool ChickenFestivalMinigameCore::HasWon() const
 {
     return won;
@@ -10970,10 +10969,6 @@ extern "C" void func_080B9428(ChickenFestivalMinigameCore * self)
     self->music_players[2].Start(0xCC);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" i32 func_080B9464(void * p, u32 x, u32 y)
 {
     u32 xs = x << 16;
@@ -11444,16 +11439,12 @@ extern "C" void func_080B97FC(ChickenFestivalMinigameCore * self, u8 flag)
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-extern "C" void func_080B9828(u8 * self, u8 flag)
+extern "C" void func_080B9828(ChickenFestivalMinigameCore * self, u8 flag)
 {
     if (flag)
-        ((u32 *)self)[0x30] = 1;
+        self->slots[1].flags = 1;
     else
-        ((u32 *)self)[0x20] = 1;
+        self->slots[0].flags = 1;
 }
 
 asm_unified(
@@ -13367,10 +13358,6 @@ extern "C" void func_080BA608(ChickenFestivalMinigameCore * self)
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_080B92B4(ChickenFestivalMinigameCore * self);
 
 extern "C" void func_080BA6B8(ChickenFestivalMinigameCore * self)
@@ -13404,10 +13391,6 @@ extern "C" void func_080BA6B8(ChickenFestivalMinigameCore * self)
         }
     }
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void func_080BA734(ChickenFestivalMinigameCore * self)
 {
@@ -17756,7 +17739,6 @@ asm_unified(
     ".Lchicken_festival_8c00: .word 0xaa8\n"
     ".Lchicken_festival_8c04: .word 0xaec\n"
 );
-
 
 ChickenFestivalMinigameScene::ChickenFestivalMinigameScene(ChickenFestivalEntrant const & entrant)
     : core(new ChickenFestivalMinigameCore(entrant))

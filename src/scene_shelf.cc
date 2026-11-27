@@ -6,7 +6,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 ShelfSceneCore::ShelfSceneCore(GameStateSaveImage * image)
@@ -17,10 +16,6 @@ ShelfSceneCore::ShelfSceneCore(GameStateSaveImage * image)
     , phase(0)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ShelfSceneCore::~ShelfSceneCore()
 {
@@ -334,10 +329,6 @@ void ShelfSceneCore::ShowNextPage()
 {
     DrawShelfPage(func_080CEB80(tilemap.value));
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_080CEBC0(void *);
 void ShelfSceneCore::ShowPreviousPage()
@@ -4463,8 +4454,6 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
 );
-
-
 
 ShelfScene::ShelfScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new ShelfSceneCore(image)), continuation(next)

@@ -26,10 +26,6 @@ void RotateRedBlackTreeLeft(RedBlackTreeNode * node, RedBlackTreeNode *& root)
     node->parent = right;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void RotateRedBlackTreeRight(RedBlackTreeNode * node, RedBlackTreeNode *& root)
 {
     RedBlackTreeNode * left = node->left;
@@ -1276,10 +1272,6 @@ RedBlackTreeNode * NextRedBlackTreeNode(RedBlackTreeNode * node)
     return node;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void EraseResourceSpriteTileNodes(ResourceSpriteTileCache * cache, ResourceSpriteTileNode * node)
 {
     while (node)
@@ -1290,10 +1282,6 @@ void EraseResourceSpriteTileNodes(ResourceSpriteTileCache * cache, ResourceSprit
         node = left;
     }
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void EraseResourceSpritePaletteNodes(ResourceSpritePaletteCache * cache, ResourceSpritePaletteNode * node)
 {

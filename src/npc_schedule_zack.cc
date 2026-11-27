@@ -1,26 +1,15 @@
 #include "npc_schedule_zack.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectZackSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    if ((u8)IsNpcScheduleDateListed(raw[1], raw[2]))
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    if ((u8)IsNpcScheduleDateListed(date.season, date.day))
         return 2;
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 // Recovered schedule data at US ROM 0x080F2DC0 (JP 0x080F261C).
 // The two regional payloads differ only in relocated function/data pointers.

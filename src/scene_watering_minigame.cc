@@ -15947,18 +15947,13 @@ asm_unified(
 extern "C" u16 func_080C7B38(HarvestSpriteWateringCore * core)
 {
     u16 const * table = gUnk_080C7B38Values;
-    u32 const * key = (u32 const *)((u8 const *)core + 0x8BC);
-    u16 value = table[*key];
+    u16 value = table[core->unk_8BC];
     return (u16)(core->sprite_variant * 0x54 + value);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" u16 func_080C7B64(HarvestSpriteWateringCore * core)
 {
-    return gUnk_080C7B64Values[*(u32 const *)core->unk_984];
+    return gUnk_080C7B64Values[core->unk_984];
 }
 
 asm_unified(
@@ -16387,46 +16382,25 @@ HarvestSpriteWateringUiScene::HarvestSpriteWateringUiScene(HarvestSpriteWatering
     core = new HarvestSpriteWateringCore(setup);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 HarvestSpriteWateringUiScene::~HarvestSpriteWateringUiScene()
 {
     delete core;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool HarvestSpriteWateringUiScene::Succeeded()
 {
     return core->Succeeded();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 HarvestSpriteWateringUiScene::GetUnkRecordValue()
 {
     return core->unk_974;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SceneTransitionOwner HarvestSpriteWateringUiScene::Run()
 {
     return core->Run();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 u16 const gUnk_080C3B18Values[8][2] ALIGN(4) = {
         { 0x033C, 0x0078 }, { 0x043C, 0x0078 },

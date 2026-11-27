@@ -1,11 +1,6 @@
 #include "npc_schedule_sasha.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectSashaSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -39,10 +34,6 @@ extern "C" u32 SelectSashaSchedule(void const * context)
 
     return 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 // The next ROM object has five choices, of which the first is null. Keep its
 // tables, entry records, payloads, and detail records contiguous and ordered.

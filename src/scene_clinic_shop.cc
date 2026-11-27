@@ -8,7 +8,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 ClinicShopSceneCore::ClinicShopSceneCore(GameStateSaveImage * image)
@@ -19,17 +18,9 @@ ClinicShopSceneCore::ClinicShopSceneCore(GameStateSaveImage * image)
     has_purchased = false;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ClinicShopSceneCore::~ClinicShopSceneCore()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
 
@@ -1105,8 +1096,6 @@ asm_unified(
     ".align 2, 0\n"
     ".Lclinic_3_08b8: .word __vt_23IndexedResourceProvider\n"
 );
-
-
 
 ClinicShopScene::ClinicShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new ClinicShopSceneCore(image)), continuation(next)

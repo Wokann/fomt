@@ -16,7 +16,6 @@ inline void GameSceneMenuCursorData::RefreshBounds()
     right_limit = core->right_panel.value->state.item_count + 9;
 }
 
-
 GameSceneMenuCorePrefix::GameSceneMenuCorePrefix(GameStateSaveImage * image)
     : save(image), music(1),
 #if defined(REGION_JP)
@@ -352,8 +351,6 @@ asm_unified(
 #endif
 );
 
-
-
 void GameSceneMenuCorePrefix::Update()
 {
     // The existing C hardware interface views the first native owner pointer.
@@ -439,20 +436,10 @@ extern "C" void func_080CD994(MenuGridPosition * out)
     *out = gMenuGridHeaderTilePosition;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_080CD9A0(MenuGridPosition * out, u32 unused, u32 index)
 {
     *out = gMenuGridCellTilePositions[index];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 GameSceneMenuCursorData::GameSceneMenuCursorData(GameSceneMenuCorePrefix * owner, u32 input)
     : core(owner), selection(input), previous(input), state(2), resource(),
@@ -801,8 +788,6 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
 );
-
-
 
 i32 GameSceneMenuCursorData::SwitchPanel()
 {
@@ -1285,8 +1270,6 @@ asm_unified(
     "bx r0\n"
 );
 
-
-
 MenuGridPosition GameSceneMenuCorePrefix::GetCursorPosition(i32 index) const
 {
     MenuGridPosition position;
@@ -1418,12 +1401,6 @@ void func_080CE294(GameSceneMenuCorePrefix * self)
     func_08050E98(ui, 8);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
-
 void GameSceneMenuSelectionCore::Update()
 {
     if (cursor.value != nullptr)
@@ -1543,8 +1520,6 @@ asm_unified(
     ".align 2, 0\n"
     ".Lmenu_8_0_00dc: .word gUnk_08527094\n"
 );
-
-
 
 GameSceneMenuTilemapData::~GameSceneMenuTilemapData()
 {
@@ -2491,10 +2466,6 @@ extern "C" void func_080CEB5C(GameSceneMenuTilemapData * data, u32 frame)
     func_080CE510(data, frame + 1, (void *)0x0600F0F6, 32, 0, 32);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
     void * destination, u16 size, i32 a, i32 b);
 
@@ -2510,10 +2481,6 @@ extern "C" u32 func_080CEB80(GameSceneMenuTilemapData * data)
     return data->unk_BC;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
     void * destination, u16 size, i32 a, i32 b);
 
@@ -2528,12 +2495,6 @@ extern "C" u32 func_080CEBC0(GameSceneMenuTilemapData * data)
 
     return data->unk_BC;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 
 GameSceneMenuSpriteData::GameSceneMenuSpriteData(GameSceneMenuCorePrefix * owner)
     : core(owner),
@@ -3043,18 +3004,14 @@ asm_unified(
     "\n"
 );
 
-extern "C" u32 func_080CF050(u8 const * self)
+extern "C" u32 func_080CF050(GameSceneMenuSpriteData const * self)
 {
-    return *(u32 const *)(self + 0x7C);
+    return self->unk_7C;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-extern "C" u32 func_080CF054(u8 const * self)
+extern "C" u32 func_080CF054(GameSceneMenuSpriteData const * self)
 {
-    return *(u32 const *)(self + 0x80);
+    return self->unk_80;
 }
 
 asm_unified(
@@ -5208,9 +5165,6 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
 );
-
-
-
 
 // Selection targets in up, down, left, right order.
 MenuGridNavigation const gMenuGridNavigation[18] = {

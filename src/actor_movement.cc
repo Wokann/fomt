@@ -39,15 +39,6 @@ extern "C" i32 GetRelativeFacing(i32 facing, i32 relative)
     return facing;
 }
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    @ Select an index by first-byte weight on a 0..99 roll; fall back to zero.\n"
-    "\n"
-);
-
 u32 SelectActorBehaviorTimingIndex(ActorBehaviorTiming const * entries,
     u32 count)
 {
@@ -70,11 +61,6 @@ u32 SelectActorBehaviorTimingIndex(ActorBehaviorTiming const * entries,
 
     return index;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 void ActorMovementBounds::RefreshDown()
 {

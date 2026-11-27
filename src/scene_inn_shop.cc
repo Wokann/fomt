@@ -8,7 +8,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 InnShopSceneCore::InnShopSceneCore(GameStateSaveImage * image)
@@ -16,26 +15,14 @@ InnShopSceneCore::InnShopSceneCore(GameStateSaveImage * image)
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 InnShopSceneCore::~InnShopSceneCore()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 InnShopOrderOwner InnShopSceneCore::TakeOrder()
 {
     return order;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void InnShopSceneCore::UpdateDescription(u32 selection)
 {
@@ -811,8 +798,6 @@ asm_unified(
     ".Linn_shop_4_05ec: .word __vt_23IndexedResourceProvider\n"
 );
 
-
-
 InnShopScene::InnShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new InnShopSceneCore(image)), continuation(next)
 {
@@ -859,7 +844,6 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
 );
-
 
 #include FOMT_TEXT_INCLUDE(scene_inn_shop_1.cc)
 

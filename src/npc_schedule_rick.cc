@@ -1,11 +1,6 @@
 #include "npc_schedule_rick.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 extern "C" u32 SelectRickSchedule(void const * context)
 {
     GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
@@ -41,10 +36,6 @@ extern "C" u32 SelectRickSchedule(void const * context)
 
     return 2;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" RickScheduleData const gRickScheduleData = {
     // descriptor

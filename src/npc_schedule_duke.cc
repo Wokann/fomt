@@ -1,38 +1,25 @@
 #include "npc_schedule_duke.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
-#include "npc_schedule_duke.hh"
-#include "game_state.hh"
 extern "C" u32 SelectDukeSchedule(void const * context)
 {
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
     u8 saved;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date,
-        (GameCalendar const *)((u8 const *)context + 16));
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     saved = weekday;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 5;
-    if ((i32)(((u8 const *)context)[0x21CA] << 25) < 0)
+    if (save.event_state.ann_and_cliff_rival_wedding_routing_state)
         return 0;
-    /* +0x2174 is GameStateSaveImage::event_state (offset 0x214C) + 0x28,
-       i.e. a 32-bit cell in the GameEventState bitfield region; the mask
-       selects bits 12-18. The exact named bitfield has not been resolved,
-       so the explicit mask is kept (H3 exception). */
-    if ((*(u32 const *)((u8 const *)context + 0x2174) & (0xC2u << 11))
-        == (0x82u << 11))
+    if ((u32)save.event_state.told_cliff_about_grape_harvest_job == 1
+        && save.event_state.cliff_permanent_winery_job_event_state == 2)
     {
         if (weekday == 6)
             return 4;
@@ -42,10 +29,6 @@ extern "C" u32 SelectDukeSchedule(void const * context)
         return 2;
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" DukeScheduleData const gDukeScheduleData = {
     // descriptor

@@ -1719,10 +1719,6 @@ extern "C" GameSceneWorldMap * func_080AD774(FarmingTutorialWorld * world)
     return world->data.map.value;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" GameSceneWorldMap * func_080AD778(FarmingTutorialWorld * world)
 {
     return world->data.map.value;
@@ -1951,18 +1947,10 @@ void FarmingTutorialWorld::SetPlot(i32 x, i32 y, FieldPlot const & plot)
     ((FarmingTutorialMap *)data.map.value)->SetPlot(x, y, plot);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::RefreshChickenCoopIncubator(MaryChickenCoopIncubatorIndex incubator)
 {
     func_080A63B8(data.map.value, incubator);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 MaryItemArticleId FarmingTutorialWorld::SwapRecordPlayerAlbum(MaryItemArticleId article)
 {
@@ -1970,226 +1958,126 @@ MaryItemArticleId FarmingTutorialWorld::SwapRecordPlayerAlbum(MaryItemArticleId 
     return (MaryItemArticleId)0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 MaryItemArticleId FarmingTutorialWorld::RemoveRecordPlayerAlbum()
 {
     func_080A6300(data.map.value);
     return (MaryItemArticleId)0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough)
 {
     RefreshCoopFeedTrough(data.map.value, trough);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough)
 {
     ::RefreshBarnFeedTrough(data.map.value, trough);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::RestoreAfterRecipeMenu()
 {
     func_080A62BC(data.map.value);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::PrepareRecipeMenuTransition()
 {
     func_080A6278(data.map.value);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::RestoreAfterCookingMenu()
 {
     func_080A6234(data.map.value);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::PrepareCookingMenuTransition()
 {
     func_080A61F0(data.map.value);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::RestoreAfterClockMenu()
 {
     func_080A6194(data.map.value);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::PrepareClockMenuTransition()
 {
     func_080A6138(data.map.value);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::StartShipmentBoxDepositAnimation()
 {
     StartWorldMapTilePatchCountdown(data.map.value);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" IndexedResourceArchive * func_080AD9DC(FarmingTutorialWorld * world)
 {
     return &world->data.unk_FF0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_7C()
 {
     return &data.unk_FC0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_78()
 {
     return &data.unk_F90;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_74()
 {
     return &data.unk_F60;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_70()
 {
     return &data.unk_F30;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" IndexedResourceArchive * func_080ADA18(FarmingTutorialWorld * world)
 {
     return &world->data.unk_F00;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" IndexedResourceArchive * func_080ADA24(FarmingTutorialWorld * world)
 {
     return &world->data.unk_ED0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" IndexedResourceArchive * func_080ADA30(FarmingTutorialWorld * world)
 {
     return &world->data.unk_EA0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_6C()
 {
     return &data.unk_E70;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_60()
 {
     return &data.unk_E40;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_5C()
 {
     return &data.unk_E10;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_64()
 {
     return &data.unk_DE0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 IndexedResourceArchive * FarmingTutorialWorld::vfunc_68()
 {
     return &data.actor_archive;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityAuxiliarySprites * FarmingTutorialWorld::GetEntityAuxiliarySprites()
 {
     return data.entity_auxiliary_sprites.Get();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 SelectMapDataId(u32 map_id, u32 a, u32 b, u32 c, u32 d);
 i32 FarmingTutorialWorld::GetMapPixelHeight(u32 map_id)
@@ -2197,18 +2085,10 @@ i32 FarmingTutorialWorld::GetMapPixelHeight(u32 map_id)
     return GetMapData(SelectMapDataId(map_id, 1, 0, 0, 0))->height * 8;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 i32 FarmingTutorialWorld::GetMapPixelWidth(u32 map_id)
 {
     return GetMapData(SelectMapDataId(map_id, 1, 0, 0, 0))->width * 8;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::SetSpritePaletteColors(u8 const * colors, u32 index, u8 value)
 {
@@ -2218,10 +2098,6 @@ void FarmingTutorialWorld::SetSpritePaletteColors(u8 const * colors, u32 index, 
     resource->unk_82 = 1;
     resource->unk_83 = value;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 i32 FarmingTutorialWorld::GetSpritePaletteBank(u32 index)
 {
@@ -2234,18 +2110,10 @@ i32 FarmingTutorialWorld::GetSpritePaletteBank(u32 index)
     return bank;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::ClearSpritePaletteResourceFlag(u32 index)
 {
     data.palette_cache.resources[index].unk_81 = 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 AEntity * FarmingTutorialWorld::GetEntity(u32 id) const
 {
@@ -2253,10 +2121,6 @@ AEntity * FarmingTutorialWorld::GetEntity(u32 id) const
     entries += id;
     return *entries;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 AEntity * FarmingTutorialWorld::GetEntity(u32 id)
 {
@@ -2294,51 +2158,27 @@ bool FarmingTutorialWorld::IsCameraMovementComplete()
     return IsWorldMapCameraMovementComplete(data.map.value);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 i32 FarmingTutorialWorld::GetCameraY()
 {
     return data.map->y.parts.integer;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 i32 FarmingTutorialWorld::GetCameraX()
 {
     return data.map->x.parts.integer;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 FarmingTutorialWorld::vfunc_14()
 {
     return data.map->map;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 void FarmingTutorialWorld::PanCameraTo(i32 x, i32 y, u32 speed)
 {
     PanWorldMapCameraTo(data.map.value, x, y, speed);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void FarmingTutorialWorld::SetCameraPosition(i32 x, i32 y)
 {
     SetWorldMapCameraPosition(data.map.value, x, y);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);

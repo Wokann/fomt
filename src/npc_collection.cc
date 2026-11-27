@@ -115,9 +115,8 @@ NpcCollection::NpcCollection()
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-#if defined(REGION_JP)
-    "\n"
 );
+#if defined(REGION_JP)
 
 char const * NpcCollection::GetCharacterName(u32 character_id) const
 {
@@ -704,9 +703,8 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0318: .word 0x00000414\n"
     "\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
 );
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 
 char const * NpcCollection::GetCharacterName(u32 character_id) const
 {
@@ -1290,8 +1288,8 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A0318: .word 0x00000414\n"
     "\n"
-#endif
 );
+#endif
 
 HarvestSprite const * NpcCollection::GetHarvestSpriteByIndex(u32 index) const
 {
@@ -1314,27 +1312,18 @@ Child const * NpcCollection::GetChild() const
 
 asm_unified(
     ".text\n"
+);
 #if defined(REGION_JP)
-    "\n"
-);
 
 u32 NpcCollection::GetUnk03_2() const
 {
     return unk_03_2;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void NpcCollection::SetUnk03_2(u32 value)
 {
     unk_03_2 = value;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
 {
@@ -1346,29 +1335,17 @@ ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
     return ActorLocation(Location(MAP_FARM, 0, 0), 0);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
-);
 
 u32 NpcCollection::GetUnk03_2() const
 {
     return unk_03_2;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 void NpcCollection::SetUnk03_2(u32 value)
 {
     unk_03_2 = value;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
 {
@@ -1380,10 +1357,7 @@ ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
     return ActorLocation(Location(MAP_FARM, 0, 0), 0);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
 
 u32 NpcCollection::GetPartnerCharacterId() const
 {
@@ -1414,9 +1388,8 @@ bool NpcCollection::IsMarried() const
 
 asm_unified(
     ".text\n"
-#if defined(REGION_JP)
-    "\n"
 );
+#if defined(REGION_JP)
 
 bool NpcCollection::HasRequiredFriendshipLevels() const
 {
@@ -1444,36 +1417,20 @@ bool NpcCollection::HasRequiredFriendshipLevels() const
     return result;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 NpcCollection::GetUnk00_0() const
 {
     return unk_00_0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 NpcCollection::GetUnk00_6() const
 {
     return unk_00_6;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 NpcCollection::GetLibrarySecondFloorVisitCount() const
 {
     return library_second_floor_visit_count;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
 {
@@ -1485,10 +1442,6 @@ ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
 {
     switch (slot) {
@@ -1499,18 +1452,10 @@ ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ActorLocation const * NpcCollection::GetYodelRanchHouseNpcLocation() const
 {
     return &locations.yodel_ranch_house;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
 {
@@ -1620,9 +1565,8 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     ".L080A06AC: .word 0xFFFFFC00\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
 );
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 
 bool NpcCollection::HasRequiredFriendshipLevels() const
 {
@@ -1650,36 +1594,20 @@ bool NpcCollection::HasRequiredFriendshipLevels() const
     return result;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 NpcCollection::GetUnk00_0() const
 {
     return unk_00_0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 u32 NpcCollection::GetUnk00_6() const
 {
     return unk_00_6;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 NpcCollection::GetLibrarySecondFloorVisitCount() const
 {
     return library_second_floor_visit_count;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
 {
@@ -1691,10 +1619,6 @@ ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
 {
     switch (slot) {
@@ -1705,18 +1629,10 @@ ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 ActorLocation const * NpcCollection::GetYodelRanchHouseNpcLocation() const
 {
     return &locations.yodel_ranch_house;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
 {
@@ -1826,8 +1742,8 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080A06AC: .word 0xFFFFFC00\n"
     "\n"
-#endif
 );
+#endif
 
 Npc * NpcCollection::GetNpc(u32 character_id)
 {

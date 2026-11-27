@@ -53,7 +53,6 @@ extern template ScheduleEntry const * std::__upper_bound<
 
 #include "data/scripts/fomt_scripts.mary.h"
 
-
 #include FOMT_TEXT_INCLUDE(npc_entity.cc)
 // Update currently copies and scans exactly four records, totaling weight 100.
 extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[] ALIGN(4) = {
@@ -62,8 +61,6 @@ extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[] ALIGN(4) 
     { 20, ANIMATION_ID_0004 },
     { 10, ANIMATION_ID_0000 },
 };
-
-
 
 static inline void TMP_ChangeAnim(ANpcEntity & self, u32 new_anim_id)
 {
@@ -4395,9 +4392,7 @@ EC bool IsNpcInUpperFarmhouseStrip(ANpcEntity & self)
 
 asm_unified(
     ".text\n"
-    ".align 2, 0\n"
 );
-
 
 LilliaNpcActor::LilliaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -4405,7 +4400,6 @@ LilliaNpcActor::LilliaNpcActor(GameObject * world, Npc * npc, u32 context)
         607, 611, EventScript_0994_NPCEvent_Lillia_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4416,18 +4410,12 @@ EntityVisualController * LilliaNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 RickNpcActor::RickNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gRickScheduleData.descriptor,
         531, 535, EventScript_0992_NPCEvent_Rick_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4438,18 +4426,12 @@ EntityVisualController * RickNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 PopuriNpcActor::PopuriNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gPopuriScheduleData.descriptor,
         559, 563, EventScript_0993_NPCEvent_Popuri_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4550,20 +4532,11 @@ void PopuriNpcActor::UpdateSchedule(i32 time)
         func_08035C04(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * PopuriNpcActor::CreateVisualController()
 {
     func_08035C04(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 BarleyNpcActor::BarleyNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -4571,7 +4544,6 @@ BarleyNpcActor::BarleyNpcActor(GameObject * world, Npc * npc, u32 context)
         2543, 2547, EventScript_1030_NPCEvent_Barley_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4582,18 +4554,12 @@ EntityVisualController * BarleyNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 3, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 MayNpcActor::MayNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMayScheduleData,
         2535, 2539, EventScript_1029_NPCEvent_May_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4604,18 +4570,12 @@ EntityVisualController * MayNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 1, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 SaibaraNpcActor::SaibaraNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gSaibaraScheduleData,
         2465, 2469, EventScript_1027_NPCEvent_Saibara_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4626,18 +4586,12 @@ EntityVisualController * SaibaraNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 GrayNpcActor::GrayNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gGrayScheduleData,
         2441, 2445, EventScript_1026_NPCEvent_Gray_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4648,18 +4602,12 @@ EntityVisualController * GrayNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 DukeNpcActor::DukeNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gDukeScheduleData,
         2240, 2244, EventScript_1020_NPCEvent_Duke_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4670,18 +4618,12 @@ EntityVisualController * DukeNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 MannaNpcActor::MannaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMannaScheduleData,
         2256, 2260, EventScript_1021_NPCEvent_Manna_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4692,18 +4634,12 @@ EntityVisualController * MannaNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 BasilNpcActor::BasilNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gBasilScheduleData,
         2059, 2063, EventScript_1013_NPCEvent_Basil_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4714,18 +4650,12 @@ EntityVisualController * BasilNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 AnnaNpcActor::AnnaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gAnnaScheduleData,
         2123, 2127, EventScript_1015_NPCEvent_Anna_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4736,18 +4666,12 @@ EntityVisualController * AnnaNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 MaryNpcActor::MaryNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gMaryScheduleData,
         2067, 2071, EventScript_1014_NPCEvent_Mary_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4848,20 +4772,11 @@ void MaryNpcActor::UpdateSchedule(i32 time)
         func_08036084(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * MaryNpcActor::CreateVisualController()
 {
     func_08036084(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 ThomasNpcActor::ThomasNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -4869,7 +4784,6 @@ ThomasNpcActor::ThomasNpcActor(GameObject * world, Npc * npc, u32 context)
         2143, 2147, EventScript_1017_NPCEvent_Thomas_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4880,18 +4794,12 @@ EntityVisualController * ThomasNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 HarrisNpcActor::HarrisNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gHarrisScheduleData,
         2276, 2280, EventScript_1023_NPCEvent_Harris_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4902,18 +4810,12 @@ EntityVisualController * HarrisNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 EllenNpcActor::EllenNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gEllenScheduleData,
         1669, 1669, EventScript_1006_NPCEvent_Ellen_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4924,18 +4826,12 @@ EntityVisualController * EllenNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 StuNpcActor::StuNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gStuScheduleData,
         2232, 2236, EventScript_1019_NPCEvent_Stu_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4946,18 +4842,12 @@ EntityVisualController * StuNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 1, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 JeffNpcActor::JeffNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gJeffScheduleData,
         1673, 1677, EventScript_1007_NPCEvent_Jeff_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4968,18 +4858,12 @@ EntityVisualController * JeffNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 SashaNpcActor::SashaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gSashaScheduleData,
         1733, 1737, EventScript_1009_NPCEvent_Sasha_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -4990,18 +4874,12 @@ EntityVisualController * SashaNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 KarenNpcActor::KarenNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gKarenScheduleData,
         1681, 1685, EventScript_1008_NPCEvent_Karen_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5102,20 +4980,11 @@ void KarenNpcActor::UpdateSchedule(i32 time)
         func_08036430(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * KarenNpcActor::CreateVisualController()
 {
     func_08036430(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 DoctorNpcActor::DoctorNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5123,7 +4992,6 @@ DoctorNpcActor::DoctorNpcActor(GameObject * world, Npc * npc, u32 context)
         800, 804, EventScript_0998_NPCEvent_Doctor_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5134,18 +5002,12 @@ EntityVisualController * DoctorNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 ElliNpcActor::ElliNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gElliScheduleData,
         2180, 2184, EventScript_1018_NPCEvent_Elli_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5246,20 +5108,11 @@ void ElliNpcActor::UpdateSchedule(i32 time)
         func_080365CC(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * ElliNpcActor::CreateVisualController()
 {
     func_080365CC(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 CarterNpcActor::CarterNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5267,7 +5120,6 @@ CarterNpcActor::CarterNpcActor(GameObject * world, Npc * npc, u32 context)
         2284, 2288, EventScript_1024_NPCEvent_Carter_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5278,18 +5130,12 @@ EntityVisualController * CarterNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 CliffNpcActor::CliffNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gCliffScheduleData.descriptor,
         635, 639, EventScript_0996_NPCEvent_Cliff_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5338,20 +5184,11 @@ void CliffNpcActor::UpdateSchedule(i32 time)
         func_08036768(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * CliffNpcActor::CreateVisualController()
 {
     func_08036768(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 DougNpcActor::DougNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5359,7 +5196,6 @@ DougNpcActor::DougNpcActor(GameObject * world, Npc * npc, u32 context)
         1970, 1974, EventScript_1010_NPCEvent_Doug_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5370,18 +5206,12 @@ EntityVisualController * DougNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 LouOrRubyNpcActor::LouOrRubyNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gLouScheduleData,
         2034, 2038, EventScript_1012_NPCEvent_LouOrRuby_DailyDialogueAndCookingRecipes)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5392,18 +5222,12 @@ EntityVisualController * LouOrRubyNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 AnnNpcActor::AnnNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gAnnScheduleData,
         1982, 1986, EventScript_1011_NPCEvent_Ann_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5512,20 +5336,11 @@ void AnnNpcActor::UpdateSchedule(i32 time)
         func_08036900(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * AnnNpcActor::CreateVisualController()
 {
     func_08036900(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 KaiNpcActor::KaiNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5533,7 +5348,6 @@ KaiNpcActor::KaiNpcActor(GameObject * world, Npc * npc, u32 context)
         2306, 2310, EventScript_1025_NPCEvent_Kai_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5544,18 +5358,12 @@ EntityVisualController * KaiNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 GotzNpcActor::GotzNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gGotzScheduleData,
         2515, 2519, EventScript_1028_NPCEvent_Gotz_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5610,20 +5418,11 @@ void GotzNpcActor::UpdateSchedule(i32 time)
         func_08036AB4(this);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 EntityVisualController * GotzNpcActor::CreateVisualController()
 {
     func_08036AB4(this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 ZackNpcActor::ZackNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5631,7 +5430,6 @@ ZackNpcActor::ZackNpcActor(GameObject * world, Npc * npc, u32 context)
         792, 796, EventScript_0997_NPCEvent_Zack_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5728,14 +5526,12 @@ asm_unified(
     "    .align 2, 0\n"
 );
 
-
 WonNpcActor::WonNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gWonScheduleData,
         2135, 2139, EventScript_1016_NPCEvent_Won_DialogueAndGiftResponses)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5746,18 +5542,12 @@ EntityVisualController * WonNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 GourmetNpcActor::GourmetNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         nullptr,
         1657, 1661, EventScript_None)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5768,18 +5558,12 @@ EntityVisualController * GourmetNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 HarvestGoddessNpcActor::HarvestGoddessNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         nullptr,
         1641, 1645, EventScript_None)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5790,18 +5574,12 @@ EntityVisualController * HarvestGoddessNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 KappaNpcActor::KappaNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         nullptr,
         2046, 2046, EventScript_None)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5812,18 +5590,12 @@ EntityVisualController * KappaNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 VanNpcActor::VanNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gVanScheduleData,
         2264, 2268, EventScript_1022_NPCEvent_Van_DialogueGiftAndGameCubeAlbumUnlock)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -5834,11 +5606,6 @@ EntityVisualController * VanNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
-
 ChildNpcActor::ChildNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
         &gChildScheduleData.descriptor,
@@ -5846,7 +5613,6 @@ ChildNpcActor::ChildNpcActor(GameObject * world, Npc * npc, u32 context)
       idle_animation_countdown(0)
 {
 }
-
 
 asm_unified(
     ".text\n"
@@ -6051,8 +5817,6 @@ asm_unified(
     "    bx\tr0\n"
     "    .align 2, 0\n"
 );
-
-
 
 // This getter has its own native return boundary after the child actor update.
 void const * ANpcEntity::GetScheduleContext() const

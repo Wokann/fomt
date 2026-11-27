@@ -6,7 +6,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 ToolChestSceneCore::ToolChestSceneCore(GameStateSaveImage * image)
@@ -17,10 +16,6 @@ ToolChestSceneCore::ToolChestSceneCore(GameStateSaveImage * image)
     tool_chest = &save->farm.farm_house.tool_chest;
     phase = 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 ToolChestSceneCore::~ToolChestSceneCore()
 {
@@ -208,10 +203,6 @@ void ToolChestSceneCore::ShowNextPage()
 {
     DrawToolChestPage(func_080CEB80(tilemap.value));
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" u32 func_080CEBC0(void *);
 void ToolChestSceneCore::ShowPreviousPage()
@@ -3727,8 +3718,6 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
 );
-
-
 
 ToolChestScene::ToolChestScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new ToolChestSceneCore(image)), continuation(next)

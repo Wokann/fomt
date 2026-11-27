@@ -7,17 +7,12 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    ".align 2, 0\n"
 );
 
 SpecialMerchantShopSceneCore::SpecialMerchantShopSceneCore(GameStateSaveImage * image)
     : ShopScreenCore(image), phase(0), has_purchased(false), description()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SpecialMerchantShopSceneCore::~SpecialMerchantShopSceneCore()
 {
@@ -1457,8 +1452,6 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
 );
-
-
 
 SpecialMerchantShopScene::SpecialMerchantShopScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new SpecialMerchantShopSceneCore(image)), continuation(next)

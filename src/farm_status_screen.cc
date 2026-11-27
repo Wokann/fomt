@@ -8,7 +8,9 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "    .global __20FarmStatusScreenCoreP18GameStateSaveImageUc\n"
     "    .thumb_func\n"
@@ -21803,7 +21805,9 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "    .align 2, 0\n"
     "\n"
@@ -43496,35 +43500,25 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-#endif
 );
+#endif
 
 FarmStatusScreenScene::FarmStatusScreenScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 argument)
     : core(new FarmStatusScreenCore(image, argument)), continuation(next)
 {
 }
 
-asm_unified(
 #if defined(REGION_JP)
-);
 
 FarmStatusScreenScene::~FarmStatusScreenScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SceneTransitionOwner FarmStatusScreenScene::Run()
 {
     RunScrollMenu(core.value);
     return continuation;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 #include "game_state_types.hh"
 #include "farm.hh"
@@ -43536,20 +43530,12 @@ bool func_08069EB4(FarmStatusScreenCore const * self)
     return self->save->farm.barn.CountSheeps() != 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" bool func_08069ED4(FarmStatusScreenCore const * self);
 
 bool func_08069ED4(FarmStatusScreenCore const * self)
 {
     return self->save->farm.barn.CountCows() != 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" bool func_08069EF4(FarmStatusScreenCore const * self);
 
@@ -43558,29 +43544,17 @@ bool func_08069EF4(FarmStatusScreenCore const * self)
     return self->save->farm.coop.CountChickens() != 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
-);
 
 FarmStatusScreenScene::~FarmStatusScreenScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SceneTransitionOwner FarmStatusScreenScene::Run()
 {
     RunScrollMenu(core.value);
     return continuation;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 #include "game_state_types.hh"
 #include "farm.hh"
@@ -43592,20 +43566,12 @@ bool func_08069EB4(FarmStatusScreenCore const * self)
     return self->save->farm.barn.CountSheeps() != 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" bool func_08069ED4(FarmStatusScreenCore const * self);
 
 bool func_08069ED4(FarmStatusScreenCore const * self)
 {
     return self->save->farm.barn.CountCows() != 0;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" bool func_08069EF4(FarmStatusScreenCore const * self);
 
@@ -43614,9 +43580,6 @@ bool func_08069EF4(FarmStatusScreenCore const * self)
     return self->save->farm.coop.CountChickens() != 0;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
 
 #include FOMT_TEXT_INCLUDE(farm_status_screen.cc)

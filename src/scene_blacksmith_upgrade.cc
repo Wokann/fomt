@@ -6,7 +6,6 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
 );
 
 BlacksmithShopResultSceneCore::BlacksmithShopResultSceneCore(
@@ -20,10 +19,6 @@ BlacksmithShopResultSceneCore::BlacksmithShopResultSceneCore(
     , has_purchased(purchased)
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 BlacksmithShopResultSceneCore::~BlacksmithShopResultSceneCore()
 {
@@ -527,10 +522,6 @@ bool BlacksmithShopResultSceneCore::IsCursedTool(Tool tool) const
         return false;
     return true;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool BlacksmithShopResultSceneCore::IsUpgradeOre(Article ore) const
 {
@@ -2648,8 +2639,6 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
 );
-
-
 
 BlacksmithShopResultScene::BlacksmithShopResultScene(SceneTransitionOwner next,
     GameStateSaveImage * image, u8 has_purchased)

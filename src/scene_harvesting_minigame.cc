@@ -9612,12 +9612,8 @@ asm_unified(
 
 extern "C" u16 func_080C0B58(HarvestSpriteHarvestingCore * core)
 {
-    return gUnk_080C0B58Values[*(u32 const *)core->unk_618];
+    return gUnk_080C0B58Values[core->unk_618];
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void func_080C0CA4(HarvestSpriteHarvestingCore * core);
 extern "C" void func_080C0B94(HarvestSpriteHarvestingCore * core);
@@ -9837,46 +9833,25 @@ HarvestSpriteHarvestingUiScene::HarvestSpriteHarvestingUiScene(HarvestSpriteHarv
     core = new HarvestSpriteHarvestingCore(setup);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 HarvestSpriteHarvestingUiScene::~HarvestSpriteHarvestingUiScene()
 {
     delete core;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 bool HarvestSpriteHarvestingUiScene::Succeeded()
 {
     return core->Succeeded();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 u32 HarvestSpriteHarvestingUiScene::GetUnkRecordValue()
 {
     return core->unk_604;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 SceneTransitionOwner HarvestSpriteHarvestingUiScene::Run()
 {
     return core->Run();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 
 #include FOMT_TEXT_INCLUDE(scene_harvesting_minigame_1.cc)
 

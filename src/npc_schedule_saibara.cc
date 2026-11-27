@@ -1,47 +1,35 @@
 #include "npc_schedule_saibara.hh"
 #include "game_state.hh"
-
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-);
-
 #include "saibara.hh"
 #include "game_state_types.hh"
 extern "C" u32 SelectSaibaraSchedule(void const * context)
 {
-    GameStateSaveImage const * save = (GameStateSaveImage const *)context;
-    u8 date[4];
-    u8 const * raw;
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
     u8 season;
     u8 day;
     u8 weekday;
     Saibara const * saibara;
-    if ((i32)(((u8 const *)context)[0x21CA] << 27) < 0)
+    if (save.event_state.mary_and_gray_rival_wedding_routing_state)
         return 0;
-    raw = date;
-    DecodeGameDayDate((GameDayDate *)date, &save->clock.calendar);
-    season = raw[1];
-    day = raw[2];
-    weekday = raw[3];
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
     if ((u8)IsNpcScheduleDateListed(season, day))
         return 4;
-    saibara = &save->npcs.saibara;
+    saibara = &save.npcs.saibara;
     if (saibara->GetOrder() != 0 && !saibara->IsOrderComplete())
         return 5;
     if (weekday == 4)
     {
-        if (*(u32 const *)&save->clock == 0)
+        if (save.clock.weather_today == 0)
             return 2;
         else
             return 3;
     }
     return 1;
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" SaibaraScheduleData const gSaibaraScheduleData = {
     // descriptor

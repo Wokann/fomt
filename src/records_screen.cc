@@ -7,7 +7,9 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
+);
 #if defined(REGION_JP)
+asm_unified(
     "\t.global __17RecordsScreenCoreP18GameStateSaveImage\n"
     "\t.thumb_func\n"
     "__17RecordsScreenCoreP18GameStateSaveImage:\n"
@@ -9722,7 +9724,9 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "\n"
     "\tthumb_func_start __17RecordsScreenCoreP18GameStateSaveImage\n"
     "__17RecordsScreenCoreP18GameStateSaveImage: @ 0x08070B70\n"
@@ -20262,25 +20266,19 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-#endif
 );
+#endif
 
 RecordsScreenScene::RecordsScreenScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new RecordsScreenCore(image)), continuation(next)
 {
 }
 
-asm_unified(
 #if defined(REGION_JP)
-);
 
 RecordsScreenScene::~RecordsScreenScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SceneTransitionOwner RecordsScreenScene::Run()
 {
@@ -20288,22 +20286,14 @@ SceneTransitionOwner RecordsScreenScene::Run()
     return continuation;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_08075334(u32 a, u32 b, u32 c,
     u8 const * tiles, u8 const * palette);
-extern "C" void func_08075678(u32 a, u32 b, u32 c, u8 const * s)
+extern "C" void func_08075678(u32 a, u32 b, u32 c, IndexedResourceGroupResult const * group)
 {
     func_08075334(a, b, c,
-                  *(u8 const * const *)(s + 8),
-                  *(u8 const * const *)(s + 0x10));
+        reinterpret_cast<u8 const *>(group->tiles.GetData()),
+        reinterpret_cast<u8 const *>(group->palettes.GetData()));
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void func_08075334(u32 a, u32 b, u32 c,
     u8 const * tiles, u8 const * palette);
@@ -20314,19 +20304,11 @@ extern "C" void func_08075690(u32 a, u32 b, u32 c, u32 index, u32 extra)
     func_08075334(a, b, c, pair->tiles, pair->palette);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
-);
 
 RecordsScreenScene::~RecordsScreenScene()
 {
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 SceneTransitionOwner RecordsScreenScene::Run()
 {
@@ -20334,22 +20316,14 @@ SceneTransitionOwner RecordsScreenScene::Run()
     return continuation;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
-
 extern "C" void func_08075334(u32 a, u32 b, u32 c,
     u8 const * tiles, u8 const * palette);
-extern "C" void func_08075678(u32 a, u32 b, u32 c, u8 const * s)
+extern "C" void func_08075678(u32 a, u32 b, u32 c, IndexedResourceGroupResult const * group)
 {
     func_08075334(a, b, c,
-                  *(u8 const * const *)(s + 8),
-                  *(u8 const * const *)(s + 0x10));
+        reinterpret_cast<u8 const *>(group->tiles.GetData()),
+        reinterpret_cast<u8 const *>(group->palettes.GetData()));
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
 
 extern "C" void func_08075334(u32 a, u32 b, u32 c,
     u8 const * tiles, u8 const * palette);
@@ -20360,10 +20334,7 @@ extern "C" void func_08075690(u32 a, u32 b, u32 c, u32 index, u32 extra)
     func_08075334(a, b, c, pair->tiles, pair->palette);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
 #endif
-);
 
 #include FOMT_TEXT_INCLUDE(records_screen.cc)
 
