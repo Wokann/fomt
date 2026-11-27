@@ -38,6 +38,12 @@ enum {
 
 struct HardwareSpriteBufferState;
 
+struct GameCalendar;
+EXTERN_C
+void UpdateMapClockStatusHudCalendar(MapClockStatusHudContent const * hud,
+    GameCalendar const & calendar, u8 show_colon);
+EXTERN_C_END
+
 #pragma interface "map_clock_status.hh"
 
 // The clock owns its HUD content after the shared eight-byte control base.
@@ -46,16 +52,14 @@ struct MapClockStatusHudWidget : ControlWidget {
     virtual ~MapClockStatusHudWidget();
     virtual u32 Draw(HardwareSpriteBufferState * sprites, HardwareDisplayState * display,
         HardwareLinkedList * uploads, HardwareLinkedList * commands);
+    void UpdateCalendar(GameCalendar const & calendar, u8 show_colon) const
+    {
+        UpdateMapClockStatusHudCalendar(&content, calendar, show_colon);
+    }
     MapClockStatusHudContent content;
 };
 
-struct GameCalendar;
-
 EXTERN_C
-// Calendar composition remains native; its callers use this one shared name.
-void UpdateMapClockStatusHudCalendar(MapClockStatusHudContent const * hud,
-    GameCalendar const & calendar, u8 show_colon);
-
 void ClearMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget);
 void SetMapClockStatusWidgetUnkValue(MapClockStatusHudWidget const * widget, u32 value);
 void SetMapClockStatusWidgetUnkSelector(MapClockStatusHudWidget const * widget, u32 value);

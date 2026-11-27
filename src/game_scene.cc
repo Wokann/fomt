@@ -1231,65 +1231,27 @@ void GameScene::DisableScriptedNpcControl()
     state->save->scripted_npc_control = 0;
 }
 
-asm_unified(
-    ".text\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    @ Complete native time command; C++ matching is still pending.\n"
-    "    thumb_func_start SetGameTime__9GameSceneRC8GameTime\n"
-    "SetGameTime__9GameSceneRC8GameTime:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    ldr r4, [r0, #4]\n"
-    "    adds r5, r4, #0\n"
-    "    adds r5, #0xa8\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r2, [r0]\n"
-    "    adds r2, #0xbc\n"
-    "    ldr r2, [r2]\n"
-    "    bl _call_via_r2\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xb4\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lset_game_time_done\n"
-    "    adds r6, r0, #0\n"
-    "    movs r7, #0\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r1, [r0]\n"
-    "    adds r1, #0xb0\n"
-    "    ldr r1, [r1]\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    adds r3, r4, #0\n"
-    "    adds r3, #0x8c\n"
-    "    cmp r0, #0\n"
-    "    bne .Lset_game_time_show_colon\n"
-    "    ldr r0, [r3]\n"
-    "    ldrh r1, [r0, #0x12]\n"
-    "    lsls r1, r1, #0x15\n"
-    "    lsrs r1, r1, #0x1a\n"
-    "    movs r0, #1\n"
-    "    ands r0, r1\n"
-    "    cmp r0, #0\n"
-    "    beq .Lset_game_time_update_calendar\n"
-    ".Lset_game_time_show_colon:\n"
-    "    movs r7, #1\n"
-    ".Lset_game_time_update_calendar:\n"
-    "    adds r2, r7, #0\n"
-    "    ldr r1, [r3]\n"
-    "    adds r1, #0x10\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #8\n"
-    "    bl UpdateMapClockStatusHudCalendar\n"
-    ".Lset_game_time_done:\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_080D7F08\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-);
+static inline bool IsSceneClockColonVisible(GameSceneState * current)
+{
+    bool visible = false;
+    if (current->game_object.value->IsTimePaused()
+        || (current->save->clock.calendar.time.clock_minute & 1) != 0)
+        visible = true;
+    return visible;
+}
 
-
+void GameScene::SetGameTime(GameTime const & time)
+{
+    GameSceneState * current = state;
+    current->game_object.value->vfunc_BC(time);
+    if (current->time_window.value != nullptr)
+    {
+        MapClockStatusHudWidget * clock = current->time_window.value;
+        bool show_colon = IsSceneClockColonVisible(current);
+        clock->UpdateCalendar(current->save->clock.calendar, show_colon);
+    }
+    func_080D7F08(current);
+}
 
 void GameScene::RunChickenFestivalContest()
 {
