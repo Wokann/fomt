@@ -6,6 +6,7 @@
 #include "game_world.hh"
 #include "game_scene.hh"
 #include "game_scene_actions.hh"
+#include "random.hh"
 
 static inline u32 GetBarnAnimalBehavior(BarnAnimal const & animal)
 {
@@ -7457,32 +7458,32 @@ bool HorseActor::CanBeBrushed() const
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global Brush__10HorseActor\n"
-    "    .thumb_func\n"
-    "Brush__10HorseActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_08021F16\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".Ljp_08021F16:\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa7\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+
+
+bool HorseActor::CanBeBrushed() const
+{
+    return !horse->HasBeenBrushedToday();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+#endif
+
+void HorseActor::Brush()
+{
+    if (!horse->HasBeenBrushedToday()) {
+        horse->AddAffection(1);
+        horse->SetBrushed();
+    }
+    StartActorSpriteEffect(*this, 1, false);
+    RequestSound(AUDIO_SFX_FOAL_NEIGH);
+}
+
+#if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
     "    .global RespondToPush__10HorseActorUiUi\n"
     "    .thumb_func\n"
@@ -7811,41 +7812,7 @@ asm_unified(
     ".Lraw_code_entities_4321_6: .word __vt_7AEntity\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-bool HorseActor::CanBeBrushed() const
-{
-    return !horse->HasBeenBrushedToday();
-}
-
 asm_unified(
-    "    .align 2, 0\n"
-    "    .global Brush__10HorseActor\n"
-    "    .thumb_func\n"
-    "Brush__10HorseActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .L08022182\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".L08022182:\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa7\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
     "    .align 2, 0\n"
     "    .global RespondToPush__10HorseActorUiUi\n"
     "    .thumb_func\n"
@@ -9243,34 +9210,18 @@ bool ChickenActor::IsSick() const
 
 asm_unified(
     ".text\n"
+);
+
+bool ChickenActor::CanBeAttackedByWildDog() const
+{
+    bool allowed = false;
+    if (location_map == MAP_FARM && !livestock->IsSick() && !livestock->IsUnhappy())
+        allowed = true;
+    return allowed;
+}
+
 #if defined(REGION_JP)
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C12ChickenActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C12ChickenActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lauto_08022782\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08022782\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08022782\n"
-    "    movs r5, #1\n"
-    "    .Lauto_08022782:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+asm_unified(
     "    .align 2, 0\n"
     "    .global ReactToToolHit__12ChickenActor\n"
     "    .thumb_func\n"
@@ -9335,34 +9286,9 @@ asm_unified(
     ".Ljp_08022810: .word 0xFF80FFFF\n"
     ".Ljp_08022814: .word 0xFF7FFFFF\n"
     ".Ljp_08022818: .word 0x00FFFFFF\n"
+);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C12ChickenActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C12ChickenActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lraw_code_entities_39059_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39059_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39059_8\n"
-    "    movs r5, #1\n"
-    ".Lraw_code_entities_39059_8:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+asm_unified(
     "    .align 2, 0\n"
     "    .global ReactToToolHit__12ChickenActor\n"
     "    .thumb_func\n"
@@ -9427,8 +9353,8 @@ asm_unified(
     ".L08022A7C: .word 0xFF80FFFF\n"
     ".L08022A80: .word 0xFF7FFFFF\n"
     ".L08022A84: .word 0x00FFFFFF\n"
-#endif
 );
+#endif
 
 void ChickenActor::CureSickness()
 {
@@ -11854,35 +11780,17 @@ bool CowActor::IsSick() const
 asm_unified(
     ".text\n"
 );
+
+bool CowActor::CanBeAttackedByWildDog() const
+{
+    bool allowed = false;
+    if (location_map == MAP_FARM && !livestock->IsSick() && !livestock->IsUnhappy())
+        allowed = true;
+    return allowed;
+}
+
 #if defined(REGION_JP)
 asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C8CowActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C8CowActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lauto_08023352\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08023352\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08023352\n"
-    "    movs r5, #1\n"
-    "    .Lauto_08023352:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
     "    .align 2, 0\n"
     "    .global ReactToToolHit__8CowActor\n"
     "    .thumb_func\n"
@@ -11956,97 +11864,9 @@ void CowActor::StartCowPregnancy()
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global Brush__8CowActor\n"
-    "    .thumb_func\n"
-    "Brush__8CowActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_08023416\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".Ljp_08023416:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_08023432\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .Ljp_08023432\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".Ljp_08023432:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_08023450\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa1\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".Ljp_08023450:\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "    .global Milk__8CowActor\n"
-    "    .thumb_func\n"
-    "Milk__8CowActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa1\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ConsumeProduct__3Cow\n"
-    "    pop {r4}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C8CowActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C8CowActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lraw_code_entities_39761_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39761_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39761_8\n"
-    "    movs r5, #1\n"
-    ".Lraw_code_entities_39761_8:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
     "    .align 2, 0\n"
     "    .global ReactToToolHit__8CowActor\n"
     "    .thumb_func\n"
@@ -12120,69 +11940,31 @@ void CowActor::StartCowPregnancy()
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global Brush__8CowActor\n"
-    "    .thumb_func\n"
-    "Brush__8CowActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .L08023682\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".L08023682:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802369E\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .L0802369E\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".L0802369E:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #24\n"
-    "    cmp r0, #0\n"
-    "    bne .L080236BC\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa1\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".L080236BC:\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "    .global Milk__8CowActor\n"
-    "    .thumb_func\n"
-    "Milk__8CowActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xa1\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ConsumeProduct__3Cow\n"
-    "    pop {r4}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
 );
 #endif
+
+void CowActor::Brush()
+{
+    if (!livestock->HasBeenBrushedToday()) {
+        livestock->AddAffection(1);
+        livestock->SetBrushed();
+    }
+    if (livestock->IsUnhappy() && RandomBelow(100) < 30)
+        livestock->ResetUnhappy();
+    if (!livestock->IsSick()) {
+        StartActorSpriteEffect(*this, 1, false);
+        RequestSound(AUDIO_SFX_COW_MOO);
+    }
+}
+
+
+Livestock::ProductRank CowActor::Milk()
+{
+    StartActorSpriteEffect(*this, 1, false);
+    RequestSound(AUDIO_SFX_COW_MOO);
+    return livestock->ConsumeProduct();
+}
+
 
 void CowActor::CureSickness()
 {
@@ -14695,35 +14477,17 @@ bool SheepActor::IsSick() const
 asm_unified(
     ".text\n"
 );
+
+bool SheepActor::CanBeAttackedByWildDog() const
+{
+    bool allowed = false;
+    if (location_map == MAP_FARM && !livestock->IsSick() && !livestock->IsUnhappy())
+        allowed = true;
+    return allowed;
+}
+
 #if defined(REGION_JP)
 asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C10SheepActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lauto_08024006\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08024006\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08024006\n"
-    "    movs r5, #1\n"
-    "    .Lauto_08024006:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
     "    .align 2, 0\n"
     "    .global ReactToToolHit__10SheepActor\n"
     "    .thumb_func\n"
@@ -14797,112 +14561,9 @@ void SheepActor::StartSheepPregnancy()
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global Brush__10SheepActor\n"
-    "    .thumb_func\n"
-    "Brush__10SheepActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_080240CA\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".Ljp_080240CA:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_080240E6\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1D\n"
-    "    bhi .Ljp_080240E6\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".Ljp_080240E6:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_08024104\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xA3\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".Ljp_08024104:\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "    .global Shear__10SheepActor\n"
-    "    .thumb_func\n"
-    "Shear__10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xA3\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ConsumeProduct__5Sheep\n"
-    "    adds r5, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldrb r1, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehaviorAnimation__C10SheepActorUi\n"
-    "    adds r1, r0, #0\n"
-    "    ldrh r0, [r4, #0x22]\n"
-    "    cmp r0, r1\n"
-    "    beq .Ljp_08024142\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    ".Ljp_08024142:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    .global CanBeAttackedByWildDog__C10SheepActor\n"
-    "    .thumb_func\n"
-    "CanBeAttackedByWildDog__C10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #2\n"
-    "    bne .Lraw_code_entities_40594_2\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_40594_2\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_40594_2\n"
-    "    movs r5, #1\n"
-    ".Lraw_code_entities_40594_2:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
     "    .align 2, 0\n"
     "    .global ReactToToolHit__10SheepActor\n"
     "    .thumb_func\n"
@@ -14976,84 +14637,33 @@ void SheepActor::StartSheepPregnancy()
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global Brush__10SheepActor\n"
-    "    .thumb_func\n"
-    "Brush__10SheepActor:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl HasBeenBrushedToday__C6Animal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .L08024336\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetBrushed__6Animal\n"
-    ".L08024336:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08024352\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1D\n"
-    "    bhi .L08024352\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".L08024352:\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .L08024370\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xA3\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".L08024370:\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "    .global Shear__10SheepActor\n"
-    "    .thumb_func\n"
-    "Shear__10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r1, #1\n"
-    "    movs r2, #0\n"
-    "    bl StartActorSpriteEffect\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0xA3\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl ConsumeProduct__5Sheep\n"
-    "    adds r5, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldrb r1, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehaviorAnimation__C10SheepActorUi\n"
-    "    adds r1, r0, #0\n"
-    "    ldrh r0, [r4, #0x22]\n"
-    "    cmp r0, r1\n"
-    "    beq .L080243AE\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    ".L080243AE:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
 );
 #endif
+
+void SheepActor::Brush()
+{
+    if (!livestock->HasBeenBrushedToday()) {
+        livestock->AddAffection(1);
+        livestock->SetBrushed();
+    }
+    if (livestock->IsUnhappy() && RandomBelow(100) < 30)
+        livestock->ResetUnhappy();
+    if (!livestock->IsSick()) {
+        StartActorSpriteEffect(*this, 1, false);
+        RequestSound(AUDIO_SFX_SHEEP_BLEAT);
+    }
+}
+
+
+Livestock::ProductRank SheepActor::Shear()
+{
+    StartActorSpriteEffect(*this, 1, false);
+    RequestSound(AUDIO_SFX_SHEEP_BLEAT);
+    Livestock::ProductRank rank = livestock->ConsumeProduct();
+    SetAnimIfChanged(GetBehaviorAnimation(last_behavior));
+    return rank;
+}
+
 
 void SheepActor::CureSickness()
 {
