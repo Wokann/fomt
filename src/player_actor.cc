@@ -26768,322 +26768,69 @@ u32 FarmingTutorialPlayer::GetActionAnimation() const
     return animation;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global ShowHoldingTool__21FarmingTutorialPlayer14MaryItemToolId\n"
-    "    .thumb_func\n"
-    "ShowHoldingTool__21FarmingTutorialPlayer14MaryItemToolId:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    sub sp, #4\n"
-    "    adds r6, r0, #0\n"
-    "    adds r3, r1, #0\n"
-    "    adds r0, #56\n"
-    "    movs r7, #0\n"
-    "    movs r1, #1\n"
-    "    mov r8, r1\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #0]\n"
-    "    strb r7, [r0, #1]\n"
-    "    ldr r1, .L0802BD4C\n"
-    "    movs r2, #136\n"
-    "    lsls r2, r2, #13\n"
-    "    str r1, [r0, #4]\n"
-    "    str r7, [r0, #8]\n"
-    "    str r2, [r0, #20]\n"
-    "    ldr r5, [r6, #16]\n"
-    "    cmp r5, #0\n"
-    "    beq .L0802BD10\n"
-    "    mov r0, sp\n"
-    "    adds r1, r3, #0\n"
-    "    bl __4ToolUi\n"
-    "    mov r0, sp\n"
-    "    bl GetIconId__C4Tool\n"
-    "    adds r4, r0, #0\n"
-    "    lsls r4, r4, #16\n"
-    "    lsrs r4, r4, #16\n"
-    "    ldr r0, [r5, #0]\n"
-    "    ldr r0, [r0, #0]\n"
-    "    ldr r1, [r0, #0]\n"
-    "    ldr r1, [r1, #100]\n"
-    "    bl _call_via_r1\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #180\n"
-    "    adds r2, r4, #0\n"
-    "    bl InitializeIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #200\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    strb r7, [r0, #0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0, #0]\n"
-    "    adds r0, #1\n"
-    "    strh r4, [r0, #0]\n"
-    ".L0802BD10:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #52\n"
-    "    movs r0, #4\n"
-    "    strb r0, [r1, #0]\n"
-    "    adds r1, #1\n"
-    "    movs r0, #20\n"
-    "    strb r0, [r1, #0]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #88\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "    adds r1, r0, #0\n"
-    "    lsls r1, r1, #16\n"
-    "    lsrs r1, r1, #16\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #84\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #0]\n"
-    "    add sp, #4\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".L0802BD4C: .word 0xFFF80000\n"
-    "    .global BeginHoldingGraphic__21FarmingTutorialPlayerUsb\n"
-    "    .thumb_func\n"
-    "BeginHoldingGraphic__21FarmingTutorialPlayerUsb:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r9\n"
-    "    mov r6, r8\n"
-    "    push {r6, r7}\n"
-    "    adds r5, r0, #0\n"
-    "    lsls r1, r1, #16\n"
-    "    lsrs r6, r1, #16\n"
-    "    mov r9, r6\n"
-    "    lsls r2, r2, #24\n"
-    "    lsrs r3, r2, #24\n"
-    "    adds r0, #86\n"
-    "    movs r1, #0\n"
-    "    mov r8, r1\n"
-    "    movs r2, #0\n"
-    "    strh r6, [r0, #0]\n"
-    "    subs r0, #30\n"
-    "    movs r7, #1\n"
-    "    strb r7, [r0, #0]\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #1]\n"
-    "    movs r1, #168\n"
-    "    lsls r1, r1, #13\n"
-    "    str r2, [r0, #4]\n"
-    "    str r2, [r0, #8]\n"
-    "    str r1, [r0, #20]\n"
-    "    ldr r4, [r5, #16]\n"
-    "    cmp r4, #0\n"
-    "    beq .L0802BDCA\n"
-    "    cmp r3, #0\n"
-    "    bne .L0802BDA2\n"
-    "    ldr r0, [r4, #0]\n"
-    "    ldr r0, [r0, #0]\n"
-    "    ldr r1, [r0, #0]\n"
-    "    ldr r1, [r1, #100]\n"
-    "    bl _call_via_r1\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #180\n"
-    "    adds r2, r6, #0\n"
-    "    b .L0802BDB6\n"
-    ".L0802BDA2:\n"
-    "    ldr r0, [r4, #0]\n"
-    "    ldr r0, [r0, #0]\n"
-    "    ldr r1, [r0, #0]\n"
-    "    ldr r1, [r1, #104]\n"
-    "    bl _call_via_r1\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #180\n"
-    "    mov r2, r9\n"
-    ".L0802BDB6:\n"
-    "    bl InitializeIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #200\n"
-    "    strb r7, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    mov r1, r8\n"
-    "    strb r1, [r0, #0]\n"
-    "    adds r0, #1\n"
-    "    strb r7, [r0, #0]\n"
-    ".L0802BDCA:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #52\n"
-    "    movs r4, #0\n"
-    "    movs r1, #3\n"
-    "    strb r1, [r0, #0]\n"
-    "    subs r0, #20\n"
-    "    ldrb r3, [r0, #0]\n"
-    "    cmp r3, #1\n"
-    "    beq .L0802BE16\n"
-    "    cmp r3, #1\n"
-    "    bgt .L0802BDE6\n"
-    "    cmp r3, #0\n"
-    "    beq .L0802BE28\n"
-    "    b .L0802BE3A\n"
-    ".L0802BDE6:\n"
-    "    cmp r3, #2\n"
-    "    beq .L0802BDF0\n"
-    "    cmp r3, #3\n"
-    "    beq .L0802BE04\n"
-    "    b .L0802BE3A\n"
-    ".L0802BDF0:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #56\n"
-    "    ldr r1, .L0802BE00\n"
-    "    movs r2, #192\n"
-    "    lsls r2, r2, #12\n"
-    "    str r1, [r0, #4]\n"
-    "    str r4, [r0, #8]\n"
-    "    b .L0802BE38\n"
-    "    .align 2, 0\n"
-    ".L0802BE00: .word 0xFFF60000\n"
-    ".L0802BE04:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #56\n"
-    "    movs r1, #160\n"
-    "    lsls r1, r1, #12\n"
-    "    movs r2, #192\n"
-    "    lsls r2, r2, #12\n"
-    "    str r1, [r0, #4]\n"
-    "    str r4, [r0, #8]\n"
-    "    b .L0802BE38\n"
-    ".L0802BE16:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #56\n"
-    "    ldr r1, .L0802BE24\n"
-    "    movs r2, #192\n"
-    "    lsls r2, r2, #12\n"
-    "    str r4, [r0, #4]\n"
-    "    b .L0802BE36\n"
-    "    .align 2, 0\n"
-    ".L0802BE24: .word 0xFFF60000\n"
-    ".L0802BE28:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #56\n"
-    "    movs r1, #160\n"
-    "    lsls r1, r1, #12\n"
-    "    movs r2, #192\n"
-    "    lsls r2, r2, #12\n"
-    "    str r3, [r0, #4]\n"
-    ".L0802BE36:\n"
-    "    str r1, [r0, #8]\n"
-    ".L0802BE38:\n"
-    "    str r2, [r0, #20]\n"
-    ".L0802BE3A:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #88\n"
-    "    movs r4, #1\n"
-    "    strb r4, [r0, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "    adds r1, r0, #0\n"
-    "    lsls r1, r1, #16\n"
-    "    lsrs r1, r1, #16\n"
-    "    adds r0, r5, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #84\n"
-    "    strb r4, [r0, #0]\n"
-    "    pop {r3, r4}\n"
-    "    mov r8, r3\n"
-    "    mov r9, r4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start ThrowHeldItem__21FarmingTutorialPlayer\n"
-    "ThrowHeldItem__21FarmingTutorialPlayer: @ 0x0802BE68\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r5, r0, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    cmp r2, #1\n"
-    "    beq .L0802BEB0\n"
-    "    cmp r2, #1\n"
-    "    bgt .L0802BE7E\n"
-    "    cmp r2, #0\n"
-    "    beq .L0802BEC0\n"
-    "    b .L0802BECC\n"
-    ".L0802BE7E:\n"
-    "    cmp r2, #2\n"
-    "    beq .L0802BE88\n"
-    "    cmp r2, #3\n"
-    "    beq .L0802BE9C\n"
-    "    b .L0802BECC\n"
-    ".L0802BE88:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldr r1, .L0802BE98 @ =0xFFFE5556\n"
-    "    movs r2, #0\n"
-    "    str r1, [r0, #0xc]\n"
-    "    str r2, [r0, #0x10]\n"
-    "    b .L0802BECA\n"
-    "    .align 2, 0\n"
-    ".L0802BE98: .word 0xFFFE5556\n"
-    ".L0802BE9C:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldr r1, .L0802BEAC @ =0x0001AAAA\n"
-    "    movs r2, #0\n"
-    "    str r1, [r0, #0xc]\n"
-    "    str r2, [r0, #0x10]\n"
-    "    b .L0802BECA\n"
-    "    .align 2, 0\n"
-    ".L0802BEAC: .word 0x0001AAAA\n"
-    ".L0802BEB0:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x38\n"
-    "    movs r2, #0\n"
-    "    ldr r1, .L0802BEBC @ =0xFFFE5556\n"
-    "    b .L0802BEC6\n"
-    "    .align 2, 0\n"
-    ".L0802BEBC: .word 0xFFFE5556\n"
-    ".L0802BEC0:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldr r1, .L0802BEF8 @ =0x0001AAAA\n"
-    ".L0802BEC6:\n"
-    "    str r2, [r0, #0xc]\n"
-    "    str r1, [r0, #0x10]\n"
-    ".L0802BECA:\n"
-    "    str r2, [r0, #0x18]\n"
-    ".L0802BECC:\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x34\n"
-    "    movs r4, #1\n"
-    "    strb r4, [r0]\n"
-    "    adds r0, #0x24\n"
-    "    strb r4, [r0]\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "    adds r1, r0, #0\n"
-    "    lsls r1, r1, #0x10\n"
-    "    lsrs r1, r1, #0x10\n"
-    "    adds r0, r5, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x54\n"
-    "    strb r4, [r0]\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".L0802BEF8: .word 0x0001AAAA\n"
-    "\n"
-);
+void FarmingTutorialPlayer::ShowHoldingTool(MaryItemToolId tool_id)
+{
+    FarmingTutorialHeldGraphic & held = graphic;
+    held.visible = 1;
+    held.shadow_visible = 0;
+    held.SetPosition(-(8 << 16), 0, 17 << 16);
+    FarmingTutorialPlayerSpriteController * controller =
+        static_cast<FarmingTutorialPlayerSpriteController *>(unk_10.Get());
+    if (controller != 0) {
+        Tool tool(tool_id);
+        u16 index = tool.GetIconId();
+        controller->resource_sprite.SetResource(controller->entity->GetGameObject()->vfunc_64(), index);
+        controller->resource_index = index;
+    }
+    action = 4;
+    show_tool_countdown = 20;
+    skip_action_update = true;
+    SetAnim((u16)GetActionAnimation());
+    action_active = true;
+}
+
+void FarmingTutorialPlayer::BeginHoldingGraphic(u16 resource_index, bool alternate_archive)
+{
+    held_graphic_id = resource_index;
+    {
+        FarmingTutorialHeldGraphic & held = graphic;
+        held.visible = 1;
+        held.shadow_visible = 0;
+        held.SetPosition(0, 0, 21 << 16);
+    }
+    FarmingTutorialPlayerSpriteController * controller =
+        static_cast<FarmingTutorialPlayerSpriteController *>(unk_10.Get());
+    if (controller != 0) {
+        if (!alternate_archive)
+            controller->resource_sprite.SetResource(controller->entity->GetGameObject()->vfunc_64(), resource_index);
+        else
+            controller->resource_sprite.SetResource(controller->entity->GetGameObject()->vfunc_68(), resource_index);
+    }
+    action = 3;
+    switch (static_cast<i32>(GetFacing())) {
+    case FACING_LEFT: graphic.SetPosition(-(10 << 16), 0, 12 << 16); break;
+    case FACING_RIGHT: graphic.SetPosition(10 << 16, 0, 12 << 16); break;
+    case FACING_UP: graphic.SetPosition(0, -(10 << 16), 12 << 16); break;
+    case FACING_DOWN: graphic.SetPosition(0, 10 << 16, 12 << 16); break;
+    }
+    skip_action_update = true;
+    SetAnim((u16)GetActionAnimation());
+    action_active = true;
+}
+
+void FarmingTutorialPlayer::ThrowHeldItem()
+{
+    switch (static_cast<i32>(GetFacing())) {
+    case FACING_LEFT: graphic.SetVelocity(-0x1AAAA, 0, 0); break;
+    case FACING_RIGHT: graphic.SetVelocity(0x1AAAA, 0, 0); break;
+    case FACING_UP: graphic.SetVelocity(0, -0x1AAAA, 0); break;
+    case FACING_DOWN: graphic.SetVelocity(0, 0x1AAAA, 0); break;
+    }
+    action = 1;
+    skip_action_update = true;
+    SetAnim((u16)GetActionAnimation());
+    action_active = true;
+}
 
 void FarmingTutorialPlayer::UseHeldItem()
 {
@@ -27102,47 +26849,22 @@ FarmingTutorialPlayerSpriteController::FarmingTutorialPlayerSpriteController(AAc
 {
 }
 
+void FarmingTutorialPlayerSpriteController::Update()
+{
+    EntitySpriteController::Update();
+    FarmingTutorialPlayer * player = static_cast<FarmingTutorialPlayer *>(entity);
+    if (player->graphic.IsVisible()) {
+        if (resource_sprite.unk_3F == 0) {
+            IndexedResourceUpdateResult result = UpdateIndexedResourceHandle(&resource_sprite.handle);
+            if (result.flags.group_changed)
+                resource_sprite.unk_3C = 1;
+        } else {
+            resource_sprite.unk_3F = 0;
+        }
+    }
+}
+
 asm_unified(
-    ".text\n"
-    "    thumb_func_start Update__37FarmingTutorialPlayerSpriteController\n"
-    "Update__37FarmingTutorialPlayerSpriteController: @ 0x0802BFA0\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    bl Update__22EntitySpriteController\n"
-    "    ldr r0, [r4]\n"
-    "    adds r0, #0x38\n"
-    "    movs r1, #0\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #1\n"
-    "    bne .L0802BFB6\n"
-    "    movs r1, #1\n"
-    ".L0802BFB6:\n"
-    "    cmp r1, #0\n"
-    "    beq .L0802BFDE\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0xcb\n"
-    "    ldrb r0, [r1]\n"
-    "    cmp r0, #0\n"
-    "    bne .L0802BFDA\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xb4\n"
-    "    bl UpdateIndexedResourceHandle\n"
-    "    lsls r0, r0, #0x1e\n"
-    "    cmp r0, #0\n"
-    "    bge .L0802BFDE\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0xc8\n"
-    "    movs r0, #1\n"
-    "    b .L0802BFDC\n"
-    ".L0802BFDA:\n"
-    "    movs r0, #0\n"
-    ".L0802BFDC:\n"
-    "    strb r0, [r1]\n"
-    ".L0802BFDE:\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
     "    thumb_func_start Draw__37FarmingTutorialPlayerSpriteControllerRC17EntityDrawContext\n"
     "Draw__37FarmingTutorialPlayerSpriteControllerRC17EntityDrawContext: @ 0x0802BFE4\n"
     "    push {r4, r5, r6, r7, lr}\n"

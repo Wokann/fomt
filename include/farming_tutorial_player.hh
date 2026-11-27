@@ -11,8 +11,30 @@ struct FarmingTutorialHeldGraphic {
     {
     }
 
-    bool visible;
-    bool shadow_visible;
+    void SetPosition(i32 x, i32 y, i32 z)
+    {
+        x_offset = x;
+        y_offset = y;
+        height = z;
+    }
+
+    void SetVelocity(i32 x, i32 y, i32 z)
+    {
+        x_velocity = x;
+        y_velocity = y;
+        vertical_velocity = z;
+    }
+
+    bool IsVisible() const
+    {
+        bool visible = false;
+        if (this->visible == 1)
+            visible = true;
+        return visible;
+    }
+
+    u8 visible;
+    u8 shadow_visible;
     i32 x_offset;
     i32 y_offset;
     i32 x_velocity;
