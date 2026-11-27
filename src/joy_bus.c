@@ -10,69 +10,22 @@ void InitializeJoyBusContext(JoyBusContext * context)
     gJoyBusContext = context;
     context->state = 0;
     ResetJoyBusCommandQueue();
-    gJoyBusContext->unk_04 = 0;
-    gJoyBusContext->unk_08 = 0;
+    gJoyBusContext->local_code = 0;
+    gJoyBusContext->remote_code = 0;
 }
 
 asm_unified(
-    ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-#if defined(REGION_JP)
-    "    .align 2, 0\n"
-    "\n"
-    "    .global ResetJoyBusLinkRegisters\n"
-    "    .thumb_func\n"
-    "ResetJoyBusLinkRegisters:\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .align 2, 0\n"
-    "\n"
-    "\tthumb_func_start ResetJoyBusLinkRegisters\n"
-    "ResetJoyBusLinkRegisters: @ 0x080D02EC\n"
-    "\t.ifdef REGION_DE\n"
-    "\t@ DE shares the extended link-register reset used by the EU build.\n"
-    "\tldr r1, .L080D02EC_DE\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #7\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tadds r1, #(REG_RCNT - REG_SIOCNT)\n"
-    "\tmovs r0, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080D02EC_DE: .word REG_SIOCNT\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t@ EU places a small link-register reset here before the common runtime\n"
-    "\t@ initializer.  It occupies 0x18 bytes in the original regional layout.\n"
-    "\tldr r1, .L080D02EC_EU\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #7\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tadds r1, #(REG_RCNT - REG_SIOCNT)\n"
-    "\tmovs r0, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080D02EC_EU: .word REG_SIOCNT\n"
-    "\t.else\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    "\t.endif\n"
-    "\t.endif\n"
-    "\n"
-    "\t.ifdef REGION_DE\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t.else\n"
-    "\t.endif\n"
-    "\t.endif\n"
-#endif
 );
+
+void ResetJoyBusLinkRegisters(void)
+{
+#if defined(REGION_EU) || defined(REGION_DE)
+    REG_SIOCNT = SIO_MULTI_MODE | SIO_INTR_ENABLE;
+    REG_RCNT = 0;
+#endif
+}
 
 void StartJoyBusCommunication(void)
 {
@@ -230,8 +183,8 @@ asm_unified(
 
 void func_080D0444(u32 a, u32 b)
 {
-    gJoyBusContext->unk_04 = a;
-    gJoyBusContext->unk_08 = b;
+    gJoyBusContext->local_code = a;
+    gJoyBusContext->remote_code = b;
 }
 
 void func_080D0454(u32 mode)
@@ -528,7 +481,7 @@ asm_unified(
     "\tands r0, r4\n"
     "\tcmp r0, #0\n"
     "\tbeq .L080CFFD8\n"
-    "\tbl func_080D0A14\n"
+    "\tbl HandleJoyBusResetSignal\n"
     ".L080CFFD8:\n"
     "\tcmp r5, #0\n"
     "\tbeq .L080CFFE8\n"
@@ -902,39 +855,7 @@ asm_unified(
     "\tpop {r4, r5}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "    .global func_080D0A14\n"
-    "    .thumb_func\n"
-    "func_080D0A14: @ 0x080D0298\n"
-    "\tpush {lr}\n"
-    "\tldr r0, .L080D02C8 @ =gCurrentJoyBusCommand\n"
-    "\tldr r2, [r0]\n"
-    "\tldr r0, [r2]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080D02C4\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tcmp r0, #2\n"
-    "\tbhi .L080D02C4\n"
-    "\tldr r0, .L080D02CC @ =REG_JOY_RECV\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L080D02D0 @ =REG_JOY_TRANS\n"
-    "\tldr r0, .L080D02D4 @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tstr r0, [r1]\n"
-    "\tadds r1, #4\n"
-    "\tmovs r0, #0x20\n"
-    "\tstrh r0, [r1]\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r2, #4]\n"
-    ".L080D02C4:\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D02C8: .word gCurrentJoyBusCommand\n"
-    ".L080D02CC: .word REG_JOY_RECV\n"
-    ".L080D02D0: .word REG_JOY_TRANS\n"
-    ".L080D02D4: .word gJoyBusContext\n"
+
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1063,8 +984,8 @@ asm_unified(
 
 void func_080D0444(u32 a, u32 b)
 {
-    gJoyBusContext->unk_04 = a;
-    gJoyBusContext->unk_08 = b;
+    gJoyBusContext->local_code = a;
+    gJoyBusContext->remote_code = b;
 }
 
 void func_080D0454(u32 mode)
@@ -1360,7 +1281,7 @@ asm_unified(
     "\tands r0, r4\n"
     "\tcmp r0, #0\n"
     "\tbeq .L080D0754\n"
-    "\tbl func_080D0A14\n"
+    "\tbl HandleJoyBusResetSignal\n"
     ".L080D0754:\n"
     "\tcmp r5, #0\n"
     "\tbeq .L080D0764\n"
@@ -1735,47 +1656,20 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "\tthumb_func_start func_080D0A14\n"
-    "func_080D0A14: @ 0x080D0A14\n"
-    "\tpush {lr}\n"
-    "\tldr r0, .L080D0A44 @ =gCurrentJoyBusCommand\n"
-    "\tldr r2, [r0]\n"
-    "\tldr r0, [r2]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080D0A40\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tcmp r0, #2\n"
-    "\tbhi .L080D0A40\n"
-    "\tldr r0, .L080D0A48 @ =REG_JOY_RECV\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L080D0A4C @ =REG_JOY_TRANS\n"
-    "\tldr r0, .L080D0A50 @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tstr r0, [r1]\n"
-    "\tadds r1, #4\n"
-    "\tmovs r0, #0x20\n"
-    "\tstrh r0, [r1]\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r2, #4]\n"
-    ".L080D0A40:\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0A44: .word gCurrentJoyBusCommand\n"
-    ".L080D0A48: .word REG_JOY_RECV\n"
-    ".L080D0A4C: .word REG_JOY_TRANS\n"
-    ".L080D0A50: .word gJoyBusContext\n"
-    "\n"
-    "\t.ifdef REGION_DE\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t.else\n"
-    "\t.endif\n"
-    "\t.endif\n"
+
 );
 #endif
+
+void HandleJoyBusResetSignal(void)
+{
+    JoyBusCommand * command = gCurrentJoyBusCommand;
+    if (command->kind == 1 && command->unk_04 <= 2) {
+        (void)REG_JOY_RECV;
+        REG_JOY_TRANS = gJoyBusContext->local_code;
+        REG_JOYSTAT = 0x20;
+        ++command->unk_04;
+    }
+}
 
 void FinishJoyBusCommand(u32 result)
 {
@@ -1829,259 +1723,29 @@ void DisableJoyBusInterrupt(void)
     REG_IME = enabled;
 }
 
-asm_unified(
-    ".text\n"
-#if defined(REGION_JP)
-    "    .align 2, 0\n"
-    "\n"
-    "    .global ConfigureJoyBusRegisters\n"
-    "    .thumb_func\n"
-    "ConfigureJoyBusRegisters:\n"
-    "    push {r4, lr}\n"
-    "    adds r3, r1, #0\n"
-    "    ldr r2, .LJoySetupIme\n"
-    "    ldrh r1, [r2]\n"
-    "    adds r4, r1, #0\n"
-    "    movs r1, #0\n"
-    "    strh r1, [r2]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080D03B4\n"
-    "    ldr r1, .LJoySetupRcnt\n"
-    "    movs r2, #0x80\n"
-    "    lsls r2, r2, #8\n"
-    "    adds r0, r2, #0\n"
-    "    strh r0, [r1]\n"
-    "    .Lauto_080D03B4:\n"
-    "    ldr r1, .LJoySetupRcnt\n"
-    "    movs r2, #0xc0\n"
-    "    lsls r2, r2, #8\n"
-    "    adds r0, r2, #0\n"
-    "    strh r0, [r1]\n"
-    "    cmp r3, #0\n"
-    "    bne .Lauto_080D03D4\n"
-    "    ldr r0, .LJoySetupStat\n"
-    "    strh r3, [r0]\n"
-    "    b .Lauto_080D03DA\n"
-    ".LJoySetupIme: .word REG_IME\n"
-    ".LJoySetupRcnt: .word REG_RCNT\n"
-    ".LJoySetupStat: .word REG_JOYSTAT\n"
-    "    .Lauto_080D03D4:\n"
-    "    ldr r1, .LJoySetupStatAfter\n"
-    "    movs r0, #0x30\n"
-    "    strh r0, [r1]\n"
-    "    .Lauto_080D03DA:\n"
-    "    ldr r0, .LJoySetupReceive\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r1, .LJoySetupTransmit\n"
-    "    movs r0, #0\n"
-    "    str r0, [r1]\n"
-    "    subs r1, #(REG_JOY_TRANS - REG_JOYCNT)\n"
-    "    movs r0, #0x47\n"
-    "    strh r0, [r1]\n"
-    "    adds r1, #(REG_IF - REG_JOYCNT)\n"
-    "    movs r0, #INTR_FLAG_SERIAL\n"
-    "    strh r0, [r1]\n"
-    "    ldr r0, .LJoySetupRestoreIme\n"
-    "    strh r4, [r0]\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".LJoySetupStatAfter: .word REG_JOYSTAT\n"
-    ".LJoySetupReceive: .word REG_JOY_RECV\n"
-    ".LJoySetupTransmit: .word REG_JOY_TRANS\n"
-    ".LJoySetupRestoreIme: .word REG_IME\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\t.ifdef REGION_DE\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t.else\n"
-    "\t.endif\n"
-    "\t.endif\n"
-    "    .align 2, 0\n"
-    "\n"
-    "\tthumb_func_start ConfigureJoyBusRegisters\n"
-    "ConfigureJoyBusRegisters: @ 0x080D0B14\n"
-    "\t.ifdef REGION_DE\n"
-    "\t@ DE uses the same expanded hardware-reset routine as EU.\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r1, #0\n"
-    "\tldr r2, .L080D0B14_DE_0208\n"
-    "\tldrh r1, [r2]\n"
-    "\tadds r5, r1, #0\n"
-    "\tmovs r3, #0\n"
-    "\tstrh r3, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080D0B14_DE_0134\n"
-    "\tldr r0, .L080D0B14_DE_0128\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #7\n"
-    "\tadds r1, r2, #0\n"
-    "\tstrh r1, [r0]\n"
-    "\tadds r0, #(REG_RCNT - REG_SIOCNT)\n"
-    "\tstrh r3, [r0]\n"
-    ".L080D0B14_DE_0134:\n"
-    "\tldr r1, .L080D0B14_DE_0134_VALUE\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #8\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tcmp r4, #0\n"
-    "\tbne .L080D0B14_DE_0158_SET\n"
-    "\tldr r0, .L080D0B14_DE_0158\n"
-    "\tstrh r4, [r0]\n"
-    "\tb .L080D0B14_DE_0150_RESET\n"
-    "\t.align 2, 0\n"
-    ".L080D0B14_DE_0208: .word REG_IME\n"
-    ".L080D0B14_DE_0128: .word REG_SIOCNT\n"
-    ".L080D0B14_DE_0134_VALUE: .word REG_RCNT\n"
-    ".L080D0B14_DE_0158: .word REG_JOYSTAT\n"
-    ".L080D0B14_DE_0158_SET:\n"
-    "\tldr r1, .L080D0B14_DE_0158_SET_VALUE\n"
-    "\tmovs r0, #0x30\n"
-    "\tstrh r0, [r1]\n"
-    ".L080D0B14_DE_0150_RESET:\n"
-    "\tldr r0, .L080D0B14_DE_0150\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L080D0B14_DE_0154\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r1]\n"
-    "\tsubs r1, #(REG_JOY_TRANS - REG_JOYCNT)\n"
-    "\tmovs r0, #0x47\n"
-    "\tstrh r0, [r1]\n"
-    "\tadds r1, #(REG_IF - REG_JOYCNT)\n"
-    "\tmovs r0, #INTR_FLAG_SERIAL\n"
-    "\tstrh r0, [r1]\n"
-    "\tldr r0, .L080D0B14_DE_0208_END\n"
-    "\tstrh r5, [r0]\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0B14_DE_0158_SET_VALUE: .word REG_JOYSTAT\n"
-    ".L080D0B14_DE_0150: .word REG_JOY_RECV\n"
-    ".L080D0B14_DE_0154: .word REG_JOY_TRANS\n"
-    ".L080D0B14_DE_0208_END: .word REG_IME\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r1, #0\n"
-    "\tldr r2, .L080D0B14_EU_0208\n"
-    "\tldrh r1, [r2]\n"
-    "\tadds r5, r1, #0\n"
-    "\tmovs r3, #0\n"
-    "\tstrh r3, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080D0B14_EU_0134\n"
-    "\tldr r0, .L080D0B14_EU_0128\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #7\n"
-    "\tadds r1, r2, #0\n"
-    "\tstrh r1, [r0]\n"
-    "\tadds r0, #(REG_RCNT - REG_SIOCNT)\n"
-    "\tstrh r3, [r0]\n"
-    ".L080D0B14_EU_0134:\n"
-    "\tldr r1, .L080D0B14_EU_0134_VALUE\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #8\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tcmp r4, #0\n"
-    "\tbne .L080D0B14_EU_0158_SET\n"
-    "\tldr r0, .L080D0B14_EU_0158\n"
-    "\tstrh r4, [r0]\n"
-    "\tb .L080D0B14_EU_0150_RESET\n"
-    "\t.align 2, 0\n"
-    ".L080D0B14_EU_0208: .word REG_IME\n"
-    ".L080D0B14_EU_0128: .word REG_SIOCNT\n"
-    ".L080D0B14_EU_0134_VALUE: .word REG_RCNT\n"
-    ".L080D0B14_EU_0158: .word REG_JOYSTAT\n"
-    ".L080D0B14_EU_0158_SET:\n"
-    "\tldr r1, .L080D0B14_EU_0158_SET_VALUE\n"
-    "\tmovs r0, #0x30\n"
-    "\tstrh r0, [r1]\n"
-    ".L080D0B14_EU_0150_RESET:\n"
-    "\tldr r0, .L080D0B14_EU_0150\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L080D0B14_EU_0154\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r1]\n"
-    "\tsubs r1, #(REG_JOY_TRANS - REG_JOYCNT)\n"
-    "\tmovs r0, #0x47\n"
-    "\tstrh r0, [r1]\n"
-    "\tadds r1, #(REG_IF - REG_JOYCNT)\n"
-    "\tmovs r0, #INTR_FLAG_SERIAL\n"
-    "\tstrh r0, [r1]\n"
-    "\tldr r0, .L080D0B14_EU_0208_END\n"
-    "\tstrh r5, [r0]\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0B14_EU_0158_SET_VALUE: .word REG_JOYSTAT\n"
-    ".L080D0B14_EU_0150: .word REG_JOY_RECV\n"
-    ".L080D0B14_EU_0154: .word REG_JOY_TRANS\n"
-    ".L080D0B14_EU_0208_END: .word REG_IME\n"
-    "\t.else\n"
-    "\tpush {r4, lr}\n"
-    "\tadds r3, r1, #0\n"
-    "\tldr r2, .L080D0B44 @ =REG_IME\n"
-    "\tldrh r1, [r2]\n"
-    "\tadds r4, r1, #0\n"
-    "\tmovs r1, #0\n"
-    "\tstrh r1, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080D0B30\n"
-    "\tldr r1, .L080D0B48 @ =REG_RCNT\n"
-    "\tmovs r2, #0x80\n"
-    "\tlsls r2, r2, #8\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    ".L080D0B30:\n"
-    "\tldr r1, .L080D0B48 @ =REG_RCNT\n"
-    "\tmovs r2, #0xc0\n"
-    "\tlsls r2, r2, #8\n"
-    "\tadds r0, r2, #0\n"
-    "\tstrh r0, [r1]\n"
-    "\tcmp r3, #0\n"
-    "\tbne .L080D0B50\n"
-    "\tldr r0, .L080D0B4C @ =REG_JOYSTAT\n"
-    "\tstrh r3, [r0]\n"
-    "\tb .L080D0B56\n"
-    "\t.align 2, 0\n"
-    ".L080D0B44: .word REG_IME\n"
-    ".L080D0B48: .word REG_RCNT\n"
-    ".L080D0B4C: .word REG_JOYSTAT\n"
-    ".L080D0B50:\n"
-    "\tldr r1, .L080D0B78 @ =REG_JOYSTAT\n"
-    "\tmovs r0, #0x30\n"
-    "\tstrh r0, [r1]\n"
-    ".L080D0B56:\n"
-    "\tldr r0, .L080D0B7C @ =REG_JOY_RECV\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L080D0B80 @ =REG_JOY_TRANS\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r1]\n"
-    "\tsubs r1, #(REG_JOY_TRANS - REG_JOYCNT)\n"
-    "\tmovs r0, #0x47\n"
-    "\tstrh r0, [r1]\n"
-    "\tadds r1, #(REG_IF - REG_JOYCNT)\n"
-    "\tmovs r0, #INTR_FLAG_SERIAL\n"
-    "\tstrh r0, [r1]\n"
-    "\tldr r0, .L080D0B84 @ =REG_IME\n"
-    "\tstrh r4, [r0]\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0B78: .word REG_JOYSTAT\n"
-    ".L080D0B7C: .word REG_JOY_RECV\n"
-    ".L080D0B80: .word REG_JOY_TRANS\n"
-    ".L080D0B84: .word REG_IME\n"
-    "\t.endif\n"
-    "\t.endif\n"
+void ConfigureJoyBusRegisters(u32 reset_serial, u32 set_status_flags)
+{
+    u16 enabled = REG_IME;
+    REG_IME = 0;
+    if (reset_serial) {
+#if defined(REGION_JP) || defined(REGION_US)
+        REG_RCNT = 0x8000;
+#elif defined(REGION_EU) || defined(REGION_DE)
+        REG_SIOCNT = SIO_MULTI_MODE | SIO_INTR_ENABLE;
+        REG_RCNT = 0;
 #endif
-);
+    }
+    REG_RCNT = 0xC000;
+    if (set_status_flags == 0)
+        REG_JOYSTAT = 0;
+    else
+        REG_JOYSTAT = 0x30;
+    (void)REG_JOY_RECV;
+    REG_JOY_TRANS = 0;
+    REG_JOYCNT = 0x47;
+    REG_IF = INTR_FLAG_SERIAL;
+    REG_IME = enabled;
+}
 
 void ResetJoyBusCommandQueue(void)
 {

@@ -19,8 +19,8 @@ struct JoyBusCommand {
 // Undecoded protocol fields keep their offsets rather than guessed meanings.
 struct JoyBusContext {
     u32 state;
-    u32 unk_04;
-    u32 unk_08;
+    u32 local_code;
+    u32 remote_code;
     u32 unk_0C;
     u32 unk_10;
     u32 unk_14;
@@ -60,9 +60,9 @@ void AdvanceJoyBusCommandQueue(void);
 u32 IsJoyBusCommandQueueEmpty(void);
 void ClearJoyBusCommandQueue(void);
 
-// These hardware/protocol routines still use their original assembly bodies.
 // Link-register reset is a no-op in JP/US, with real writes in EU/DE.
 void ResetJoyBusLinkRegisters(void);
+void HandleJoyBusResetSignal(void);
 u32 UpdateJoyBusCommunication(void);
 void ConfigureJoyBusRegisters(u32 reset_serial, u32 set_status_flags);
 
