@@ -748,19 +748,14 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    thumb_func_start GetMotion__C13WildDogState3PC12WildDogActor\n"
-    "GetMotion__C13WildDogState3PC12WildDogActor:\n"
-    "    push\t{lr}\n"
-    "    ldr\tr0, [r1, #52]\t@ 0x34\n"
-    "    ldrb\tr0, [r0, #18]\n"
-    "    movs\tr1, #0\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_08039702\n"
-    "    movs\tr1, #3\n"
-    ".LwildDog_08039702:\n"
-    "    adds\tr0, r1, #0\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+u32 WildDogState3::GetMotion(WildDogActor const * actor) const
+{
+    return actor->saved_model->attack.attacking ? 3 : 0;
+}
+
+asm_unified(
     "    thumb_func_start Update__13WildDogState4P12WildDogActorP19ActorMovementBounds\n"
     "Update__13WildDogState4P12WildDogActorP19ActorMovementBounds:\n"
     "    push\t{r4, r5, r6, r7, lr}\n"
@@ -1369,39 +1364,20 @@ u32 GetWildDogMotionAnimation(WildDogActor const * actor, u32 motion)
     return gWildDogMotionAnimations[motion];
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start GetWildDogMotionSpeed\n"
-    "GetWildDogMotionSpeed:\n"
-    "    push\t{lr}\n"
-    "    cmp\tr1, #4\n"
-    "    bhi .LwildDog_08039D90\n"
-    "    lsls\tr0, r1, #2\n"
-    "    ldr r1, .LwildDog_08039D6C\n"
-    "    adds\tr0, r0, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    mov\tpc, r0\n"
-    ".LwildDog_08039D6C: .word .LwildDog_08039D70\n"
-    ".LwildDog_08039D70: .word .LwildDog_08039D90\n"
-    "    .word .LwildDog_08039D84\n"
-    "    .word .LwildDog_08039D8A\n"
-    "    .word .LwildDog_08039D90\n"
-    "    .word .LwildDog_08039D90\n"
-    ".LwildDog_08039D84:\n"
-    "    movs r0, #128\n"
-    "    lsls r0, r0, #8\n"
-    "    b .LwildDogLocal_41322_0\n"
-    ".LwildDog_08039D8A:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #9\n"
-    "    b .LwildDogLocal_41322_0\n"
-    ".LwildDog_08039D90:\n"
-    "    movs\tr0, #0\n"
-    ".LwildDogLocal_41322_0:\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-);
+i32 GetWildDogMotionSpeed(WildDogActor const * actor, u32 motion)
+{
+    switch (motion) {
+    case 1:
+        return ENTITY_MOVE_SPEED_Q16_HALF_PIXEL_PER_FRAME;
+    case 2:
+        return ENTITY_MOVE_SPEED_Q16_1_PIXEL_PER_FRAME;
+    case 0:
+    case 3:
+    case 4:
+    default:
+        return 0;
+    }
+}
 
 bool WildDogActor::CanBeHit() const
 {
@@ -1415,10 +1391,10 @@ void WildDogActor::ReactToToolHit()
 
     AnimalReactionPayload payload;
 
-    payload.bits.timer = 240 + RandomBelow(120);
-    payload.bits.constant = 0x3C;
-    payload.bits.kind = 0;
-    payload.bits.reserved = 0;
+    payload.bits.frames_remaining = 240 + RandomBelow(120);
+    payload.bits.retreat_frames = 0x3C;
+    payload.bits.target_is_dog = 0;
+    payload.bits.retarget_frames = 0;
 
     func_0809C0C8(*saved_model, payload.raw);
     func_0809C068(*saved_model, 15);
@@ -1435,10 +1411,10 @@ void WildDogActor::ReactToDogAttack()
 
     AnimalReactionPayload payload;
 
-    payload.bits.timer = 240 + RandomBelow(120);
-    payload.bits.constant = 0x3C;
-    payload.bits.kind = 1;
-    payload.bits.reserved = 0;
+    payload.bits.frames_remaining = 240 + RandomBelow(120);
+    payload.bits.retreat_frames = 0x3C;
+    payload.bits.target_is_dog = 1;
+    payload.bits.retarget_frames = 0;
 
     func_0809C0C8(*saved_model, payload.raw);
     func_0809C068(*saved_model, 4);

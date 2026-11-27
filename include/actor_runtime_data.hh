@@ -2,6 +2,14 @@
 #define ACTOR_RUNTIME_DATA_HH
 
 #include "actor.hh"
+#include "animal.hh"
+
+struct WildDogAttackState
+{
+    u16 frames_remaining;
+    u8 attacking;
+    u8 target_entity;
+};
 
 struct Unk_Actor_0809BFE8 : Actor
 {
@@ -9,7 +17,11 @@ struct Unk_Actor_0809BFE8 : Actor
 
     u32 unk_08_0 : 7;
     u32 unk_0C;
-    u32 unk_10;
+    union {
+        u32 unk_10;
+        WildDogAttackState attack;
+        AnimalReactionPayload reaction;
+    };
     u32 unk_14;
 };
 

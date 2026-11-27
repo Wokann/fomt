@@ -6,8 +6,24 @@
 #include "livestock.hh"
 #include "unknown_types.hh"
 
+// Ordinary movement uses only the first word of the saved state payload.
+struct BarnAnimalMovementState
+{
+    u16 frames_remaining;
+    u8 behavior;
+    u8 unknown_03;
+};
+
 struct BarnAnimal : public Livestock
 {
+    enum State
+    {
+        STATE_MOVEMENT,
+        STATE_REACTION,
+        STATE_APPROACH,
+        STATE_PUSHED,
+    };
+
     BarnAnimal(char const * name, ActorLocation const & location, u32 age, u32 days_fed);
     BarnAnimal(ActorLocation const & location, u32 age, u32 days_fed);
 
@@ -17,7 +33,7 @@ struct BarnAnimal : public Livestock
     void SetFed();
     void StartPregnancy();
     void ResetPregnancy();
-    void method_0809B940(UnkBarnAnimal2C const * param);
+    void SetMovementState(BarnAnimalMovementState const * param);
     void SetReaction(AnimalReactionPayload const * param);
     void SetApproachState(AnimalApproachPayload const * param);
     void SetPushedState(UnkBarnAnimal2C const * command);
@@ -26,9 +42,9 @@ struct BarnAnimal : public Livestock
     /* +24 */ bool pregnant : 1;
     /* +24 */ u32 days_pregnant : 5;
     /* +24 */ u32 days_pregnant_healthy : 5;
-    /* +28 */ u32 unk_28;
+    /* +28 */ u32 state;
     /* +2C */ union {
-        UnkBarnAnimal2C_x2 unk_2C;
+        BarnAnimalMovementState movement;
         AnimalApproachPayload approach;
         AnimalReactionPayload reaction;
     };

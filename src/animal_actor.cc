@@ -13,15 +13,15 @@
 
 static inline u32 GetBarnAnimalBehavior(BarnAnimal const & animal)
 {
-    switch (static_cast<i32>(animal.unk_28)) {
+    switch (static_cast<i32>(animal.state)) {
     default:
         return 0;
-    case 0:
-        return animal.unk_2C.a.unk_02;
-    case 1:
-        return (animal.unk_2C.a.unk_02 & 0x7F) ? 6 : 1;
-    case 2:
-    case 3:
+    case BarnAnimal::STATE_MOVEMENT:
+        return animal.movement.behavior;
+    case BarnAnimal::STATE_REACTION:
+        return animal.reaction.bits.retreat_frames ? 6 : 1;
+    case BarnAnimal::STATE_APPROACH:
+    case BarnAnimal::STATE_PUSHED:
         return 1;
     }
 }
@@ -3749,10 +3749,10 @@ void DogActor::ReactToToolHit()
     if (dog->unk_20 == 5)
         DropBall();
     AnimalReactionPayload command;
-    command.bits.timer = 240 + RandomBelow(120);
-    command.bits.constant = 60;
-    command.bits.kind = 0;
-    command.bits.reserved = 0;
+    command.bits.frames_remaining = 240 + RandomBelow(120);
+    command.bits.retreat_frames = 60;
+    command.bits.target_is_dog = 0;
+    command.bits.retarget_frames = 0;
     dog->SetReaction(&command);
     SetBehavior(GetBehavior(), facing);
     dog->SubtractAffection(10);
@@ -3774,7 +3774,8 @@ void DogActor::RespondToCall(Location const & origin)
             if (dog->unk_20 == 5)
                 DropBall();
             AnimalApproachPayload command;
-            command.frames = static_cast<u16>(480 + affection * 960 / 251);
+            command.frames_remaining = static_cast<u16>(480 + affection * 960 / 251);
+            command.retarget_frames = 0;
             dog->SetApproachState(&command);
             if (!unk_40)
                 SetBehavior(GetBehavior(), facing);
@@ -3798,7 +3799,8 @@ extern "C" void NotifyDogActorBallLanded(DogActor * actor, Location const & orig
             if (actor->dog->unk_20 == 5)
                 actor->DropBall();
             AnimalApproachPayload command;
-            command.frames = static_cast<u16>(480 + adequacy * 960 / 251);
+            command.frames_remaining = static_cast<u16>(480 + adequacy * 960 / 251);
+            command.retarget_frames = 0;
             actor->dog->SetBallChaseState(&command);
             if (!actor->unk_40)
                 actor->SetBehavior(actor->GetBehavior(), actor->facing);
@@ -6092,7 +6094,8 @@ void HorseActor::RespondToCall(Location const & origin)
         i32 dy = origin.GetY() - pixel_y;
         if (dx * dx + dy * dy <= radius * radius) {
             AnimalApproachPayload command;
-            command.frames = static_cast<u16>(480 + horse->GetAffection() * 960 / 256);
+            command.frames_remaining = static_cast<u16>(480 + horse->GetAffection() * 960 / 256);
+            command.retarget_frames = 0;
             horse->SetApproachState(&command);
             if (!unk_3D)
                 SetBehavior(GetBehavior(), facing);
@@ -7348,10 +7351,10 @@ bool ChickenActor::CanBeAttackedByWildDog() const
 void ChickenActor::ReactToToolHit()
 {
     AnimalReactionPayload command;
-    command.bits.timer = 240 + RandomBelow(120);
-    command.bits.constant = 60;
-    command.bits.kind = 0;
-    command.bits.reserved = 0;
+    command.bits.frames_remaining = 240 + RandomBelow(120);
+    command.bits.retreat_frames = 60;
+    command.bits.target_is_dog = 0;
+    command.bits.retarget_frames = 0;
     livestock->SetReaction(&command);
     SetBehavior(GetBehavior(), facing);
     livestock->SubtractAffection(10);
@@ -7376,10 +7379,10 @@ asm_unified(
 void ChickenActor::ReactToDogAttack()
 {
     AnimalReactionPayload command;
-    command.bits.timer = 240 + RandomBelow(120);
-    command.bits.constant = 60;
-    command.bits.kind = 1;
-    command.bits.reserved = 0;
+    command.bits.frames_remaining = 240 + RandomBelow(120);
+    command.bits.retreat_frames = 60;
+    command.bits.target_is_dog = 1;
+    command.bits.retarget_frames = 0;
     livestock->SetReaction(&command);
     SetBehavior(GetBehavior(), facing);
     livestock->SubtractAffection(10);
@@ -7450,10 +7453,10 @@ CowActor::~CowActor()
 
 void CowActor::PauseMovement(u32 frames)
 {
-    UnkBarnAnimal2C command;
-    command.unk_00 = frames;
-    command.unk_02 = 0;
-    livestock->method_0809B940(&command);
+    BarnAnimalMovementState command;
+    command.frames_remaining = frames;
+    command.behavior = 0;
+    livestock->SetMovementState(&command);
     SetBehavior(GetBehavior(), facing);
 }
 
@@ -8063,7 +8066,7 @@ asm_unified(
     "    add r1, sp, #0x68\n"
     ".Lraw_code_entities_5777_0:\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C8CowActor\n"
     "    adds r1, r0, #0\n"
@@ -8188,7 +8191,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C8CowActor\n"
     "    adds r1, r0, #0\n"
@@ -8842,7 +8845,7 @@ asm_unified(
     "    add r1, sp, #0x68\n"
     ".Lraw_code_entities_39477_14:\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C8CowActor\n"
     "    adds r1, r0, #0\n"
@@ -8967,7 +8970,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C8CowActor\n"
     "    adds r1, r0, #0\n"
@@ -9077,7 +9080,8 @@ void CowActor::RespondToBell(Location const & origin)
                 chance = livestock->IsUnhappy() ? 70 : 100;
             if (RandomBelow(100) < chance) {
                 AnimalApproachPayload command;
-                command.frames = static_cast<u16>(480 + affection * 960 / 256);
+                command.frames_remaining = static_cast<u16>(480 + affection * 960 / 256);
+                command.retarget_frames = 0;
                 livestock->SetApproachState(&command);
                 SetBehavior(GetBehavior(), facing);
             }
@@ -9088,11 +9092,11 @@ void CowActor::RespondToBell(Location const & origin)
 
 void CowActor::vfunc_40()
 {
-    if (livestock->unk_28 == 3) {
-        UnkBarnAnimal2C command;
-        command.unk_00 = 180;
-        command.unk_02 = 0;
-        livestock->method_0809B940(&command);
+    if (livestock->state == BarnAnimal::STATE_PUSHED) {
+        BarnAnimalMovementState command;
+        command.frames_remaining = 180;
+        command.behavior = 0;
+        livestock->SetMovementState(&command);
         SetBehavior(GetBehavior(), facing);
     }
 }
@@ -9209,10 +9213,10 @@ void CowActor::ReactToToolHit()
 {
     if (!livestock->IsPregnant()) {
         AnimalReactionPayload command;
-        command.bits.timer = 240 + RandomBelow(120);
-        command.bits.constant = 60;
-        command.bits.kind = 0;
-        command.bits.reserved = 0;
+        command.bits.frames_remaining = 240 + RandomBelow(120);
+        command.bits.retreat_frames = 60;
+        command.bits.target_is_dog = 0;
+        command.bits.retarget_frames = 0;
         livestock->SetReaction(&command);
         SetBehavior(GetBehavior(), facing);
     }
@@ -9266,10 +9270,10 @@ void CowActor::ReactToDogAttack()
 {
     if (!livestock->IsPregnant()) {
         AnimalReactionPayload command;
-        command.bits.timer = 240 + RandomBelow(120);
-        command.bits.constant = 60;
-        command.bits.kind = 1;
-        command.bits.reserved = 0;
+        command.bits.frames_remaining = 240 + RandomBelow(120);
+        command.bits.retreat_frames = 60;
+        command.bits.target_is_dog = 1;
+        command.bits.retarget_frames = 0;
         livestock->SetReaction(&command);
         SetBehavior(GetBehavior(), facing);
     }
@@ -9478,10 +9482,10 @@ SheepActor::~SheepActor()
 
 void SheepActor::PauseMovement(u32 frames)
 {
-    UnkBarnAnimal2C command;
-    command.unk_00 = frames;
-    command.unk_02 = 0;
-    livestock->method_0809B940(&command);
+    BarnAnimalMovementState command;
+    command.frames_remaining = frames;
+    command.behavior = 0;
+    livestock->SetMovementState(&command);
     SetBehavior(GetBehavior(), facing);
 }
 
@@ -10101,7 +10105,7 @@ asm_unified(
     "    add r1, sp, #0x68\n"
     ".Lraw_code_entities_7219_0:\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C10SheepActor\n"
     "    adds r1, r0, #0\n"
@@ -10226,7 +10230,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C10SheepActor\n"
     "    adds r1, r0, #0\n"
@@ -10890,7 +10894,7 @@ asm_unified(
     "    add r1, sp, #0x68\n"
     ".Lraw_code_entities_40298_6:\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C10SheepActor\n"
     "    adds r1, r0, #0\n"
@@ -11015,7 +11019,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    mov r0, sb\n"
-    "    bl method_0809B940__10BarnAnimalPC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
     "    mov r0, r8\n"
     "    bl GetBehavior__C10SheepActor\n"
     "    adds r1, r0, #0\n"
@@ -11124,7 +11128,8 @@ void SheepActor::RespondToBell(Location const & origin)
                 chance = livestock->IsUnhappy() ? 70 : 100;
             if (RandomBelow(100) < chance) {
                 AnimalApproachPayload command;
-                command.frames = static_cast<u16>(480 + livestock->GetAffection() * 960 / 256);
+                command.frames_remaining = static_cast<u16>(480 + livestock->GetAffection() * 960 / 256);
+                command.retarget_frames = 0;
                 livestock->SetApproachState(&command);
                 SetBehavior(GetBehavior(), facing);
             }
@@ -11135,11 +11140,11 @@ void SheepActor::RespondToBell(Location const & origin)
 
 void SheepActor::vfunc_40()
 {
-    if (livestock->unk_28 == 3) {
-        UnkBarnAnimal2C command;
-        command.unk_00 = 180;
-        command.unk_02 = 0;
-        livestock->method_0809B940(&command);
+    if (livestock->state == BarnAnimal::STATE_PUSHED) {
+        BarnAnimalMovementState command;
+        command.frames_remaining = 180;
+        command.behavior = 0;
+        livestock->SetMovementState(&command);
         SetBehavior(GetBehavior(), facing);
     }
 }
@@ -11256,10 +11261,10 @@ void SheepActor::ReactToToolHit()
 {
     if (!livestock->IsPregnant()) {
         AnimalReactionPayload command;
-        command.bits.timer = 240 + RandomBelow(120);
-        command.bits.constant = 60;
-        command.bits.kind = 0;
-        command.bits.reserved = 0;
+        command.bits.frames_remaining = 240 + RandomBelow(120);
+        command.bits.retreat_frames = 60;
+        command.bits.target_is_dog = 0;
+        command.bits.retarget_frames = 0;
         livestock->SetReaction(&command);
         SetBehavior(GetBehavior(), facing);
     }
@@ -11315,10 +11320,10 @@ void SheepActor::ReactToDogAttack()
 {
     if (!livestock->IsPregnant()) {
         AnimalReactionPayload command;
-        command.bits.timer = 240 + RandomBelow(120);
-        command.bits.constant = 60;
-        command.bits.kind = 1;
-        command.bits.reserved = 0;
+        command.bits.frames_remaining = 240 + RandomBelow(120);
+        command.bits.retreat_frames = 60;
+        command.bits.target_is_dog = 1;
+        command.bits.retarget_frames = 0;
         livestock->SetReaction(&command);
         SetBehavior(GetBehavior(), facing);
     }

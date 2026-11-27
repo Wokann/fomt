@@ -20,25 +20,28 @@ struct UnkBarnAnimal2C_x2
     /* +04 */ UnkBarnAnimal2C b;
 };
 
-// Reaction command: a 240..359-frame timer, a seven-bit value initialized
-// to 60, a tool/dog-attack flag, and a cleared high byte.
+// A reaction counts down its lifetime, initial retreat and direction refresh.
+// The target flag selects a dog instead of the player.
 union AnimalReactionPayload
 {
     u32 raw;
     struct Bits
     {
-        u32 timer : 16;
-        u32 constant : 7;
-        u32 kind : 1;
-        u32 reserved : 8;
+        u16 frames_remaining;
+        u8 retreat_frames : 7;
+        u8 target_is_dog : 1;
+        u8 retarget_frames;
     } bits;
 };
 
-// Call/bell response copies both words; known callers set only the duration.
+// Call/bell response initializes both counters; target coordinates are
+// filled when a new direction is selected.
 struct AnimalApproachPayload
 {
-    u32 frames;
-    u32 unknown_04;
+    u32 frames_remaining : 16;
+    u32 retarget_frames : 16;
+    i16 last_target_x;
+    i16 last_target_y;
 };
 
 // Returned when an animal has no stored name.

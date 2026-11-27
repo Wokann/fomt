@@ -6,9 +6,9 @@ BarnAnimal::BarnAnimal(char const * name, ActorLocation const & location, u32 ag
     pregnant = false;
     days_pregnant = 0;
     days_pregnant_healthy = 0;
-    unk_28 = 0;
-    unk_2C.a.unk_00 = 0;
-    unk_2C.a.unk_02 = 0;
+    state = STATE_MOVEMENT;
+    movement.frames_remaining = 0;
+    movement.behavior = 0;
 }
 
 BarnAnimal::BarnAnimal(ActorLocation const & location, u32 age, u32 days_fed)
@@ -17,9 +17,9 @@ BarnAnimal::BarnAnimal(ActorLocation const & location, u32 age, u32 days_fed)
     pregnant = false;
     days_pregnant = 0;
     days_pregnant_healthy = 0;
-    unk_28 = 0;
-    unk_2C.a.unk_00 = 0;
-    unk_2C.a.unk_02 = 0;
+    state = STATE_MOVEMENT;
+    movement.frames_remaining = 0;
+    movement.behavior = 0;
 }
 
 bool BarnAnimal::IsPregnant() const
@@ -62,27 +62,27 @@ void BarnAnimal::ResetPregnancy()
     days_pregnant_healthy = 0;
 }
 
-void BarnAnimal::method_0809B940(UnkBarnAnimal2C const * param)
+void BarnAnimal::SetMovementState(BarnAnimalMovementState const * param)
 {
-    unk_2C.a = *param;
-    unk_28 = 0;
+    movement = *param;
+    state = STATE_MOVEMENT;
 }
 
 void BarnAnimal::SetReaction(AnimalReactionPayload const * param)
 {
     reaction = *param;
-    unk_28 = 1;
+    state = STATE_REACTION;
 }
 
 void BarnAnimal::SetApproachState(AnimalApproachPayload const * param)
 {
     approach = *param;
-    unk_28 = 2;
+    state = STATE_APPROACH;
 }
 
 void BarnAnimal::SetPushedState(UnkBarnAnimal2C const *)
 {
-    unk_28 = 3;
+    state = STATE_PUSHED;
 }
 
 void BarnAnimal::DayUpdate(LivestockDayUpdateInfo const * info)
