@@ -18,8 +18,9 @@ struct Farmer;
 // Address-only declaration of the native ABI table; calls use PlayerActorBase.
 
 struct PlayerActor : PlayerActorBase {
+    virtual Box GetBox() const;
     /* vt+3C */ virtual u8 vfunc_3C() const;
-    /* vt+40 */ virtual bool IsRidingHorse();
+    /* vt+40 */ virtual bool IsRidingHorse() const;
     /* vt+44 */ virtual bool IsHoldingTool();
     /* vt+48 */ virtual bool TryShipHeldItem();
     /* vt+4C */ virtual void ThrowHeldItem();
@@ -95,6 +96,8 @@ EXTERN_C
 // The actual native implementation still serves the player virtual slot.
 void PlayerShowHoldingTool(PlayerActor & player, MaryItemToolId tool_id);
 EXTERN_C_END
+
+Box GetMountedPlayerBounds(i32 x, i32 y);
 
 struct Tool;
 

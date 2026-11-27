@@ -12,11 +12,11 @@ asm_unified(
     "    .word 0\n"
 #if defined(REGION_JP)
     "    .word func_08024814\n"
-    "    .word func_08024990\n"
+    "    .word GetBox__C11PlayerActor\n"
     "    .word func_0802497C\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word func_08024A80\n"
-    "    .word func_08024BFC\n"
+    "    .word GetBox__C11PlayerActor\n"
     "    .word func_08024BE8\n"
 #endif
     "    .word vfunc_14__7AEntity\n"
@@ -45,7 +45,7 @@ asm_unified(
     "    .word SetEventScript__12AActorEntityi\n"
 #if defined(REGION_JP)
     "    .word vfunc_3C__C11PlayerActor\n"
-    "    .word IsRidingHorse__11PlayerActor\n"
+    "    .word IsRidingHorse__C11PlayerActor\n"
     "    .word IsHoldingTool__11PlayerActor\n"
     "    .word func_08027990\n"
     "    .word func_080283D8\n"
@@ -53,7 +53,7 @@ asm_unified(
     "    .word func_08028E10\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word vfunc_3C__C11PlayerActor\n"
-    "    .word IsRidingHorse__11PlayerActor\n"
+    "    .word IsRidingHorse__C11PlayerActor\n"
     "    .word IsHoldingTool__11PlayerActor\n"
     "    .word func_08027BFC\n"
     "    .word func_08028644\n"

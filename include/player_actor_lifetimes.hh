@@ -76,7 +76,7 @@ struct PlayerActorBase : AActorEntity {
     PlayerActorBase(GameObject * world, GameStateSaveImage * save);
 
     /* vt+3C */ virtual u8 vfunc_3C() const = 0;
-    /* vt+40 */ virtual bool IsRidingHorse() = 0;
+    /* vt+40 */ virtual bool IsRidingHorse() const = 0;
     /* vt+44 */ virtual bool IsHoldingTool() = 0;
     /* vt+48 */ virtual bool TryShipHeldItem() = 0;
     /* vt+4C */ virtual void ThrowHeldItem() = 0;

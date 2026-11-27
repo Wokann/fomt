@@ -31,6 +31,8 @@ inline void PlayerSpriteSlots::Push(PlayerSpriteSlot const & slot)
 
 #include FOMT_TEXT_INCLUDE(player_actor.cc)
 
+
+
 // Keep the native jump table in the order of its shared mine codes.
 #define MINE_REWARD_CASE(table, code, target) \
     "    .if (. - " #table ") != (" STRINGIFY(code) " * 4)\n" \
@@ -947,84 +949,6 @@ asm_unified(
     "    pop {r4}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .global func_08024990\n"
-    "    .thumb_func\n"
-    "func_08024990:\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r1, #0\n"
-    "    ldr r0, [r4, #0x14]\n"
-    "    ldr r1, [r0, #0x40]\n"
-    "    adds r0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L080249CC\n"
-    "    movs r0, #0xA\n"
-    "    ldrsh r1, [r4, r0]\n"
-    "    movs r0, #0xE\n"
-    "    ldrsh r2, [r4, r0]\n"
-    "    mov r4, sp\n"
-    "    subs r3, r1, #7\n"
-    "    mov r0, sp\n"
-    "    strh r3, [r0]\n"
-    "    adds r0, r2, #0\n"
-    "    subs r0, #9\n"
-    "    strh r0, [r4, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r4, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r4, #6]\n"
-    "    ldr r0, [sp]\n"
-    "    ldr r1, [sp, #4]\n"
-    "    b .L080249D8\n"
-    ".L080249CC:\n"
-    "    add r0, sp, #8\n"
-    "    adds r1, r4, #0\n"
-    "    bl GetBox__C12AActorEntity\n"
-    "    ldr r0, [sp, #8]\n"
-    "    ldr r1, [sp, #0xC]\n"
-    ".L080249D8:\n"
-    "    str r0, [r5]\n"
-    "    str r1, [r5, #4]\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5}\n"
-    "    pop {r2}\n"
-    "    bx r2\n"
-    "    .align 2, 0\n"
-);
-
-extern "C" void func_080249E8(AActorEntity * self)
-{
-    self->normal_update_suspended = true;
-    StopActorSpriteEffect(*self);
-}
-
-extern "C" void func_080249F8(AActorEntity * self)
-{
-    self->normal_update_suspended = false;
-    StopActorSpriteEffect(*self);
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global func_08024A08\n"
-    "    .thumb_func\n"
-    "func_08024A08:\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, #0x3c\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #0x68\n"
-    "    strh r1, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1640,51 +1564,57 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    thumb_func_start func_08024BFC\n"
-    "func_08024BFC: @ 0x08024BFC\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r1, #0\n"
-    "    ldr r0, [r4, #0x14]\n"
-    "    ldr r1, [r0, #0x40]\n"
-    "    adds r0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08024C38\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r1, [r4, r0]\n"
-    "    movs r0, #0xe\n"
-    "    ldrsh r2, [r4, r0]\n"
-    "    mov r4, sp\n"
-    "    subs r3, r1, #7\n"
-    "    mov r0, sp\n"
-    "    strh r3, [r0]\n"
-    "    adds r0, r2, #0\n"
-    "    subs r0, #9\n"
-    "    strh r0, [r4, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r4, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r4, #6]\n"
-    "    ldr r0, [sp]\n"
-    "    ldr r1, [sp, #4]\n"
-    "    b .L08024C44\n"
-    ".L08024C38:\n"
-    "    add r0, sp, #8\n"
-    "    adds r1, r4, #0\n"
-    "    bl GetBox__C12AActorEntity\n"
-    "    ldr r0, [sp, #8]\n"
-    "    ldr r1, [sp, #0xc]\n"
-    ".L08024C44:\n"
-    "    str r0, [r5]\n"
-    "    str r1, [r5, #4]\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5}\n"
-    "    pop {r2}\n"
-    "    bx r2\n"
+);
+#endif
+
+Box PlayerActor::GetBox() const
+{
+    if (IsRidingHorse())
+    {
+        Box bounds(-7, -9, 7, 5, x_q16 >> 16, y_q16 >> 16);
+        return bounds;
+    }
+    else
+    {
+        Box bounds = AActorEntity::GetBox();
+        return bounds;
+    }
+}
+
+#if defined(REGION_JP)
+
+extern "C" void func_080249E8(AActorEntity * self)
+{
+    self->normal_update_suspended = true;
+    StopActorSpriteEffect(*self);
+}
+
+extern "C" void func_080249F8(AActorEntity * self)
+{
+    self->normal_update_suspended = false;
+    StopActorSpriteEffect(*self);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+    "    .global func_08024A08\n"
+    "    .thumb_func\n"
+    "func_08024A08:\n"
+    "    adds r2, r0, #0\n"
+    "    adds r0, #0x3c\n"
+    "    movs r1, #0\n"
+    "    strb r1, [r0]\n"
+    "    adds r0, #2\n"
+    "    strb r1, [r0]\n"
+    "    adds r0, #0x68\n"
+    "    strh r1, [r0]\n"
+    "    bx lr\n"
+    "    .align 2, 0\n"
+    "\n"
+
+);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_08024C54\n"
@@ -52219,7 +52149,7 @@ bool PlayerActor::IsHoldingTool()
     return holding_tool;
 }
 
-bool PlayerActor::IsRidingHorse()
+bool PlayerActor::IsRidingHorse() const
 {
     bool riding = false;
     if (action_state == 7 || action_state == 0x2D)
@@ -52232,42 +52162,7 @@ u8 PlayerActor::vfunc_3C() const
     return unk_C0;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global func_08031E10\n"
-    "    .thumb_func\n"
-    "func_08031E10:\n"
-    "    subs r3, r1, #7\n"
-    "    strh r3, [r0]\n"
-    "    adds r3, r2, #0\n"
-    "    subs r3, #9\n"
-    "    strh r3, [r0, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r0, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r0, #6]\n"
-    "    bx lr\n"
-    "    @ All JP raw-table targets above are direct physical labels.\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global func_0803207C\n"
-    "    .thumb_func\n"
-    "func_0803207C:\n"
-    "    subs r3, r1, #7\n"
-    "    strh r3, [r0]\n"
-    "    adds r3, r2, #0\n"
-    "    subs r3, #9\n"
-    "    strh r3, [r0, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r0, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r0, #6]\n"
-    "    bx lr\n"
-    "\n"
-    "    @ All overseas raw-table targets above are direct physical labels.\n"
-    "    @ No assembly entry aliases are retained in this module.\n"
-    "\n"
-#endif
-);
+Box GetMountedPlayerBounds(i32 x, i32 y)
+{
+    return Box(-7, -9, 7, 5, x, y);
+}
