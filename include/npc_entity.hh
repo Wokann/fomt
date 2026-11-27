@@ -24,7 +24,7 @@ struct ANpcEntity : public AActorEntity
     void const * GetScheduleContext() const;
 
     /* +30 */ Npc * npc;
-    /* +34 */ u32 unk_34;
+    /* +34 */ void const * schedule_context;
     /* +38 */ ScheduleInfo const * schedule_info;
     /* +3C */ u8 unk_3C; /* current schedule */
     /* +3D */ u8 unk_3D; /* current path */
@@ -242,8 +242,7 @@ struct ChildNpcActor : ANpcEntity {
 EXTERN_C
 
 // Test whether the selected schedule's current path starts outside the farmhouse.
-// The character associated with this particular descriptor is not yet named.
-bool func_08034C64(void const * context, GameTime const & time);
+bool IsChildScheduleOutsideFarmhouse(void const * context, GameTime const & time);
 
 void func_08035380(ANpcEntity & self);
 

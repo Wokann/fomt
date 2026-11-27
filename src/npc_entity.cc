@@ -1,15 +1,10 @@
 
 #include "npc_entity.hh"
-
-extern "C" void func_08035C04(void * actor);
-extern "C" void func_08036084(void * actor);
-extern "C" void func_08036430(void * actor);
-extern "C" void func_080365CC(void * actor);
-extern "C" void func_08036768(void * actor);
-extern "C" void func_08036900(void * actor);
-extern "C" void func_08036AB4(void * actor);
 extern "C" void func_08036E70(void * actor);
+extern "C" void func_08036768(void * actor);
+
 #include "npc.hh"
+#include "game_state_types.hh"
 #include "npc_schedule.hh"
 #include "npc_schedule_rick.hh"
 #include "npc_schedule_popuri.hh"
@@ -75,7 +70,7 @@ static inline u32 TMP_GetAnim(ANpcEntity & self)
     return self.anim_id;
 }
 
-EC bool func_08034C64(void const * context, GameTime const & time)
+EC bool IsChildScheduleOutsideFarmhouse(void const * context, GameTime const & time)
 {
     ScheduleInfo const & info = gChildScheduleData.descriptor;
     Schedule const * schedule = info.schedules[info.select_schedule(context)];
@@ -99,7 +94,7 @@ EC bool func_08034C64(void const * context, GameTime const & time)
 ANpcEntity::ANpcEntity(GameObject * game_object, Npc * npc, u32 arg_3, void const * arg_4, u32 anim_id, u32 arg_6, u32 arg_7)
     : AActorEntity(game_object, npc->GetLocation(), 2, npc->anim_id == NO_ANIM ? anim_id : npc->anim_id),
       npc(npc),
-      unk_34(arg_3),
+      schedule_context(reinterpret_cast<void const *>(arg_3)),
       schedule_info(static_cast<ScheduleInfo const *>(arg_4)),
       unk_3C(npc->unk_0C_0),
       unk_3D(npc->unk_0C_5),
@@ -4433,108 +4428,39 @@ PopuriNpcActor::PopuriNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08035C04\n"
-    "    .thumb_func\n"
-    "func_08035C04:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r7, .Lus_08035C48\n"
-    "    ldr r0, .Lus_08035C4C\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr5, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_08035C50\n"
-    "    adds\tr6, r5, r1\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr0, #3\n"
-    "    bne .Lus_08035C94\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #29\n"
-    "    bne .Lus_08035C94\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_08035C42\n"
-    "    ldr r2, .Lus_08035C54\n"
-    "    adds\tr0, r5, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_08035C5C\n"
-    ".Lus_08035C42:\n"
-    "    ldr r7, .Lus_08035C58\n"
-    "    b .Lus_08035C94\n"
-    "    .align 2, 0\n"
-    ".Lus_08035C48:\n"
-    "    .word 0x0000022F\n"
-    ".Lus_08035C4C:\n"
-    "    .word 0x00000233\n"
-    ".Lus_08035C50:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_08035C54:\n"
-    "    .word 0x0000216B\n"
-    ".Lus_08035C58:\n"
-    "    .word 0x0000023F\n"
-    ".Lus_08035C5C:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08035C94\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_08035C94\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #10\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08034C64\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08035C94\n"
-    "    ldr r7, .Lus_08035CB0\n"
-    "    ldr r0, .Lus_08035CB4\n"
-    "    mov\tr8, r0\n"
-    ".Lus_08035C94:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_08035CB0:\n"
-    "    .word 0x00000247\n"
-    ".Lus_08035CB4:\n"
-    "    .word 0x0000024B\n"
-);
+EC void RefreshPopuriNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_POPURI_IDLE;
+    u32 walk = ANIMATION_POPURI_WALK;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    NpcCollection const & npcs = game->npcs;
+    if (npcs.GetSpouseCharacterId() == CHARACTER_POPURI && self.location_map == MAP_FARMHOUSE) {
+        if (IsNpcInUpperFarmhouseStrip(self) || game->event_state.popuri_spouse_collapse_event_state == 1) {
+            idle = ANIMATION_POPURI_IN_BED;
+        } else {
+            Child const * child = npcs.GetChild();
+            if (child != nullptr && child->GetAgeDays() < CHILD_AGE_DAYS_FAMILY_SCENE_AND_INJURY_EVENT_START) {
+                if (IsChildScheduleOutsideFarmhouse(game, self.game_object->GetClock()->calendar.time)) {
+                    idle = ANIMATION_POPURI_WITH_NEWBORN;
+                    walk = ANIMATION_ID_0587;
+                }
+            }
+        }
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void PopuriNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08035C04(this);
+        RefreshPopuriNpcAnimations(*this);
 }
 
 EntityVisualController * PopuriNpcActor::CreateVisualController()
 {
-    func_08035C04(this);
+    RefreshPopuriNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -4673,108 +4599,39 @@ MaryNpcActor::MaryNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08036084\n"
-    "    .thumb_func\n"
-    "func_08036084:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r7, .Lus_080360C8\n"
-    "    ldr r0, .Lus_080360CC\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr5, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_080360D0\n"
-    "    adds\tr6, r5, r1\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr0, #12\n"
-    "    bne .Lus_08036114\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #29\n"
-    "    bne .Lus_08036114\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_080360C2\n"
-    "    ldr r2, .Lus_080360D4\n"
-    "    adds\tr0, r5, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_080360DC\n"
-    ".Lus_080360C2:\n"
-    "    ldr r7, .Lus_080360D8\n"
-    "    b .Lus_08036114\n"
-    "    .align 2, 0\n"
-    ".Lus_080360C8:\n"
-    "    .word 0x00000813\n"
-    ".Lus_080360CC:\n"
-    "    .word 0x00000817\n"
-    ".Lus_080360D0:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_080360D4:\n"
-    "    .word 0x0000216C\n"
-    ".Lus_080360D8:\n"
-    "    .word 0x00000827\n"
-    ".Lus_080360DC:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036114\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_08036114\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #10\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08034C64\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036114\n"
-    "    ldr r7, .Lus_08036130\n"
-    "    ldr r0, .Lus_08036134\n"
-    "    mov\tr8, r0\n"
-    ".Lus_08036114:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_08036130:\n"
-    "    .word 0x0000082F\n"
-    ".Lus_08036134:\n"
-    "    .word 0x00000833\n"
-);
+EC void RefreshMaryNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_MARY_IDLE;
+    u32 walk = ANIMATION_MARY_WALK;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    NpcCollection const & npcs = game->npcs;
+    if (npcs.GetSpouseCharacterId() == CHARACTER_MARY && self.location_map == MAP_FARMHOUSE) {
+        if (IsNpcInUpperFarmhouseStrip(self) || game->event_state.mary_spouse_collapse_event_state == 1) {
+            idle = ANIMATION_MARY_IN_BED;
+        } else {
+            Child const * child = npcs.GetChild();
+            if (child != nullptr && child->GetAgeDays() < CHILD_AGE_DAYS_FAMILY_SCENE_AND_INJURY_EVENT_START) {
+                if (IsChildScheduleOutsideFarmhouse(game, self.game_object->GetClock()->calendar.time)) {
+                    idle = ANIMATION_MARY_WITH_NEWBORN;
+                    walk = ANIMATION_ID_2099;
+                }
+            }
+        }
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void MaryNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08036084(this);
+        RefreshMaryNpcAnimations(*this);
 }
 
 EntityVisualController * MaryNpcActor::CreateVisualController()
 {
-    func_08036084(this);
+    RefreshMaryNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -4881,108 +4738,39 @@ KarenNpcActor::KarenNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08036430\n"
-    "    .thumb_func\n"
-    "func_08036430:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r7, .Lus_08036474\n"
-    "    ldr r0, .Lus_08036478\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr5, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_0803647C\n"
-    "    adds\tr6, r5, r1\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr0, #19\n"
-    "    bne .Lus_080364C0\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #29\n"
-    "    bne .Lus_080364C0\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_0803646E\n"
-    "    ldr r2, .Lus_08036480\n"
-    "    adds\tr0, r5, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_08036488\n"
-    ".Lus_0803646E:\n"
-    "    ldr r7, .Lus_08036484\n"
-    "    b .Lus_080364C0\n"
-    "    .align 2, 0\n"
-    ".Lus_08036474:\n"
-    "    .word 0x00000691\n"
-    ".Lus_08036478:\n"
-    "    .word 0x00000695\n"
-    ".Lus_0803647C:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_08036480:\n"
-    "    .word 0x0000216C\n"
-    ".Lus_08036484:\n"
-    "    .word 0x000006A1\n"
-    ".Lus_08036488:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080364C0\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_080364C0\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #10\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08034C64\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080364C0\n"
-    "    ldr r7, .Lus_080364DC\n"
-    "    ldr r0, .Lus_080364E0\n"
-    "    mov\tr8, r0\n"
-    ".Lus_080364C0:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_080364DC:\n"
-    "    .word 0x000006AD\n"
-    ".Lus_080364E0:\n"
-    "    .word 0x000006B1\n"
-);
+EC void RefreshKarenNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_KAREN_IDLE;
+    u32 walk = ANIMATION_KAREN_WALK;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    NpcCollection const & npcs = game->npcs;
+    if (npcs.GetSpouseCharacterId() == CHARACTER_KAREN && self.location_map == MAP_FARMHOUSE) {
+        if (IsNpcInUpperFarmhouseStrip(self) || game->event_state.karen_spouse_collapse_event_state == 1) {
+            idle = ANIMATION_KAREN_IN_BED;
+        } else {
+            Child const * child = npcs.GetChild();
+            if (child != nullptr && child->GetAgeDays() < CHILD_AGE_DAYS_FAMILY_SCENE_AND_INJURY_EVENT_START) {
+                if (IsChildScheduleOutsideFarmhouse(game, self.game_object->GetClock()->calendar.time)) {
+                    idle = ANIMATION_KAREN_WITH_NEWBORN;
+                    walk = ANIMATION_ID_1713;
+                }
+            }
+        }
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void KarenNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08036430(this);
+        RefreshKarenNpcAnimations(*this);
 }
 
 EntityVisualController * KarenNpcActor::CreateVisualController()
 {
-    func_08036430(this);
+    RefreshKarenNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -5009,108 +4797,39 @@ ElliNpcActor::ElliNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_080365CC\n"
-    "    .thumb_func\n"
-    "func_080365CC:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r7, .Lus_08036610\n"
-    "    ldr r0, .Lus_08036614\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr5, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_08036618\n"
-    "    adds\tr6, r5, r1\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr0, #21\n"
-    "    bne .Lus_0803665C\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #29\n"
-    "    bne .Lus_0803665C\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_0803660A\n"
-    "    ldr r2, .Lus_0803661C\n"
-    "    adds\tr0, r5, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #29\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_08036624\n"
-    ".Lus_0803660A:\n"
-    "    ldr r7, .Lus_08036620\n"
-    "    b .Lus_0803665C\n"
-    "    .align 2, 0\n"
-    ".Lus_08036610:\n"
-    "    .word 0x00000884\n"
-    ".Lus_08036614:\n"
-    "    .word 0x00000888\n"
-    ".Lus_08036618:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_0803661C:\n"
-    "    .word 0x0000216C\n"
-    ".Lus_08036620:\n"
-    "    .word 0x0000089C\n"
-    ".Lus_08036624:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803665C\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_0803665C\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #10\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08034C64\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803665C\n"
-    "    ldr r7, .Lus_08036678\n"
-    "    ldr r0, .Lus_0803667C\n"
-    "    mov\tr8, r0\n"
-    ".Lus_0803665C:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_08036678:\n"
-    "    .word 0x00000894\n"
-    ".Lus_0803667C:\n"
-    "    .word 0x00000898\n"
-);
+EC void RefreshElliNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_ELLI_IDLE;
+    u32 walk = ANIMATION_ELLI_WALK;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    NpcCollection const & npcs = game->npcs;
+    if (npcs.GetSpouseCharacterId() == CHARACTER_ELLI && self.location_map == MAP_FARMHOUSE) {
+        if (IsNpcInUpperFarmhouseStrip(self) || game->event_state.elli_spouse_collapse_event_state == 1) {
+            idle = ANIMATION_ELLI_IN_BED;
+        } else {
+            Child const * child = npcs.GetChild();
+            if (child != nullptr && child->GetAgeDays() < CHILD_AGE_DAYS_FAMILY_SCENE_AND_INJURY_EVENT_START) {
+                if (IsChildScheduleOutsideFarmhouse(game, self.game_object->GetClock()->calendar.time)) {
+                    idle = ANIMATION_ELLI_WITH_NEWBORN;
+                    walk = ANIMATION_ID_2200;
+                }
+            }
+        }
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void ElliNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_080365CC(this);
+        RefreshElliNpcAnimations(*this);
 }
 
 EntityVisualController * ElliNpcActor::CreateVisualController()
 {
-    func_080365CC(this);
+    RefreshElliNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -5229,116 +4948,39 @@ AnnNpcActor::AnnNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08036900\n"
-    "    .thumb_func\n"
-    "func_08036900:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r7, .Lus_08036950\n"
-    "    ldr r0, .Lus_08036954\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr5, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_08036958\n"
-    "    adds\tr6, r5, r1\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr0, #25\n"
-    "    bne .Lus_080369A0\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #29\n"
-    "    bne .Lus_080369A0\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_0803694A\n"
-    "    ldr r2, .Lus_0803695C\n"
-    "    adds\tr0, r5, r2\n"
-    "    ldrb\tr2, [r0, #0]\n"
-    "    lsrs\tr2, r2, #7\n"
-    "    ldr r1, .Lus_08036960\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    movs\tr1, #1\n"
-    "    ands\tr0, r1\n"
-    "    lsls\tr0, r0, #1\n"
-    "    orrs\tr0, r2\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_08036968\n"
-    ".Lus_0803694A:\n"
-    "    ldr r7, .Lus_08036964\n"
-    "    b .Lus_080369A0\n"
-    "    .align 2, 0\n"
-    ".Lus_08036950:\n"
-    "    .word 0x000007BE\n"
-    ".Lus_08036954:\n"
-    "    .word 0x000007C2\n"
-    ".Lus_08036958:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_0803695C:\n"
-    "    .word 0x0000216B\n"
-    ".Lus_08036960:\n"
-    "    .word 0x0000216C\n"
-    ".Lus_08036964:\n"
-    "    .word 0x000007D2\n"
-    ".Lus_08036968:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080369A0\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_080369A0\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #10\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08034C64\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080369A0\n"
-    "    ldr r7, .Lus_080369BC\n"
-    "    ldr r0, .Lus_080369C0\n"
-    "    mov\tr8, r0\n"
-    ".Lus_080369A0:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_080369BC:\n"
-    "    .word 0x000007CA\n"
-    ".Lus_080369C0:\n"
-    "    .word 0x000007CE\n"
-);
+EC void RefreshAnnNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_ANN_IDLE;
+    u32 walk = ANIMATION_ANN_WALK;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    NpcCollection const & npcs = game->npcs;
+    if (npcs.GetSpouseCharacterId() == CHARACTER_ANN && self.location_map == MAP_FARMHOUSE) {
+        if (IsNpcInUpperFarmhouseStrip(self) || game->event_state.ann_spouse_collapse_event_state == 1) {
+            idle = ANIMATION_ANN_IN_BED;
+        } else {
+            Child const * child = npcs.GetChild();
+            if (child != nullptr && child->GetAgeDays() < CHILD_AGE_DAYS_FAMILY_SCENE_AND_INJURY_EVENT_START) {
+                if (IsChildScheduleOutsideFarmhouse(game, self.game_object->GetClock()->calendar.time)) {
+                    idle = ANIMATION_ANN_WITH_NEWBORN;
+                    walk = ANIMATION_ID_1998;
+                }
+            }
+        }
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void AnnNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08036900(this);
+        RefreshAnnNpcAnimations(*this);
 }
 
 EntityVisualController * AnnNpcActor::CreateVisualController()
 {
-    func_08036900(this);
+    RefreshAnnNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -5365,62 +5007,33 @@ GotzNpcActor::GotzNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08036AB4\n"
-    "    .thumb_func\n"
-    "func_08036AB4:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r1, .Lus_08036AD0\n"
-    "    ldr r5, .Lus_08036AD4\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    adds\tr2, r0, #0\n"
-    "    cmp\tr0, #17\n"
-    "    beq .Lus_08036AE0\n"
-    "    cmp\tr0, #17\n"
-    "    bgt .Lus_08036AD8\n"
-    "    cmp\tr0, #7\n"
-    "    beq .Lus_08036AE0\n"
-    "    b .Lus_08036AE4\n"
-    "    .align 2, 0\n"
-    ".Lus_08036AD0:\n"
-    "    .word 0x000009D3\n"
-    ".Lus_08036AD4:\n"
-    "    .word 0x000009D7\n"
-    ".Lus_08036AD8:\n"
-    "    cmp\tr2, #29\n"
-    "    beq .Lus_08036AE0\n"
-    "    cmp\tr2, #37\t@ 0x25\n"
-    "    bne .Lus_08036AE4\n"
-    ".Lus_08036AE0:\n"
-    "    ldr r1, .Lus_08036AF8\n"
-    "    ldr r5, .Lus_08036AFC\n"
-    ".Lus_08036AE4:\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r5, #0\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    ".Lus_08036AF8:\n"
-    "    .word 0x000009DF\n"
-    ".Lus_08036AFC:\n"
-    "    .word 0x000009E3\n"
-);
+EC void RefreshGotzNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_GOTZ_IDLE;
+    u32 walk = ANIMATION_GOTZ_WALK;
+    switch (static_cast<i32>(self.GetMap())) {
+    case MAP_SOUTH_SIDE_TOWN:
+    case MAP_CHICKEN_COOP:
+    case MAP_FARMHOUSE:
+    case MAP_BARN:
+        idle = ANIMATION_ID_2527;
+        walk = ANIMATION_ID_2531;
+        break;
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+}
 
 void GotzNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08036AB4(this);
+        RefreshGotzNpcAnimations(*this);
 }
 
 EntityVisualController * GotzNpcActor::CreateVisualController()
 {
-    func_08036AB4(this);
+    RefreshGotzNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 
@@ -5440,91 +5053,32 @@ EntityVisualController * ZackNpcActor::CreateVisualController()
     return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__12ZackNpcActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__12ZackNpcActorRC19EntityUpdateContext:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #10\n"
-    "    ldrsh\tr5, [r4, r0]\n"
-    "    movs\tr2, #14\n"
-    "    ldrsh\tr6, [r4, r2]\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl Update__10ANpcEntityRC19EntityUpdateContext\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, #2\n"
-    "    bne .Lus_08036BF0\n"
-    "    cmp\tr5, #244\t@ 0xf4\n"
-    "    bne .Lus_08036BD0\n"
-    "    cmp\tr6, #171\t@ 0xab\n"
-    "    beq .Lus_08036BF0\n"
-    ".Lus_08036BD0:\n"
-    "    movs\tr1, #10\n"
-    "    ldrsh\tr0, [r4, r1]\n"
-    "    movs\tr2, #14\n"
-    "    ldrsh\tr1, [r4, r2]\n"
-    "    cmp\tr0, #244\t@ 0xf4\n"
-    "    bne .Lus_08036BF0\n"
-    "    cmp\tr1, #171\t@ 0xab\n"
-    "    bne .Lus_08036BF0\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #138\t@ 0x8a\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    ".Lus_08036BF0:\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    "    .global UpdateSchedule__12ZackNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__12ZackNpcActori:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    movs\tr0, #10\n"
-    "    ldrsh\tr6, [r5, r0]\n"
-    "    movs\tr1, #14\n"
-    "    ldrsh\tr7, [r5, r1]\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr1, r4, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_08036C40\n"
-    "    ldrh\tr0, [r5, #4]\n"
-    "    cmp\tr0, #2\n"
-    "    bne .Lus_08036C40\n"
-    "    cmp\tr6, #244\t@ 0xf4\n"
-    "    bne .Lus_08036C20\n"
-    "    cmp\tr7, #171\t@ 0xab\n"
-    "    beq .Lus_08036C40\n"
-    ".Lus_08036C20:\n"
-    "    movs\tr2, #10\n"
-    "    ldrsh\tr0, [r5, r2]\n"
-    "    movs\tr2, #14\n"
-    "    ldrsh\tr1, [r5, r2]\n"
-    "    cmp\tr0, #244\t@ 0xf4\n"
-    "    bne .Lus_08036C40\n"
-    "    cmp\tr1, #171\t@ 0xab\n"
-    "    bne .Lus_08036C40\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #138\t@ 0x8a\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    ".Lus_08036C40:\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-);
+void ZackNpcActor::Update(EntityUpdateContext const & context)
+{
+    i32 old_x = GetQ16X() >> 16;
+    i32 old_y = GetQ16Y() >> 16;
+    ANpcEntity::Update(context);
+    if (location_map == MAP_FARM && (old_x != 244 || old_y != 171)) {
+        i32 x = GetQ16X() >> 16;
+        i32 y = GetQ16Y() >> 16;
+        if (x == 244 && y == 171)
+            game_object->vfunc_114();
+    }
+}
+
+void ZackNpcActor::UpdateSchedule(i32 refresh_kind)
+{
+    i32 old_x = GetQ16X() >> 16;
+    i32 old_y = GetQ16Y() >> 16;
+    ANpcEntity::UpdateSchedule(refresh_kind);
+    if (refresh_kind > 1 && location_map == MAP_FARM
+        && (old_x != 244 || old_y != 171)) {
+        i32 x = GetQ16X() >> 16;
+        i32 y = GetQ16Y() >> 16;
+        if (x == 244 && y == 171)
+            game_object->vfunc_114();
+    }
+}
 
 WonNpcActor::WonNpcActor(GameObject * world, Npc * npc, u32 context)
     : ANpcEntity(world, npc, context,
@@ -5689,54 +5243,19 @@ void ChildNpcActor::UpdateSchedule(i32 time)
         func_08036E70(this);
 }
 
+EntityVisualController * ChildNpcActor::CreateVisualController()
+{
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(schedule_context);
+    Child const * child = game->npcs.GetChild();
+    if (child != nullptr) {
+        func_08036E70(this);
+        u32 effect_offset_kind = child->CanWalk() ? 4 : 1;
+        return new EntitySpriteController(this, 4, 27, 0, effect_offset_kind, 0, false);
+    }
+    return nullptr;
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__13ChildNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13ChildNpcActor:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr\tr0, [r5, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_08036F58\n"
-    "    adds\tr0, r0, r1\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Lus_08036F5C\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036E70\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl CanWalk__C5Child\n"
-    "    lsls\tr0, r0, #24\n"
-    "    movs\tr4, #1\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036F38\n"
-    "    movs\tr4, #4\n"
-    ".Lus_08036F38:\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #0]\n"
-    "    str\tr4, [sp, #4]\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r5, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    b .Lus_08036F5E\n"
-    "    .align 2, 0\n"
-    ".Lus_08036F58:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_08036F5C:\n"
-    "    movs\tr0, #0\n"
-    ".Lus_08036F5E:\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
     "    .align 2, 0\n"
     "    .global Update__13ChildNpcActorRC19EntityUpdateContext\n"
     "    .thumb_func\n"
@@ -5821,5 +5340,5 @@ asm_unified(
 // This getter has its own native return boundary after the child actor update.
 void const * ANpcEntity::GetScheduleContext() const
 {
-    return reinterpret_cast<void const *>(unk_34);
+    return schedule_context;
 }

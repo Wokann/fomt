@@ -33,7 +33,7 @@ GameDate Child::GetBirthday() const
     return birthday;
 }
 
-u8 Child::GetAgeDays() const
+u32 Child::GetAgeDays() const
 {
     return age_days;
 }
