@@ -71,11 +71,23 @@ struct ResourceSpritePaletteIterator {
     ResourceSpritePaletteIterator(ResourceSpritePaletteIterator const & other) : node(other.node) {}
     ResourceSpritePaletteNode * node;
 };
+inline bool operator==(ResourceSpriteTileIterator const & first, ResourceSpriteTileIterator const & second)
+{
+    return first.node == second.node;
+}
 struct ResourceSpriteTileInsertResult {
+    ResourceSpriteTileInsertResult(ResourceSpriteTileIterator const & position, bool success)
+        : iterator(position), inserted(success) {}
     ResourceSpriteTileIterator iterator;
     bool inserted;
 };
+inline bool operator==(ResourceSpritePaletteIterator const & first, ResourceSpritePaletteIterator const & second)
+{
+    return first.node == second.node;
+}
 struct ResourceSpritePaletteInsertResult {
+    ResourceSpritePaletteInsertResult(ResourceSpritePaletteIterator const & position, bool success)
+        : iterator(position), inserted(success) {}
     ResourceSpritePaletteIterator iterator;
     bool inserted;
 };

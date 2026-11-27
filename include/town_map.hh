@@ -187,10 +187,20 @@ struct TownMapMarkerCounts {
 };
 
 struct TownMapMarkerIterator {
+    TownMapMarkerIterator() {}
+    explicit TownMapMarkerIterator(TownMapMarkerNode * value) : node(value) {}
+    TownMapMarkerIterator(TownMapMarkerIterator const & other) : node(other.node) {}
     TownMapMarkerNode * node;
 };
 
+inline bool operator==(TownMapMarkerIterator const & first, TownMapMarkerIterator const & second)
+{
+    return first.node == second.node;
+}
+
 struct TownMapMarkerInsertResult {
+    TownMapMarkerInsertResult(TownMapMarkerIterator const & position, bool success)
+        : iterator(position), inserted(success) {}
     TownMapMarkerIterator iterator;
     bool inserted;
 };
@@ -276,9 +286,8 @@ EXTERN_C
 
 void AddTownMapMarker(TownMapUiCore * core, Location const * location, u32 resource_id);
 void EraseTownMapMarkerNodes(TownMapMarkerCounts * counts, TownMapMarkerNode * node);
-// Native-compatible output parameter: r0 points to the iterator result.
-TownMapMarkerIterator * InsertTownMapMarkerNode(TownMapMarkerIterator * result,
-    TownMapMarkerCounts * counts,
+// The iterator copy constructor gives the native return-storage ABI.
+TownMapMarkerIterator InsertTownMapMarkerNode(TownMapMarkerCounts * counts,
     TownMapMarkerNode * position, TownMapMarkerNode * parent,
     TownMapMarkerCountEntry const * entry, TownMapMarkerNode * right_hint);
 TownMapMarkerInsertResult InsertTownMapMarkerCount(TownMapMarkerCounts * counts,

@@ -1,6 +1,13 @@
 #pragma implementation "saved_map_tree.hh"
 #include "saved_map_tree.hh"
 #include "world_map.hh"
+#include "resource_sprite_cache.hh"
+
+static inline bool SavedMapTreeKeyLess(i32 const & first, i32 const & second)
+{
+    return first < second;
+}
+
 
 asm_unified(
     ".text\n"
@@ -111,108 +118,33 @@ asm_unified(
     "\tbx r1\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start InsertSavedMapTreeEntry\n"
-    "InsertSavedMapTreeEntry: @ 0x080E4304\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tsub sp, #0x14\n"
-    "\tadds r6, r0, #0\n"
-    "\tmov r8, r1\n"
-    "\tadds r7, r2, #0\n"
-    "\tldr r4, [r1, #4]\n"
-    "\tldr r5, [r4, #4]\n"
-    "\tmovs r0, #1\n"
-    "\tcmp r5, #0\n"
-    "\tbeq .L080E433A\n"
-    "\tldr r2, [r7]\n"
-    ".L080E431E:\n"
-    "\tadds r4, r5, #0\n"
-    "\tmovs r1, #0\n"
-    "\tldr r0, [r4, #0x10]\n"
-    "\tcmp r2, r0\n"
-    "\tbge .L080E432A\n"
-    "\tmovs r1, #1\n"
-    ".L080E432A:\n"
-    "\tadds r0, r1, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E4334\n"
-    "\tldr r5, [r4, #8]\n"
-    "\tb .L080E4336\n"
-    ".L080E4334:\n"
-    "\tldr r5, [r4, #0xc]\n"
-    ".L080E4336:\n"
-    "\tcmp r5, #0\n"
-    "\tbne .L080E431E\n"
-    ".L080E433A:\n"
-    "\tstr r4, [sp, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E4374\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r0, [r0, #8]\n"
-    "\tstr r0, [sp, #0xc]\n"
-    "\tmovs r1, #0\n"
-    "\tcmp r4, r0\n"
-    "\tbne .L080E4350\n"
-    "\tmovs r1, #1\n"
-    ".L080E4350:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E436C\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0x10\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertSavedMapTreeNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0x10]\n"
-    "\tb .L080E439E\n"
-    ".L080E436C:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl PreviousRedBlackTreeNode\n"
-    "\tstr r0, [sp, #8]\n"
-    ".L080E4374:\n"
-    "\tldr r2, [sp, #8]\n"
-    "\tmovs r3, #0\n"
-    "\tldr r1, [r2, #0x10]\n"
-    "\tldr r0, [r7]\n"
-    "\tcmp r1, r0\n"
-    "\tbge .L080E4382\n"
-    "\tmovs r3, #1\n"
-    ".L080E4382:\n"
-    "\tadds r0, r3, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E43A4\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0xc\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertSavedMapTreeNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0xc]\n"
-    ".L080E439E:\n"
-    "\tstr r0, [r6]\n"
-    "\tstrb r1, [r6, #4]\n"
-    "\tb .L080E43A8\n"
-    ".L080E43A4:\n"
-    "\tstr r2, [r6]\n"
-    "\tstrb r0, [r6, #4]\n"
-    ".L080E43A8:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadd sp, #0x14\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
+
 );
+
+extern "C" SavedMapTreeInsertResult InsertSavedMapTreeEntry(SavedMapTreeState * state,
+    SavedMapTreeEntry const * entry)
+{
+    SavedMapTreeNode * parent = state->header;
+    SavedMapTreeNode * position = parent->parent;
+    bool less = true;
+    while (position != nullptr) {
+        parent = position;
+        less = SavedMapTreeKeyLess(entry->key, position->entry.key);
+        position = less ? position->left : position->right;
+    }
+    SavedMapTreeIterator previous(parent);
+    if (less) {
+        SavedMapTreeIterator begin(state->header->left);
+        if (previous == begin)
+            return SavedMapTreeInsertResult(InsertSavedMapTreeNode(state, position, parent, entry, nullptr), true);
+        previous.node = reinterpret_cast<SavedMapTreeNode *>(PreviousRedBlackTreeNode(
+            reinterpret_cast<RedBlackTreeNode *>(previous.node)));
+    }
+    if (SavedMapTreeKeyLess(previous.node->entry.key, entry->key))
+        return SavedMapTreeInsertResult(InsertSavedMapTreeNode(state, position, parent, entry, nullptr), true);
+    return SavedMapTreeInsertResult(previous, false);
+}
+
 
 void DestroySavedWorldMap(GameSceneSavedMap * map, int flags)
 {

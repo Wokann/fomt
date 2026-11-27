@@ -42,8 +42,20 @@ struct SavedMapTree {
     SavedMapTreeState state;
 };
 
-struct SavedMapTreeIterator { SavedMapTreeNode * node; };
+struct SavedMapTreeIterator {
+    SavedMapTreeIterator() {}
+    explicit SavedMapTreeIterator(SavedMapTreeNode * value) : node(value) {}
+    SavedMapTreeIterator(SavedMapTreeIterator const & other) : node(other.node) {}
+    SavedMapTreeNode * node;
+};
+
+inline bool operator==(SavedMapTreeIterator const & first, SavedMapTreeIterator const & second)
+{
+    return first.node == second.node;
+}
 struct SavedMapTreeInsertResult {
+    SavedMapTreeInsertResult(SavedMapTreeIterator const & position, bool success)
+        : iterator(position), inserted(success) {}
     SavedMapTreeIterator iterator;
     bool inserted;
 };

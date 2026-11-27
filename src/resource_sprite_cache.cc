@@ -43,107 +43,47 @@ void RotateRedBlackTreeRight(RedBlackTreeNode * node, RedBlackTreeNode *& root)
     node->parent = left;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "\tthumb_func_start RebalanceRedBlackTreeAfterInsert\n"
-    "RebalanceRedBlackTreeAfterInsert: \n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r5, r1, #0\n"
-    "\tmovs r0, #0\n"
-    "\tstrb r0, [r4]\n"
-    "\tldr r0, [r5]\n"
-    "\tcmp r4, r0\n"
-    "\tbeq .L080E2286\n"
-    "\tldr r2, [r4, #4]\n"
-    "\tldrb r0, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E2286\n"
-    "\tmovs r6, #1\n"
-    "\tmovs r7, #0\n"
-    ".L080E21FC:\n"
-    "\tldr r1, [r2, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r2, r0\n"
-    "\tbne .L080E2238\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2210\n"
-    "\tldrb r1, [r0]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2242\n"
-    ".L080E2210:\n"
-    "\tldr r1, [r4, #4]\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r4, r0\n"
-    "\tbne .L080E2222\n"
-    "\tadds r4, r1, #0\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl RotateRedBlackTreeLeft\n"
-    ".L080E2222:\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tstrb r6, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tstrb r7, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl RotateRedBlackTreeRight\n"
-    "\tb .L080E2278\n"
-    ".L080E2238:\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2252\n"
-    "\tldrb r1, [r0]\n"
-    "\tcmp r1, #0\n"
-    "\tbne .L080E2252\n"
-    ".L080E2242:\n"
-    "\tstrb r6, [r2]\n"
-    "\tstrb r6, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tstrb r1, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r4, [r0, #4]\n"
-    "\tb .L080E2278\n"
-    ".L080E2252:\n"
-    "\tldr r1, [r4, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r4, r0\n"
-    "\tbne .L080E2264\n"
-    "\tadds r4, r1, #0\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl RotateRedBlackTreeRight\n"
-    ".L080E2264:\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tstrb r6, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tstrb r7, [r0]\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl RotateRedBlackTreeLeft\n"
-    ".L080E2278:\n"
-    "\tldr r0, [r5]\n"
-    "\tcmp r4, r0\n"
-    "\tbeq .L080E2286\n"
-    "\tldr r2, [r4, #4]\n"
-    "\tldrb r0, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E21FC\n"
-    ".L080E2286:\n"
-    "\tldr r1, [r5]\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r1]\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
-);
+void RebalanceRedBlackTreeAfterInsert(RedBlackTreeNode * node, RedBlackTreeNode *& root)
+{
+    node->black = false;
+    while (node != root && !node->parent->black) {
+        if (node->parent == node->parent->parent->left) {
+            RedBlackTreeNode * uncle = node->parent->parent->right;
+            if (uncle != nullptr && !uncle->black) {
+                node->parent->black = true;
+                uncle->black = true;
+                node->parent->parent->black = false;
+                node = node->parent->parent;
+            } else {
+                if (node == node->parent->right) {
+                    node = node->parent;
+                    RotateRedBlackTreeLeft(node, root);
+                }
+                node->parent->black = true;
+                node->parent->parent->black = false;
+                RotateRedBlackTreeRight(node->parent->parent, root);
+            }
+        } else {
+            RedBlackTreeNode * uncle = node->parent->parent->left;
+            if (uncle != nullptr && !uncle->black) {
+                node->parent->black = true;
+                uncle->black = true;
+                node->parent->parent->black = false;
+                node = node->parent->parent;
+            } else {
+                if (node == node->parent->left) {
+                    node = node->parent;
+                    RotateRedBlackTreeRight(node, root);
+                }
+                node->parent->black = true;
+                node->parent->parent->black = false;
+                RotateRedBlackTreeLeft(node->parent->parent, root);
+            }
+        }
+    }
+    root->black = true;
+}
+
 
 // A typed tree exposes its base-node links as references to its node type.
 template <typename Node>
@@ -228,110 +168,34 @@ RedBlackTreeNode * PreviousRedBlackTreeNode(RedBlackTreeNode * node)
     return node;
 }
 
+
+extern "C" ResourceSpriteTileInsertResult InsertResourceSpriteTile(ResourceSpriteTileCache * cache,
+    ResourceSpriteTileEntry const * entry)
+{
+    ResourceSpriteTileNode * parent = cache->header;
+    ResourceSpriteTileNode * position = ResourceSpriteCacheLink<ResourceSpriteTileNode>(parent->parent);
+    bool less = true;
+    while (position != nullptr) {
+        parent = position;
+        less = ResourceSpriteCacheKeyLess(entry->source, position->entry.source);
+        position = less ? ResourceSpriteCacheLink<ResourceSpriteTileNode>(position->left)
+            : ResourceSpriteCacheLink<ResourceSpriteTileNode>(position->right);
+    }
+    ResourceSpriteTileIterator previous(parent);
+    if (less) {
+        ResourceSpriteTileIterator begin(ResourceSpriteCacheLink<ResourceSpriteTileNode>(cache->header->left));
+        if (previous == begin)
+            return ResourceSpriteTileInsertResult(InsertResourceSpriteTileNode(cache, position, parent, *entry, nullptr), true);
+        previous.node = static_cast<ResourceSpriteTileNode *>(PreviousRedBlackTreeNode(previous.node));
+    }
+    if (ResourceSpriteCacheKeyLess(previous.node->entry.source, entry->source))
+        return ResourceSpriteTileInsertResult(InsertResourceSpriteTileNode(cache, position, parent, *entry, nullptr), true);
+    return ResourceSpriteTileInsertResult(previous, false);
+}
+
 asm_unified(
+    ".text\n"
     "    .align 2, 0\n"
-    "\tthumb_func_start InsertResourceSpriteTile\n"
-    "InsertResourceSpriteTile: \n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tsub sp, #0x14\n"
-    "\tadds r6, r0, #0\n"
-    "\tmov r8, r1\n"
-    "\tadds r7, r2, #0\n"
-    "\tldr r4, [r1, #4]\n"
-    "\tldr r5, [r4, #4]\n"
-    "\tmovs r0, #1\n"
-    "\tcmp r5, #0\n"
-    "\tbeq .L080E23C6\n"
-    "\tldr r2, [r7]\n"
-    ".L080E23AA:\n"
-    "\tadds r4, r5, #0\n"
-    "\tmovs r1, #0\n"
-    "\tldr r0, [r4, #0x10]\n"
-    "\tcmp r2, r0\n"
-    "\tbhs .L080E23B6\n"
-    "\tmovs r1, #1\n"
-    ".L080E23B6:\n"
-    "\tadds r0, r1, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E23C0\n"
-    "\tldr r5, [r4, #8]\n"
-    "\tb .L080E23C2\n"
-    ".L080E23C0:\n"
-    "\tldr r5, [r4, #0xc]\n"
-    ".L080E23C2:\n"
-    "\tcmp r5, #0\n"
-    "\tbne .L080E23AA\n"
-    ".L080E23C6:\n"
-    "\tstr r4, [sp, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2400\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r0, [r0, #8]\n"
-    "\tstr r0, [sp, #0xc]\n"
-    "\tmovs r1, #0\n"
-    "\tcmp r4, r0\n"
-    "\tbne .L080E23DC\n"
-    "\tmovs r1, #1\n"
-    ".L080E23DC:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E23F8\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0x10\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertResourceSpriteTileNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0x10]\n"
-    "\tb .L080E242A\n"
-    ".L080E23F8:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl PreviousRedBlackTreeNode\n"
-    "\tstr r0, [sp, #8]\n"
-    ".L080E2400:\n"
-    "\tldr r2, [sp, #8]\n"
-    "\tmovs r3, #0\n"
-    "\tldr r1, [r2, #0x10]\n"
-    "\tldr r0, [r7]\n"
-    "\tcmp r1, r0\n"
-    "\tbhs .L080E240E\n"
-    "\tmovs r3, #1\n"
-    ".L080E240E:\n"
-    "\tadds r0, r3, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2430\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0xc\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertResourceSpriteTileNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0xc]\n"
-    ".L080E242A:\n"
-    "\tstr r0, [r6]\n"
-    "\tstrb r1, [r6, #4]\n"
-    "\tb .L080E2434\n"
-    ".L080E2430:\n"
-    "\tstr r2, [r6]\n"
-    "\tstrb r0, [r6, #4]\n"
-    ".L080E2434:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadd sp, #0x14\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    "\n"
     "\tthumb_func_start InsertResourceSpriteTileWithHint\n"
     "InsertResourceSpriteTileWithHint: \n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -903,110 +767,34 @@ extern "C" ResourceSpritePaletteIterator InsertResourceSpritePaletteNode(Resourc
     return ResourceSpritePaletteIterator(node);
 }
 
+
+extern "C" ResourceSpritePaletteInsertResult InsertResourceSpritePalette(ResourceSpritePaletteCache * cache,
+    ResourceSpritePaletteEntry const * entry)
+{
+    ResourceSpritePaletteNode * parent = cache->header;
+    ResourceSpritePaletteNode * position = ResourceSpriteCacheLink<ResourceSpritePaletteNode>(parent->parent);
+    bool less = true;
+    while (position != nullptr) {
+        parent = position;
+        less = ResourceSpriteCacheKeyLess(entry->source, position->entry.source);
+        position = less ? ResourceSpriteCacheLink<ResourceSpritePaletteNode>(position->left)
+            : ResourceSpriteCacheLink<ResourceSpritePaletteNode>(position->right);
+    }
+    ResourceSpritePaletteIterator previous(parent);
+    if (less) {
+        ResourceSpritePaletteIterator begin(ResourceSpriteCacheLink<ResourceSpritePaletteNode>(cache->header->left));
+        if (previous == begin)
+            return ResourceSpritePaletteInsertResult(InsertResourceSpritePaletteNode(cache, position, parent, *entry, nullptr), true);
+        previous.node = static_cast<ResourceSpritePaletteNode *>(PreviousRedBlackTreeNode(previous.node));
+    }
+    if (ResourceSpriteCacheKeyLess(previous.node->entry.source, entry->source))
+        return ResourceSpritePaletteInsertResult(InsertResourceSpritePaletteNode(cache, position, parent, *entry, nullptr), true);
+    return ResourceSpritePaletteInsertResult(previous, false);
+}
+
 asm_unified(
     ".text\n"
-    "\tthumb_func_start InsertResourceSpritePalette\n"
-    "InsertResourceSpritePalette: \n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tsub sp, #0x14\n"
-    "\tadds r6, r0, #0\n"
-    "\tmov r8, r1\n"
-    "\tadds r7, r2, #0\n"
-    "\tldr r4, [r1, #4]\n"
-    "\tldr r5, [r4, #4]\n"
-    "\tmovs r0, #1\n"
-    "\tcmp r5, #0\n"
-    "\tbeq .L080E28F2\n"
-    "\tldr r2, [r7]\n"
-    ".L080E28D6:\n"
-    "\tadds r4, r5, #0\n"
-    "\tmovs r1, #0\n"
-    "\tldr r0, [r4, #0x10]\n"
-    "\tcmp r2, r0\n"
-    "\tbhs .L080E28E2\n"
-    "\tmovs r1, #1\n"
-    ".L080E28E2:\n"
-    "\tadds r0, r1, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E28EC\n"
-    "\tldr r5, [r4, #8]\n"
-    "\tb .L080E28EE\n"
-    ".L080E28EC:\n"
-    "\tldr r5, [r4, #0xc]\n"
-    ".L080E28EE:\n"
-    "\tcmp r5, #0\n"
-    "\tbne .L080E28D6\n"
-    ".L080E28F2:\n"
-    "\tstr r4, [sp, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E292C\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r0, [r0, #8]\n"
-    "\tstr r0, [sp, #0xc]\n"
-    "\tmovs r1, #0\n"
-    "\tcmp r4, r0\n"
-    "\tbne .L080E2908\n"
-    "\tmovs r1, #1\n"
-    ".L080E2908:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2924\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0x10\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertResourceSpritePaletteNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0x10]\n"
-    "\tb .L080E2956\n"
-    ".L080E2924:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl PreviousRedBlackTreeNode\n"
-    "\tstr r0, [sp, #8]\n"
-    ".L080E292C:\n"
-    "\tldr r2, [sp, #8]\n"
-    "\tmovs r3, #0\n"
-    "\tldr r1, [r2, #0x10]\n"
-    "\tldr r0, [r7]\n"
-    "\tcmp r1, r0\n"
-    "\tbhs .L080E293A\n"
-    "\tmovs r3, #1\n"
-    ".L080E293A:\n"
-    "\tadds r0, r3, #0\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E295C\n"
-    "\tstr r7, [sp]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r0, sp, #0xc\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r5, #0\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl InsertResourceSpritePaletteNode\n"
-    "\tmovs r1, #1\n"
-    "\tldr r0, [sp, #0xc]\n"
-    ".L080E2956:\n"
-    "\tstr r0, [r6]\n"
-    "\tstrb r1, [r6, #4]\n"
-    "\tb .L080E2960\n"
-    ".L080E295C:\n"
-    "\tstr r2, [r6]\n"
-    "\tstrb r0, [r6, #4]\n"
-    ".L080E2960:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadd sp, #0x14\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    "\n"
+    "    .align 2, 0\n"
     "\tthumb_func_start InsertResourceSpritePaletteWithHint\n"
     "InsertResourceSpritePaletteWithHint: \n"
     "\tpush {r4, r5, r6, r7, lr}\n"

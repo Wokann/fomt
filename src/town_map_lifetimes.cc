@@ -1,6 +1,7 @@
 #pragma implementation "town_map.hh"
 #include "town_map.hh"
 
+
 void EraseTownMapMarkerNodes(TownMapMarkerCounts * counts, TownMapMarkerNode * node)
 {
     while (node != nullptr) {
@@ -127,130 +128,35 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "thumb_func_start InsertTownMapMarkerCount\n"
-    "InsertTownMapMarkerCount:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r9\n"
-    "    mov r6, r8\n"
-    "    push {r6, r7}\n"
-    "    sub sp, #20\n"
-    "    adds r7, r0, #0\n"
-    "    mov r8, r1\n"
-    "    adds r6, r2, #0\n"
-    "    ldr r5, [r1, #4]\n"
-    "    ldr r4, [r5, #4]\n"
-    "    movs r0, #1\n"
-    "    cmp r4, #0\n"
-    "    beq .Ltown_tree_1_5\n"
-    "    ldrb r2, [r6, #0]\n"
-    ".Ltown_tree_1_0:\n"
-    "    adds r5, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #16\n"
-    "    movs r3, #0\n"
-    "    ldrb r0, [r5, #16]\n"
-    "    cmp r2, r0\n"
-    "    bcc .Ltown_tree_1_1\n"
-    "    cmp r0, r2\n"
-    "    bcc .Ltown_tree_1_2\n"
-    "    ldrb r0, [r6, #1]\n"
-    "    ldrb r1, [r1, #1]\n"
-    "    cmp r0, r1\n"
-    "    bcs .Ltown_tree_1_2\n"
-    ".Ltown_tree_1_1:\n"
-    "    movs r3, #1\n"
-    ".Ltown_tree_1_2:\n"
-    "    adds r0, r3, #0\n"
-    "    cmp r0, #0\n"
-    "    beq .Ltown_tree_1_3\n"
-    "    ldr r4, [r4, #8]\n"
-    "    b .Ltown_tree_1_4\n"
-    ".Ltown_tree_1_3:\n"
-    "    ldr r4, [r4, #12]\n"
-    ".Ltown_tree_1_4:\n"
-    "    cmp r4, #0\n"
-    "    bne .Ltown_tree_1_0\n"
-    ".Ltown_tree_1_5:\n"
-    "    str r5, [sp, #8]\n"
-    "    cmp r0, #0\n"
-    "    beq .Ltown_tree_1_8\n"
-    "    mov r1, r8\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r0, [r0, #8]\n"
-    "    str r0, [sp, #12]\n"
-    "    movs r1, #0\n"
-    "    cmp r5, r0\n"
-    "    bne .Ltown_tree_1_6\n"
-    "    movs r1, #1\n"
-    ".Ltown_tree_1_6:\n"
-    "    cmp r1, #0\n"
-    "    beq .Ltown_tree_1_7\n"
-    "    str r6, [sp, #0]\n"
-    "    movs r0, #0\n"
-    "    str r0, [sp, #4]\n"
-    "    add r0, sp, #16\n"
-    "    mov r1, r8\n"
-    "    adds r2, r4, #0\n"
-    "    adds r3, r5, #0\n"
-    "    bl InsertTownMapMarkerNode\n"
-    "    movs r1, #1\n"
-    "    ldr r0, [sp, #16]\n"
-    "    b .Ltown_tree_1_11\n"
-    ".Ltown_tree_1_7:\n"
-    "    adds r0, r5, #0\n"
-    "    bl PreviousRedBlackTreeNode\n"
-    "    str r0, [sp, #8]\n"
-    ".Ltown_tree_1_8:\n"
-    "    ldr r0, [sp, #8]\n"
-    "    adds r3, r0, #0\n"
-    "    adds r3, #16\n"
-    "    movs r1, #0\n"
-    "    mov r9, r1\n"
-    "    ldrb r2, [r0, #16]\n"
-    "    ldrb r1, [r6, #0]\n"
-    "    mov ip, r0\n"
-    "    cmp r2, r1\n"
-    "    bcc .Ltown_tree_1_9\n"
-    "    cmp r1, r2\n"
-    "    bcc .Ltown_tree_1_10\n"
-    "    ldrb r0, [r3, #1]\n"
-    "    ldrb r1, [r6, #1]\n"
-    "    cmp r0, r1\n"
-    "    bcs .Ltown_tree_1_10\n"
-    ".Ltown_tree_1_9:\n"
-    "    movs r0, #1\n"
-    "    mov r9, r0\n"
-    ".Ltown_tree_1_10:\n"
-    "    mov r0, r9\n"
-    "    cmp r0, #0\n"
-    "    beq .Ltown_tree_1_12\n"
-    "    str r6, [sp, #0]\n"
-    "    movs r0, #0\n"
-    "    str r0, [sp, #4]\n"
-    "    add r0, sp, #12\n"
-    "    mov r1, r8\n"
-    "    adds r2, r4, #0\n"
-    "    adds r3, r5, #0\n"
-    "    bl InsertTownMapMarkerNode\n"
-    "    movs r1, #1\n"
-    "    ldr r0, [sp, #12]\n"
-    ".Ltown_tree_1_11:\n"
-    "    str r0, [r7, #0]\n"
-    "    strb r1, [r7, #4]\n"
-    "    b .Ltown_tree_1_13\n"
-    ".Ltown_tree_1_12:\n"
-    "    mov r1, ip\n"
-    "    str r1, [r7, #0]\n"
-    "    strb r0, [r7, #4]\n"
-    ".Ltown_tree_1_13:\n"
-    "    adds r0, r7, #0\n"
-    "    add sp, #20\n"
-    "    pop {r3, r4}\n"
-    "    mov r8, r3\n"
-    "    mov r9, r4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+
+);
+
+extern "C" TownMapMarkerInsertResult InsertTownMapMarkerCount(TownMapMarkerCounts * counts,
+    TownMapMarkerCountEntry const * entry)
+{
+    TownMapMarkerNode * parent = counts->header;
+    TownMapMarkerNode * position = static_cast<TownMapMarkerNode *>(parent->parent);
+    bool less = true;
+    while (position != nullptr) {
+        parent = position;
+        less = entry->position < position->entry.position;
+        position = less ? static_cast<TownMapMarkerNode *>(position->left)
+            : static_cast<TownMapMarkerNode *>(position->right);
+    }
+    TownMapMarkerIterator previous(parent);
+    if (less) {
+        TownMapMarkerIterator begin(static_cast<TownMapMarkerNode *>(counts->header->left));
+        if (previous == begin)
+            return TownMapMarkerInsertResult(InsertTownMapMarkerNode(counts, position, parent, entry, nullptr), true);
+        previous.node = static_cast<TownMapMarkerNode *>(PreviousRedBlackTreeNode(previous.node));
+    }
+    if (previous.node->entry.position < entry->position)
+        return TownMapMarkerInsertResult(InsertTownMapMarkerNode(counts, position, parent, entry, nullptr), true);
+    return TownMapMarkerInsertResult(previous, false);
+}
+
+asm_unified(
+    ".text\n"
     "    .align 2, 0\n"
     "thumb_func_start InsertTownMapMarkerCountWithHint\n"
     "InsertTownMapMarkerCountWithHint:\n"
