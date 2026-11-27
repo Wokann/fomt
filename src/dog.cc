@@ -33,15 +33,15 @@ void Dog::method_0809BB48(UnkBarnAnimal2C const * param)
     unk_20 = 0;
 }
 
-void Dog::method_0809BB54(UnkBarnAnimal2C_x2 const * param)
+void Dog::SetApproachState(AnimalApproachPayload const * param)
 {
-    unk_24 = *param;
+    approach = *param;
     unk_20 = 1;
 }
 
-void Dog::method_0809BB64(UnkBarnAnimal2C const * param)
+void Dog::SetReaction(AnimalReactionPayload const * param)
 {
-    unk_24.a = *param;
+    reaction = *param;
     unk_20 = 2;
 }
 

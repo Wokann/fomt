@@ -22,11 +22,14 @@ struct Chicken : public Livestock
     void SetFed();
     ProductRank ConsumeProduct();
     void method_0809BD20(UnkBarnAnimal2C const * param);
-    void method_0809BD2C(UnkBarnAnimal2C const * param);
+    void SetReaction(AnimalReactionPayload const * param);
     void DayUpdate();
 
     /* +24 */ u32 unk_24;
-    /* +28 */ UnkBarnAnimal2C unk_28;
+    /* +28 */ union {
+        UnkBarnAnimal2C unk_28;
+        AnimalReactionPayload reaction;
+    };
 };
 
 #endif // CHICKEN_HH

@@ -6,8 +6,7 @@
 #include "utility/fixed_str.hh"
 #include "actor.hh"
 
-// Small records shared by the dog, horse, chicken and barn-animal state.
-// Their field meanings remain unknown.
+// Shared storage view for the remaining animal state payloads.
 struct UnkBarnAnimal2C
 {
     /* +00 */ u16 unk_00;
@@ -19,6 +18,27 @@ struct UnkBarnAnimal2C_x2
 {
     /* +00 */ UnkBarnAnimal2C a;
     /* +04 */ UnkBarnAnimal2C b;
+};
+
+// Reaction command: a 240..359-frame timer, a seven-bit value initialized
+// to 60, a tool/dog-attack flag, and a cleared high byte.
+union AnimalReactionPayload
+{
+    u32 raw;
+    struct Bits
+    {
+        u32 timer : 16;
+        u32 constant : 7;
+        u32 kind : 1;
+        u32 reserved : 8;
+    } bits;
+};
+
+// Call/bell response copies both words; known callers set only the duration.
+struct AnimalApproachPayload
+{
+    u32 frames;
+    u32 unknown_04;
 };
 
 // Returned when an animal has no stored name.

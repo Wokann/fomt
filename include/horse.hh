@@ -19,12 +19,15 @@ struct Horse : public Pet
 
     GrowthStage GetGrowthStage() const;
     void method_0809BC24(UnkBarnAnimal2C const * param);
-    void method_0809BC30(UnkBarnAnimal2C_x2 const * param);
-    void method_0809BC40();
+    void SetApproachState(AnimalApproachPayload const * param);
+    void SetPushedState(UnkBarnAnimal2C const * command);
     void DayUpdate();
 
     /* +20 */ u32 unk_20;
-    /* +24 */ UnkBarnAnimal2C_x2 unk_24;
+    /* +24 */ union {
+        UnkBarnAnimal2C_x2 unk_24;
+        AnimalApproachPayload approach;
+    };
 };
 
 #endif // HORSE_HH

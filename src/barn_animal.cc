@@ -68,19 +68,19 @@ void BarnAnimal::method_0809B940(UnkBarnAnimal2C const * param)
     unk_28 = 0;
 }
 
-void BarnAnimal::method_0809B94C(UnkBarnAnimal2C const * param)
+void BarnAnimal::SetReaction(AnimalReactionPayload const * param)
 {
-    unk_2C.a = *param;
+    reaction = *param;
     unk_28 = 1;
 }
 
-void BarnAnimal::method_0809B958(UnkBarnAnimal2C_x2 const * param)
+void BarnAnimal::SetApproachState(AnimalApproachPayload const * param)
 {
-    unk_2C = *param;
+    approach = *param;
     unk_28 = 2;
 }
 
-void BarnAnimal::method_0809B968()
+void BarnAnimal::SetPushedState(UnkBarnAnimal2C const *)
 {
     unk_28 = 3;
 }

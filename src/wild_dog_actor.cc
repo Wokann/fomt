@@ -1413,7 +1413,7 @@ void WildDogActor::ReactToToolHit()
     if (saved_model->unk_0C == 1)
         return;
 
-    WildDogReactionPayload payload;
+    AnimalReactionPayload payload;
 
     payload.bits.timer = 240 + RandomBelow(120);
     payload.bits.constant = 0x3C;
@@ -1433,7 +1433,7 @@ void WildDogActor::ReactToDogAttack()
     if (saved_model->unk_0C == 1)
         return;
 
-    WildDogReactionPayload payload;
+    AnimalReactionPayload payload;
 
     payload.bits.timer = 240 + RandomBelow(120);
     payload.bits.constant = 0x3C;

@@ -69,6 +69,7 @@ struct DogActor : AnimalActor {
     virtual bool CanBeHit() const;
     virtual void ReactToToolHit();
     virtual void PauseMovement(u32 frames);
+    void RespondToCall(Location const & origin);
     void UpdateBehavior();
     void DropBall();
     u32 GetBehaviorAnimation(u32 behavior) const;
@@ -105,6 +106,7 @@ struct HorseActor : AnimalActor {
     virtual void Brush();
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
+    void RespondToCall(Location const & origin);
     i32 GetBehaviorMoveSpeed(u32 behavior) const;
     u32 GetBehaviorAnimation(u32 behavior) const;
     u32 GetBehavior() const;

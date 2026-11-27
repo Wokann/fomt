@@ -27,13 +27,13 @@ void Horse::method_0809BC24(UnkBarnAnimal2C const * param)
     unk_20 = 0;
 }
 
-void Horse::method_0809BC30(UnkBarnAnimal2C_x2 const * param)
+void Horse::SetApproachState(AnimalApproachPayload const * param)
 {
-    unk_24 = *param;
+    approach = *param;
     unk_20 = 1;
 }
 
-void Horse::method_0809BC40()
+void Horse::SetPushedState(UnkBarnAnimal2C const *)
 {
     unk_20 = 2;
 }

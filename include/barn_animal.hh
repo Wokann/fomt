@@ -18,16 +18,20 @@ struct BarnAnimal : public Livestock
     void StartPregnancy();
     void ResetPregnancy();
     void method_0809B940(UnkBarnAnimal2C const * param);
-    void method_0809B94C(UnkBarnAnimal2C const * param);
-    void method_0809B958(UnkBarnAnimal2C_x2 const * param);
-    void method_0809B968();
+    void SetReaction(AnimalReactionPayload const * param);
+    void SetApproachState(AnimalApproachPayload const * param);
+    void SetPushedState(UnkBarnAnimal2C const * command);
     void DayUpdate(LivestockDayUpdateInfo const * info);
 
     /* +24 */ bool pregnant : 1;
     /* +24 */ u32 days_pregnant : 5;
     /* +24 */ u32 days_pregnant_healthy : 5;
     /* +28 */ u32 unk_28;
-    /* +2C */ UnkBarnAnimal2C_x2 unk_2C;
+    /* +2C */ union {
+        UnkBarnAnimal2C_x2 unk_2C;
+        AnimalApproachPayload approach;
+        AnimalReactionPayload reaction;
+    };
 };
 
 #endif // BARN_ANIMAL_HH

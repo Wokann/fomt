@@ -62,9 +62,9 @@ void Chicken::method_0809BD20(UnkBarnAnimal2C const * param)
     unk_24 = 0;
 }
 
-void Chicken::method_0809BD2C(UnkBarnAnimal2C const * param)
+void Chicken::SetReaction(AnimalReactionPayload const * param)
 {
-    unk_28 = *param;
+    reaction = *param;
     unk_24 = 1;
 }
 
