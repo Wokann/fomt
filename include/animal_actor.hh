@@ -70,6 +70,7 @@ struct DogActor : AnimalActor {
     virtual void ReactToToolHit();
     virtual void PauseMovement(u32 frames);
     void UpdateBehavior();
+    void DropBall();
     u32 GetBehaviorAnimation(u32 behavior) const;
     i32 GetBehaviorMoveSpeed(u32 behavior) const;
     void SetBehavior(u32 behavior, u32 direction);
@@ -104,12 +105,15 @@ struct HorseActor : AnimalActor {
     virtual void Brush();
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
+    i32 GetBehaviorMoveSpeed(u32 behavior) const;
     u32 GetBehaviorAnimation(u32 behavior) const;
+    u32 GetBehavior() const;
+    void SetBehavior(u32 behavior, u32 direction);
 
     Horse * horse;
     i16 saved_x;
     i16 saved_y;
-    u8 unk_3C;
+    u8 last_behavior;
     u8 unk_3D;
     u8 unk_3E;
 };
@@ -164,9 +168,12 @@ struct CowActor : AnimalActor {
     virtual void PauseMovement(u32 frames);
     u32 GetBehaviorAnimation(u32 behavior) const;
     i32 GetBehaviorMoveSpeed(u32 behavior) const;
+    u32 GetBehavior() const;
+    void SetBehavior(u32 behavior, u32 direction);
 
     Cow * livestock;
-    u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
+    u8 last_behavior;
+    u8 unk_39[3];
 };
 
 
@@ -193,9 +200,12 @@ struct SheepActor : AnimalActor {
     virtual void PauseMovement(u32 frames);
     u32 GetBehaviorAnimation(u32 behavior) const;
     i32 GetBehaviorMoveSpeed(u32 behavior) const;
+    u32 GetBehavior() const;
+    void SetBehavior(u32 behavior, u32 direction);
 
     Sheep * livestock;
-    u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
+    u8 last_behavior;
+    u8 unk_39[3];
 };
 
 
