@@ -52,21 +52,38 @@ struct WorldAmbientSpawnWeights {
 struct WorldAmbientSprite;
 struct WorldAmbientEntity;
 
-struct WorldAmbientSpriteController : EntityVisualController {
+// The controller embeds a count-prefixed container. Its unused capacity
+// is storage; only the counted owners are constructed and destroyed.
+struct WorldAmbientSpriteOwners {
     enum { CAPACITY = 3 };
-    typedef SmartPtr<WorldAmbientSprite> SpriteOwner;
+    typedef SmartPtr<WorldAmbientSprite> Owner;
+
+    WorldAmbientSpriteOwners() : count(0) {}
+    Owner * Data() { return reinterpret_cast<Owner *>(storage); }
+    Owner * End() { return Data() + count; }
+    Owner & operator[](u32 index)
+    {
+        return *reinterpret_cast<Owner *>(reinterpret_cast<u8 *>(this)
+            + (offsetof(WorldAmbientSpriteOwners, storage) + index * sizeof(Owner)));
+    }
+    inline void Append(WorldAmbientSprite * sprite);
+
+    u32 count;
+    u32 storage[CAPACITY * sizeof(Owner) / sizeof(u32)];
+};
+
+struct WorldAmbientSpriteController : EntityVisualController {
+    typedef WorldAmbientSpriteOwners::Owner SpriteOwner;
 
     inline WorldAmbientSpriteController(WorldAmbientEntity * owner);
     virtual ~WorldAmbientSpriteController();
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
-    SpriteOwner * Data() { return reinterpret_cast<SpriteOwner *>(storage); }
-    SpriteOwner * End() { return Data() + count; }
+    SpriteOwner * Data() { return sprites.Data(); }
+    SpriteOwner * End() { return sprites.End(); }
 
-    /* +08 */ u32 count;
-    // Native factories construct only the first count owners, not unused slots.
-    /* +0C */ u32 storage[CAPACITY * sizeof(SpriteOwner) / sizeof(u32)];
+    /* +08 */ WorldAmbientSpriteOwners sprites;
 };
 
 // The base owns the indexed animation and an optional secondary group.
@@ -121,6 +138,7 @@ struct WorldAmbientMotion {
 struct WorldAmbientKind1 : WorldAmbientSprite {
     enum { KIND = 1 };
     WorldAmbientKind1(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind1(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind1();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -134,6 +152,7 @@ struct WorldAmbientKind1 : WorldAmbientSprite {
 struct WorldAmbientKind2 : WorldAmbientSprite {
     enum { KIND = 2 };
     WorldAmbientKind2(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind2(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind2();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -147,6 +166,7 @@ struct WorldAmbientKind2 : WorldAmbientSprite {
 struct WorldAmbientKind3 : WorldAmbientSprite {
     enum { KIND = 3 };
     WorldAmbientKind3(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind3(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind3();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -160,6 +180,7 @@ struct WorldAmbientKind3 : WorldAmbientSprite {
 struct WorldAmbientKind4 : WorldAmbientSprite {
     enum { KIND = 4 };
     WorldAmbientKind4(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind4(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind4();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -173,6 +194,7 @@ struct WorldAmbientKind4 : WorldAmbientSprite {
 struct WorldAmbientKind5 : WorldAmbientSprite {
     enum { KIND = 5 };
     WorldAmbientKind5(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind5(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind5();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -189,6 +211,7 @@ struct WorldAmbientKind5 : WorldAmbientSprite {
 struct WorldAmbientKind6 : WorldAmbientSprite {
     enum { KIND = 6 };
     WorldAmbientKind6(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind6(GameObject * world);
     virtual ~WorldAmbientKind6();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -210,6 +233,7 @@ struct WorldAmbientKind6 : WorldAmbientSprite {
 struct WorldAmbientKind7 : WorldAmbientSprite {
     enum { KIND = 7 };
     WorldAmbientKind7(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind7(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind7();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -223,6 +247,7 @@ struct WorldAmbientKind7 : WorldAmbientSprite {
 struct WorldAmbientKind8 : WorldAmbientSprite {
     enum { KIND = 8 };
     WorldAmbientKind8(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind8(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind8();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -236,6 +261,7 @@ struct WorldAmbientKind8 : WorldAmbientSprite {
 struct WorldAmbientKind9 : WorldAmbientSprite {
     enum { KIND = 9 };
     WorldAmbientKind9(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind9(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind9();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -249,6 +275,7 @@ struct WorldAmbientKind9 : WorldAmbientSprite {
 struct WorldAmbientKind10 : WorldAmbientSprite {
     enum { KIND = 10 };
     WorldAmbientKind10(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind10(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind10();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -262,6 +289,7 @@ struct WorldAmbientKind10 : WorldAmbientSprite {
 struct WorldAmbientKind11 : WorldAmbientSprite {
     enum { KIND = 11 };
     WorldAmbientKind11(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind11(GameObject * world, i32 x, i32 y);
     virtual ~WorldAmbientKind11();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -275,6 +303,7 @@ struct WorldAmbientKind11 : WorldAmbientSprite {
 struct WorldAmbientKind12 : WorldAmbientSprite {
     enum { KIND = 12 };
     WorldAmbientKind12(GameObject * world, GameStateActorRecord const & record);
+    inline WorldAmbientKind12(GameObject * world);
     virtual ~WorldAmbientKind12();
     virtual void Update();
     virtual void Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -301,7 +330,7 @@ struct WorldAmbientEntity : AEntity {
 };
 
 inline WorldAmbientSpriteController::WorldAmbientSpriteController(WorldAmbientEntity * owner)
-    : EntityVisualController(owner), count(0) {}
+    : EntityVisualController(owner), sprites() {}
 
 
 EXTERN_C

@@ -353,494 +353,237 @@ void PlayWorldAmbientSpriteSound(WorldAmbientSprite * self, u32 song_id)
     FindActorSoundPlayer(pool)->Start(static_cast<u16>(song_id));
 }
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start PopulateWorldAmbientSprites\n"
-    "PopulateWorldAmbientSprites:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, sl\n"
-    "    mov\tr6, r9\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5, r6, r7}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr6, r0, #0\n"
-    "    mov\tr8, r1\n"
-    "    adds\tr5, r2, #0\n"
-    "    lsls\tr3, r3, #24\n"
-    "    lsrs\tr3, r3, #24\n"
-    "    mov\tr9, r3\n"
-    "    ldr r7, .Lambient_48\n"
-    "    cmp\tr3, #0\n"
-    "    bne .Lambient_46\n"
-    "    ldr r7, .Lambient_49\n"
-    ".Lambient_46:\n"
-    "    movs\tr0, #4\n"
-    "    mov\tsl, r0\n"
-    "    mov\tr1, r9\n"
-    "    cmp\tr1, #0\n"
-    "    bne .Lambient_47\n"
-    "    movs\tr2, #10\n"
-    "    mov\tsl, r2\n"
-    ".Lambient_47:\n"
-    "    movs\tr0, #99\t@ 0x63\n"
-    "    bl RandomBelow\n"
-    "    lsls\tr0, r0, #16\n"
-    "    lsrs\tr4, r0, #16\n"
-    "    movs\tr3, #0\n"
-    "    str\tr3, [sp, #0]\n"
-    "    movs\tr0, #0\n"
-    "    str\tr0, [sp, #4]\n"
-    "    mov\tip, r0\n"
-    "    cmp\tr5, #1\n"
-    "    beq .Lambient_52\n"
-    "    cmp\tr5, #1\n"
-    "    bgt .Lambient_50\n"
-    "    cmp\tr5, #0\n"
-    "    beq .Lambient_51\n"
-    "    b .Lambient_55\n"
-    ".Lambient_48: .word gWorldAmbientNightSpawnWeights\n"
-    ".Lambient_49: .word gWorldAmbientDaySpawnWeights\n"
-    ".Lambient_50:\n"
-    "    cmp\tr5, #2\n"
-    "    beq .Lambient_53\n"
-    "    cmp\tr5, #3\n"
-    "    beq .Lambient_54\n"
-    "    b .Lambient_55\n"
-    ".Lambient_51:\n"
-    "    movs\tr1, #0\n"
-    "    mov\tip, r1\n"
-    "    b .Lambient_55\n"
-    ".Lambient_52:\n"
-    "    movs\tr2, #1\n"
-    "    mov\tip, r2\n"
-    "    b .Lambient_55\n"
-    ".Lambient_53:\n"
-    "    movs\tr3, #2\n"
-    "    mov\tip, r3\n"
-    "    b .Lambient_55\n"
-    ".Lambient_54:\n"
-    "    movs\tr5, #3\n"
-    "    mov\tip, r5\n"
-    ".Lambient_55:\n"
-    "    movs\tr3, #0\n"
-    "    cmp\tr3, sl\n"
-    "    bge .Lambient_57\n"
-    "    lsls\tr0, r4, #16\n"
-    "    asrs\tr0, r0, #16\n"
-    "    mov\tr2, ip\n"
-    "    adds\tr1, r7, r2\n"
-    "    ldrb\tr1, [r1, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    bge .Lambient_56\n"
-    "    str\tr3, [sp, #0]\n"
-    "    ldrb\tr5, [r7, #4]\n"
-    "    str\tr5, [sp, #4]\n"
-    "    b .Lambient_57\n"
-    ".Lambient_56:\n"
-    "    lsls\tr0, r3, #2\n"
-    "    adds\tr0, r0, r3\n"
-    "    adds\tr0, r0, r7\n"
-    "    add\tr0, ip\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    subs\tr0, r4, r0\n"
-    "    lsls\tr0, r0, #16\n"
-    "    lsrs\tr4, r0, #16\n"
-    "    adds\tr3, #1\n"
-    "    cmp\tr3, sl\n"
-    "    bge .Lambient_57\n"
-    "    lsls\tr0, r4, #16\n"
-    "    asrs\tr0, r0, #16\n"
-    "    lsls\tr1, r3, #2\n"
-    "    adds\tr1, r1, r3\n"
-    "    adds\tr2, r1, r7\n"
-    "    mov\tr5, ip\n"
-    "    adds\tr1, r2, r5\n"
-    "    ldrb\tr1, [r1, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    bge .Lambient_56\n"
-    "    str\tr3, [sp, #0]\n"
-    "    ldrb\tr2, [r2, #4]\n"
-    "    str\tr2, [sp, #4]\n"
-    ".Lambient_57:\n"
-    "    ldr\tr0, [sp, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lambient_58\n"
-    "    mov\tr1, r9\n"
-    "    cmp\tr1, #0\n"
-    "    beq .Lambient_58\n"
-    "    adds\tr0, #9\n"
-    "    str\tr0, [sp, #0]\n"
-    ".Lambient_58:\n"
-    "    ldr\tr2, [sp, #4]\n"
-    "    cmp\tr2, #1\n"
-    "    ble .Lambient_59\n"
-    "    adds\tr0, r2, #0\n"
-    "    subs\tr0, #1\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #1\n"
-    "    str\tr0, [sp, #4]\n"
-    ".Lambient_59:\n"
-    "    ldr\tr3, [sp, #4]\n"
-    "    cmp\tr3, #0\n"
-    "    bgt .Lambient_60\n"
-    "    b .Lambient_105\n"
-    ".Lambient_60:\n"
-    "    movs\tr0, #196\t@ 0xc4\n"
-    "    lsls\tr0, r0, #1\n"
-    "    bl RandomBelow\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr5, #184\t@ 0xb8\n"
-    "    cmp\tr5, #239\t@ 0xef\n"
-    "    bgt .Lambient_61\n"
-    "    movs\tr0, #56\t@ 0x38\n"
-    "    bl RandomBelow\n"
-    "    movs\tr1, #248\t@ 0xf8\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr7, r0, r1\n"
-    "    b .Lambient_62\n"
-    ".Lambient_61:\n"
-    "    movs\tr0, #48\t@ 0x30\n"
-    "    bl RandomBelow\n"
-    "    movs\tr2, #138\t@ 0x8a\n"
-    "    lsls\tr2, r2, #2\n"
-    "    adds\tr7, r0, r2\n"
-    ".Lambient_62:\n"
-    "    ldr\tr0, [sp, #0]\n"
-    "    subs\tr0, #1\n"
-    "    cmp\tr0, #11\n"
-    "    bls .Lambient_63\n"
-    "    b .Lambient_104\n"
-    ".Lambient_63:\n"
-    "    lsls\tr0, r0, #2\n"
-    "    ldr r1, .Lambient_64\n"
-    "    adds\tr0, r0, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    mov\tpc, r0\n"
-    ".Lambient_64: .word .Lambient_65\n"
-    ".Lambient_65: .word .Lambient_66\n"
-    "    .word .Lambient_73\n"
-    "    .word .Lambient_75\n"
-    "    .word .Lambient_78\n"
-    "    .word .Lambient_81\n"
-    "    .word .Lambient_84\n"
-    "    .word .Lambient_86\n"
-    "    .word .Lambient_89\n"
-    "    .word .Lambient_92\n"
-    "    .word .Lambient_95\n"
-    "    .word .Lambient_98\n"
-    "    .word .Lambient_101\n"
-    ".Lambient_66:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_71\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_72\n"
-    ".Lambient_67:\n"
-    "    str r0, [r4, #0x4c]\n"
-    "    movs r1, #0\n"
-    "    str r1, [r4, #0x50]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x54\n"
-    "    movs r3, #0\n"
-    "    strh r5, [r2]\n"
-    "    adds r5, r4, #0\n"
-    "    adds r5, #0x56\n"
-    "    strh r7, [r5]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x60\n"
-    "    strh r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r3, [r0]\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r2, r3]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r4, #0x58]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r4, #0x5c]\n"
-    ".Lambient_68:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #8\n"
-    "    ldr r0, [r6, #8]\n"
-    "    cmp r0, #2\n"
-    "    bls .Lambient_69\n"
-    "    b .Lambient_104\n"
-    ".Lambient_69:\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r0, #4\n"
-    "    adds r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bne .Lambient_70\n"
-    "    b .Lambient_103\n"
-    ".Lambient_70:\n"
-    "    str r4, [r0]\n"
-    "    b .Lambient_103\n"
-    "    .align 2, 0\n"
-    ".Lambient_71: .word 0x000009B6\n"
-    ".Lambient_72: .word __vt_17WorldAmbientKind1\n"
-    ".Lambient_73:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    movs r2, #0x10\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_74\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_74: .word __vt_17WorldAmbientKind2\n"
-    ".Lambient_75:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_76\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_77\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_76: .word 0x000003DB\n"
-    ".Lambient_77: .word __vt_17WorldAmbientKind3\n"
-    ".Lambient_78:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_79\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_80\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_79: .word 0x00000806\n"
-    ".Lambient_80: .word __vt_17WorldAmbientKind4\n"
-    ".Lambient_81:\n"
-    "    movs r0, #108\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_82\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_83\n"
-    "    str r0, [r4, #0x4c]\n"
-    "    movs r1, #0\n"
-    "    str r1, [r4, #0x50]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x54\n"
-    "    movs r3, #0\n"
-    "    strh r5, [r2]\n"
-    "    adds r5, r4, #0\n"
-    "    adds r5, #0x56\n"
-    "    strh r7, [r5]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x60\n"
-    "    strh r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r3, [r0]\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r2, r3]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r4, #0x58]\n"
-    "    movs r2, #0\n"
-    "    ldrsh r0, [r5, r2]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r4, #0x5c]\n"
-    "    str r1, [r4, #0x68]\n"
-    "    b .Lambient_68\n"
-    "    .align 2, 0\n"
-    ".Lambient_82: .word 0x00000202\n"
-    ".Lambient_83: .word __vt_17WorldAmbientKind5\n"
-    ".Lambient_84:\n"
-    "    movs r0, #136\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    mov r1, r8\n"
-    "    movs r2, #0xa9\n"
-    "    lsls r2, r2, #2\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_85\n"
-    "    str r0, [r5, #0x4c]\n"
-    "    movs r4, #0\n"
-    "    str r4, [r5, #0x50]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #0x50\n"
-    "    adds r0, r5, #0\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    bl SelectWorldAmbientSpawnPosition\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #0x78\n"
-    "    strb r0, [r1]\n"
-    "    adds r1, #1\n"
-    "    movs r0, #0xff\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x60\n"
-    "    movs r1, #0\n"
-    "    strh r4, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    subs r0, #0xe\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r0, r3]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0x58]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x56\n"
-    "    movs r1, #0\n"
-    "    ldrsh r0, [r0, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0x5c]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #0x84\n"
-    "    movs r0, #0xf8\n"
-    "    strb r0, [r1]\n"
-    "    b .Lambient_102\n"
-    "    .align 2, 0\n"
-    ".Lambient_85: .word __vt_17WorldAmbientKind6\n"
-    ".Lambient_86:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_87\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_88\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_87: .word 0x0000087B\n"
-    ".Lambient_88: .word __vt_17WorldAmbientKind7\n"
-    ".Lambient_89:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_90\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_91\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_90: .word 0x0000065C\n"
-    ".Lambient_91: .word __vt_17WorldAmbientKind8\n"
-    ".Lambient_92:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_93\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_94\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_93: .word 0x000008F9\n"
-    ".Lambient_94: .word __vt_17WorldAmbientKind9\n"
-    ".Lambient_95:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_96\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_97\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_96: .word 0x000009A9\n"
-    ".Lambient_97: .word __vt_18WorldAmbientKind10\n"
-    ".Lambient_98:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r4, r0, #0\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_99\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_100\n"
-    "    b .Lambient_67\n"
-    "    .align 2, 0\n"
-    ".Lambient_99: .word 0x000008FD\n"
-    ".Lambient_100: .word __vt_18WorldAmbientKind11\n"
-    ".Lambient_101:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    mov r1, r8\n"
-    "    movs r2, #0x15\n"
-    "    movs r3, #0\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_106\n"
-    "    str r0, [r5, #0x4c]\n"
-    "    movs r4, #0\n"
-    "    str r4, [r5, #0x50]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #0x50\n"
-    "    adds r0, r5, #0\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    bl SelectWorldAmbientSpawnPosition\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x60\n"
-    "    movs r1, #0\n"
-    "    strh r4, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    subs r0, #0xe\n"
-    "    movs r2, #0\n"
-    "    ldrsh r0, [r0, r2]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0x58]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x56\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r0, r3]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0x5c]\n"
-    ".Lambient_102:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #8\n"
-    "    ldr r0, [r6, #8]\n"
-    "    cmp r0, #2\n"
-    "    bhi .Lambient_104\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r0, #4\n"
-    "    adds r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    beq .Lambient_103\n"
-    "    str r5, [r0]\n"
-    ".Lambient_103:\n"
-    "    ldr r0, [r6, #8]\n"
-    "    adds r0, #1\n"
-    "    str r0, [r6, #8]\n"
-    ".Lambient_104:\n"
-    "    ldr\tr5, [sp, #4]\n"
-    "    subs\tr5, #1\n"
-    "    str\tr5, [sp, #4]\n"
-    "    cmp\tr5, #0\n"
-    "    ble .Lambient_105\n"
-    "    b .Lambient_60\n"
-    ".Lambient_105:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r3, r4, r5}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    mov\tsl, r5\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lambient_106: .word __vt_18WorldAmbientKind12\n"
-);
+inline void WorldAmbientSpriteOwners::Append(WorldAmbientSprite * sprite)
+{
+    if (count < CAPACITY) {
+        new (&(*this)[count]) Owner(sprite);
+        ++count;
+    }
+}
+
+inline WorldAmbientKind1::WorldAmbientKind1(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x9B6, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind2::WorldAmbientKind2(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x10, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind3::WorldAmbientKind3(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x3DB, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind4::WorldAmbientKind4(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x806, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind5::WorldAmbientKind5(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x202, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+    height_q16 = 0;
+}
+
+inline WorldAmbientKind6::WorldAmbientKind6(GameObject * world)
+    : WorldAmbientSprite(world, 0x2A4, 1)
+{
+    motion.direction = FACING_DOWN;
+    current_position = SelectWorldAmbientSpawnPosition(this, &motion, -1);
+    next_position = -1;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+    vertical_offset = -8;
+}
+
+inline WorldAmbientKind7::WorldAmbientKind7(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x87B, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind8::WorldAmbientKind8(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x65C, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind9::WorldAmbientKind9(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x8F9, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind10::WorldAmbientKind10(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x9A9, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind11::WorldAmbientKind11(GameObject * world, i32 x, i32 y)
+    : WorldAmbientSprite(world, 0x8FD, 1)
+{
+    motion.direction = FACING_DOWN;
+    motion.x = x;
+    motion.y = y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+inline WorldAmbientKind12::WorldAmbientKind12(GameObject * world)
+    : WorldAmbientSprite(world, 0x15, 0)
+{
+    motion.direction = FACING_DOWN;
+    SelectWorldAmbientSpawnPosition(this, &motion, -1);
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+}
+
+void PopulateWorldAmbientSprites(WorldAmbientSpriteController * controller,
+    GameObject * world, u32 season, u8 nighttime)
+{
+    WorldAmbientSpawnWeights const * table = gWorldAmbientNightSpawnWeights;
+    if (!nighttime)
+        table = gWorldAmbientDaySpawnWeights;
+    i32 table_count = 4;
+    if (!nighttime)
+        table_count = 10;
+    i16 roll = RandomBelow(99);
+    i32 kind = 0;
+    i32 count = 0;
+    i32 season_index = 0;
+    switch (static_cast<i32>(season)) {
+    case SEASON_SPRING: season_index = 0; break;
+    case SEASON_SUMMER: season_index = 1; break;
+    case SEASON_FALL: season_index = 2; break;
+    case SEASON_WINTER: season_index = 3; break;
+    }
+    for (i32 i = 0; i < table_count; ++i) {
+        if (roll < table[i].season_weight[season_index]) {
+            kind = i;
+            count = table[i].count_limit;
+            break;
+        }
+        roll -= table[i].season_weight[season_index];
+    }
+    if (kind && nighttime)
+        kind += 9;
+    if (count > 1)
+        count = RandomBelow(count - 1) + 1;
+    for (; count > 0; --count) {
+        i32 x = RandomBelow(392) + 184;
+        i32 y;
+        if (x <= 239)
+            y = RandomBelow(56) + 496;
+        else
+            y = RandomBelow(48) + 552;
+        switch (kind) {
+        case WorldAmbientKind1::KIND:
+            controller->sprites.Append(new WorldAmbientKind1(world, x, y));
+            break;
+        case WorldAmbientKind2::KIND:
+            controller->sprites.Append(new WorldAmbientKind2(world, x, y));
+            break;
+        case WorldAmbientKind3::KIND:
+            controller->sprites.Append(new WorldAmbientKind3(world, x, y));
+            break;
+        case WorldAmbientKind4::KIND:
+            controller->sprites.Append(new WorldAmbientKind4(world, x, y));
+            break;
+        case WorldAmbientKind5::KIND:
+            controller->sprites.Append(new WorldAmbientKind5(world, x, y));
+            break;
+        case WorldAmbientKind6::KIND:
+            controller->sprites.Append(new WorldAmbientKind6(world));
+            break;
+        case WorldAmbientKind7::KIND:
+            controller->sprites.Append(new WorldAmbientKind7(world, x, y));
+            break;
+        case WorldAmbientKind8::KIND:
+            controller->sprites.Append(new WorldAmbientKind8(world, x, y));
+            break;
+        case WorldAmbientKind9::KIND:
+            controller->sprites.Append(new WorldAmbientKind9(world, x, y));
+            break;
+        case WorldAmbientKind10::KIND:
+            controller->sprites.Append(new WorldAmbientKind10(world, x, y));
+            break;
+        case WorldAmbientKind11::KIND:
+            controller->sprites.Append(new WorldAmbientKind11(world, x, y));
+            break;
+        case WorldAmbientKind12::KIND:
+            controller->sprites.Append(new WorldAmbientKind12(world));
+            break;
+        }
+    }
+}
 
 extern "C" WorldAmbientSpawnPosition const gWorldAmbientSpawnPositions[] ALIGN(2) = {
     { 180, 428 },
