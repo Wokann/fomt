@@ -19,6 +19,10 @@ struct Farmer;
 
 struct PlayerActor : PlayerActorBase {
     virtual Box GetBox() const;
+    virtual void vfunc_10();
+    virtual void SuspendNormalUpdates();
+    virtual void ResumeNormalUpdates();
+    void RefreshHeldItemGraphic();
     /* vt+3C */ virtual u8 vfunc_3C() const;
     /* vt+40 */ virtual bool IsRidingHorse() const;
     /* vt+44 */ virtual bool IsHoldingTool();

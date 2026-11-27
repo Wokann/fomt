@@ -938,17 +938,6 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".L08024978: .word 0x00002171\n"
-    "    .global func_0802497C\n"
-    "    .thumb_func\n"
-    "func_0802497C:\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    bl vfunc_10__7AEntity\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1553,19 +1542,14 @@ asm_unified(
     "    .align 2, 0\n"
     ".L08024BE4: .word 0x00002171\n"
     "\n"
-    "    thumb_func_start func_08024BE8\n"
-    "func_08024BE8: @ 0x08024BE8\n"
-    "    push {r4, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    bl vfunc_10__7AEntity\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
 );
 #endif
+
+void PlayerActor::vfunc_10()
+{
+    AEntity::vfunc_10();
+    RefreshHeldItemGraphic();
+}
 
 Box PlayerActor::GetBox() const
 {
@@ -1581,19 +1565,19 @@ Box PlayerActor::GetBox() const
     }
 }
 
+void PlayerActor::SuspendNormalUpdates()
+{
+    normal_update_suspended = true;
+    StopActorSpriteEffect(*this);
+}
+
+void PlayerActor::ResumeNormalUpdates()
+{
+    normal_update_suspended = false;
+    StopActorSpriteEffect(*this);
+}
+
 #if defined(REGION_JP)
-
-extern "C" void func_080249E8(AActorEntity * self)
-{
-    self->normal_update_suspended = true;
-    StopActorSpriteEffect(*self);
-}
-
-extern "C" void func_080249F8(AActorEntity * self)
-{
-    self->normal_update_suspended = false;
-    StopActorSpriteEffect(*self);
-}
 
 asm_unified(
     "    .align 2, 0\n"
@@ -1615,26 +1599,6 @@ asm_unified(
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start func_08024C54\n"
-    "func_08024C54: @ 0x08024C54\n"
-    "    push {lr}\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0, #6]\n"
-    "    bl StopActorSpriteEffect\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start func_08024C64\n"
-    "func_08024C64: @ 0x08024C64\n"
-    "    push {lr}\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0, #6]\n"
-    "    bl StopActorSpriteEffect\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
     "    thumb_func_start func_08024C74\n"
@@ -3250,7 +3214,7 @@ asm_unified(
     "    cmp r0, #0\n"
     "    beq .Ljp_0802562E\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r0, #0x14\n"
@@ -3998,7 +3962,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F4C0\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -4108,7 +4072,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl SetHeldChickenSlot\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -4216,7 +4180,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F4D8\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -4323,7 +4287,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F510\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -4510,7 +4474,7 @@ asm_unified(
     "    bl func_0800F528\n"
     ".Ljp_08025F9C:\n"
     "    adds r0, r5, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r0, r5, #0\n"
     "    adds r0, #0x3c\n"
     "    movs r4, #0\n"
@@ -11453,7 +11417,7 @@ asm_unified(
     "    movs r0, #1\n"
     "    strb r0, [r1]\n"
     "    adds r0, r6, #0\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    ldr r0, [r6, #0x38]\n"
     "    adds r0, #0x54\n"
     "    bl IsHeldItemEmpty\n"
@@ -12886,9 +12850,9 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Ljp_0802A318: .word 0xFFF80000\n"
-    "    .global func_0802A31C\n"
+    "    .global RefreshHeldItemGraphic__11PlayerActor\n"
     "    .thumb_func\n"
-    "func_0802A31C: @ 0x0802A31C\n"
+    "RefreshHeldItemGraphic__11PlayerActor: @ 0x0802A31C\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    mov r7, r8\n"
     "    push {r7}\n"
@@ -15053,7 +15017,7 @@ asm_unified(
     "    cmp r0, #0\n"
     "    beq .L0802589A\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r0, #0x14\n"
@@ -15795,7 +15759,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F4C0\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -15904,7 +15868,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl SetHeldChickenSlot\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -16011,7 +15975,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F4D8\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -16118,7 +16082,7 @@ asm_unified(
     "    adds r0, #0x54\n"
     "    bl func_0800F510\n"
     "    adds r0, r4, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r1, r4, #0\n"
     "    adds r1, #0x3c\n"
     "    movs r5, #0\n"
@@ -16304,7 +16268,7 @@ asm_unified(
     "    bl func_0800F528\n"
     ".L08026208:\n"
     "    adds r0, r5, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    adds r0, r5, #0\n"
     "    adds r0, #0x3c\n"
     "    movs r4, #0\n"
@@ -23245,7 +23209,7 @@ asm_unified(
     "    movs r0, #1\n"
     "    strb r0, [r1]\n"
     "    adds r0, r6, #0\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    ldr r0, [r6, #0x38]\n"
     "    adds r0, #0x54\n"
     "    bl IsHeldItemEmpty\n"
@@ -24678,8 +24642,8 @@ asm_unified(
     "    .align 2, 0\n"
     ".L0802A584: .word 0xFFF80000\n"
     "\n"
-    "    thumb_func_start func_0802A588\n"
-    "func_0802A588: @ 0x0802A588\n"
+    "    thumb_func_start RefreshHeldItemGraphic__11PlayerActor\n"
+    "RefreshHeldItemGraphic__11PlayerActor: @ 0x0802A588\n"
     "    push {r4, r5, r6, r7, lr}\n"
     "    mov r7, r8\n"
     "    push {r7}\n"
@@ -38024,7 +37988,7 @@ asm_unified(
     "    bl func_0800F510\n"
     ".Ljp_08030E0E:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r4, #0\n"
     "    movs r0, #0x21\n"
     "    ldr r3, [sp, #0x13c]\n"
@@ -38125,7 +38089,7 @@ asm_unified(
     "    str r1, [sp]\n"
     "    bl func_0800F418\n"
     "    mov r0, sl\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r0, #0x21\n"
     "    ldr r7, [sp, #0x13c]\n"
     "    strb r0, [r7]\n"
@@ -39200,7 +39164,7 @@ asm_unified(
     "    b .Ljp_08031CA2\n"
     ".Ljp_080316F6:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r0, #0x14\n"
     "    ldr r5, [sp, #0x13c]\n"
     "    strb r0, [r5]\n"
@@ -39639,7 +39603,7 @@ asm_unified(
     "    b .Ljp_08031CA2\n"
     ".Ljp_08031A0A:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A31C\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     ".Ljp_08031A10:\n"
     "    movs r0, #0\n"
     ".Ljp_08031A12:\n"
@@ -49954,7 +49918,7 @@ asm_unified(
     "    bl func_0800F510\n"
     ".L0803107A:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r4, #0\n"
     "    movs r0, #0x21\n"
     "    ldr r3, [sp, #0x13c]\n"
@@ -50055,7 +50019,7 @@ asm_unified(
     "    str r1, [sp]\n"
     "    bl func_0800F418\n"
     "    mov r0, sl\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r0, #0x21\n"
     "    ldr r7, [sp, #0x13c]\n"
     "    strb r0, [r7]\n"
@@ -51130,7 +51094,7 @@ asm_unified(
     "    b .L08031F0E\n"
     ".L08031962:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     "    movs r0, #0x14\n"
     "    ldr r5, [sp, #0x13c]\n"
     "    strb r0, [r5]\n"
@@ -51569,7 +51533,7 @@ asm_unified(
     "    b .L08031F0E\n"
     ".L08031C76:\n"
     "    mov r0, sl\n"
-    "    bl func_0802A588\n"
+    "    bl RefreshHeldItemGraphic__11PlayerActor\n"
     ".L08031C7C:\n"
     "    movs r0, #0\n"
     ".L08031C7E:\n"

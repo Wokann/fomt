@@ -13,11 +13,11 @@ asm_unified(
 #if defined(REGION_JP)
     "    .word func_08024814\n"
     "    .word GetBox__C11PlayerActor\n"
-    "    .word func_0802497C\n"
+    "    .word vfunc_10__11PlayerActor\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word func_08024A80\n"
     "    .word GetBox__C11PlayerActor\n"
-    "    .word func_08024BE8\n"
+    "    .word vfunc_10__11PlayerActor\n"
 #endif
     "    .word vfunc_14__7AEntity\n"
 #if defined(REGION_JP)
@@ -26,13 +26,8 @@ asm_unified(
     "    .word func_08024CD0\n"
 #endif
     "    .word Draw__7AEntityRC17EntityDrawContext\n"
-#if defined(REGION_JP)
-    "    .word func_080249E8\n"
-    "    .word func_080249F8\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .word func_08024C54\n"
-    "    .word func_08024C64\n"
-#endif
+    "    .word SuspendNormalUpdates__11PlayerActor\n"
+    "    .word ResumeNormalUpdates__11PlayerActor\n"
     "    .word IsNormalUpdateSuspended__C7AEntity\n"
 #if defined(REGION_JP)
     "    .word func_08024DAC\n"
