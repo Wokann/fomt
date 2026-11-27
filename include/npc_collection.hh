@@ -88,7 +88,7 @@ struct NpcCollection
     // empty string for an invalid ID and reads the saved name for the child.
     char const * GetCharacterName(u32 character_id) const;
     // The player birthday selects the alternate date for six candidates.
-    u8 GetCharacterBirthdayCode(u32 character_id, GameDate const & player_birthday) const;
+    GameDate GetCharacterBirthday(u32 character_id, GameDate const & player_birthday) const;
     // Object lookups return null for unsupported IDs. The child requires
     // has_child, and harvest-sprite slot indices are 0-6.
     Npc const * GetNpc(u32 character_id) const;
@@ -206,11 +206,21 @@ struct NpcCollection
 
 // ROM birthday bytes use season in bits 0-1 and a one-based day in bits 2-6.
 // The two bytes after the alternate date are natural record alignment.
+// Table dates store days 1-30; GameDate stores days 0-29. The encoded
+// member allows the shared birthday constants to initialize ROM data.
+union PACKED CharacterBirthdayDate {
+    u8 encoded;
+    struct PACKED {
+        Season season : 2;
+        u8 day : 5;
+    } fields;
+};
+
 struct CharacterNameEntry
 {
     char const * text;
-    u8 birthday_code;
-    u8 alternate_birthday_code;
+    CharacterBirthdayDate birthday_code;
+    CharacterBirthdayDate alternate_birthday_code;
 };
 
 

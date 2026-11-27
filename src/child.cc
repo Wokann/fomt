@@ -28,10 +28,9 @@ char const * Child::GetName() const
     return name;
 }
 
-u8 Child::GetBirthdayCode() const
+GameDate Child::GetBirthday() const
 {
-    // The script reader consumes the stored byte, then selects season/day bits.
-    return *reinterpret_cast<u8 const *>(&birthday);
+    return birthday;
 }
 
 u8 Child::GetAgeDays() const

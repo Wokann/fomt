@@ -5,49 +5,49 @@
 #include FOMT_TEXT_INCLUDE(npc_collection.cc)
 
 CharacterNameEntry const gCharacterNameEntries[] = {
-    { gText_CharacterName_Empty,          0,                        0                                  }, // ID 0
-    { gText_CharacterName_Lillia,         BIRTHDAY_LILLIA,          0                                  }, // CHARACTER_LILLIA
-    { gText_CharacterName_Rick,           BIRTHDAY_RICK,            0                                  }, // CHARACTER_RICK
-    { gText_CharacterName_Popuri,         BIRTHDAY_POPURI,          BIRTHDAY_POPURI_ALTERNATE          }, // CHARACTER_POPURI
-    { gText_CharacterName_Barley,         BIRTHDAY_BARLEY,          0                                  }, // CHARACTER_BARLEY
-    { gText_CharacterName_May,            BIRTHDAY_MAY,             0                                  }, // CHARACTER_MAY
-    { gText_CharacterName_Saibara,        BIRTHDAY_SAIBARA,         0                                  }, // CHARACTER_SAIBARA
-    { gText_CharacterName_Gray,           BIRTHDAY_GRAY,            0                                  }, // CHARACTER_GRAY
-    { gText_CharacterName_Duke,           BIRTHDAY_DUKE,            0                                  }, // CHARACTER_DUKE
-    { gText_CharacterName_Manna,          BIRTHDAY_MANNA,           0                                  }, // CHARACTER_MANNA
-    { gText_CharacterName_Basil,          BIRTHDAY_BASIL,           0                                  }, // CHARACTER_BASIL
-    { gText_CharacterName_Anna,           BIRTHDAY_ANNA,            0                                  }, // CHARACTER_ANNA
-    { gText_CharacterName_Mary,           BIRTHDAY_MARY,            BIRTHDAY_MARY_ALTERNATE            }, // CHARACTER_MARY
-    { gText_CharacterName_Thomas,         BIRTHDAY_THOMAS,          0                                  }, // CHARACTER_THOMAS
-    { gText_CharacterName_Harris,         BIRTHDAY_HARRIS,          0                                  }, // CHARACTER_HARRIS
-    { gText_CharacterName_Ellen,          BIRTHDAY_ELLEN,           0                                  }, // CHARACTER_ELLEN
-    { gText_CharacterName_Stu,            BIRTHDAY_STU,             0                                  }, // CHARACTER_STU
-    { gText_CharacterName_Jeff,           BIRTHDAY_JEFF,            0                                  }, // CHARACTER_JEFF
-    { gText_CharacterName_Sasha,          BIRTHDAY_SASHA,           0                                  }, // CHARACTER_SASHA
-    { gText_CharacterName_Karen,          BIRTHDAY_KAREN,           BIRTHDAY_KAREN_ALTERNATE           }, // CHARACTER_KAREN
-    { gText_CharacterName_Doctor,         BIRTHDAY_DOCTOR,          0                                  }, // CHARACTER_DOCTOR
-    { gText_CharacterName_Elli,           BIRTHDAY_ELLI,            BIRTHDAY_ELLI_ALTERNATE            }, // CHARACTER_ELLI
-    { gText_CharacterName_Carter,         BIRTHDAY_CARTER,          0                                  }, // CHARACTER_CARTER
-    { gText_CharacterName_Cliff,          BIRTHDAY_CLIFF,           0                                  }, // CHARACTER_CLIFF
-    { gText_CharacterName_Doug,           BIRTHDAY_DOUG,            0                                  }, // CHARACTER_DOUG
-    { gText_CharacterName_Ann,            BIRTHDAY_ANN,             BIRTHDAY_ANN_ALTERNATE             }, // CHARACTER_ANN
-    { gText_CharacterName_Kai,            BIRTHDAY_KAI,             0                                  }, // CHARACTER_KAI
-    { gText_CharacterName_Gotz,           BIRTHDAY_GOTZ,            0                                  }, // CHARACTER_GOTZ
-    { gText_CharacterName_Zack,           BIRTHDAY_ZACK,            0                                  }, // CHARACTER_ZACK
-    { gText_CharacterName_Won,            BIRTHDAY_WON,             0                                  }, // CHARACTER_WON
-    { gText_CharacterName_Gourmet,        SPECIALDAY_GOURMET,       0                                  }, // CHARACTER_GOURMET
-    { gText_CharacterName_HarvestGoddess, BIRTHDAY_HARVEST_GODDESS, BIRTHDAY_HARVEST_GODDESS_ALTERNATE }, // CHARACTER_HARVEST_GODDESS
-    { gText_CharacterName_Kappa,          SPECIALDAY_KAPPA,         0                                  }, // CHARACTER_KAPPA
-    { gText_CharacterName_Van,            SPECIALDAY_VAN,           0                                  }, // CHARACTER_VAN
-    { gText_CharacterName_LouOrRuby,      SPECIALDAY_LOU_OR_RUBY,   0                                  }, // CHARACTER_LOU_OR_RUBY
-    { gText_CharacterName_Empty,          0,                        0                                  }, // CHARACTER_CHILD
-    { gText_CharacterName_Staid,          BIRTHDAY_STAID,           0                                  }, // CHARACTER_STAID
-    { gText_CharacterName_Nappy,          BIRTHDAY_NAPPY,           0                                  }, // CHARACTER_NAPPY
-    { gText_CharacterName_Bold,           BIRTHDAY_BOLD,            0                                  }, // CHARACTER_BOLD
-    { gText_CharacterName_Chef,           BIRTHDAY_CHEF,            0                                  }, // CHARACTER_CHEF
-    { gText_CharacterName_Aqua,           BIRTHDAY_AQUA,            0                                  }, // CHARACTER_AQUA
-    { gText_CharacterName_Hoggy,          BIRTHDAY_HOGGY,           0                                  }, // CHARACTER_HOGGY
-    { gText_CharacterName_Timid,          BIRTHDAY_TIMID,           0                                  }, // CHARACTER_TIMID
+    { gText_CharacterName_Empty,          { 0                         }, { 0                                  } }, // ID 0
+    { gText_CharacterName_Lillia,         { BIRTHDAY_LILLIA           }, { 0                                  } }, // CHARACTER_LILLIA
+    { gText_CharacterName_Rick,           { BIRTHDAY_RICK             }, { 0                                  } }, // CHARACTER_RICK
+    { gText_CharacterName_Popuri,         { BIRTHDAY_POPURI           }, { BIRTHDAY_POPURI_ALTERNATE          } }, // CHARACTER_POPURI
+    { gText_CharacterName_Barley,         { BIRTHDAY_BARLEY           }, { 0                                  } }, // CHARACTER_BARLEY
+    { gText_CharacterName_May,            { BIRTHDAY_MAY              }, { 0                                  } }, // CHARACTER_MAY
+    { gText_CharacterName_Saibara,        { BIRTHDAY_SAIBARA          }, { 0                                  } }, // CHARACTER_SAIBARA
+    { gText_CharacterName_Gray,           { BIRTHDAY_GRAY             }, { 0                                  } }, // CHARACTER_GRAY
+    { gText_CharacterName_Duke,           { BIRTHDAY_DUKE             }, { 0                                  } }, // CHARACTER_DUKE
+    { gText_CharacterName_Manna,          { BIRTHDAY_MANNA            }, { 0                                  } }, // CHARACTER_MANNA
+    { gText_CharacterName_Basil,          { BIRTHDAY_BASIL            }, { 0                                  } }, // CHARACTER_BASIL
+    { gText_CharacterName_Anna,           { BIRTHDAY_ANNA             }, { 0                                  } }, // CHARACTER_ANNA
+    { gText_CharacterName_Mary,           { BIRTHDAY_MARY             }, { BIRTHDAY_MARY_ALTERNATE            } }, // CHARACTER_MARY
+    { gText_CharacterName_Thomas,         { BIRTHDAY_THOMAS           }, { 0                                  } }, // CHARACTER_THOMAS
+    { gText_CharacterName_Harris,         { BIRTHDAY_HARRIS           }, { 0                                  } }, // CHARACTER_HARRIS
+    { gText_CharacterName_Ellen,          { BIRTHDAY_ELLEN            }, { 0                                  } }, // CHARACTER_ELLEN
+    { gText_CharacterName_Stu,            { BIRTHDAY_STU              }, { 0                                  } }, // CHARACTER_STU
+    { gText_CharacterName_Jeff,           { BIRTHDAY_JEFF             }, { 0                                  } }, // CHARACTER_JEFF
+    { gText_CharacterName_Sasha,          { BIRTHDAY_SASHA            }, { 0                                  } }, // CHARACTER_SASHA
+    { gText_CharacterName_Karen,          { BIRTHDAY_KAREN            }, { BIRTHDAY_KAREN_ALTERNATE           } }, // CHARACTER_KAREN
+    { gText_CharacterName_Doctor,         { BIRTHDAY_DOCTOR           }, { 0                                  } }, // CHARACTER_DOCTOR
+    { gText_CharacterName_Elli,           { BIRTHDAY_ELLI             }, { BIRTHDAY_ELLI_ALTERNATE            } }, // CHARACTER_ELLI
+    { gText_CharacterName_Carter,         { BIRTHDAY_CARTER           }, { 0                                  } }, // CHARACTER_CARTER
+    { gText_CharacterName_Cliff,          { BIRTHDAY_CLIFF            }, { 0                                  } }, // CHARACTER_CLIFF
+    { gText_CharacterName_Doug,           { BIRTHDAY_DOUG             }, { 0                                  } }, // CHARACTER_DOUG
+    { gText_CharacterName_Ann,            { BIRTHDAY_ANN              }, { BIRTHDAY_ANN_ALTERNATE             } }, // CHARACTER_ANN
+    { gText_CharacterName_Kai,            { BIRTHDAY_KAI              }, { 0                                  } }, // CHARACTER_KAI
+    { gText_CharacterName_Gotz,           { BIRTHDAY_GOTZ             }, { 0                                  } }, // CHARACTER_GOTZ
+    { gText_CharacterName_Zack,           { BIRTHDAY_ZACK             }, { 0                                  } }, // CHARACTER_ZACK
+    { gText_CharacterName_Won,            { BIRTHDAY_WON              }, { 0                                  } }, // CHARACTER_WON
+    { gText_CharacterName_Gourmet,        { SPECIALDAY_GOURMET        }, { 0                                  } }, // CHARACTER_GOURMET
+    { gText_CharacterName_HarvestGoddess, { BIRTHDAY_HARVEST_GODDESS  }, { BIRTHDAY_HARVEST_GODDESS_ALTERNATE } }, // CHARACTER_HARVEST_GODDESS
+    { gText_CharacterName_Kappa,          { SPECIALDAY_KAPPA          }, { 0                                  } }, // CHARACTER_KAPPA
+    { gText_CharacterName_Van,            { SPECIALDAY_VAN            }, { 0                                  } }, // CHARACTER_VAN
+    { gText_CharacterName_LouOrRuby,      { SPECIALDAY_LOU_OR_RUBY    }, { 0                                  } }, // CHARACTER_LOU_OR_RUBY
+    { gText_CharacterName_Empty,          { 0                         }, { 0                                  } }, // CHARACTER_CHILD
+    { gText_CharacterName_Staid,          { BIRTHDAY_STAID            }, { 0                                  } }, // CHARACTER_STAID
+    { gText_CharacterName_Nappy,          { BIRTHDAY_NAPPY            }, { 0                                  } }, // CHARACTER_NAPPY
+    { gText_CharacterName_Bold,           { BIRTHDAY_BOLD             }, { 0                                  } }, // CHARACTER_BOLD
+    { gText_CharacterName_Chef,           { BIRTHDAY_CHEF             }, { 0                                  } }, // CHARACTER_CHEF
+    { gText_CharacterName_Aqua,           { BIRTHDAY_AQUA             }, { 0                                  } }, // CHARACTER_AQUA
+    { gText_CharacterName_Hoggy,          { BIRTHDAY_HOGGY            }, { 0                                  } }, // CHARACTER_HOGGY
+    { gText_CharacterName_Timid,          { BIRTHDAY_TIMID            }, { 0                                  } }, // CHARACTER_TIMID
 };
 
 #include "game_state.hh"
@@ -134,9 +134,9 @@ char const * NpcCollection::GetCharacterName(u32 character_id) const
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate\n"
+    "    .global GetCharacterBirthday__C13NpcCollectionUiRC8GameDate\n"
     "    .thumb_func\n"
-    "GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate: @ 0x0809F8AC\n"
+    "GetCharacterBirthday__C13NpcCollectionUiRC8GameDate: @ 0x0809F8AC\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
     "\tmov r7, sl\n"
     "\tmov r6, sb\n"
@@ -289,7 +289,7 @@ asm_unified(
     ".L0809FFD8: .word gCharacterNameEntries\n"
     ".L0809FFDC:\n"
     "\tadds r0, r4, #4\n"
-    "\tbl GetBirthdayCode__C5Child\n"
+    "\tbl GetBirthday__C5Child\n"
     "\tb .L080A001C\n"
     ".L0809FFE4:\n"
     "\tlsls r0, r3, #3\n"
@@ -352,8 +352,8 @@ char const * NpcCollection::GetCharacterName(u32 character_id) const
 
 asm_unified(
     "    .align 2, 0\n"
-    "\tthumb_func_start GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate\n"
-    "GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate: @ 0x0809FE74\n"
+    "\tthumb_func_start GetCharacterBirthday__C13NpcCollectionUiRC8GameDate\n"
+    "GetCharacterBirthday__C13NpcCollectionUiRC8GameDate: @ 0x0809FE74\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
     "\tmov r7, sl\n"
     "\tmov r6, sb\n"
@@ -506,7 +506,7 @@ asm_unified(
     ".L0809FFD8: .word gCharacterNameEntries\n"
     ".L0809FFDC:\n"
     "\tadds r0, r4, #4\n"
-    "\tbl GetBirthdayCode__C5Child\n"
+    "\tbl GetBirthday__C5Child\n"
     "\tb .L080A001C\n"
     ".L0809FFE4:\n"
     "\tlsls r0, r3, #3\n"
@@ -800,110 +800,14 @@ ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
     return &locations.inn_second_floor;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateChild__13NpcCollectionRC8GameDate\n"
-    "    .thumb_func\n"
-    "CreateChild__13NpcCollectionRC8GameDate: @ 0x080A0020\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sb\n"
-    "\tmov r6, r8\n"
-    "\tpush {r6, r7}\n"
-    "\tsub sp, #0x38\n"
-    "\tadds r7, r0, #0\n"
-    "\tmov sb, r1\n"
-    "\tldrb r1, [r7, #3]\n"
-    "\tlsls r0, r1, #0x1e\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tmov r8, r0\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080A069E\n"
-    "\tmovs r0, #2\n"
-    "\torrs r0, r1\n"
-    "\tstrb r0, [r7, #3]\n"
-    "\tadd r1, sp, #0x30\n"
-    "\tmovs r4, #0x1d\n"
-    "\tldrh r2, [r1]\n"
-    "\tldr r3, .L080A06AC @ =0xFFFFFC00\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r4\n"
-    "\tstrh r0, [r1]\n"
-    "\tmovs r6, #0x90\n"
-    "\tldrb r4, [r1, #1]\n"
-    "\tmovs r2, #3\n"
-    "\tadds r0, r2, #0\n"
-    "\tands r0, r4\n"
-    "\torrs r0, r6\n"
-    "\tstrb r0, [r1, #1]\n"
-    "\tmovs r5, #1\n"
-    "\tldrh r4, [r1, #2]\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r4\n"
-    "\torrs r0, r5\n"
-    "\tstrh r0, [r1, #2]\n"
-    "\tldrb r0, [r1, #3]\n"
-    "\tands r2, r0\n"
-    "\torrs r2, r6\n"
-    "\tstrb r2, [r1, #3]\n"
-    "\tldrh r0, [r1, #4]\n"
-    "\tands r3, r0\n"
-    "\torrs r3, r5\n"
-    "\tstrh r3, [r1, #4]\n"
-    "\tadd r4, sp, #0x28\n"
-    "\tadds r0, r4, #0\n"
-    "\tmovs r2, #6\n"
-    "\tbl memcpy\n"
-    "\tmov r0, r8\n"
-    "\tstrb r0, [r4, #6]\n"
-    "\tmov r0, sp\n"
-    "\tmov r1, sb\n"
-    "\tadds r2, r4, #0\n"
-    "\tbl __5ChildRC8GameDateRC13ActorLocation\n"
-    "\tadds r1, r7, #4\n"
-    "\tmov r0, sp\n"
-    "\tldm r0!, {r2, r3, r4}\n"
-    "\tstm r1!, {r2, r3, r4}\n"
-    "\tldm r0!, {r2, r3}\n"
-    "\tstm r1!, {r2, r3}\n"
-    "\tadds r0, r7, #0\n"
-    "\tadds r0, #0x18\n"
-    "\tadd r1, sp, #0x14\n"
-    "\tbl strcpy\n"
-    "\tadds r1, r7, #0\n"
-    "\tadds r1, #0x28\n"
-    "\tadd r0, sp, #0x24\n"
-    "\tldrb r0, [r0]\n"
-    "\tstrb r0, [r1]\n"
-    "\tmov r0, sp\n"
-    "\tadds r0, #0x25\n"
-    "\tldrb r0, [r0]\n"
-    "\tadds r1, #1\n"
-    "\tstrb r0, [r1]\n"
-    "\tmov r0, sp\n"
-    "\tadds r0, #0x26\n"
-    "\tldrb r1, [r0]\n"
-    "\tlsls r1, r1, #0x1f\n"
-    "\tadds r3, r7, #0\n"
-    "\tadds r3, #0x2a\n"
-    "\tlsrs r1, r1, #0x1f\n"
-    "\tldrb r2, [r3]\n"
-    "\tmovs r0, #2\n"
-    "\trsbs r0, r0, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r1\n"
-    "\tstrb r0, [r3]\n"
-    ".L080A069E:\n"
-    "\tadd sp, #0x38\n"
-    "\tpop {r3, r4}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080A06AC: .word 0xFFFFFC00\n"
-);
+void NpcCollection::CreateChild(GameDate const & date)
+{
+    if (!has_child) {
+        has_child = true;
+        child = Child(date, ActorLocation(Location(MAP_FARMHOUSE, 100, 100), FACING_DOWN));
+    }
+}
+
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 
 bool NpcCollection::HasRequiredFriendshipLevels() const
@@ -977,110 +881,14 @@ ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
     return &locations.inn_second_floor;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "\tthumb_func_start CreateChild__13NpcCollectionRC8GameDate\n"
-    "CreateChild__13NpcCollectionRC8GameDate: @ 0x080A05E8\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sb\n"
-    "\tmov r6, r8\n"
-    "\tpush {r6, r7}\n"
-    "\tsub sp, #0x38\n"
-    "\tadds r7, r0, #0\n"
-    "\tmov sb, r1\n"
-    "\tldrb r1, [r7, #3]\n"
-    "\tlsls r0, r1, #0x1e\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tmov r8, r0\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080A069E\n"
-    "\tmovs r0, #2\n"
-    "\torrs r0, r1\n"
-    "\tstrb r0, [r7, #3]\n"
-    "\tadd r1, sp, #0x30\n"
-    "\tmovs r4, #0x1d\n"
-    "\tldrh r2, [r1]\n"
-    "\tldr r3, .L080A06AC @ =0xFFFFFC00\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r4\n"
-    "\tstrh r0, [r1]\n"
-    "\tmovs r6, #0x90\n"
-    "\tldrb r4, [r1, #1]\n"
-    "\tmovs r2, #3\n"
-    "\tadds r0, r2, #0\n"
-    "\tands r0, r4\n"
-    "\torrs r0, r6\n"
-    "\tstrb r0, [r1, #1]\n"
-    "\tmovs r5, #1\n"
-    "\tldrh r4, [r1, #2]\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r4\n"
-    "\torrs r0, r5\n"
-    "\tstrh r0, [r1, #2]\n"
-    "\tldrb r0, [r1, #3]\n"
-    "\tands r2, r0\n"
-    "\torrs r2, r6\n"
-    "\tstrb r2, [r1, #3]\n"
-    "\tldrh r0, [r1, #4]\n"
-    "\tands r3, r0\n"
-    "\torrs r3, r5\n"
-    "\tstrh r3, [r1, #4]\n"
-    "\tadd r4, sp, #0x28\n"
-    "\tadds r0, r4, #0\n"
-    "\tmovs r2, #6\n"
-    "\tbl memcpy\n"
-    "\tmov r0, r8\n"
-    "\tstrb r0, [r4, #6]\n"
-    "\tmov r0, sp\n"
-    "\tmov r1, sb\n"
-    "\tadds r2, r4, #0\n"
-    "\tbl __5ChildRC8GameDateRC13ActorLocation\n"
-    "\tadds r1, r7, #4\n"
-    "\tmov r0, sp\n"
-    "\tldm r0!, {r2, r3, r4}\n"
-    "\tstm r1!, {r2, r3, r4}\n"
-    "\tldm r0!, {r2, r3}\n"
-    "\tstm r1!, {r2, r3}\n"
-    "\tadds r0, r7, #0\n"
-    "\tadds r0, #0x18\n"
-    "\tadd r1, sp, #0x14\n"
-    "\tbl strcpy\n"
-    "\tadds r1, r7, #0\n"
-    "\tadds r1, #0x28\n"
-    "\tadd r0, sp, #0x24\n"
-    "\tldrb r0, [r0]\n"
-    "\tstrb r0, [r1]\n"
-    "\tmov r0, sp\n"
-    "\tadds r0, #0x25\n"
-    "\tldrb r0, [r0]\n"
-    "\tadds r1, #1\n"
-    "\tstrb r0, [r1]\n"
-    "\tmov r0, sp\n"
-    "\tadds r0, #0x26\n"
-    "\tldrb r1, [r0]\n"
-    "\tlsls r1, r1, #0x1f\n"
-    "\tadds r3, r7, #0\n"
-    "\tadds r3, #0x2a\n"
-    "\tlsrs r1, r1, #0x1f\n"
-    "\tldrb r2, [r3]\n"
-    "\tmovs r0, #2\n"
-    "\trsbs r0, r0, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r1\n"
-    "\tstrb r0, [r3]\n"
-    ".L080A069E:\n"
-    "\tadd sp, #0x38\n"
-    "\tpop {r3, r4}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080A06AC: .word 0xFFFFFC00\n"
-    "\n"
-);
+void NpcCollection::CreateChild(GameDate const & date)
+{
+    if (!has_child) {
+        has_child = true;
+        child = Child(date, ActorLocation(Location(MAP_FARMHOUSE, 100, 100), FACING_DOWN));
+    }
+}
+
 #endif
 
 Npc * NpcCollection::GetNpc(u32 character_id)
@@ -1422,678 +1230,131 @@ WeddingDate const & NpcCollection::GetWeddingDate() const
     return wedding_date;
 }
 
-asm_unified(
-    ".text\n"
-#if defined(REGION_JP)
-    "    .global ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState\n"
-    "    .thumb_func\n"
-    "ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState: @ 0x080A0EBC\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r6, r2, #0\n"
-    "\tldrh r0, [r1]\n"
-    "\tlsls r0, r0, #0x16\n"
-    "\tlsrs r0, r0, #0x16\n"
-    "\tcmp r0, #0x2a\n"
-    "\tbls .Ljp_080A1496\n"
-    "\tb .Ljp_080A1798\n"
-    ".Ljp_080A1496:\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .Ljp_080A14A0 @ =.Ljp_080A14A4\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080A14A0: .word .Ljp_080A14A4\n"
-    ".Ljp_080A14A4: @ jump table\n"
-    "\t.word .Ljp_080A1550 @ case 0\n"
-    "\t.word .Ljp_080A1550 @ case 1\n"
-    "\t.word .Ljp_080A1798 @ case 2\n"
-    "\t.word .Ljp_080A1550 @ case 3\n"
-    "\t.word .Ljp_080A1550 @ case 4\n"
-    "\t.word .Ljp_080A1550 @ case 5\n"
-    "\t.word .Ljp_080A1550 @ case 6\n"
-    "\t.word .Ljp_080A1550 @ case 7\n"
-    "\t.word .Ljp_080A1550 @ case 8\n"
-    "\t.word .Ljp_080A1798 @ case 9\n"
-    "\t.word .Ljp_080A1636 @ case 10\n"
-    "\t.word .Ljp_080A1636 @ case 11\n"
-    "\t.word .Ljp_080A164E @ case 12\n"
-    "\t.word .Ljp_080A1654 @ case 13\n"
-    "\t.word .Ljp_080A165A @ case 14\n"
-    "\t.word .Ljp_080A1678 @ case 15\n"
-    "\t.word .Ljp_080A1678 @ case 16\n"
-    "\t.word .Ljp_080A1798 @ case 17\n"
-    "\t.word .Ljp_080A1798 @ case 18\n"
-    "\t.word .Ljp_080A1696 @ case 19\n"
-    "\t.word .Ljp_080A1696 @ case 20\n"
-    "\t.word .Ljp_080A16A8 @ case 21\n"
-    "\t.word .Ljp_080A16A8 @ case 22\n"
-    "\t.word .Ljp_080A16A8 @ case 23\n"
-    "\t.word .Ljp_080A16BA @ case 24\n"
-    "\t.word .Ljp_080A16BA @ case 25\n"
-    "\t.word .Ljp_080A16BA @ case 26\n"
-    "\t.word .Ljp_080A16BA @ case 27\n"
-    "\t.word .Ljp_080A16EC @ case 28\n"
-    "\t.word .Ljp_080A1798 @ case 29\n"
-    "\t.word .Ljp_080A173C @ case 30\n"
-    "\t.word .Ljp_080A174E @ case 31\n"
-    "\t.word .Ljp_080A174E @ case 32\n"
-    "\t.word .Ljp_080A174E @ case 33\n"
-    "\t.word .Ljp_080A174E @ case 34\n"
-    "\t.word .Ljp_080A1798 @ case 35\n"
-    "\t.word .Ljp_080A1760 @ case 36\n"
-    "\t.word .Ljp_080A1798 @ case 37\n"
-    "\t.word .Ljp_080A1766 @ case 38\n"
-    "\t.word .Ljp_080A1798 @ case 39\n"
-    "\t.word .Ljp_080A1776 @ case 40\n"
-    "\t.word .Ljp_080A1784 @ case 41\n"
-    "\t.word .Ljp_080A1784 @ case 42\n"
-    ".Ljp_080A1550:\n"
-    "\tmovs r5, #1\n"
-    ".Ljp_080A1552:\n"
-    "\tmovs r1, #1\n"
-    "\tcmp r5, #0x21\n"
-    "\tbeq .Ljp_080A1570\n"
-    "\tcmp r5, #0x21\n"
-    "\tbhi .Ljp_080A1562\n"
-    "\tcmp r5, #0x20\n"
-    "\tbeq .Ljp_080A1580\n"
-    "\tb .Ljp_080A1582\n"
-    ".Ljp_080A1562:\n"
-    "\tcmp r5, #0x22\n"
-    "\tbne .Ljp_080A1582\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r0, #0x3b\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x1b\n"
-    "\tb .Ljp_080A1578\n"
-    ".Ljp_080A1570:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r0, #0x3a\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x19\n"
-    ".Ljp_080A1578:\n"
-    "\tlsrs r0, r0, #0x1e\n"
-    "\tcmp r0, #2\n"
-    "\tbeq .Ljp_080A1582\n"
-    "\tb .Ljp_080A1598\n"
-    ".Ljp_080A1580:\n"
-    "\tmovs r1, #0\n"
-    ".Ljp_080A1582:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .Ljp_080A1598\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl GetNpc__13NpcCollectionUi\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_080A1598\n"
-    "\tmovs r1, #1\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    ".Ljp_080A1598:\n"
-    "\tsubs r0, r5, #3\n"
-    "\tcmp r0, #0x1c\n"
-    "\tbhi .Ljp_080A162E\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .Ljp_080A15A8 @ =.Ljp_080A15AC\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080A15A8: .word .Ljp_080A15AC\n"
-    ".Ljp_080A15AC: @ jump table\n"
-    "\t.word .Ljp_080A1620 @ case 0\n"
-    "\t.word .Ljp_080A162E @ case 1\n"
-    "\t.word .Ljp_080A162E @ case 2\n"
-    "\t.word .Ljp_080A162E @ case 3\n"
-    "\t.word .Ljp_080A162E @ case 4\n"
-    "\t.word .Ljp_080A162E @ case 5\n"
-    "\t.word .Ljp_080A162E @ case 6\n"
-    "\t.word .Ljp_080A162E @ case 7\n"
-    "\t.word .Ljp_080A162E @ case 8\n"
-    "\t.word .Ljp_080A1620 @ case 9\n"
-    "\t.word .Ljp_080A162E @ case 10\n"
-    "\t.word .Ljp_080A162E @ case 11\n"
-    "\t.word .Ljp_080A162E @ case 12\n"
-    "\t.word .Ljp_080A162E @ case 13\n"
-    "\t.word .Ljp_080A162E @ case 14\n"
-    "\t.word .Ljp_080A162E @ case 15\n"
-    "\t.word .Ljp_080A1620 @ case 16\n"
-    "\t.word .Ljp_080A162E @ case 17\n"
-    "\t.word .Ljp_080A1620 @ case 18\n"
-    "\t.word .Ljp_080A162E @ case 19\n"
-    "\t.word .Ljp_080A162E @ case 20\n"
-    "\t.word .Ljp_080A162E @ case 21\n"
-    "\t.word .Ljp_080A1620 @ case 22\n"
-    "\t.word .Ljp_080A162E @ case 23\n"
-    "\t.word .Ljp_080A162E @ case 24\n"
-    "\t.word .Ljp_080A162E @ case 25\n"
-    "\t.word .Ljp_080A162E @ case 26\n"
-    "\t.word .Ljp_080A162E @ case 27\n"
-    "\t.word .Ljp_080A1620 @ case 28\n"
-    ".Ljp_080A1620:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl GetBachelorette__13NpcCollectionUi\n"
-    "\tmovs r1, #0xc8\n"
-    "\tbl SubtractLove__12Bachelorettei\n"
-    ".Ljp_080A162E:\n"
-    "\tadds r5, #1\n"
-    "\tcmp r5, #0x2a\n"
-    "\tbls .Ljp_080A1552\n"
-    "\tb .Ljp_080A1798\n"
-    ".Ljp_080A1636:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0x70\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0x84\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r4, #0x98\n"
-    "\tb .Ljp_080A16D8\n"
-    ".Ljp_080A164E:\n"
-    "\tmovs r1, #0x8a\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .Ljp_080A177A\n"
-    ".Ljp_080A1654:\n"
-    "\tmovs r1, #0xaa\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .Ljp_080A177A\n"
-    ".Ljp_080A165A:\n"
-    "\tmovs r1, #0xca\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xd4\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x84\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .Ljp_080A16D6\n"
-    ".Ljp_080A1678:\n"
-    "\tmovs r1, #0xde\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xe8\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0xf2\n"
-    "\tlsls r0, r0, #1\n"
-    "\tb .Ljp_080A16D6\n"
-    ".Ljp_080A1696:\n"
-    "\tmovs r1, #0xfe\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x84\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .Ljp_080A16D6\n"
-    ".Ljp_080A16A8:\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x99\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .Ljp_080A16D6\n"
-    ".Ljp_080A16BA:\n"
-    "\tmovs r1, #0x96\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xa0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0xaa\n"
-    "\tlsls r0, r0, #1\n"
-    ".Ljp_080A16D6:\n"
-    "\tadds r4, r4, r0\n"
-    ".Ljp_080A16D8:\n"
-    "\tadds r0, r4, #0\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xfa\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl SubtractLove__12Bachelorettei\n"
-    "\tb .Ljp_080A1798\n"
-    ".Ljp_080A16EC:\n"
-    "\tmovs r1, #0xcf\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xd8\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xe1\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xea\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xf3\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xfc\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tldr r1, .Ljp_080A1738 @ =0x00000414\n"
-    "\tb .Ljp_080A177A\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080A1738: .word 0x00000414\n"
-    ".Ljp_080A173C:\n"
-    "\tmovs r1, #0xb6\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xc0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tb .Ljp_080A177A\n"
-    ".Ljp_080A174E:\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0x8c\n"
-    "\tlsls r1, r1, #1\n"
-    "\tb .Ljp_080A177A\n"
-    ".Ljp_080A1760:\n"
-    "\tmovs r1, #0x9f\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .Ljp_080A177A\n"
-    ".Ljp_080A1766:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xd8\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xf0\n"
-    "\tb .Ljp_080A177C\n"
-    ".Ljp_080A1776:\n"
-    "\tmovs r1, #0xa4\n"
-    "\tlsls r1, r1, #2\n"
-    ".Ljp_080A177A:\n"
-    "\tadds r0, r4, r1\n"
-    ".Ljp_080A177C:\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tb .Ljp_080A1798\n"
-    ".Ljp_080A1784:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xb0\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xc4\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    ".Ljp_080A1798:\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "\n"
-    "\tthumb_func_start ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState\n"
-    "ApplyDroppedItemFriendshipPenalty__13NpcCollectionRC8LocationRC14GameEventState: @ 0x080A1484\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r6, r2, #0\n"
-    "\tldrh r0, [r1]\n"
-    "\tlsls r0, r0, #0x16\n"
-    "\tlsrs r0, r0, #0x16\n"
-    "\tcmp r0, #0x2a\n"
-    "\tbls .L080A1496\n"
-    "\tb .L080A1798\n"
-    ".L080A1496:\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .L080A14A0 @ =.L080A14A4\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".L080A14A0: .word .L080A14A4\n"
-    ".L080A14A4: @ jump table\n"
-    "\t.word .L080A1550 @ case 0\n"
-    "\t.word .L080A1550 @ case 1\n"
-    "\t.word .L080A1798 @ case 2\n"
-    "\t.word .L080A1550 @ case 3\n"
-    "\t.word .L080A1550 @ case 4\n"
-    "\t.word .L080A1550 @ case 5\n"
-    "\t.word .L080A1550 @ case 6\n"
-    "\t.word .L080A1550 @ case 7\n"
-    "\t.word .L080A1550 @ case 8\n"
-    "\t.word .L080A1798 @ case 9\n"
-    "\t.word .L080A1636 @ case 10\n"
-    "\t.word .L080A1636 @ case 11\n"
-    "\t.word .L080A164E @ case 12\n"
-    "\t.word .L080A1654 @ case 13\n"
-    "\t.word .L080A165A @ case 14\n"
-    "\t.word .L080A1678 @ case 15\n"
-    "\t.word .L080A1678 @ case 16\n"
-    "\t.word .L080A1798 @ case 17\n"
-    "\t.word .L080A1798 @ case 18\n"
-    "\t.word .L080A1696 @ case 19\n"
-    "\t.word .L080A1696 @ case 20\n"
-    "\t.word .L080A16A8 @ case 21\n"
-    "\t.word .L080A16A8 @ case 22\n"
-    "\t.word .L080A16A8 @ case 23\n"
-    "\t.word .L080A16BA @ case 24\n"
-    "\t.word .L080A16BA @ case 25\n"
-    "\t.word .L080A16BA @ case 26\n"
-    "\t.word .L080A16BA @ case 27\n"
-    "\t.word .L080A16EC @ case 28\n"
-    "\t.word .L080A1798 @ case 29\n"
-    "\t.word .L080A173C @ case 30\n"
-    "\t.word .L080A174E @ case 31\n"
-    "\t.word .L080A174E @ case 32\n"
-    "\t.word .L080A174E @ case 33\n"
-    "\t.word .L080A174E @ case 34\n"
-    "\t.word .L080A1798 @ case 35\n"
-    "\t.word .L080A1760 @ case 36\n"
-    "\t.word .L080A1798 @ case 37\n"
-    "\t.word .L080A1766 @ case 38\n"
-    "\t.word .L080A1798 @ case 39\n"
-    "\t.word .L080A1776 @ case 40\n"
-    "\t.word .L080A1784 @ case 41\n"
-    "\t.word .L080A1784 @ case 42\n"
-    ".L080A1550:\n"
-    "\tmovs r5, #1\n"
-    ".L080A1552:\n"
-    "\tmovs r1, #1\n"
-    "\tcmp r5, #0x21\n"
-    "\tbeq .L080A1570\n"
-    "\tcmp r5, #0x21\n"
-    "\tbhi .L080A1562\n"
-    "\tcmp r5, #0x20\n"
-    "\tbeq .L080A1580\n"
-    "\tb .L080A1582\n"
-    ".L080A1562:\n"
-    "\tcmp r5, #0x22\n"
-    "\tbne .L080A1582\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r0, #0x3b\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x1b\n"
-    "\tb .L080A1578\n"
-    ".L080A1570:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r0, #0x3a\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x19\n"
-    ".L080A1578:\n"
-    "\tlsrs r0, r0, #0x1e\n"
-    "\tcmp r0, #2\n"
-    "\tbeq .L080A1582\n"
-    "\tb .L080A1598\n"
-    ".L080A1580:\n"
-    "\tmovs r1, #0\n"
-    ".L080A1582:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080A1598\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl GetNpc__13NpcCollectionUi\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080A1598\n"
-    "\tmovs r1, #1\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    ".L080A1598:\n"
-    "\tsubs r0, r5, #3\n"
-    "\tcmp r0, #0x1c\n"
-    "\tbhi .L080A162E\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .L080A15A8 @ =.L080A15AC\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".L080A15A8: .word .L080A15AC\n"
-    ".L080A15AC: @ jump table\n"
-    "\t.word .L080A1620 @ case 0\n"
-    "\t.word .L080A162E @ case 1\n"
-    "\t.word .L080A162E @ case 2\n"
-    "\t.word .L080A162E @ case 3\n"
-    "\t.word .L080A162E @ case 4\n"
-    "\t.word .L080A162E @ case 5\n"
-    "\t.word .L080A162E @ case 6\n"
-    "\t.word .L080A162E @ case 7\n"
-    "\t.word .L080A162E @ case 8\n"
-    "\t.word .L080A1620 @ case 9\n"
-    "\t.word .L080A162E @ case 10\n"
-    "\t.word .L080A162E @ case 11\n"
-    "\t.word .L080A162E @ case 12\n"
-    "\t.word .L080A162E @ case 13\n"
-    "\t.word .L080A162E @ case 14\n"
-    "\t.word .L080A162E @ case 15\n"
-    "\t.word .L080A1620 @ case 16\n"
-    "\t.word .L080A162E @ case 17\n"
-    "\t.word .L080A1620 @ case 18\n"
-    "\t.word .L080A162E @ case 19\n"
-    "\t.word .L080A162E @ case 20\n"
-    "\t.word .L080A162E @ case 21\n"
-    "\t.word .L080A1620 @ case 22\n"
-    "\t.word .L080A162E @ case 23\n"
-    "\t.word .L080A162E @ case 24\n"
-    "\t.word .L080A162E @ case 25\n"
-    "\t.word .L080A162E @ case 26\n"
-    "\t.word .L080A162E @ case 27\n"
-    "\t.word .L080A1620 @ case 28\n"
-    ".L080A1620:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl GetBachelorette__13NpcCollectionUi\n"
-    "\tmovs r1, #0xc8\n"
-    "\tbl SubtractLove__12Bachelorettei\n"
-    ".L080A162E:\n"
-    "\tadds r5, #1\n"
-    "\tcmp r5, #0x2a\n"
-    "\tbls .L080A1552\n"
-    "\tb .L080A1798\n"
-    ".L080A1636:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0x70\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0x84\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r4, #0x98\n"
-    "\tb .L080A16D8\n"
-    ".L080A164E:\n"
-    "\tmovs r1, #0x8a\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .L080A177A\n"
-    ".L080A1654:\n"
-    "\tmovs r1, #0xaa\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .L080A177A\n"
-    ".L080A165A:\n"
-    "\tmovs r1, #0xca\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xd4\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x84\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .L080A16D6\n"
-    ".L080A1678:\n"
-    "\tmovs r1, #0xde\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xe8\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0xf2\n"
-    "\tlsls r0, r0, #1\n"
-    "\tb .L080A16D6\n"
-    ".L080A1696:\n"
-    "\tmovs r1, #0xfe\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x84\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .L080A16D6\n"
-    ".L080A16A8:\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0x99\n"
-    "\tlsls r0, r0, #2\n"
-    "\tb .L080A16D6\n"
-    ".L080A16BA:\n"
-    "\tmovs r1, #0x96\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xa0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r0, #0xaa\n"
-    "\tlsls r0, r0, #1\n"
-    ".L080A16D6:\n"
-    "\tadds r4, r4, r0\n"
-    ".L080A16D8:\n"
-    "\tadds r0, r4, #0\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xfa\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl SubtractLove__12Bachelorettei\n"
-    "\tb .L080A1798\n"
-    ".L080A16EC:\n"
-    "\tmovs r1, #0xcf\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xd8\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xe1\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xea\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xf3\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xfc\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tldr r1, .L080A1738 @ =0x00000414\n"
-    "\tb .L080A177A\n"
-    "\t.align 2, 0\n"
-    ".L080A1738: .word 0x00000414\n"
-    ".L080A173C:\n"
-    "\tmovs r1, #0xb6\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0xc0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tb .L080A177A\n"
-    ".L080A174E:\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r4, r1\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tmovs r1, #0x8c\n"
-    "\tlsls r1, r1, #1\n"
-    "\tb .L080A177A\n"
-    ".L080A1760:\n"
-    "\tmovs r1, #0x9f\n"
-    "\tlsls r1, r1, #2\n"
-    "\tb .L080A177A\n"
-    ".L080A1766:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xd8\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xf0\n"
-    "\tb .L080A177C\n"
-    ".L080A1776:\n"
-    "\tmovs r1, #0xa4\n"
-    "\tlsls r1, r1, #2\n"
-    ".L080A177A:\n"
-    "\tadds r0, r4, r1\n"
-    ".L080A177C:\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tb .L080A1798\n"
-    ".L080A1784:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xb0\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r0, #0xc4\n"
-    "\tmovs r1, #5\n"
-    "\tbl SubtractFriendship__3Npci\n"
-    ".L080A1798:\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
-#endif
-);
+void NpcCollection::ApplyDroppedItemFriendshipPenalty(Location const & location, GameEventState const & events)
+{
+    switch (location.GetMap()) {
+    case MAP_MOTHERS_HILL_MIDDLE:
+    case MAP_MINERAL_BEACH:
+    case MAP_FOREST:
+    case MAP_BEHIND_CHURCH:
+    case MAP_NORTH_SIDE_TOWN:
+    case MAP_ROSE_SQUARE:
+    case MAP_SOUTH_SIDE_TOWN:
+    case MAP_MOTHERS_HILL_SUMMIT:
+        for (u32 id = CHARACTER_LILLIA; id <= CHARACTER_TIMID; ++id) {
+            bool present = true;
+            switch (id) {
+            case CHARACTER_LOU_OR_RUBY:
+                if (events.lou_or_ruby_introduction_event_state != 2)
+                    present = false;
+                break;
+            case CHARACTER_VAN:
+                if (events.van_introduction_event_state != 2)
+                    present = false;
+                break;
+            case CHARACTER_KAPPA:
+                present = false;
+                break;
+            }
+            if (present) {
+                Npc * npc = GetNpc(id);
+                if (npc != nullptr)
+                    npc->SubtractFriendship(1);
+            }
+            switch (id) {
+            case CHARACTER_POPURI:
+            case CHARACTER_MARY:
+            case CHARACTER_KAREN:
+            case CHARACTER_ELLI:
+            case CHARACTER_ANN:
+            case CHARACTER_HARVEST_GODDESS:
+                GetBachelorette(id)->SubtractLove(200);
+                break;
+            }
+        }
+        break;
+    case MAP_POULTRY_FARM_HOUSE_1F:
+    case MAP_POULTRY_FARM_HOUSE_2F:
+        lillia.SubtractFriendship(5);
+        rick.SubtractFriendship(5);
+        popuri.SubtractFriendship(5);
+        popuri.SubtractLove(500);
+        break;
+    case MAP_CHURCH:
+        carter.SubtractFriendship(5);
+        break;
+    case MAP_ZACK_HOUSE:
+        zack.SubtractFriendship(5);
+        break;
+    case MAP_ELLEN_HOUSE:
+        ellen.SubtractFriendship(5);
+        stu.SubtractFriendship(5);
+        elli.SubtractFriendship(5);
+        elli.SubtractLove(500);
+        break;
+    case MAP_SUPERMARKET:
+    case MAP_SUPERMARKET_BACK_ROOM:
+        jeff.SubtractFriendship(5);
+        sasha.SubtractFriendship(5);
+        karen.SubtractFriendship(5);
+        karen.SubtractLove(500);
+        break;
+    case MAP_MINERAL_CLINIC_1F:
+    case MAP_MINERAL_CLINIC_2F:
+        doctor.SubtractFriendship(5);
+        elli.SubtractFriendship(5);
+        elli.SubtractLove(500);
+        break;
+    case MAP_INN_1F:
+    case MAP_INN_BACK_ROOM:
+    case MAP_INN_2F:
+        doug.SubtractFriendship(5);
+        ann.SubtractFriendship(5);
+        ann.SubtractLove(500);
+        break;
+    case MAP_LIBRARY_1F:
+    case MAP_LIBRARY_2F:
+    case MAP_BASIL_HOUSE_1F:
+    case MAP_BASIL_HOUSE_2F:
+        basil.SubtractFriendship(5);
+        anna.SubtractFriendship(5);
+        mary.SubtractFriendship(5);
+        mary.SubtractLove(500);
+        break;
+    case MAP_HARVEST_SPRITES_HUT:
+        staid.SubtractFriendship(5);
+        nappy.SubtractFriendship(5);
+        bold.SubtractFriendship(5);
+        chef.SubtractFriendship(5);
+        aqua.SubtractFriendship(5);
+        hoggy.SubtractFriendship(5);
+        timid.SubtractFriendship(5);
+        break;
+    case MAP_MAYOR_HOUSE:
+        thomas.SubtractFriendship(5);
+        harris.SubtractFriendship(5);
+        break;
+    case MAP_AJA_WINERY_1F:
+    case MAP_AJA_WINERY_2F:
+    case MAP_AJA_WINERY_STORAGE_1F:
+    case MAP_AJA_WINERY_STORAGE_B1F:
+        duke.SubtractFriendship(5);
+        manna.SubtractFriendship(5);
+        break;
+    case MAP_KAI_RESTAURANT:
+        kai.SubtractFriendship(5);
+        break;
+    case MAP_BLACKSMITH:
+        saibara.SubtractFriendship(5);
+        gray.SubtractFriendship(5);
+        break;
+    case MAP_GOTZ_HOUSE:
+        gotz.SubtractFriendship(5);
+        break;
+    case MAP_YODEL_RANCH_HOUSE_1F:
+    case MAP_YODEL_RANCH_HOUSE_2F:
+        barley.SubtractFriendship(5);
+        may.SubtractFriendship(5);
+        break;
+    }
+}

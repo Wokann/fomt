@@ -12,7 +12,7 @@ struct Child : public Npc
     Child();
     Child(GameDate const & birthday, ActorLocation const & location);
     char const * GetName() const;
-    u8 GetBirthdayCode() const;
+    GameDate GetBirthday() const;
     u8 GetAgeDays() const;
     bool CanWalk() const;
     void SetCanWalk();
