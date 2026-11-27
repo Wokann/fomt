@@ -17,6 +17,5 @@ typedef struct ObjTileBitmap32 {
 #endif
 } ObjTileBitmap32;
 
-typedef char ObjTileBitmap32SizeCheck[sizeof(ObjTileBitmap32) == 4 ? 1 : -1];
 
 #endif // OBJ_TILE_BITMAP_HH

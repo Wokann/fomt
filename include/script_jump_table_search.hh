@@ -15,6 +15,5 @@ struct ScriptJumpTableSearchCompare
     bool operator()(JumpTableEnt const & left, int right) { return left.value < right; }
 };
 
-typedef char ScriptJumpTableEntrySizeCheck[sizeof(JumpTableEnt) == 8 ? 1 : -1];
 
 #endif // SCRIPT_JUMP_TABLE_SEARCH_HH

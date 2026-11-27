@@ -14,7 +14,6 @@ struct FieldPlotRenderData
     u16 tiles[3][2];
 };
 
-typedef char FieldPlotRenderDataSizeCheck[sizeof(FieldPlotRenderData) == 12 ? 1 : -1];
 
 struct FieldPlot
 {

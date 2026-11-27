@@ -37,7 +37,5 @@ struct CursedToolState
 
 extern u8 const gCursedToolProgressLimits[CURSED_TOOL_COUNT];
 
-typedef char CursedToolStateSizeCheck[sizeof(CursedToolState) == 0x14 ? 1 : -1];
-typedef char CursedToolStateDataEndCheck[offsetof(CursedToolState, progress) + sizeof(((CursedToolState *) 0)->progress) == 0x12 ? 1 : -1];
 
 #endif

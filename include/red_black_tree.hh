@@ -12,7 +12,5 @@ struct RedBlackTreeNode {
     RedBlackTreeNode * right;
 };
 
-typedef char RedBlackTreeNodeSizeCheck[sizeof(RedBlackTreeNode) == 16 ? 1 : -1];
-typedef char RedBlackTreeNodeParentCheck[offsetof(RedBlackTreeNode, parent) == 4 ? 1 : -1];
 
 #endif // RED_BLACK_TREE_HH

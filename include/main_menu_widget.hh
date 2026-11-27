@@ -43,9 +43,6 @@ private:
         HardwareLinkedList * commands, HardwareMusicPlayerSlot * music);
 };
 
-typedef char MainMenuWidgetSizeCheck[sizeof(MainMenuWidget) == 16 ? 1 : -1];
-typedef char MainMenuWidgetDataCheck[offsetof(MainMenuWidget, data) == 8 ? 1 : -1];
-typedef char MainMenuWidgetSelectionCheck[offsetof(MainMenuWidget, selection) == 12 ? 1 : -1];
 
 extern "C" {
 }

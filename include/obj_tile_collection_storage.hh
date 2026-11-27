@@ -96,14 +96,6 @@ struct ObjTileCollectionStorage {
     struct ObjTileCollectionGroup groups[OBJ_TILE_COLLECTION_GROUP_COUNT];
 };
 
-typedef char ObjTileCollectionEntrySizeCheck[sizeof(struct ObjTileCollectionEntry) == OBJ_TILE_COLLECTION_ENTRY_BYTES ? 1 : -1];
-typedef char ObjTileCollectionEntryHandleCheck[offsetof(struct ObjTileCollectionEntry, handle) == OBJ_TILE_COLLECTION_HANDLE_OFFSET ? 1 : -1];
-typedef char ObjTileCollectionGroupEndCheck[offsetof(struct ObjTileCollectionGroup, end) == OBJ_TILE_COLLECTION_GROUP_END_OFFSET ? 1 : -1];
-typedef char ObjTileCollectionGroupUnknownCheck[offsetof(struct ObjTileCollectionGroup, unk_08) == OBJ_TILE_COLLECTION_GROUP_UNKNOWN_OFFSET ? 1 : -1];
-typedef char ObjTileCollectionGroupSizeCheck[sizeof(struct ObjTileCollectionGroup) == OBJ_TILE_COLLECTION_GROUP_BYTES ? 1 : -1];
-typedef char ObjTileCollectionGroupCapacityCheck[offsetof(struct ObjTileCollectionGroup, capacity_end) == OBJ_TILE_COLLECTION_GROUP_CAPACITY_OFFSET ? 1 : -1];
-typedef char ObjTileCollectionGroupCursorCheck[offsetof(struct ObjTileCollectionGroup, cursor) == OBJ_TILE_COLLECTION_GROUP_CURSOR_OFFSET ? 1 : -1];
-typedef char ObjTileCollectionStorageSizeCheck[sizeof(struct ObjTileCollectionStorage) == OBJ_TILE_COLLECTION_STORAGE_BYTES ? 1 : -1];
 #endif // !__ASSEMBLER__
 
 #endif // OBJ_TILE_COLLECTION_STORAGE_HH

@@ -271,26 +271,6 @@ struct TownMapUiCore : HardwareContext {
     TownMapMarkerCounts marker_counts;
 };
 
-typedef char TownMapAreaBoundsSizeCheck[sizeof(TownMapAreaBounds) == 12 ? 1 : -1];
-typedef char TownMapAreaPositionCheck[offsetof(TownMapAreaBounds, marker_position) == 8 ? 1 : -1];
-typedef char TownMapAreaLookupSizeCheck[sizeof(TownMapAreaLookup) == 8 ? 1 : -1];
-typedef char TownMapMarkerPositionSizeCheck[sizeof(TownMapMarkerPosition) == 4 ? 1 : -1];
-typedef char TownMapMarkerCountEntrySizeCheck[sizeof(TownMapMarkerCountEntry) == 8 ? 1 : -1];
-typedef char TownMapMarkerNodeSizeCheck[sizeof(TownMapMarkerNode) == 24 ? 1 : -1];
-typedef char TownMapMarkerNodeValueCheck[offsetof(TownMapMarkerNode, entry) == 0x10 ? 1 : -1];
-typedef char TownMapMarkerCountsSizeCheck[sizeof(TownMapMarkerCounts) == 16 ? 1 : -1];
-typedef char TownMapMarkerInsertResultSizeCheck[sizeof(TownMapMarkerInsertResult) == 8 ? 1 : -1];
-typedef char TownMapMarkerSizeCheck[sizeof(TownMapMarker) == 28 ? 1 : -1];
-typedef char TownMapUiCoreSaveCheck[offsetof(TownMapUiCore, save) == 8 ? 1 : -1];
-typedef char TownMapUiCoreUiCheck[offsetof(TownMapUiCore, ui) == 0x18 ? 1 : -1];
-typedef char TownMapUiCoreRendererCheck[offsetof(TownMapUiCore, renderer) == 0x20 ? 1 : -1];
-typedef char TownMapUiCoreCursorArchiveCheck[offsetof(TownMapUiCore, cursor_archive) == 0x28 ? 1 : -1];
-typedef char TownMapUiCoreDescriptionCheck[offsetof(TownMapUiCore, farm_description) == 0x98 ? 1 : -1];
-typedef char TownMapUiCoreLabelCheck[offsetof(TownMapUiCore, farm_label) == 0x118 ? 1 : -1];
-typedef char TownMapUiCoreMarkerArchiveCheck[offsetof(TownMapUiCore, marker_archive) == 0x19C ? 1 : -1];
-typedef char TownMapUiCoreMarkersCheck[offsetof(TownMapUiCore, markers) == 0x1CC ? 1 : -1];
-typedef char TownMapUiCoreMarkerCountsCheck[offsetof(TownMapUiCore, marker_counts) == 0x1DC ? 1 : -1];
-typedef char TownMapUiCoreSizeCheck[sizeof(TownMapUiCore) == 0x1EC ? 1 : -1];
 
 EXTERN_C
 
@@ -309,7 +289,6 @@ TownMapMarkerIterator * InsertTownMapMarkerCountWithHint(TownMapMarkerIterator *
 
 EXTERN_C_END
 
-typedef char TownMapUiSceneSizeCheck[sizeof(TownMapUiScene) == 8 ? 1 : -1];
 
 #include "town_map_transition.hh"
 

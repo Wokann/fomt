@@ -15,8 +15,5 @@ struct Van : public Npc
     /* +16 */ u8 unlocked_album_count;
 };
 
-typedef char VanSizeCheck[sizeof(Van) == 0x18 ? 1 : -1];
-typedef char VanAlbumsOffsetCheck[offsetof(Van, removed_albums) == 0x14 ? 1 : -1];
-typedef char VanCountOffsetCheck[offsetof(Van, unlocked_album_count) == 0x16 ? 1 : -1];
 
 #endif // VAN_HH

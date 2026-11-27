@@ -4,6 +4,7 @@
 #include "hardware_context.hh"
 #include "hardware_display_state.hh"
 #include "scene_chicken_festival.hh"
+#include "random.hh"
 
 ChickenFestivalEntrant::ChickenFestivalEntrant()
     : name(gText_ChickenFestival_EmptyEntrantName), year(0), affection(0)
@@ -10130,43 +10131,19 @@ asm_unified(
     ".Lchicken_festival_5114: .word 0xaa8\n"
     ".Lchicken_festival_5118: .word 0xb14\n"
     "\n"
-    "thumb_func_start func_080B8DAC\n"
-    "func_080B8DAC:\n"
-    "push {r4, lr}\n"
-    "adds r4, r2, #0\n"
-    "lsls r3, r3, #0x18\n"
-    "lsrs r3, r3, #0x18\n"
-    "cmp r3, #1\n"
-    "bne .Lchicken_festival_5134\n"
-    "ldr r2, .Lchicken_festival_5158\n"
-    "adds r0, r0, r2\n"
-    "ldr r0, [r0]\n"
-    "adds r0, #1\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r3, r0, #0x18\n"
-    ".Lchicken_festival_5134:\n"
-    "ldr r2, .Lchicken_festival_515c\n"
-    "lsls r1, r1, #1\n"
-    "lsls r0, r3, #1\n"
-    "adds r0, r0, r3\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r1, r0\n"
-    "adds r1, r1, r2\n"
-    "ldr r0, .Lchicken_festival_5160\n"
-    "adds r0, r4, r0\n"
-    "ldrb r2, [r0]\n"
-    "ldrh r0, [r1]\n"
-    "adds r0, r0, r2\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r0, r0, #0x10\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_5158: .word 0xb18\n"
-    ".Lchicken_festival_515c: .word gUnk_HarvestSpriteMiniGameChickenFestivalValues\n"
-    ".Lchicken_festival_5160: .word gUnk_HarvestSpriteMiniGameChickenFestivalOffsets\n"
-    "\n"
+);
+
+extern "C" u16 func_080B8DAC(ChickenFestivalMinigameCore * core, i32 a, i32 b, u8 c)
+{
+    if (c == 1)
+        c = core->unk_B18 + 1;
+
+    return gUnk_HarvestSpriteMiniGameChickenFestivalValues[c][a]
+         + gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[b];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B8DF4\n"
     "func_080B8DF4:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -10974,77 +10951,49 @@ asm_unified(
     ".Lchicken_festival_5790: .word 0xffff\n"
     ".Lchicken_festival_5794: .word 0xb71\n"
     "\n"
-    "thumb_func_start func_080B9428\n"
-    "func_080B9428:\n"
-    "push {r4, lr}\n"
-    "adds r1, r0, #0\n"
-    "adds r0, #0xd8\n"
-    "movs r3, #0\n"
-    "movs r4, #1\n"
-    "strb r4, [r0]\n"
-    "adds r2, r1, #0\n"
-    "adds r2, #0xac\n"
-    "ldr r0, [r2]\n"
-    "cmp r0, #1\n"
-    "bhi .Lchicken_festival_57ca\n"
-    "adds r0, r1, #0\n"
-    "adds r0, #0xdc\n"
-    "strb r3, [r0]\n"
-    "subs r0, #0x14\n"
-    "strb r3, [r0]\n"
-    "adds r0, #0x11\n"
-    "strb r4, [r0]\n"
-    "movs r0, #5\n"
-    "str r0, [r2]\n"
-    "ldr r2, .Lchicken_festival_57d0\n"
-    "adds r0, r1, r2\n"
-    "movs r1, #0xcc\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    ".Lchicken_festival_57ca:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_57d0: .word 0x70c\n"
-    "\n"
-    "thumb_func_start func_080B9464\n"
-    "func_080B9464:\n"
-    "push {lr}\n"
-    "lsls r1, r1, #0x10\n"
-    "lsls r2, r2, #0x10\n"
-    "lsrs r1, r1, #0x18\n"
-    "subs r1, #0x78\n"
-    "lsrs r2, r2, #0x18\n"
-    "subs r2, #0x4c\n"
-    "adds r0, r1, #0\n"
-    "muls r0, r1, r0\n"
-    "lsls r1, r0, #1\n"
-    "adds r1, r1, r0\n"
-    "lsls r1, r1, #3\n"
-    "adds r1, r1, r0\n"
-    "lsls r1, r1, #6\n"
-    "adds r0, r2, #0\n"
-    "muls r0, r2, r0\n"
-    "adds r2, r0, #0\n"
-    "lsls r0, r2, #3\n"
-    "adds r0, r0, r2\n"
-    "lsls r0, r0, #8\n"
-    "adds r1, r1, r0\n"
-    "movs r0, #0xe1\n"
-    "lsls r0, r0, #0xe\n"
-    "subs r2, r0, r1\n"
-    "subs r1, r2, #1\n"
-    "ldr r0, .Lchicken_festival_5814\n"
-    "cmp r1, r0\n"
-    "bhi .Lchicken_festival_580e\n"
-    "movs r2, #0\n"
-    ".Lchicken_festival_580e:\n"
-    "adds r0, r2, #0\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_5814: .word 0x2c6fe\n"
-    "\n"
+);
+
+extern "C" void func_080B9428(ChickenFestivalMinigameCore * self)
+{
+    self->slots[1].unk_2C[0] = 1;
+
+    if (self->slots[1].state > 1)
+    {
+        return;
+    }
+
+    self->slots[1].unk_30[0] = 0;
+    self->slots[1].unk_1C = 0;
+    self->slots[1].unk_2C[1] = 1;
+    self->slots[1].state = 5;
+
+    self->music_players[2].Start(0xCC);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" i32 func_080B9464(void * p, u32 x, u32 y)
+{
+    u32 xs = x << 16;
+    u32 ys = y << 16;
+    i32 a;
+    i32 b;
+    i32 v;
+
+    a = (xs >> 24) - 120;
+    b = (ys >> 24) - 76;
+    v = 0x384000 - (a * a * 1600 + b * b * 2304);
+
+    if ((u32)(v - 1) <= 0x2c6fe)
+        v = 0;
+
+    return v;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B94A8\n"
     "func_080B94A8:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -11479,52 +11428,36 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start func_080B97FC\n"
-    "func_080B97FC:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0\n"
-    "lsls r1, r1, #0x18\n"
-    "cmp r1, #0\n"
-    "beq .Lchicken_festival_5b84\n"
-    "adds r1, r2, #0\n"
-    "adds r1, #0x80\n"
-    "movs r0, #4\n"
-    "str r0, [r1]\n"
-    "adds r1, #0x40\n"
-    "movs r0, #2\n"
-    "b .Lchicken_festival_5b90\n"
-    ".Lchicken_festival_5b84:\n"
-    "adds r1, r2, #0\n"
-    "adds r1, #0x80\n"
-    "movs r0, #2\n"
-    "str r0, [r1]\n"
-    "adds r1, #0x40\n"
-    "movs r0, #4\n"
-    ".Lchicken_festival_5b90:\n"
-    "str r0, [r1]\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080B9828\n"
-    "func_080B9828:\n"
-    "push {lr}\n"
-    "lsls r1, r1, #0x18\n"
-    "cmp r1, #0\n"
-    "beq .Lchicken_festival_5ba6\n"
-    "adds r1, r0, #0\n"
-    "adds r1, #0xc0\n"
-    "b .Lchicken_festival_5baa\n"
-    ".Lchicken_festival_5ba6:\n"
-    "adds r1, r0, #0\n"
-    "adds r1, #0x80\n"
-    ".Lchicken_festival_5baa:\n"
-    "movs r0, #1\n"
-    "str r0, [r1]\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+extern "C" void func_080B97FC(ChickenFestivalMinigameCore * self, u8 flag)
+{
+    if (flag != 0)
+    {
+        self->slots[0].flags = 4;
+        self->slots[1].flags = 2;
+    }
+    else
+    {
+        self->slots[0].flags = 2;
+        self->slots[1].flags = 4;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080B9828(u8 * self, u8 flag)
+{
+    if (flag)
+        ((u32 *)self)[0x30] = 1;
+    else
+        ((u32 *)self)[0x20] = 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B9844\n"
     "func_080B9844:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -12855,27 +12788,28 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start func_080BA1F4\n"
-    "func_080BA1F4:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080BA1F8\n"
-    "func_080BA1F8:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080BA1FC\n"
-    "func_080BA1FC:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080BA200\n"
-    "func_080BA200:\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080BA204\n"
+);
+
+// Anonymous four-byte stubs reached from the minigame phase dispatch. The JP
+// object keeps them as bare returns; the dispatch already holds the receiver
+// in r0, so an unused parameter reproduces the same entry.
+extern "C" void func_080BA1F4(void * self)
+{
+}
+
+extern "C" void func_080BA1F8(void * self)
+{
+}
+
+extern "C" void func_080BA1FC(void * self)
+{
+}
+
+extern "C" void func_080BA200(void * self)
+{
+}
+
+asm_unified(    "thumb_func_start func_080BA204\n"
     "func_080BA204:\n"
     "push {lr}\n"
     "adds r1, r0, #0\n"
@@ -12946,43 +12880,28 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080BA284\n"
-    "func_080BA284:\n"
-    "push {r4, lr}\n"
-    "adds r1, r0, #0\n"
-    "adds r1, #0x92\n"
-    "movs r3, #0xb4\n"
-    "lsls r3, r3, #4\n"
-    "adds r2, r0, r3\n"
-    "movs r4, #1\n"
-    ".Lchicken_festival_6602:\n"
-    "ldrb r0, [r1, #6]\n"
-    "cmp r0, #0\n"
-    "beq .Lchicken_festival_6624\n"
-    "movs r0, #2\n"
-    "str r0, [r2]\n"
-    "ldrb r0, [r1]\n"
-    "adds r0, #1\n"
-    "movs r3, #0\n"
-    "strb r0, [r1]\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r0, r0, #0x18\n"
-    "cmp r0, #0x3c\n"
-    "bls .Lchicken_festival_6624\n"
-    "movs r0, #1\n"
-    "str r0, [r2]\n"
-    "strb r3, [r1, #6]\n"
-    "strb r3, [r1]\n"
-    ".Lchicken_festival_6624:\n"
-    "adds r1, #0x40\n"
-    "adds r2, #4\n"
-    "subs r4, #1\n"
-    "cmp r4, #0\n"
-    "bge .Lchicken_festival_6602\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+extern "C" void func_080BA284(ChickenFestivalMinigameCore * self)
+{
+    for (i32 i = 0; i <= 1; i++)
+    {
+        if (self->slots[i].unk_2C[0] == 0)
+            continue;
+
+        self->unk_B40[i] = 2;
+
+        if (++self->slots[i].unk_26 > 0x3C)
+        {
+            self->unk_B40[i] = 1;
+            self->slots[i].unk_2C[0] = 0;
+            self->slots[i].unk_26 = 0;
+        }
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080BA2C4\n"
     "func_080BA2C4:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -13408,247 +13327,122 @@ asm_unified(
     ".align 2, 0\n"
     ".Lchicken_festival_6974: .word gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing\n"
     "\n"
-    "thumb_func_start func_080BA608\n"
-    "func_080BA608:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl GetHardwarePressedKeys\n"
-    "movs r1, #8\n"
-    "ands r1, r0\n"
-    "cmp r1, #0\n"
-    "beq .Lchicken_festival_6a1c\n"
-    "ldr r1, .Lchicken_festival_69d8\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xb8\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "ldr r3, .Lchicken_festival_69dc\n"
-    "adds r2, r4, r3\n"
-    "ldrb r1, [r2]\n"
-    "cmp r1, #0\n"
-    "beq .Lchicken_festival_69e8\n"
-    "movs r0, #0\n"
-    "strb r0, [r2]\n"
-    "ldr r1, .Lchicken_festival_69e0\n"
-    "adds r0, r4, r1\n"
-    "ldr r0, [r0]\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "strh r1, [r0, #0x10]\n"
-    "movs r2, #0xf5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "ldr r3, .Lchicken_festival_69e4\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r2, #0xd8\n"
-    "adds r0, r4, r2\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #0xa0\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r2, #0xa0\n"
-    "adds r0, r4, r2\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "b .Lchicken_festival_6a1c\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_69d8: .word 0x714\n"
-    ".Lchicken_festival_69dc: .word 0xb31\n"
-    ".Lchicken_festival_69e0: .word 0x7a4\n"
-    ".Lchicken_festival_69e4: .word 0x87c\n"
-    ".Lchicken_festival_69e8:\n"
-    "ldr r3, .Lchicken_festival_6a24\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #4\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #0xd4\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #4\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #0x9c\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "adds r3, #4\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "strh r1, [r0, #0x10]\n"
-    "movs r0, #1\n"
-    "strb r0, [r2]\n"
-    ".Lchicken_festival_6a1c:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6a24: .word 0x7a4\n"
-    "\n"
-    "thumb_func_start func_080BA6B8\n"
-    "func_080BA6B8:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl GetHardwareRepeatedKeys\n"
-    "adds r3, r4, #0\n"
-    "adds r3, #0x9c\n"
-    "ldrb r1, [r3]\n"
-    "cmp r1, #1\n"
-    "bne .Lchicken_festival_6a68\n"
-    "ands r0, r1\n"
-    "cmp r0, #0\n"
-    "beq .Lchicken_festival_6a68\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0x98\n"
-    "movs r2, #0\n"
-    "strb r1, [r0]\n"
-    "ldr r0, [r4, #0x6c]\n"
-    "cmp r0, #1\n"
-    "bhi .Lchicken_festival_6a68\n"
-    "strb r2, [r3]\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0x88\n"
-    "strb r2, [r0]\n"
-    "adds r0, #0x11\n"
-    "strb r1, [r0]\n"
-    "movs r0, #5\n"
-    "str r0, [r4, #0x6c]\n"
-    "ldr r1, .Lchicken_festival_6a9c\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xcc\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    ".Lchicken_festival_6a68:\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0xdc\n"
-    "ldrb r0, [r0]\n"
-    "cmp r0, #1\n"
-    "bne .Lchicken_festival_6a94\n"
-    "ldr r3, .Lchicken_festival_6aa0\n"
-    "adds r2, r4, r3\n"
-    "ldrb r0, [r2]\n"
-    "adds r0, #1\n"
-    "strb r0, [r2]\n"
-    "ldrb r1, [r2]\n"
-    "adds r3, #0x20\n"
-    "adds r0, r4, r3\n"
-    "ldrb r0, [r0]\n"
-    "subs r0, #1\n"
-    "cmp r1, r0\n"
-    "ble .Lchicken_festival_6a94\n"
-    "movs r0, #0\n"
-    "strb r0, [r2]\n"
-    "adds r0, r4, #0\n"
-    "bl func_080B92B4\n"
-    ".Lchicken_festival_6a94:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6a9c: .word 0x70c\n"
-    ".Lchicken_festival_6aa0: .word 0xb3a\n"
-    "\n"
-    "thumb_func_start func_080BA734\n"
-    "func_080BA734:\n"
-    "push {r4, lr}\n"
-    "adds r3, r0, #0\n"
-    "adds r0, #0x84\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0\n"
-    "bge .Lchicken_festival_6af8\n"
-    "adds r4, r3, #0\n"
-    "adds r4, #0x8c\n"
-    "ldrh r0, [r4]\n"
-    "lsrs r0, r0, #8\n"
-    "cmp r0, #0x47\n"
-    "bhi .Lchicken_festival_6ac4\n"
-    "adds r1, r3, #0\n"
-    "adds r1, #0x95\n"
-    "movs r0, #2\n"
-    "strb r0, [r1]\n"
-    ".Lchicken_festival_6ac4:\n"
-    "movs r1, #0xc0\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r1, #0\n"
-    "ldrh r2, [r4]\n"
-    "adds r0, r0, r2\n"
-    "movs r2, #0\n"
-    "strh r0, [r4]\n"
-    "ldr r4, .Lchicken_festival_6af0\n"
-    "adds r0, r3, r4\n"
-    "movs r1, #3\n"
-    "str r1, [r0]\n"
-    "adds r4, #0x2c\n"
-    "adds r0, r3, r4\n"
-    "str r2, [r0]\n"
-    "ldr r2, .Lchicken_festival_6af4\n"
-    "adds r0, r3, r2\n"
-    "str r1, [r0]\n"
-    "adds r4, #0x10\n"
-    "adds r1, r3, r4\n"
-    "movs r0, #1\n"
-    "str r0, [r1]\n"
-    "b .Lchicken_festival_6b44\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6af0: .word 0xb14\n"
-    ".Lchicken_festival_6af4: .word 0xb44\n"
-    ".Lchicken_festival_6af8:\n"
-    "adds r0, r3, #0\n"
-    "adds r0, #0xc4\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0\n"
-    "bge .Lchicken_festival_6b44\n"
-    "adds r0, r3, #0\n"
-    "adds r0, #0x8c\n"
-    "ldrh r0, [r0]\n"
-    "lsrs r0, r0, #8\n"
-    "cmp r0, #0x47\n"
-    "bhi .Lchicken_festival_6b16\n"
-    "adds r1, r3, #0\n"
-    "adds r1, #0xd5\n"
-    "movs r0, #2\n"
-    "strb r0, [r1]\n"
-    ".Lchicken_festival_6b16:\n"
-    "adds r1, r3, #0\n"
-    "adds r1, #0xcc\n"
-    "movs r2, #0xc0\n"
-    "lsls r2, r2, #2\n"
-    "adds r0, r2, #0\n"
-    "ldrh r4, [r1]\n"
-    "adds r0, r0, r4\n"
-    "strh r0, [r1]\n"
-    "ldr r1, .Lchicken_festival_6b4c\n"
-    "adds r0, r3, r1\n"
-    "movs r2, #3\n"
-    "str r2, [r0]\n"
-    "ldr r4, .Lchicken_festival_6b50\n"
-    "adds r0, r3, r4\n"
-    "movs r1, #1\n"
-    "str r1, [r0]\n"
-    "subs r4, #4\n"
-    "adds r0, r3, r4\n"
-    "str r2, [r0]\n"
-    "movs r2, #0xb5\n"
-    "lsls r2, r2, #4\n"
-    "adds r0, r3, r2\n"
-    "str r1, [r0]\n"
-    ".Lchicken_festival_6b44:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6b4c: .word 0xb14\n"
-    ".Lchicken_festival_6b50: .word 0xb44\n"
-    "\n"
+);
+
+extern "C" void func_080BA608(ChickenFestivalMinigameCore * self)
+{
+    if ((GetHardwarePressedKeys(
+            reinterpret_cast<void * const *>(self)) & 8) == 0)
+    {
+        return;
+    }
+
+    self->music_players[4].Start(0xB8);
+
+    if (self->unk_B31 != 0)
+    {
+        self->unk_B31 = 0;
+
+        self->handles_7A4[0].value->SetScrollDelta(0x100);
+        self->handles_7A4[1].value->SetScrollDelta(0x100);
+
+        self->handles_87C[0].value->SetScrollDelta(0x100);
+        self->handles_87C[1].value->SetScrollDelta(0x100);
+
+        self->handles_91C[0].value->SetScrollDelta(0x100);
+        self->handles_91C[1].value->SetScrollDelta(0x100);
+    }
+    else
+    {
+        self->handles_7A4[0].value->SetScrollDelta(0);
+        self->handles_7A4[1].value->SetScrollDelta(0);
+
+        self->handles_87C[0].value->SetScrollDelta(0);
+        self->handles_87C[1].value->SetScrollDelta(0);
+
+        self->handles_91C[0].value->SetScrollDelta(0);
+        self->handles_91C[1].value->SetScrollDelta(0);
+
+        self->unk_B31 = 1;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080B92B4(ChickenFestivalMinigameCore * self);
+
+extern "C" void func_080BA6B8(ChickenFestivalMinigameCore * self)
+{
+    u32 const keys = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(self));
+
+    if (self->slots[0].unk_30[0] == 1 && (keys & 1) != 0)
+    {
+        self->slots[0].unk_2C[0] = 1;
+
+        if (self->slots[0].state <= 1)
+        {
+            self->slots[0].unk_30[0] = 0;
+            self->slots[0].unk_1C = 0;
+            self->slots[0].unk_2C[1] = 1;
+            self->slots[0].state = 5;
+
+            self->music_players[2].Start(0xCC);
+        }
+    }
+
+    if (self->slots[1].unk_30[0] == 1)
+    {
+        self->unk_B3A++;
+
+        if (self->unk_B3A > self->unk_B5A - 1)
+        {
+            self->unk_B3A = 0;
+
+            func_080B92B4(self);
+        }
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080BA734(ChickenFestivalMinigameCore * self)
+{
+    if (static_cast<i32>(self->slots[0].unk_18) < 0)
+    {
+        if ((self->slots[0].unk_20 >> 8) <= 0x47)
+        {
+            self->slots[0].unk_29 = 2;
+        }
+
+        self->slots[0].unk_20 += 0x300;
+
+        self->phase = 3;
+        self->unk_B40[0] = 0;
+        self->unk_B40[1] = 3;
+        self->unk_B50 = 1;
+    }
+    else if (static_cast<i32>(self->slots[1].unk_18) < 0)
+    {
+        if ((self->slots[0].unk_20 >> 8) <= 0x47)
+        {
+            self->slots[1].unk_29 = 2;
+        }
+
+        self->slots[1].unk_20 += 0x300;
+
+        self->phase = 3;
+        self->unk_B40[1] = 1;
+        self->unk_B40[0] = 3;
+        self->unk_B50 = 1;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080BA7E4\n"
     "func_080BA7E4:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -17170,36 +16964,21 @@ asm_unified(
     ".align 2, 0\n"
     ".Lchicken_festival_85c0: .word 0x8d4\n"
     "\n"
-    "thumb_func_start func_080BC254\n"
-    "func_080BC254:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r7, r0, #0\n"
-    "adds r6, r3, #0\n"
-    "movs r3, #0\n"
-    "lsls r4, r1, #1\n"
-    "cmp r3, r4\n"
-    "bge .Lchicken_festival_85e8\n"
-    "ldr r0, .Lchicken_festival_85f4\n"
-    "adds r5, r7, r0\n"
-    "lsls r0, r2, #1\n"
-    "adds r2, r0, r6\n"
-    ".Lchicken_festival_85da:\n"
-    "adds r1, r5, r3\n"
-    "ldrb r0, [r2]\n"
-    "strb r0, [r1]\n"
-    "adds r2, #1\n"
-    "adds r3, #1\n"
-    "cmp r3, r4\n"
-    "blt .Lchicken_festival_85da\n"
-    ".Lchicken_festival_85e8:\n"
-    "ldr r1, .Lchicken_festival_85f4\n"
-    "adds r0, r7, r1\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_85f4: .word 0xb35\n"
-    "\n"
+);
+
+extern "C" u8 * func_080BC254(ChickenFestivalMinigameCore * self, i32 count,
+    i32 offset, u8 const * src)
+{
+    for (i32 i = 0; i < count * 2; i++)
+    {
+        self->unk_B35[i] = src[offset * 2 + i];
+    }
+
+    return self->unk_B35;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080BC288\n"
     "func_080BC288:\n"
     "push {r4, r5, r6, r7, lr}\n"

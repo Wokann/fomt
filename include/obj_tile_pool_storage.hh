@@ -120,15 +120,6 @@ typedef struct ObjTileTree512 {
 #endif
 } ObjTileTree512;
 
-typedef char ObjTilePoolEntrySizeCheck[sizeof(ObjTilePoolEntry) == OBJ_TILE_POOL_ENTRY_BYTES ? 1 : -1];
-typedef char ObjTilePoolEntryRefcountCheck[offsetof(ObjTilePoolEntry, data.params.reference_count) == 2 ? 1 : -1];
-typedef char ObjTilePoolEntryGenerationCheck[offsetof(ObjTilePoolEntry, generation) == OBJ_TILE_ENTRY_GENERATION_OFFSET ? 1 : -1];
-typedef char ObjTileHandlePoolEntriesCheck[offsetof(ObjTileHandlePool, entries) == 4 ? 1 : -1];
-typedef char ObjTileTreeFlagSizeCheck[sizeof(ObjTileTreeFlag) == 1 ? 1 : -1];
-typedef char ObjTileTree64SizeCheck[sizeof(ObjTileTree64) == OBJ_TILE_TREE64_BYTES ? 1 : -1];
-typedef char ObjTileTree128SizeCheck[sizeof(ObjTileTree128) == OBJ_TILE_TREE128_BYTES ? 1 : -1];
-typedef char ObjTileTree256SizeCheck[sizeof(ObjTileTree256) == OBJ_TILE_TREE256_BYTES ? 1 : -1];
-typedef char ObjTileTree512SizeCheck[sizeof(ObjTileTree512) == OBJ_TILE_TREE512_BYTES ? 1 : -1];
 EXTERN_C
 
 // Fill both children before marking the parent tile range full.

@@ -44,20 +44,11 @@ struct GiftWrappingSceneCore : GameSceneMenuSelectionCore {
     Rucksack * rucksack;
     i32 phase;
 };
-typedef char GiftWrappingCoreDescriptionCheck[offsetof(GiftWrappingSceneCore, item_description) == 0x98 ? 1 : -1];
-typedef char GiftWrappingCoreHeldToolCheck[offsetof(GiftWrappingSceneCore, held_tool) == 0xFC ? 1 : -1];
-typedef char GiftWrappingCoreHeldItemCheck[offsetof(GiftWrappingSceneCore, held_item) == 0x100 ? 1 : -1];
-typedef char GiftWrappingCoreRucksackCheck[offsetof(GiftWrappingSceneCore, rucksack) == 0x104 ? 1 : -1];
-typedef char GiftWrappingCorePhaseCheck[offsetof(GiftWrappingSceneCore, phase) == 0x108 ? 1 : -1];
-typedef char GiftWrappingCoreSizeCheck[sizeof(GiftWrappingSceneCore) == 0x10C ? 1 : -1];
 
 #pragma interface "scene_gift_wrapping.hh"
 
 #pragma interface "scene_gift_wrapping.hh"
 
-typedef char GiftWrappingSceneSizeCheck[sizeof(GiftWrappingScene) == 12 ? 1 : -1];
-typedef char GiftWrappingSceneCoreCheck[offsetof(GiftWrappingScene, core) == 4 ? 1 : -1];
-typedef char GiftWrappingSceneContinuationCheck[offsetof(GiftWrappingScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

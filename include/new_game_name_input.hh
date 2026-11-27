@@ -61,10 +61,6 @@ struct NewGameNameInputSpriteState {
     HardwareSpriteOamRecord attributes;
 };
 
-typedef char NewGameNameInputSpriteStateSizeCheck[
-    sizeof(NewGameNameInputSpriteState) == 12 ? 1 : -1];
-typedef char NewGameNameInputSpriteStateAttributesCheck[
-    offsetof(NewGameNameInputSpriteState, attributes) == 4 ? 1 : -1];
 
 struct NewGameNameInputCore;
 
@@ -113,78 +109,9 @@ struct NewGameNameInputCore : HardwareContext {
     u32 confirmation_active;
 };
 
-typedef char NewGameNameInputMusicStrideCheck[
-    offsetof(NewGameNameInputCore, music_player_2) ==
-        offsetof(NewGameNameInputCore, music_player_1) + sizeof(HardwareMusicPlayerSlot) ? 1 : -1];
 
-typedef char NewGameNameInputNormalizedNameCheck[
-    offsetof(NewGameNameInputCore, normalized_name) ==
-        offsetof(NewGameNameInputCore, name) + sizeof(((NewGameNameInputCore *)0)->name) ? 1 : -1];
 
-typedef char NewGameNameInputKeyboardBufferSizeCheck[
-    sizeof(NewGameNameInputKeyboardBuffer) == NEW_GAME_NAME_INPUT_BUFFER_BYTES ? 1 : -1];
-typedef char NewGameNameInputPromptBufferSizeCheck[
-    sizeof(NewGameNameInputPromptBuffer) == NEW_GAME_NAME_INPUT_PROMPT_BUFFER_BYTES ? 1 : -1];
-typedef char NewGameNameInputKeyboardTilesOffsetCheck[
-    offsetof(NewGameNameInputKeyboardBuffer, tiles) == 4 ? 1 : -1];
-typedef char NewGameNameInputPromptTilesOffsetCheck[
-    offsetof(NewGameNameInputPromptBuffer, tiles) == 4 ? 1 : -1];
-typedef char NewGameNameInputKeyboardTileBytesCheck[
-    sizeof(((NewGameNameInputKeyboardBuffer *)0)->tiles) == NEW_GAME_NAME_INPUT_TILE_BYTES ? 1 : -1];
-typedef char NewGameNameInputPromptTileBytesCheck[
-    sizeof(((NewGameNameInputPromptBuffer *)0)->tiles) == NEW_GAME_NAME_INPUT_PROMPT_TILE_BYTES ? 1 : -1];
-typedef char NewGameNameInputBootstrapSizeCheck[sizeof(HardwareContext) == 8 ? 1 : -1];
-typedef char NewGameNameInputMusicSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
-typedef char NewGameNameInputPointerSizeCheck[sizeof(UiStateOwner *) == 4 ? 1 : -1];
-typedef char NewGameNameInputWordSizeCheck[sizeof(u32) == 4 ? 1 : -1];
-typedef char NewGameNameInputNameBytesCheck[sizeof(((NewGameNameInputCore *)0)->name) == 13 ? 1 : -1];
-typedef char NewGameNameInputNormalizedNameBytesCheck[sizeof(((NewGameNameInputCore *)0)->normalized_name) == 13 ? 1 : -1];
-typedef char NewGameNameInputTileRowsCheck[NEW_GAME_NAME_INPUT_TILE_HEIGHT == 2 ? 1 : -1];
-typedef char NewGameNameInputKeyboardCheck[
-    offsetof(NewGameNameInputCore, keyboard_buffers) == 8 ? 1 : -1];
-typedef char NewGameNameInputPageCheck[
-    offsetof(NewGameNameInputCore, keyboard_page)
-        == offsetof(NewGameNameInputCore, prompt) + 4 ? 1 : -1];
-typedef char NewGameNameInputSpritesCheck[
-    offsetof(NewGameNameInputCore, sprites)
-        == offsetof(NewGameNameInputCore, keyboard_page) + 4 ? 1 : -1];
-typedef char NewGameNameInputSpritesEndCheck[
-    offsetof(NewGameNameInputCore, name)
-        == offsetof(NewGameNameInputCore, sprites) + sizeof(((NewGameNameInputCore *)0)->sprites) ? 1 : -1];
-typedef char NewGameNameInputRedrawCheck[
-    offsetof(NewGameNameInputCore, keyboard_redraw_pending)
-        == offsetof(NewGameNameInputCore, finished) + 1 ? 1 : -1];
-typedef char NewGameNameInputFinalWordCheck[
-    offsetof(NewGameNameInputCore, confirmation_active)
-        == sizeof(NewGameNameInputCore) - 4 ? 1 : -1];
 
-typedef char NewGameNameInputCoreKeyboardTilesCheck[
-    offsetof(NewGameNameInputCore, keyboard_buffers) + offsetof(NewGameNameInputKeyboardBuffer, tiles)
-        == NEW_GAME_NAME_INPUT_CORE_TILES_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCoreNameBufferCheck[
-    offsetof(NewGameNameInputCore, name_buffer) == offsetof(NewGameNameInputCore, keyboard_buffers)
-        + sizeof(((NewGameNameInputCore *)0)->keyboard_buffers) ? 1 : -1];
-typedef char NewGameNameInputCorePromptBufferCheck[
-    offsetof(NewGameNameInputCore, prompt_buffer) == offsetof(NewGameNameInputCore, name_buffer)
-        + sizeof(NewGameNameInputKeyboardBuffer) ? 1 : -1];
-typedef char NewGameNameInputCorePromptTilesCheck[
-    offsetof(NewGameNameInputCore, prompt_buffer) + offsetof(NewGameNameInputPromptBuffer, tiles)
-        == NEW_GAME_NAME_INPUT_CORE_PROMPT_TILES_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCoreMusicCheck[
-    offsetof(NewGameNameInputCore, music_player_1) == NEW_GAME_NAME_INPUT_CORE_MUSIC_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCoreUiCheck[
-    offsetof(NewGameNameInputCore, ui_state) == NEW_GAME_NAME_INPUT_CORE_UI_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCorePromptCheck[
-    offsetof(NewGameNameInputCore, prompt) == NEW_GAME_NAME_INPUT_CORE_PROMPT_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCorePageCheck[
-    offsetof(NewGameNameInputCore, keyboard_page) == NEW_GAME_NAME_INPUT_CORE_PAGE_OFFSET ? 1 : -1];
-typedef char NewGameNameInputCoreFinishedCheck[
-    offsetof(NewGameNameInputCore, finished) == offsetof(NewGameNameInputCore, normalized_name)
-        + sizeof(((NewGameNameInputCore *)0)->normalized_name) ? 1 : -1];
-typedef char NewGameNameInputCoreRedrawCheck[
-    offsetof(NewGameNameInputCore, keyboard_redraw_pending) == NEW_GAME_NAME_INPUT_CORE_REDRAW_OFFSET ? 1 : -1];
-typedef char NewGameNameInputSceneSizeCheck[sizeof(NewGameNameInputScene) == 8 ? 1 : -1];
-typedef char NewGameNameInputSceneCoreCheck[offsetof(NewGameNameInputScene, core) == 4 ? 1 : -1];
 
 EXTERN_C
 

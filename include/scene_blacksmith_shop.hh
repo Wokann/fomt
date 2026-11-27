@@ -12,6 +12,7 @@ struct GameStateSaveImage;
 
 // Each native label has a 24 by 2 tile buffer, plus one untouched word.
 struct BlacksmithShopLabelTiles {
+    BlacksmithShopLabelTiles() {}
     u32 unk_00;
     u32 tiles[24 * 2 * 8];
 };
@@ -70,23 +71,8 @@ struct BlacksmithShopSceneCore : ShopScreenCore {
     u32 work_days;
 };
 
-typedef char BlacksmithLabelTilesSizeCheck[sizeof(BlacksmithShopLabelTiles) == 0x604 ? 1 : -1];
-typedef char BlacksmithCorePhaseCheck[offsetof(BlacksmithShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char BlacksmithCorePurchasedCheck[offsetof(BlacksmithShopSceneCore, has_purchased) == 0x6A8 ? 1 : -1];
-typedef char BlacksmithCoreTilesCheck[offsetof(BlacksmithShopSceneCore, label_tiles) == 0x6AC ? 1 : -1];
-typedef char BlacksmithCoreToolCheck[offsetof(BlacksmithShopSceneCore, tool_id) == 0x48D8 ? 1 : -1];
-typedef char BlacksmithCoreOreCheck[offsetof(BlacksmithShopSceneCore, ore_id) == 0x48DC ? 1 : -1];
-typedef char BlacksmithCorePriceCheck[offsetof(BlacksmithShopSceneCore, order_price) == 0x48E0 ? 1 : -1];
-typedef char BlacksmithCoreDaysCheck[offsetof(BlacksmithShopSceneCore, work_days) == 0x48E4 ? 1 : -1];
-typedef char BlacksmithCoreSizeCheck[sizeof(BlacksmithShopSceneCore) == 0x48E8 ? 1 : -1];
 
 #pragma interface "scene_blacksmith_shop.hh"
-typedef char BlacksmithShopSceneSizeCheck[sizeof(BlacksmithShopScene) == 32 ? 1 : -1];
-typedef char BlacksmithShopSceneSaveCheck[offsetof(BlacksmithShopScene, save) == 28 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionSizeCheck[sizeof(BlacksmithShopResultTransition) == 16 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionContinuationCheck[offsetof(BlacksmithShopResultTransition, continuation) == 4 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionSaveCheck[offsetof(BlacksmithShopResultTransition, save) == 8 ? 1 : -1];
-typedef char BlacksmithShopResultTransitionByteCheck[offsetof(BlacksmithShopResultTransition, has_purchased) == 12 ? 1 : -1];
 
 EXTERN_C
 

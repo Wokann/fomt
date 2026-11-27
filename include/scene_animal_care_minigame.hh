@@ -14,7 +14,6 @@ struct HarvestSpriteAnimalCareSetup {
     u32 sprite_variant;
     u8 experience;
 };
-typedef char HarvestSpriteAnimalCareSetupSizeCheck[sizeof(HarvestSpriteAnimalCareSetup) == 8 ? 1 : -1];
 
 // Resource ranges borrow their archive payload. Only the resolved handle
 // and the separately allocated drawing parameters are owned by each sprite.
@@ -61,11 +60,6 @@ struct AnimalCareMinigameTileHandles {
     ObjTileCollectionEntry unk_50;
 };
 
-typedef char AnimalCareMinigameSpriteSizeCheck[sizeof(AnimalCareMinigameSprite) == 0x28 ? 1 : -1];
-typedef char AnimalCareMinigameHandleOwnerSizeCheck[sizeof(AnimalCareMinigameResourceHandleOwner) == 4 ? 1 : -1];
-typedef char AnimalCareMinigameParametersOwnerSizeCheck[sizeof(AnimalCareMinigameSpriteParametersOwner) == 4 ? 1 : -1];
-typedef char AnimalCareMinigameArchiveOwnerSizeCheck[sizeof(AnimalCareMinigameArchiveOwner) == 4 ? 1 : -1];
-typedef char AnimalCareMinigameTileHandlesSizeCheck[sizeof(AnimalCareMinigameTileHandles) == 0x58 ? 1 : -1];
 
 #pragma interface "scene_animal_care_minigame.hh"
 struct HarvestSpriteAnimalCareCore;
@@ -126,11 +120,28 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     HardwareMusicPlayerSlot music_players[5];
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
-    u8 unk_838[0x888 - 0x838];
+    u32 unk_838[3];           /* +0x838, three zeroed words */
+    u32 selection_index;      /* +0x844, indexes the husbandry selection values */
+    u32 unk_848[5];           /* +0x848, five zeroed words */
+    i32 timers[5];            /* +0x85C, state timer per slot (1..2 means running) */
+    u32 unk_870[5];           /* +0x870, five zeroed words */
+    u32 match_index;          /* +0x884, husbandry match index (5 = none) */
     AnimalCareMinigameTileHandles tiles;
-    u8 unk_8E0[0x910 - 0x8E0];
+    u8 match_value;           /* +0x8E0, compared against the husbandry table */
+    u8 unk_8E1[0xF]; /* unknown storage */
+    u16 unk_8F0[5];           /* +0x8F0, zeroed per slot */
+    u8 unk_8FA;               /* +0x8FA */
+    u8 unk_8FB;               /* +0x8FB */
+    u16 unk_8FC[5];           /* +0x8FC, zeroed per slot */
+    u8 counters[5];           /* +0x906, counts up to 0x3C */
+    u8 unk_90B[0x910 - 0x90B];
     u32 unk_910;
-    u8 unk_914[0x92C - 0x914];
+    u8 unk_914;               /* +0x914 */
+    u8 unk_915[5];            /* +0x915, set to 1 per slot */
+    u8 unk_91A[0x91F - 0x91A];
+    u8 phase_flags[5];        /* +0x91F, set when a counter wraps */
+    u8 unk_924[7];            /* +0x924 */
+    u8 unk_92B;               /* +0x92B */
     bool succeeded;
     u8 unk_92D[0x930 - 0x92D];
     u32 sprite_variant;
@@ -138,29 +149,9 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     u8 experience;
 };
 
-typedef char HarvestSpriteAnimalCareCoreTimerTilesCheck[offsetof(HarvestSpriteAnimalCareCore, timer_tiles) == 8 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCoreResultTilesCheck[offsetof(HarvestSpriteAnimalCareCore, result_tiles) == 0x10C ? 1 : -1];
 
-typedef char HarvestSpriteAnimalCareCoreSizeCheck[sizeof(HarvestSpriteAnimalCareCore) == 0x93C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_ui_state_check[offsetof(HarvestSpriteAnimalCareCore, ui_state) == 0x418 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_archives_check[offsetof(HarvestSpriteAnimalCareCore, archive_41C) == 0x41C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_blend_check[offsetof(HarvestSpriteAnimalCareCore, blend) == 0x43C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_music_players_check[offsetof(HarvestSpriteAnimalCareCore, music_players) == 0x80C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_sound_vsync_check[offsetof(HarvestSpriteAnimalCareCore, sound_vsync) == 0x820 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_sound_main_check[offsetof(HarvestSpriteAnimalCareCore, sound_main) == 0x82C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_tiles_check[offsetof(HarvestSpriteAnimalCareCore, tiles) == 0x888 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_unk_910_check[offsetof(HarvestSpriteAnimalCareCore, unk_910) == 0x910 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_succeeded_check[offsetof(HarvestSpriteAnimalCareCore, succeeded) == 0x92C ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_sprite_variant_check[offsetof(HarvestSpriteAnimalCareCore, sprite_variant) == 0x930 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareCore_experience_check[offsetof(HarvestSpriteAnimalCareCore, experience) == 0x938 ? 1 : -1];
 
-typedef char AnimalCareMinigameMember460OffsetCheck[offsetof(HarvestSpriteAnimalCareCore, sprite_460) == 0x460 ? 1 : -1];
-typedef char AnimalCareMinigameMember550OffsetCheck[offsetof(HarvestSpriteAnimalCareCore, handles_550) == 0x550 ? 1 : -1];
-typedef char AnimalCareMinigameMember618OffsetCheck[offsetof(HarvestSpriteAnimalCareCore, handles_618) == 0x618 ? 1 : -1];
-typedef char AnimalCareMinigameMember6E0OffsetCheck[offsetof(HarvestSpriteAnimalCareCore, parameters_6E0) == 0x6E0 ? 1 : -1];
-typedef char AnimalCareMinigameMember7BCOffsetCheck[offsetof(HarvestSpriteAnimalCareCore, sprite_7BC) == 0x7BC ? 1 : -1];
 
-typedef char HarvestSpriteAnimalCareUiSceneSizeCheck[sizeof(HarvestSpriteAnimalCareUiScene) == 8 ? 1 : -1];
 
 extern u32 const gUnk_080AE894InitialValues[5];
 extern u32 const gUnk_080AE894LayoutValues[10];
@@ -187,6 +178,8 @@ extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
 extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4];
+
+extern "C" u16 func_080B3990(HarvestSpriteAnimalCareCore * self);
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1[5];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2[3];

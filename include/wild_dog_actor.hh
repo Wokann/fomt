@@ -2,6 +2,7 @@
 #define WILD_DOG_ACTOR_HH
 
 #include "animal_actor.hh"
+#include "smart_ptr.hh"
 
 struct GameObject;
 struct EntityUpdateContext;
@@ -32,7 +33,7 @@ struct WildDogActor : AnimalActor {
     virtual void PauseMovement(u32 frames);
 
     Unk_Actor_0809BFE8 * saved_model;
-    WildDogBehavior * behaviors[5];
+    SmartPtr<WildDogBehavior> behaviors[5];
     u32 cached_motion;
     u32 cached_facing;
 };

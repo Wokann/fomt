@@ -4,6 +4,9 @@
 #include "shop_common.hh"
 #include "shop_resource_slots.hh"
 #include "gbaio.h"
+#include "hardware_dma.hh"
+#include "font_decimal.hh"
+#include "game_state_types.hh"
 
 asm_unified(
     ".text\n"
@@ -706,44 +709,28 @@ asm_unified(
     ".Lshop_common_05ec: .word 0x534\n"
     ".Lshop_common_05f0: .word __vt_23IndexedResourceProvider\n"
     ".Lshop_common_05f4: .word 0x504\n"
-    "thumb_func_start DrawShopMoney\n"
-    "DrawShopMoney:\n"
-    "push {r4, r5, lr}\n"
-    "sub sp, #4\n"
-    "adds r5, r0, #0\n"
-    "ldr r4, .Lshop_common_0634\n"
-    "ldr r1, .Lshop_common_0638\n"
-    "adds r0, r4, #0\n"
-    "movs r2, #0x28\n"
-    "bl FillHardwareDma3\n"
-    "ldr r1, .Lshop_common_063c\n"
-    "adds r0, r4, #0\n"
-    "movs r2, #0x28\n"
-    "bl FillHardwareDma3\n"
-    "ldr r0, [r5, #8]\n"
-    "ldr r1, .Lshop_common_0640\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lshop_common_0644\n"
-    "movs r2, #0x20\n"
-    "str r2, [sp]\n"
-    "movs r2, #0xa0\n"
-    "movs r3, #0\n"
+);
+
+void DrawShopMoney(ShopScreenCore * shop)
+{
+    FillHardwareDma3(0x3FF03FF,
+        reinterpret_cast<void *>(VRAM + 0xFF8A), 0x28);
+    FillHardwareDma3(0x3FF03FF,
+        reinterpret_cast<void *>(VRAM + 0xFFCA), 0x28);
+
+    u32 const balance = shop->save->money_account.balance;
+
 #if defined(REGION_JP)
-    "bl DrawDecimalTo2x2Tilemap\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "bl DrawDecimalTo1x2Tilemap\n"
+    DrawDecimalTo2x2Tilemap(balance,
+        reinterpret_cast<u16 *>(VRAM + 0xFFB2), 0xA0, 0, 0x20);
+#else
+    DrawDecimalTo1x2Tilemap(balance,
+        reinterpret_cast<u16 *>(VRAM + 0xFFB2), 0xA0, 0, 0x20);
 #endif
-    "add sp, #4\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lshop_common_0634: .word 0x3ff03ff\n"
-    ".Lshop_common_0638: .word 0x600ff8a\n"
-    ".Lshop_common_063c: .word 0x600ffca\n"
-    ".Lshop_common_0640: .word 0x1aa8\n"
-    ".Lshop_common_0644: .word 0x600ffb2\n"
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start InitializeShopScreenDisplay\n"
     "InitializeShopScreenDisplay:\n"
     "push {r4, r5, r6, r7, lr}\n"

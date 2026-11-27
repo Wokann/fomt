@@ -4,30 +4,22 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectZackSchedule\n"
-    "SelectZackSchedule:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr1, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DB62\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803DB64\n"
-    ".Ljp_0803DB62:\n"
-    "    movs\tr0, #2\n"
-    ".Ljp_0803DB64:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectZackSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    if ((u8)IsNpcScheduleDateListed(raw[1], raw[2]))
+        return 2;
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 // Recovered schedule data at US ROM 0x080F2DC0 (JP 0x080F261C).

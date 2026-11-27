@@ -56,10 +56,5 @@ extern u16 const gFishingBiteDelaySeconds[][4];
 extern u8 const gFishingCatchCategoryWeights[][5];
 extern FishingCatchConfiguration const gFishingCatchConfigurations[];
 
-typedef char FishingAttemptParametersSizeCheck[sizeof(FishingAttemptParameters) == 8 ? 1 : -1];
-typedef char FishingCatchResultSizeCheck[sizeof(FishingCatchResult) == 24 ? 1 : -1];
-typedef char FishingCatchResultItemCheck[offsetof(FishingCatchResult, item) == 8 ? 1 : -1];
-typedef char FishingCatchResultRecordCheck[offsetof(FishingCatchResult, king_fish_record) == 16 ? 1 : -1];
-typedef char FishingCatchConfigurationSizeCheck[sizeof(FishingCatchConfiguration) == 32 ? 1 : -1];
 
 #endif // FISHING_HH

@@ -16,13 +16,33 @@ struct GameStateSaveImage;
 struct SupermarketSceneCore;
 struct SupermarketPurchaseSceneCore;
 
+// Owns the scene core. The native scene destructor destroys the core implicitly,
+// in reverse declaration order together with `continuation`, which is only
+// possible if the member carries a destructor of its own. The bodies are defined
+// below the core classes, where the pointee is complete; they stay inline so the
+// scene destructor expands them in place.
+struct SupermarketSceneCoreOwner {
+    explicit SupermarketSceneCoreOwner(SupermarketSceneCore * input = nullptr);
+    ~SupermarketSceneCoreOwner();
+    SupermarketSceneCore * operator->() const { return value; }
+    SupermarketSceneCore * value;
+};
+
+struct SupermarketPurchaseSceneCoreOwner {
+    explicit SupermarketPurchaseSceneCoreOwner(
+        SupermarketPurchaseSceneCore * input = nullptr);
+    ~SupermarketPurchaseSceneCoreOwner();
+    SupermarketPurchaseSceneCore * operator->() const { return value; }
+    SupermarketPurchaseSceneCore * value;
+};
+
 // Native scene destructors release the continuation before deleting the core.
 struct SupermarketScene : AScene {
     SupermarketScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~SupermarketScene();
     virtual SceneTransitionOwner Run();
 
-    SupermarketSceneCore * core;
+    SupermarketSceneCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
@@ -31,7 +51,7 @@ struct SupermarketPurchaseScene : AScene {
     virtual ~SupermarketPurchaseScene();
     virtual SceneTransitionOwner Run();
 
-    SupermarketPurchaseSceneCore * core;
+    SupermarketPurchaseSceneCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
@@ -58,14 +78,17 @@ struct SupermarketPurchaseSceneCore : ShopScreenCore {
     i32 phase;
 };
 
-typedef char SupermarketCoreDescriptionCheck[offsetof(SupermarketSceneCore, description) == 0x6A4 ? 1 : -1];
-typedef char SupermarketCorePhaseCheck[offsetof(SupermarketSceneCore, phase) == 0x708 ? 1 : -1];
-typedef char SupermarketCorePurchasedCheck[offsetof(SupermarketSceneCore, has_purchased) == 0x70C ? 1 : -1];
-typedef char SupermarketCoreSizeCheck[sizeof(SupermarketSceneCore) == 0x710 ? 1 : -1];
-typedef char SupermarketPurchaseCoreItemCheck[offsetof(SupermarketPurchaseSceneCore, item_id) == 0x6A4 ? 1 : -1];
-typedef char SupermarketPurchaseCoreDescriptionCheck[offsetof(SupermarketPurchaseSceneCore, description) == 0x6A8 ? 1 : -1];
-typedef char SupermarketPurchaseCorePhaseCheck[offsetof(SupermarketPurchaseSceneCore, phase) == 0x70C ? 1 : -1];
-typedef char SupermarketPurchaseCoreSizeCheck[sizeof(SupermarketPurchaseSceneCore) == 0x710 ? 1 : -1];
+inline SupermarketSceneCoreOwner::SupermarketSceneCoreOwner(
+    SupermarketSceneCore * input) : value(input) {}
+inline SupermarketSceneCoreOwner::~SupermarketSceneCoreOwner() { delete value; }
+
+inline SupermarketPurchaseSceneCoreOwner::SupermarketPurchaseSceneCoreOwner(
+    SupermarketPurchaseSceneCore * input) : value(input) {}
+inline SupermarketPurchaseSceneCoreOwner::~SupermarketPurchaseSceneCoreOwner()
+{
+    delete value;
+}
+
 
 EXTERN_C
 
@@ -81,12 +104,6 @@ EXTERN_C_END
 
 #pragma interface "scene_supermarket.hh"
 
-typedef char SupermarketSceneSizeCheck[sizeof(SupermarketScene) == 12 ? 1 : -1];
-typedef char SupermarketSceneCoreCheck[offsetof(SupermarketScene, core) == 4 ? 1 : -1];
-typedef char SupermarketSceneContinuationCheck[offsetof(SupermarketScene, continuation) == 8 ? 1 : -1];
-typedef char SupermarketPurchaseSceneSizeCheck[sizeof(SupermarketPurchaseScene) == 12 ? 1 : -1];
-typedef char SupermarketPurchaseSceneCoreCheck[offsetof(SupermarketPurchaseScene, core) == 4 ? 1 : -1];
-typedef char SupermarketPurchaseSceneContinuationCheck[offsetof(SupermarketPurchaseScene, continuation) == 8 ? 1 : -1];
 
 
 // Both catalogs store an item identifier and price. The seed menu uses

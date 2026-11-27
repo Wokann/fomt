@@ -777,26 +777,15 @@ asm_unified(
     ".text\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start __23ScriptVisualEffectActorP10GameObjectP24ScriptVisualEffectRecord\n"
-    "__23ScriptVisualEffectActorP10GameObjectP24ScriptVisualEffectRecord:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r2, #0\n"
-    "    ldrh\tr0, [r4, #8]\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr3, #2\n"
-    "    bl __12AActorEntityP10GameObjectRC13ActorLocationUiUi\n"
-    "    ldr r0, .LscriptVisual_08032958\n"
-    "    str\tr0, [r5, #20]\n"
-    "    str\tr4, [r5, #48]\t@ 0x30\n"
-    "    adds\tr0, r5, #0\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    ".LscriptVisual_08032958: .word __vt_23ScriptVisualEffectActor\n"
+);
+
+ScriptVisualEffectActor::ScriptVisualEffectActor(GameObject * world, ScriptVisualEffectRecord * record)
+    : AActorEntity(world, record->location, 2, record->animation)
+{
+    this->record = record;
+}
+
+asm_unified(
     "    thumb_func_start _._23ScriptVisualEffectActor\n"
     "_._23ScriptVisualEffectActor:\n"
     "    push\t{r4, r5, r6, lr}\n"
@@ -845,41 +834,20 @@ EntityVisualController * ScriptVisualEffectActor::CreateVisualController()
 {
     return new DefaultEntitySpriteController(this);
 }
-asm_unified(
-    "    thumb_func_start vfunc_34__23ScriptVisualEffectActor\n"
-    "vfunc_34__23ScriptVisualEffectActor:\n"
-    "    ldr\tr0, [r0, #48]\t@ 0x30\n"
-    "    ldrh\tr0, [r0, #10]\n"
-    "    bx\tlr\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start SetEventScript__23ScriptVisualEffectActori\n"
-    "SetEventScript__23ScriptVisualEffectActori:\n"
-    "    ldr\tr0, [r0, #48]\t@ 0x30\n"
-    "    strh\tr1, [r0, #10]\n"
-    "    bx\tlr\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start GetBox__C23ScriptVisualEffectActor\n"
-    "GetBox__C23ScriptVisualEffectActor:\n"
-    "    push\t{r4, lr}\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r1, r3]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr3, [r1, r4]\n"
-    "    subs\tr1, r2, #7\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    adds\tr1, r3, #0\n"
-    "    subs\tr1, #10\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    adds\tr2, #7\n"
-    "    strh\tr2, [r0, #4]\n"
-    "    adds\tr3, #4\n"
-    "    strh\tr3, [r0, #6]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r2}\n"
-    "    bx\tr2\n"
-    "    .align 2, 0\n"
-    "\n"
-);
+u32 ScriptVisualEffectActor::vfunc_34()
+{
+    return record->script_id;
+}
+
+void ScriptVisualEffectActor::SetEventScript(MaryScriptId script_id)
+{
+    record->script_id = script_id;
+}
+
+Box ScriptVisualEffectActor::GetBox() const
+{
+    return Box(-7, -10, 7, 4, x_q16 >> 16, y_q16 >> 16);
+}
 
 DefaultEntitySpriteController::DefaultEntitySpriteController(AActorEntity * entity)
     : EntitySpriteController(entity, 6, 0x20, ENTITY_AUX_RENDER_DEFAULT, 0, 0, false)

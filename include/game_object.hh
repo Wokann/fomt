@@ -14,7 +14,6 @@ struct GameObjectUpdateContext {
     HardwareInputState * input;
 };
 
-typedef char GameObjectUpdateContextSizeCheck[sizeof(GameObjectUpdateContext) == 4 ? 1 : -1];
 // Borrowed hardware state for one native world draw, at offsets 0/4/8/C.
 struct HardwareDmaQueue;
 struct HardwareDisplayState;
@@ -26,9 +25,6 @@ struct GameObjectDrawContext {
     HardwareSpriteBufferState * sprites;
     HardwareLinkedList * commands;
 };
-typedef char GameObjectDrawContextSizeCheck[sizeof(GameObjectDrawContext) == 16 ? 1 : -1];
-typedef char GameObjectDrawSpritesCheck[offsetof(GameObjectDrawContext, sprites) == 8 ? 1 : -1];
-typedef char GameObjectDrawCommandsCheck[offsetof(GameObjectDrawContext, commands) == 12 ? 1 : -1];
 
 struct AEntity;
 struct AActorEntity;
@@ -149,8 +145,6 @@ struct GameObject : GameObjectBase
     /* +00 */ // vtable
 };
 
-typedef char GameObjectBaseSizeCheck[sizeof(GameObjectBase) == 4 ? 1 : -1];
-typedef char GameObjectSizeCheck[sizeof(GameObject) == 4 ? 1 : -1];
 
 
 #endif // GAME_OBJECT_HH

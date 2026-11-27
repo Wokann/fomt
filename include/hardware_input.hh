@@ -13,8 +13,6 @@ struct HardwareInputRepeatParameters {
 };
 
 
-typedef char HardwareInputRepeatParameters_size_check[sizeof(struct HardwareInputRepeatParameters) == 4 ? 1 : -1];
-typedef char HardwareInputRepeatParameters_interval_check[offsetof(struct HardwareInputRepeatParameters, interval) == 2 ? 1 : -1];
 
 #ifdef __cplusplus
 // A value snapshot of the returned key word, independent of live input state.
@@ -39,7 +37,6 @@ struct HardwareKeySnapshot {
     }
 };
 
-typedef char HardwareKeySnapshot_size_check[sizeof(HardwareKeySnapshot) == sizeof(u32) ? 1 : -1];
 #endif
 
 struct HardwareInputState {

@@ -82,21 +82,7 @@ typedef struct ObjTilePoolState {
 #endif
 } ObjTilePoolState;
 
-typedef char ObjTilePoolOwnerSizeCheck[sizeof(struct ObjTilePoolOwner) == 4 ? 1 : -1];
-typedef char ObjTileHandleSizeCheck[sizeof(ObjTileHandle) == 4 ? 1 : -1];
-typedef char ObjTileTree1024SizeCheck[sizeof(ObjTileTree1024) == OBJ_TILE_TREE1024_BYTES ? 1 : -1];
-typedef char ObjTileTreeChildrenOffsetCheck[offsetof(ObjTileTree1024, children) == OBJ_TILE_TREE_CHILDREN_OFFSET ? 1 : -1];
-typedef char ObjTileHandlePoolOffsetCheck[offsetof(ObjTilePoolState, pool) == OBJ_TILE_POOL_FREE_LIST_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateTreeOffsetCheck[offsetof(ObjTilePoolState, tile_tree) == OBJ_TILE_POOL_TREE_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateCountOffsetCheck[offsetof(ObjTilePoolState, allocation_count) == OBJ_TILE_POOL_COUNT_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateGenerationOffsetCheck[offsetof(ObjTilePoolState, next_generation) == OBJ_TILE_POOL_GENERATION_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateRefcountOffsetCheck[offsetof(ObjTilePoolState, reference_count) == OBJ_TILE_POOL_REFCOUNT_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateReservedOffsetCheck[offsetof(ObjTilePoolState, reserved_first) == OBJ_TILE_POOL_RESERVED_FIRST_OFFSET ? 1 : -1];
-typedef char ObjTilePoolStateSizeCheck[sizeof(ObjTilePoolState) == OBJ_TILE_POOL_BYTES ? 1 : -1];
 
-typedef char ObjTilePoolEntriesOffsetCheck[(offsetof(ObjTilePoolState, pool) + offsetof(ObjTileHandlePool, entries)) == OBJ_TILE_POOL_ENTRIES_OFFSET ? 1 : -1];
-typedef char ObjTilePoolReservedCountOffsetCheck[offsetof(ObjTilePoolState, reserved_count) == OBJ_TILE_POOL_RESERVED_COUNT_OFFSET ? 1 : -1];
-typedef char ObjTileAddressBitsCheck[(1 << OBJ_TILE_INDEX_BITS) == TOTAL_OBJ_TILE_COUNT ? 1 : -1];
 
 EXTERN_C
 

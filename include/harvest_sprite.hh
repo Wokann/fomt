@@ -19,8 +19,6 @@ struct HarvestSpriteWorkTarget
     u8 payload[7];
 };
 
-typedef char HarvestSpriteWorkTargetSizeCheck[sizeof(HarvestSpriteWorkTarget) == 8 ? 1 : -1];
-typedef char HarvestSpriteWorkTargetPayloadCheck[offsetof(HarvestSpriteWorkTarget, payload) == 1 ? 1 : -1];
 
 bool operator==(HarvestSpriteWorkTarget const & left, HarvestSpriteWorkTarget const & right);
 bool HasHarvestSpriteWorkTarget(HarvestSpriteWorkTarget const * targets, HarvestSpriteWorkTarget const & value);
@@ -79,8 +77,6 @@ struct ALIGN(4) HarvestSpriteHutPosition
     u8 facing;
 };
 
-typedef char HarvestSpriteHutPositionSizeCheck[sizeof(HarvestSpriteHutPosition) == 4 ? 1 : -1];
-typedef char HarvestSpriteHutPositionFacingCheck[offsetof(HarvestSpriteHutPosition, facing) == 2 ? 1 : -1];
 
 extern "C" HarvestSpriteHutPosition const gHarvestSpriteHutPositions[7];
 

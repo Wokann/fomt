@@ -9,82 +9,36 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __23BlacksmithShopSceneCoreP18GameStateSaveImageUcUiUiUiUi\n"
-    "__23BlacksmithShopSceneCoreP18GameStateSaveImageUcUiUiUiUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r7, r3, #0\n"
-    "ldr r5, [sp, #0x18]\n"
-    "lsls r2, r2, #0x18\n"
-    "lsrs r6, r2, #0x18\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lblacksmith_0_0024\n"
-    "str r0, [r4, #4]\n"
-    "ldr r0, .Lblacksmith_0_0028\n"
-    "adds r1, r4, r0\n"
-    "cmp r5, #0\n"
-    "beq .Lblacksmith_0_002c\n"
-    "movs r0, #9\n"
-    "str r0, [r1]\n"
-    "b .Lblacksmith_0_002e\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_0_0024: .word __vt_23BlacksmithShopSceneCore\n"
-    ".Lblacksmith_0_0028: .word 0x6a4\n"
-    ".Lblacksmith_0_002c:\n"
-    "str r5, [r1]\n"
-    ".Lblacksmith_0_002e:\n"
-    "movs r1, #1\n"
-    "cmp r6, #0\n"
-    "bne .Lblacksmith_0_003a\n"
-    "rsbs r0, r5, #0\n"
-    "orrs r0, r5\n"
-    "lsrs r1, r0, #0x1f\n"
-    ".Lblacksmith_0_003a:\n"
-    "movs r2, #0xd5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "movs r0, #0xa\n"
-    "movs r1, #1\n"
-    "rsbs r1, r1, #0\n"
-    ".Lblacksmith_0_0048:\n"
-    "subs r0, #1\n"
-    "cmp r0, r1\n"
-    "bne .Lblacksmith_0_0048\n"
-    "ldr r1, .Lblacksmith_0_0074\n"
-    "adds r0, r4, r1\n"
-    "str r7, [r0]\n"
-    "ldr r2, .Lblacksmith_0_0078\n"
-    "adds r1, r4, r2\n"
-    "ldr r0, [sp, #0x14]\n"
-    "str r0, [r1]\n"
-    "ldr r1, .Lblacksmith_0_007c\n"
-    "adds r0, r4, r1\n"
-    "str r5, [r0]\n"
-    "adds r2, #8\n"
-    "adds r1, r4, r2\n"
-    "ldr r0, [sp, #0x1c]\n"
-    "str r0, [r1]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_0_0074: .word 0x48d8\n"
-    ".Lblacksmith_0_0078: .word 0x48dc\n"
-    ".Lblacksmith_0_007c: .word 0x48e0\n"
-    "\n"
-    "thumb_func_start _._23BlacksmithShopSceneCore\n"
-    "_._23BlacksmithShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lblacksmith_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_1_0010: .word __vt_23BlacksmithShopSceneCore\n"
-    "\n"
+);
+
+static inline bool ComputeBlacksmithHasPurchased(u8 input, u32 order_price)
+{
+    bool has = true;
+    if (input == 0)
+        has = (order_price != 0);
+    return has;
+}
+
+BlacksmithShopSceneCore::BlacksmithShopSceneCore(
+    GameStateSaveImage * image, u8 input,
+    u32 tool_id, u32 ore_id, u32 order_price, u32 work_days)
+    : ShopScreenCore(image), phase(order_price ? 9 : 0),
+      has_purchased(ComputeBlacksmithHasPurchased(input, order_price)),
+      label_tiles(), tool_id(tool_id), ore_id(ore_id),
+      order_price(order_price), work_days(work_days)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+BlacksmithShopSceneCore::~BlacksmithShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start AppendResourceRow__23BlacksmithShopSceneCoreUiisPCUc\n"
     "AppendResourceRow__23BlacksmithShopSceneCoreUiisPCUc:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1415,67 +1369,31 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start IsToolUnowned__C23BlacksmithShopSceneCoreUi\n"
-    "IsToolUnowned__C23BlacksmithShopSceneCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "adds r6, r1, #0\n"
-    "movs r7, #1\n"
-    "ldr r0, [r4, #8]\n"
-    "movs r1, #0xe0\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "adds r1, r6, #0\n"
-    "bl GetFirstSlotWith__C9ToolChestUi\n"
-    "adds r5, r0, #0\n"
-    "movs r0, #1\n"
-    "rsbs r0, r0, #0\n"
-    "cmp r5, r0\n"
-    "bne .Lblacksmith_7_0032\n"
-    "ldr r0, [r4, #8]\n"
-    "ldr r1, .Lblacksmith_7_0070\n"
-    "adds r0, r0, r1\n"
-    "adds r1, r6, #0\n"
-    "bl GetFirstSlotWithTool__C8RucksackUi\n"
-    "cmp r0, r5\n"
-    "beq .Lblacksmith_7_0034\n"
-    ".Lblacksmith_7_0032:\n"
-    "movs r7, #0\n"
-    ".Lblacksmith_7_0034:\n"
-    "ldr r0, [r4, #8]\n"
-    "ldr r1, .Lblacksmith_7_0074\n"
-    "adds r0, r0, r1\n"
-    "bl IsEmpty__C9ToolStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lblacksmith_7_0066\n"
-    "ldr r0, [r4, #8]\n"
-    "ldr r1, .Lblacksmith_7_0074\n"
-    "adds r0, r0, r1\n"
-    "bl GetTool__C9ToolStack\n"
-    "mov r1, sp\n"
-    "strb r0, [r1]\n"
-    "mov r0, sp\n"
-    "bl GetId__C4Tool\n"
-    "movs r1, #0\n"
-    "cmp r0, r6\n"
-    "bne .Lblacksmith_7_0060\n"
-    "movs r1, #1\n"
-    ".Lblacksmith_7_0060:\n"
-    "cmp r1, #0\n"
-    "beq .Lblacksmith_7_0066\n"
-    "movs r7, #0\n"
-    ".Lblacksmith_7_0066:\n"
-    "adds r0, r7, #0\n"
-    "add sp, #4\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_7_0070: .word 0x1c38\n"
-    ".Lblacksmith_7_0074: .word 0x1c34\n"
-    "\n"
+);
+
+#include "game_state_types.hh"
+#include "farm.hh"
+
+bool BlacksmithShopSceneCore::IsToolUnowned(u32 tool_id) const
+{
+    bool unowned = true;
+
+    if (save->farm.farm_house.tool_chest.GetFirstSlotWith(tool_id) != (u32)-1)
+        unowned = false;
+    else if (save->farmer.rucksack.GetFirstSlotWithTool(tool_id) != (u32)-1)
+        unowned = false;
+
+    if (!save->farmer.unk_5C.IsEmpty())
+    {
+        if (save->farmer.unk_5C.GetTool().GetId() == tool_id)
+            unowned = false;
+    }
+
+    return unowned;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__23BlacksmithShopSceneCore\n"
     "Run__23BlacksmithShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

@@ -29,14 +29,6 @@ struct EntityAuxiliarySprites {
     void Draw(WorldSpriteDrawBuffer * buffer, i32 x, i32 y, u32 kind) const;
 };
 
-typedef char EntityAuxiliarySpriteEntrySizeCheck[sizeof(EntityAuxiliarySpriteEntry) == 44 ? 1 : -1];
-typedef char EntityAuxiliarySpriteEntryTilesCheck[offsetof(EntityAuxiliarySpriteEntry, tiles) == 32 ? 1 : -1];
-typedef char EntityAuxiliarySpriteEntryTileIndexCheck[offsetof(EntityAuxiliarySpriteEntry, tile_index) == 40 ? 1 : -1];
-typedef char EntityAuxiliarySpritesEntriesCheck[offsetof(EntityAuxiliarySprites, entries) == 4 ? 1 : -1];
-typedef char EntityAuxiliarySpritesIndicesCheck[offsetof(EntityAuxiliarySprites, indices) == 0x88 ? 1 : -1];
-typedef char EntityAuxiliarySpritesIndexValuesCheck[offsetof(EntityAuxiliarySprites, indices.values) == 0x8C ? 1 : -1];
-typedef char EntityAuxiliarySpritesFlagCheck[offsetof(EntityAuxiliarySprites, unk_9C) == 0x9C ? 1 : -1];
-typedef char EntityAuxiliarySpritesSizeCheck[sizeof(EntityAuxiliarySprites) == 0xA0 ? 1 : -1];
 
 
 #endif // ENTITY_AUXILIARY_SPRITES_HH

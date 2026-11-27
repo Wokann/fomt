@@ -4,61 +4,36 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectCarterSchedule\n"
-    "SelectCarterSchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803E768\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr1, [r0, #0]\n"
-    "    movs\tr0, #124\t@ 0x7c\n"
-    "    ands\tr0, r1\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E76C\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E7AC\n"
-    ".Ljp_0803E768: .word 0x000021CA\n"
-    ".Ljp_0803E76C:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    cmp\tr0, #2\n"
-    "    bne .Ljp_0803E78A\n"
-    "    cmp\tr1, #3\n"
-    "    bne .Ljp_0803E78A\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803E7AC\n"
-    ".Ljp_0803E78A:\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E798\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803E7AC\n"
-    ".Ljp_0803E798:\n"
-    "    cmp\tr4, #1\n"
-    "    beq .Ljp_0803E7A6\n"
-    "    cmp\tr4, #3\n"
-    "    beq .Ljp_0803E7A6\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E7AA\n"
-    ".Ljp_0803E7A6:\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803E7AC\n"
-    ".Ljp_0803E7AA:\n"
-    "    movs\tr0, #2\n"
-    ".Ljp_0803E7AC:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectCarterSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 const * ctx = (u8 const *)context;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    if (ctx[0x21CA] & 0x7C)
+        return 0;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date, (GameCalendar const *)(ctx + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    if (season == 2 && day == 3)
+        return 9;
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 8;
+    if (weekday == 1 || weekday == 3)
+        return 1;
+    if (*(u32 const *)(ctx + 8) == 0)
+        return 2;
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 extern "C" CarterScheduleData const gCarterScheduleData = {

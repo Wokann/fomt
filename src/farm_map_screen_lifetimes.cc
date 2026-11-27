@@ -94,35 +94,12 @@ asm_unified(
     "    add sp, #12\n"
     "    bx lr\n"
     "    .align 2, 0\n"
-    "    thumb_func_start _._26FarmMapScreenIndoorMarkers\n"
-    "_._26FarmMapScreenIndoorMarkers:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r0, [r4, #32]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lmap_cleanup_2_0\n"
-    "    bl free\n"
-    ".Lmap_cleanup_2_0:\n"
-    "    ldr r0, [r4, #16]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lmap_cleanup_2_1\n"
-    "    bl free\n"
-    ".Lmap_cleanup_2_1:\n"
-    "    ldr r0, [r4, #0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lmap_cleanup_2_2\n"
-    "    bl free\n"
-    ".Lmap_cleanup_2_2:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r5\n"
-    "    cmp r0, #0\n"
-    "    beq .Lmap_cleanup_2_3\n"
-    "    adds r0, r4, #0\n"
-    "    bl __builtin_delete\n"
-    ".Lmap_cleanup_2_3:\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+FarmMapScreenIndoorMarkers::~FarmMapScreenIndoorMarkers()
+{
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );

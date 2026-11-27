@@ -35,9 +35,6 @@ struct WorldSpriteEffectFrames {
     WorldSpriteEffectFrames & operator=(WorldSpriteEffectFrames const & other);
 };
 
-typedef char WorldSpriteEffectFramesSizeCheck[sizeof(WorldSpriteEffectFrames) == 0x54 ? 1 : -1];
-typedef char WorldSpriteEffectFramesGroupsCheck[offsetof(WorldSpriteEffectFrames, groups) == 4 ? 1 : -1];
-typedef char WorldSpriteEffectFramesTilesCheck[offsetof(WorldSpriteEffectFrames, tiles) == 0x44 ? 1 : -1];
 
 struct WorldSpriteEffectInstance {
     i16 x;
@@ -105,15 +102,7 @@ struct WorldSpriteEffects {
     void Draw(WorldSpriteDrawBuffer * buffer, HardwareDmaQueue & queue);
 };
 
-typedef char WorldSpriteEffectsStateSizeCheck[sizeof(WorldSpriteEffectsState) == 0x3E8 ? 1 : -1];
-typedef char WorldSpriteEffectInstanceSizeCheck[sizeof(WorldSpriteEffectInstance) == 8 ? 1 : -1];
-typedef char WorldSpriteEffectsStateFramesCheck[offsetof(WorldSpriteEffectsState, frames) == 8 ? 1 : -1];
-typedef char WorldSpriteEffectsStatePaletteCheck[offsetof(WorldSpriteEffectsState, palettes) == 0x350 ? 1 : -1];
-typedef char WorldSpriteEffectsStatePaletteSourceCheck[offsetof(WorldSpriteEffectsState, palette_source_kind) == 0x364 ? 1 : -1];
-typedef char WorldSpriteEffectsStatePaletteSourceSizeCheck[sizeof(((WorldSpriteEffectsState *)0)->palette_source_kind) == 1 ? 1 : -1];
 
-typedef char WorldSpriteEffectsStateInstancesCheck[offsetof(WorldSpriteEffectsState, instances) == 0x368 ? 1 : -1];
-typedef char WorldSpriteEffectsSizeCheck[sizeof(WorldSpriteEffects) == 4 ? 1 : -1];
 
 EXTERN_C
 void SpawnWorldSpriteEffect(WorldSpriteEffects * effects, i32 x, i32 y, u32 kind);

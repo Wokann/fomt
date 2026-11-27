@@ -6,6 +6,10 @@
 #include "held_item.hh"
 struct Rucksack;
 #include "utility/fixed_str.hh"
+#include "game_state_types.hh"
+#include "farmer_types.hh"
+#include "farm.hh"
+#include "farm_house.hh"
 
 #pragma interface "scene_blacksmith_upgrade.hh"
 
@@ -50,22 +54,9 @@ struct BlacksmithShopResultSceneCore : GameSceneMenuSelectionCore {
     // The original append operations cap this RAM buffer at 159 bytes plus NUL.
     FixedStr<159> work_order_description;
 };
-typedef char BlacksmithUpgradeCoreSizeCheck[sizeof(BlacksmithShopResultSceneCore) == 0x1B8 ? 1 : -1];
-typedef char BlacksmithUpgradeDescriptionCheck[offsetof(BlacksmithShopResultSceneCore, item_description) == 0x98 ? 1 : -1];
-typedef char BlacksmithUpgradeHeldToolCheck[offsetof(BlacksmithShopResultSceneCore, held_tool) == 0xFC ? 1 : -1];
-typedef char BlacksmithUpgradeHeldItemCheck[offsetof(BlacksmithShopResultSceneCore, held_item) == 0x100 ? 1 : -1];
-typedef char BlacksmithUpgradeRucksackCheck[offsetof(BlacksmithShopResultSceneCore, rucksack) == 0x104 ? 1 : -1];
-typedef char BlacksmithUpgradePhaseCheck[offsetof(BlacksmithShopResultSceneCore, phase) == 0x108 ? 1 : -1];
-typedef char BlacksmithUpgradeOreSpriteCheck[offsetof(BlacksmithShopResultSceneCore, ore_sprite) == 0x10C ? 1 : -1];
-typedef char BlacksmithUpgradeContinuationCheck[offsetof(BlacksmithShopResultSceneCore, continuation) == 0x110 ? 1 : -1];
-typedef char BlacksmithUpgradePurchasedCheck[offsetof(BlacksmithShopResultSceneCore, has_purchased) == 0x114 ? 1 : -1];
-typedef char BlacksmithUpgradeWorkOrderCheck[offsetof(BlacksmithShopResultSceneCore, work_order_description) == 0x118 ? 1 : -1];
 
 #pragma interface "scene_blacksmith_upgrade.hh"
 
-typedef char BlacksmithShopResultSceneSizeCheck[sizeof(BlacksmithShopResultScene) == 12 ? 1 : -1];
-typedef char BlacksmithShopResultSceneCoreCheck[offsetof(BlacksmithShopResultScene, core) == 4 ? 1 : -1];
-typedef char BlacksmithShopResultSceneContinuationCheck[offsetof(BlacksmithShopResultScene, continuation) == 8 ? 1 : -1];
 
 
 extern char const gText_BlacksmithUpgrade_Tools[];

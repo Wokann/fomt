@@ -3,6 +3,10 @@
 #include "game_scene.hh"
 #include "game_state.hh"
 #include "scene_rucksack.hh"
+#include "game_menu.hh"
+#include "held_item.hh"
+#include "ui_state.hh"
+#include "game_menu_panels.hh"
 
 void * operator new(unsigned long);
 void operator delete(void *);
@@ -1843,91 +1847,46 @@ asm_unified(
     ".Lrucksack_2_01ac: .word gText_HomeStorage_ConfirmationYes\n"
     ".Lrucksack_2_01b0: .word gText_HomeStorage_ConfirmationNo\n"
     "\n"
-    "thumb_func_start DiscardItem__16RucksackMenuCorei\n"
-    "DiscardItem__16RucksackMenuCorei:\n"
-    "push {r4, r5, r6, lr}\n"
-    "sub sp, #8\n"
-    "adds r5, r0, #0\n"
-    "adds r6, r1, #0\n"
-    "cmp r6, #9\n"
-    "bne .Lrucksack_3_0054\n"
-    "movs r0, #0x80\n"
-    "lsls r0, r0, #1\n"
-    "adds r4, r5, r0\n"
-    "ldr r0, [r4]\n"
-    "bl GetKind__C8HeldItem\n"
-    "cmp r0, #1\n"
-    "bne .Lrucksack_3_003a\n"
-    "ldr r0, [r4]\n"
-    "bl GetArticle__C8HeldItem\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #4\n"
-    "strb r1, [r0]\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x35\n"
-    "bne .Lrucksack_3_003a\n"
-    "ldr r0, [r5, #8]\n"
-    "ldr r1, .Lrucksack_3_0050\n"
-    "adds r0, r0, r1\n"
-    "bl func_0800ED2C\n"
-    ".Lrucksack_3_003a:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r0, [r0]\n"
-    "bl ClearHeldItem\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "bl func_080CD4D4\n"
-    "b .Lrucksack_3_00ae\n"
-    ".align 2, 0\n"
-    ".Lrucksack_3_0050: .word 0x1bd8\n"
-    ".Lrucksack_3_0054:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r2, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r1, r4, #0\n"
-    "bl ExtractItemAt__8RucksackUi\n"
-    "mov r0, sp\n"
-    "bl GetKind__C12RucksackItem\n"
-    "cmp r0, #1\n"
-    "bne .Lrucksack_3_009a\n"
-    "mov r0, sp\n"
-    "bl GetArticle__C12RucksackItem\n"
-    "adds r1, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r0, #5\n"
-    "strb r1, [r0]\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x35\n"
-    "bne .Lrucksack_3_009a\n"
-    "ldr r0, [r5, #8]\n"
-    "ldr r1, .Lrucksack_3_00b8\n"
-    "adds r0, r0, r1\n"
-    "bl func_0800ED2C\n"
-    ".Lrucksack_3_009a:\n"
-    "ldr r4, [r5, #0x7c]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl func_080CCDEC\n"
-    ".Lrucksack_3_00ae:\n"
-    "add sp, #8\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_3_00b8: .word 0x1bd8\n"
-    "\n"
+);
+
+extern "C" void func_080CD4D4(void * panel);
+extern "C" void func_080CCDEC(void * panel, u32 item_index);
+
+void RucksackMenuCore::DiscardItem(i32 selection)
+{
+    if (selection == 9)
+    {
+        if (this->held_item->GetKind() == 1)
+        {
+            Article article = this->held_item->GetArticle();
+
+            if (article.GetId() == 0x35)
+                func_0800ED2C(this->save->farmer);
+        }
+
+        ClearHeldItem(this->held_item);
+        func_080CD4D4(this->right_panel.value);
+    }
+    else
+    {
+        RucksackItem item =
+            this->rucksack->ExtractItemAt(this->GetItemIndex(selection, 0));
+
+        if (item.GetKind() == 1)
+        {
+            Article article = item.GetArticle();
+
+            if (article.GetId() == 0x35)
+                func_0800ED2C(this->save->farmer);
+        }
+
+        func_080CCDEC(this->right_panel.value,
+            this->GetItemIndex(selection, 0));
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawTools__16RucksackMenuCoreUi\n"
     "DrawTools__16RucksackMenuCoreUi:\n"
     "push {r4, r5, r6, r7, lr}\n"

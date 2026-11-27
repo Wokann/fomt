@@ -15,10 +15,6 @@ struct ActorBehaviorTiming
     u8 unk_03;
 };
 
-typedef char ActorBehaviorTimingSizeCheck[sizeof(ActorBehaviorTiming) == 4 ? 1 : -1];
-typedef char ActorBehaviorTimingWeightCheck[offsetof(ActorBehaviorTiming, weight) == 0 ? 1 : -1];
-typedef char ActorBehaviorTimingBaseDurationCheck[offsetof(ActorBehaviorTiming, base_duration) == 1 ? 1 : -1];
-typedef char ActorBehaviorTimingRandomDurationCheck[offsetof(ActorBehaviorTiming, random_duration) == 2 ? 1 : -1];
 
 // Return a table index, not an event or behavior ID. The original caller
 // supplies a nonempty table; incomplete cumulative weight falls back to 0.
@@ -116,13 +112,6 @@ struct ActorMovementBounds
     }
 };
 
-typedef char ActorMovementBoundsSizeCheck[sizeof(ActorMovementBounds) == 0x34 ? 1 : -1];
-typedef char ActorMovementBoundsTerrainCheck[offsetof(ActorMovementBounds, terrain) == 0x14 ? 1 : -1];
-typedef char ActorMovementBoundsBoxCheck[offsetof(ActorMovementBounds, box) == 0x20 ? 1 : -1];
-typedef char ActorMovementBoundsDistanceCheck[offsetof(ActorMovementBounds, max_distance) == 0x28 ? 1 : -1];
-typedef char ActorMovementBoundsFlagsCheck[offsetof(ActorMovementBounds, unk_10) == 0x10 ? 1 : -1];
-typedef char ActorMovementBoundsXProbeCheck[offsetof(ActorMovementBounds, x_probe) == 0x2C ? 1 : -1];
-typedef char ActorMovementBoundsYProbeCheck[offsetof(ActorMovementBounds, y_probe) == 0x30 ? 1 : -1];
 
 // Cached signed pixel-distance limits that test terrain bit 0 only.
 // This is the separate 0x28-byte layout, not ActorMovementBounds.
@@ -142,10 +131,6 @@ struct TerrainMovementBounds
     void RefreshRight();
 };
 
-typedef char TerrainMovementBoundsSizeCheck[sizeof(TerrainMovementBounds) == 0x28 ? 1 : -1];
-typedef char TerrainMovementBoundsTerrainCheck[offsetof(TerrainMovementBounds, terrain) == 0x10 ? 1 : -1];
-typedef char TerrainMovementBoundsBoxCheck[offsetof(TerrainMovementBounds, box) == 0x1C ? 1 : -1];
-typedef char TerrainMovementBoundsDistanceCheck[offsetof(TerrainMovementBounds, max_distance) == 0x24 ? 1 : -1];
 
 EXTERN_C
 

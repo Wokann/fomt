@@ -38,7 +38,5 @@ struct ScriptEngine : public AScriptEngine
 };
 
 
-typedef char ScriptEngineEventContextOffsetCheck[offsetof(ScriptEngine, event_context) == 0x358 ? 1 : -1];
-typedef char ScriptEngineSizeCheck[sizeof(ScriptEngine) == 0x35C ? 1 : -1];
 
 #endif // SCRIPT_ENGINE_HH

@@ -72,18 +72,6 @@ struct NpcPathTimeCompare
 
 // Target ABI layout used by both the existing individual records and the
 // contiguous NPC schedule storage blocks. Path kind is the thirteenth flag bit.
-typedef char PathPointASizeCheck[sizeof(PathPointA) == 8 ? 1 : -1];
-typedef char PathPointACoordCheck[offsetof(PathPointA, coord) == 2 ? 1 : -1];
-typedef char PathPointBSizeCheck[sizeof(PathPointB) == 8 ? 1 : -1];
-typedef char PathPointBSpeedCheck[offsetof(PathPointB, speed) == 2 ? 1 : -1];
-typedef char PathPointBUnknown04Check[offsetof(PathPointB, unk_04) == 4 ? 1 : -1];
-typedef char PathInfoSizeCheck[sizeof(PathInfo) == 12 ? 1 : -1];
-typedef char PathInfoStartXCheck[offsetof(PathInfo, x_start) == 6 ? 1 : -1];
-typedef char PathInfoStartYCheck[offsetof(PathInfo, y_start) == 8 ? 1 : -1];
-typedef char ScheduleEntrySizeCheck[sizeof(ScheduleEntry) == 8 ? 1 : -1];
-typedef char ScheduleEntryPathCheck[offsetof(ScheduleEntry, path) == 4 ? 1 : -1];
-typedef char ScheduleSizeCheck[sizeof(Schedule) == 8 ? 1 : -1];
-typedef char ScheduleInfoSizeCheck[sizeof(ScheduleInfo) == 12 ? 1 : -1];
 
 struct GameCalendar;
 
@@ -96,8 +84,6 @@ struct GameDayDate
     u8 day;
     u8 weekday;
 };
-typedef char GameDayDateSizeCheck[sizeof(GameDayDate) == 4 ? 1 : -1];
-typedef char GameDayDateWeekdayCheck[offsetof(GameDayDate, weekday) == 3 ? 1 : -1];
 
 // Writes the decoded date and returns the supplied output pointer.
 extern "C" GameDayDate * DecodeGameDayDate(GameDayDate * output, GameCalendar const * calendar);

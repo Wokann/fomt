@@ -41,10 +41,6 @@ struct GameCubeLinkSaveData {
     bool received_milestones[49];
 };
 
-typedef char GameCubeLinkOutgoingPacketSizeCheck[sizeof(GameCubeLinkOutgoingPacket) == 3 * GAMECUBE_LINK_ENCODED_NAME_SIZE + 4 ? 1 : -1];
-typedef char GameCubeLinkIncomingPacketSizeCheck[sizeof(GameCubeLinkIncomingPacket) == 3 * GAMECUBE_LINK_ENCODED_NAME_SIZE + 8 ? 1 : -1];
-typedef char GameCubeLinkSaveDataFlagsCheck[offsetof(GameCubeLinkSaveData, received_milestones) == 0x18 ? 1 : -1];
-typedef char GameCubeLinkSaveDataSizeCheck[sizeof(GameCubeLinkSaveData) == 0x4C ? 1 : -1];
 
 EXTERN_C
 

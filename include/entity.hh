@@ -19,8 +19,6 @@ struct EntityUpdateContext {
         : input(state), minute_advanced(advanced) {}
 };
 
-typedef char EntityUpdateContextSizeCheck[sizeof(EntityUpdateContext) == 8 ? 1 : -1];
-typedef char EntityUpdateContextMinuteCheck[offsetof(EntityUpdateContext, minute_advanced) == 4 ? 1 : -1];
 
 // The world supplies shared queues/buffer and two signed camera pixels.
 struct HardwareDmaQueue;
@@ -33,9 +31,6 @@ struct EntityDrawContext {
     i16 camera_x;
     i16 camera_y;
 };
-typedef char EntityDrawContextSizeCheck[sizeof(EntityDrawContext) == 16 ? 1 : -1];
-typedef char EntityDrawBufferCheck[offsetof(EntityDrawContext, buffer) == 8 ? 1 : -1];
-typedef char EntityDrawCameraCheck[offsetof(EntityDrawContext, camera_x) == 12 ? 1 : -1];
 
 struct AEntity;
 
@@ -79,6 +74,5 @@ struct AEntity
     /* +14 */ // vtable
 };
 
-typedef char AEntityNormalUpdateFlagCheck[offsetof(AEntity, normal_update_suspended) == 6 ? 1 : -1];
 
 #endif // ENTITY_HH

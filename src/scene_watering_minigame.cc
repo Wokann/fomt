@@ -610,18 +610,15 @@ asm_unified(
 asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
-    "thumb_func_start Succeeded__25HarvestSpriteWateringCore\n"
-    "Succeeded__25HarvestSpriteWateringCore:\n"
-    "ldr r1, .Lwatering_01_0008\n"
-    "adds r0, r0, r1\n"
-    "ldrb r0, [r0]\n"
-    "bx lr\n"
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-#endif
-    ".Lwatering_01_0008: .word 0x96a\n"
-    "\n"
+);
+
+bool HarvestSpriteWateringCore::Succeeded()
+{
+    return succeeded;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__25HarvestSpriteWateringCore\n"
     "Run__25HarvestSpriteWateringCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -850,14 +847,15 @@ asm_unified(
     ".Lwatering_02_01f0: .word 0x51c\n"
     ".Lwatering_02_01f4: .word 0x814\n"
     "\n"
-    "thumb_func_start PrepareDisplay__25HarvestSpriteWateringCore\n"
-    "PrepareDisplay__25HarvestSpriteWateringCore:\n"
-    "push {lr}\n"
-    "bl EnableHardwareForcedBlank\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void HarvestSpriteWateringCore::PrepareDisplay()
+{
+    EnableHardwareForcedBlank(this);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080C14C8\n"
     "func_080C14C8:\n"
     "push {r4, r5, lr}\n"
@@ -15944,46 +15942,27 @@ asm_unified(
     ".Lwatering_18_045c: .word 0x8bc\n"
     ".Lwatering_18_0460: .word 0x968\n"
     "\n"
-    "thumb_func_start func_080C7B38\n"
-    "func_080C7B38:\n"
-    "ldr r2, .Lwatering_19_0024\n"
-    "ldr r3, .Lwatering_19_0028\n"
-    "adds r1, r0, r3\n"
-    "ldr r1, [r1]\n"
-    "lsls r1, r1, #1\n"
-    "adds r1, r1, r2\n"
-    "movs r2, #0x98\n"
-    "lsls r2, r2, #4\n"
-    "adds r0, r0, r2\n"
-    "ldr r2, [r0]\n"
-    "movs r0, #0x54\n"
-    "muls r0, r2, r0\n"
-    "ldrh r1, [r1]\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r0, r0, #0x10\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lwatering_19_0024: .word gUnk_080C7B38Values\n"
-    ".Lwatering_19_0028: .word 0x8bc\n"
-    "\n"
-    "thumb_func_start func_080C7B64\n"
-    "func_080C7B64:\n"
-    "ldr r1, .Lwatering_20_0010\n"
-    "ldr r2, .Lwatering_20_0014\n"
-    "adds r0, r0, r2\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r1\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-#endif
-    ".Lwatering_20_0010: .word gUnk_080C7B64Values\n"
-    ".Lwatering_20_0014: .word 0x984\n"
-    "\n"
+);
+
+extern "C" u16 func_080C7B38(HarvestSpriteWateringCore * core)
+{
+    u16 const * table = gUnk_080C7B38Values;
+    u32 const * key = (u32 const *)((u8 const *)core + 0x8BC);
+    u16 value = table[*key];
+    return (u16)(core->sprite_variant * 0x54 + value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u16 func_080C7B64(HarvestSpriteWateringCore * core)
+{
+    return gUnk_080C7B64Values[*(u32 const *)core->unk_984];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080C7B7C\n"
     "func_080C7B7C:\n"
     "push {r4, r5, lr}\n"
@@ -16401,104 +16380,51 @@ asm_unified(
     ".Lwatering_24_00a8: .word 0x8bc\n"
     ".Lwatering_24_00ac: .word 0x8c4\n"
     "\n"
-    "thumb_func_start __28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup\n"
-    "__28HarvestSpriteWateringUiSceneRC26HarvestSpriteWateringSetup:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lwatering_25_0020\n"
-    "str r0, [r4]\n"
-    "ldr r0, .Lwatering_25_0024\n"
-    "bl __builtin_new\n"
-    "adds r1, r5, #0\n"
-    "bl __25HarvestSpriteWateringCoreRC26HarvestSpriteWateringSetup\n"
-    "str r0, [r4, #4]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-#if defined(REGION_JP)
-    ".Lwatering_25_0020: .word __vt_28HarvestSpriteWateringUiScene\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-    ".Lwatering_25_0020: .word __vt_28HarvestSpriteWateringUiScene\n"
-#endif
-    ".Lwatering_25_0024: .word 0x98c\n"
-    "\n"
-    "thumb_func_start _._28HarvestSpriteWateringUiScene\n"
-    "_._28HarvestSpriteWateringUiScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lwatering_26_002c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lwatering_26_001c\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lwatering_26_001c:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwatering_26_002c: .word __vt_28HarvestSpriteWateringUiScene\n"
-    "\n"
-    "thumb_func_start Succeeded__28HarvestSpriteWateringUiScene\n"
-    "Succeeded__28HarvestSpriteWateringUiScene:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl Succeeded__25HarvestSpriteWateringCore\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "\n"
-    "thumb_func_start GetUnkRecordValue__28HarvestSpriteWateringUiScene\n"
-    "GetUnkRecordValue__28HarvestSpriteWateringUiScene:\n"
-    "ldr r0, [r0, #4]\n"
-    "ldr r1, .Lwatering_28_000c\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lwatering_28_000c: .word 0x974\n"
-    "\n"
-    "thumb_func_start Run__28HarvestSpriteWateringUiScene\n"
-    "Run__28HarvestSpriteWateringUiScene:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, [r1, #4]\n"
-    "mov r0, sp\n"
-    "bl Run__25HarvestSpriteWateringCore\n"
-    "ldr r2, [sp]\n"
-    "mov r0, sp\n"
-    "str r0, [sp, #4]\n"
-    "str r2, [sp, #8]\n"
-    "adds r1, r0, #0\n"
-    "movs r0, #0\n"
-    "str r0, [r1]\n"
-    "str r2, [r4]\n"
-    "ldr r1, [sp]\n"
-    "cmp r1, #0\n"
-    "beq .Lwatering_29_0030\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lwatering_29_0030:\n"
-    "adds r0, r4, #0\n"
-    "add sp, #0xc\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
+);
+
+HarvestSpriteWateringUiScene::HarvestSpriteWateringUiScene(HarvestSpriteWateringSetup const & setup)
+{
+    core = new HarvestSpriteWateringCore(setup);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+HarvestSpriteWateringUiScene::~HarvestSpriteWateringUiScene()
+{
+    delete core;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+bool HarvestSpriteWateringUiScene::Succeeded()
+{
+    return core->Succeeded();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 HarvestSpriteWateringUiScene::GetUnkRecordValue()
+{
+    return core->unk_974;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner HarvestSpriteWateringUiScene::Run()
+{
+    return core->Run();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

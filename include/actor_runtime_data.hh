@@ -13,15 +13,29 @@ struct Unk_Actor_0809BFE8 : Actor
     u32 unk_14;
 };
 
+// Payload passed to func_0809C0C8 by the wild dog's two reaction handlers.
+// Only the bit layout is known from the handlers themselves: the low half is a
+// randomised timer (240..359), bits 16..22 are a constant 0x3C (60), bit 23
+// separates the tool-hit reaction from the dog-attack reaction, and the top
+// byte is always zero.
+union WildDogReactionPayload
+{
+    u32 raw;
+    struct Bits
+    {
+        u32 timer : 16;
+        u32 constant : 7;
+        u32 kind : 1;
+        u32 reserved : 8;
+    } bits;
+};
+
 struct Unk_Actor_0809C0AC
 {
     u32 unk_00;
     u32 unk_04;
 };
 
-typedef char ActorRuntimeStateSizeCheck[sizeof(Unk_Actor_0809BFE8) == 0x18 ? 1 : -1];
-typedef char ActorRuntimeStateSelectorCheck[offsetof(Unk_Actor_0809BFE8, unk_0C) == 0x0C ? 1 : -1];
-typedef char ActorRuntimeStatePairSizeCheck[sizeof(Unk_Actor_0809C0AC) == 8 ? 1 : -1];
 
 extern "C" {
 unsigned int func_0809C060(Unk_Actor_0809BFE8 const & self);

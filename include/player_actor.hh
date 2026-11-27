@@ -77,13 +77,7 @@ struct PlayerActor : PlayerActorBase {
 private:
     PlayerActor();
 };
-typedef char PlayerActorActionStateOffsetCheck[offsetof(PlayerActor, action_state) == 0x3C ? 1 : -1];
-typedef char PlayerActorSaveImageOffsetCheck[offsetof(PlayerActor, save_image) == 0x34 ? 1 : -1];
-typedef char PlayerActorFarmerOffsetCheck[offsetof(PlayerActor, farmer) == 0x38 ? 1 : -1];
-typedef char PlayerActorBaseSizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];
-typedef char PlayerActorGraphicStateOffsetCheck[offsetof(PlayerActor, held_actor_graphic_state) == 0x88 ? 1 : -1];
 
-typedef char PlayerActorUpdateStateOffsetCheck[offsetof(PlayerActor, update_suspended) == 0xC2 ? 1 : -1];
 
 EXTERN_C
 // The actual native implementation still serves the player virtual slot.

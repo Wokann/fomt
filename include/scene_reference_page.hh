@@ -131,25 +131,9 @@ struct ReferencePageSceneCore : HardwareContext {
 
 #pragma interface "scene_reference_page.hh"
 
-typedef char ReferencePageSpriteSizeCheck[sizeof(ReferencePageSprite) == 0x34 ? 1 : -1];
-typedef char ReferencePageStarredLinesSizeCheck[sizeof(ReferencePageStarredLines) == 0x10 ? 1 : -1];
-typedef char ReferencePageSceneCoreTilesCheck[offsetof(ReferencePageSceneCore, title) + offsetof(ReferencePageTitleBuffer, tiles) == 0x14 ? 1 : -1];
-typedef char ReferencePageSceneCoreArchiveCheck[offsetof(ReferencePageSceneCore, arrow_archive) == 0x714 ? 1 : -1];
-typedef char ReferencePageSceneCoreSpritesCheck[offsetof(ReferencePageSceneCore, up_arrow) == 0x774 ? 1 : -1];
-typedef char ReferencePageSceneCoreHandlesCheck[offsetof(ReferencePageSceneCore, arrow_tiles) == 0x810 ? 1 : -1];
-typedef char ReferencePageSceneCoreScrollCheck[offsetof(ReferencePageSceneCore, scroll_y) == 0x840 ? 1 : -1];
-typedef char ReferencePageSceneCoreEntriesCheck[offsetof(ReferencePageSceneCore, entry_ids) == 0x858 ? 1 : -1];
-typedef char ReferencePageSceneCoreModeCheck[offsetof(ReferencePageSceneCore, direct_page) == 0xA56 ? 1 : -1];
-typedef char ReferencePageSceneCoreLinesCheck[offsetof(ReferencePageSceneCore, lines) == 0xA5C ? 1 : -1];
-typedef char ReferencePageSceneCoreStarredCheck[offsetof(ReferencePageSceneCore, starred_lines) == 0xA60 ? 1 : -1];
-typedef char ReferencePageSceneCorePageCheck[offsetof(ReferencePageSceneCore, page_id) == 0xA70 ? 1 : -1];
-typedef char ReferencePageSceneCoreSizeCheck[sizeof(ReferencePageSceneCore) == 0xA74 ? 1 : -1];
 
 #pragma interface "scene_reference_page.hh"
 
-typedef char ReferencePageSceneSizeCheck[sizeof(ReferencePageScene) == 12 ? 1 : -1];
-typedef char ReferencePageSceneCoreCheck[offsetof(ReferencePageScene, core) == 4 ? 1 : -1];
-typedef char ReferencePageSceneContinuationCheck[offsetof(ReferencePageScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

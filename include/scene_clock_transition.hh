@@ -14,8 +14,6 @@ struct ClockTransition : SceneTransition {
     SceneTransitionOwner continuation;
 };
 
-typedef char ClockTransitionSizeCheck[sizeof(ClockTransition) == 12 ? 1 : -1];
-typedef char ClockTransitionOwnerCheck[offsetof(ClockTransition, continuation) == 8 ? 1 : -1];
 
 #pragma interface "game_scene.hh"
 

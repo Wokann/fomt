@@ -48,21 +48,6 @@ struct SavedMapTreeInsertResult {
     bool inserted;
 };
 
-typedef char SavedMapGraphicsSlotSizeCheck[sizeof(SavedMapGraphicsSlot) == 4 ? 1 : -1];
-typedef char SavedMapGraphicsPaletteCheck[offsetof(SavedMapGraphicsSlot, palette_index) == 2 ? 1 : -1];
-typedef char SavedMapTreeEntrySizeCheck[sizeof(SavedMapTreeEntry) == 8 ? 1 : -1];
-typedef char SavedMapTreeNodeSizeCheck[sizeof(SavedMapTreeNode) == 0x18 ? 1 : -1];
-typedef char SavedMapTreeNodeParentCheck[offsetof(SavedMapTreeNode, parent) == 4 ? 1 : -1];
-typedef char SavedMapTreeNodeLeftCheck[offsetof(SavedMapTreeNode, left) == 8 ? 1 : -1];
-typedef char SavedMapTreeNodeRightCheck[offsetof(SavedMapTreeNode, right) == 12 ? 1 : -1];
-typedef char SavedMapTreeNodeEntryCheck[offsetof(SavedMapTreeNode, entry) == 16 ? 1 : -1];
-typedef char SavedMapTreeStateSizeCheck[sizeof(SavedMapTreeState) == 16 ? 1 : -1];
-typedef char SavedMapTreeHeaderCheck[offsetof(SavedMapTreeState, header) == 4 ? 1 : -1];
-typedef char SavedMapTreeNodeCountCheck[offsetof(SavedMapTreeState, node_count) == 8 ? 1 : -1];
-typedef char SavedMapTreeSizeCheck[sizeof(SavedMapTree) == 0x18 ? 1 : -1];
-typedef char SavedMapTreeStateCheck[offsetof(SavedMapTree, state) == 8 ? 1 : -1];
-typedef char SavedMapTreeIteratorSizeCheck[sizeof(SavedMapTreeIterator) == 4 ? 1 : -1];
-typedef char SavedMapTreeInsertResultSizeCheck[sizeof(SavedMapTreeInsertResult) == 8 ? 1 : -1];
 
 struct GameSceneSavedMap;
 

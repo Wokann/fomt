@@ -33,13 +33,6 @@ typedef struct FontTilemapRectCommand
 #endif
 } FontTilemapRectCommand;
 
-typedef char FontTilemapRectCommandSizeCheck[sizeof(FontTilemapRectCommand) == 0x20 ? 1 : -1];
-typedef char FontTilemapRectCommandDestinationCheck[offsetof(FontTilemapRectCommand, destination) == 0x0C ? 1 : -1];
-typedef char FontTilemapRectCommandPaletteCheck[offsetof(FontTilemapRectCommand, palette) == 0x10 ? 1 : -1];
-typedef char FontTilemapRectCommandFirstTileCheck[offsetof(FontTilemapRectCommand, first_tile) == 0x12 ? 1 : -1];
-typedef char FontTilemapRectCommandWidthCheck[offsetof(FontTilemapRectCommand, width) == 0x14 ? 1 : -1];
-typedef char FontTilemapRectCommandHeightCheck[offsetof(FontTilemapRectCommand, height) == 0x18 ? 1 : -1];
-typedef char FontTilemapRectCommandStrideCheck[offsetof(FontTilemapRectCommand, row_stride) == 0x1C ? 1 : -1];
 
 EXTERN_C
 

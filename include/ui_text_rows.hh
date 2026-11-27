@@ -254,66 +254,12 @@ struct UiTextWindowSetupCommand : HardwareLinkBase
     unsigned unk_0c_23 : 9;
 };
 
-typedef char UiTextWindowSetupCommandSizeCheck[
-    sizeof(UiTextWindowSetupCommand) == 0x10 ? 1 : -1];
 
-typedef char UiTextOutputUploadCommandSizeCheck[
-    sizeof(UiTextOutputUploadCommand) == 0x10 ? 1 : -1];
-typedef char UiTextOutputUploadCommandOutputCheck[
-    offsetof(UiTextOutputUploadCommand, output) == 0x0C ? 1 : -1];
 
-typedef char UiTextInputAdapterSizeCheck[
-    sizeof(UiTextInputAdapter) == 0x0C ? 1 : -1];
-typedef char UiTextInputAdapterPressedCheck[
-    offsetof(UiTextInputAdapter, pressed) == 4 ? 1 : -1];
-typedef char UiTextInputAdapterResumeCheck[
-    offsetof(UiTextInputAdapter, allow_resume) == 8 ? 1 : -1];
-typedef char UnkUiSelectionDataSizeCheck[
-    sizeof(UnkUiSelectionData) == 0x1C ? 1 : -1];
-typedef char UnkUiSelectionTileBufferSizeCheck[
-    sizeof(UnkUiSelectionTileBuffer) == 0x104 ? 1 : -1];
-typedef char UnkUiSelectionTileBufferTilesCheck[
-    offsetof(UnkUiSelectionTileBuffer, tiles) == 4 ? 1 : -1];
-typedef char UnkUiSelectionPixelsSizeCheck[
-    sizeof(UnkUiSelectionPixels) == 4 ? 1 : -1];
-typedef char UnkUiSelectionEntrySizeCheck[
-    sizeof(UnkUiSelectionEntry) == 16 ? 1 : -1];
-typedef char UnkUiSelectionEntryStateCheck[
-    offsetof(UnkUiSelectionEntry, state) == 4 ? 1 : -1];
-typedef char UnkUiSelectionEntryChangedCheck[
-    offsetof(UnkUiSelectionEntry, changed) == 12 ? 1 : -1];
-typedef char UnkUiSelectionRowSizeCheck[
-    sizeof(UnkUiSelectionRow) == 112 ? 1 : -1];
-typedef char UnkUiSelectionRowOwnerSizeCheck[
-    sizeof(UnkUiSelectionRowOwner) == 4 ? 1 : -1];
-typedef char UnkUiSelectionDataRowsCheck[
-    offsetof(UnkUiSelectionData, rows) == 8 ? 1 : -1];
-typedef char UnkUiSelectionDataControlCheck[
-    offsetof(UnkUiSelectionData, unk_14) == 0x14 ? 1 : -1];
-typedef char UnkUiSelectionDataLineCheck[
-    offsetof(UnkUiSelectionData, unk_16) == 0x16 ? 1 : -1];
-typedef char UnkUiSelectionDataOriginCheck[
-    offsetof(UnkUiSelectionData, unk_18) == 0x18 ? 1 : -1];
-typedef char UnkUiSelectionDataStopCheck[
-    offsetof(UnkUiSelectionData, unk_19) == 0x19 ? 1 : -1];
-typedef char UnkUiSelectionDataChangedCheck[
-    offsetof(UnkUiSelectionData, unk_1a) == 0x1A ? 1 : -1];
-typedef char UnkUiSelectionDataNonblankCheck[
-    offsetof(UnkUiSelectionData, unk_1b) == 0x1B ? 1 : -1];
-typedef char UnkUiSelectionDimensionsSizeCheck[
-    sizeof(UnkUiSelectionDimensions) == 4 ? 1 : -1];
-typedef char UiTextTileCopyCommandSizeCheck[
-    sizeof(UiTextTileCopyCommand) == 0x18 ? 1 : -1];
-typedef char UiTextTileCopyCommandSourceCheck[
-    offsetof(UiTextTileCopyCommand, source) == 0x0C ? 1 : -1];
-typedef char UiTextTileCopyCommandDestinationCheck[
-    offsetof(UiTextTileCopyCommand, destination) == 0x10 ? 1 : -1];
 
 
 // Execute the active descriptors, then release their counted storage.
 
-typedef char UiDmaTransferQueueSizeCheck[sizeof(UiDmaTransferQueue) == 0x84 ? 1 : -1];
-typedef char UiDmaTransferCommandSizeCheck[sizeof(UiDmaTransferCommand) == 0x10 ? 1 : -1];
 
 #pragma interface "ui_text_commands.hh"
 

@@ -8,43 +8,23 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __28SpecialMerchantShopSceneCoreP18GameStateSaveImage\n"
-    "__28SpecialMerchantShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lspecial_merchant_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lspecial_merchant_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "str r1, [r0]\n"
-    "movs r2, #0xd5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lspecial_merchant_0_002c: .word __vt_28SpecialMerchantShopSceneCore\n"
-    ".Lspecial_merchant_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._28SpecialMerchantShopSceneCore\n"
-    "_._28SpecialMerchantShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lspecial_merchant_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lspecial_merchant_1_0010: .word __vt_28SpecialMerchantShopSceneCore\n"
-    "\n"
+);
+
+SpecialMerchantShopSceneCore::SpecialMerchantShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image), phase(0), has_purchased(false), description()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SpecialMerchantShopSceneCore::~SpecialMerchantShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawCatalog__28SpecialMerchantShopSceneCore\n"
     "DrawCatalog__28SpecialMerchantShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -387,40 +367,24 @@ asm_unified(
 #endif
     ".Lspecial_merchant_2_029c: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "thumb_func_start UpdateDescription__28SpecialMerchantShopSceneCoreUi\n"
-    "UpdateDescription__28SpecialMerchantShopSceneCoreUi:\n"
-    "push {r4, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "adds r0, r1, #0\n"
-    "cmp r0, #0xa\n"
-    "beq .Lspecial_merchant_3_0030\n"
-    "ldr r1, .Lspecial_merchant_3_002c\n"
-    "lsls r0, r0, #3\n"
-    "adds r0, r0, r1\n"
-    "ldr r1, [r0]\n"
-    "mov r0, sp\n"
-    "bl __7ArticleUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C7Article\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    "b .Lspecial_merchant_3_0038\n"
-    ".align 2, 0\n"
-    ".Lspecial_merchant_3_002c: .word gSpecialMerchantShopCatalog\n"
-    ".Lspecial_merchant_3_0030:\n"
-    "ldr r1, .Lspecial_merchant_3_0040\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    ".Lspecial_merchant_3_0038:\n"
-    "add sp, #4\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lspecial_merchant_3_0040: .word gText_SpecialMerchantShop_RecordPlayerDescription\n"
-    "\n"
+);
+
+#include "shop_ui.hh"
+void SpecialMerchantShopSceneCore::UpdateDescription(u32 selection)
+{
+    if (selection != SPECIAL_MERCHANT_RECORD_PLAYER_SENTINEL)
+    {
+        Article article(gSpecialMerchantShopCatalog[selection].item_id);
+        SetShopDescriptionText(this, article.GetDesc());
+    }
+    else
+    {
+        SetShopDescriptionText(this, gText_SpecialMerchantShop_RecordPlayerDescription);
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__28SpecialMerchantShopSceneCore\n"
     "Run__28SpecialMerchantShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

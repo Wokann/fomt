@@ -434,15 +434,15 @@ asm_unified(
     ".Lharvesting_00_0394: .word 0x614\n"
     ".Lharvesting_00_0398: .word 0x61c\n"
     "\n"
-    "thumb_func_start Succeeded__27HarvestSpriteHarvestingCore\n"
-    "Succeeded__27HarvestSpriteHarvestingCore:\n"
-    "movs r1, #0xc2\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r0, r1\n"
-    "ldrb r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+bool HarvestSpriteHarvestingCore::Succeeded()
+{
+    return succeeded;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__27HarvestSpriteHarvestingCore\n"
     "Run__27HarvestSpriteHarvestingCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -662,14 +662,15 @@ asm_unified(
     ".Lharvesting_02_01d4: .word 0x889\n"
     ".Lharvesting_02_01d8: .word 0x57c\n"
     "\n"
-    "thumb_func_start PrepareDisplay__27HarvestSpriteHarvestingCore\n"
-    "PrepareDisplay__27HarvestSpriteHarvestingCore:\n"
-    "push {lr}\n"
-    "bl EnableHardwareForcedBlank\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void HarvestSpriteHarvestingCore::PrepareDisplay()
+{
+    EnableHardwareForcedBlank(this);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080BCEC8\n"
     "func_080BCEC8:\n"
     "push {r4, r5, lr}\n"
@@ -9607,39 +9608,29 @@ asm_unified(
     ".Lharvesting_17_0178: .word gUnk_080C09D8Values\n"
     ".Lharvesting_17_017c: .word 0x614\n"
     "\n"
-    "thumb_func_start func_080C0B58\n"
-    "func_080C0B58:\n"
-    "ldr r1, .Lharvesting_18_0014\n"
-    "movs r2, #0xc3\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r0, r2\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r1\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lharvesting_18_0014: .word gUnk_080C0B58Values\n"
-    "\n"
-    "thumb_func_start func_080C0B70\n"
-    "func_080C0B70:\n"
-    "push {r4, r5, lr}\n"
-    "adds r5, r0, #0\n"
-    "bl GetHardwarePressedKeys\n"
-    "adds r4, r0, #0\n"
-    "adds r0, r5, #0\n"
-    "bl func_080C0CA4\n"
-    "movs r0, #8\n"
-    "ands r0, r4\n"
-    "cmp r0, #0\n"
-    "bne .Lharvesting_19_001e\n"
-    "adds r0, r5, #0\n"
-    "bl func_080C0B94\n"
-    ".Lharvesting_19_001e:\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+extern "C" u16 func_080C0B58(HarvestSpriteHarvestingCore * core)
+{
+    return gUnk_080C0B58Values[*(u32 const *)core->unk_618];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080C0CA4(HarvestSpriteHarvestingCore * core);
+extern "C" void func_080C0B94(HarvestSpriteHarvestingCore * core);
+extern "C" void func_080C0B70(HarvestSpriteHarvestingCore * core)
+{
+    u32 keys = GetHardwarePressedKeys(reinterpret_cast<void * const *>(core));
+    func_080C0CA4(core);
+    if ((keys & START_BUTTON) == 0)
+        func_080C0B94(core);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080C0B94\n"
     "func_080C0B94:\n"
     "push {r4, r5, lr}\n"
@@ -9839,100 +9830,51 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start __30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup\n"
-    "__30HarvestSpriteHarvestingUiSceneRC28HarvestSpriteHarvestingSetup:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lharvesting_22_0024\n"
-    "str r0, [r4]\n"
-    "movs r0, #0xc4\n"
-    "lsls r0, r0, #3\n"
-    "bl __builtin_new\n"
-    "adds r1, r5, #0\n"
-    "bl __27HarvestSpriteHarvestingCoreRC28HarvestSpriteHarvestingSetup\n"
-    "str r0, [r4, #4]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lharvesting_22_0024: .word __vt_30HarvestSpriteHarvestingUiScene\n"
-    "\n"
-    "thumb_func_start _._30HarvestSpriteHarvestingUiScene\n"
-    "_._30HarvestSpriteHarvestingUiScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lharvesting_23_002c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lharvesting_23_001c\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lharvesting_23_001c:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lharvesting_23_002c: .word __vt_30HarvestSpriteHarvestingUiScene\n"
-    "\n"
-    "thumb_func_start Succeeded__30HarvestSpriteHarvestingUiScene\n"
-    "Succeeded__30HarvestSpriteHarvestingUiScene:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl Succeeded__27HarvestSpriteHarvestingCore\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "\n"
-    "thumb_func_start GetUnkRecordValue__30HarvestSpriteHarvestingUiScene\n"
-    "GetUnkRecordValue__30HarvestSpriteHarvestingUiScene:\n"
-    "ldr r0, [r0, #4]\n"
-    "ldr r1, .Lharvesting_25_000c\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lharvesting_25_000c: .word 0x604\n"
-    "\n"
-    "thumb_func_start Run__30HarvestSpriteHarvestingUiScene\n"
-    "Run__30HarvestSpriteHarvestingUiScene:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, [r1, #4]\n"
-    "mov r0, sp\n"
-    "bl Run__27HarvestSpriteHarvestingCore\n"
-    "ldr r2, [sp]\n"
-    "mov r0, sp\n"
-    "str r0, [sp, #4]\n"
-    "str r2, [sp, #8]\n"
-    "adds r1, r0, #0\n"
-    "movs r0, #0\n"
-    "str r0, [r1]\n"
-    "str r2, [r4]\n"
-    "ldr r1, [sp]\n"
-    "cmp r1, #0\n"
-    "beq .Lharvesting_26_0030\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lharvesting_26_0030:\n"
-    "adds r0, r4, #0\n"
-    "add sp, #0xc\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
+);
+
+HarvestSpriteHarvestingUiScene::HarvestSpriteHarvestingUiScene(HarvestSpriteHarvestingSetup const & setup)
+{
+    core = new HarvestSpriteHarvestingCore(setup);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+HarvestSpriteHarvestingUiScene::~HarvestSpriteHarvestingUiScene()
+{
+    delete core;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+bool HarvestSpriteHarvestingUiScene::Succeeded()
+{
+    return core->Succeeded();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 HarvestSpriteHarvestingUiScene::GetUnkRecordValue()
+{
+    return core->unk_604;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner HarvestSpriteHarvestingUiScene::Run()
+{
+    return core->Run();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

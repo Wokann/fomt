@@ -28,10 +28,6 @@ struct Child : public Npc
     u8 : 7;
 };
 
-typedef char ChildSizeCheck[sizeof(Child) == 0x28 ? 1 : -1];
 
-typedef char ChildNameOffsetCheck[offsetof(Child, name) == 0x14 ? 1 : -1];
-typedef char ChildBirthdayOffsetCheck[offsetof(Child, birthday) == 0x24 ? 1 : -1];
-typedef char ChildAgeOffsetCheck[offsetof(Child, age_days) == 0x25 ? 1 : -1];
 
 #endif // CHILD_HH

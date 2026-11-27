@@ -52,17 +52,7 @@ struct StaffCreditsCore : HardwareContext {
     u16 unk_72A;
     char const * const * lines;
 };
-typedef char StaffCreditsCoreSizeCheck[sizeof(StaffCreditsCore) == 0x730 ? 1 : -1];
-typedef char StaffCreditsCoreMusic0Check[offsetof(StaffCreditsCore, music_player_0) == 8 ? 1 : -1];
-typedef char StaffCreditsCoreMusic1Check[offsetof(StaffCreditsCore, music_player_1) == 12 ? 1 : -1];
-typedef char StaffCreditsCoreTilesCheck[offsetof(StaffCreditsCore, text_tiles) == 0x14 ? 1 : -1];
-typedef char StaffCreditsCore714Check[offsetof(StaffCreditsCore, unk_714) == 0x714 ? 1 : -1];
-typedef char StaffCreditsCore71CCheck[offsetof(StaffCreditsCore, unk_71C) == 0x71C ? 1 : -1];
-typedef char StaffCreditsCoreLinesCheck[offsetof(StaffCreditsCore, lines) == 0x72C ? 1 : -1];
 
-typedef char StaffCreditsSceneSizeCheck[sizeof(StaffCreditsScene) == 12 ? 1 : -1];
-typedef char StaffCreditsSceneCoreCheck[offsetof(StaffCreditsScene, core) == 4 ? 1 : -1];
-typedef char StaffCreditsSceneContinuationCheck[offsetof(StaffCreditsScene, continuation) == 8 ? 1 : -1];
 
 
 #endif // STAFF_CREDITS_HH

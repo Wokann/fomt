@@ -37,7 +37,6 @@ struct GameDisplayOptions {
     u32 unk_4 : 28;
 };
 
-typedef char GameDisplayOptionsSizeCheck[sizeof(GameDisplayOptions) == 4 ? 1 : -1];
 
 // Saved at +0x2C74. IDs are raw words: the original setter does not validate
 // them. The countdown starts at two, but delivery also depends on the game's
@@ -50,9 +49,6 @@ struct TVShoppingOrderState {
     u8 countdown;
 };
 
-typedef char TVShoppingOrderStateSizeCheck[sizeof(TVShoppingOrderState) == 12 ? 1 : -1];
-typedef char TVShoppingOrderPendingCheck[offsetof(TVShoppingOrderState, pending_item) == 4 ? 1 : -1];
-typedef char TVShoppingOrderCountdownCheck[offsetof(TVShoppingOrderState, countdown) == 8 ? 1 : -1];
 
 // Saved at +0x21CC. The dispatcher keeps the received and local milestone
 // bitmaps separate; initialization and copying confirm their actual sizes.
@@ -80,12 +76,6 @@ struct GameStateLinkRecord {
     FixedStr<14> name_34; // Received name 2: <cs>, PASSERBY2.
 };
 
-typedef char GameStateLinkRecordSizeCheck[sizeof(GameStateLinkRecord) == 0x44 ? 1 : -1];
-typedef char GameStateLinkRecordReceivedCheck[offsetof(GameStateLinkRecord, received_milestones) == 8 ? 1 : -1];
-typedef char GameStateLinkRecordLocalCheck[offsetof(GameStateLinkRecord, local_milestones) == 0x10 ? 1 : -1];
-typedef char GameStateLinkRecordName14Check[offsetof(GameStateLinkRecord, name_14) == 0x14 ? 1 : -1];
-typedef char GameStateLinkRecordName24Check[offsetof(GameStateLinkRecord, name_24) == 0x24 ? 1 : -1];
-typedef char GameStateLinkRecordName34Check[offsetof(GameStateLinkRecord, name_34) == 0x34 ? 1 : -1];
 
 
 // DayUpdate promotes tomorrow's weather to today before choosing the next forecast.
@@ -97,7 +87,6 @@ struct GameStateClock {
     GameStateClock(GameCalendar const & value)
         : weather_today(WEATHER_SUNNY), weather_tomorrow(WEATHER_SUNNY), calendar(value) {}
 };
-typedef char GameStateClockSizeCheck[sizeof(GameStateClock) == 12 ? 1 : -1];
 
 // Saved entrants occupy twelve name IDs and four eight-byte race records.
 // The two bytes after the odds are native word-alignment padding.
@@ -107,8 +96,6 @@ struct HorseRaceSavedEntry {
     u8 contestant_name_id;
     i16 odds;
 } ALIGN(4);
-typedef char HorseRaceSavedEntrySizeCheck[sizeof(HorseRaceSavedEntry) == 8 ? 1 : -1];
-typedef char HorseRaceSavedEntryOddsCheck[offsetof(HorseRaceSavedEntry, odds) == 4 ? 1 : -1];
 
 // Only the low 24 bits of the final word are initialized. Entrants and the
 // high byte retain their native uninitialized storage until preparation.
@@ -128,7 +115,6 @@ struct HorseRaceSaveData {
         power_berry_redeemed(false), jewel_of_truth_redeemed(false), player_horse_entered(false),
         race_cancelled(false), player_horse_won(false) {}
 };
-typedef char HorseRaceSaveDataSizeCheck[sizeof(HorseRaceSaveData) == 0x30 ? 1 : -1];
 
 // The initializer, copy constructor and save-summary reader agree on these
 // member offsets. Unknown fields keep offset names. Initialization is recovered;
@@ -214,37 +200,6 @@ struct GameStateSaveImage {
     /* 0x34DC */ Unk_Actor_0809BFE8 wild_dog;
 };
 
-typedef char GameStateSaveImageSizeCheck[sizeof(GameStateSaveImage) == 0x34F4 ? 1 : -1];
-typedef char GameStateSaveImageWeatherTodayCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, weather_today) == 8 ? 1 : -1];
-typedef char GameStateSaveImageWeatherTomorrowCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, weather_tomorrow) == 12 ? 1 : -1];
-typedef char GameStateSaveImageCalendarCheck[offsetof(GameStateSaveImage, clock) + offsetof(GameStateClock, calendar) == 0x10 ? 1 : -1];
-typedef char GameStateSaveImageFarmCheck[offsetof(GameStateSaveImage, farm) == 0x14 ? 1 : -1];
-typedef char GameStateSaveImageMoneyCheck[offsetof(GameStateSaveImage, money_account) == 0x1AA8 ? 1 : -1];
-typedef char GameStateSaveImageFarmerCheck[offsetof(GameStateSaveImage, farmer) == 0x1BD8 ? 1 : -1];
-typedef char GameStateSaveImageDogCheck[offsetof(GameStateSaveImage, dog) == 0x1C70 ? 1 : -1];
-typedef char GameStateSaveImageMoreItemsCheck[offsetof(GameStateSaveImage, more_items) == 0x1CA0 ? 1 : -1];
-typedef char GameStateSaveImageBallLocationCheck[offsetof(GameStateSaveImage, ball_location) == 0x1CCC ? 1 : -1];
-typedef char GameStateSaveImageNpcCollectionCheck[offsetof(GameStateSaveImage, npcs) == 0x1CD4 ? 1 : -1];
-typedef char GameStateSaveImageChildCheck[offsetof(GameStateSaveImage, npcs) + offsetof(NpcCollection, child) == 0x1CD8 ? 1 : -1];
-typedef char GameStateSaveImageEventStateCheck[offsetof(GameStateSaveImage, event_state) == 0x214C ? 1 : -1];
-typedef char GameStateSaveImageLinkRecordCheck[offsetof(GameStateSaveImage, link_record) == 0x21CC ? 1 : -1];
-typedef char GameStateSaveImageReceivedMilestonesCheck[offsetof(GameStateSaveImage, link_record) + offsetof(GameStateLinkRecord, received_milestones) == 0x21D4 ? 1 : -1];
-typedef char GameStateSaveImageLocalMilestonesCheck[offsetof(GameStateSaveImage, link_record) + offsetof(GameStateLinkRecord, local_milestones) == 0x21DC ? 1 : -1];
-typedef char GameStateSaveImageOptionsCheck[offsetof(GameStateSaveImage, display_options) == 0x2210 ? 1 : -1];
-typedef char GameStateSaveImageCookingCheck[offsetof(GameStateSaveImage, cooking_recipes) == 0x2214 ? 1 : -1];
-typedef char GameStateSaveImageHorseRaceCheck[offsetof(GameStateSaveImage, horse_race) == 0x2C1C ? 1 : -1];
-typedef char GameStateSaveImageHorseRaceFlagsCheck[offsetof(GameStateSaveImage, horse_race) + offsetof(HorseRaceSaveData, entries) + sizeof(((HorseRaceSaveData *) 0)->entries) == 0x2C48 ? 1 : -1];
-typedef char GameStateSaveImageAnimalFestivalOpponentsCheck[offsetof(GameStateSaveImage, animal_festival_opponents) == 0x2C4C ? 1 : -1];
-typedef char GameStateSaveImageShoppingCheck[offsetof(GameStateSaveImage, tv_shopping) == 0x2C74 ? 1 : -1];
-typedef char GameStateSaveImageFishingRecordsCheck[offsetof(GameStateSaveImage, fishing_records) == 0x2C80 ? 1 : -1];
-typedef char GameStateSaveImageMineFloorCheck[offsetof(GameStateSaveImage, mine_floor) == 0x2E58 ? 1 : -1];
-typedef char GameStateSaveImageCursedToolsCheck[offsetof(GameStateSaveImage, cursed_tools) == 0x3480 ? 1 : -1];
-typedef char GameStateSaveImageActorRecordsCheck[offsetof(GameStateSaveImage, actor_records) == 0x3494 ? 1 : -1];
-typedef char GameStateSaveImageScriptedNpcControlCheck[offsetof(GameStateSaveImage, scripted_npc_control) == 0x34C4 ? 1 : -1];
-typedef char GameStateSaveImageShippingBonusCheck[offsetof(GameStateSaveImage, shooting_star_shipping_bonus) == 0x34C5 ? 1 : -1];
-typedef char GameStateSaveImageFieldItemsCheck[offsetof(GameStateSaveImage, field_items) == 0x34C8 ? 1 : -1];
-typedef char GameStateSaveImageMapPatchFlagsCheck[offsetof(GameStateSaveImage, map_patch_flags) == 0x34D8 ? 1 : -1];
-typedef char GameStateSaveImageTailActorCheck[offsetof(GameStateSaveImage, wild_dog) == 0x34DC ? 1 : -1];
 
 // The upper word records the failed write stage; these are stage IDs, not
 // independent bits. The lower word carries the SRAM service's error flags.

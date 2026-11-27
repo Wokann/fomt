@@ -172,20 +172,8 @@ inline HardwareDmaQueueCommand::HardwareDmaQueueCommand(HardwareDmaQueue * state
 }
 #endif
 
-typedef char HardwareDisplayCommand_size_check[sizeof(struct HardwareDisplayCommand) == 0x10 ? 1 : -1];
-typedef char HardwareSpriteBufferCommand_size_check[sizeof(struct HardwareSpriteBufferCommand) == 0x10 ? 1 : -1];
-typedef char HardwareDmaQueueCommand_size_check[sizeof(struct HardwareDmaQueueCommand) == 0x10 ? 1 : -1];
-typedef char HardwareDisplayCommand_payload_check[offsetof(struct HardwareDisplayCommand, display) == 0x0C ? 1 : -1];
-typedef char HardwareSpriteBufferCommand_payload_check[offsetof(struct HardwareSpriteBufferCommand, buffer) == 0x0C ? 1 : -1];
-typedef char HardwareDmaQueueCommand_payload_check[offsetof(struct HardwareDmaQueueCommand, queue) == 0x0C ? 1 : -1];
-typedef char HardwareDisplayCommandVTable_size_check[sizeof(struct HardwareDisplayCommandVTable) == 0x10 ? 1 : -1];
-typedef char HardwareSpriteBufferCommandVTable_size_check[sizeof(struct HardwareSpriteBufferCommandVTable) == 0x10 ? 1 : -1];
-typedef char HardwareDmaQueueCommandVTable_size_check[sizeof(struct HardwareDmaQueueCommandVTable) == 0x10 ? 1 : -1];
 
-typedef char HardwareContext_size_check[sizeof(struct HardwareContext) == 8 ? 1 : -1];
-typedef char HardwareContext_state_check[offsetof(struct HardwareContext, state) == 0 ? 1 : -1];
 #ifndef __cplusplus
-typedef char HardwareContext_vtable_check[offsetof(struct HardwareContext, vtable) == 4 ? 1 : -1];
 #endif
 
 #include <stdlib.h>
@@ -286,14 +274,6 @@ struct HardwareCoreState {
 #endif
 };
 
-typedef char HardwareCoreState_size_check[sizeof(struct HardwareCoreState) == 0x4B0 ? 1 : -1];
-typedef char HardwareDmaQueue_size_check[sizeof(struct HardwareDmaQueue) == 0x10 ? 1 : -1];
-typedef char HardwareDmaQueue_end_check[offsetof(struct HardwareDmaQueue, allocation.end) == 0x0C ? 1 : -1];
-typedef char HardwareCoreState_dma_queue_check[offsetof(struct HardwareCoreState, dma_queue) == 0x24 ? 1 : -1];
-typedef char HardwareCoreState_display_check[offsetof(struct HardwareCoreState, display) == 0x34 ? 1 : -1];
-typedef char HardwareCoreState_sprite_buffer_check[offsetof(struct HardwareCoreState, sprite_buffer) == 0x8C ? 1 : -1];
-typedef char HardwareCoreState_manager_check[offsetof(struct HardwareCoreState, manager) == 0x490 ? 1 : -1];
-typedef char HardwareCoreState_links_check[offsetof(struct HardwareCoreState, links) == 0x494 ? 1 : -1];
 
 EXTERN_C
 

@@ -1,134 +1,60 @@
 #include "money_account.hh"
 #include "prelude.h"
 #include "scene_inn_shop.hh"
+#include "shop_ui.hh"
+#include "item.hh"
 
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __16InnShopSceneCoreP18GameStateSaveImage\n"
-    "__16InnShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Linn_shop_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Linn_shop_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "str r1, [r0]\n"
-    "movs r2, #0xd5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Linn_shop_0_002c: .word __vt_16InnShopSceneCore\n"
-    ".Linn_shop_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._16InnShopSceneCore\n"
-    "_._16InnShopSceneCore:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Linn_shop_1_0024\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Linn_shop_1_0028\n"
-    "adds r0, r4, r1\n"
-    "ldr r0, [r0]\n"
-    "bl __builtin_delete\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Linn_shop_1_0024: .word __vt_16InnShopSceneCore\n"
-    ".Linn_shop_1_0028: .word 0x6ac\n"
-    "\n"
-    "thumb_func_start TakeOrder__16InnShopSceneCore\n"
-    "TakeOrder__16InnShopSceneCore:\n"
-    "ldr r2, .Linn_shop_2_0010\n"
-    "adds r1, r1, r2\n"
-    "ldr r3, [r1]\n"
-    "movs r2, #0\n"
-    "str r2, [r1]\n"
-    "str r3, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Linn_shop_2_0010: .word 0x6ac\n"
-    "\n"
-    "thumb_func_start UpdateDescription__16InnShopSceneCoreUi\n"
-    "UpdateDescription__16InnShopSceneCoreUi:\n"
-    "push {r4, r5, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "adds r3, r1, #0\n"
-    "ldr r5, .Linn_shop_3_0054\n"
-    "movs r0, #0xa9\n"
-    "lsls r0, r0, #2\n"
-    "adds r2, r4, r0\n"
-    "ldr r0, [r4, #0x10]\n"
-    "lsls r0, r0, #2\n"
-    "adds r0, #4\n"
-    "adds r0, r2, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r1, #3\n"
-    "subs r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r5, #0\n"
-    "adds r1, #0xc\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0\n"
-    "bne .Linn_shop_3_0058\n"
-    "lsls r0, r3, #2\n"
-    "adds r0, #4\n"
-    "adds r0, r2, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r1, #3\n"
-    "subs r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r0, r0, r5\n"
-    "ldr r1, [r0]\n"
-    "mov r0, sp\n"
-    "bl __4FoodUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C4Food\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    "b .Linn_shop_3_0074\n"
-    ".align 2, 0\n"
-    ".Linn_shop_3_0054: .word gInnShopMenu\n"
-    ".Linn_shop_3_0058:\n"
-    "lsls r0, r3, #2\n"
-    "adds r0, #4\n"
-    "adds r0, r2, r0\n"
-    "ldr r1, [r0]\n"
-    "lsls r0, r1, #3\n"
-    "subs r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r5, #0\n"
-    "adds r1, #8\n"
-    "adds r0, r0, r1\n"
-    "ldr r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    ".Linn_shop_3_0074:\n"
-    "add sp, #4\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+InnShopSceneCore::InnShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image), phase(0), has_ordered(false), order()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+InnShopSceneCore::~InnShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+InnShopOrderOwner InnShopSceneCore::TakeOrder()
+{
+    return order;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void InnShopSceneCore::UpdateDescription(u32 selection)
+{
+    if (gInnShopMenu[this->catalog[this->selected_row]]
+            .uses_description_override == 0)
+    {
+        Food food(gInnShopMenu[this->catalog[selection]].food_ui_id);
+
+        SetShopDescriptionText(this, food.GetDesc());
+    }
+    else
+    {
+        SetShopDescriptionText(this,
+            gInnShopMenu[this->catalog[selection]].description_override);
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__16InnShopSceneCore\n"
     "Run__16InnShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

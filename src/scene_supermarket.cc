@@ -10,72 +10,39 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __20SupermarketSceneCoreP18GameStateSaveImage\n"
-    "__20SupermarketSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lsupermarket_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lsupermarket_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "movs r2, #0xe1\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_0_002c: .word __vt_20SupermarketSceneCore\n"
-    ".Lsupermarket_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._20SupermarketSceneCore\n"
-    "_._20SupermarketSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lsupermarket_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_1_0010: .word __vt_20SupermarketSceneCore\n"
-    "\n"
-    "thumb_func_start UpdateDescription__20SupermarketSceneCoreUi\n"
-    "UpdateDescription__20SupermarketSceneCoreUi:\n"
-    "push {r4, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "ldr r2, .Lsupermarket_2_0038\n"
-    "lsls r1, r1, #2\n"
-    "adds r1, r1, r4\n"
-    "movs r0, #0xaa\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r1, r0\n"
-    "ldr r0, [r1]\n"
-    "lsls r0, r0, #3\n"
-    "adds r0, r0, r2\n"
-    "ldr r1, [r0]\n"
-    "mov r0, sp\n"
-    "bl __4ToolUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C4Tool\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    "add sp, #4\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_2_0038: .word gSupermarketCropSeedCatalog\n"
-    "\n"
+);
+
+SupermarketSceneCore::SupermarketSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image)
+{
+    description[0] = '\0';
+    phase = 0;
+    has_purchased = false;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SupermarketSceneCore::~SupermarketSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
+
+void SupermarketSceneCore::UpdateDescription(u32 selection)
+{
+    Tool tool(gSupermarketCropSeedCatalog[catalog[selection]].item_id);
+
+    SetShopDescriptionText(this, tool.GetDesc());
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__20SupermarketSceneCore\n"
     "Run__20SupermarketSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1469,64 +1436,24 @@ asm_unified(
     ".align 2, 0\n"
     ".Lsupermarket_3_0b1c: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "thumb_func_start __16SupermarketSceneG20SceneTransitionOwnerP18GameStateSaveImage\n"
-    "__16SupermarketSceneG20SceneTransitionOwnerP18GameStateSaveImage:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r6, r1, #0\n"
-    "adds r5, r2, #0\n"
-    "ldr r0, .Lsupermarket_4_002c\n"
-    "str r0, [r4]\n"
-    "movs r0, #0xe2\n"
-    "lsls r0, r0, #3\n"
-    "bl __builtin_new\n"
-    "adds r1, r5, #0\n"
-    "bl __20SupermarketSceneCoreP18GameStateSaveImage\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, [r6]\n"
-    "movs r0, #0\n"
-    "str r0, [r6]\n"
-    "str r1, [r4, #8]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_4_002c: .word __vt_16SupermarketScene\n"
-    "\n"
-    "thumb_func_start _._16SupermarketScene\n"
-    "_._16SupermarketScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lsupermarket_5_003c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #8]\n"
-    "cmp r1, #0\n"
-    "beq .Lsupermarket_5_001c\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lsupermarket_5_001c:\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lsupermarket_5_002e\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lsupermarket_5_002e:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_5_003c: .word __vt_16SupermarketScene\n"
+);
+
+SupermarketScene::SupermarketScene(SceneTransitionOwner next,
+    GameStateSaveImage * image)
+    : core(new SupermarketSceneCore(image)), continuation(next)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SupermarketScene::~SupermarketScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -1540,67 +1467,35 @@ SceneTransitionOwner SupermarketScene::Run()
 asm_unified(
     ".text\n"
     ".align 2, 0\n"
-    "thumb_func_start __28SupermarketPurchaseSceneCoreP18GameStateSaveImage21MarySupermarketItemId\n"
-    "__28SupermarketPurchaseSceneCoreP18GameStateSaveImage21MarySupermarketItemId:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r2, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lsupermarket_6_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lsupermarket_6_0030\n"
-    "adds r0, r4, r1\n"
-    "str r5, [r0]\n"
-    "movs r2, #0xd5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "adds r2, #0x64\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_6_002c: .word __vt_28SupermarketPurchaseSceneCore\n"
-    ".Lsupermarket_6_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._28SupermarketPurchaseSceneCore\n"
-    "_._28SupermarketPurchaseSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lsupermarket_7_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_7_0010: .word __vt_28SupermarketPurchaseSceneCore\n"
-    "\n"
-    "thumb_func_start UpdateDescription__28SupermarketPurchaseSceneCoreUi\n"
-    "UpdateDescription__28SupermarketPurchaseSceneCoreUi:\n"
-    "push {r4, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "ldr r0, .Lsupermarket_8_002c\n"
-    "lsls r1, r1, #3\n"
-    "adds r1, r1, r0\n"
-    "ldr r1, [r1]\n"
-    "mov r0, sp\n"
-    "bl __4FoodUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C4Food\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    "add sp, #4\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_8_002c: .word gSupermarketFoodCatalog\n"
-    "\n"
+);
+
+SupermarketPurchaseSceneCore::SupermarketPurchaseSceneCore(
+    GameStateSaveImage * image, MarySupermarketItemId item)
+    : ShopScreenCore(image), item_id(item), phase(0)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SupermarketPurchaseSceneCore::~SupermarketPurchaseSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "shop_ui.hh"
+void SupermarketPurchaseSceneCore::UpdateDescription(u32 index)
+{
+    Food food(gSupermarketFoodCatalog[index].item_id);
+    SetShopDescriptionText(this, food.GetDesc());
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__28SupermarketPurchaseSceneCore\n"
     "Run__28SupermarketPurchaseSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -2329,72 +2224,26 @@ asm_unified(
     ".align 2, 0\n"
     ".Lsupermarket_9_05f8: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "thumb_func_start __24SupermarketPurchaseSceneG20SceneTransitionOwnerP18GameStateSaveImage21MarySupermarketItemId\n"
-    "__24SupermarketPurchaseSceneG20SceneTransitionOwnerP18GameStateSaveImage21MarySupermarketItemId:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, r8\n"
-    "push {r6}\n"
-    "adds r4, r0, #0\n"
-    "mov r8, r1\n"
-    "adds r5, r2, #0\n"
-    "adds r6, r3, #0\n"
-    "ldr r0, .Lsupermarket_10_003c\n"
-    "str r0, [r4]\n"
-    "movs r0, #0xe2\n"
-    "lsls r0, r0, #3\n"
-    "bl __builtin_new\n"
-    "adds r1, r5, #0\n"
-    "adds r2, r6, #0\n"
-    "bl __28SupermarketPurchaseSceneCoreP18GameStateSaveImage21MarySupermarketItemId\n"
-    "str r0, [r4, #4]\n"
-    "mov r0, r8\n"
-    "ldr r1, [r0]\n"
-    "movs r0, #0\n"
-    "mov r2, r8\n"
-    "str r0, [r2]\n"
-    "str r1, [r4, #8]\n"
-    "adds r0, r4, #0\n"
-    "pop {r3}\n"
-    "mov r8, r3\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_10_003c: .word __vt_24SupermarketPurchaseScene\n"
-    "\n"
-    "thumb_func_start _._24SupermarketPurchaseScene\n"
-    "_._24SupermarketPurchaseScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lsupermarket_11_003c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #8]\n"
-    "cmp r1, #0\n"
-    "beq .Lsupermarket_11_001c\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lsupermarket_11_001c:\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lsupermarket_11_002e\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lsupermarket_11_002e:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lsupermarket_11_003c: .word __vt_24SupermarketPurchaseScene\n"
+);
+
+SupermarketPurchaseScene::SupermarketPurchaseScene(
+    SceneTransitionOwner next, GameStateSaveImage * image,
+    MarySupermarketItemId item)
+    : core(new SupermarketPurchaseSceneCore(image, item)),
+      continuation(next)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SupermarketPurchaseScene::~SupermarketPurchaseScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

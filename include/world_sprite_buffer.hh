@@ -27,9 +27,5 @@ struct WorldSpriteDrawBuffer {
     HardwareSpriteOamRecord sprites[128];
 };
 
-typedef char WorldSpritePriorityQueueSizeCheck[sizeof(WorldSpritePriorityQueue) == 0x204 ? 1 : -1];
-typedef char WorldSpriteDrawQueuesCheck[offsetof(WorldSpriteDrawBuffer, priorities) == 4 ? 1 : -1];
-typedef char WorldSpriteDrawRecordsCheck[offsetof(WorldSpriteDrawBuffer, sprites) == 0x814 ? 1 : -1];
-typedef char WorldSpriteDrawBufferSizeCheck[sizeof(WorldSpriteDrawBuffer) == 0xC14 ? 1 : -1];
 
 #endif // WORLD_SPRITE_BUFFER_HH

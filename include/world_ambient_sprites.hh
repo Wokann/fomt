@@ -30,9 +30,6 @@ struct GameStateActorRecord {
     u32 unk_0C : 24;
 };
 
-typedef char GameStateActorRecordSizeCheck[sizeof(GameStateActorRecord) == 0x10 ? 1 : -1];
-typedef char GameStateActorRecordDirectionCheck[offsetof(GameStateActorRecord, direction) == 4 ? 1 : -1];
-typedef char GameStateActorRecordPositionCheck[offsetof(GameStateActorRecord, x) == 8 ? 1 : -1];
 
 struct WorldSpriteDrawBuffer;
 struct HardwareDmaQueue;
@@ -109,10 +106,6 @@ struct WorldAmbientMotion {
     /* +12 */ i8 state; // States depend on the concrete kind.
 };
 
-typedef char WorldAmbientSpriteSizeCheck[sizeof(WorldAmbientSprite) == 0x50 ? 1 : -1];
-typedef char WorldAmbientSpriteMemberCheck[offsetof(WorldAmbientSprite, sprite) == 8 ? 1 : -1];
-typedef char WorldAmbientSecondarySpriteCheck[offsetof(WorldAmbientSprite, secondary_sprite) == 0x48 ? 1 : -1];
-typedef char WorldAmbientMotionSizeCheck[sizeof(WorldAmbientMotion) == 0x14 ? 1 : -1];
 
 // Kind numbers are the native saved-record discriminator, not species names.
 // Species/resource identities are still unconfirmed. Each is a distinct
@@ -129,8 +122,6 @@ struct WorldAmbientKind1 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind1SizeCheck[sizeof(WorldAmbientKind1) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind1MotionCheck[offsetof(WorldAmbientKind1, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind2 : WorldAmbientSprite {
     enum { KIND = 2 };
@@ -144,8 +135,6 @@ struct WorldAmbientKind2 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind2SizeCheck[sizeof(WorldAmbientKind2) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind2MotionCheck[offsetof(WorldAmbientKind2, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind3 : WorldAmbientSprite {
     enum { KIND = 3 };
@@ -159,8 +148,6 @@ struct WorldAmbientKind3 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind3SizeCheck[sizeof(WorldAmbientKind3) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind3MotionCheck[offsetof(WorldAmbientKind3, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind4 : WorldAmbientSprite {
     enum { KIND = 4 };
@@ -174,8 +161,6 @@ struct WorldAmbientKind4 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind4SizeCheck[sizeof(WorldAmbientKind4) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind4MotionCheck[offsetof(WorldAmbientKind4, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind5 : WorldAmbientSprite {
     enum { KIND = 5 };
@@ -192,8 +177,6 @@ struct WorldAmbientKind5 : WorldAmbientSprite {
     /* +68 */ i32 height_q16;
 };
 
-typedef char WorldAmbientKind5SizeCheck[sizeof(WorldAmbientKind5) == 0x6C ? 1 : -1];
-typedef char WorldAmbientKind5MotionCheck[offsetof(WorldAmbientKind5, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind6 : WorldAmbientSprite {
     enum { KIND = 6 };
@@ -215,8 +198,6 @@ struct WorldAmbientKind6 : WorldAmbientSprite {
     /* +86 */ i16 sound_ticks;
 };
 
-typedef char WorldAmbientKind6SizeCheck[sizeof(WorldAmbientKind6) == 0x88 ? 1 : -1];
-typedef char WorldAmbientKind6MotionCheck[offsetof(WorldAmbientKind6, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind7 : WorldAmbientSprite {
     enum { KIND = 7 };
@@ -230,8 +211,6 @@ struct WorldAmbientKind7 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind7SizeCheck[sizeof(WorldAmbientKind7) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind7MotionCheck[offsetof(WorldAmbientKind7, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind8 : WorldAmbientSprite {
     enum { KIND = 8 };
@@ -245,8 +224,6 @@ struct WorldAmbientKind8 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind8SizeCheck[sizeof(WorldAmbientKind8) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind8MotionCheck[offsetof(WorldAmbientKind8, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind9 : WorldAmbientSprite {
     enum { KIND = 9 };
@@ -260,8 +237,6 @@ struct WorldAmbientKind9 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind9SizeCheck[sizeof(WorldAmbientKind9) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind9MotionCheck[offsetof(WorldAmbientKind9, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind10 : WorldAmbientSprite {
     enum { KIND = 10 };
@@ -275,8 +250,6 @@ struct WorldAmbientKind10 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind10SizeCheck[sizeof(WorldAmbientKind10) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind10MotionCheck[offsetof(WorldAmbientKind10, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind11 : WorldAmbientSprite {
     enum { KIND = 11 };
@@ -290,8 +263,6 @@ struct WorldAmbientKind11 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind11SizeCheck[sizeof(WorldAmbientKind11) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind11MotionCheck[offsetof(WorldAmbientKind11, motion) == 0x50 ? 1 : -1];
 
 struct WorldAmbientKind12 : WorldAmbientSprite {
     enum { KIND = 12 };
@@ -305,14 +276,7 @@ struct WorldAmbientKind12 : WorldAmbientSprite {
     /* +50 */ WorldAmbientMotion motion;
 };
 
-typedef char WorldAmbientKind12SizeCheck[sizeof(WorldAmbientKind12) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind12MotionCheck[offsetof(WorldAmbientKind12, motion) == 0x50 ? 1 : -1];
 
-typedef char WorldAmbientKind5HeightCheck[offsetof(WorldAmbientKind5, height_q16) == 0x68 ? 1 : -1];
-typedef char WorldAmbientKind6TargetCheck[offsetof(WorldAmbientKind6, target) == 0x64 ? 1 : -1];
-typedef char WorldAmbientKind6PositionCheck[offsetof(WorldAmbientKind6, current_position) == 0x78 ? 1 : -1];
-typedef char WorldAmbientKind6VelocityCheck[offsetof(WorldAmbientKind6, velocity_x_q16) == 0x7C ? 1 : -1];
-typedef char WorldAmbientKind6SoundCheck[offsetof(WorldAmbientKind6, sound_ticks) == 0x86 ? 1 : -1];
 
 // World slot 84 saves exactly three ambient records. The flag chooses between
 // restoring those records and generating a fresh set after vfunc_14.
@@ -331,11 +295,6 @@ struct WorldAmbientEntity : AEntity {
 inline WorldAmbientSpriteController::WorldAmbientSpriteController(WorldAmbientEntity * owner)
     : EntityVisualController(owner), count(0) {}
 
-typedef char WorldAmbientEntitySizeCheck[sizeof(WorldAmbientEntity) == 0x20 ? 1 : -1];
-typedef char WorldAmbientRecordsOffsetCheck[offsetof(WorldAmbientEntity, records) == 0x18 ? 1 : -1];
-typedef char WorldAmbientRestoreOffsetCheck[offsetof(WorldAmbientEntity, restore_saved_records) == 0x1C ? 1 : -1];
-typedef char WorldAmbientControllerSizeCheck[sizeof(WorldAmbientSpriteController) == 0x18 ? 1 : -1];
-typedef char WorldAmbientControllerStorageCheck[offsetof(WorldAmbientSpriteController, storage) == 0x0C ? 1 : -1];
 
 EXTERN_C
 

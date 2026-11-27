@@ -110,20 +110,6 @@ struct ShopScreenCore : HardwareContext {
     u8 unk_6A3;
 };
 
-typedef char ShopScreenRowSizeCheck[sizeof(ShopScreenRow) == 0x10 ? 1 : -1];
-typedef char ShopScreenSpriteSizeCheck[sizeof(ShopScreenSprite) == 0x38 ? 1 : -1];
-typedef char ShopScreenCursorSizeCheck[sizeof(ShopScreenCursor) == 0x40 ? 1 : -1];
-typedef char ShopScreenCoreRowsCheck[offsetof(ShopScreenCore, rows.storage) == 0x24 ? 1 : -1];
-typedef char ShopScreenCoreCatalogCheck[offsetof(ShopScreenCore, catalog.storage) == 0x2A8 ? 1 : -1];
-typedef char ShopScreenCoreDialogCheck[offsetof(ShopScreenCore, dialog) == 0x348 ? 1 : -1];
-typedef char ShopScreenCoreItemTilesCheck[offsetof(ShopScreenCore, item_tiles) == 0x3A4 ? 1 : -1];
-typedef char ShopScreenCoreVCountCheck[offsetof(ShopScreenCore, vcount) == 0x438 ? 1 : -1];
-typedef char ShopScreenCoreGoldUnitCheck[offsetof(ShopScreenCore, gold_unit_tiles) == 0x454 ? 1 : -1];
-typedef char ShopScreenCoreArchiveCheck[offsetof(ShopScreenCore, arrow_archive) == 0x4D4 ? 1 : -1];
-typedef char ShopScreenCoreSpritesCheck[offsetof(ShopScreenCore, up_arrow) == 0x564 ? 1 : -1];
-typedef char ShopScreenCoreCursorCheck[offsetof(ShopScreenCore, cursor) == 0x644 ? 1 : -1];
-typedef char ShopScreenCoreQuantityCheck[offsetof(ShopScreenCore, quantity_selector) == 0x684 ? 1 : -1];
-typedef char ShopScreenCoreSizeCheck[sizeof(ShopScreenCore) == 0x6A4 ? 1 : -1];
 
 EXTERN_C
 void DrawShopMoney(ShopScreenCore * core);

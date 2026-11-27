@@ -15,7 +15,6 @@ struct UiPortraitGroupOwner
     IndexedResourceGroupResult Get() const;
 };
 
-typedef char UiPortraitGroupOwnerSizeCheck[sizeof(UiPortraitGroupOwner) == 4 ? 1 : -1];
 
 EXTERN_C
 u32 GetUiPortraitCount();

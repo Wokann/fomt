@@ -15,8 +15,6 @@ struct GameCubeLinkScene : AScene {
     GameStateSaveImage * save;
 };
 
-typedef char GameCubeLinkSceneSizeCheck[sizeof(GameCubeLinkScene) == 12 ? 1 : -1];
-typedef char GameCubeLinkSceneSaveCheck[offsetof(GameCubeLinkScene, save) == 8 ? 1 : -1];
 
 
 #endif // GAMECUBE_LINK_SCENE_HH

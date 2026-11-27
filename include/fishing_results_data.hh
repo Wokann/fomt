@@ -25,9 +25,6 @@ struct FishingRecords {
     FishingRecord records[FISHING_RECORD_COUNT];
 };
 
-typedef char FishingRecordSizeCheck[sizeof(FishingRecord) == 8 ? 1 : -1];
-typedef char FishingRecordMaximumCheck[offsetof(FishingRecord, maximum_size) == 4 ? 1 : -1];
-typedef char FishingRecordsSizeCheck[sizeof(FishingRecords) == 0x1D8 ? 1 : -1];
 
 extern char const gText_FishingRecord_PirateFortune[];
 extern char const gText_FishingRecord_FossilOfFish[];

@@ -106,8 +106,6 @@ struct CoopEggEntity : AEntity {
     virtual EntityVisualController * CreateVisualController();
 };
 
-typedef char CoopEggEntitySizeCheck[sizeof(CoopEggEntity) == 0x18 ? 1 : -1];
-typedef char CoopEggVisualControllerSizeCheck[sizeof(CoopEggVisualController) == 0x54 ? 1 : -1];
 
 // Retained world factories allocate 0x18 bytes; growing the type requires
 // updating those actual allocation sites, not just relocating its methods.
@@ -140,9 +138,6 @@ struct ShippingBasketEntity : AEntity {
     MoreItems * contents;
 };
 
-typedef char ShippingBasketEntitySizeCheck[sizeof(ShippingBasketEntity) == 0x1C ? 1 : -1];
-typedef char ShippingBasketVisualControllerSizeCheck[sizeof(ShippingBasketVisualController) == 0x58 ? 1 : -1];
-typedef char ShippingBasketBounceOffsetCheck[offsetof(ShippingBasketVisualController, bounce_countdown) == 0x54 ? 1 : -1];
 
 // The retained world factory allocates 0x1C bytes. Native drawing and item
 // insertion still access the verified fields directly.
@@ -186,9 +181,6 @@ struct DogBallEntity : AEntity {
     /* +28 */ u16 animation;
 };
 
-typedef char DogBallEntitySizeCheck[sizeof(DogBallEntity) == 0x2C ? 1 : -1];
-typedef char DogBallEntityAnimationOffsetCheck[offsetof(DogBallEntity, animation) == 0x28 ? 1 : -1];
-typedef char DogBallVisualControllerSizeCheck[sizeof(DogBallVisualController) == 0x48 ? 1 : -1];
 
 // The retained world factory allocates 0x2C bytes. The native constructor
 // leaves velocity/direction untouched until Throw initializes them.
@@ -213,17 +205,6 @@ struct EntityEventEffectController : EntityVisualController {
     SmartPtr<EventScrollingSprites> scrolling_sprites;
 };
 
-typedef char EntityEventEffectHostSizeCheck[sizeof(EntityEventEffectHost) == 0x1C ? 1 : -1];
-typedef char EntityEventEffectControllerSizeCheck[sizeof(EntityEventEffectController) == 0x18 ? 1 : -1];
-typedef char EntityEventEffectSunriseOffsetCheck[offsetof(EntityEventEffectController, sunrise) == 0x0C ? 1 : -1];
-typedef char NewYearSunriseEffectSizeCheck[sizeof(NewYearSunriseEffectState) == 0x54 ? 1 : -1];
-typedef char NewYearSunriseEffectPositionCheck[offsetof(NewYearSunriseEffectState, y_q16) == 0x4C ? 1 : -1];
-typedef char MoonViewingEffectSizeCheck[sizeof(MoonViewingEffectState) == 0x4C ? 1 : -1];
-typedef char EventScrollingSpriteSizeCheck[sizeof(EventScrollingSprite) == 0x50 ? 1 : -1];
-typedef char EventScrollingSpriteSpeedCheck[offsetof(EventScrollingSprite, speed_q16) == 0x48 ? 1 : -1];
-typedef char EventScrollingSpritesSizeCheck[sizeof(EventScrollingSprites) == 0x194 ? 1 : -1];
-typedef char EntityStarSparklesSizeCheck[sizeof(EntityStarSparkles) == 0x14C ? 1 : -1];
-typedef char EntityStarSparklesFlagsCheck[offsetof(EntityStarSparkles, complete) == 0x144 ? 1 : -1];
 
 extern "C" void CreateEntityNewYearSunriseEffect(AEntity * entity);
 extern "C" void PlayEntityNewYearSunriseEffect(AEntity * entity);

@@ -103,8 +103,6 @@ union IntroSceneResourceFlags
     } bits;
 };
 
-typedef char IntroSceneResourceFlagsSizeCheck[sizeof(IntroSceneResourceFlags) == 4 ? 1 : -1];
-typedef char IntroSceneResourceFlagBitsOffsetCheck[offsetof(IntroSceneResourceFlags, bits) == 0 ? 1 : -1];
 
 struct IntroSceneResourceState
 {
@@ -135,10 +133,6 @@ struct IntroSceneHardwarePoolHandle : ObjPalettePoolOwner
     }
 };
 
-typedef char IntroSceneStateHandleSizeCheck[sizeof(IntroSceneHardwareStateHandle) == INTRO_SCENE_HARDWARE_HANDLE_SIZE ? 1 : -1];
-typedef char IntroSceneStateHandleOffsetCheck[offsetof(IntroSceneHardwareStateHandle, handle) == 4 ? 1 : -1];
-typedef char IntroScenePoolHandleSizeCheck[sizeof(IntroSceneHardwarePoolHandle) == INTRO_SCENE_HARDWARE_HANDLE_SIZE ? 1 : -1];
-typedef char IntroScenePoolHandleOffsetCheck[offsetof(IntroSceneHardwarePoolHandle, handle) == 4 ? 1 : -1];
 
 // The intro keeps its current group after the common 28-byte draw prefix.
 // The sprite renderer only receives that prefix, not these group ranges.
@@ -151,13 +145,6 @@ struct IntroSceneSpriteParameters : IndexedResourceSpriteParameters
           group(0, 0, 0, 0, 0, 0, 0, 0) {}
 };
 
-typedef char IntroSceneSpriteParametersSizeCheck[sizeof(IntroSceneSpriteParameters) == 60 ? 1 : -1];
-typedef char IntroSceneSpritePaletteOffsetCheck[offsetof(IntroSceneSpriteParameters, palette_offset) == 4 ? 1 : -1];
-typedef char IntroSceneSpriteTileOffsetCheck[offsetof(IntroSceneSpriteParameters, tile_offset) == 6 ? 1 : -1];
-typedef char IntroSceneSpriteAffineModeOffsetCheck[offsetof(IntroSceneSpriteParameters, affine_mode) == 20 ? 1 : -1];
-typedef char IntroSceneSpriteObjectModeOffsetCheck[offsetof(IntroSceneSpriteParameters, object_mode) == 12 ? 1 : -1];
-typedef char IntroSceneSpriteMosaicOffsetCheck[offsetof(IntroSceneSpriteParameters, mosaic) == 24 ? 1 : -1];
-typedef char IntroSceneSpriteGroupOffsetCheck[offsetof(IntroSceneSpriteParameters, group) == 28 ? 1 : -1];
 
 #pragma interface "intro_scene.hh"
 
@@ -226,73 +213,7 @@ struct IntroSceneCore : HardwareContext
     i16 startup_phase;
 };
 
-typedef char IntroScenePointerSizeCheck[sizeof(void *) == 4 ? 1 : -1];
-typedef char IntroSceneMusicPlayerSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
-typedef char IntroSceneArchiveLayoutSizeCheck[sizeof(IndexedResourceArchive) == INTRO_SCENE_ARCHIVE_SIZE ? 1 : -1];
-typedef char IntroSceneStateOwnerSizeCheck[sizeof(ObjTilePoolOwner) == INTRO_SCENE_OWNER_SIZE ? 1 : -1];
-typedef char IntroScenePoolOwnerSizeCheck[sizeof(ObjPalettePoolOwner) == INTRO_SCENE_OWNER_SIZE ? 1 : -1];
-typedef char IntroSceneUnpackedResourcesSizeCheck[sizeof(IntroSceneUnpackedResources) == INTRO_SCENE_RESOURCE_CAPACITY ? 1 : -1];
-typedef char IntroSceneCoreMusicPlayersSizeCheck[sizeof(((IntroSceneCore *)0)->music_players) == 2 * 4 ? 1 : -1];
-typedef char IntroSceneCoreResourcesSizeCheck[sizeof(((IntroSceneCore *)0)->resources) == 14 * INTRO_SCENE_RESOURCE_STATE_SIZE ? 1 : -1];
-typedef char IntroSceneCoreSizeCheck[sizeof(IntroSceneCore) == INTRO_SCENE_CORE_SIZE ? 1 : -1];
-typedef char IntroSceneResourceHandleSizeCheck[sizeof(IndexedResourceHandle) == INTRO_SCENE_RESOURCE_HANDLE_SIZE ? 1 : -1];
-typedef char IntroSceneResourceHandleOffsetCheck[offsetof(IntroSceneResourceState, handle) == INTRO_SCENE_RESOURCE_HANDLE_OFFSET ? 1 : -1];
-typedef char IntroSceneResourceResolvedOffsetCheck[offsetof(IntroSceneResourceState, handle) + offsetof(IndexedResourceHandle, resolved_resource) == INTRO_SCENE_RESOURCE_RESOLVED_OFFSET ? 1 : -1];
-typedef char IntroSceneResourceStateSizeCheck[sizeof(IntroSceneResourceState) == INTRO_SCENE_RESOURCE_STATE_SIZE ? 1 : -1];
-typedef char IntroSceneResourceFlagsOffsetCheck[offsetof(IntroSceneResourceState, flags) == INTRO_SCENE_RESOURCE_FLAGS_OFFSET ? 1 : -1];
-typedef char IntroSceneResourceXOffsetCheck[offsetof(IntroSceneResourceState, x) == INTRO_SCENE_RESOURCE_X_OFFSET ? 1 : -1];
-typedef char IntroSceneResourceYOffsetCheck[offsetof(IntroSceneResourceState, y) == INTRO_SCENE_RESOURCE_Y_OFFSET ? 1 : -1];
-typedef char IntroSceneCoreResource9TileIndexWidthCheck[sizeof(((IntroSceneCore *)0)->resource9_tile_index) == 2 ? 1 : -1];
-typedef char IntroSceneCoreSpriteMatrixSizeCheck[sizeof(((IntroSceneCore *)0)->sprite_matrix) == INTRO_SCENE_SPRITE_MATRIX_SIZE ? 1 : -1];
-typedef char IntroSceneMatrixPbOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pb) == 2 ? 1 : -1];
-typedef char IntroSceneMatrixPcOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pc) == 4 ? 1 : -1];
-typedef char IntroSceneMatrixPdOffsetCheck[offsetof(IndexedResourceSpriteMatrix, pd) == INTRO_SCENE_MATRIX_PD_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_hardware_state_OffsetCheck[offsetof(IntroSceneCore, state) == INTRO_SCENE_CORE_HARDWARE_STATE_OFFSET ? 1 : -1];
-typedef char IntroSceneCoreHardwarePrefixSizeCheck[sizeof(HardwareContext) == INTRO_SCENE_CORE_MUSIC_PLAYERS_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_music_players_OffsetCheck[offsetof(IntroSceneCore, music_players) == INTRO_SCENE_CORE_MUSIC_PLAYERS_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unpacked_resources_OffsetCheck[offsetof(IntroSceneCore, unpacked_resources) == INTRO_SCENE_CORE_UNPACKED_RESOURCES_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_intro_archive_OffsetCheck[offsetof(IntroSceneCore, intro_archive) == INTRO_SCENE_CORE_INTRO_ARCHIVE_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_small_archive_OffsetCheck[offsetof(IntroSceneCore, small_archive) == INTRO_SCENE_CORE_SMALL_ARCHIVE_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_actor_archive_OffsetCheck[offsetof(IntroSceneCore, actor_archive) == INTRO_SCENE_CORE_ACTOR_ARCHIVE_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_resources_OffsetCheck[offsetof(IntroSceneCore, resources) == INTRO_SCENE_CORE_RESOURCES_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_resource9_tile_index_OffsetCheck[offsetof(IntroSceneCore, resource9_tile_index) == INTRO_SCENE_CORE_RESOURCE9_TILE_INDEX_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unk_6C62_OffsetCheck[offsetof(IntroSceneCore, unk_6C62) == INTRO_SCENE_CORE_UNK_6C62_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_sprite_matrix_OffsetCheck[offsetof(IntroSceneCore, sprite_matrix) == INTRO_SCENE_CORE_SPRITE_MATRIX_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unk_6C6C_OffsetCheck[offsetof(IntroSceneCore, unk_6C6C) == INTRO_SCENE_CORE_UNK_6C6C_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unk_6C6D_OffsetCheck[offsetof(IntroSceneCore, unk_6C6D) == INTRO_SCENE_CORE_UNK_6C6D_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_continuation_OffsetCheck[offsetof(IntroSceneCore, continuation) == INTRO_SCENE_CORE_CONTINUATION_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unk_6C6F_OffsetCheck[offsetof(IntroSceneCore, unk_6C6F) == INTRO_SCENE_CORE_UNK_6C6F_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_reservation_OffsetCheck[offsetof(IntroSceneCore, state_reservation) == INTRO_SCENE_CORE_STATE_RESERVATION_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_reservation_OffsetCheck[offsetof(IntroSceneCore, pool_reservation) == INTRO_SCENE_CORE_POOL_RESERVATION_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6C78_OffsetCheck[offsetof(IntroSceneCore, state_handle_6C78) == INTRO_SCENE_CORE_STATE_HANDLE_6C78_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6C80_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6C80) == INTRO_SCENE_CORE_POOL_HANDLE_6C80_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6C88_OffsetCheck[offsetof(IntroSceneCore, state_handle_6C88) == INTRO_SCENE_CORE_STATE_HANDLE_6C88_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6C90_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6C90) == INTRO_SCENE_CORE_POOL_HANDLE_6C90_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6C98_OffsetCheck[offsetof(IntroSceneCore, state_handle_6C98) == INTRO_SCENE_CORE_STATE_HANDLE_6C98_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6CA0_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6CA0) == INTRO_SCENE_CORE_POOL_HANDLE_6CA0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CA8_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CA8) == INTRO_SCENE_CORE_STATE_HANDLE_6CA8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CB0_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CB0) == INTRO_SCENE_CORE_STATE_HANDLE_6CB0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6CB8_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6CB8) == INTRO_SCENE_CORE_POOL_HANDLE_6CB8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CC0_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CC0) == INTRO_SCENE_CORE_STATE_HANDLE_6CC0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6CC8_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6CC8) == INTRO_SCENE_CORE_POOL_HANDLE_6CC8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CD0_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CD0) == INTRO_SCENE_CORE_STATE_HANDLE_6CD0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CD8_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CD8) == INTRO_SCENE_CORE_STATE_HANDLE_6CD8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CE0_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CE0) == INTRO_SCENE_CORE_STATE_HANDLE_6CE0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6CE8_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6CE8) == INTRO_SCENE_CORE_POOL_HANDLE_6CE8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CF0_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CF0) == INTRO_SCENE_CORE_STATE_HANDLE_6CF0_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6CF8_OffsetCheck[offsetof(IntroSceneCore, state_handle_6CF8) == INTRO_SCENE_CORE_STATE_HANDLE_6CF8_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6D00_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6D00) == INTRO_SCENE_CORE_POOL_HANDLE_6D00_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6D08_OffsetCheck[offsetof(IntroSceneCore, state_handle_6D08) == INTRO_SCENE_CORE_STATE_HANDLE_6D08_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6D10_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6D10) == INTRO_SCENE_CORE_POOL_HANDLE_6D10_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_state_handle_6D18_OffsetCheck[offsetof(IntroSceneCore, state_handle_6D18) == INTRO_SCENE_CORE_STATE_HANDLE_6D18_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_pool_handle_6D20_OffsetCheck[offsetof(IntroSceneCore, pool_handle_6D20) == INTRO_SCENE_CORE_POOL_HANDLE_6D20_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_run_state_OffsetCheck[offsetof(IntroSceneCore, run_state) == INTRO_SCENE_CORE_RUN_STATE_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_startup_hold_frames_OffsetCheck[offsetof(IntroSceneCore, startup_hold_frames) == INTRO_SCENE_CORE_STARTUP_HOLD_FRAMES_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_unk_6D30_OffsetCheck[offsetof(IntroSceneCore, unk_6D30) == INTRO_SCENE_CORE_UNK_6D30_OFFSET ? 1 : -1];
-typedef char IntroSceneCore_startup_phase_OffsetCheck[offsetof(IntroSceneCore, startup_phase) == INTRO_SCENE_CORE_STARTUP_PHASE_OFFSET ? 1 : -1];
 
-typedef char GameIntroSceneSizeCheck[sizeof(GameIntroScene) == 8 ? 1 : -1];
-typedef char GameIntroSceneCoreOffsetCheck[offsetof(GameIntroScene, core) == 4 ? 1 : -1];
 
 struct IntroNameEntryTransition : SceneTransition
 {

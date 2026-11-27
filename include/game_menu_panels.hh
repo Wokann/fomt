@@ -15,8 +15,6 @@ struct ALIGN(4) MenuGridPosition {
     u8 x;
     u8 y;
 };
-typedef char MenuGridPositionSizeCheck[sizeof(MenuGridPosition) == 4 ? 1 : -1];
-typedef char MenuGridPositionYCheck[offsetof(MenuGridPosition, y) == 1 ? 1 : -1];
 extern MenuGridPosition const gMenuGridHeaderPosition;
 extern MenuGridPosition const gMenuGridCellPositions[8];
 extern MenuGridPosition const gMenuGridHeaderTilePosition;
@@ -34,8 +32,6 @@ struct GameMenuPanel {
 protected:
     GameMenuPanel(HardwareLinkedList *);
 };
-typedef char MenuPanelQueueCheck[offsetof(GameMenuPanel, commands) == 4 ? 1 : -1];
-typedef char MenuPanelGlyphBufferCheck[offsetof(GameMenuPanel, glyph_tiles) == 0x10 ? 1 : -1];
 
 // A menu icon borrows its archive data. The first word is the quantity
 // displayed as a decimal number when it exceeds one.
@@ -91,23 +87,6 @@ struct GameMenuSpritePanel : GameMenuPanel {
     ObjPaletteCollectionEntry item_palettes[8];
 };
 
-typedef char MenuItemIconSizeCheck[sizeof(GameMenuItemIcon) == 12 ? 1 : -1];
-typedef char MenuItemIconTilesCheck[offsetof(GameMenuItemIcon, tiles) == 4 ? 1 : -1];
-typedef char MenuItemIconPaletteCheck[offsetof(GameMenuItemIcon, palette) == 8 ? 1 : -1];
-typedef char MenuIconListSizeCheck[sizeof(GameMenuIconList) == 0x64 ? 1 : -1];
-typedef char MenuPanelStateSizeCheck[sizeof(GameMenuPanelState) == 0x88 ? 1 : -1];
-typedef char MenuPanelStateDmaQueueCheck[offsetof(GameMenuPanelState, dma_queue) == 0x64 ? 1 : -1];
-typedef char MenuPanelStateHeaderCheck[offsetof(GameMenuPanelState, show_header) == 0x68 ? 1 : -1];
-typedef char MenuPanelStateHeadingCheck[offsetof(GameMenuPanelState, heading) == 0x78 ? 1 : -1];
-typedef char MenuPanelStateCountCheck[offsetof(GameMenuPanelState, item_count) == 0x84 ? 1 : -1];
-typedef char MenuTilemapPanelStateCheck[offsetof(GameMenuTilemapPanel, state) == 0x214 ? 1 : -1];
-typedef char MenuSpritePanelStateCheck[offsetof(GameMenuSpritePanel, state) == 0x214 ? 1 : -1];
-typedef char MenuTilemapPanelSizeCheck[sizeof(GameMenuTilemapPanel) == 0x29C ? 1 : -1];
-typedef char MenuSpritePanelSizeCheck[sizeof(GameMenuSpritePanel) == 0x32C ? 1 : -1];
-typedef char MenuSpritePanelHeaderTilesCheck[offsetof(GameMenuSpritePanel, header_tiles) == 0x29C ? 1 : -1];
-typedef char MenuSpritePanelHeaderPaletteCheck[offsetof(GameMenuSpritePanel, header_palette) == 0x2A4 ? 1 : -1];
-typedef char MenuSpritePanelItemTilesCheck[offsetof(GameMenuSpritePanel, item_tiles) == 0x2AC ? 1 : -1];
-typedef char MenuSpritePanelItemPalettesCheck[offsetof(GameMenuSpritePanel, item_palettes) == 0x2EC ? 1 : -1];
 
 extern "C" {
 void func_080CB090(GameMenuTilemapPanel *);

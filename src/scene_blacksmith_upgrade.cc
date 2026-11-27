@@ -7,122 +7,30 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __29BlacksmithShopResultSceneCoreG20SceneTransitionOwnerP18GameStateSaveImageUc\n"
-    "__29BlacksmithShopResultSceneCoreG20SceneTransitionOwnerP18GameStateSaveImageUc:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r6, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "adds r1, r2, #0\n"
-    "lsls r4, r3, #0x18\n"
-    "lsrs r4, r4, #0x18\n"
-    "bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lblacksmith_upgrade_0_0070\n"
-    "str r0, [r6, #4]\n"
-    "adds r0, r6, #0\n"
-    "adds r0, #0x98\n"
-    "movs r3, #0\n"
-    "strb r3, [r0]\n"
-    "adds r2, r6, #0\n"
-    "adds r2, #0xfc\n"
-    "ldr r1, [r6, #8]\n"
-    "ldr r7, .Lblacksmith_upgrade_0_0074\n"
-    "adds r0, r1, r7\n"
-    "str r0, [r2]\n"
-    "movs r0, #0x80\n"
-    "lsls r0, r0, #1\n"
-    "adds r2, r6, r0\n"
-    "subs r7, #8\n"
-    "adds r0, r1, r7\n"
-    "str r0, [r2]\n"
-    "movs r2, #0x82\n"
-    "lsls r2, r2, #1\n"
-    "adds r0, r6, r2\n"
-    "adds r7, #0xc\n"
-    "adds r1, r1, r7\n"
-    "str r1, [r0]\n"
-    "movs r1, #0x84\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "str r3, [r0]\n"
-    "adds r2, #8\n"
-    "adds r0, r6, r2\n"
-    "str r3, [r0]\n"
-    "movs r7, #0x88\n"
-    "lsls r7, r7, #1\n"
-    "adds r1, r6, r7\n"
-    "ldr r0, [r5]\n"
-    "str r3, [r5]\n"
-    "str r0, [r1]\n"
-    "movs r1, #0x8a\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "strb r4, [r0]\n"
-    "adds r2, #0xc\n"
-    "adds r0, r6, r2\n"
-    "strb r3, [r0]\n"
-    "adds r0, r6, #0\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_upgrade_0_0070: .word __vt_29BlacksmithShopResultSceneCore\n"
-    ".Lblacksmith_upgrade_0_0074: .word 0x1c34\n"
-    "\n"
-    "thumb_func_start _._29BlacksmithShopResultSceneCore\n"
-    "_._29BlacksmithShopResultSceneCore:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r6, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "ldr r0, .Lblacksmith_upgrade_1_006c\n"
-    "str r0, [r6, #4]\n"
-    "movs r1, #0x88\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r1, [r0]\n"
-    "cmp r1, #0\n"
-    "beq .Lblacksmith_upgrade_1_0022\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lblacksmith_upgrade_1_0022:\n"
-    "movs r1, #0x86\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r5, [r0]\n"
-    "cmp r5, #0\n"
-    "beq .Lblacksmith_upgrade_1_005e\n"
-    "adds r4, r5, #0\n"
-    "adds r4, #0x74\n"
-    "ldr r1, [r4, #4]\n"
-    "adds r0, r4, #0\n"
-    "bl ReleaseObjPaletteHandle\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #2\n"
-    "bl _._19ObjPalettePoolOwner\n"
-    "subs r4, #8\n"
-    "ldr r1, [r4, #4]\n"
-    "adds r0, r4, #0\n"
-    "bl ReleaseObjTileHandle\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #2\n"
-    "bl _._16ObjTilePoolOwner\n"
-    "ldr r0, .Lblacksmith_upgrade_1_0070\n"
-    "str r0, [r5, #4]\n"
-    "adds r0, r5, #0\n"
-    "bl __builtin_delete\n"
-    ".Lblacksmith_upgrade_1_005e:\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r7, #0\n"
-    "bl _._26GameSceneMenuSelectionCore\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_upgrade_1_006c: .word __vt_29BlacksmithShopResultSceneCore\n"
-    ".Lblacksmith_upgrade_1_0070: .word __vt_23IndexedResourceProvider\n"
-    "\n"
+);
+
+BlacksmithShopResultSceneCore::BlacksmithShopResultSceneCore(
+    SceneTransitionOwner next, GameStateSaveImage * image, u8 purchased)
+    : GameSceneMenuSelectionCore(image)
+    , held_tool(&save->farmer.unk_5C)
+    , held_item(&save->farmer.held_item)
+    , rucksack(&save->farmer.rucksack)
+    , phase(0)
+    , continuation(next)
+    , has_purchased(purchased)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+BlacksmithShopResultSceneCore::~BlacksmithShopResultSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawTools__29BlacksmithShopResultSceneCoreUi\n"
     "DrawTools__29BlacksmithShopResultSceneCoreUi:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -609,66 +517,38 @@ asm_unified(
     ".align 2, 0\n"
     ".Lblacksmith_upgrade_4_012c: .word gText_BlacksmithUpgrade_EmptyDescription\n"
     "\n"
-    "thumb_func_start IsCursedTool__C29BlacksmithShopResultSceneCoreG4Tool\n"
-    "IsCursedTool__C29BlacksmithShopResultSceneCoreG4Tool:\n"
-    "push {lr}\n"
-    "sub sp, #4\n"
-    "mov r0, sp\n"
-    "strb r1, [r0]\n"
-    "bl GetId__C4Tool\n"
-    "cmp r0, #0x2f\n"
-    "bgt .Lblacksmith_upgrade_5_0022\n"
-    "mov r0, sp\n"
-    "bl GetId__C4Tool\n"
-    "movs r1, #7\n"
-    "ands r1, r0\n"
-    "cmp r1, #5\n"
-    "bne .Lblacksmith_upgrade_5_0022\n"
-    "movs r0, #1\n"
-    "b .Lblacksmith_upgrade_5_0024\n"
-    ".Lblacksmith_upgrade_5_0022:\n"
-    "movs r0, #0\n"
-    ".Lblacksmith_upgrade_5_0024:\n"
-    "add sp, #4\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start IsUpgradeOre__C29BlacksmithShopResultSceneCoreG7Article\n"
-    "IsUpgradeOre__C29BlacksmithShopResultSceneCoreG7Article:\n"
-    "push {lr}\n"
-    "sub sp, #4\n"
-    "mov r0, sp\n"
-    "strb r1, [r0]\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x12\n"
-    "beq .Lblacksmith_upgrade_6_0038\n"
-    "mov r0, sp\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x13\n"
-    "beq .Lblacksmith_upgrade_6_0038\n"
-    "mov r0, sp\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x14\n"
-    "beq .Lblacksmith_upgrade_6_0038\n"
-    "mov r0, sp\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x15\n"
-    "beq .Lblacksmith_upgrade_6_0038\n"
-    "mov r0, sp\n"
-    "bl GetId__C7Article\n"
-    "cmp r0, #0x1c\n"
-    "bne .Lblacksmith_upgrade_6_003c\n"
-    ".Lblacksmith_upgrade_6_0038:\n"
-    "movs r0, #1\n"
-    "b .Lblacksmith_upgrade_6_003e\n"
-    ".Lblacksmith_upgrade_6_003c:\n"
-    "movs r0, #0\n"
-    ".Lblacksmith_upgrade_6_003e:\n"
-    "add sp, #4\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "\n"
+);
+
+bool BlacksmithShopResultSceneCore::IsCursedTool(Tool tool) const
+{
+    if (tool.GetId() > 0x2F)
+        return false;
+    if ((tool.GetId() & 7) != 5)
+        return false;
+    return true;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+bool BlacksmithShopResultSceneCore::IsUpgradeOre(Article ore) const
+{
+    if (ore.GetId() == 0x12)
+        return true;
+    if (ore.GetId() == 0x13)
+        return true;
+    if (ore.GetId() == 0x14)
+        return true;
+    if (ore.GetId() == 0x15)
+        return true;
+    if (ore.GetId() != 0x1C)
+        return false;
+    return true;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start CompareUpgradeLevel__C29BlacksmithShopResultSceneCoreUiUi\n"
     "CompareUpgradeLevel__C29BlacksmithShopResultSceneCoreUiUi:\n"
     "push {r4, r5, lr}\n"

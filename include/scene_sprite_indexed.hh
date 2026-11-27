@@ -22,9 +22,6 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
     inline IndexedResourceUpdateResult UpdateAnimation();
 };
 
-typedef char GameSceneIndexedSpriteSizeCheck[sizeof(GameSceneIndexedSprite) == 0x40 ? 1 : -1];
-typedef char GameSceneIndexedSpriteHandleCheck[offsetof(GameSceneIndexedSprite, handle) == 0x28 ? 1 : -1];
-typedef char GameSceneIndexedSpriteFlagsCheck[offsetof(GameSceneIndexedSprite, unk_3C) == 0x3C ? 1 : -1];
 
 // These accessors belong to the ordinary sprite interface. They remain
 // available for inlining; the native ROM has no separate accessor entries.

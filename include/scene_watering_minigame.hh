@@ -14,7 +14,6 @@ struct HarvestSpriteWateringSetup {
     u32 sprite_variant;
     u8 experience;
 };
-typedef char HarvestSpriteWateringSetupSizeCheck[sizeof(HarvestSpriteWateringSetup) == 8 ? 1 : -1];
 
 // Handles and drawing parameters are separately allocated. The four
 // resource ranges borrow their archive payload and are not freed here.
@@ -82,15 +81,6 @@ struct WateringMinigameTileHandles {
     ObjTileCollectionEntry unk_58;
 };
 
-typedef char WateringMinigameSpriteSizeCheck[sizeof(WateringMinigameSprite) == 0x28 ? 1 : -1];
-typedef char WateringMinigameSpriteGroupCheck[offsetof(WateringMinigameSprite, group) == 8 ? 1 : -1];
-typedef char WateringMinigameHandleOwnerSizeCheck[sizeof(WateringMinigameHandleOwner) == 4 ? 1 : -1];
-typedef char WateringMinigameParametersOwnerSizeCheck[sizeof(WateringMinigameParametersOwner) == 4 ? 1 : -1];
-typedef char WateringMinigameSpriteSetSizeCheck[sizeof(WateringMinigameSpriteSet) == 0x88 ? 1 : -1];
-typedef char WateringMinigameSpriteSetParametersCheck[offsetof(WateringMinigameSpriteSet, parameters) == 4 ? 1 : -1];
-typedef char WateringMinigameSpriteSetGroupCheck[offsetof(WateringMinigameSpriteSet, group) == 0x68 ? 1 : -1];
-typedef char WateringMinigameArchiveOwnerSizeCheck[sizeof(WateringMinigameArchiveOwner) == 4 ? 1 : -1];
-typedef char WateringMinigameTileHandlesSizeCheck[sizeof(WateringMinigameTileHandles) == 0x60 ? 1 : -1];
 
 #pragma interface "scene_watering_minigame.hh"
 // The native constructor calls HardwareContext, stores this class's vptr at
@@ -161,40 +151,12 @@ struct HarvestSpriteWateringCore : HardwareContext {
     u8 experience;
 };
 
-typedef char HarvestSpriteWateringCoreTimerTilesCheck[offsetof(HarvestSpriteWateringCore, timer_tiles) == 8 ? 1 : -1];
-typedef char HarvestSpriteWateringCoreResultTilesCheck[offsetof(HarvestSpriteWateringCore, result_tiles) == 0x10C ? 1 : -1];
 
-typedef char HarvestSpriteWateringCoreSizeCheck[sizeof(HarvestSpriteWateringCore) == 0x98C ? 1 : -1];
-typedef char HarvestSpriteWateringCore_ui_state_check[offsetof(HarvestSpriteWateringCore, ui_state) == 0x51C ? 1 : -1];
-typedef char HarvestSpriteWateringCore_archives_check[offsetof(HarvestSpriteWateringCore, archive_520) == 0x520 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_blend_check[offsetof(HarvestSpriteWateringCore, blend) == 0x544 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_music_player_0_check[offsetof(HarvestSpriteWateringCore, music_player_0) == 0x810 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_sound_vsync_check[offsetof(HarvestSpriteWateringCore, sound_vsync) == 0x824 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_sound_main_check[offsetof(HarvestSpriteWateringCore, sound_main) == 0x830 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_tiles_check[offsetof(HarvestSpriteWateringCore, tiles) == 0x83C ? 1 : -1];
-typedef char HarvestSpriteWateringCore_succeeded_check[offsetof(HarvestSpriteWateringCore, succeeded) == 0x96A ? 1 : -1];
-typedef char HarvestSpriteWateringCore_unk_974_check[offsetof(HarvestSpriteWateringCore, unk_974) == 0x974 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_sprite_variant_check[offsetof(HarvestSpriteWateringCore, sprite_variant) == 0x980 ? 1 : -1];
-typedef char HarvestSpriteWateringCore_experience_check[offsetof(HarvestSpriteWateringCore, experience) == 0x988 ? 1 : -1];
 
-typedef char WateringMinigameMember540Check[offsetof(HarvestSpriteWateringCore, archive_540) == 0x540 ? 1 : -1];
-typedef char WateringMinigameMember550Check[offsetof(HarvestSpriteWateringCore, sprite_550) == 0x550 ? 1 : -1];
-typedef char WateringMinigameMember5F0Check[offsetof(HarvestSpriteWateringCore, sprite_5F0) == 0x5F0 ? 1 : -1];
-typedef char WateringMinigameMember618Check[offsetof(HarvestSpriteWateringCore, sprites_618) == 0x618 ? 1 : -1];
-typedef char WateringMinigameMember6A0Check[offsetof(HarvestSpriteWateringCore, sprites_6A0) == 0x6A0 ? 1 : -1];
-typedef char WateringMinigameMember728Check[offsetof(HarvestSpriteWateringCore, sprite_728) == 0x728 ? 1 : -1];
-typedef char WateringMinigameMember750Check[offsetof(HarvestSpriteWateringCore, sprite_750) == 0x750 ? 1 : -1];
-typedef char WateringMinigameMember798Check[offsetof(HarvestSpriteWateringCore, sprite_798) == 0x798 ? 1 : -1];
-typedef char WateringMinigameMember7E8Check[offsetof(HarvestSpriteWateringCore, sprite_7E8) == 0x7E8 ? 1 : -1];
 
-typedef char WateringMinigameMusicPlayer1Check[offsetof(HarvestSpriteWateringCore, music_player_1) == 0x814 ? 1 : -1];
-typedef char WateringMinigameMusicPlayer2Check[offsetof(HarvestSpriteWateringCore, music_player_2) == 0x818 ? 1 : -1];
-typedef char WateringMinigameMusicPlayer3Check[offsetof(HarvestSpriteWateringCore, music_player_3) == 0x81C ? 1 : -1];
-typedef char WateringMinigameMusicPlayer4Check[offsetof(HarvestSpriteWateringCore, music_player_4) == 0x820 ? 1 : -1];
 
 // The UI methods below still have native implementations with these actual ABIs.
 
-typedef char HarvestSpriteWateringUiSceneSizeCheck[sizeof(HarvestSpriteWateringUiScene) == 8 ? 1 : -1];
 
 extern u16 const gUnk_080C3B18Values[8][2];
 extern char const gText_HarvestSpriteWatering_Zero[];

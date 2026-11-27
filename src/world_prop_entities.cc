@@ -37,19 +37,12 @@ CoopEggEntity::CoopEggEntity(GameObject * world, Location const & location)
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start GetBox__C13CoopEggEntity\n"
-    "GetBox__C13CoopEggEntity:\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r1, r3]\n"
-    "    movs\tr3, #14\n"
-    "    ldrsh\tr1, [r1, r3]\n"
-    "    strh\tr2, [r0, #0]\n"
-    "    adds\tr1, #1\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    strh\tr2, [r0, #4]\n"
-    "    strh\tr1, [r0, #6]\n"
-    "    bx\tlr\n"
 );
+
+Box CoopEggEntity::GetBox() const
+{
+    return Box(0, 1, 0, 1, x_q16 >> 16, y_q16 >> 16);
+}
 
 EntityVisualController * CoopEggEntity::CreateVisualController()
 {
@@ -64,9 +57,13 @@ CoopEggVisualController::CoopEggVisualController(CoopEggEntity * entity)
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start Update__23CoopEggVisualController\n"
-    "Update__23CoopEggVisualController:\n"
-    "    bx\tlr\n"
+);
+
+void CoopEggVisualController::Update()
+{
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start Draw__23CoopEggVisualControllerRC17EntityDrawContext\n"
     "Draw__23CoopEggVisualControllerRC17EntityDrawContext:\n"
@@ -170,39 +167,29 @@ EntityVisualController * ShippingBasketEntity::CreateVisualController()
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start AppendItem__20ShippingBasketEntityRC7Product\n"
-    "AppendItem__20ShippingBasketEntityRC7Product:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr\tr0, [r4, #24]\n"
-    "    ldrb\tr1, [r1, #0]\n"
-    "    bl PushBack__9MoreItemsUi\n"
-    "    ldr\tr0, [r4, #16]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08037ECA\n"
-    "    bl StartItemBounce__30ShippingBasketVisualController\n"
-    ".Lus_08037ECA:\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    thumb_func_start GetBox__C20ShippingBasketEntity\n"
-    "GetBox__C20ShippingBasketEntity:\n"
-    "    push\t{r4, lr}\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r1, r3]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr3, [r1, r4]\n"
-    "    subs\tr1, r2, #7\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    subs\tr1, r3, #4\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    adds\tr2, #7\n"
-    "    strh\tr2, [r0, #4]\n"
-    "    adds\tr3, #5\n"
-    "    strh\tr3, [r0, #6]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r2}\n"
-    "    bx\tr2\n"
+);
+
+#include "item.hh"
+void ShippingBasketEntity::AppendItem(Product const & product)
+{
+    contents->PushBack(product.id);
+    ShippingBasketVisualController * visual =
+        static_cast<ShippingBasketVisualController *>(unk_10.Get());
+    if (visual != 0)
+        visual->StartItemBounce();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+Box ShippingBasketEntity::GetBox() const
+{
+    return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 ShippingBasketVisualController::ShippingBasketVisualController(ShippingBasketEntity * entity)
@@ -214,25 +201,25 @@ ShippingBasketVisualController::ShippingBasketVisualController(ShippingBasketEnt
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start Update__30ShippingBasketVisualController\n"
-    "Update__30ShippingBasketVisualController:\n"
-    "    push\t{lr}\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #84\t@ 0x54\n"
-    "    ldrb\tr0, [r1, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08037F70\n"
-    "    subs\tr0, #1\n"
-    "    strb\tr0, [r1, #0]\n"
-    ".Lus_08037F70:\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    thumb_func_start StartItemBounce__30ShippingBasketVisualController\n"
-    "StartItemBounce__30ShippingBasketVisualController:\n"
-    "    adds\tr0, #84\t@ 0x54\n"
-    "    movs\tr1, #10\n"
-    "    strb\tr1, [r0, #0]\n"
-    "    bx\tlr\n"
+);
+
+void ShippingBasketVisualController::Update()
+{
+    if (bounce_countdown != 0)
+        --bounce_countdown;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void ShippingBasketVisualController::StartItemBounce()
+{
+    bounce_countdown = 10;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    thumb_func_start Draw__30ShippingBasketVisualControllerRC17EntityDrawContext\n"
     "Draw__30ShippingBasketVisualControllerRC17EntityDrawContext:\n"
     "    push\t{r4, r5, r6, r7, lr}\n"
@@ -388,27 +375,26 @@ DogBallEntity::~DogBallEntity()
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start Throw__13DogBallEntityUi\n"
-    "Throw__13DogBallEntityUi:\n"
-    "    adds\tr2, r0, #0\n"
-    "    adds\tr2, #36\t@ 0x24\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    movs\tr1, #168\t@ 0xa8\n"
-    "    lsls\tr1, r1, #13\n"
-    "    str\tr1, [r0, #28]\n"
-    "    movs\tr1, #192\t@ 0xc0\n"
-    "    lsls\tr1, r1, #10\n"
-    "    str\tr1, [r0, #32]\n"
-    "    adds\tr0, #37\t@ 0x25\n"
-    "    movs\tr1, #1\n"
-    "    strb\tr1, [r0, #0]\n"
-    "    bx\tlr\n"
+);
+
+void DogBallEntity::Throw(u32 direction)
+{
+    throw_direction = direction;
+    height_q16 = 0xA8 << 13;
+    vertical_velocity_q16 = 0xC0 << 10;
+    in_flight = true;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start IsInFlight__C13DogBallEntity\n"
-    "IsInFlight__C13DogBallEntity:\n"
-    "    adds\tr0, #37\t@ 0x25\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    bx\tlr\n"
+);
+
+bool DogBallEntity::IsInFlight() const
+{
+    return in_flight;
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start UpdateFlight__13DogBallEntity\n"
     "UpdateFlight__13DogBallEntity:\n"
@@ -667,33 +653,27 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    thumb_func_start Update__13DogBallEntityRC19EntityUpdateContext\n"
-    "Update__13DogBallEntityRC19EntityUpdateContext:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr\tr2, [r4, #16]\n"
-    "    cmp\tr2, #0\n"
-    "    beq .Lus_08038314\n"
-    "    ldr\tr0, [r2, #4]\n"
-    "    ldr\tr1, [r0, #12]\n"
-    "    adds\tr0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    ".Lus_08038314:\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl UpdateFlight__13DogBallEntity\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    thumb_func_start UpdateWhileSuspended__13DogBallEntityRC19EntityUpdateContext\n"
-    "UpdateWhileSuspended__13DogBallEntityRC19EntityUpdateContext:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl UpdateWhileSuspended__7AEntityRC19EntityUpdateContext\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl UpdateFlight__13DogBallEntity\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void DogBallEntity::Update(EntityUpdateContext const & context)
+{
+    if (unk_10.Get())
+        unk_10->Update();
+    UpdateFlight();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void DogBallEntity::UpdateWhileSuspended(EntityUpdateContext const & context)
+{
+    AEntity::UpdateWhileSuspended(context);
+    UpdateFlight();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 EntityVisualController * DogBallEntity::CreateVisualController()
@@ -703,48 +683,35 @@ EntityVisualController * DogBallEntity::CreateVisualController()
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start GetBox__C13DogBallEntity\n"
-    "GetBox__C13DogBallEntity:\n"
-    "    push\t{r4, lr}\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r1, r3]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr3, [r1, r4]\n"
-    "    subs\tr1, r2, #4\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    subs\tr1, r3, #4\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    adds\tr2, #4\n"
-    "    strh\tr2, [r0, #4]\n"
-    "    adds\tr3, #4\n"
-    "    strh\tr3, [r0, #6]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r2}\n"
-    "    bx\tr2\n"
-    "    thumb_func_start GetHeight__C13DogBallEntity\n"
-    "GetHeight__C13DogBallEntity:\n"
-    "    movs\tr1, #30\n"
-    "    ldrsh\tr0, [r0, r1]\n"
-    "    bx\tlr\n"
+);
+
+Box DogBallEntity::GetBox() const
+{
+    return Box(-4, -4, 4, 4, x_q16 >> 16, y_q16 >> 16);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start SetCarriedPosition__13DogBallEntityiiUiUi\n"
-    "SetCarriedPosition__13DogBallEntityiiUiUi:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    ldr\tr5, [sp, #16]\n"
-    "    movs\tr4, #38\t@ 0x26\n"
-    "    adds\tr4, r4, r0\n"
-    "    mov\tip, r4\n"
-    "    movs\tr4, #1\n"
-    "    mov\tr6, ip\n"
-    "    strb\tr4, [r6, #0]\n"
-    "    str\tr1, [r0, #8]\n"
-    "    str\tr2, [r0, #12]\n"
-    "    adds\tr1, r3, #0\n"
-    "    adds\tr2, r5, #0\n"
-    "    bl UpdateCarriedAnimation__13DogBallEntityUiUi\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+i32 DogBallEntity::GetHeight() const
+{
+    return height_q16 >> 16;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void DogBallEntity::SetCarriedPosition(i32 x_q16, i32 y_q16, u32 dog_animation, u32 direction)
+{
+    carried = true;
+    this->x_q16 = x_q16;
+    this->y_q16 = y_q16;
+    UpdateCarriedAnimation(dog_animation, direction);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start UpdateCarriedAnimation__13DogBallEntityUiUi\n"
     "UpdateCarriedAnimation__13DogBallEntityUiUi:\n"
@@ -871,40 +838,22 @@ asm_unified(
     "    pop\t{r4, r5, r6}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    thumb_func_start StopBeingCarried__13DogBallEntity\n"
-    "StopBeingCarried__13DogBallEntity:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldrh\tr0, [r5, #40]\t@ 0x28\n"
-    "    cmp\tr0, #49\t@ 0x31\n"
-    "    beq .Lus_0803852C\n"
-    "    ldr\tr4, [r5, #16]\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Lus_08038528\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    movs\tr1, #49\t@ 0x31\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #68\t@ 0x44\n"
-    "    movs\tr2, #0\n"
-    "    movs\tr1, #1\n"
-    "    strb\tr1, [r0, #0]\n"
-    "    adds\tr0, #2\n"
-    "    strb\tr2, [r0, #0]\n"
-    "    adds\tr0, #1\n"
-    "    strb\tr1, [r0, #0]\n"
-    ".Lus_08038528:\n"
-    "    movs\tr0, #49\t@ 0x31\n"
-    "    strh\tr0, [r5, #40]\t@ 0x28\n"
-    ".Lus_0803852C:\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #38\t@ 0x26\n"
-    "    movs\tr0, #0\n"
-    "    strb\tr0, [r1, #0]\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void DogBallEntity::StopBeingCarried()
+{
+    if (animation != 49)
+    {
+        DogBallVisualController * visual =
+            static_cast<DogBallVisualController *>(unk_10.Get());
+        if (visual != 0)
+            visual->sprite.SetAnimation(49);
+        animation = 49;
+    }
+    carried = false;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -917,33 +866,14 @@ DogBallVisualController::DogBallVisualController(DogBallEntity * entity)
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start Update__23DogBallVisualController\n"
-    "Update__23DogBallVisualController:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    adds\tr1, r4, #0\n"
-    "    adds\tr1, #71\t@ 0x47\n"
-    "    ldrb\tr0, [r1, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_080385A4\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    bl UpdateIndexedResourceHandle\n"
-    "    lsls\tr0, r0, #30\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Lus_080385A8\n"
-    "    adds\tr1, r4, #0\n"
-    "    adds\tr1, #68\t@ 0x44\n"
-    "    movs\tr0, #1\n"
-    "    b .Lus_080385A6\n"
-    ".Lus_080385A4:\n"
-    "    movs\tr0, #0\n"
-    ".Lus_080385A6:\n"
-    "    strb\tr0, [r1, #0]\n"
-    ".Lus_080385A8:\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void DogBallVisualController::Update()
+{
+    sprite.UpdateAnimation();
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start Draw__23DogBallVisualControllerRC17EntityDrawContext\n"
     "Draw__23DogBallVisualControllerRC17EntityDrawContext:\n"
@@ -2251,15 +2181,12 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Lraw_code_entities_08034CEC_39646_0: .word __vt_22GameSceneIndexedSprite\n"
-    "    thumb_func_start HasControllerStarSparkleEffect\n"
-    "HasControllerStarSparkleEffect:\n"
-    "    ldr\tr1, [r0, #16]\n"
-    "    negs\tr0, r1\n"
-    "    orrs\tr0, r1\n"
-    "    lsrs\tr0, r0, #31\n"
-    "    bx\tlr\n"
-    "    .align 2, 0\n"
 );
+
+extern "C" bool HasControllerStarSparkleEffect(EntityEventEffectController * controller)
+{
+    return controller->sparkles.Get() != nullptr;
+}
 
 void DogBallVisualController::SetAnimation(u32 index)
 {

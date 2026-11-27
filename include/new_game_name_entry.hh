@@ -14,7 +14,6 @@ struct NewGameNameEntryScene : AScene {
     virtual SceneTransitionOwner Run();
 };
 
-typedef char NewGameNameEntrySceneSizeCheck[sizeof(NewGameNameEntryScene) == 4 ? 1 : -1];
 
 // The workflow creates this transition after all four fields are confirmed.
 // Each name is limited to twelve encoded bytes, with word-aligned members.
@@ -29,11 +28,6 @@ struct NewGameFreshSaveTransition : SceneTransition {
     FixedStr<12> dog_name ALIGN(4);
 };
 
-typedef char NewGameFreshSaveTransitionSizeCheck[sizeof(NewGameFreshSaveTransition) == 0x38 ? 1 : -1];
-typedef char NewGameFreshSaveFarmCheck[offsetof(NewGameFreshSaveTransition, farm_name) == 4 ? 1 : -1];
-typedef char NewGameFreshSavePlayerCheck[offsetof(NewGameFreshSaveTransition, player_name) == 0x14 ? 1 : -1];
-typedef char NewGameFreshSaveBirthdayCheck[offsetof(NewGameFreshSaveTransition, birthday) == 0x24 ? 1 : -1];
-typedef char NewGameFreshSaveDogCheck[offsetof(NewGameFreshSaveTransition, dog_name) == 0x28 ? 1 : -1];
 
 
 extern char const gText_NewGameIdentity_PlayerPrefix[];

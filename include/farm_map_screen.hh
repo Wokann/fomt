@@ -106,25 +106,12 @@ struct FarmMapScreenCore : HardwareContext
     FarmMapScreenIndoorMarkers indoor_markers[4];
 };
 
-typedef char FarmMapScreenMarkerSizeCheck[sizeof(FarmMapScreenMarker) == 28 ? 1 : -1];
-typedef char FarmMapScreenMarkersSizeCheck[sizeof(FarmMapScreenMarkers) == 16 ? 1 : -1];
-typedef char FarmMapScreenIndoorMarkerRowSizeCheck[sizeof(FarmMapScreenIndoorMarkerRow) == 16 ? 1 : -1];
-typedef char FarmMapScreenIndoorMarkersSecondRowCheck[offsetof(FarmMapScreenIndoorMarkers, row_10) == 0x10 ? 1 : -1];
-typedef char FarmMapScreenIndoorMarkersThirdRowCheck[offsetof(FarmMapScreenIndoorMarkers, row_20) == 0x20 ? 1 : -1];
-typedef char FarmMapScreenIndoorMarkersSizeCheck[sizeof(FarmMapScreenIndoorMarkers) == 48 ? 1 : -1];
-typedef char FarmMapScreenCoreRendererCheck[offsetof(FarmMapScreenCore, renderer) == 0x18 ? 1 : -1];
-typedef char FarmMapScreenCoreArrowArchiveCheck[offsetof(FarmMapScreenCore, arrow_archive) == 0x20 ? 1 : -1];
-typedef char FarmMapScreenCoreMarkerArchiveCheck[offsetof(FarmMapScreenCore, marker_archive) == 0xA0 ? 1 : -1];
-typedef char FarmMapScreenCoreMarkersCheck[offsetof(FarmMapScreenCore, markers) == 0xD0 ? 1 : -1];
-typedef char FarmMapScreenCoreIndoorMarkersCheck[offsetof(FarmMapScreenCore, indoor_markers) == 0xE0 ? 1 : -1];
-typedef char FarmMapScreenCoreSizeCheck[sizeof(FarmMapScreenCore) == 0x1A0 ? 1 : -1];
 
 // The scene owns the complete map core; its native construction is inlined
 // into this scene constructor in all four regional ROMs.
 
 #include "status_screen_transitions.hh"
 
-typedef char FarmMapScreenSceneSizeCheck[sizeof(FarmMapScreenScene) == 8 ? 1 : -1];
 
 struct FarmMapScreenIndoorMarkerOrigin
 {

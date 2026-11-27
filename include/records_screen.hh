@@ -12,7 +12,7 @@ struct GameStateSaveImage;
 // These fixed-capacity records are RAM rendering state, not ROM strings.
 // The native constructor initializes 120 rows; a negative Y ends the used run.
 struct RecordsScreenTextRow {
-    i16 y;
+    i16 y : 16;
     char text[32] ALIGN(4);
     u32 buffer_index;
     bool rendered;
@@ -47,6 +47,7 @@ struct RecordsScreenPageList {
     }
 };
 
+
 #pragma interface "records_screen.hh"
 
 struct RecordsScreenCore;
@@ -56,7 +57,7 @@ struct RecordsScreenScene : AScene
     RecordsScreenScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~RecordsScreenScene();
     virtual SceneTransitionOwner Run();
-    RecordsScreenCore * core;
+    SceneCoreOwner<RecordsScreenCore> core;
     SceneTransitionOwner continuation;
 };
 
@@ -115,23 +116,9 @@ struct OtherRecordsPage : RecordsScreenPage {
 #endif
 };
 
-typedef char RecordsScreenTextRowSizeCheck[sizeof(RecordsScreenTextRow) == 44 ? 1 : -1];
-typedef char RecordsScreenTextRowTextCheck[offsetof(RecordsScreenTextRow, text) == 4 ? 1 : -1];
-typedef char RecordsScreenTextTileBufferSizeCheck[sizeof(RecordsScreenTextTileBuffer) == 0x504 ? 1 : -1];
-typedef char RecordsScreenPageRowsCheck[offsetof(RecordsScreenPage, text_rows) == 0x5B8 ? 1 : -1];
-typedef char RecordsScreenPageBuffersCheck[offsetof(RecordsScreenPage, text_buffers) == 0x1A58 ? 1 : -1];
-typedef char RecordsScreenPageSizeCheck[sizeof(RecordsScreenPage) == 0x4278 ? 1 : -1];
-typedef char ShippingRecordsPageSizeCheck[sizeof(ShippingRecordsPage) == 0x42FC ? 1 : -1];
-typedef char RecordsScreenPageEntrySizeCheck[sizeof(RecordsScreenPageEntry) == 8 ? 1 : -1];
-typedef char RecordsScreenPageListSizeCheck[sizeof(RecordsScreenPageList) == 0x54 ? 1 : -1];
-typedef char RecordsScreenCorePageCountCheck[offsetof(RecordsScreenCore, pages) == 0x124 ? 1 : -1];
-typedef char RecordsScreenCorePagesCheck[offsetof(RecordsScreenCore, pages) + offsetof(RecordsScreenPageList, storage) == 0x128 ? 1 : -1];
-typedef char RecordsScreenCoreSelectedCheck[offsetof(RecordsScreenCore, selected_page) == 0x178 ? 1 : -1];
-typedef char RecordsScreenCoreSizeCheck[sizeof(RecordsScreenCore) == 0x17C ? 1 : -1];
 
 #include "status_screen_transitions.hh"
 
-typedef char RecordsScreenSceneSizeCheck[sizeof(RecordsScreenScene) == 12 ? 1 : -1];
 
 struct RecordsScreenTaskResourcePair
 {

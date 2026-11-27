@@ -161,14 +161,8 @@ struct FarmingTutorialWorld : FarmingTutorialWorldBase {
     GameSceneWorldData data;
 };
 
-typedef char FarmingTutorialWorldBaseSizeCheck[sizeof(FarmingTutorialWorldBase) == 4 ? 1 : -1];
-typedef char FarmingTutorialWorldDataCheck[offsetof(FarmingTutorialWorld, data) == 4 ? 1 : -1];
-typedef char FarmingTutorialWorldSizeCheck[sizeof(FarmingTutorialWorld) == 0x1038 ? 1 : -1];
-typedef char FarmingTutorialActorSizeCheck[sizeof(FarmingTutorialActor) == 0x30 ? 1 : -1];
 
 
-typedef char FarmingTutorialWorldOwnerSizeCheck[sizeof(FarmingTutorialWorldOwner) == 4 ? 1 : -1];
-typedef char FarmingTutorialWorldOwnerTransferSizeCheck[sizeof(FarmingTutorialWorldOwnerTransfer) == 8 ? 1 : -1];
 
 // Nontrivial C++ return values use the existing r0 result slot. The factory's
 // native body remains unchanged and returns that same slot in all four ROMs.

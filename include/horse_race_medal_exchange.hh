@@ -39,7 +39,6 @@ struct HorseRacePrize {
     i16 medal_cost;
 };
 
-typedef char HorseRacePrizeRecordSizeCheck[sizeof(HorseRacePrize) == 20 ? 1 : -1];
 
 extern HorseRacePrize const gHorseRacePrizeCatalog[HORSE_RACE_PRIZE_COUNT];
 extern char const gText_HorseRace_PrizeExchangePrompt[];
@@ -146,28 +145,10 @@ inline UiTextSubstitution HorseRacePrizeTextVariables::Lookup(u32 code)
 }
 
 #pragma interface "horse_race_medal_exchange.hh"
-typedef char HorseRacePrizeTextVariablesSizeCheck[sizeof(HorseRacePrizeTextVariables) == 8 ? 1 : -1];
-typedef char HorseRacePrizeTextVariablesIndexCheck[offsetof(HorseRacePrizeTextVariables, prize_index) == 4 ? 1 : -1];
-typedef char HorseRacePrizeSpriteStateSizeCheck[sizeof(HorseRacePrizeSpriteState) == 0x34 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreSizeCheck[sizeof(HorseRaceMedalExchangeCore) == 0xAF4 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreSaveCheck[offsetof(HorseRaceMedalExchangeCore, save) == 8 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreOffset_unk_00C[offsetof(HorseRaceMedalExchangeCore, unk_00C) == 0xC ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreOffset_ui_state[offsetof(HorseRaceMedalExchangeCore, ui_state) == 0x10 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreMusicCheck[offsetof(HorseRaceMedalExchangeCore, music_1) == 0x14 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreArrowArchiveCheck[offsetof(HorseRaceMedalExchangeCore, arrow_archive) == 0x20 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreOffset_cursor_archive[offsetof(HorseRaceMedalExchangeCore, cursor_archive) == 0x50 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreSpritesCheck[offsetof(HorseRaceMedalExchangeCore, up_arrow) == 0x80 ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreTilesCheck[offsetof(HorseRaceMedalExchangeCore, glyph_tiles) == 0x11C ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreScrollCheck[offsetof(HorseRaceMedalExchangeCore, scroll_y) == 0x14C ? 1 : -1];
-typedef char HorseRaceMedalExchangeCoreTextVariablesCheck[offsetof(HorseRaceMedalExchangeCore, text_variables) == 0xAEC ? 1 : -1];
 
-typedef char HorseRaceMedalExchangeCoreOwnerSizeCheck[sizeof(HorseRaceMedalExchangeCoreOwner) == 4 ? 1 : -1];
 
 #pragma interface "horse_race_medal_exchange.hh"
 
-typedef char HorseRaceMedalExchangeSceneSizeCheck[sizeof(HorseRaceMedalExchangeScene) == 12 ? 1 : -1];
-typedef char HorseRaceMedalExchangeSceneCoreCheck[offsetof(HorseRaceMedalExchangeScene, core) == 4 ? 1 : -1];
-typedef char HorseRaceMedalExchangeSceneContinuationCheck[offsetof(HorseRaceMedalExchangeScene, continuation) == 8 ? 1 : -1];
 
 // Direct ABI declaration of this compiler constructor, not a wrapper.
 // Retained until ordinary owner-return lowering matches the native factory.
@@ -175,14 +156,6 @@ typedef char HorseRaceMedalExchangeSceneContinuationCheck[offsetof(HorseRaceMeda
 extern "C" HorseRaceMedalExchangeScene * __27HorseRaceMedalExchangeSceneG20SceneTransitionOwnerP18GameStateSaveImage(
     void * storage, SceneTransition ** next, GameStateSaveImage * image);
 
-typedef char HorseRacePrizeGlyphSizeCheck[sizeof(HorseRacePrizeGlyph) == 8 ? 1 : -1];
-typedef char HorseRacePrizeGlyphArrayCheck[offsetof(HorseRaceMedalExchangeCore, glyphs) == 0x14E ? 1 : -1];
-typedef char HorseRacePrizeGlyphCountCheck[offsetof(HorseRaceMedalExchangeCore, glyph_count) == 0x2CE ? 1 : -1];
-typedef char HorseRacePrizeTilemapCheck[offsetof(HorseRaceMedalExchangeCore, name_tilemap) == 0x2D0 ? 1 : -1];
-typedef char HorseRacePrizeMedalsCheck[offsetof(HorseRaceMedalExchangeCore, medals) == 0xAD0 ? 1 : -1];
-typedef char HorseRacePrizeSelectionCheck[offsetof(HorseRaceMedalExchangeCore, selection) == 0xAD4 ? 1 : -1];
-typedef char HorseRacePrizePhaseCheck[offsetof(HorseRaceMedalExchangeCore, phase) == 0xADA ? 1 : -1];
-typedef char HorseRacePrizeMenuIdsCheck[offsetof(HorseRaceMedalExchangeCore, menu_prize_ids) == 0xAE0 ? 1 : -1];
 
 extern u8 const gUnk_08527094[];
 

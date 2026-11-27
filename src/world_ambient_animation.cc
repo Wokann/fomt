@@ -4,100 +4,77 @@ asm(".include \"asm/macro.inc\"\n");
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start GetWorldAmbientSpriteAnimationStep\n"
-    "GetWorldAmbientSpriteAnimationStep:\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    movs\tr1, #16\n"
-    "    ldrsh\tr0, [r0, r1]\n"
-    "    bx\tlr\n"
-    "    thumb_func_start SetWorldAmbientSpriteAnimationStep\n"
-    "SetWorldAmbientSpriteAnimationStep:\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    strh\tr1, [r0, #16]\n"
-    "    bx\tlr\n"
+);
+
+#include "world_ambient_sprites.hh"
+i16 GetWorldAmbientSpriteAnimationStep(WorldAmbientSprite const * self)
+{
+    IndexedResourceHandle const * handle = &self->sprite.handle;
+    return handle->scroll_delta;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start WouldWorldAmbientSpriteAnimationWrap\n"
-    "WouldWorldAmbientSpriteAnimationWrap:\n"
-    "    push\t{lr}\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    bl WouldIndexedResourceHandleWrap\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    thumb_func_start IsWorldAmbientSpriteAnimationPlaying\n"
-    "IsWorldAmbientSpriteAnimationPlaying:\n"
-    "    push\t{lr}\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr1, #48\t@ 0x30\n"
-    "    movs\tr2, #0\n"
-    "    ldrh\tr0, [r1, #14]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lambient_109\n"
-    "    movs\tr0, #16\n"
-    "    ldrsh\tr1, [r1, r0]\n"
-    "    negs\tr0, r1\n"
-    "    orrs\tr0, r1\n"
-    "    lsrs\tr2, r0, #31\n"
-    ".Lambient_109:\n"
-    "    adds\tr0, r2, #0\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+void SetWorldAmbientSpriteAnimationStep(WorldAmbientSprite * self, i16 step)
+{
+    self->sprite.handle.SetScrollDelta(step);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start UpdateWorldAmbientSpriteAnimation\n"
-    "UpdateWorldAmbientSpriteAnimation:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    adds\tr1, r4, #0\n"
-    "    adds\tr1, #71\t@ 0x47\n"
-    "    ldrb\tr0, [r1, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lambient_110\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    bl UpdateIndexedResourceHandle\n"
-    "    lsls\tr0, r0, #30\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Lambient_112\n"
-    "    adds\tr1, r4, #0\n"
-    "    adds\tr1, #68\t@ 0x44\n"
-    "    movs\tr0, #1\n"
-    "    b .Lambient_111\n"
-    ".Lambient_110:\n"
-    "    movs\tr0, #0\n"
-    ".Lambient_111:\n"
-    "    strb\tr0, [r1, #0]\n"
-    ".Lambient_112:\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+bool WouldWorldAmbientSpriteAnimationWrap(WorldAmbientSprite const * self)
+{
+    return WouldIndexedResourceHandleWrap(&self->sprite.handle);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start SetWorldAmbientSpriteAnimation\n"
-    "SetWorldAmbientSpriteAnimation:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    adds\tr5, r1, #0\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, r5\n"
-    "    beq .Lambient_113\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #68\t@ 0x44\n"
-    "    movs\tr2, #0\n"
-    "    movs\tr1, #1\n"
-    "    strb\tr1, [r0, #0]\n"
-    "    adds\tr0, #2\n"
-    "    strb\tr2, [r0, #0]\n"
-    "    adds\tr0, #1\n"
-    "    strb\tr1, [r0, #0]\n"
-    "    strh\tr5, [r4, #4]\n"
-    ".Lambient_113:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+bool IsWorldAmbientSpriteAnimationPlaying(WorldAmbientSprite const * self)
+{
+    IndexedResourceHandle const * handle = &self->sprite.handle;
+    bool playing = false;
+    if (handle->metric_scaled != 0)
+        playing = handle->scroll_delta != 0;
+    return playing;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start GetWorldAmbientSpriteWorld\n"
-    "GetWorldAmbientSpriteWorld:\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    bx\tlr\n"
+);
+
+void UpdateWorldAmbientSpriteAnimation(WorldAmbientSprite * self)
+{
+    self->sprite.UpdateAnimation();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void SetWorldAmbientSpriteAnimation(WorldAmbientSprite * self, u32 animation)
+{
+    if (self->animation != animation)
+    {
+        self->sprite.SetAnimation(animation);
+        self->animation = animation;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+GameObject * GetWorldAmbientSpriteWorld(WorldAmbientSprite const * self)
+{
+    return self->world;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );

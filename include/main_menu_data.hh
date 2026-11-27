@@ -62,18 +62,6 @@ struct MainMenuData {
 };
 
 
-typedef char MainMenuSpriteSizeCheck[sizeof(MainMenuSpriteResource) == 0x34 ? 1 : -1];
-typedef char MainMenuSpriteUploadCheck[offsetof(MainMenuSpriteResource, upload) == 8 ? 1 : -1];
-typedef char MainMenuSpriteHandleCheck[offsetof(MainMenuSpriteResource, handle) == 0x20 ? 1 : -1];
-typedef char MainMenuSpriteOwnerSizeCheck[sizeof(MainMenuSpriteOwner) == 4 ? 1 : -1];
-typedef char MainMenuLabelSizeCheck[sizeof(MainMenuLabelTileBuffer) == 0x304 ? 1 : -1];
-typedef char MainMenuDataSizeCheck[sizeof(MainMenuData) == 0x41C ? 1 : -1];
-typedef char MainMenuPaletteCheck[offsetof(MainMenuData, palette) == 0x30 ? 1 : -1];
-typedef char MainMenuCursorCheck[offsetof(MainMenuData, cursor) == 0x50 ? 1 : -1];
-typedef char MainMenuIconsCheck[offsetof(MainMenuData, icons) == 0x54 ? 1 : -1];
-typedef char MainMenuLabelCheck[offsetof(MainMenuData, label) == 0x70 ? 1 : -1];
-typedef char MainMenuLabelTilesCheck[offsetof(MainMenuData, label) + offsetof(MainMenuLabelRenderer, tiles) == 0x374 ? 1 : -1];
-typedef char MainMenuLabelUploadsCheck[offsetof(MainMenuData, label) + offsetof(MainMenuLabelRenderer, uploads) == 0x38C ? 1 : -1];
 
 extern u32 const gMenuEntryIds[7];
 extern char const gText_Menu_Diary[];

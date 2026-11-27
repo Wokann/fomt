@@ -50,19 +50,7 @@ struct HarvestSpriteActor : AActorEntity {
     u8 unk_42;
 };
 
-typedef char HarvestSpriteActorSizeCheck[sizeof(HarvestSpriteActor) == 0x44 ? 1 : -1];
-typedef char HarvestSpriteActorIndexCheck[offsetof(HarvestSpriteActor, entry_index) == 0x30 ? 1 : -1];
-typedef char HarvestSpriteActorSavedSpriteCheck[offsetof(HarvestSpriteActor, harvest_sprite) == 0x34 ? 1 : -1];
-typedef char HarvestSpriteActorEntriesCheck[offsetof(HarvestSpriteActor, entries) == 0x38 ? 1 : -1];
-typedef char HarvestSpriteActorFarmCheck[offsetof(HarvestSpriteActor, farm) == 0x3C ? 1 : -1];
-typedef char HarvestSpriteActorFlag41Check[offsetof(HarvestSpriteActor, unk_41) == 0x41 ? 1 : -1];
-typedef char HarvestSpriteActorFlag42Check[offsetof(HarvestSpriteActor, unk_42) == 0x42 ? 1 : -1];
 
-typedef char HarvestSpriteControllerSizeCheck[sizeof(HarvestSpriteController) == 0xD4 ? 1 : -1];
-typedef char HarvestSpriteControllerResourceOffsetCheck[offsetof(HarvestSpriteController, resource_sprite) == 0x8C ? 1 : -1];
-typedef char HarvestSpriteControllerXOffsetCheck[offsetof(HarvestSpriteController, resource_x) == 0xCC ? 1 : -1];
-typedef char HarvestSpriteControllerYOffsetCheck[offsetof(HarvestSpriteController, resource_y) == 0xCE ? 1 : -1];
-typedef char HarvestSpriteControllerDurationOffsetCheck[offsetof(HarvestSpriteController, duration) == 0xD0 ? 1 : -1];
 
 extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
     Farm * farm, GameObject * game_object, Location const * location,

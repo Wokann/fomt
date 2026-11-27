@@ -9126,15 +9126,15 @@ u32 GameSceneWorld::vfunc_C0(Location const & location)
     return result;
 }
 
+extern "C" void func_0801C3DC(void * self)
+{
+}
+
 asm_unified(
     ".text\n"
 #if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
-    "    .global func_0801C3DC\n"
-    "    .thumb_func\n"
-    "func_0801C3DC:\n"
-    "    bx lr\n"
     "    .align 2, 0\n"
     "    .global func_0801C3E0\n"
     "    .thumb_func\n"
@@ -10107,11 +10107,6 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
     ".L0801C3DC:\n"
-    "    .global func_0801C3DC\n"
-    "    .thumb_func\n"
-    "func_0801C3DC:\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
     "    .global func_0801C3E0\n"
     "    .thumb_func\n"
     "func_0801C3E0:\n"

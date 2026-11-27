@@ -4,60 +4,40 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectAnnaSchedule\n"
-    "SelectAnnaSchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803E2AC\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803E2B0\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E2EE\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803E2AC: .word 0x000021CA\n"
-    ".Ljp_0803E2B0:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E2D0\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E2EE\n"
-    ".Ljp_0803E2D0:\n"
-    "    cmp\tr4, #1\n"
-    "    bne .Ljp_0803E2E2\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E2DE\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E2EE\n"
-    ".Ljp_0803E2DE:\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E2EE\n"
-    ".Ljp_0803E2E2:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E2EC\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803E2EE\n"
-    ".Ljp_0803E2EC:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803E2EE:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectAnnaSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 flags;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    flags = ((u8 const *)context)[0x21CA];
+    if ((i32)(flags << 27) < 0)
+        return 0;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 5;
+    if (weekday == 1)
+    {
+        if (*(u32 const *)((u8 const *)context + 8) == 0)
+            return 3;
+        else
+            return 4;
+    }
+    if (*(u32 const *)((u8 const *)context + 8) == 0)
+        return 1;
+    return 2;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

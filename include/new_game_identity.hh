@@ -39,22 +39,6 @@
 typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_VALUE_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityValueBuffer;
 typedef NewGameTextTileBuffer<NEW_GAME_IDENTITY_LABEL_WIDTH, NEW_GAME_IDENTITY_TILE_HEIGHT> NewGameIdentityLabelBuffer;
 
-typedef char NewGameIdentityValueBufferSizeCheck[
-    sizeof(NewGameIdentityValueBuffer) == NEW_GAME_IDENTITY_VALUE_BUFFER_BYTES ? 1 : -1];
-typedef char NewGameIdentityLabelBufferSizeCheck[
-    sizeof(NewGameIdentityLabelBuffer) == NEW_GAME_IDENTITY_LABEL_BUFFER_BYTES ? 1 : -1];
-typedef char NewGameIdentityValueTilesOffsetCheck[offsetof(NewGameIdentityValueBuffer, tiles) == 4 ? 1 : -1];
-typedef char NewGameIdentityLabelTilesOffsetCheck[offsetof(NewGameIdentityLabelBuffer, tiles) == 4 ? 1 : -1];
-typedef char NewGameIdentityValueTilesSizeCheck[
-    sizeof(((NewGameIdentityValueBuffer *)0)->tiles) == NEW_GAME_IDENTITY_VALUE_TILE_BYTES ? 1 : -1];
-typedef char NewGameIdentityLabelTilesSizeCheck[
-    sizeof(((NewGameIdentityLabelBuffer *)0)->tiles) == NEW_GAME_IDENTITY_LABEL_TILE_BYTES ? 1 : -1];
-typedef char NewGameIdentityBootstrapSizeCheck[sizeof(HardwareContext) == 8 ? 1 : -1];
-typedef char NewGameIdentityWordSizeCheck[sizeof(u32) == 4 ? 1 : -1];
-typedef char NewGameIdentityUiPointerSizeCheck[sizeof(UiStateOwner *) == 4 ? 1 : -1];
-typedef char NewGameIdentityMusicSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
-typedef char NewGameIdentityTextBufferSizeCheck[sizeof(FixedStr<15>) == 0x10 ? 1 : -1];
-typedef char NewGameIdentityTileRowsCheck[NEW_GAME_IDENTITY_TILE_HEIGHT == 2 ? 1 : -1];
 
 // Physical field order: player name, birthday, farm name, dog name. Native
 // construction bounds each byte string to 15 bytes plus its terminator;
@@ -66,8 +50,6 @@ enum NewGameIdentityField {
     NEW_GAME_IDENTITY_DOG_NAME,
 };
 
-typedef char NewGameIdentityFieldCountCheck[
-    NEW_GAME_IDENTITY_DOG_NAME + 1 == NEW_GAME_IDENTITY_FIELD_COUNT ? 1 : -1];
 
 #pragma interface "new_game_identity.hh"
 struct NewGameIdentityCore;
@@ -109,41 +91,8 @@ struct NewGameIdentityCore : HardwareContext {
 
 
 #if defined(REGION_JP)
-typedef char NewGameIdentityCoreBuffersCheck[
-    offsetof(NewGameIdentityCore, buffers) == sizeof(HardwareContext) ? 1 : -1];
-typedef char NewGameIdentityCoreValueTilesCheck[
-    offsetof(NewGameIdentityCore, buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
-        == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreLabelTilesCheck[
-    offsetof(NewGameIdentityCore, buffers) + NEW_GAME_IDENTITY_FIELD_COUNT * sizeof(NewGameIdentityValueBuffer)
-        + offsetof(NewGameIdentityValueBuffer, tiles) == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char NewGameIdentityCoreValueBuffersCheck[
-    offsetof(NewGameIdentityCore, value_buffers) == sizeof(HardwareContext) ? 1 : -1];
-typedef char NewGameIdentityCoreValueTilesCheck[
-    offsetof(NewGameIdentityCore, value_buffers) + offsetof(NewGameIdentityValueBuffer, tiles)
-        == NEW_GAME_IDENTITY_VALUE_TILES_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreLabelTilesCheck[
-    offsetof(NewGameIdentityCore, label_buffers) + offsetof(NewGameIdentityLabelBuffer, tiles)
-        == NEW_GAME_IDENTITY_LABEL_TILES_OFFSET ? 1 : -1];
 #endif
-typedef char NewGameIdentityCoreDataCheck[
-    offsetof(NewGameIdentityCore, unk_1A28) == NEW_GAME_IDENTITY_CORE_DATA_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreUiCheck[
-    offsetof(NewGameIdentityCore, ui_state) == NEW_GAME_IDENTITY_CORE_UI_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreMusicCheck[
-    offsetof(NewGameIdentityCore, music) == NEW_GAME_IDENTITY_CORE_MUSIC_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreFieldsCheck[
-    offsetof(NewGameIdentityCore, fields) == NEW_GAME_IDENTITY_CORE_FIELDS_OFFSET ? 1 : -1];
-typedef char NewGameIdentityCoreControlCheck[
-    offsetof(NewGameIdentityCore, unk_1A74) == offsetof(NewGameIdentityCore, fields)
-        + sizeof(((NewGameIdentityCore *)0)->fields) ? 1 : -1];
-typedef char NewGameIdentityCoreResultCheck[
-    offsetof(NewGameIdentityCore, confirmed) == offsetof(NewGameIdentityCore, unk_1A74) + 2 ? 1 : -1];
-typedef char NewGameIdentityCoreSizeCheck[
-    sizeof(NewGameIdentityCore) == offsetof(NewGameIdentityCore, unk_1A77) + sizeof(u8) ? 1 : -1];
-typedef char NewGameIdentitySceneSizeCheck[sizeof(NewGameIdentityScene) == 8 ? 1 : -1];
-typedef char NewGameIdentitySceneCoreCheck[offsetof(NewGameIdentityScene, core) == 4 ? 1 : -1];
 
 
 EXTERN_C

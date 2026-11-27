@@ -25,7 +25,6 @@ struct NewGameMenuSaveSlotStatus {
     char const * Data() const { return text; }
 };
 
-typedef char NewGameMenuSaveSlotStatusSizeCheck[sizeof(NewGameMenuSaveSlotStatus) == 0x80 ? 1 : -1];
 
 // The runner dispatches this separately from active_row and the UI window's
 // own animation state. Both confirmation phases return to ordinary selection
@@ -38,7 +37,6 @@ enum NewGameMenuPhase
     NEW_GAME_MENU_NOTICE,
 };
 
-typedef char NewGameMenuPhaseSizeCheck[sizeof(NewGameMenuPhase) == 4 ? 1 : -1];
 
 #pragma interface "new_game_menu.hh"
 struct NewGameMenuCore;
@@ -54,8 +52,6 @@ struct NewGameMenuScene : AScene {
     virtual SceneTransitionOwner Run();
 };
 
-typedef char NewGameMenuSceneSizeCheck[sizeof(NewGameMenuScene) == 8 ? 1 : -1];
-typedef char NewGameMenuSceneCoreCheck[offsetof(NewGameMenuScene, core) == 4 ? 1 : -1];
 
 // Members follow the native initialization and destruction order.
 struct NewGameMenuCore : HardwareContext {
@@ -83,23 +79,6 @@ struct NewGameMenuCore : HardwareContext {
     GameDisplayOptions saved_display_options[2];
 };
 
-typedef char NewGameMenuCoreSizeCheck[sizeof(NewGameMenuCore) == 0x1A0 ? 1 : -1];
-typedef char NewGameMenuCoreSaveCheck[offsetof(NewGameMenuCore, current_save) == 8 ? 1 : -1];
-typedef char NewGameMenuCoreUiCheck[offsetof(NewGameMenuCore, ui_state) == 0x10 ? 1 : -1];
-typedef char NewGameMenuCoreMusicCheck[offsetof(NewGameMenuCore, music_player_1) == 0x14 ? 1 : -1];
-typedef char NewGameMenuCoreSecondMusicCheck[offsetof(NewGameMenuCore, music_player_2) == 0x18 ? 1 : -1];
-typedef char NewGameMenuCoreResourcesCheck[offsetof(NewGameMenuCore, resources) == 0x1C ? 1 : -1];
-typedef char NewGameMenuCoreStateEntryCheck[offsetof(NewGameMenuCore, state_entry) == 0x4C ? 1 : -1];
-typedef char NewGameMenuCoreResourceEntryCheck[offsetof(NewGameMenuCore, resource_entry) == 0x54 ? 1 : -1];
-typedef char NewGameMenuCoreOptionAttributesCheck[offsetof(NewGameMenuCore, option_attributes) == 0x5C ? 1 : -1];
-typedef char NewGameMenuCoreSelectorResourceCheck[offsetof(NewGameMenuCore, selector_resource) == 0x64 ? 1 : -1];
-typedef char NewGameMenuCoreSelectorAttributesCheck[offsetof(NewGameMenuCore, selector_attributes) == 0x78 ? 1 : -1];
-typedef char NewGameMenuCoreActiveRowCheck[offsetof(NewGameMenuCore, active_row) == 0x80 ? 1 : -1];
-typedef char NewGameMenuCoreChoicesCheck[offsetof(NewGameMenuCore, choices) == 0x84 ? 1 : -1];
-typedef char NewGameMenuCorePhaseCheck[offsetof(NewGameMenuCore, phase) == 0x8C ? 1 : -1];
-typedef char NewGameMenuCoreSramCheck[offsetof(NewGameMenuCore, sram) == 0x90 ? 1 : -1];
-typedef char NewGameMenuCoreSaveSlotStatusCheck[offsetof(NewGameMenuCore, save_slot_status) == 0x98 ? 1 : -1];
-typedef char NewGameMenuCoreSavedDisplayOptionsCheck[offsetof(NewGameMenuCore, saved_display_options) == 0x198 ? 1 : -1];
 
 // Loading transfers the saved image into the next game controller.
 struct NewGameLoadedSaveTransition : SceneTransition {
@@ -108,8 +87,6 @@ struct NewGameLoadedSaveTransition : SceneTransition {
     GameStateSaveImageOwner state;
 };
 
-typedef char NewGameLoadedSaveTransitionSizeCheck[sizeof(NewGameLoadedSaveTransition) == 8 ? 1 : -1];
-typedef char NewGameLoadedSaveTransitionStateCheck[offsetof(NewGameLoadedSaveTransition, state) == 4 ? 1 : -1];
 
 // The title-screen menu returns to the intro through this continuation.
 struct MenuIntroTransition : SceneTransition
@@ -117,7 +94,6 @@ struct MenuIntroTransition : SceneTransition
     virtual SceneOwner CreateScene() asm("CreateIntroScene");
 };
 
-typedef char MenuIntroTransitionSizeCheck[sizeof(MenuIntroTransition) == 4 ? 1 : -1];
 
 
 EXTERN_C

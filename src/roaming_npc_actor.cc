@@ -2,6 +2,7 @@
 #include "roaming_npc_actor.hh"
 
 #include <new>
+#include "npc_locations.hh"
 #include FOMT_TEXT_INCLUDE(roaming_npc_actor.cc)
 // These weighted behavior-timing records share the animal-table layout.
 // The fourth byte remains unnamed until a caller establishes its meaning.
@@ -108,83 +109,56 @@ RoamingNpcActor::~RoamingNpcActor()
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SetRoamingSpeed__15RoamingNpcActori\n"
-    "SetRoamingSpeed__15RoamingNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr3, r0, #0\n"
-    "    movs\tr4, #0\n"
-    "    movs\tr5, #0\n"
-    "    adds\tr0, #32\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    adds\tr2, r0, #0\n"
-    "    cmp\tr0, #1\n"
-    "    beq .Lus_080370C2\n"
-    "    cmp\tr0, #1\n"
-    "    bgt .Lus_080370B4\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080370BE\n"
-    "    b .Lus_080370CC\n"
-    ".Lus_080370B4:\n"
-    "    cmp\tr2, #2\n"
-    "    beq .Lus_080370C6\n"
-    "    cmp\tr2, #3\n"
-    "    beq .Lus_080370CA\n"
-    "    b .Lus_080370CC\n"
-    ".Lus_080370BE:\n"
-    "    adds\tr5, r1, #0\n"
-    "    b .Lus_080370CC\n"
-    ".Lus_080370C2:\n"
-    "    negs\tr5, r1\n"
-    "    b .Lus_080370CC\n"
-    ".Lus_080370C6:\n"
-    "    negs\tr4, r1\n"
-    "    b .Lus_080370CC\n"
-    ".Lus_080370CA:\n"
-    "    adds\tr4, r1, #0\n"
-    ".Lus_080370CC:\n"
-    "    str\tr4, [r3, #24]\n"
-    "    str\tr5, [r3, #28]\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void RoamingNpcActor::SetRoamingSpeed(i32 speed)
+{
+    i32 x_speed = 0;
+    i32 y_speed = 0;
+    u8 direction = facing;
+
+    switch (direction)
+    {
+    case 0:
+        y_speed = speed;
+        break;
+    case 1:
+        y_speed = -speed;
+        break;
+    case 2:
+        x_speed = -speed;
+        break;
+    case 3:
+        x_speed = speed;
+        break;
+    }
+
+    x_speed_q16 = x_speed;
+    y_speed_q16 = y_speed;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start IsVisualAnimationComplete__C15RoamingNpcActor\n"
-    "IsVisualAnimationComplete__C15RoamingNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    ldr\tr0, [r0, #16]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803710E\n"
-    "    movs\tr4, #0\n"
-    "    adds\tr2, r0, #0\n"
-    "    adds\tr2, #48\t@ 0x30\n"
-    "    movs\tr1, #0\n"
-    "    ldrh\tr0, [r2, #14]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_080370F8\n"
-    "    movs\tr0, #16\n"
-    "    ldrsh\tr1, [r2, r0]\n"
-    "    negs\tr0, r1\n"
-    "    orrs\tr0, r1\n"
-    "    lsrs\tr1, r0, #31\n"
-    ".Lus_080370F8:\n"
-    "    cmp\tr1, #0\n"
-    "    beq .Lus_08037108\n"
-    "    adds\tr0, r2, #0\n"
-    "    bl WouldIndexedResourceHandleWrap\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_0803710A\n"
-    ".Lus_08037108:\n"
-    "    movs\tr4, #1\n"
-    ".Lus_0803710A:\n"
-    "    adds\tr0, r4, #0\n"
-    "    b .Lus_08037110\n"
-    ".Lus_0803710E:\n"
-    "    movs\tr0, #1\n"
-    ".Lus_08037110:\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+bool RoamingNpcActor::IsVisualAnimationComplete() const
+{
+    EntitySpriteController * sprite = static_cast<EntitySpriteController *>(unk_10.Get());
+    if (sprite != 0)
+    {
+        bool complete = false;
+        IndexedResourceHandle const * animation = &sprite->sprite.handle;
+        u32 active = 0;
+        if (animation->metric_scaled != 0)
+            active = animation->scroll_delta != 0;
+        if (active == 0 || WouldIndexedResourceHandleWrap(animation))
+            complete = true;
+        return complete;
+    }
+    return true;
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start ApplyRoamingMovement__15RoamingNpcActorP19ActorMovementBounds\n"
     "ApplyRoamingMovement__15RoamingNpcActorP19ActorMovementBounds:\n"
@@ -350,30 +324,25 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    thumb_func_start SetAvoidanceBox__15RoamingNpcActorRC3Box\n"
-    "SetAvoidanceBox__15RoamingNpcActorRC3Box:\n"
-    "    ldr\tr2, [r1, #4]\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    str\tr1, [r0, #52]\t@ 0x34\n"
-    "    str\tr2, [r0, #56]\t@ 0x38\n"
-    "    bx\tlr\n"
+);
+
+void RoamingNpcActor::SetAvoidanceBox(Box const & box)
+{
+    avoidance_box = box;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start ClearAvoidanceBox__15RoamingNpcActor\n"
-    "ClearAvoidanceBox__15RoamingNpcActor:\n"
-    "    sub\tsp, #8\n"
-    "    mov\tr3, sp\n"
-    "    movs\tr1, #0\n"
-    "    mov\tr2, sp\n"
-    "    strh\tr1, [r2, #0]\n"
-    "    strh\tr1, [r3, #2]\n"
-    "    strh\tr1, [r3, #4]\n"
-    "    strh\tr1, [r3, #6]\n"
-    "    ldr\tr1, [sp, #0]\n"
-    "    ldr\tr2, [sp, #4]\n"
-    "    str\tr1, [r0, #52]\t@ 0x34\n"
-    "    str\tr2, [r0, #56]\t@ 0x38\n"
-    "    add\tsp, #8\n"
-    "    bx\tlr\n"
+);
+
+void RoamingNpcActor::ClearAvoidanceBox()
+{
+    Box empty(0, 0);
+    avoidance_box = empty;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    thumb_func_start Update__15RoamingNpcActorRC19EntityUpdateContext\n"
     "Update__15RoamingNpcActorRC19EntityUpdateContext:\n"
     "    push\t{r4, r5, r6, r7, lr}\n"
@@ -608,10 +577,15 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "    .align 2, 0\n"
-    "    thumb_func_start vfunc_34__15RoamingNpcActor\n"
-    "vfunc_34__15RoamingNpcActor:\n"
-    "    ldrh\tr0, [r0, #60]\t@ 0x3c\n"
-    "    bx\tlr\n"
+);
+
+u32 RoamingNpcActor::vfunc_34()
+{
+    return unk_3C;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    thumb_func_start vfunc_10__15RoamingNpcActor\n"
     "vfunc_10__15RoamingNpcActor:\n"
     "    push\t{r4, lr}\n"
@@ -633,36 +607,24 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "    .align 2, 0\n"
-    "    thumb_func_start vfunc_14__15RoamingNpcActor\n"
-    "vfunc_14__15RoamingNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl vfunc_14__7AEntity\n"
-    "    adds\tr4, #64\t@ 0x40\n"
-    "    movs\tr0, #0\n"
-    "    strb\tr0, [r4, #0]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    thumb_func_start GetBox__C15RoamingNpcActor\n"
-    "GetBox__C15RoamingNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r1, r3]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr3, [r1, r4]\n"
-    "    subs\tr1, r2, #7\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    adds\tr1, r3, #0\n"
-    "    subs\tr1, #9\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    adds\tr2, #7\n"
-    "    strh\tr2, [r0, #4]\n"
-    "    adds\tr3, #5\n"
-    "    strh\tr3, [r0, #6]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r2}\n"
-    "    bx\tr2\n"
+);
+
+void RoamingNpcActor::vfunc_14()
+{
+    AEntity::vfunc_14();
+    unk_40 = false;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+Box RoamingNpcActor::GetBox() const
+{
+    return Box(-7, -9, 7, 5, x_q16 >> 16, y_q16 >> 16);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start SelectNextBehavior__20SouthTownRoamingNpc1\n"
     "SelectNextBehavior__20SouthTownRoamingNpc1:\n"
@@ -742,28 +704,15 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     ".Lus_08037538: .word gUnk_080F1538\n"
-    "    thumb_func_start CreateVisualController__20SouthTownRoamingNpc1\n"
-    "CreateVisualController__20SouthTownRoamingNpc1:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #0]\n"
-    "    movs\tr1, #7\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #2\n"
-    "    movs\tr3, #9\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * SouthTownRoamingNpc1::CreateVisualController()
+{
+    return new EntitySpriteController(this, 2, 9, 0, 7, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    thumb_func_start ResetLocation__20SouthTownRoamingNpc1\n"
     "ResetLocation__20SouthTownRoamingNpc1:\n"
     "    push\t{r4, r5, lr}\n"
@@ -850,28 +799,29 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorAnimation__C20SouthTownRoamingNpc1Ui\n"
-    "GetBehaviorAnimation__C20SouthTownRoamingNpc1Ui:\n"
-    "    ldr r0, .Lus_08037624\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r0\n"
-    "    ldrh\tr0, [r1, #0]\n"
-    "    bx\tlr\n"
+);
+
+u32 SouthTownRoamingNpc1::GetBehaviorAnimation(u32 behavior) const
+{
+    return gUnk_080F1560[behavior];
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lus_08037624: .word gUnk_080F1560\n"
-    "    thumb_func_start GetBehaviorSpeed__C20SouthTownRoamingNpc1Ui\n"
-    "GetBehaviorSpeed__C20SouthTownRoamingNpc1Ui:\n"
-    "    push\t{lr}\n"
-    "    cmp\tr1, #1\n"
-    "    beq .Lus_08037632\n"
-    "    movs\tr0, #0\n"
-    "    b .Lus_08037636\n"
-    ".Lus_08037632:\n"
-    "    movs\tr0, #128\t@ 0x80\n"
-    "    lsls\tr0, r0, #8\n"
-    ".Lus_08037636:\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+i32 SouthTownRoamingNpc1::GetBehaviorSpeed(u32 behavior) const
+{
+    switch (behavior)
+    {
+    case 1:
+        return 0x8000;
+    default:
+        return 0;
+    }
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start SelectNextBehavior__20SouthTownRoamingNpc2\n"
     "SelectNextBehavior__20SouthTownRoamingNpc2:\n"
@@ -951,29 +901,14 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     ".Lus_080376E0: .word gUnk_080F156C\n"
-    "    thumb_func_start CreateVisualController__20SouthTownRoamingNpc2\n"
-    "CreateVisualController__20SouthTownRoamingNpc2:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #12\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #12\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * SouthTownRoamingNpc2::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 12, 2, 12, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start ResetLocation__20SouthTownRoamingNpc2\n"
     "ResetLocation__20SouthTownRoamingNpc2:\n"
@@ -1061,28 +996,29 @@ asm_unified(
     "    pop\t{r0}\n"
     "    bx\tr0\n"
     "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorAnimation__C20SouthTownRoamingNpc2Ui\n"
-    "GetBehaviorAnimation__C20SouthTownRoamingNpc2Ui:\n"
-    "    ldr r0, .Lus_080377D0\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r0\n"
-    "    ldrh\tr0, [r1, #0]\n"
-    "    bx\tlr\n"
+);
+
+u32 SouthTownRoamingNpc2::GetBehaviorAnimation(u32 behavior) const
+{
+    return gUnk_080F15A4[behavior];
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lus_080377D0: .word gUnk_080F15A4\n"
-    "    thumb_func_start GetBehaviorSpeed__C20SouthTownRoamingNpc2Ui\n"
-    "GetBehaviorSpeed__C20SouthTownRoamingNpc2Ui:\n"
-    "    push\t{lr}\n"
-    "    cmp\tr1, #1\n"
-    "    beq .Lus_080377DE\n"
-    "    movs\tr0, #0\n"
-    "    b .Lus_080377E2\n"
-    ".Lus_080377DE:\n"
-    "    movs\tr0, #128\t@ 0x80\n"
-    "    lsls\tr0, r0, #8\n"
-    ".Lus_080377E2:\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+i32 SouthTownRoamingNpc2::GetBehaviorSpeed(u32 behavior) const
+{
+    switch (behavior)
+    {
+    case 1:
+        return 0x8000;
+    default:
+        return 0;
+    }
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start SelectNextBehavior__25YodelRanchHouseRoamingNpc\n"
     "SelectNextBehavior__25YodelRanchHouseRoamingNpc:\n"
@@ -1160,62 +1096,38 @@ asm_unified(
     "    pop\t{r1}\n"
     "    bx\tr1\n"
     ".Lus_08037888: .word gUnk_080F15B4\n"
-    "    thumb_func_start CreateVisualController__25YodelRanchHouseRoamingNpc\n"
-    "CreateVisualController__25YodelRanchHouseRoamingNpc:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #0]\n"
-    "    movs\tr1, #8\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #2\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    thumb_func_start ResetLocation__25YodelRanchHouseRoamingNpc\n"
-    "ResetLocation__25YodelRanchHouseRoamingNpc:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr4, r0, #0\n"
-    "    mov\tr0, sp\n"
-    "    bl InitializeYodelRanchHouseNpcLocation__FP13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl SetLocation__12AActorEntityRC13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #0\n"
-    "    bl GetBehaviorAnimation__C25YodelRanchHouseRoamingNpcUi\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrh\tr0, [r4, #34]\t@ 0x22\n"
-    "    cmp\tr0, r1\n"
-    "    beq .Lus_080378E2\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    ".Lus_080378E2:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+EntityVisualController * YodelRanchHouseRoamingNpc::CreateVisualController()
+{
+    return new EntitySpriteController(this, 2, 27, 0, 8, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorAnimation__C25YodelRanchHouseRoamingNpcUi\n"
-    "GetBehaviorAnimation__C25YodelRanchHouseRoamingNpcUi:\n"
-    "    ldr r0, .Lus_080378F8\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r0\n"
-    "    ldrh\tr0, [r1, #0]\n"
-    "    bx\tlr\n"
+);
+
+void YodelRanchHouseRoamingNpc::ResetLocation()
+{
+    ActorLocation location;
+    InitializeYodelRanchHouseNpcLocation(&location);
+    SetLocation(location);
+    u32 animation = GetBehaviorAnimation(0);
+    if (anim_id != animation)
+        SetAnim(animation);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lus_080378F8: .word gUnk_080F161C\n"
+);
+
+u32 YodelRanchHouseRoamingNpc::GetBehaviorAnimation(u32 behavior) const
+{
+    return gUnk_080F161C[behavior];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    thumb_func_start GetBehaviorSpeed__C25YodelRanchHouseRoamingNpcUi\n"
     "GetBehaviorSpeed__C25YodelRanchHouseRoamingNpcUi:\n"
     "    push\t{lr}\n"
@@ -1318,53 +1230,43 @@ EntityVisualController * InnSecondFloorRoamingNpc::CreateVisualController()
     return new EntitySpriteController(this, 2, 27, 0, 8, 0, false);
 }
 asm_unified(
-    "    thumb_func_start ResetLocation__24InnSecondFloorRoamingNpc\n"
-    "ResetLocation__24InnSecondFloorRoamingNpc:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr4, r0, #0\n"
-    "    mov\tr0, sp\n"
-    "    bl InitializeInnSecondFloorNpcLocation__FP13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl SetLocation__12AActorEntityRC13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #0\n"
-    "    bl GetBehaviorAnimation__C24InnSecondFloorRoamingNpcUi\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrh\tr0, [r4, #34]\t@ 0x22\n"
-    "    cmp\tr0, r1\n"
-    "    beq .Lus_08037A2E\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    ".Lus_08037A2E:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void InnSecondFloorRoamingNpc::ResetLocation()
+{
+    ActorLocation location;
+    InitializeInnSecondFloorNpcLocation(&location);
+    SetLocation(location);
+    u32 animation = GetBehaviorAnimation(0);
+    if (anim_id != animation)
+        SetAnim(animation);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorAnimation__C24InnSecondFloorRoamingNpcUi\n"
-    "GetBehaviorAnimation__C24InnSecondFloorRoamingNpcUi:\n"
-    "    ldr r0, .Lus_08037A44\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r0\n"
-    "    ldrh\tr0, [r1, #0]\n"
-    "    bx\tlr\n"
+);
+
+u32 InnSecondFloorRoamingNpc::GetBehaviorAnimation(u32 behavior) const
+{
+    return gUnk_080F1644[behavior];
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lus_08037A44: .word gUnk_080F1644\n"
-    "    thumb_func_start GetBehaviorSpeed__C24InnSecondFloorRoamingNpcUi\n"
-    "GetBehaviorSpeed__C24InnSecondFloorRoamingNpcUi:\n"
-    "    push\t{lr}\n"
-    "    cmp\tr1, #1\n"
-    "    beq .Lus_08037A52\n"
-    "    movs\tr0, #0\n"
-    "    b .Lus_08037A56\n"
-    ".Lus_08037A52:\n"
-    "    movs\tr0, #128\t@ 0x80\n"
-    "    lsls\tr0, r0, #8\n"
-    ".Lus_08037A56:\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+i32 InnSecondFloorRoamingNpc::GetBehaviorSpeed(u32 behavior) const
+{
+    switch (behavior)
+    {
+    case 1:
+        return 0x8000;
+    default:
+        return 0;
+    }
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    thumb_func_start CreateSouthTownRoamingNpc1\n"
     "CreateSouthTownRoamingNpc1:\n"

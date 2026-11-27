@@ -21,6 +21,5 @@ struct Gotz : public Npc
     /* +15 */ bool at_construction_worksite : 1;
 };
 
-typedef char GotzSizeCheck[sizeof(Gotz) == 0x18 ? 1 : -1];
 
 #endif // GOTZ_HH

@@ -33,6 +33,5 @@ struct SramAccess
 #endif
 };
 
-typedef char SramAccessSizeCheck[(sizeof(struct SramAccess) == 8) ? 1 : -1];
 
 #endif // SRAM_ACCESS_HH

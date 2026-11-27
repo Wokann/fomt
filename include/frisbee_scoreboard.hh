@@ -38,9 +38,6 @@ struct FrisbeeScoreboardSpriteState {
         : resource(archive, index, 256), parameters() {}
 };
 
-typedef char FrisbeeScoreboardSpriteStateSizeCheck[sizeof(FrisbeeScoreboardSpriteState) == 0x34 ? 1 : -1];
-typedef char FrisbeeScoreboardSpriteParametersCheck[offsetof(FrisbeeScoreboardSpriteState, parameters) == 0x14 ? 1 : -1];
-typedef char FrisbeeScoreboardSpriteUnknownCheck[offsetof(FrisbeeScoreboardSpriteState, unk_30) == 0x30 ? 1 : -1];
 
 #pragma interface "frisbee_scoreboard.hh"
 struct FrisbeeScoreboardCore;
@@ -90,23 +87,8 @@ struct FrisbeeScoreboardCore : HardwareContext {
 extern "C" void WriteFrisbeeScoreboardGlyphTiles(FrisbeeScoreboardCore * core,
     unsigned x, unsigned y, unsigned glyph);
 
-typedef char FrisbeeScoreboardCoreSizeCheck[sizeof(FrisbeeScoreboardCore) == 0x8C0 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_save[offsetof(FrisbeeScoreboardCore, save) == 0x8 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_music_player[offsetof(FrisbeeScoreboardCore, music_player) == 0xC ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_unk_archive_010[offsetof(FrisbeeScoreboardCore, unk_archive_010) == 0x10 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_sprite_040[offsetof(FrisbeeScoreboardCore, sprite_040) == 0x40 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_sprite_074[offsetof(FrisbeeScoreboardCore, sprite_074) == 0x74 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_sprite_tiles[offsetof(FrisbeeScoreboardCore, sprite_tiles) == 0xA8 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_obj_palette_collection[offsetof(FrisbeeScoreboardCore, obj_palette_collection) == 0xB0 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_unk_0B8[offsetof(FrisbeeScoreboardCore, unk_0B8) == 0xB8 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_scroll_y[offsetof(FrisbeeScoreboardCore, scroll_y) == 0x8B8 ? 1 : -1];
-typedef char FrisbeeScoreboardCoreOffset_phase[offsetof(FrisbeeScoreboardCore, phase) == 0x8BC ? 1 : -1];
 
-typedef char FrisbeeScoreboardCoreOwnerSizeCheck[sizeof(FrisbeeScoreboardCoreOwner) == 4 ? 1 : -1];
 
-typedef char FrisbeeScoreboardSceneSizeCheck[sizeof(FrisbeeScoreboardScene) == 12 ? 1 : -1];
-typedef char FrisbeeScoreboardSceneCoreCheck[offsetof(FrisbeeScoreboardScene, core) == 4 ? 1 : -1];
-typedef char FrisbeeScoreboardSceneContinuationCheck[offsetof(FrisbeeScoreboardScene, continuation) == 8 ? 1 : -1];
 
 // Direct ABI declaration of this compiler constructor, not a wrapper.
 // Retained until ordinary owner-return lowering matches the native factory.

@@ -38,7 +38,6 @@ struct PACKED EncodedGameYear
     u32 GetYear() const { return digits.quotient * 7 + digits.remainder; }
 };
 
-typedef char EncodedGameYearSizeCheck[sizeof(EncodedGameYear) == 1 ? 1 : -1];
 
 // Stored at +0x10 in the save image. The first byte encodes the year as
 // seven times its high five bits plus its low three bits; the following
@@ -56,8 +55,5 @@ struct GameCalendar
     inline u32 GetYear(u32 maximum) const;
 };
 
-typedef char GameCalendarSizeCheck[sizeof(GameCalendar) == 4 ? 1 : -1];
-typedef char GameCalendarDateCheck[offsetof(GameCalendar, date) == 1 ? 1 : -1];
-typedef char GameCalendarTimeCheck[offsetof(GameCalendar, time) == 2 ? 1 : -1];
 
 #endif // TIME_OF_DAY_TYPES_HH

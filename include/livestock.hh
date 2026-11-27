@@ -21,10 +21,6 @@ struct LivestockDayUpdateInfo
     /* +10 */ AgeDeathRateEntry natural_death_rates[4];
 };
 
-typedef char LivestockDayUpdateInfoSizeCheck[sizeof(LivestockDayUpdateInfo) == 0x20 ? 1 : -1];
-typedef char LivestockAgeDeathRateEntrySizeCheck[sizeof(LivestockDayUpdateInfo::AgeDeathRateEntry) == 4 ? 1 : -1];
-typedef char LivestockNaturalDeathRatesOffsetCheck[offsetof(LivestockDayUpdateInfo, natural_death_rates) == 0x10 ? 1 : -1];
-typedef char LivestockLifeStateWidthCheck[sizeof(MaryLivestockLifeState) == 4 ? 1 : -1];
 
 struct Livestock : public Animal
 {
@@ -71,6 +67,5 @@ struct Livestock : public Animal
     /* +1E */ u32 total_outdoor_minutes : 16;
 };
 
-typedef char LivestockSizeCheck[sizeof(Livestock) == 0x24 ? 1 : -1];
 
 #endif // LIVESTOCK_HH

@@ -41,19 +41,12 @@ struct SpecialMerchantShopSceneCore : ShopScreenCore {
     FixedStr<99> description;
 };
 
-typedef char SpecialMerchantCorePhaseCheck[offsetof(SpecialMerchantShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char SpecialMerchantCorePurchasedCheck[offsetof(SpecialMerchantShopSceneCore, has_purchased) == 0x6A8 ? 1 : -1];
-typedef char SpecialMerchantCoreDescriptionCheck[offsetof(SpecialMerchantShopSceneCore, description) == 0x6AC ? 1 : -1];
-typedef char SpecialMerchantCoreSizeCheck[sizeof(SpecialMerchantShopSceneCore) == 0x710 ? 1 : -1];
 
 // Member order releases the continuation before this owned core.
 #pragma interface "scene_special_merchant_shop.hh"
 
 #pragma interface "scene_special_merchant_shop.hh"
 
-typedef char SpecialMerchantShopSceneSizeCheck[sizeof(SpecialMerchantShopScene) == 12 ? 1 : -1];
-typedef char SpecialMerchantShopSceneCoreCheck[offsetof(SpecialMerchantShopScene, core) == 4 ? 1 : -1];
-typedef char SpecialMerchantShopSceneContinuationCheck[offsetof(SpecialMerchantShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

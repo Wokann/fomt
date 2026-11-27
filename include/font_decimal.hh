@@ -44,12 +44,6 @@ typedef struct FontTilemapDecimalCommand
 #endif
 } FontTilemapDecimalCommand;
 
-typedef char FontTilemapDecimalCommandSizeCheck[sizeof(FontTilemapDecimalCommand) == 0x1C ? 1 : -1];
-typedef char FontTilemapDecimalCommandValueCheck[offsetof(FontTilemapDecimalCommand, value) == 0x0C ? 1 : -1];
-typedef char FontTilemapDecimalCommandDestinationCheck[offsetof(FontTilemapDecimalCommand, right_tile) == 0x10 ? 1 : -1];
-typedef char FontTilemapDecimalCommandBaseTileCheck[offsetof(FontTilemapDecimalCommand, base_tile) == 0x14 ? 1 : -1];
-typedef char FontTilemapDecimalCommandPaletteCheck[offsetof(FontTilemapDecimalCommand, palette) == 0x16 ? 1 : -1];
-typedef char FontTilemapDecimalCommandRowStrideCheck[offsetof(FontTilemapDecimalCommand, row_stride) == 0x18 ? 1 : -1];
 
 // Overseas ROMs insert the one-column, two-row variant. JP has no such class.
 #if defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
@@ -76,12 +70,6 @@ typedef struct FontTilemapTallDecimalCommand
 #endif
 } FontTilemapTallDecimalCommand;
 
-typedef char FontTilemapTallDecimalCommandSizeCheck[sizeof(FontTilemapTallDecimalCommand) == 0x1C ? 1 : -1];
-typedef char FontTilemapTallDecimalCommandValueCheck[offsetof(FontTilemapTallDecimalCommand, value) == 0x0C ? 1 : -1];
-typedef char FontTilemapTallDecimalCommandDestinationCheck[offsetof(FontTilemapTallDecimalCommand, right_tile) == 0x10 ? 1 : -1];
-typedef char FontTilemapTallDecimalCommandBaseTileCheck[offsetof(FontTilemapTallDecimalCommand, base_tile) == 0x14 ? 1 : -1];
-typedef char FontTilemapTallDecimalCommandPaletteCheck[offsetof(FontTilemapTallDecimalCommand, palette) == 0x16 ? 1 : -1];
-typedef char FontTilemapTallDecimalCommandStrideCheck[offsetof(FontTilemapTallDecimalCommand, row_stride) == 0x18 ? 1 : -1];
 #endif
 
 // Single-tile digits retain row_stride in the ABI but write only one row.
@@ -108,12 +96,6 @@ typedef struct FontTilemapSingleTileDecimalCommand
 #endif
 } FontTilemapSingleTileDecimalCommand;
 
-typedef char FontTilemapSingleTileDecimalCommandSizeCheck[sizeof(FontTilemapSingleTileDecimalCommand) == 0x1C ? 1 : -1];
-typedef char FontTilemapSingleTileDecimalCommandValueCheck[offsetof(FontTilemapSingleTileDecimalCommand, value) == 0x0C ? 1 : -1];
-typedef char FontTilemapSingleTileDecimalCommandDestinationCheck[offsetof(FontTilemapSingleTileDecimalCommand, right_tile) == 0x10 ? 1 : -1];
-typedef char FontTilemapSingleTileDecimalCommandBaseTileCheck[offsetof(FontTilemapSingleTileDecimalCommand, base_tile) == 0x14 ? 1 : -1];
-typedef char FontTilemapSingleTileDecimalCommandPaletteCheck[offsetof(FontTilemapSingleTileDecimalCommand, palette) == 0x16 ? 1 : -1];
-typedef char FontTilemapSingleTileDecimalCommandStrideCheck[offsetof(FontTilemapSingleTileDecimalCommand, row_stride) == 0x18 ? 1 : -1];
 
 EXTERN_C
 

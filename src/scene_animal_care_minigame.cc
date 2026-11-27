@@ -661,15 +661,15 @@ asm_unified(
     ".Lanimal_care_00_0564: .word __vt_24HardwareSoundMainCommand\n"
     ".Lanimal_care_00_0568: .word 0x888\n"
     "\n"
-    "thumb_func_start Succeeded__27HarvestSpriteAnimalCareCore\n"
-    "Succeeded__27HarvestSpriteAnimalCareCore:\n"
-    "ldr r1, .Lanimal_care_01_0008\n"
-    "adds r0, r0, r1\n"
-    "ldrb r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_01_0008: .word 0x92c\n"
-    "\n"
+);
+
+bool HarvestSpriteAnimalCareCore::Succeeded()
+{
+    return succeeded;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__27HarvestSpriteAnimalCareCore\n"
     "Run__27HarvestSpriteAnimalCareCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -884,14 +884,15 @@ asm_unified(
     ".Lanimal_care_02_01d4: .word 0x43c\n"
     ".Lanimal_care_02_01d8: .word 0x889\n"
     "\n"
-    "thumb_func_start func_080AE6C0\n"
-    "func_080AE6C0:\n"
-    "push {lr}\n"
-    "bl EnableHardwareForcedBlank\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+extern "C" void func_080AE6C0(struct HardwareContext * context)
+{
+    EnableHardwareForcedBlank(context);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080AE6CC\n"
     "func_080AE6CC:\n"
     "push {r4, r5, lr}\n"
@@ -11964,42 +11965,25 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_18_13c4: .word 0x838\n"
     "\n"
-    "thumb_func_start func_080B34DC\n"
-    "func_080B34DC:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r3, r0, #0\n"
-    "movs r2, #0\n"
-    "movs r0, #0x8e\n"
-    "lsls r0, r0, #4\n"
-    "adds r5, r3, r0\n"
-    "ldr r6, .Lanimal_care_19_0020\n"
-    "subs r0, #0x5c\n"
-    "adds r4, r3, r0\n"
-    ".Lanimal_care_19_0012:\n"
-    "adds r1, r2, r6\n"
-    "ldrb r0, [r5]\n"
-    "ldrb r1, [r1]\n"
-    "cmp r0, r1\n"
-    "bne .Lanimal_care_19_0024\n"
-    "str r2, [r4]\n"
-    "b .Lanimal_care_19_0032\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_19_0020: .word gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues\n"
-    ".Lanimal_care_19_0024:\n"
-    "adds r2, #1\n"
-    "cmp r2, #4\n"
-    "ble .Lanimal_care_19_0012\n"
-    "ldr r0, .Lanimal_care_19_0038\n"
-    "adds r1, r3, r0\n"
-    "movs r0, #5\n"
-    "str r0, [r1]\n"
-    ".Lanimal_care_19_0032:\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_19_0038: .word 0x884\n"
-    "\n"
+);
+
+extern "C" void func_080B34DC(HarvestSpriteAnimalCareCore * self)
+{
+    for (i32 i = 0; i <= 4; i++)
+    {
+        if (self->match_value
+            == gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[i])
+        {
+            self->match_index = i;
+            return;
+        }
+    }
+
+    self->match_index = 5;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B3518\n"
     "func_080B3518:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -12564,91 +12548,72 @@ asm_unified(
     ".Lanimal_care_22_0040: .word 0x85c\n"
     ".Lanimal_care_22_0044: .word 0x906\n"
     "\n"
-    "thumb_func_start func_080B3990\n"
-    "func_080B3990:\n"
-    "ldr r2, .Lanimal_care_23_0024\n"
-    "ldr r3, .Lanimal_care_23_0028\n"
-    "adds r1, r0, r3\n"
-    "ldr r1, [r1]\n"
-    "lsls r1, r1, #1\n"
-    "adds r1, r1, r2\n"
-    "movs r2, #0x93\n"
-    "lsls r2, r2, #4\n"
-    "adds r0, r0, r2\n"
-    "ldr r2, [r0]\n"
-    "movs r0, #0x54\n"
-    "muls r0, r2, r0\n"
-    "ldrh r1, [r1]\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r0, r0, #0x10\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_23_0024: .word gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues\n"
-    ".Lanimal_care_23_0028: .word 0x844\n"
-    "\n"
-    "thumb_func_start func_080B39BC\n"
-    "func_080B39BC:\n"
-    "ldr r2, .Lanimal_care_24_0018\n"
-    "lsls r1, r1, #2\n"
-    "movs r3, #0x87\n"
-    "lsls r3, r3, #4\n"
-    "adds r0, r0, r3\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r2\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_24_0018: .word gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0\n"
-    "\n"
-    "thumb_func_start func_080B39D8\n"
-    "func_080B39D8:\n"
-    "ldr r2, .Lanimal_care_25_0014\n"
-    "lsls r1, r1, #2\n"
-    "ldr r3, .Lanimal_care_25_0018\n"
-    "adds r0, r0, r3\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r2\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_25_0014: .word gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1\n"
-    ".Lanimal_care_25_0018: .word 0x848\n"
-    "\n"
-    "thumb_func_start func_080B39F4\n"
-    "func_080B39F4:\n"
-    "ldr r2, .Lanimal_care_26_0014\n"
-    "lsls r1, r1, #2\n"
-    "ldr r3, .Lanimal_care_26_0018\n"
-    "adds r0, r0, r3\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r2\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_26_0014: .word gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2\n"
-    ".Lanimal_care_26_0018: .word 0x85c\n"
-    "\n"
-    "thumb_func_start func_080B3A10\n"
-    "func_080B3A10:\n"
-    "ldr r1, .Lanimal_care_27_0010\n"
-    "ldr r2, .Lanimal_care_27_0014\n"
-    "adds r0, r0, r2\n"
-    "ldr r0, [r0]\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r1\n"
-    "ldrh r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_27_0010: .word gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3\n"
-    ".Lanimal_care_27_0014: .word 0x934\n"
-    "\n"
+);
+
+u16 func_080B3990(HarvestSpriteAnimalCareCore * self)
+{
+    return gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[
+               self->selection_index] +
+        self->sprite_variant * 0x54;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u16 func_080B39BC(HarvestSpriteAnimalCareCore * core, u32 index)
+{
+    u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0;
+    u32 offset = index * 4;
+    /* +0x870 falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
+       the real field layout there is not established (H3 exception). */
+    u8 const * base = (u8 const *)core + 0x870;
+    base += offset;
+    return table[*(u32 const *)base];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u16 func_080B39D8(HarvestSpriteAnimalCareCore * core, u32 index)
+{
+    u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1;
+    u32 offset = index * 4;
+    /* +0x848 falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
+       the real field layout there is not established (H3 exception). */
+    u8 const * base = (u8 const *)core + 0x848;
+    base += offset;
+    return table[*(u32 const *)base];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u16 func_080B39F4(HarvestSpriteAnimalCareCore * core, u32 index)
+{
+    u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2;
+    u32 offset = index * 4;
+    /* +0x85C falls inside HarvestSpriteAnimalCareCore::unk_838[0x50];
+       the real field layout there is not established (H3 exception). */
+    u8 const * base = (u8 const *)core + 0x85C;
+    base += offset;
+    return table[*(u32 const *)base];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u16 func_080B3A10(HarvestSpriteAnimalCareCore const * core)
+{
+    u16 const * table = gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3;
+    return table[*(u32 const *)core->unk_934];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B3A28\n"
     "func_080B3A28:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -12863,99 +12828,51 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start __30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup\n"
-    "__30HarvestSpriteAnimalCareUiSceneRC28HarvestSpriteAnimalCareSetup:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lanimal_care_30_0020\n"
-    "str r0, [r4]\n"
-    "ldr r0, .Lanimal_care_30_0024\n"
-    "bl __builtin_new\n"
-    "adds r1, r5, #0\n"
-    "bl __27HarvestSpriteAnimalCareCoreRC28HarvestSpriteAnimalCareSetup\n"
-    "str r0, [r4, #4]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_30_0020: .word __vt_30HarvestSpriteAnimalCareUiScene\n"
-    ".Lanimal_care_30_0024: .word 0x93c\n"
-    "\n"
-    "thumb_func_start _._30HarvestSpriteAnimalCareUiScene\n"
-    "_._30HarvestSpriteAnimalCareUiScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lanimal_care_31_002c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lanimal_care_31_001c\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lanimal_care_31_001c:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_31_002c: .word __vt_30HarvestSpriteAnimalCareUiScene\n"
-    "\n"
-    "thumb_func_start Run__30HarvestSpriteAnimalCareUiScene\n"
-    "Run__30HarvestSpriteAnimalCareUiScene:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, [r1, #4]\n"
-    "mov r0, sp\n"
-    "bl Run__27HarvestSpriteAnimalCareCore\n"
-    "ldr r2, [sp]\n"
-    "mov r0, sp\n"
-    "str r0, [sp, #4]\n"
-    "str r2, [sp, #8]\n"
-    "adds r1, r0, #0\n"
-    "movs r0, #0\n"
-    "str r0, [r1]\n"
-    "str r2, [r4]\n"
-    "ldr r1, [sp]\n"
-    "cmp r1, #0\n"
-    "beq .Lanimal_care_32_0030\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lanimal_care_32_0030:\n"
-    "adds r0, r4, #0\n"
-    "add sp, #0xc\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start Succeeded__30HarvestSpriteAnimalCareUiScene\n"
-    "Succeeded__30HarvestSpriteAnimalCareUiScene:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl Succeeded__27HarvestSpriteAnimalCareCore\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "\n"
-    "thumb_func_start GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene\n"
-    "GetUnkRecordValue__30HarvestSpriteAnimalCareUiScene:\n"
-    "ldr r0, [r0, #4]\n"
-    "movs r1, #0x91\n"
-    "lsls r1, r1, #4\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
+);
+
+HarvestSpriteAnimalCareUiScene::HarvestSpriteAnimalCareUiScene(HarvestSpriteAnimalCareSetup const & setup)
+{
+    core = new HarvestSpriteAnimalCareCore(setup);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+HarvestSpriteAnimalCareUiScene::~HarvestSpriteAnimalCareUiScene()
+{
+    delete core;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner HarvestSpriteAnimalCareUiScene::Run()
+{
+    return core->Run();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+bool HarvestSpriteAnimalCareUiScene::Succeeded()
+{
+    return core->Succeeded();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 HarvestSpriteAnimalCareUiScene::GetUnkRecordValue()
+{
+    return core->unk_910;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

@@ -9,43 +9,23 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __19WineryShopSceneCoreP18GameStateSaveImage\n"
-    "__19WineryShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lwinery_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lwinery_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "str r1, [r0]\n"
-    "movs r2, #0xd5\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lwinery_0_002c: .word __vt_19WineryShopSceneCore\n"
-    ".Lwinery_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._19WineryShopSceneCore\n"
-    "_._19WineryShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lwinery_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwinery_1_0010: .word __vt_19WineryShopSceneCore\n"
-    "\n"
+);
+
+WineryShopSceneCore::WineryShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image), phase(0), has_purchased(false), description()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+WineryShopSceneCore::~WineryShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__19WineryShopSceneCore\n"
     "Run__19WineryShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

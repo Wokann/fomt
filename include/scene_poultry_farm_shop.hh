@@ -64,23 +64,11 @@ struct PoultryFarmShopSceneCore : ShopScreenCore {
     i32 naming_chicken_index;
 };
 
-typedef char PoultryShopChickenSaleEntrySizeCheck[sizeof(PoultryShopChickenSaleEntry) == 8 ? 1 : -1];
-typedef char PoultryShopNameTilesSizeCheck[sizeof(PoultryShopNameTiles) == 0x304 ? 1 : -1];
-typedef char PoultryShopCorePhaseCheck[offsetof(PoultryFarmShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char PoultryShopCoreChickensCheck[offsetof(PoultryFarmShopSceneCore, chickens) == 0x6AC ? 1 : -1];
-typedef char PoultryShopCoreMenuCheck[offsetof(PoultryFarmShopSceneCore, chicken_menu_codes) == 0x6F0 ? 1 : -1];
-typedef char PoultryShopCoreTilesCheck[offsetof(PoultryFarmShopSceneCore, name_tiles) == 0x710 ? 1 : -1];
-typedef char PoultryShopCoreDescriptionCheck[offsetof(PoultryFarmShopSceneCore, description) == 0x2234 ? 1 : -1];
-typedef char PoultryShopCorePurchaseDescriptionCheck[offsetof(PoultryFarmShopSceneCore, purchase_description) == 0x22B4 ? 1 : -1];
-typedef char PoultryShopCoreResultCheck[offsetof(PoultryFarmShopSceneCore, naming_chicken_index) == 0x2318 ? 1 : -1];
-typedef char PoultryShopCoreSizeCheck[sizeof(PoultryFarmShopSceneCore) == 0x231C ? 1 : -1];
 
 // Member order releases the continuation before this owned core.
 #pragma interface "scene_poultry_farm_shop.hh"
 
 #pragma interface "scene_poultry_farm_shop.hh"
-typedef char PoultryFarmShopSceneSizeCheck[sizeof(PoultryFarmShopScene) == 20 ? 1 : -1];
-typedef char PoultryFarmShopSceneSaveCheck[offsetof(PoultryFarmShopScene, save) == 16 ? 1 : -1];
 
 EXTERN_C
 

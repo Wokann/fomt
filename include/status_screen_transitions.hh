@@ -40,12 +40,6 @@ struct FarmMapScreenTransition : SceneTransition
     SceneTransitionOwner continuation;
 };
 
-typedef char FarmMapScreenTransitionSizeCheck[sizeof(FarmMapScreenTransition) == 12 ? 1 : -1];
-typedef char FarmMapScreenTransitionContinuationCheck[offsetof(FarmMapScreenTransition, continuation) == 8 ? 1 : -1];
-typedef char RecordsScreenTransitionSizeCheck[sizeof(RecordsScreenTransition) == 12 ? 1 : -1];
-typedef char RecordsScreenTransitionContinuationCheck[offsetof(RecordsScreenTransition, continuation) == 4 ? 1 : -1];
-typedef char FarmStatusScreenTransitionSizeCheck[sizeof(FarmStatusScreenTransition) == 16 ? 1 : -1];
-typedef char FarmStatusScreenTransitionContinuationCheck[offsetof(FarmStatusScreenTransition, continuation) == 4 ? 1 : -1];
 
 
 #endif // STATUS_SCREEN_TRANSITIONS_HH

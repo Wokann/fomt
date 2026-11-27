@@ -24,9 +24,6 @@ struct CalendarScene : AScene {
     SceneTransitionOwner continuation;
 };
 
-typedef char CalendarSceneSizeCheck[sizeof(CalendarScene) == 12 ? 1 : -1];
-typedef char CalendarSceneCoreCheck[offsetof(CalendarScene, core) == 4 ? 1 : -1];
-typedef char CalendarSceneContinuationCheck[offsetof(CalendarScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

@@ -4,86 +4,56 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectThomasSchedule\n"
-    "SelectThomasSchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr2, [r4, #1]\n"
-    "    ldrb\tr3, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    cmp\tr2, #3\n"
-    "    bne .Ljp_0803E3B4\n"
-    "    cmp\tr3, #2\n"
-    "    bne .Ljp_0803E3B4\n"
-    "    ldr r1, .Ljp_0803E3A8\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    movs\tr1, #134\t@ 0x86\n"
-    "    lsls\tr1, r1, #11\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #128\t@ 0x80\n"
-    "    lsls\tr1, r1, #6\n"
-    "    cmp\tr0, r1\n"
-    "    bne .Ljp_0803E3B4\n"
-    "    ldr r1, .Ljp_0803E3AC\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803E3B0\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803E3EC\n"
+);
+
+#include "npc_schedule_thomas.hh"
+#include "game_state.hh"
+extern "C" u32 SelectThomasSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    /* +0x2178 is GameStateSaveImage::event_state (offset 0x214C) + 0x2C,
+       a bitfield cell whose bits 12-14/17 are compared; +0x217A is
+       event_state + 0x2E, from which bits 2-3 are extracted. The exact
+       named bitfields are not resolved yet (H3 exception). */
+    if (season == 3 && day == 2
+        && (*(u32 const *)((u8 const *)context + 0x2178) & (0x86u << 11))
+            == (0x80u << 6))
+    {
+        if ((((u32)((u8 const *)context)[0x217A] << 27) >> 30) != 2)
+            return 7;
+        return 0;
+    }
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 6;
+    if (weekday == 6)
+    {
+        if (*(u32 const *)((u8 const *)context + 8) == 0)
+            return 2;
+        else
+            return 3;
+    }
+    if (weekday == 0)
+    {
+        if (*(u32 const *)((u8 const *)context + 8) == 0)
+            return 4;
+        else
+            return 5;
+    }
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0803E3A8: .word 0x00002178\n"
-    ".Ljp_0803E3AC: .word 0x0000217A\n"
-    ".Ljp_0803E3B0:\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3B4:\n"
-    "    adds\tr0, r2, #0\n"
-    "    adds\tr1, r3, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E3C6\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3C6:\n"
-    "    cmp\tr4, #6\n"
-    "    bne .Ljp_0803E3D8\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E3D4\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3D4:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3D8:\n"
-    "    cmp\tr4, #0\n"
-    "    bne .Ljp_0803E3EA\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E3E6\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3E6:\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E3EC\n"
-    ".Ljp_0803E3EA:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803E3EC:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
 );
 
 extern "C" ThomasScheduleData const gThomasScheduleData = {

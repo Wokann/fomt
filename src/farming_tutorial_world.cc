@@ -1712,14 +1712,24 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     ".Lfarming_tutorial_world_0d84: .word 0x1038\n"
-    "thumb_func_start func_080AD774\n"
-    "func_080AD774:\n"
-    "ldr r0, [r0, #4]\n"
-    "bx lr\n"
-    "thumb_func_start func_080AD778\n"
-    "func_080AD778:\n"
-    "ldr r0, [r0, #4]\n"
-    "bx lr\n"
+);
+
+extern "C" GameSceneWorldMap * func_080AD774(FarmingTutorialWorld * world)
+{
+    return world->data.map.value;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" GameSceneWorldMap * func_080AD778(FarmingTutorialWorld * world)
+{
+    return world->data.map.value;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start vfunc_BC__20FarmingTutorialWorldRC8LocationUs\n"
     "vfunc_BC__20FarmingTutorialWorldRC8LocationUs:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1934,315 +1944,329 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Lfarming_tutorial_world_0f48: .word 0x1028\n"
-    "thumb_func_start SetPlot__20FarmingTutorialWorldiiRC9FieldPlot\n"
-    "SetPlot__20FarmingTutorialWorldiiRC9FieldPlot:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-#if defined(REGION_JP)
-    "bl SetPlot__18FarmingTutorialMapiiRC9FieldPlot\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "bl SetPlot__18FarmingTutorialMapiiRC9FieldPlot\n"
-#endif
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start RefreshChickenCoopIncubator__20FarmingTutorialWorld29MaryChickenCoopIncubatorIndex\n"
-    "RefreshChickenCoopIncubator__20FarmingTutorialWorld29MaryChickenCoopIncubatorIndex:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A63B8\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start SwapRecordPlayerAlbum__20FarmingTutorialWorld17MaryItemArticleId\n"
-    "SwapRecordPlayerAlbum__20FarmingTutorialWorld17MaryItemArticleId:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A635C\n"
-    "movs r0, #0\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "thumb_func_start RemoveRecordPlayerAlbum__20FarmingTutorialWorld\n"
-    "RemoveRecordPlayerAlbum__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A6300\n"
-    "movs r0, #0\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "thumb_func_start RefreshChickenFeedTrough__20FarmingTutorialWorld30MaryChickenCoopFeedTroughIndex\n"
-    "RefreshChickenFeedTrough__20FarmingTutorialWorld30MaryChickenCoopFeedTroughIndex:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl RefreshCoopFeedTrough\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start RefreshBarnFeedTrough__20FarmingTutorialWorld23MaryBarnFeedTroughIndex\n"
-    "RefreshBarnFeedTrough__20FarmingTutorialWorld23MaryBarnFeedTroughIndex:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl RefreshBarnFeedTrough\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start RestoreAfterRecipeMenu__20FarmingTutorialWorld\n"
-    "RestoreAfterRecipeMenu__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A62BC\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start PrepareRecipeMenuTransition__20FarmingTutorialWorld\n"
-    "PrepareRecipeMenuTransition__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A6278\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start RestoreAfterCookingMenu__20FarmingTutorialWorld\n"
-    "RestoreAfterCookingMenu__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A6234\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start PrepareCookingMenuTransition__20FarmingTutorialWorld\n"
-    "PrepareCookingMenuTransition__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A61F0\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start RestoreAfterClockMenu__20FarmingTutorialWorld\n"
-    "RestoreAfterClockMenu__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A6194\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start PrepareClockMenuTransition__20FarmingTutorialWorld\n"
-    "PrepareClockMenuTransition__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl func_080A6138\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start StartShipmentBoxDepositAnimation__20FarmingTutorialWorld\n"
-    "StartShipmentBoxDepositAnimation__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl StartWorldMapTilePatchCountdown\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start func_080AD9DC\n"
-    "func_080AD9DC:\n"
-    "ldr r1, .Lfarming_tutorial_world_0ff8\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_0ff8: .word 0xff4\n"
-    "thumb_func_start vfunc_7C__20FarmingTutorialWorld\n"
-    "vfunc_7C__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1004\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1004: .word 0xfc4\n"
-    "thumb_func_start vfunc_78__20FarmingTutorialWorld\n"
-    "vfunc_78__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1010\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1010: .word 0xf94\n"
-    "thumb_func_start vfunc_74__20FarmingTutorialWorld\n"
-    "vfunc_74__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_101c\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_101c: .word 0xf64\n"
-    "thumb_func_start vfunc_70__20FarmingTutorialWorld\n"
-    "vfunc_70__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1028\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1028: .word 0xf34\n"
-    "thumb_func_start func_080ADA18\n"
-    "func_080ADA18:\n"
-    "ldr r1, .Lfarming_tutorial_world_1034\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1034: .word 0xf04\n"
-    "thumb_func_start func_080ADA24\n"
-    "func_080ADA24:\n"
-    "ldr r1, .Lfarming_tutorial_world_1040\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1040: .word 0xed4\n"
-    "thumb_func_start func_080ADA30\n"
-    "func_080ADA30:\n"
-    "ldr r1, .Lfarming_tutorial_world_104c\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_104c: .word 0xea4\n"
-    "thumb_func_start vfunc_6C__20FarmingTutorialWorld\n"
-    "vfunc_6C__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1058\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1058: .word 0xe74\n"
-    "thumb_func_start vfunc_60__20FarmingTutorialWorld\n"
-    "vfunc_60__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1064\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1064: .word 0xe44\n"
-    "thumb_func_start vfunc_5C__20FarmingTutorialWorld\n"
-    "vfunc_5C__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1070\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1070: .word 0xe14\n"
-    "thumb_func_start vfunc_64__20FarmingTutorialWorld\n"
-    "vfunc_64__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_107c\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_107c: .word 0xde4\n"
-    "thumb_func_start vfunc_68__20FarmingTutorialWorld\n"
-    "vfunc_68__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1088\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_1088: .word 0xdb4\n"
-    "thumb_func_start GetEntityAuxiliarySprites__20FarmingTutorialWorld\n"
-    "GetEntityAuxiliarySprites__20FarmingTutorialWorld:\n"
-    "ldr r1, .Lfarming_tutorial_world_1094\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".Lfarming_tutorial_world_1094: .word 0x1024\n"
-    "thumb_func_start GetMapPixelHeight__20FarmingTutorialWorldUi\n"
-    "GetMapPixelHeight__20FarmingTutorialWorldUi:\n"
-    "push {lr}\n"
-    "sub sp, #4\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #0\n"
-    "str r1, [sp]\n"
-    "movs r1, #1\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl SelectMapDataId\n"
-    "bl GetMapData\n"
-    "ldrh r0, [r0, #0x22]\n"
-    "lsls r0, r0, #3\n"
-    "add sp, #4\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "thumb_func_start GetMapPixelWidth__20FarmingTutorialWorldUi\n"
-    "GetMapPixelWidth__20FarmingTutorialWorldUi:\n"
-    "push {lr}\n"
-    "sub sp, #4\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #0\n"
-    "str r1, [sp]\n"
-    "movs r1, #1\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl SelectMapDataId\n"
-    "bl GetMapData\n"
-    "ldrh r0, [r0, #0x20]\n"
-    "lsls r0, r0, #3\n"
-    "add sp, #4\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    "thumb_func_start SetSpritePaletteColors__20FarmingTutorialWorldPCUcUiUc\n"
-    "SetSpritePaletteColors__20FarmingTutorialWorldPCUcUiUc:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "lsls r5, r3, #0x18\n"
-    "lsrs r5, r5, #0x18\n"
-    "movs r0, #0xde\n"
-    "lsls r0, r0, #1\n"
-    "adds r4, r4, r0\n"
-    "lsls r0, r2, #5\n"
-    "adds r0, r0, r2\n"
-    "lsls r0, r0, #2\n"
-    "adds r4, r4, r0\n"
-    "adds r0, r4, #0\n"
-    "movs r2, #0x20\n"
-    "bl memcpy\n"
-    "adds r1, r4, #0\n"
-    "adds r1, #0x82\n"
-    "movs r0, #1\n"
-    "strb r0, [r1]\n"
-    "adds r4, #0x83\n"
-    "strb r5, [r4]\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start GetSpritePaletteBank__20FarmingTutorialWorldUi\n"
-    "GetSpritePaletteBank__20FarmingTutorialWorldUi:\n"
-    "push {r4, lr}\n"
-    "movs r2, #0xce\n"
-    "lsls r2, r2, #1\n"
-    "adds r3, r0, r2\n"
-    "adds r4, r3, r1\n"
-    "ldrb r0, [r4]\n"
-    "adds r2, r0, #0\n"
-    "subs r2, #0x10\n"
-    "cmp r2, #0\n"
-    "bge .Lfarming_tutorial_world_1130\n"
-    "adds r0, r3, #0\n"
-    "bl AcquirePaletteBank__21GameScenePaletteCacheUi\n"
-    "adds r2, r0, #0\n"
-    "adds r0, #0x10\n"
-    "strb r0, [r4]\n"
-    ".Lfarming_tutorial_world_1130:\n"
-    "adds r0, r2, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "thumb_func_start ClearSpritePaletteResourceFlag__20FarmingTutorialWorldUi\n"
-    "ClearSpritePaletteResourceFlag__20FarmingTutorialWorldUi:\n"
-    "lsls r2, r1, #5\n"
-    "adds r2, r2, r1\n"
-    "lsls r2, r2, #2\n"
-    "adds r0, r0, r2\n"
-    "ldr r1, .Lfarming_tutorial_world_114c\n"
-    "adds r0, r0, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_114c: .word 0x23d\n"
-    "thumb_func_start GetEntity__C20FarmingTutorialWorldUi\n"
-    "GetEntity__C20FarmingTutorialWorldUi:\n"
-    "adds r0, #8\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "thumb_func_start GetEntity__20FarmingTutorialWorldUi\n"
-    "GetEntity__20FarmingTutorialWorldUi:\n"
-    "adds r0, #8\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
+);
+
+void FarmingTutorialWorld::SetPlot(i32 x, i32 y, FieldPlot const & plot)
+{
+    ((FarmingTutorialMap *)data.map.value)->SetPlot(x, y, plot);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RefreshChickenCoopIncubator(MaryChickenCoopIncubatorIndex incubator)
+{
+    func_080A63B8(data.map.value, incubator);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+MaryItemArticleId FarmingTutorialWorld::SwapRecordPlayerAlbum(MaryItemArticleId article)
+{
+    func_080A635C(data.map.value);
+    return (MaryItemArticleId)0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+MaryItemArticleId FarmingTutorialWorld::RemoveRecordPlayerAlbum()
+{
+    func_080A6300(data.map.value);
+    return (MaryItemArticleId)0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RefreshChickenFeedTrough(MaryChickenCoopFeedTroughIndex trough)
+{
+    RefreshCoopFeedTrough(data.map.value, trough);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RefreshBarnFeedTrough(MaryBarnFeedTroughIndex trough)
+{
+    ::RefreshBarnFeedTrough(data.map.value, trough);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RestoreAfterRecipeMenu()
+{
+    func_080A62BC(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::PrepareRecipeMenuTransition()
+{
+    func_080A6278(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RestoreAfterCookingMenu()
+{
+    func_080A6234(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::PrepareCookingMenuTransition()
+{
+    func_080A61F0(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::RestoreAfterClockMenu()
+{
+    func_080A6194(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::PrepareClockMenuTransition()
+{
+    func_080A6138(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::StartShipmentBoxDepositAnimation()
+{
+    StartWorldMapTilePatchCountdown(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" IndexedResourceArchive * func_080AD9DC(FarmingTutorialWorld * world)
+{
+    return &world->data.unk_FF0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_7C()
+{
+    return &data.unk_FC0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_78()
+{
+    return &data.unk_F90;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_74()
+{
+    return &data.unk_F60;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_70()
+{
+    return &data.unk_F30;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" IndexedResourceArchive * func_080ADA18(FarmingTutorialWorld * world)
+{
+    return &world->data.unk_F00;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" IndexedResourceArchive * func_080ADA24(FarmingTutorialWorld * world)
+{
+    return &world->data.unk_ED0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" IndexedResourceArchive * func_080ADA30(FarmingTutorialWorld * world)
+{
+    return &world->data.unk_EA0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_6C()
+{
+    return &data.unk_E70;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_60()
+{
+    return &data.unk_E40;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_5C()
+{
+    return &data.unk_E10;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_64()
+{
+    return &data.unk_DE0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+IndexedResourceArchive * FarmingTutorialWorld::vfunc_68()
+{
+    return &data.actor_archive;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+EntityAuxiliarySprites * FarmingTutorialWorld::GetEntityAuxiliarySprites()
+{
+    return data.entity_auxiliary_sprites.Get();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u32 SelectMapDataId(u32 map_id, u32 a, u32 b, u32 c, u32 d);
+i32 FarmingTutorialWorld::GetMapPixelHeight(u32 map_id)
+{
+    return GetMapData(SelectMapDataId(map_id, 1, 0, 0, 0))->height * 8;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+i32 FarmingTutorialWorld::GetMapPixelWidth(u32 map_id)
+{
+    return GetMapData(SelectMapDataId(map_id, 1, 0, 0, 0))->width * 8;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::SetSpritePaletteColors(u8 const * colors, u32 index, u8 value)
+{
+    GameScenePaletteResource * resource = data.palette_cache.resources;
+    resource += index;
+    memcpy(resource->unk_00, colors, 0x20);
+    resource->unk_82 = 1;
+    resource->unk_83 = value;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+i32 FarmingTutorialWorld::GetSpritePaletteBank(u32 index)
+{
+    i32 bank = data.palette_cache.encoded_palette_banks[index] - 0x10;
+    if (bank < 0)
+    {
+        bank = data.palette_cache.AcquirePaletteBank(index);
+        data.palette_cache.encoded_palette_banks[index] = bank + 0x10;
+    }
+    return bank;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::ClearSpritePaletteResourceFlag(u32 index)
+{
+    data.palette_cache.resources[index].unk_81 = 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+AEntity * FarmingTutorialWorld::GetEntity(u32 id) const
+{
+    AEntity *const * entries = data.entities;
+    entries += id;
+    return *entries;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+AEntity * FarmingTutorialWorld::GetEntity(u32 id)
+{
+    AEntity ** entries = data.entities;
+    entries += id;
+    return *entries;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start vfunc_3C__20FarmingTutorialWorldUi\n"
     "vfunc_3C__20FarmingTutorialWorldUi:\n"
     "push {r4, lr}\n"
@@ -2263,43 +2287,58 @@ asm_unified(
     "pop {r4}\n"
     "pop {r0}\n"
     "bx r0\n"
-    "thumb_func_start IsCameraMovementComplete__20FarmingTutorialWorld\n"
-    "IsCameraMovementComplete__20FarmingTutorialWorld:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl IsWorldMapCameraMovementComplete\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    "thumb_func_start GetCameraY__20FarmingTutorialWorld\n"
-    "GetCameraY__20FarmingTutorialWorld:\n"
-    "ldr r0, [r0, #4]\n"
-    "movs r1, #0xe\n"
-    "ldrsh r0, [r0, r1]\n"
-    "bx lr\n"
-    "thumb_func_start GetCameraX__20FarmingTutorialWorld\n"
-    "GetCameraX__20FarmingTutorialWorld:\n"
-    "ldr r0, [r0, #4]\n"
-    "movs r1, #0xa\n"
-    "ldrsh r0, [r0, r1]\n"
-    "bx lr\n"
-    "thumb_func_start vfunc_14__20FarmingTutorialWorld\n"
-    "vfunc_14__20FarmingTutorialWorld:\n"
-    "ldr r0, [r0, #4]\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "thumb_func_start PanCameraTo__20FarmingTutorialWorldiiUi\n"
-    "PanCameraTo__20FarmingTutorialWorldiiUi:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl PanWorldMapCameraTo\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start SetCameraPosition__20FarmingTutorialWorldii\n"
-    "SetCameraPosition__20FarmingTutorialWorldii:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl SetWorldMapCameraPosition\n"
-    "pop {r0}\n"
-    "bx r0\n"
+);
+
+bool FarmingTutorialWorld::IsCameraMovementComplete()
+{
+    return IsWorldMapCameraMovementComplete(data.map.value);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+i32 FarmingTutorialWorld::GetCameraY()
+{
+    return data.map->y.parts.integer;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+i32 FarmingTutorialWorld::GetCameraX()
+{
+    return data.map->x.parts.integer;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 FarmingTutorialWorld::vfunc_14()
+{
+    return data.map->map;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::PanCameraTo(i32 x, i32 y, u32 speed)
+{
+    PanWorldMapCameraTo(data.map.value, x, y, speed);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void FarmingTutorialWorld::SetCameraPosition(i32 x, i32 y)
+{
+    SetWorldMapCameraPosition(data.map.value, x, y);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );

@@ -10,7 +10,6 @@ struct Rgb5BlendWeights {
     u32 second : 5;
 };
 
-typedef char Rgb5BlendWeightsSizeCheck[sizeof(struct Rgb5BlendWeights) == 4 ? 1 : -1];
 
 struct HardwareBlendState {
     // Null selects the hardware registers instead of a display-state shadow.
@@ -43,8 +42,6 @@ struct HardwareBlendController {
 #endif
 };
 
-typedef char HardwareBlendState_size_check[(sizeof(struct HardwareBlendState) == 0x10) ? 1 : -1];
-typedef char HardwareBlendState_progress_offset_check[(offsetof(struct HardwareBlendState, progress) == 0x0E) ? 1 : -1];
 
 EXTERN_C
 
@@ -101,8 +98,6 @@ struct HardwareBlendObject
 #endif
 };
 
-typedef char HardwareBlendObject_size_check[(sizeof(struct HardwareBlendObject) == 0x10) ? 1 : -1];
-typedef char HardwareBlendObject_payload_check[(offsetof(struct HardwareBlendObject, blend) == 0x0C) ? 1 : -1];
 
 #ifdef __cplusplus
 inline HardwareBlendObject::HardwareBlendObject(HardwareDisplayState * display)

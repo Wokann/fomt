@@ -3,38 +3,14 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "thumb_func_start __18FarmingTutorialMap\n"
-    "__18FarmingTutorialMap:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r6, r0, #0\n"
-    "bl __17GameSceneWorldMap\n"
-    "adds r1, r6, #0\n"
-    "adds r1, #0x90\n"
-    "ldr r0, .Lmenu_10_6_0030\n"
-    "str r0, [r1]\n"
-    "adds r4, r6, #0\n"
-    "adds r4, #0x94\n"
-    "movs r5, #0x53\n"
-    "movs r7, #1\n"
-    "rsbs r7, r7, #0\n"
-    ".Lmenu_10_6_001a:\n"
-    "adds r0, r4, #0\n"
-    "bl __9FieldPlot\n"
-    "adds r4, #4\n"
-    "subs r5, #1\n"
-    "cmp r5, r7\n"
-    "bne .Lmenu_10_6_001a\n"
-    "adds r0, r6, #0\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-#if defined(REGION_JP)
-    ".Lmenu_10_6_0030: .word __vt_18FarmingTutorialMap\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-    ".Lmenu_10_6_0030: .word __vt_18FarmingTutorialMap\n"
-#endif
-    "\n"
+);
+
+FarmingTutorialMap::FarmingTutorialMap()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start LoadTimeOfDayPalette__18FarmingTutorialMapiUi\n"
     "LoadTimeOfDayPalette__18FarmingTutorialMapiUi:\n"
     "push {r4, r5, lr}\n"

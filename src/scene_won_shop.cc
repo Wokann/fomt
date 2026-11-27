@@ -4,49 +4,33 @@
 #include "game_scene.hh"
 #include "scene_won_shop.hh"
 #include "item.hh"
+#include "shop_ui.hh"
 
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __16WonShopSceneCoreP18GameStateSaveImage\n"
-    "__16WonShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lwon_shop_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lwon_shop_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "movs r2, #0xe1\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lwon_shop_0_002c: .word __vt_16WonShopSceneCore\n"
-    ".Lwon_shop_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._16WonShopSceneCore\n"
-    "_._16WonShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lwon_shop_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwon_shop_1_0010: .word __vt_16WonShopSceneCore\n"
-    "\n"
+);
+
+WonShopSceneCore::WonShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image)
+{
+    description[0] = '\0';
+    phase = 0;
+    has_purchased = false;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+WonShopSceneCore::~WonShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start UpdateDescription__16WonShopSceneCoreUi\n"
     "UpdateDescription__16WonShopSceneCoreUi:\n"
     "push {r4, r5, lr}\n"
@@ -1787,39 +1771,14 @@ asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start _._12WonShopScene\n"
-    "_._12WonShopScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lwon_shop_5_003c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #8]\n"
-    "cmp r1, #0\n"
-    "beq .Lwon_shop_5_001c\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lwon_shop_5_001c:\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lwon_shop_5_002e\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lwon_shop_5_002e:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwon_shop_5_003c: .word __vt_12WonShopScene\n"
+);
+
+WonShopScene::~WonShopScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -1834,17 +1793,15 @@ asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start IsArticle__C16WonShopSceneCorei\n"
-    "IsArticle__C16WonShopSceneCorei:\n"
-    "push {lr}\n"
-    "movs r0, #0\n"
-    "cmp r1, #2\n"
-    "bgt .Lwon_shop_6_000a\n"
-    "movs r0, #1\n"
-    ".Lwon_shop_6_000a:\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
+);
+
+bool WonShopSceneCore::IsArticle(i32 index) const
+{
+    return index <= 2;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

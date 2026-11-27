@@ -1,4 +1,6 @@
 #include "game_scene_actions.hh"
+#include "game_scene_controller.hh"
+#include "game_scene_state.hh"
 
 asm_unified(
     ".text\n"
@@ -6,22 +8,18 @@ asm_unified(
     "\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start StartSceneEventScript\n"
-    "StartSceneEventScript: @ 0x080DC294\n"
-    "\tpush {r4, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tldr r0, .L080DC2B0 @ =gCurrentGameSceneScriptController\n"
-    "\tldr r0, [r0]\n"
-    "\tadds r0, #8\n"
-    "\tbl LoadById__12ScriptEngineii\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl SuspendSceneWorldForScript\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080DC2B0: .word gCurrentGameSceneScriptController\n"
-    "\n"
+);
+
+extern "C" void StartSceneEventScript(GameSceneState * state, i32 script_id,
+    i32 context)
+{
+    gCurrentGameSceneScriptController->script_engine.LoadById(script_id, context);
+
+    SuspendSceneWorldForScript(state);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start ChangeSceneMap\n"
     "ChangeSceneMap: @ 0x080DC2B4\n"
     "\tpush {r4, r5, r6, r7, lr}\n"

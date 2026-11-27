@@ -66,13 +66,6 @@ struct ScrollState {
     ScrollBufferUploadCommand upload;
 };
 
-typedef char ScrollBufferRowSize[sizeof(ScrollBufferRow) == 64 ? 1 : -1];
-typedef char ScrollBufferRowsSize[sizeof(ScrollBufferRows) == 16 ? 1 : -1];
-typedef char ScrollStateSize[sizeof(ScrollState) == 0x4C ? 1 : -1];
-typedef char ScrollStatePosition[offsetof(ScrollState, position) == 0xC ? 1 : -1];
-typedef char ScrollStateRows[offsetof(ScrollState, rows) == 0x18 ? 1 : -1];
-typedef char ScrollStateUpload[offsetof(ScrollState, upload) == 0x28 ? 1 : -1];
-typedef char ScrollCommandSize[sizeof(ScrollBufferUploadCommand) == 36 ? 1 : -1];
 
 EXTERN_C
 

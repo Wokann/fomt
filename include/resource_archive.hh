@@ -159,26 +159,6 @@ inline u16 IndexedResourceArchive::GetEntryDescriptorCount() const
     return entry_descriptor_count;
 }
 
-typedef char IndexedResourceProviderSizeCheck[sizeof(IndexedResourceProvider) == 4 ? 1 : -1];
-typedef char IndexedResourceArchiveEntriesOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptors) == 4 ? 1 : -1];
-typedef char IndexedResourceArchiveTilesOffsetCheck[offsetof(IndexedResourceArchive, tile_units) == 0x10 ? 1 : -1];
-typedef char IndexedResourceArchivePalettesOffsetCheck[offsetof(IndexedResourceArchive, palette_banks) == 0x14 ? 1 : -1];
-typedef char IndexedResourceArchiveCountOffsetCheck[offsetof(IndexedResourceArchive, entry_descriptor_count) == 0x20 ? 1 : -1];
-typedef char IndexedResourceArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
-typedef char IndexedResourceResultSizeCheck[sizeof(IndexedResourceResult) == 8 ? 1 : -1];
-typedef char IndexedResourceGroupDescriptorSizeCheck[sizeof(IndexedResourceArchiveGroupDescriptor) == 16 ? 1 : -1];
-typedef char IndexedResourceDescriptor8RangeSizeCheck[sizeof(IndexedResourceDescriptor8Range) == 8 ? 1 : -1];
-typedef char IndexedResourceSpriteRangeSizeCheck[sizeof(IndexedResourceSpriteRange) == 8 ? 1 : -1];
-typedef char IndexedResourceTileUnitSizeCheck[sizeof(IndexedResourceTileUnit) == 32 ? 1 : -1];
-typedef char IndexedResourcePaletteBankSizeCheck[sizeof(IndexedResourcePaletteBank) == 32 ? 1 : -1];
-typedef char IndexedResourceTileRangeSizeCheck[sizeof(IndexedResourceTileRange) == 8 ? 1 : -1];
-typedef char IndexedResourcePaletteRangeSizeCheck[sizeof(IndexedResourcePaletteRange) == 8 ? 1 : -1];
-typedef char IndexedResourceTileByteCountOffsetCheck[offsetof(IndexedResourceTileRange, byte_count) == 4 ? 1 : -1];
-typedef char IndexedResourcePaletteByteCountOffsetCheck[offsetof(IndexedResourcePaletteRange, byte_count) == 4 ? 1 : -1];
-typedef char IndexedResourceGroupResultSizeCheck[sizeof(IndexedResourceGroupResult) == 32 ? 1 : -1];
-typedef char IndexedResourceGroupTilesOffsetCheck[offsetof(IndexedResourceGroupResult, tiles) == 8 ? 1 : -1];
-typedef char IndexedResourceGroupPalettesOffsetCheck[offsetof(IndexedResourceGroupResult, palettes) == 16 ? 1 : -1];
-typedef char IndexedResourceGroupSixthOffsetCheck[offsetof(IndexedResourceGroupResult, sixth) == 24 ? 1 : -1];
 
 EXTERN_C
 

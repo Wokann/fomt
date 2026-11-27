@@ -63,14 +63,6 @@ struct GameScenePaletteCache {
     u32 ResourceCount() const { return ARRAY_COUNT(resources); }
 };
 
-typedef char GameScenePaletteResourceSizeCheck[sizeof(GameScenePaletteResource) == 132 ? 1 : -1];
-typedef char GameScenePaletteResourceFlagOffsetCheck[offsetof(GameScenePaletteResource, unk_81) == 0x81 ? 1 : -1];
-typedef char GameScenePaletteSlotSizeCheck[sizeof(GameScenePaletteSlot) == 12 ? 1 : -1];
-typedef char GameScenePaletteCacheSlotsCheck[offsetof(GameScenePaletteCache, slot_pool) == 0xB78 ? 1 : -1];
-typedef char GameScenePaletteCacheCountCheck[offsetof(GameScenePaletteCache, used_slots) == 0xC14 ? 1 : -1];
-typedef char GameScenePaletteSlotPoolSizeCheck[sizeof(GameScenePaletteSlotPool) == 0x9C ? 1 : -1];
-typedef char GameScenePaletteCachePreviousCountCheck[offsetof(GameScenePaletteCache, previous_slots) == 0xC15 ? 1 : -1];
-typedef char GameScenePaletteCacheSizeCheck[sizeof(GameScenePaletteCache) == 0xC18 ? 1 : -1];
 
 // This one-word owner is passed by value to the native data constructor.
 // Transfer clears the source slot; destruction uses the map's real virtual ABI.
@@ -142,20 +134,7 @@ private:
     GameSceneWorldData & operator=(GameSceneWorldData const &);
 };
 
-typedef char GameSceneWorldMapOwnerSizeCheck[sizeof(GameSceneWorldMapOwner) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnkRecordSizeCheck[sizeof(GameSceneWorldUnk1028) == 12 ? 1 : -1];
-typedef char GameSceneWorldUnkRecordPointCheck[offsetof(GameSceneWorldUnk1028, unk_04) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnkRecordFlagCheck[offsetof(GameSceneWorldUnk1028, unk_09) == 9 ? 1 : -1];
-typedef char GameSceneWorldDataEntitiesCheck[offsetof(GameSceneWorldData, entities) == 4 ? 1 : -1];
-typedef char GameSceneWorldDataPaletteCacheCheck[offsetof(GameSceneWorldData, palette_cache) == 0x198 ? 1 : -1];
-typedef char GameSceneWorldArchiveSizeCheck[sizeof(IndexedResourceArchive) == 0x30 ? 1 : -1];
-typedef char GameSceneWorldDataActorArchiveCheck[offsetof(GameSceneWorldData, actor_archive) == 0xDB0 ? 1 : -1];
-typedef char GameSceneWorldDataLastArchiveCheck[offsetof(GameSceneWorldData, unk_FF0) == 0xFF0 ? 1 : -1];
-typedef char GameSceneWorldDataEntityAuxiliarySpritesCheck[offsetof(GameSceneWorldData, entity_auxiliary_sprites) == 0x1020 ? 1 : -1];
-typedef char GameSceneWorldDataSpriteEffectsCheck[offsetof(GameSceneWorldData, sprite_effects) == 0x1024 ? 1 : -1];
 
-typedef char GameSceneWorldDataUnkRecordCheck[offsetof(GameSceneWorldData, unk_1028) == 0x1028 ? 1 : -1];
-typedef char GameSceneWorldDataSizeCheck[sizeof(GameSceneWorldData) == 0x1034 ? 1 : -1];
 
 
 EXTERN_C

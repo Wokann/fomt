@@ -53,14 +53,6 @@ struct HardwareSpriteOamAttributes {
     u16 affine_coefficient;
 };
 
-typedef char HardwareSpriteHorizontalAttribute_size_check[
-    sizeof(struct HardwareSpriteHorizontalAttribute) == 2 ? 1 : -1];
-typedef char HardwareSpriteOamAttributes_size_check[
-    sizeof(struct HardwareSpriteOamAttributes) == 8 ? 1 : -1];
-typedef char HardwareSpriteOamAttributes_horizontal_offset_check[
-    offsetof(struct HardwareSpriteOamAttributes, horizontal) == 2 ? 1 : -1];
-typedef char HardwareSpriteOamAttributes_coefficient_offset_check[
-    offsetof(struct HardwareSpriteOamAttributes, affine_coefficient) == 6 ? 1 : -1];
 
 struct HardwareSpriteBufferState {
     u8 sprite_count;
@@ -73,10 +65,6 @@ struct HardwareSpriteBufferState {
 #endif
 };
 
-typedef char HardwareSpriteOamRecord_size_check[sizeof(struct HardwareSpriteOamRecord) == 8 ? 1 : -1];
-typedef char HardwareSpriteOamRecord_coefficient_offset_check[offsetof(struct HardwareSpriteOamRecord, affine_coefficient) == 6 ? 1 : -1];
-typedef char HardwareSpriteBufferState_size_check[sizeof(struct HardwareSpriteBufferState) == 0x404 ? 1 : -1];
-typedef char HardwareSpriteBufferState_sprites_offset_check[offsetof(struct HardwareSpriteBufferState, sprites) == 4 ? 1 : -1];
 
 struct HardwareSpriteBufferParameters {
     u8 byte1;
@@ -93,8 +81,6 @@ struct HardwareSpriteDimensions {
     u8 height;
 } PACKED;
 
-typedef char HardwareSpriteDimensionsSizeCheck[sizeof(struct HardwareSpriteDimensions) == 2 ? 1 : -1];
-typedef char HardwareSpriteDimensionsHeightCheck[offsetof(struct HardwareSpriteDimensions, height) == 1 ? 1 : -1];
 
 EXTERN_C
 

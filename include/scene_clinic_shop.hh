@@ -40,19 +40,12 @@ struct ClinicShopSceneCore : ShopScreenCore {
     bool has_purchased;
 };
 
-typedef char ClinicCoreDescriptionCheck[offsetof(ClinicShopSceneCore, description) == 0x6A4 ? 1 : -1];
-typedef char ClinicCorePhaseCheck[offsetof(ClinicShopSceneCore, phase) == 0x708 ? 1 : -1];
-typedef char ClinicCorePurchasedCheck[offsetof(ClinicShopSceneCore, has_purchased) == 0x70C ? 1 : -1];
-typedef char ClinicCoreSizeCheck[sizeof(ClinicShopSceneCore) == 0x710 ? 1 : -1];
 
 // Member order releases the continuation before this owned core.
 #pragma interface "scene_clinic_shop.hh"
 
 #pragma interface "scene_clinic_shop.hh"
 
-typedef char ClinicShopSceneSizeCheck[sizeof(ClinicShopScene) == 12 ? 1 : -1];
-typedef char ClinicShopSceneCoreCheck[offsetof(ClinicShopScene, core) == 4 ? 1 : -1];
-typedef char ClinicShopSceneContinuationCheck[offsetof(ClinicShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

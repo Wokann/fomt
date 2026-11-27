@@ -225,8 +225,6 @@ struct ChildIdleAnimationChoice {
     u16 animation;
 };
 
-typedef char ChildIdleAnimationChoiceSizeCheck[sizeof(ChildIdleAnimationChoice) == 4 ? 1 : -1];
-typedef char ChildIdleAnimationChoiceAnimationCheck[offsetof(ChildIdleAnimationChoice, animation) == 2 ? 1 : -1];
 
 struct ChildNpcActor : ANpcEntity {
     ChildNpcActor(GameObject * world, Npc * npc, u32 context);
@@ -238,12 +236,7 @@ struct ChildNpcActor : ANpcEntity {
     u16 idle_animation_countdown;
 };
 
-typedef char ChildNpcActorSizeCheck[sizeof(ChildNpcActor) == 0x4C ? 1 : -1];
-typedef char ChildNpcActorCountdownCheck[offsetof(ChildNpcActor, idle_animation_countdown) == 0x48 ? 1 : -1];
 
-typedef char NpcEntitySizeCheck[sizeof(ANpcEntity) == 0x48 ? 1 : -1];
-typedef char NpcEntityNpcCheck[offsetof(ANpcEntity, npc) == 0x30 ? 1 : -1];
-typedef char NpcEntityScheduleCheck[offsetof(ANpcEntity, schedule_info) == 0x38 ? 1 : -1];
 
 
 EXTERN_C

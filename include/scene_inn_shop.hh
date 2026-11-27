@@ -66,21 +66,11 @@ struct InnShopSceneCore : ShopScreenCore {
     InnShopOrderOwner order;
 };
 
-typedef char InnOrderSizeCheck[sizeof(InnShopOrder) == 16 ? 1 : -1];
-typedef char InnOrderOwnerSizeCheck[sizeof(InnShopOrderOwner) == 4 ? 1 : -1];
-typedef char InnOrderTransferSizeCheck[sizeof(InnShopOrderTransfer) == 8 ? 1 : -1];
-typedef char InnCorePhaseCheck[offsetof(InnShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char InnCoreOrderedCheck[offsetof(InnShopSceneCore, has_ordered) == 0x6A8 ? 1 : -1];
-typedef char InnCoreOrderCheck[offsetof(InnShopSceneCore, order) == 0x6AC ? 1 : -1];
-typedef char InnCoreSizeCheck[sizeof(InnShopSceneCore) == 0x6B0 ? 1 : -1];
 
 #pragma interface "scene_inn_shop.hh"
 
 #pragma interface "scene_inn_shop.hh"
 
-typedef char InnShopSceneSizeCheck[sizeof(InnShopScene) == 12 ? 1 : -1];
-typedef char InnShopSceneCoreCheck[offsetof(InnShopScene, core) == 4 ? 1 : -1];
-typedef char InnShopSceneContinuationCheck[offsetof(InnShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

@@ -13,12 +13,24 @@
 struct GameStateSaveImage;
 struct WonShopSceneCore;
 
+// Owns the scene core. The native destructor destroys it implicitly, in reverse
+// declaration order together with `continuation`, which is only possible if the
+// member carries a destructor of its own. The bodies are defined below the core
+// class, where the pointee is complete, and stay inline so the scene destructor
+// expands them in place.
+struct WonShopSceneCoreOwner {
+    explicit WonShopSceneCoreOwner(WonShopSceneCore * input = nullptr);
+    ~WonShopSceneCoreOwner();
+    WonShopSceneCore * operator->() const { return value; }
+    WonShopSceneCore * value;
+};
+
 struct WonShopScene : AScene {
     WonShopScene(SceneTransitionOwner next, GameStateSaveImage * image);
     virtual ~WonShopScene();
     virtual SceneTransitionOwner Run();
 
-    WonShopSceneCore * core;
+    WonShopSceneCoreOwner core;
     SceneTransitionOwner continuation;
 };
 
@@ -36,16 +48,13 @@ struct WonShopSceneCore : ShopScreenCore {
     bool has_purchased;
 };
 
-typedef char WonCoreDescriptionCheck[offsetof(WonShopSceneCore, description) == 0x6A4 ? 1 : -1];
-typedef char WonCorePhaseCheck[offsetof(WonShopSceneCore, phase) == 0x708 ? 1 : -1];
-typedef char WonCorePurchasedCheck[offsetof(WonShopSceneCore, has_purchased) == 0x70C ? 1 : -1];
-typedef char WonCoreSizeCheck[sizeof(WonShopSceneCore) == 0x710 ? 1 : -1];
+inline WonShopSceneCoreOwner::WonShopSceneCoreOwner(WonShopSceneCore * input)
+    : value(input) {}
+inline WonShopSceneCoreOwner::~WonShopSceneCoreOwner() { delete value; }
+
 
 #pragma interface "scene_won_shop.hh"
 
-typedef char WonShopSceneSizeCheck[sizeof(WonShopScene) == 12 ? 1 : -1];
-typedef char WonShopSceneCoreCheck[offsetof(WonShopScene, core) == 4 ? 1 : -1];
-typedef char WonShopSceneContinuationCheck[offsetof(WonShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

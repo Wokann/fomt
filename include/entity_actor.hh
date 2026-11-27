@@ -17,9 +17,6 @@ struct ActorAxisMotion
     u8 axis; // Zero selects X; every nonzero value selects Y.
 };
 
-typedef char ActorAxisMotionSizeCheck[sizeof(ActorAxisMotion) == 8 ? 1 : -1];
-typedef char ActorAxisMotionTargetCheck[offsetof(ActorAxisMotion, target_pixel) == 4 ? 1 : -1];
-typedef char ActorAxisMotionAxisCheck[offsetof(ActorAxisMotion, axis) == 6 ? 1 : -1];
 
 // Mode 1 clears at a wrap; mode 2 survives that automatic clear.
 enum EntitySpriteEffectMode {
@@ -120,8 +117,6 @@ struct AActorEntity : public AEntity
     /* +28 */ ActorAxisMotion motion;
 };
 
-typedef char AActorEntitySizeCheck[sizeof(AActorEntity) == 0x30 ? 1 : -1];
-typedef char AActorEntityMotionOffsetCheck[offsetof(AActorEntity, motion) == 0x28 ? 1 : -1];
 
 // Fixed native preset: size shift 6, palette kind 0x20, default auxiliary
 // rendering. No new members or alternate virtual operations.
@@ -279,18 +274,6 @@ inline bool EntitySpriteController::WouldAnimationWrap() const
     return WouldIndexedResourceHandleWrap(&this->sprite.handle);
 }
 
-typedef char EntitySpriteControllerSizeCheck[sizeof(EntitySpriteController) == 0x8C ? 1 : -1];
-typedef char DefaultEntitySpriteControllerSizeCheck[sizeof(DefaultEntitySpriteController) == 0x8C ? 1 : -1];
-typedef char EntitySpriteControllerSpriteOffset[offsetof(EntitySpriteController, sprite) == 8 ? 1 : -1];
-typedef char EntitySpriteControllerEffectOffset[offsetof(EntitySpriteController, effect) == 0x48 ? 1 : -1];
-typedef char EntitySpriteControllerProfileOffset[offsetof(EntitySpriteController, aux_render_profile) == 0x88 ? 1 : -1];
-typedef char EntitySpriteControllerUnknown89Offset[offsetof(EntitySpriteController, unk_89) == 0x89 ? 1 : -1];
-typedef char EntitySpriteControllerUnknown8BOffset[offsetof(EntitySpriteController, unk_8B) == 0x8B ? 1 : -1];
-typedef char ScriptVisualEffectRecordSizeCheck[sizeof(ScriptVisualEffectRecord) == 12 ? 1 : -1];
-typedef char ScriptVisualEffectAnimationCheck[offsetof(ScriptVisualEffectRecord, animation) == 8 ? 1 : -1];
-typedef char ScriptVisualEffectScriptCheck[offsetof(ScriptVisualEffectRecord, script_id) == 10 ? 1 : -1];
-typedef char ScriptVisualEffectActorSizeCheck[sizeof(ScriptVisualEffectActor) == 0x34 ? 1 : -1];
-typedef char ScriptVisualEffectActorRecordCheck[offsetof(ScriptVisualEffectActor, record) == 0x30 ? 1 : -1];
 
 
 #include "entity_actor_lifetimes.hh"

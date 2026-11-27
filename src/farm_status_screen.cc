@@ -1,6 +1,8 @@
 #include "farm_status_screen.hh"
 
 #include <new>
+#include "animal.hh"
+#include <algorithm>
 
 asm_unified(
     ".text\n"
@@ -8761,15 +8763,16 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    ".global Draw__20FarmStatusAnimalPage\n"
-    "\t.thumb_func\n"
-    "Draw__20FarmStatusAnimalPage:\n"
-    "\tpush {lr}\n"
-    "\tbl Draw__14ScrollMenuPage\n"
-    "\tmovs r0, #1\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+u32 FarmStatusAnimalPage::Draw()
+{
+    ScrollMenuPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global func_08063E64\n"
     "\t.thumb_func\n"
     "func_08063E64:\n"
@@ -8793,33 +8796,37 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "\t.global func_08063E8C\n"
-    "\t.thumb_func\n"
-    "func_08063E8C:\n"
-    "\tpush {r4, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tbl IsSick__C9Livestock\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_08063BD6\n"
-    "\tmovs r0, #0x50\n"
-    "\tb .Ljp_08063BE8\n"
-    ".Ljp_08063BD6:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsUnhappy__C9Livestock\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbne .Ljp_08063BE6\n"
-    "\tmovs r0, #0x38\n"
-    "\tb .Ljp_08063BE8\n"
-    ".Ljp_08063BE6:\n"
-    "\tmovs r0, #0x44\n"
-    ".Ljp_08063BE8:\n"
-    "\tpop {r4}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+#include "livestock.hh"
+
+extern "C" u32 func_08063E8C(Livestock const * animal);
+
+u32 func_08063E8C(Livestock const * animal)
+{
+    if (animal->IsSick())
+    {
+#if defined(REGION_JP)
+        return 0x50;
+#else
+        return 0x58;
+#endif
+    }
+
+    if (animal->IsUnhappy())
+    {
+#if defined(REGION_JP)
+        return 0x44;
+#else
+        return 0x48;
+#endif
+    }
+
+    return 0x38;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global func_08063EB8\n"
     "\t.thumb_func\n"
     "func_08063EB8:\n"
@@ -30565,14 +30572,16 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "\tthumb_func_start Draw__20FarmStatusAnimalPage\n"
-    "Draw__20FarmStatusAnimalPage: @ 0x08063E58\n"
-    "\tpush {lr}\n"
-    "\tbl Draw__14ScrollMenuPage\n"
-    "\tmovs r0, #1\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+u32 FarmStatusAnimalPage::Draw()
+{
+    ScrollMenuPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_08063E64\n"
     "func_08063E64: @ 0x08063E64\n"
     "\tpush {lr}\n"
@@ -30595,32 +30604,37 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "\tthumb_func_start func_08063E8C\n"
-    "func_08063E8C: @ 0x08063E8C\n"
-    "\tpush {r4, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tbl IsSick__C9Livestock\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L08063E9E\n"
-    "\tmovs r0, #0x58\n"
-    "\tb .L08063EB0\n"
-    ".L08063E9E:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsUnhappy__C9Livestock\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L08063EAE\n"
-    "\tmovs r0, #0x38\n"
-    "\tb .L08063EB0\n"
-    ".L08063EAE:\n"
-    "\tmovs r0, #0x48\n"
-    ".L08063EB0:\n"
-    "\tpop {r4}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+#include "livestock.hh"
+
+extern "C" u32 func_08063E8C(Livestock const * animal);
+
+u32 func_08063E8C(Livestock const * animal)
+{
+    if (animal->IsSick())
+    {
+#if defined(REGION_JP)
+        return 0x50;
+#else
+        return 0x58;
+#endif
+    }
+
+    if (animal->IsUnhappy())
+    {
+#if defined(REGION_JP)
+        return 0x44;
+#else
+        return 0x48;
+#endif
+    }
+
+    return 0x38;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_08063EB8\n"
     "func_08063EB8: @ 0x08063EB8\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -43492,214 +43506,116 @@ FarmStatusScreenScene::FarmStatusScreenScene(SceneTransitionOwner next, GameStat
 
 asm_unified(
 #if defined(REGION_JP)
-    "\t.global _._21FarmStatusScreenScene\n"
-    "\t.thumb_func\n"
-    "_._21FarmStatusScreenScene:\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r5, r1, #0\n"
-    "\tldr r0, .Ljp_08069D24\n"
-    "\tstr r0, [r4]\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .Ljp_08069D04\n"
-    "\tldr r0, [r1]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".Ljp_08069D04:\n"
-    "\tldr r1, [r4, #4]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .Ljp_08069D16\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".Ljp_08069D16:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl _._6AScene\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    ".Ljp_08069D24: .word __vt_21FarmStatusScreenScene\n"
-    "\t.global Run__21FarmStatusScreenScene\n"
-    "\t.thumb_func\n"
-    "Run__21FarmStatusScreenScene:\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r5, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tbl RunScrollMenu\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r4, #8]\n"
-    "\tstr r1, [r5]\n"
-    "\tadds r0, r5, #0\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.global func_08069EB4\n"
-    "\t.thumb_func\n"
-    "func_08069EB4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountSheeps__C4Barn\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.global func_08069ED4\n"
-    "\t.thumb_func\n"
-    "func_08069ED4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountCows__C4Barn\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.global func_08069EF4\n"
-    "\t.thumb_func\n"
-    "func_08069EF4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountChickens__C4Coop\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
+);
+
+FarmStatusScreenScene::~FarmStatusScreenScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner FarmStatusScreenScene::Run()
+{
+    RunScrollMenu(core.value);
+    return continuation;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "game_state_types.hh"
+#include "farm.hh"
+
+extern "C" bool func_08069EB4(FarmStatusScreenCore const * self);
+
+bool func_08069EB4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.barn.CountSheeps() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" bool func_08069ED4(FarmStatusScreenCore const * self);
+
+bool func_08069ED4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.barn.CountCows() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" bool func_08069EF4(FarmStatusScreenCore const * self);
+
+bool func_08069EF4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.coop.CountChickens() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
-    "\tthumb_func_start _._21FarmStatusScreenScene\n"
-    "_._21FarmStatusScreenScene: @ 0x08069E58\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r5, r1, #0\n"
-    "\tldr r0, .L08069E94 @ =__vt_21FarmStatusScreenScene\n"
-    "\tstr r0, [r4]\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08069E74\n"
-    "\tldr r0, [r1]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08069E74:\n"
-    "\tldr r1, [r4, #4]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08069E86\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08069E86:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl _._6AScene\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L08069E94: .word __vt_21FarmStatusScreenScene\n"
-    "\n"
-    "\tthumb_func_start Run__21FarmStatusScreenScene\n"
-    "Run__21FarmStatusScreenScene: @ 0x08069E98\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r5, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tbl RunScrollMenu\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r4, #8]\n"
-    "\tstr r1, [r5]\n"
-    "\tadds r0, r5, #0\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\tthumb_func_start func_08069EB4\n"
-    "func_08069EB4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountSheeps__C4Barn\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "\tthumb_func_start func_08069ED4\n"
-    "func_08069ED4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountCows__C4Barn\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "\tthumb_func_start func_08069EF4\n"
-    "func_08069EF4:\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl CountChickens__C4Coop\n"
-    "\tadds r1, r0, #0\n"
-    "\trsbs r0, r1, #0\n"
-    "\torrs r0, r1\n"
-    "\tlsrs r0, r0, #0x1f\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+FarmStatusScreenScene::~FarmStatusScreenScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner FarmStatusScreenScene::Run()
+{
+    RunScrollMenu(core.value);
+    return continuation;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "game_state_types.hh"
+#include "farm.hh"
+
+extern "C" bool func_08069EB4(FarmStatusScreenCore const * self);
+
+bool func_08069EB4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.barn.CountSheeps() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" bool func_08069ED4(FarmStatusScreenCore const * self);
+
+bool func_08069ED4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.barn.CountCows() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" bool func_08069EF4(FarmStatusScreenCore const * self);
+
+bool func_08069EF4(FarmStatusScreenCore const * self)
+{
+    return self->save->farm.coop.CountChickens() != 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 

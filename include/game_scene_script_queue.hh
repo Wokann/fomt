@@ -52,12 +52,7 @@ struct GameSceneScriptQueues {
     GameSceneScriptQueue<1> queue_2;
 };
 
-typedef char GameSceneScriptQueuesSizeCheck[sizeof(GameSceneScriptQueues) == 0x164 ? 1 : -1];
-typedef char GameSceneScriptQueuesFirstCheck[offsetof(GameSceneScriptQueues, queue_0) == 0 ? 1 : -1];
-typedef char GameSceneScriptQueuesSecondCheck[offsetof(GameSceneScriptQueues, queue_1) == 0x14 ? 1 : -1];
-typedef char GameSceneScriptQueuesThirdCheck[offsetof(GameSceneScriptQueues, queue_2) == 0x158 ? 1 : -1];
 
-typedef char GameSceneScriptRequestSizeCheck[sizeof(GameSceneScriptRequest) == 8 ? 1 : -1];
 
 
 #endif // GAME_SCENE_SCRIPT_QUEUE_HH

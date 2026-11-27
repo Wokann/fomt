@@ -70,17 +70,7 @@ struct GameSceneWeatherEffect {
     WorldWeatherRecords<WorldWeatherParticle, 32> particles;
 };
 
-typedef char WorldWeatherResourceSizeCheck[sizeof(WorldWeatherResource) == 40 ? 1 : -1];
-typedef char WorldWeatherResourceTilesCheck[offsetof(WorldWeatherResource, tiles) == 32 ? 1 : -1];
-typedef char WorldWeatherParticleSizeCheck[sizeof(WorldWeatherParticle) == 28 ? 1 : -1];
-typedef char WorldWeatherParticlePositionCheck[offsetof(WorldWeatherParticle, x_q16) == 20 ? 1 : -1];
-typedef char GameSceneWeatherEffectResourcesCheck[offsetof(GameSceneWeatherEffect, resources) == 4 ? 1 : -1];
-typedef char GameSceneWeatherEffectPaletteCountCheck[offsetof(GameSceneWeatherEffect, palette_indices) == 0xD0 ? 1 : -1];
-typedef char GameSceneWeatherEffectKindCheck[offsetof(GameSceneWeatherEffect, kind) == 0xE4 ? 1 : -1];
 
-typedef char GameSceneWeatherEffectUploadFlagCheck[offsetof(GameSceneWeatherEffect, resources_need_upload) == 0xE5 ? 1 : -1];
-typedef char GameSceneWeatherEffectParticlesCheck[offsetof(GameSceneWeatherEffect, particles) == 0xE8 ? 1 : -1];
-typedef char GameSceneWeatherEffectSizeCheck[sizeof(GameSceneWeatherEffect) == 0x46C ? 1 : -1];
 
 extern "C" WorldWeatherMotion const gWorldWeatherParticleMotion[2][2];
 

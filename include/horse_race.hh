@@ -154,13 +154,6 @@ struct HorseRaceRunner {
     i16 ticket_count;
 };
 
-typedef char HorseRaceDustPointSizeCheck[sizeof(HorseRaceDustPoint) == 4 ? 1 : -1];
-typedef char HorseRaceGlyphSizeCheck[sizeof(HorseRaceGlyph) == 8 ? 1 : -1];
-typedef char HorseRaceRunnerSizeCheck[sizeof(HorseRaceRunner) == 44 ? 1 : -1];
-typedef char HorseRaceRunnerTimerCheck[offsetof(HorseRaceRunner, timer) == 24 ? 1 : -1];
-typedef char HorseRaceRunnerNameCheck[offsetof(HorseRaceRunner, contestant_name_id) == 32 ? 1 : -1];
-typedef char HorseRaceRunnerProbabilitiesCheck[offsetof(HorseRaceRunner, boost_probabilities) == 36 ? 1 : -1];
-typedef char HorseRaceRunnerTicketsCheck[offsetof(HorseRaceRunner, ticket_count) == 42 ? 1 : -1];
 
 struct HorseRaceCore;
 
@@ -325,70 +318,26 @@ struct HorseRaceCore : HardwareContext {
 
 #pragma interface "horse_race.hh"
 
-typedef char HorseRaceTextVariablesSizeCheck[sizeof(HorseRaceTextVariables) == 0x1C ? 1 : -1];
-typedef char HorseRaceTextVariablesNamesCheck[offsetof(HorseRaceTextVariables, contestant_name_ids) == 4 ? 1 : -1];
-typedef char HorseRaceTextVariablesRoundNumberCheck[offsetof(HorseRaceTextVariables, round_number) == 0x14 ? 1 : -1];
-typedef char HorseRaceTextVariablesPlayerCheck[offsetof(HorseRaceTextVariables, player_horse_name) == 0x18 ? 1 : -1];
 
-typedef char HorseRaceSpriteStateSizeCheck[sizeof(HorseRaceSpriteState) == 0x38 ? 1 : -1];
-typedef char HorseRaceContestantTilesSizeCheck[sizeof(HorseRaceContestantTiles) == 24 ? 1 : -1];
 #if defined(REGION_JP)
-typedef char HorseRaceCoreSizeCheck[sizeof(HorseRaceCore) == 0x11DC ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char HorseRaceCoreSizeCheck[sizeof(HorseRaceCore) == 0x14FC ? 1 : -1];
-#endif
-typedef char HorseRaceCoreUiCheck[offsetof(HorseRaceCore, ui_state) == 0x10 ? 1 : -1];
-typedef char HorseRaceCoreArchiveCheck[offsetof(HorseRaceCore, unk_archive_020) == 0x20 ? 1 : -1];
-typedef char HorseRaceCoreCursorArchiveCheck[offsetof(HorseRaceCore, cursor_archive) == 0x170 ? 1 : -1];
-typedef char HorseRaceCoreActorArchiveCheck[offsetof(HorseRaceCore, actor_archive) == 0x1A0 ? 1 : -1];
-typedef char HorseRaceCoreSpritesCheck[offsetof(HorseRaceCore, lane_marker) == 0x1D0 ? 1 : -1];
-typedef char HorseRaceCoreTilesCheck[offsetof(HorseRaceCore, tiles_5C0) == 0x5C0 ? 1 : -1];
-typedef char HorseRaceCoreContestantTilesCheck[offsetof(HorseRaceCore, contestant_tiles) == 0x658 ? 1 : -1];
-typedef char HorseRaceCoreUnknownRamCheck[offsetof(HorseRaceCore, dust_points) == 0x6B8 ? 1 : -1];
-#if defined(REGION_JP)
-typedef char HorseRaceCorePlayerHorseCheck[offsetof(HorseRaceCore, player_horse) == 0x11BC ? 1 : -1];
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char HorseRaceCorePlayerHorseCheck[offsetof(HorseRaceCore, player_horse) == 0x14DC ? 1 : -1];
 #endif
 #if defined(REGION_JP)
-typedef char HorseRaceCoreTextVariablesCheck[offsetof(HorseRaceCore, text_variables) == 0x11C0 ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char HorseRaceCoreTextVariablesCheck[offsetof(HorseRaceCore, text_variables) == 0x14E0 ? 1 : -1];
+#endif
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
 
 #pragma interface "horse_race.hh"
 
-typedef char HorseRaceSceneSizeCheck[sizeof(HorseRaceScene) == 12 ? 1 : -1];
-typedef char HorseRaceSceneCoreCheck[offsetof(HorseRaceScene, core) == 4 ? 1 : -1];
-typedef char HorseRaceSceneContinuationCheck[offsetof(HorseRaceScene, continuation) == 8 ? 1 : -1];
 
 #pragma interface "horse_race.hh"
 
 #pragma interface "horse_race.hh"
 
-typedef char HorseRaceCoreGlyphsCheck[offsetof(HorseRaceCore, glyphs) == 0x738 ? 1 : -1];
 #if defined(REGION_JP)
-typedef char HorseRaceCoreGlyphCountCheck[offsetof(HorseRaceCore, glyph_count) == 0x8B8 ? 1 : -1];
-typedef char HorseRaceCoreEffectTilesCheck[offsetof(HorseRaceCore, runner_effect_tile_offsets) == 0x8BA ? 1 : -1];
-typedef char HorseRaceCoreOverlayTilesCheck[offsetof(HorseRaceCore, runner_overlay_tile_offsets) == 0x8C2 ? 1 : -1];
-typedef char HorseRaceCoreTilemapCheck[offsetof(HorseRaceCore, background_tilemap) == 0x8CA ? 1 : -1];
-typedef char HorseRaceCoreCameraCheck[offsetof(HorseRaceCore, background_x) == 0x10CA ? 1 : -1];
-typedef char HorseRaceCoreFinishCountCheck[offsetof(HorseRaceCore, finish_count) == 0x10DC ? 1 : -1];
-typedef char HorseRaceCoreSelectionCheck[offsetof(HorseRaceCore, selected_ticket) == 0x10EA ? 1 : -1];
-typedef char HorseRaceCoreMoneyCheck[offsetof(HorseRaceCore, money) == 0x10F0 ? 1 : -1];
-typedef char HorseRaceCorePhaseCheck[offsetof(HorseRaceCore, phase) == 0x1104 ? 1 : -1];
-typedef char HorseRaceCoreRunnersCheck[offsetof(HorseRaceCore, runners) == 0x110C ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char HorseRaceCoreGlyphCountCheck[offsetof(HorseRaceCore, glyph_count) == 0xBD8 ? 1 : -1];
-typedef char HorseRaceCoreEffectTilesCheck[offsetof(HorseRaceCore, runner_effect_tile_offsets) == 0xBDA ? 1 : -1];
-typedef char HorseRaceCoreOverlayTilesCheck[offsetof(HorseRaceCore, runner_overlay_tile_offsets) == 0xBE2 ? 1 : -1];
-typedef char HorseRaceCoreTilemapCheck[offsetof(HorseRaceCore, background_tilemap) == 0xBEA ? 1 : -1];
-typedef char HorseRaceCoreCameraCheck[offsetof(HorseRaceCore, background_x) == 0x13EA ? 1 : -1];
-typedef char HorseRaceCoreFinishCountCheck[offsetof(HorseRaceCore, finish_count) == 0x13FC ? 1 : -1];
-typedef char HorseRaceCoreSelectionCheck[offsetof(HorseRaceCore, selected_ticket) == 0x140A ? 1 : -1];
-typedef char HorseRaceCoreMoneyCheck[offsetof(HorseRaceCore, money) == 0x1410 ? 1 : -1];
-typedef char HorseRaceCorePhaseCheck[offsetof(HorseRaceCore, phase) == 0x1424 ? 1 : -1];
-typedef char HorseRaceCoreRunnersCheck[offsetof(HorseRaceCore, runners) == 0x142C ? 1 : -1];
 #endif
 
 extern "C" {

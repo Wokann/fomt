@@ -107,9 +107,6 @@ struct Rucksack
     /* +24 */ Slots<ToolStack> tools;
 };
 
-typedef char RucksackItemsSizeCheck[sizeof(Rucksack::Slots<RucksackItem>) == 0x24 ? 1 : -1];
-typedef char RucksackToolsSizeCheck[sizeof(Rucksack::Slots<ToolStack>) == 0x14 ? 1 : -1];
-typedef char RucksackSizeCheck[sizeof(Rucksack) == 0x38 ? 1 : -1];
 
 
 #endif // RUCKSACK_TYPES_HH

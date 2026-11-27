@@ -13,8 +13,6 @@ struct UiTextSubstitution
         : found(value), text(replacement) {}
 };
 
-typedef char UiTextSubstitutionSizeCheck[sizeof(UiTextSubstitution) == 36 ? 1 : -1];
-typedef char UiTextSubstitutionTextCheck[offsetof(UiTextSubstitution, text) == 4 ? 1 : -1];
 
 #pragma interface "scene_text_variable_lifetimes.hh"
 

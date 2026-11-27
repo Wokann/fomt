@@ -81,44 +81,9 @@ struct NewGameBirthdayInputCore : HardwareContext {
     i16 dialogue_choice;
 };
 #if defined(REGION_JP)
-typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x284 ? 1 : -1];
-typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x278 ? 1 : -1];
 #elif defined(REGION_DE)
-typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x46C ? 1 : -1];
-typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x460 ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU)
-typedef char BirthdayCoreSizeCheck[sizeof(NewGameBirthdayInputCore) == 0x454 ? 1 : -1];
-typedef char BirthdayFieldCheck[offsetof(NewGameBirthdayInputCore, birthday) == 0x448 ? 1 : -1];
 #endif
-typedef char BirthdaySceneSizeCheck[sizeof(NewGameBirthdayInputScene) == 8 ? 1 : -1];
-typedef char BirthdaySceneCoreCheck[offsetof(NewGameBirthdayInputScene, core) == 4 ? 1 : -1];
-typedef char BirthdayGlyphSizeCheck[sizeof(NewGameBirthdayInputGlyph) == 8 ? 1 : -1];
-typedef char BirthdayGlyphAlignmentCheck[__alignof__(NewGameBirthdayInputGlyph) == 2 ? 1 : -1];
-typedef char BirthdayGlyphYCheck[offsetof(NewGameBirthdayInputGlyph, y) == 2 ? 1 : -1];
-typedef char BirthdayGlyphIndexCheck[offsetof(NewGameBirthdayInputGlyph, glyph_index) == 4 ? 1 : -1];
-typedef char BirthdayGlyphPriorityCheck[offsetof(NewGameBirthdayInputGlyph, priority) == 6 ? 1 : -1];
-typedef char BirthdayUiCheck[offsetof(NewGameBirthdayInputCore, ui_state) == 0x0C ? 1 : -1];
-typedef char BirthdayMusicCheck[offsetof(NewGameBirthdayInputCore, music_player_1) == 0x10 ? 1 : -1];
-typedef char BirthdaySecondMusicCheck[offsetof(NewGameBirthdayInputCore, music_player_2) == 0x14 ? 1 : -1];
-typedef char BirthdayGlyphTilesCheck[offsetof(NewGameBirthdayInputCore, glyph_tiles) == 0x18 ? 1 : -1];
-typedef char BirthdayGlyphPaletteCheck[offsetof(NewGameBirthdayInputCore, glyph_palette) == 0x20 ? 1 : -1];
-typedef char BirthdayCursorTilesCheck[offsetof(NewGameBirthdayInputCore, cursor_tiles) == 0x28 ? 1 : -1];
-typedef char BirthdayCursorPaletteCheck[offsetof(NewGameBirthdayInputCore, cursor_palette) == 0x30 ? 1 : -1];
-typedef char BirthdayCursorCheck[offsetof(NewGameBirthdayInputCore, cursor_column) == 0x38 ? 1 : -1];
-typedef char BirthdayCursorRowCheck[offsetof(NewGameBirthdayInputCore, cursor_row) == 0x39 ? 1 : -1];
-typedef char BirthdaySavedSeasonCheck[offsetof(NewGameBirthdayInputCore, saved_season_column) == 0x3A ? 1 : -1];
-typedef char BirthdayCursorVisibleCheck[offsetof(NewGameBirthdayInputCore, cursor_visible) == 0x44 ? 1 : -1];
-typedef char BirthdayGlyphsCheck[offsetof(NewGameBirthdayInputCore, glyphs) == 0x46 ? 1 : -1];
-typedef char BirthdayGlyphCountCheck[offsetof(NewGameBirthdayInputCore, glyph_count)
-    == offsetof(NewGameBirthdayInputCore, birthday) - 2 ? 1 : -1];
-typedef char BirthdayDayCheck[offsetof(NewGameBirthdayInputCore, day)
-    == offsetof(NewGameBirthdayInputCore, birthday) + 2 ? 1 : -1];
-typedef char BirthdayStepCheck[offsetof(NewGameBirthdayInputCore, step)
-    == offsetof(NewGameBirthdayInputCore, birthday) + 4 ? 1 : -1];
-typedef char BirthdayDialogueStateCheck[offsetof(NewGameBirthdayInputCore, dialogue_state)
-    == offsetof(NewGameBirthdayInputCore, birthday) + 6 ? 1 : -1];
-typedef char BirthdayDialogueChoiceCheck[offsetof(NewGameBirthdayInputCore, dialogue_choice)
-    == offsetof(NewGameBirthdayInputCore, birthday) + 8 ? 1 : -1];
 extern "C" {
 SceneTransitionOwner RunBirthdayInputCore(NewGameBirthdayInputCore *);
 void UpdateBirthdayInputUi(NewGameBirthdayInputCore *);

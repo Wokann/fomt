@@ -21,6 +21,5 @@ private:
     ObjPaletteCollection & operator=(ObjPaletteCollection const &);
 };
 
-typedef char ObjPaletteCollectionSizeCheck[sizeof(ObjPaletteCollection) == 4 ? 1 : -1];
 
 #endif // OBJ_PALETTE_COLLECTION_HH

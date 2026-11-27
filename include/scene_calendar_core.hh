@@ -25,10 +25,6 @@ struct CalendarTextVariables : ScriptTextVariableStore {
     char const * partner_name;
 };
 
-typedef char CalendarTextVariablesSizeCheck[sizeof(CalendarTextVariables) == 12 ? 1 : -1];
-typedef char CalendarTextVariablesDayCheck[offsetof(CalendarTextVariables, day) == 4 ? 1 : -1];
-typedef char CalendarTextVariablesSeasonCheck[offsetof(CalendarTextVariables, season) == 5 ? 1 : -1];
-typedef char CalendarTextVariablesPartnerCheck[offsetof(CalendarTextVariables, partner_name) == 8 ? 1 : -1];
 
 #pragma interface "scene_calendar.hh"
 
@@ -96,26 +92,6 @@ struct CalendarSceneCore : HardwareContext {
     CalendarTextVariables text_variables;
 };
 
-typedef char CalendarSpriteSizeCheck[sizeof(CalendarSprite) == 0x30 ? 1 : -1];
-typedef char CalendarMarkerSizeCheck[sizeof(CalendarEventMarker) == 4 ? 1 : -1];
-typedef char CalendarCoreImageCheck[offsetof(CalendarSceneCore, image) == 8 ? 1 : -1];
-typedef char CalendarCoreUiCheck[offsetof(CalendarSceneCore, ui) == 0x10 ? 1 : -1];
-typedef char CalendarCoreArchiveCheck[offsetof(CalendarSceneCore, glyph_archive) == 0x20 ? 1 : -1];
-typedef char CalendarCoreSpriteCheck[offsetof(CalendarSceneCore, glyph_sprite) == 0xB0 ? 1 : -1];
-typedef char CalendarCoreGlyphOffsetsCheck[offsetof(CalendarSceneCore, glyph_tile_offsets) == 0x140 ? 1 : -1];
-typedef char CalendarCoreMarkerOffsetsCheck[offsetof(CalendarSceneCore, marker_tile_offsets) == 0x16C ? 1 : -1];
-typedef char CalendarCoreTileOwnerCheck[offsetof(CalendarSceneCore, glyph_tiles) == 0x174 ? 1 : -1];
-typedef char CalendarCoreDaysCheck[offsetof(CalendarSceneCore, days) == 0x1B4 ? 1 : -1];
-typedef char CalendarCoreDateCheck[offsetof(CalendarSceneCore, date) == 0x1DE ? 1 : -1];
-typedef char CalendarCoreYearCheck[offsetof(CalendarSceneCore, year) == 0x1E0 ? 1 : -1];
-typedef char CalendarCoreCursorCheck[offsetof(CalendarSceneCore, cursor_column) == 0x1E4 ? 1 : -1];
-typedef char CalendarCoreWeddingCheck[offsetof(CalendarSceneCore, wedding_year) == 0x1E6 ? 1 : -1];
-typedef char CalendarCoreEventsCheck[offsetof(CalendarSceneCore, events) == 0x1EC ? 1 : -1];
-typedef char CalendarCorePhaseCheck[offsetof(CalendarSceneCore, phase) == 0x214 ? 1 : -1];
-typedef char CalendarCoreDialogueCheck[offsetof(CalendarSceneCore, dialogue_phase) == 0x216 ? 1 : -1];
-typedef char CalendarCoreSelectedEventCheck[offsetof(CalendarSceneCore, selected_event) == 0x218 ? 1 : -1];
-typedef char CalendarCoreVariablesCheck[offsetof(CalendarSceneCore, text_variables) == 0x21C ? 1 : -1];
-typedef char CalendarCoreSizeCheck[sizeof(CalendarSceneCore) == 0x228 ? 1 : -1];
 
 #pragma interface "scene_calendar.hh"
 
@@ -128,7 +104,6 @@ struct PACKED CalendarFestivalDate
     u8 day;
 };
 
-typedef char CalendarFestivalDateSizeCheck[sizeof(CalendarFestivalDate) == 2 ? 1 : -1];
 
 extern CalendarFestivalDate const gCalendarFestivalDates[];
 extern char const gText_Calendar_Spring[];

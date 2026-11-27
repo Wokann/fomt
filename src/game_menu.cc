@@ -431,23 +431,25 @@ asm_unified(
     ".Lmenu_4_0_0040: .word __vt_20GameMenuTilemapPanel\n"
 #endif
     "\n"
-    "thumb_func_start func_080CD994\n"
-    "func_080CD994:\n"
-    "ldr r1, .Lmenu_4_1_0008\n"
-    "ldr r1, [r1]\n"
-    "str r1, [r0]\n"
-    "bx lr\n"
-    ".Lmenu_4_1_0008: .word gMenuGridHeaderTilePosition\n"
-    "\n"
-    "thumb_func_start func_080CD9A0\n"
-    "func_080CD9A0:\n"
-    "lsls r2, r2, #2\n"
-    "ldr r1, .Lmenu_4_2_000c\n"
-    "adds r2, r2, r1\n"
-    "ldr r1, [r2]\n"
-    "str r1, [r0]\n"
-    "bx lr\n"
-    ".Lmenu_4_2_000c: .word gMenuGridCellTilePositions\n"
+);
+
+#include "game_menu_panels.hh"
+extern "C" void func_080CD994(MenuGridPosition * out)
+{
+    *out = gMenuGridHeaderTilePosition;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080CD9A0(MenuGridPosition * out, u32 unused, u32 index)
+{
+    *out = gMenuGridCellTilePositions[index];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -1400,27 +1402,24 @@ asm_unified(
     "pop {r1}\n"
     "bx r1\n"
     "\n"
-    "thumb_func_start func_080CE294\n"
-    "func_080CE294:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl func_080CD620\n"
-    "adds r4, #0x80\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #1\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #2\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #4\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #8\n"
-    "bl func_08050E98\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
+);
+
+extern "C" void func_080CD620(GameSceneMenuCorePrefix * self);
+
+void func_080CE294(GameSceneMenuCorePrefix * self)
+{
+    func_080CD620(self);
+
+    FirstFieldUiOwner & ui = (FirstFieldUiOwner &)self->ui;
+
+    func_08050E98(ui, 1);
+    func_08050E98(ui, 2);
+    func_08050E98(ui, 4);
+    func_08050E98(ui, 8);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -2480,102 +2479,58 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080CEB5C\n"
-    "func_080CEB5C:\n"
-    "push {lr}\n"
-    "sub sp, #8\n"
-    "adds r2, r0, #0\n"
-    "adds r2, #0xbc\n"
-    "str r1, [r2]\n"
-    "adds r1, #1\n"
-    "ldr r2, .Lmenu_9_4_0020\n"
-    "movs r3, #0\n"
-    "str r3, [sp]\n"
-    "movs r3, #0x20\n"
-    "str r3, [sp, #4]\n"
-    "bl func_080CE510\n"
-    "add sp, #8\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".Lmenu_9_4_0020: .word 0x600f0f6\n"
-    "\n"
-    "thumb_func_start func_080CEB80\n"
-    "func_080CEB80:\n"
-    "push {r4, lr}\n"
-    "sub sp, #8\n"
-    "adds r3, r0, #0\n"
-    "adds r1, r3, #0\n"
-    "adds r1, #0xbc\n"
-    "ldr r0, [r1]\n"
-    "cmp r0, #6\n"
-    "bhi .Lmenu_9_5_0014\n"
-    "adds r0, #1\n"
-    "b .Lmenu_9_5_0016\n"
-    ".Lmenu_9_5_0014:\n"
-    "movs r0, #0\n"
-    ".Lmenu_9_5_0016:\n"
-    "str r0, [r1]\n"
-    "adds r4, r3, #0\n"
-    "adds r4, #0xbc\n"
-    "ldr r1, [r4]\n"
-    "adds r1, #1\n"
-    "ldr r2, .Lmenu_9_5_003c\n"
-    "movs r0, #0\n"
-    "str r0, [sp]\n"
-    "movs r0, #0x20\n"
-    "str r0, [sp, #4]\n"
-    "adds r0, r3, #0\n"
-    "movs r3, #0x20\n"
-    "bl func_080CE510\n"
-    "ldr r0, [r4]\n"
-    "add sp, #8\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-#endif
-    ".Lmenu_9_5_003c: .word 0x600f0f6\n"
-    "\n"
-    "thumb_func_start func_080CEBC0\n"
-    "func_080CEBC0:\n"
-    "push {r4, lr}\n"
-    "sub sp, #8\n"
-    "adds r3, r0, #0\n"
-    "adds r1, r3, #0\n"
-    "adds r1, #0xbc\n"
-    "ldr r0, [r1]\n"
-    "cmp r0, #0\n"
-    "beq .Lmenu_9_6_0014\n"
-    "subs r0, #1\n"
-    "b .Lmenu_9_6_0016\n"
-    ".Lmenu_9_6_0014:\n"
-    "movs r0, #7\n"
-    ".Lmenu_9_6_0016:\n"
-    "str r0, [r1]\n"
-    "adds r4, r3, #0\n"
-    "adds r4, #0xbc\n"
-    "ldr r1, [r4]\n"
-    "adds r1, #1\n"
-    "ldr r2, .Lmenu_9_6_003c\n"
-    "movs r0, #0\n"
-    "str r0, [sp]\n"
-    "movs r0, #0x20\n"
-    "str r0, [sp, #4]\n"
-    "adds r0, r3, #0\n"
-    "movs r3, #0x20\n"
-    "bl func_080CE510\n"
-    "ldr r0, [r4]\n"
-    "add sp, #8\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-#endif
-    ".Lmenu_9_6_003c: .word 0x600f0f6\n"
+);
+
+extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
+    void * destination, u16 size, i32 a, i32 b);
+
+extern "C" void func_080CEB5C(GameSceneMenuTilemapData * data, u32 frame)
+{
+    data->unk_BC = frame;
+
+    func_080CE510(data, frame + 1, (void *)0x0600F0F6, 32, 0, 32);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
+    void * destination, u16 size, i32 a, i32 b);
+
+extern "C" u32 func_080CEB80(GameSceneMenuTilemapData * data)
+{
+    if (data->unk_BC <= 6)
+        data->unk_BC++;
+    else
+        data->unk_BC = 0;
+
+    func_080CE510(data, data->unk_BC + 1, (void *)0x0600F0F6, 32, 0, 32);
+
+    return data->unk_BC;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
+    void * destination, u16 size, i32 a, i32 b);
+
+extern "C" u32 func_080CEBC0(GameSceneMenuTilemapData * data)
+{
+    if (data->unk_BC != 0)
+        data->unk_BC--;
+    else
+        data->unk_BC = 7;
+
+    func_080CE510(data, data->unk_BC + 1, (void *)0x0600F0F6, 32, 0, 32);
+
+    return data->unk_BC;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -3086,18 +3041,24 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080CF050\n"
-    "func_080CF050:\n"
-    "ldr r0, [r0, #0x7c]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start func_080CF054\n"
-    "func_080CF054:\n"
-    "adds r0, #0x80\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+extern "C" u32 func_080CF050(u8 const * self)
+{
+    return *(u32 const *)(self + 0x7C);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u32 func_080CF054(u8 const * self)
+{
+    return *(u32 const *)(self + 0x80);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start FormatMenuToolDescription\n"
     "FormatMenuToolDescription:\n"
     "push {r4, r5, r6, r7, lr}\n"

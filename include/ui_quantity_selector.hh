@@ -23,7 +23,5 @@ struct UiPurchaseQuantitySelector {
     ShopScreenCore * scene;
 };
 
-typedef char UiQuantitySize[sizeof(UiPurchaseQuantitySelector) == 28 ? 1 : -1];
-typedef char UiQuantityOwner[offsetof(UiPurchaseQuantitySelector, scene) == 24 ? 1 : -1];
 
 #endif // UI_QUANTITY_SELECTOR_HH

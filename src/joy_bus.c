@@ -224,143 +224,134 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080CFCC0: .word gJoyBusContext\n"
     ".L080CFCC4: .word gCurrentJoyBusCommand\n"
-    "    .global func_080D0444\n"
-    "    .thumb_func\n"
-    "func_080D0444: @ 0x080CFCC8\n"
-    "\tldr r2, .L080CFCD4 @ =gJoyBusContext\n"
-    "\tldr r2, [r2]\n"
-    "\tstr r0, [r2, #4]\n"
-    "\tstr r1, [r2, #8]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080CFCD4: .word gJoyBusContext\n"
-    "    .global func_080D0454\n"
-    "    .thumb_func\n"
-    "func_080D0454: @ 0x080CFCD8\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #0x20\n"
-    "\tldr r4, .L080CFD10 @ =gJoyBusContext\n"
-    "\tldr r1, [r4]\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [r1, #0x14]\n"
-    "\tstr r0, [sp]\n"
-    "\tmov r0, sp\n"
+);
+
+void func_080D0444(u32 a, u32 b)
+{
+    gJoyBusContext->unk_04 = a;
+    gJoyBusContext->unk_08 = b;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void func_080D0454(u32 mode)
+{
+    JoyBusCommand command;
+
+    gJoyBusContext->unk_14 = 1;
+    command.kind = 1;
+    EnqueueJoyBusCommand(&command);
+
+    command.kind = 3;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_24;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+}
+
+asm_unified(
+    ".L080D0490:\n"
+    "    push {r4, r5, r6, lr}\n"
+    "    mov r6, sb\n"
+    "    mov r5, r8\n"
+    "    push {r5, r6}\n"
+    "    sub sp, #0x20\n"
+    "    mov sb, r0\n"
+    "    adds r6, r1, #0\n"
+    "    ldr r0, .L080D04F0\n"
+    "    mov r8, r0\n"
+    "    ldr r1, [r0]\n"
+    "    movs r4, #2\n"
+    "    str r4, [r1, #0x14]\n"
+    "    movs r0, #4\n"
+    "    str r0, [sp]\n"
+    "    adds r1, #0x24\n"
+    "    str r1, [sp, #0x10]\n"
+    "    str r4, [sp, #0x18]\n"
+    "    mov r0, sp\n"
+    "    movs r5, #0\n"
+    "    strh r5, [r0, #0x1c]\n"
     "\tbl EnqueueJoyBusCommand\n"
-    "\tmovs r0, #3\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r4]\n"
-    "\tadds r0, #0x24\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tmovs r0, #2\n"
-    "\tstr r0, [sp, #0x18]\n"
-    "\tmov r1, sp\n"
-    "\tmovs r0, #0\n"
-    "\tstrh r0, [r1, #0x1c]\n"
-    "\tmov r0, sp\n"
+    "    str r4, [sp]\n"
+    "    mov r1, sb\n"
+    "    str r1, [sp, #0x10]\n"
+    "    adds r6, #1\n"
+    "    lsrs r6, r6, #1\n"
+    "    str r6, [sp, #0x18]\n"
+    "    mov r0, sp\n"
+    "    strh r5, [r0, #0x1c]\n"
     "\tbl EnqueueJoyBusCommand\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080CFD10: .word gJoyBusContext\n"
-    "func_080CFD14: @ 0x080CFD14\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tmov r6, r9\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6}\n"
-    "\tsub sp, #0x20\n"
-    "\tmov r9, r0\n"
-    "\tadds r6, r1, #0\n"
-    "\tldr r0, .L080CFD74 @ =gJoyBusContext\n"
-    "\tmov r8, r0\n"
-    "\tldr r1, [r0]\n"
-    "\tmovs r4, #2\n"
-    "\tstr r4, [r1, #0x14]\n"
-    "\tmovs r0, #4\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r1, #0x24\n"
-    "\tstr r1, [sp, #0x10]\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tmovs r5, #0\n"
-    "\tstrh r5, [r0, #0x1c]\n"
+    "    mov r1, r8\n"
+    "    ldr r0, [r1]\n"
+    "    str r5, [r0, #0x1c]\n"
+    "    str r6, [r0, #0x20]\n"
+    "    movs r1, #0xc2\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r0, r1\n"
+    "    str r5, [r0]\n"
+    "    add sp, #0x20\n"
+    "    pop {r3, r4}\n"
+    "    mov r8, r3\n"
+    "    mov sb, r4\n"
+    "    pop {r4, r5, r6}\n"
+    "    pop {r0}\n"
+    "    bx r0\n"
+    "    .align 2, 0\n"
+    ".L080D04F0: .word gJoyBusContext\n"
+    "    push {r4, r5, r6, lr}\n"
+    "    mov r6, sb\n"
+    "    mov r5, r8\n"
+    "    push {r5, r6}\n"
+    "    sub sp, #0x20\n"
+    "    mov sb, r0\n"
+    "    adds r5, r1, #0\n"
+    "    ldr r0, .L080D0554\n"
+    "    mov r8, r0\n"
+    "    ldr r1, [r0]\n"
+    "    movs r6, #3\n"
+    "    str r6, [r1, #0x14]\n"
+    "    movs r0, #4\n"
+    "    str r0, [sp]\n"
+    "    adds r1, #0x24\n"
+    "    str r1, [sp, #0x10]\n"
+    "    movs r0, #2\n"
+    "    str r0, [sp, #0x18]\n"
+    "    mov r0, sp\n"
+    "    movs r4, #0\n"
+    "    strh r4, [r0, #0x1c]\n"
     "\tbl EnqueueJoyBusCommand\n"
-    "\tstr r4, [sp]\n"
-    "\tmov r1, r9\n"
-    "\tstr r1, [sp, #0x10]\n"
-    "\tadds r6, #1\n"
-    "\tlsrs r6, r6, #1\n"
-    "\tstr r6, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r5, [r0, #0x1c]\n"
+    "    str r6, [sp]\n"
+    "    mov r1, sb\n"
+    "    str r1, [sp, #0x10]\n"
+    "    adds r5, #1\n"
+    "    lsrs r5, r5, #1\n"
+    "    str r5, [sp, #0x18]\n"
+    "    mov r0, sp\n"
+    "    strh r4, [r0, #0x1c]\n"
     "\tbl EnqueueJoyBusCommand\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    "\tstr r5, [r0, #0x1c]\n"
-    "\tstr r6, [r0, #0x20]\n"
-    "\tmovs r1, #0xc2\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tstr r5, [r0]\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r3, r4}\n"
-    "\tmov r8, r3\n"
-    "\tmov r9, r4\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080CFD74: .word gJoyBusContext\n"
-    "func_080CFD78: @ 0x080CFD78\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tmov r6, r9\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6}\n"
-    "\tsub sp, #0x20\n"
-    "\tmov r9, r0\n"
-    "\tadds r5, r1, #0\n"
-    "\tldr r0, .L080CFDD8 @ =gJoyBusContext\n"
-    "\tmov r8, r0\n"
-    "\tldr r1, [r0]\n"
-    "\tmovs r6, #3\n"
-    "\tstr r6, [r1, #0x14]\n"
-    "\tmovs r0, #4\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r1, #0x24\n"
-    "\tstr r1, [sp, #0x10]\n"
-    "\tmovs r0, #2\n"
-    "\tstr r0, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tmovs r4, #0\n"
-    "\tstrh r4, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tstr r6, [sp]\n"
-    "\tmov r1, r9\n"
-    "\tstr r1, [sp, #0x10]\n"
-    "\tadds r5, #1\n"
-    "\tlsrs r5, r5, #1\n"
-    "\tstr r5, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r4, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    "\tstr r4, [r0, #0x1c]\n"
-    "\tstr r5, [r0, #0x20]\n"
-    "\tmovs r1, #0xc2\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tstr r4, [r0]\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r3, r4}\n"
-    "\tmov r8, r3\n"
-    "\tmov r9, r4\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080CFDD8: .word gJoyBusContext\n"
+    "    mov r1, r8\n"
+    "    ldr r0, [r1]\n"
+    "    str r4, [r0, #0x1c]\n"
+    "    str r5, [r0, #0x20]\n"
+    "    movs r1, #0xc2\n"
+    "    lsls r1, r1, #1\n"
+    "    adds r0, r0, r1\n"
+    "    str r4, [r0]\n"
+    "    add sp, #0x20\n"
+    "    pop {r3, r4}\n"
+    "    mov r8, r3\n"
+    "    mov sb, r4\n"
+    "    pop {r4, r5, r6}\n"
+    "    pop {r0}\n"
+    "    bx r0\n"
+    ".L080D0554: .word gJoyBusContext\n"
+    "\n"
+);
+
+asm_unified(
+    "    .align 2, 0\n"
     "    .global func_080D0558\n"
     "    .thumb_func\n"
     "func_080D0558: @ 0x080CFDDC\n"
@@ -427,166 +418,97 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     ".L080CFE5C: .word gJoyBusContext\n"
-    "    .global func_080D05DC\n"
-    "    .thumb_func\n"
-    "func_080D05DC: @ 0x080CFE60\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #0x20\n"
-    "\tldr r6, .L080CFEC4 @ =gJoyBusContext\n"
-    "\tldr r0, [r6]\n"
-    "\tmovs r1, #5\n"
-    "\tstr r1, [r0, #0x14]\n"
-    "\tldr r0, [r0, #0x30]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080CFE7C\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [sp]\n"
-    "\tmov r0, sp\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    ".L080CFE7C:\n"
-    "\tmovs r0, #4\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x24\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tmovs r4, #2\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tmovs r5, #0\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tmovs r0, #3\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x2c\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tstr r4, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x28\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080CFEC4: .word gJoyBusContext\n"
-    "    .global func_080D0644\n"
-    "    .thumb_func\n"
-    "func_080D0644: @ 0x080CFEC8\n"
-    "\tpush {r4, lr}\n"
-    "\tldr r4, .L080CFEF8 @ =gJoyBusContext\n"
-    "\tldr r2, [r4]\n"
-    "\tadds r2, #0x28\n"
-    "\tstrb r0, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r3, r0, #8\n"
-    "\tadds r2, #0x29\n"
-    "\tstrb r3, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r3, r0, #0x10\n"
-    "\tadds r2, #0x2a\n"
-    "\tstrb r3, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r0, r0, #0x18\n"
-    "\tadds r2, #0x2b\n"
-    "\tstrb r0, [r2]\n"
-    "\tldr r0, [r4]\n"
-    "\tstr r1, [r0, #0x30]\n"
-    "\tbl func_080D05DC\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080CFEF8: .word gJoyBusContext\n"
-    "    .global func_080D0678\n"
-    "    .thumb_func\n"
-    "func_080D0678: @ 0x080CFEFC\n"
-    "\tldr r0, .L080CFF28 @ =gJoyBusContext\n"
-    "\tldr r2, [r0]\n"
-    "\tadds r0, r2, #0\n"
-    "\tadds r0, #0x2c\n"
-    "\tldrb r0, [r0]\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2d\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #8\n"
-    "\torrs r0, r1\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2e\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #0x10\n"
-    "\torrs r0, r1\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2f\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #0x18\n"
-    "\torrs r0, r1\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080CFF28: .word gJoyBusContext\n"
-    "    .global func_080D06A8\n"
-    "    .thumb_func\n"
-    "func_080D06A8: @ 0x080CFF2C\n"
-    "\tpush {lr}\n"
-    "\tmovs r0, #0xb\n"
-    "\tbl func_080D0A94\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "    .global func_080D06B4\n"
-    "    .thumb_func\n"
-    "func_080D06B4: @ 0x080CFF38\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0\n"
-    "\tldr r0, .L080CFF50 @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #0x14]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080CFF48\n"
-    "\tmovs r1, #1\n"
-    ".L080CFF48:\n"
-    "\tadds r0, r1, #0\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080CFF50: .word gJoyBusContext\n"
-    "    .global func_080D06D0\n"
-    "    .thumb_func\n"
-    "func_080D06D0: @ 0x080CFF54\n"
-    "\tldr r0, .L080CFF5C @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #0x18]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080CFF5C: .word gJoyBusContext\n"
-    "func_080CFF60: @ 0x080CFF60\n"
-    "\tpush {lr}\n"
-    "\tldr r0, .L080CFF7C @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #0x20]\n"
-    "\tcmp r2, #0\n"
-    "\tbeq .L080CFF80\n"
-    "\tldr r1, [r0, #0x1c]\n"
-    "\tmovs r0, #0x64\n"
-    "\tmuls r0, r1\n"
-    "\tadds r1, r2, #0\n"
-    "\tbl __udivsi3\n"
-    "\tb .L080CFF82\n"
-    "\t.align 2, 0\n"
-    ".L080CFF7C: .word gJoyBusContext\n"
-    ".L080CFF80:\n"
-    "\tmovs r0, #0\n"
-    ".L080CFF82:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
+);
+
+void func_080D05DC(void)
+{
+    JoyBusCommand command;
+    gJoyBusContext->unk_14 = 5;
+    if (gJoyBusContext->unk_30 != 0)
+    {
+        command.kind = 1;
+        EnqueueJoyBusCommand(&command);
+    }
+    command.kind = 4;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_24;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+    command.kind = 3;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_2C;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+    command.kind = 2;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_28;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void func_080D0644(u32 value, u32 mode)
+{
+    gJoyBusContext->unk_28[0] = value & 0xFF;
+    gJoyBusContext->unk_28[1] = (value >> 8) & 0xFF;
+    gJoyBusContext->unk_28[2] = (value >> 16) & 0xFF;
+    gJoyBusContext->unk_28[3] = (value >> 24) & 0xFF;
+    gJoyBusContext->unk_30 = mode;
+    func_080D05DC();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 func_080D0678(void)
+{
+    return (u32)((u8 const *)gJoyBusContext)[0x2C]
+        | ((u32)((u8 const *)gJoyBusContext)[0x2D] << 8)
+        | ((u32)((u8 const *)gJoyBusContext)[0x2E] << 16)
+        | ((u32)((u8 const *)gJoyBusContext)[0x2F] << 24);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern void func_080D0A94(u32 command);
+void func_080D06A8(void)
+{
+    func_080D0A94(0xB);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 func_080D06B4(void)
+{
+    return gJoyBusContext->unk_14 == 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 func_080D06D0(void)
+{
+    return gJoyBusContext->unk_18;
+}
+
+static u32 func_080CFF60(void)
+{
+    if (gJoyBusContext->unk_20 == 0)
+        return 0;
+    return gJoyBusContext->unk_1C * 100 / gJoyBusContext->unk_20;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    .global func_080D0704\n"
     "    .thumb_func\n"
     "func_080D0704: @ 0x080CFF88\n"
@@ -1157,45 +1079,34 @@ asm_unified(
     ".L080D043C: .word gJoyBusContext\n"
     ".L080D0440: .word gCurrentJoyBusCommand\n"
     "\n"
-    "\tthumb_func_start func_080D0444\n"
-    "func_080D0444: @ 0x080D0444\n"
-    "\tldr r2, .L080D0450 @ =gJoyBusContext\n"
-    "\tldr r2, [r2]\n"
-    "\tstr r0, [r2, #4]\n"
-    "\tstr r1, [r2, #8]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080D0450: .word gJoyBusContext\n"
-    "\n"
-    "\tthumb_func_start func_080D0454\n"
-    "func_080D0454: @ 0x080D0454\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #0x20\n"
-    "\tldr r4, .L080D048C @ =gJoyBusContext\n"
-    "\tldr r1, [r4]\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [r1, #0x14]\n"
-    "\tstr r0, [sp]\n"
-    "\tmov r0, sp\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tmovs r0, #3\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r4]\n"
-    "\tadds r0, #0x24\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tmovs r0, #2\n"
-    "\tstr r0, [sp, #0x18]\n"
-    "\tmov r1, sp\n"
-    "\tmovs r0, #0\n"
-    "\tstrh r0, [r1, #0x1c]\n"
-    "\tmov r0, sp\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D048C: .word gJoyBusContext\n"
+);
+
+void func_080D0444(u32 a, u32 b)
+{
+    gJoyBusContext->unk_04 = a;
+    gJoyBusContext->unk_08 = b;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void func_080D0454(u32 mode)
+{
+    JoyBusCommand command;
+
+    gJoyBusContext->unk_14 = 1;
+    command.kind = 1;
+    EnqueueJoyBusCommand(&command);
+
+    command.kind = 3;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_24;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+}
+
+asm_unified(
     ".L080D0490:\n"
     "    push {r4, r5, r6, lr}\n"
     "    mov r6, sb\n"
@@ -1292,6 +1203,10 @@ asm_unified(
     "    bx r0\n"
     ".L080D0554: .word gJoyBusContext\n"
     "\n"
+);
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_080D0558\n"
     "func_080D0558: @ 0x080D0558\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -1358,166 +1273,97 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080D05D8: .word gJoyBusContext\n"
     "\n"
-    "\tthumb_func_start func_080D05DC\n"
-    "func_080D05DC: @ 0x080D05DC\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #0x20\n"
-    "\tldr r6, .L080D0640 @ =gJoyBusContext\n"
-    "\tldr r0, [r6]\n"
-    "\tmovs r1, #5\n"
-    "\tstr r1, [r0, #0x14]\n"
-    "\tldr r0, [r0, #0x30]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080D05F8\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [sp]\n"
-    "\tmov r0, sp\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    ".L080D05F8:\n"
-    "\tmovs r0, #4\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x24\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tmovs r4, #2\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tmovs r5, #0\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tmovs r0, #3\n"
-    "\tstr r0, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x2c\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tstr r4, [sp]\n"
-    "\tldr r0, [r6]\n"
-    "\tadds r0, #0x28\n"
-    "\tstr r0, [sp, #0x10]\n"
-    "\tstr r4, [sp, #0x18]\n"
-    "\tmov r0, sp\n"
-    "\tstrh r5, [r0, #0x1c]\n"
-    "\tbl EnqueueJoyBusCommand\n"
-    "\tadd sp, #0x20\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0640: .word gJoyBusContext\n"
-    "\n"
-    "\tthumb_func_start func_080D0644\n"
-    "func_080D0644: @ 0x080D0644\n"
-    "\tpush {r4, lr}\n"
-    "\tldr r4, .L080D0674 @ =gJoyBusContext\n"
-    "\tldr r2, [r4]\n"
-    "\tadds r2, #0x28\n"
-    "\tstrb r0, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r3, r0, #8\n"
-    "\tadds r2, #0x29\n"
-    "\tstrb r3, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r3, r0, #0x10\n"
-    "\tadds r2, #0x2a\n"
-    "\tstrb r3, [r2]\n"
-    "\tldr r2, [r4]\n"
-    "\tlsrs r0, r0, #0x18\n"
-    "\tadds r2, #0x2b\n"
-    "\tstrb r0, [r2]\n"
-    "\tldr r0, [r4]\n"
-    "\tstr r1, [r0, #0x30]\n"
-    "\tbl func_080D05DC\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0674: .word gJoyBusContext\n"
-    "\n"
-    "\tthumb_func_start func_080D0678\n"
-    "func_080D0678: @ 0x080D0678\n"
-    "\tldr r0, .L080D06A4 @ =gJoyBusContext\n"
-    "\tldr r2, [r0]\n"
-    "\tadds r0, r2, #0\n"
-    "\tadds r0, #0x2c\n"
-    "\tldrb r0, [r0]\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2d\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #8\n"
-    "\torrs r0, r1\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2e\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #0x10\n"
-    "\torrs r0, r1\n"
-    "\tadds r1, r2, #0\n"
-    "\tadds r1, #0x2f\n"
-    "\tldrb r1, [r1]\n"
-    "\tlsls r1, r1, #0x18\n"
-    "\torrs r0, r1\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080D06A4: .word gJoyBusContext\n"
-    "\n"
-    "\tthumb_func_start func_080D06A8\n"
-    "func_080D06A8: @ 0x080D06A8\n"
-    "\tpush {lr}\n"
-    "\tmovs r0, #0xb\n"
-    "\tbl func_080D0A94\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\n"
-    "\tthumb_func_start func_080D06B4\n"
-    "func_080D06B4: @ 0x080D06B4\n"
-    "\tpush {lr}\n"
-    "\tmovs r1, #0\n"
-    "\tldr r0, .L080D06CC @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #0x14]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080D06C4\n"
-    "\tmovs r1, #1\n"
-    ".L080D06C4:\n"
-    "\tadds r0, r1, #0\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080D06CC: .word gJoyBusContext\n"
-    "\n"
-    "\tthumb_func_start func_080D06D0\n"
-    "func_080D06D0: @ 0x080D06D0\n"
-    "\tldr r0, .L080D06D8 @ =gJoyBusContext\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r0, [r0, #0x18]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    ".L080D06D8: .word gJoyBusContext\n"
-    ".L080D06DC:\n"
-    "    push {lr}\n"
-    "    ldr r0, .L080D06F8\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #0x20]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_joy_bus_1457_0\n"
-    "    ldr r1, [r0, #0x1c]\n"
-    "    movs r0, #0x64\n"
-    "    muls r0, r1, r0\n"
-    "    adds r1, r2, #0\n"
-    "\tbl __udivsi3\n"
-    "    b .Lraw_joy_bus_1457_2\n"
+);
+
+void func_080D05DC(void)
+{
+    JoyBusCommand command;
+    gJoyBusContext->unk_14 = 5;
+    if (gJoyBusContext->unk_30 != 0)
+    {
+        command.kind = 1;
+        EnqueueJoyBusCommand(&command);
+    }
+    command.kind = 4;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_24;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+    command.kind = 3;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_2C;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+    command.kind = 2;
+    command.unk_0C[1] = (u32)&gJoyBusContext->unk_28;
+    command.unk_0C[3] = 2;
+    *(u16 *)&command.unk_0C[4] = 0;
+    EnqueueJoyBusCommand(&command);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".L080D06F8: .word gJoyBusContext\n"
-    ".Lraw_joy_bus_1457_0:\n"
-    "    movs r0, #0\n"
-    ".Lraw_joy_bus_1457_2:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+);
+
+void func_080D0644(u32 value, u32 mode)
+{
+    gJoyBusContext->unk_28[0] = value & 0xFF;
+    gJoyBusContext->unk_28[1] = (value >> 8) & 0xFF;
+    gJoyBusContext->unk_28[2] = (value >> 16) & 0xFF;
+    gJoyBusContext->unk_28[3] = (value >> 24) & 0xFF;
+    gJoyBusContext->unk_30 = mode;
+    func_080D05DC();
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
+);
+
+u32 func_080D0678(void)
+{
+    return (u32)((u8 const *)gJoyBusContext)[0x2C]
+        | ((u32)((u8 const *)gJoyBusContext)[0x2D] << 8)
+        | ((u32)((u8 const *)gJoyBusContext)[0x2E] << 16)
+        | ((u32)((u8 const *)gJoyBusContext)[0x2F] << 24);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern void func_080D0A94(u32 command);
+void func_080D06A8(void)
+{
+    func_080D0A94(0xB);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 func_080D06B4(void)
+{
+    return gJoyBusContext->unk_14 == 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 func_080D06D0(void)
+{
+    return gJoyBusContext->unk_18;
+}
+
+static u32 func_080CFF60(void)
+{
+    if (gJoyBusContext->unk_20 == 0)
+        return 0;
+    return gJoyBusContext->unk_1C * 100 / gJoyBusContext->unk_20;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_080D0704\n"
     "func_080D0704: @ 0x080D0704\n"
     "\tpush {r4, r5, lr}\n"
@@ -1992,27 +1838,17 @@ asm_unified(
 #if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
-    "    .global func_080D0A94\n"
-    "    .thumb_func\n"
-    "func_080D0A94: @ 0x080D0318\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tldr r5, .L080D033C @ =gJoyBusContext\n"
-    "\tldr r1, [r5]\n"
-    "\tmovs r4, #0xbe\n"
-    "\tlsls r4, r4, #1\n"
-    "\tadds r1, r1, r4\n"
-    "\tmovs r2, #1\n"
-    "\tstr r2, [r1]\n"
-    "\tbl FinishJoyBusCommand\n"
-    "\tldr r0, [r5]\n"
-    "\tadds r0, r0, r4\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [r0]\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D033C: .word gJoyBusContext\n"
+);
+
+void func_080D0A94(u32 result)
+{
+    gJoyBusContext->unk_17C = 1;
+    FinishJoyBusCommand(result);
+    gJoyBusContext->unk_17C = 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\t.ifdef REGION_DE\n"
     "\t.else\n"
@@ -2022,33 +1858,17 @@ asm_unified(
     "\t.endif\n"
     "    .align 2, 0\n"
     "\n"
-    "\tthumb_func_start func_080D0A94\n"
-    "func_080D0A94: @ 0x080D0A94\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tldr r5, .L080D0AB8 @ =gJoyBusContext\n"
-    "\tldr r1, [r5]\n"
-    "\tmovs r4, #0xbe\n"
-    "\tlsls r4, r4, #1\n"
-    "\tadds r1, r1, r4\n"
-    "\tmovs r2, #1\n"
-    "\tstr r2, [r1]\n"
-    "\tbl FinishJoyBusCommand\n"
-    "\tldr r0, [r5]\n"
-    "\tadds r0, r0, r4\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [r0]\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080D0AB8: .word gJoyBusContext\n"
-    "\n"
-    "\t.ifdef REGION_DE\n"
-    "\t.else\n"
-    "\t.ifdef REGION_EU\n"
-    "\t.else\n"
-    "\t.endif\n"
-    "\t.endif\n"
+);
+
+void func_080D0A94(u32 result)
+{
+    gJoyBusContext->unk_17C = 1;
+    FinishJoyBusCommand(result);
+    gJoyBusContext->unk_17C = 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 

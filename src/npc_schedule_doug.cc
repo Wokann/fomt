@@ -4,58 +4,36 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectDougSchedule\n"
-    "SelectDougSchedule:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803DE88\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803DE8C\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803DECE\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803DE88: .word 0x000021CA\n"
-    ".Ljp_0803DE8C:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr6, [r4, #1]\n"
-    "    ldrb\tr4, [r4, #2]\n"
-    "    adds\tr0, r6, #0\n"
-    "    adds\tr1, r4, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DEAE\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803DECE\n"
-    ".Ljp_0803DEAE:\n"
-    "    ldr r1, .Ljp_0803DEC8\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    cmp\tr6, #2\n"
-    "    bne .Ljp_0803DECC\n"
-    "    cmp\tr4, #5\n"
-    "    bne .Ljp_0803DECC\n"
-    "    cmp\tr0, #25\n"
-    "    beq .Ljp_0803DECC\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803DECE\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803DEC8: .word 0x00001CD4\n"
-    ".Ljp_0803DECC:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803DECE:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+#include "npc_collection.hh"
+extern "C" u32 SelectDougSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u32 spouse;
+    if ((i32)(((u8 const *)context)[0x21CA] << 25) < 0)
+        return 0;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 2;
+    /* Offset form kept on purpose: +0x1CD4 is GameStateSaveImage::npcs
+       (confirmed by the offsetof check in game_state_types.hh). Writing
+       it as &save->npcs changes register allocation (r5 -> r1) and stops
+       matching; see PROGRESS round 180. Tracked as a pending struct fix. */
+    spouse = ((NpcCollection const *)((u8 const *)context + 0x1CD4))->GetSpouseCharacterId();
+    if (season == 2 && day == 5 && spouse != 25)
+        return 3;
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

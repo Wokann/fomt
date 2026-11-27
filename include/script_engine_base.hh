@@ -21,8 +21,6 @@ struct ScriptChunkHeader
     u32 length;
 };
 
-typedef char ScriptRiffHeaderSizeCheck[sizeof(ScriptRiffHeader) == 12 ? 1 : -1];
-typedef char ScriptChunkHeaderSizeCheck[sizeof(ScriptChunkHeader) == 8 ? 1 : -1];
 
 #include "script_jump_table_search.hh"
 

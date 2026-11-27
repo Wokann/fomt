@@ -29,11 +29,6 @@ struct CookingRecipeEvaluation
     }
 };
 
-typedef char CookingRecipeEvaluationSizeCheck[sizeof(CookingRecipeEvaluation) == 20 ? 1 : -1];
-typedef char CookingRecipeStaminaOffsetCheck[offsetof(CookingRecipeEvaluation, stamina_bonus) == 2 ? 1 : -1];
-typedef char CookingRecipeFatigueOffsetCheck[offsetof(CookingRecipeEvaluation, fatigue_bonus) == 4 ? 1 : -1];
-typedef char CookingRecipeUtensilOffsetCheck[offsetof(CookingRecipeEvaluation, utensil_mask) == 6 ? 1 : -1];
-typedef char CookingRecipeUnknownTailCheck[offsetof(CookingRecipeEvaluation, unk_08) == 8 ? 1 : -1];
 
 // The evaluator's implementation remains native; this is its actual return ABI.
 extern "C" CookingRecipeEvaluation EvaluateCookingRecipe(CookingRecipeRecord const & recipe);

@@ -492,32 +492,24 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r1}\n"
     "    bx\tr1\n"
-    "    thumb_func_start GetWorldAmbientSpriteSine\n"
-    "GetWorldAmbientSpriteSine:\n"
-    "    ldr r0, .Lambient_40\n"
-    "    lsls\tr1, r1, #16\n"
-    "    asrs\tr1, r1, #15\n"
-    "    adds\tr1, r1, r0\n"
-    "    movs\tr2, #0\n"
-    "    ldrsh\tr0, [r1, r2]\n"
-    "    bx\tlr\n"
+);
+
+i32 GetWorldAmbientSpriteSine(WorldAmbientSprite const * self, i16 phase)
+{
+    return gWorldAmbientSineTable[phase];
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lambient_40: .word gWorldAmbientSineTable\n"
-    "    thumb_func_start GetWorldAmbientSpriteCosine\n"
-    "GetWorldAmbientSpriteCosine:\n"
-    "    ldr r2, .Lambient_41\n"
-    "    lsls\tr1, r1, #16\n"
-    "    asrs\tr1, r1, #16\n"
-    "    adds\tr1, #64\t@ 0x40\n"
-    "    movs\tr0, #255\t@ 0xff\n"
-    "    ands\tr1, r0\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    movs\tr2, #0\n"
-    "    ldrsh\tr0, [r1, r2]\n"
-    "    bx\tlr\n"
+);
+
+i32 GetWorldAmbientSpriteCosine(WorldAmbientSprite const * self, i16 phase)
+{
+    return gWorldAmbientSineTable[(phase + 64) & 0xFF];
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lambient_41: .word gWorldAmbientSineTable\n"
     "    thumb_func_start PlayWorldAmbientSpriteSound\n"
     "PlayWorldAmbientSpriteSound:\n"
     "    push\t{r4, r5, r6, lr}\n"

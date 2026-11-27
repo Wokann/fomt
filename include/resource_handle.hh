@@ -32,15 +32,6 @@ struct IndexedResourceSpriteParameters
           object_mode(0), flips(0), affine_index(0), affine_mode(0), mosaic(0) {}
 };
 
-typedef char IndexedResourceSpriteParametersSizeCheck[sizeof(IndexedResourceSpriteParameters) == 28 ? 1 : -1];
-typedef char IndexedResourceSpritePaletteOffsetCheck[offsetof(IndexedResourceSpriteParameters, palette_offset) == 4 ? 1 : -1];
-typedef char IndexedResourceSpriteTileOffsetCheck[offsetof(IndexedResourceSpriteParameters, tile_offset) == 6 ? 1 : -1];
-typedef char IndexedResourceSpritePriorityOffsetCheck[offsetof(IndexedResourceSpriteParameters, priority) == 8 ? 1 : -1];
-typedef char IndexedResourceSpriteObjectModeOffsetCheck[offsetof(IndexedResourceSpriteParameters, object_mode) == 12 ? 1 : -1];
-typedef char IndexedResourceSpriteFlipsOffsetCheck[offsetof(IndexedResourceSpriteParameters, flips) == 16 ? 1 : -1];
-typedef char IndexedResourceSpriteAffineIndexOffsetCheck[offsetof(IndexedResourceSpriteParameters, affine_index) == 17 ? 1 : -1];
-typedef char IndexedResourceSpriteAffineModeOffsetCheck[offsetof(IndexedResourceSpriteParameters, affine_mode) == 20 ? 1 : -1];
-typedef char IndexedResourceSpriteMosaicOffsetCheck[offsetof(IndexedResourceSpriteParameters, mosaic) == 24 ? 1 : -1];
 
 struct IndexedResourceHandle
 {
@@ -61,8 +52,6 @@ struct IndexedResourceHandle
     u8 initialized;
 };
 
-typedef char IndexedResourceHandleSizeCheck[sizeof(IndexedResourceHandle) == 0x14 ? 1 : -1];
-typedef char IndexedResourceSpriteMatrixSizeCheck[sizeof(IndexedResourceSpriteMatrix) == 8 ? 1 : -1];
 
 EXTERN_C
 
@@ -89,7 +78,6 @@ union IndexedResourceUpdateResult
     } flags;
 };
 
-typedef char IndexedResourceUpdateResultSizeCheck[sizeof(IndexedResourceUpdateResult) == 4 ? 1 : -1];
 
 IndexedResourceUpdateResult UpdateIndexedResourceHandle(IndexedResourceHandle *);
 

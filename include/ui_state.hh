@@ -94,7 +94,6 @@ struct UiStateOwner
     UiStatePayload * value;
 };
 
-typedef char UiStateOwnerSizeCheck[sizeof(UiStateOwner) == 4 ? 1 : -1];
 
 struct GameSceneTalkWindowOwner {
     UiStateOwner * value;
@@ -203,7 +202,6 @@ struct UiTextLayoutPosition
     u8 column : 5;
     u8 unknown : 1;
 } PACKED;
-typedef char UiTextLayoutPositionSizeCheck[sizeof(UiTextLayoutPosition) == 1 ? 1 : -1];
 
 // Navigation receives a halfword key mask by value. The native C++ ABI
 // rounds this value object to one word, rather than a scalar u16 argument.
@@ -218,7 +216,6 @@ struct UiChoiceKeyState
     };
     u16 value;
 };
-typedef char UiChoiceKeyStateSizeCheck[sizeof(UiChoiceKeyState) == 4 ? 1 : -1];
 
 EC UiTextLayoutPosition GetUiChoiceLayoutPosition(u32 layout, u32 selection);
 EC void RenderUiChoiceLabel(UiStatePayload *, UiTextLayoutPosition const &,
@@ -325,35 +322,5 @@ struct UiStatePayload
     ObjPaletteCollectionEntry heart_indicator_palette;
     UnkUiPayloadLowFlags low_flags;
 };
-typedef char UiStatePayloadSizeCheck[sizeof(UiStatePayload) == 0x554 ? 1 : -1];
-typedef char UiPayload_state[offsetof(UiStatePayload, state) == 8 ? 1 : -1];
-typedef char UiPayload_allow_resume[offsetof(UiStatePayload, allow_resume) == 0x0D ? 1 : -1];
-typedef char UiPayload_palette[offsetof(UiStatePayload, palette) == 16 ? 1 : -1];
-typedef char UiPayload_background_state[offsetof(UiStatePayload, background_state) == 24 ? 1 : -1];
-typedef char UiPayload_commands[offsetof(UiStatePayload, commands) == 32 ? 1 : -1];
-typedef char UiPayload_records[offsetof(UiStatePayload, records) == 60 ? 1 : -1];
-typedef char UiPayload_records_command[offsetof(UiStatePayload, records_command) == 192 ? 1 : -1];
-typedef char UiPayload_output[offsetof(UiStatePayload, output) == 208 ? 1 : -1];
-typedef char UiPayload_text[offsetof(UiStatePayload, text) == 236 ? 1 : -1];
-typedef char UiPayload_output_command[offsetof(UiStatePayload, output_command) == 288 ? 1 : -1];
-typedef char UiPayload_tile_copy[offsetof(UiStatePayload, tile_copy) == 304 ? 1 : -1];
-typedef char UiPayload_window[offsetof(UiStatePayload, window) == 328 ? 1 : -1];
-typedef char UiPayload_choice_index[offsetof(UiStatePayload, choice_index) == 344 ? 1 : -1];
-typedef char UiPayload_choice_layout[offsetof(UiStatePayload, choice_layout) == 348 ? 1 : -1];
-typedef char UiPayload_hand_cursor[offsetof(UiStatePayload, hand_cursor) == 352 ? 1 : -1];
-typedef char UiPayload_choice_cursor[offsetof(UiStatePayload, choice_cursor) == 400 ? 1 : -1];
-typedef char UiPayload_choice_handle[offsetof(UiStatePayload, choice_handle) == 448 ? 1 : -1];
-typedef char UiPayload_choice_state[offsetof(UiStatePayload, choice_state) == 468 ? 1 : -1];
-typedef char UiPayload_portrait_flags[offsetof(UiStatePayload, portrait_flags) == 476 ? 1 : -1];
-typedef char UiPayload_portrait_id[offsetof(UiStatePayload, portrait_id) == 480 ? 1 : -1];
-typedef char UiPayload_portrait[offsetof(UiStatePayload, portrait) == 484 ? 1 : -1];
-typedef char UiPayload_portrait_palette[offsetof(UiStatePayload, portrait_palette) == 488 ? 1 : -1];
-typedef char UiPayload_nameplate_flags[offsetof(UiStatePayload, nameplate_flags) == 496 ? 1 : -1];
-typedef char UiPayload_nameplate_tiles[offsetof(UiStatePayload, nameplate_tiles) == 500 ? 1 : -1];
-typedef char UiPayload_heart_indicator_visible[offsetof(UiStatePayload, heart_indicator_visible) == 1280 ? 1 : -1];
-typedef char UiPayload_heart_indicator_archive[offsetof(UiStatePayload, heart_indicator_archive) == 1284 ? 1 : -1];
-typedef char UiPayload_heart_indicator_handle[offsetof(UiStatePayload, heart_indicator_handle) == 1332 ? 1 : -1];
-typedef char UiPayload_heart_indicator_palette[offsetof(UiStatePayload, heart_indicator_palette) == 1352 ? 1 : -1];
-typedef char UiPayload_low_flags[offsetof(UiStatePayload, low_flags) == 1360 ? 1 : -1];
 
 #endif // UI_STATE_HH

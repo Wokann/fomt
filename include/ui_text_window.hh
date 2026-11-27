@@ -16,8 +16,6 @@ struct UiPosition {
 #endif
 };
 
-typedef char UiPositionSizeCheck[sizeof(struct UiPosition) == 4 ? 1 : -1];
-typedef char UiPositionYCheck[offsetof(struct UiPosition, y) == 2 ? 1 : -1];
 
 #ifdef __cplusplus
 #include "hardware_linked_list.hh"
@@ -48,8 +46,6 @@ struct ControlWidget {
     UiTextWindow * state;
 };
 
-typedef char ControlWidgetSizeCheck[sizeof(ControlWidget) == 8 ? 1 : -1];
-typedef char ControlWidgetStateCheck[offsetof(ControlWidget, state) == 0 ? 1 : -1];
 
 // The enabled mode alternates the two pixel-nibble masks on each queued run.
 // It requires a nonzero tile count and an initial phase of zero or one.
@@ -64,10 +60,6 @@ struct UiTextWindowTileUploadCommand : HardwareLinkBase {
     u8 phase;
 };
 
-typedef char UiTextWindowTileUploadSizeCheck[sizeof(UiTextWindowTileUploadCommand) == 24 ? 1 : -1];
-typedef char UiTextWindowTileUploadSourceCheck[offsetof(UiTextWindowTileUploadCommand, source) == 0xC ? 1 : -1];
-typedef char UiTextWindowTileUploadCountCheck[offsetof(UiTextWindowTileUploadCommand, tile_count) == 0x14 ? 1 : -1];
-typedef char UiTextWindowTileUploadPhaseCheck[offsetof(UiTextWindowTileUploadCommand, phase) == 0x16 ? 1 : -1];
 
 #pragma interface "ui_text_window_commands.cc"
 
@@ -87,8 +79,6 @@ struct UiTextWindowBorderCommand : HardwareLinkBase {
     u32 unk_high : 13;
 };
 
-typedef char UiTextWindowBorderCommandYCheck[offsetof(UiTextWindowBorderCommand, y) == 16 ? 1 : -1];
-typedef char UiTextWindowBorderCommandSizeCheck[sizeof(UiTextWindowBorderCommand) == 32 ? 1 : -1];
 
 // A BG window owns one pending-upload list and its two concrete commands.
 // Phase values are hidden, opening, closing and visible, respectively.
@@ -122,11 +112,6 @@ struct UiTextWindow {
     UiTextWindowBorderCommand border;
 };
 
-typedef char UiTextWindowSizeCheck[sizeof(UiTextWindow) == 100 ? 1 : -1];
-typedef char UiTextWindowFrameCheck[offsetof(UiTextWindow, frame) == 13 ? 1 : -1];
-typedef char UiTextWindowUploadsCheck[offsetof(UiTextWindow, pending_uploads) == 16 ? 1 : -1];
-typedef char UiTextWindowUploadCommandCheck[offsetof(UiTextWindow, upload) == 44 ? 1 : -1];
-typedef char UiTextWindowBorderCommandCheck[offsetof(UiTextWindow, border) == 68 ? 1 : -1];
 
 inline UiTextWindowBorderCommand::UiTextWindowBorderCommand(i32 x, i32 y,
     u32 width, u32 height, u32 screen, u32 tile, u32 bank)

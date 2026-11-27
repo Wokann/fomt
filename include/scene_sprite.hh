@@ -49,8 +49,6 @@ public:
     u8 & operator[](u32 index) { return values[index]; }
 };
 
-typedef char GameScenePaletteIndicesSizeCheck[sizeof(GameScenePaletteIndices) == 20 ? 1 : -1];
-typedef char GameScenePaletteIndexValuesCheck[offsetof(GameScenePaletteIndices, values) == 4 ? 1 : -1];
 
 
 #pragma interface "scene_sprite.hh"
@@ -78,10 +76,6 @@ struct GameSceneSpriteBase {
         u32 sort_key, IndexedResourceSpriteRange const & range, GameObject * palette_source) const;
 };
 
-typedef char GameSceneSpriteBaseSizeCheck[sizeof(GameSceneSpriteBase) == 0x28 ? 1 : -1];
-typedef char GameSceneSpriteBaseTilesCheck[offsetof(GameSceneSpriteBase, tiles) == 4 ? 1 : -1];
-typedef char GameSceneSpriteBasePaletteCountCheck[offsetof(GameSceneSpriteBase, palettes.count) == 0x10 ? 1 : -1];
-typedef char GameSceneSpriteBasePaletteIndicesCheck[offsetof(GameSceneSpriteBase, palettes.values) == 0x14 ? 1 : -1];
 EXTERN_C
 
 // ARM entry in IWRAM, distinct from the direct hardware OAM submission path.

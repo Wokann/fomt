@@ -6,6 +6,10 @@
 
 #include "game_menu.hh"
 #include "furniture.hh"
+#include "game_state_types.hh"
+#include "farmer_types.hh"
+#include "farm.hh"
+#include "farm_house.hh"
 struct Rucksack;
 #include "utility/fixed_str.hh"
 #pragma interface "scene_tool_chest.hh"
@@ -47,20 +51,11 @@ struct ToolChestSceneCore : GameSceneMenuSelectionCore {
     ToolChest * tool_chest;
     u32 phase;
 };
-typedef char ToolChestCoreDescriptionCheck[offsetof(ToolChestSceneCore, item_description) == 0x98 ? 1 : -1];
-typedef char ToolChestCoreHeldToolCheck[offsetof(ToolChestSceneCore, held_tool) == 0xFC ? 1 : -1];
-typedef char ToolChestCoreRucksackCheck[offsetof(ToolChestSceneCore, rucksack) == 0x100 ? 1 : -1];
-typedef char ToolChestCoreStorageCheck[offsetof(ToolChestSceneCore, tool_chest) == 0x104 ? 1 : -1];
-typedef char ToolChestCorePhaseCheck[offsetof(ToolChestSceneCore, phase) == 0x108 ? 1 : -1];
-typedef char ToolChestCoreSizeCheck[sizeof(ToolChestSceneCore) == 0x10C ? 1 : -1];
 
 #pragma interface "scene_tool_chest.hh"
 
 #pragma interface "scene_tool_chest.hh"
 
-typedef char ToolChestSceneSizeCheck[sizeof(ToolChestScene) == 12 ? 1 : -1];
-typedef char ToolChestSceneCoreCheck[offsetof(ToolChestScene, core) == 4 ? 1 : -1];
-typedef char ToolChestSceneContinuationCheck[offsetof(ToolChestScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

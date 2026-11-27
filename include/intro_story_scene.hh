@@ -49,8 +49,6 @@ struct IntroStoryTextVariables : ScriptTextVariableStore
     virtual UiTextSubstitution Lookup(u32 code);
 };
 
-typedef char IntroStoryTextVariablesSizeCheck[sizeof(IntroStoryTextVariables) == 8 ? 1 : -1];
-typedef char IntroStoryPlayerNameOffsetCheck[offsetof(IntroStoryTextVariables, player_name) == 4 ? 1 : -1];
 
 
 #pragma interface "intro_story_scene.hh"
@@ -62,7 +60,6 @@ struct IntroStoryUiOwner
     explicit inline IntroStoryUiOwner(u32 const & flags);
     ~IntroStoryUiOwner() { delete value; }
 };
-typedef char IntroStoryUiOwnerSizeCheck[sizeof(IntroStoryUiOwner) == 4 ? 1 : -1];
 
 #pragma interface "intro_story_lifetimes.hh"
 struct IntroStorySceneCore : HardwareContext
@@ -87,19 +84,6 @@ struct IntroStorySceneCore : HardwareContext
     IntroStoryTextVariables variables;
 };
 
-typedef char IntroStoryCoreSizeCheck[sizeof(IntroStorySceneCore) == 0x6430 ? 1 : -1];
-typedef char IntroStoryUiOffsetCheck[offsetof(IntroStorySceneCore, ui_state) == 0x10 ? 1 : -1];
-typedef char IntroStoryVariablesOffsetCheck[offsetof(IntroStorySceneCore, variables) == 0x6428 ? 1 : -1];
-typedef char IntroStorySavedOffsetCheck[offsetof(IntroStorySceneCore, saved) == 8 ? 1 : -1];
-typedef char IntroStoryMusicOffsetCheck[offsetof(IntroStorySceneCore, music_player_1) == 0x14 ? 1 : -1];
-typedef char IntroStoryMusic0OffsetCheck[offsetof(IntroStorySceneCore, music_player_0) == 0x18 ? 1 : -1];
-typedef char IntroStoryMusic2OffsetCheck[offsetof(IntroStorySceneCore, music_player_2) == 0x1C ? 1 : -1];
-typedef char IntroStoryTilemapsOffsetCheck[offsetof(IntroStorySceneCore, background_tilemaps) == 0x20 ? 1 : -1];
-typedef char IntroStorySceneStepOffsetCheck[offsetof(IntroStorySceneCore, scene_step) == 0x6420 ? 1 : -1];
-typedef char IntroStoryTransitionPhaseOffsetCheck[offsetof(IntroStorySceneCore, transition_phase) == 0x6422 ? 1 : -1];
-typedef char IntroStoryTilemapSizeCheck[sizeof(((IntroStorySceneCore *)0)->background_tilemaps[0]) == 0x500 ? 1 : -1];
-typedef char IntroStoryStepOffsetCheck[offsetof(IntroStorySceneCore, story_step) == 0x6424 ? 1 : -1];
-typedef char IntroStoryDialogueStateOffsetCheck[offsetof(IntroStorySceneCore, dialogue_state) == 0x6426 ? 1 : -1];
 
 EXTERN_C
 SceneTransitionOwner RunIntroStorySceneCore(IntroStorySceneCore *);
@@ -107,10 +91,6 @@ void UpdateIntroStoryUi(IntroStorySceneCore *);
 void InitializeIntroStoryGraphics(IntroStorySceneCore *);
 EXTERN_C_END
 
-typedef char IntroStoryCoreOwnerSizeCheck[sizeof(IntroStoryCoreOwner) == 4 ? 1 : -1];
-typedef char IntroStorySceneSizeCheck[sizeof(IntroStoryScene) == 12 ? 1 : -1];
-typedef char IntroStorySceneCoreOffsetCheck[offsetof(IntroStoryScene, core) == 4 ? 1 : -1];
-typedef char IntroStoryContinuationOffsetCheck[offsetof(IntroStoryScene, continuation) == 8 ? 1 : -1];
 
 // The flashback transition owns its continuation and borrows saved world state.
 

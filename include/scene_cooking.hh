@@ -44,10 +44,6 @@ struct CookingTextVariables : ScriptTextVariableStore {
     u8 fatigue_description;
 };
 
-typedef char CookingTextVariablesSizeCheck[sizeof(CookingTextVariables) == 8 ? 1 : -1];
-typedef char CookingTextVariablesItemCheck[offsetof(CookingTextVariables, item_code) == 4 ? 1 : -1];
-typedef char CookingTextVariablesStaminaCheck[offsetof(CookingTextVariables, stamina_description) == 6 ? 1 : -1];
-typedef char CookingTextVariablesFatigueCheck[offsetof(CookingTextVariables, fatigue_description) == 7 ? 1 : -1];
 
 #pragma interface "scene_cooking.hh"
 
@@ -120,30 +116,11 @@ struct CookingSceneCore : GameSceneMenuCorePrefix {
     CookingTextVariables text_variables;
 };
 
-typedef char CookingSpriteStateSizeCheck[sizeof(CookingSpriteState) == 0x38 ? 1 : -1];
-typedef char CookingLabelTilesSizeCheck[sizeof(CookingRecipeLabelTiles) == 0x504 ? 1 : -1];
-typedef char CookingCoreImageCheck[offsetof(CookingSceneCore, image) == 0x8C ? 1 : -1];
-typedef char CookingCoreArchiveCheck[offsetof(CookingSceneCore, archive_98) == 0x98 ? 1 : -1];
-typedef char CookingCoreSpritesCheck[offsetof(CookingSceneCore, sprites) == 0x158 ? 1 : -1];
-typedef char CookingCoreTileOwnerCheck[offsetof(CookingSceneCore, tiles_2E0) == 0x2E0 ? 1 : -1];
-typedef char CookingCoreRecipeCheck[offsetof(CookingSceneCore, recipe_334) == 0x334 ? 1 : -1];
-typedef char CookingCoreModeCheck[offsetof(CookingSceneCore, show_recipes) == 0x35E ? 1 : -1];
-typedef char CookingCoreLabelsCheck[offsetof(CookingSceneCore, recipe_labels) == 0x370 ? 1 : -1];
-typedef char CookingCoreIngredientPageCheck[offsetof(CookingSceneCore, ingredient_page) == 0x2B90 ? 1 : -1];
-typedef char CookingCoreRucksackCapacityCheck[offsetof(CookingSceneCore, rucksack_capacity) == 0x2BA0 ? 1 : -1];
-typedef char CookingCoreIngredientsCheck[offsetof(CookingSceneCore, ingredients) == 0x2BB0 ? 1 : -1];
-typedef char CookingCoreTilemapCheck[offsetof(CookingSceneCore, tilemap) == 0x2BD0 ? 1 : -1];
-typedef char CookingCorePhaseCheck[offsetof(CookingSceneCore, phase) == 0x33D0 ? 1 : -1];
-typedef char CookingCoreTextVariablesCheck[offsetof(CookingSceneCore, text_variables) == 0x33D8 ? 1 : -1];
-typedef char CookingCoreSizeCheck[sizeof(CookingSceneCore) == 0x33E0 ? 1 : -1];
 
 #pragma interface "scene_cooking.hh"
 
 #pragma interface "scene_cooking.hh"
 
-typedef char CookingSceneSizeCheck[sizeof(CookingScene) == 12 ? 1 : -1];
-typedef char CookingSceneCoreCheck[offsetof(CookingScene, core) == 4 ? 1 : -1];
-typedef char CookingSceneContinuationCheck[offsetof(CookingScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

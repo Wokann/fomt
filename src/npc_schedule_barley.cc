@@ -4,43 +4,37 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectBarleySchedule\n"
-    "SelectBarleySchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803EAEA\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803EAFE\n"
-    ".Ljp_0803EAEA:\n"
-    "    cmp\tr4, #1\n"
-    "    bne .Ljp_0803EAFC\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803EAF8\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803EAFE\n"
-    ".Ljp_0803EAF8:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803EAFE\n"
-    ".Ljp_0803EAFC:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803EAFE:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectBarleySchedule(void const * context)
+{
+    GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
+    GameDayDate date;
+    u8 season;
+    u8 day;
+    u8 weekday;
+
+    DecodeGameDayDate(&date, &save.clock.calendar);
+
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
+
+    if (IsNpcScheduleDateListed(season, day) << 0x18)
+        return 4;
+
+    if (weekday == 1)
+    {
+        if (save.clock.weather_today == 0)
+            return 2;
+
+        return 3;
+    }
+
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

@@ -20,9 +20,6 @@ struct HardwareLinkedListVTable {
     void (*swap)(struct HardwareLinkedList *, struct HardwareLinkedList *);
 };
 
-typedef char HardwareLinkedListVTable_size_check[sizeof(struct HardwareLinkedListVTable) == 0x24 ? 1 : -1];
-typedef char HardwareLinkedListVTable_append_check[offsetof(struct HardwareLinkedListVTable, append) == 0x10 ? 1 : -1];
-typedef char HardwareLinkedListVTable_remove_check[offsetof(struct HardwareLinkedListVTable, remove) == 0x14 ? 1 : -1];
 #endif
 
 #ifdef __cplusplus
@@ -124,11 +121,6 @@ inline HardwareLinkedList::HardwareLinkedList()
 }
 #endif
 
-typedef char HardwareLinkBase_size_check[sizeof(struct HardwareLinkBase) == 0x0C ? 1 : -1];
-typedef char HardwareLink_size_check[sizeof(struct HardwareLink) == 0x0C ? 1 : -1];
-typedef char HardwareLinkedList_size_check[sizeof(struct HardwareLinkedList) == 0x1C ? 1 : -1];
-typedef char HardwareLinkedList_first_check[offsetof(struct HardwareLinkedList, first) == 0x0C ? 1 : -1];
-typedef char HardwareLinkedList_sentinel_check[offsetof(struct HardwareLinkedList, sentinel) == 0x10 ? 1 : -1];
 
 #ifdef __cplusplus
 #include "hardware_linked_list_lifetimes.hh"

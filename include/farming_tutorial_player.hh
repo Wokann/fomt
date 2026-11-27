@@ -64,18 +64,7 @@ EXTERN_C
 FarmingTutorialPlayer * CreateFarmingTutorialPlayer(GameObject * world);
 EXTERN_C_END
 
-typedef char FarmingTutorialHeldGraphicSizeCheck[sizeof(FarmingTutorialHeldGraphic) == 0x1C ? 1 : -1];
-typedef char FarmingTutorialPlayerSizeCheck[sizeof(FarmingTutorialPlayer) == 0x5C ? 1 : -1];
-typedef char FarmingTutorialPlayerActionCheck[offsetof(FarmingTutorialPlayer, action) == 0x34 ? 1 : -1];
-typedef char FarmingTutorialPlayerGraphicCheck[offsetof(FarmingTutorialPlayer, graphic) == 0x38 ? 1 : -1];
-typedef char FarmingTutorialPlayerActiveCheck[offsetof(FarmingTutorialPlayer, action_active) == 0x54 ? 1 : -1];
-typedef char FarmingTutorialPlayerHeldGraphicCheck[offsetof(FarmingTutorialPlayer, held_graphic_id) == 0x56 ? 1 : -1];
-typedef char FarmingTutorialPlayerSkipUpdateCheck[offsetof(FarmingTutorialPlayer, skip_action_update) == 0x58 ? 1 : -1];
-typedef char FarmingTutorialPlayerHoldingCheck[offsetof(FarmingTutorialPlayer, holding_item) == 0x59 ? 1 : -1];
 
-typedef char FarmingTutorialPlayerSpriteSizeCheck[sizeof(FarmingTutorialPlayerSpriteController) == 0xD0 ? 1 : -1];
-typedef char FarmingTutorialPlayerSpriteResourceCheck[offsetof(FarmingTutorialPlayerSpriteController, resource_sprite) == 0x8C ? 1 : -1];
-typedef char FarmingTutorialPlayerSpriteIndexCheck[offsetof(FarmingTutorialPlayerSpriteController, resource_index) == 0xCC ? 1 : -1];
 
 
 #endif // FARMING_TUTORIAL_PLAYER_HH

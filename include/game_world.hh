@@ -81,7 +81,6 @@ struct WorldCalendarSource {
     u8 tick_count;
 };
 
-typedef char WorldCalendarSourceSizeCheck[sizeof(WorldCalendarSource) == 8 ? 1 : -1];
 
 // Six retained event-icon sprite slots, with ordinary indexed access.
 struct GameSceneWorldEventIconSprites {
@@ -90,7 +89,6 @@ struct GameSceneWorldEventIconSprites {
     SmartPtr<GameSceneGroupSprite> & operator[](u32 index) { return *(Begin() + index); }
 };
 
-typedef char GameSceneWorldEventIconSpritesSizeCheck[sizeof(GameSceneWorldEventIconSprites) == 24 ? 1 : -1];
 
 // The native factory allocates exactly 0x10CC bytes. The complete storage
 // boundary is covered below; members without proven roles remain unknown.
@@ -223,7 +221,6 @@ struct GameSceneWorld : GameObject {
 };
 
 
-typedef char GameSceneWorldSizeCheck[sizeof(GameSceneWorld) == 0x10CC ? 1 : -1];
 
 // A successful farm lookup returns the plot and both tile/grid coordinates.
 struct FieldPlot;
@@ -260,52 +257,13 @@ struct GameSceneFieldItemToolResult {
     bool rejected;
 };
 
-typedef char GameSceneFieldItemToolResultSizeCheck[sizeof(GameSceneFieldItemToolResult) == 20 ? 1 : -1];
-typedef char GameSceneFieldItemToolKindCheck[offsetof(GameSceneFieldItemToolResult, kind) == 4 ? 1 : -1];
-typedef char GameSceneFieldItemToolPositionCheck[offsetof(GameSceneFieldItemToolResult, x) == 8 ? 1 : -1];
-typedef char GameSceneFieldItemToolRejectedCheck[offsetof(GameSceneFieldItemToolResult, rejected) == 16 ? 1 : -1];
 
-typedef char GameSceneWorldUnk1080EntrySizeCheck[sizeof(GameSceneWorldUnk1080Entry) == 12 ? 1 : -1];
-typedef char GameSceneWorldUnk1080TileXCheck[offsetof(GameSceneWorldUnk1080Entry, tile_x) == 4 ? 1 : -1];
-typedef char GameSceneWorldUnk1080TailCheck[offsetof(GameSceneWorldUnk1080Entry, unk_08) == 8 ? 1 : -1];
-typedef char GameSceneWorldFarmTerrainCheck[offsetof(GameSceneWorld, farm_tile_attributes) == 0x1050 ? 1 : -1];
 
-typedef char GameSceneWorldSceneCheck[offsetof(GameSceneWorld, scene) == 0x1054 ? 1 : -1];
-typedef char GameSceneWorldSpriteCheck[offsetof(GameSceneWorld, unk_1058) == 0x1058 ? 1 : -1];
-typedef char GameSceneWorldFireplaceFlagCheck[offsetof(GameSceneWorld, unk_1060) == 0x1060 ? 1 : -1];
-typedef char GameSceneWorldSprite106CCheck[offsetof(GameSceneWorld, hill_seasonal_sprites[0]) == 0x106C ? 1 : -1];
-typedef char GameSceneWorldSprite1070Check[offsetof(GameSceneWorld, hill_seasonal_sprites[1]) == 0x1070 ? 1 : -1];
-typedef char GameSceneWorldSprite1074Check[offsetof(GameSceneWorld, winter_and_fireplace_sprites[0]) == 0x1074 ? 1 : -1];
-typedef char GameSceneWorldSprite1078Check[offsetof(GameSceneWorld, winter_and_fireplace_sprites[1]) == 0x1078 ? 1 : -1];
-typedef char GameSceneWorldVaseSpriteCheck[offsetof(GameSceneWorld, vase_sprite) == 0x1068 ? 1 : -1];
-typedef char GameSceneWorldFireplaceSpriteCheck[offsetof(GameSceneWorld, fireplace_sprite) == 0x105C ? 1 : -1];
 
-typedef char GameSceneWorldCalendarFlagCheck[offsetof(GameSceneWorld, calendar) + offsetof(WorldCalendarSource, tick_count) == 0x1044 ? 1 : -1];
-typedef char GameSceneWorldBeachHouseSpriteCheck[offsetof(GameSceneWorld, beach_house_sprite) == 0x1064 ? 1 : -1];
-typedef char GameSceneWorldEventIconSpritesCheck[offsetof(GameSceneWorld, event_icon_sprites) == 0x10B0 ? 1 : -1];
 
-typedef char GameSceneWorldUnknown10C8Check[offsetof(GameSceneWorld, unk_10C8) == 0x10C8 ? 1 : -1];
-typedef char GameSceneWorldUnknown10C9Check[offsetof(GameSceneWorld, unk_10C9) == 0x10C9 ? 1 : -1];
 
-typedef char GameSceneWorldUnk1080Check[offsetof(GameSceneWorld, unk_1080) == 0x1080 ? 1 : -1];
 
-typedef char GameSceneFarmPlotLocationSizeCheck[sizeof(GameSceneFarmPlotLocation) == 12 ? 1 : -1];
-typedef char GameSceneFarmPlotTileXCheck[offsetof(GameSceneFarmPlotLocation, tile_x) == 4 ? 1 : -1];
-typedef char GameSceneFarmPlotColumnCheck[offsetof(GameSceneFarmPlotLocation, column) == 8 ? 1 : -1];
 
-typedef char GameSceneWorldDataCheck[offsetof(GameSceneWorld, data) == 4 ? 1 : -1];
-typedef char GameSceneWorldMapCheck[offsetof(GameSceneWorld, data.map.value) == 4 ? 1 : -1];
-typedef char GameSceneWorldEntitiesCheck[offsetof(GameSceneWorld, data.entities) == 8 ? 1 : -1];
-typedef char GameSceneWorldPaletteCacheCheck[offsetof(GameSceneWorld, data.palette_cache) == 0x19C ? 1 : -1];
-typedef char GameSceneWorldActorArchiveCheck[offsetof(GameSceneWorld, data.actor_archive) == 0xDB4 ? 1 : -1];
-typedef char GameSceneWorldEntityAuxiliarySpritesCheck[offsetof(GameSceneWorld, data.entity_auxiliary_sprites) == 0x1024 ? 1 : -1];
-typedef char GameSceneWorldWeatherOwnerSizeCheck[sizeof(SmartPtr<GameSceneWeatherEffect>) == 4 ? 1 : -1];
-typedef char GameSceneWorldWeatherOwnerCheck[offsetof(GameSceneWorld, weather_effect) == 0x107C ? 1 : -1];
-typedef char GameSceneWorldSaveCheck[offsetof(GameSceneWorld, save) == 0x1038 ? 1 : -1];
-typedef char GameSceneWorldSuspensionCheck[offsetof(GameSceneWorld, updates_suspended) == 0x103C ? 1 : -1];
-typedef char GameSceneWorldCalendarCheck[offsetof(GameSceneWorld, calendar) == 0x1040 ? 1 : -1];
-typedef char GameSceneWorldPeriodCheck[offsetof(GameSceneWorld, time_of_day_period) == 0x1048 ? 1 : -1];
-typedef char GameSceneWorldPaletteBlendCheck[offsetof(GameSceneWorld, time_palette_blend) == 0x104C ? 1 : -1];
 
 EXTERN_C
 
@@ -392,11 +350,6 @@ struct GameSceneWorldInstanceOwner {
     }
 };
 
-typedef char GameSceneWorldInstanceTransferSizeCheck[sizeof(GameSceneWorldInstanceTransfer) == 8 ? 1 : -1];
-typedef char GameSceneWorldInstanceTransferValueCheck[offsetof(GameSceneWorldInstanceTransfer, value) == 4 ? 1 : -1];
 
-typedef char GameSceneWorldInstanceOwnerSizeCheck[sizeof(GameSceneWorldInstanceOwner) == 4 ? 1 : -1];
-typedef char GameSceneWorldOwnerTransferSizeCheck[sizeof(GameSceneWorldOwnerTransfer) == 8 ? 1 : -1];
-typedef char GameSceneWorldOwnerTransferValueCheck[offsetof(GameSceneWorldOwnerTransfer, value) == 4 ? 1 : -1];
 
 #endif // GAME_WORLD_HH

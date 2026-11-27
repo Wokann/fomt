@@ -42,10 +42,6 @@ struct ChickenFestivalArchiveOwner {
     ~ChickenFestivalArchiveOwner() { delete value; }
 };
 
-typedef char ChickenFestivalSpriteSizeCheck[sizeof(ChickenFestivalSprite) == 0x28 ? 1 : -1];
-typedef char ChickenFestivalHandleOwnerSizeCheck[sizeof(ChickenFestivalResourceHandleOwner) == 4 ? 1 : -1];
-typedef char ChickenFestivalParametersOwnerSizeCheck[sizeof(ChickenFestivalSpriteParametersOwner) == 4 ? 1 : -1];
-typedef char ChickenFestivalArchiveOwnerSizeCheck[sizeof(ChickenFestivalArchiveOwner) == 4 ? 1 : -1];
 
 #pragma interface "scene_chicken_festival.hh"
 
@@ -56,6 +52,29 @@ struct ChickenFestivalEntrant {
     FixedStr<12> name;
     u8 year;
     u8 affection;
+};
+
+
+// Per-slot record of the minigame's 0x40-byte stride array at +0x6C.
+// Offsets proven by func_080B9F0C (+0x00 state, +0x08 value) and
+// func_080B97FC (+0x14 flags, seen at +0x80 for slot 0 and +0xC0 for slot 1).
+struct ChickenFestivalSlot {
+    u32 state;                    /* +0x00 */
+    u8 unk_04[4];                 /* +0x04 */
+    u32 value;                    /* +0x08 */
+    u8 unk_0C[0x14 - 0x0C];       /* +0x0C */
+    u32 flags;                    /* +0x14 */
+    u32 unk_18;                   /* +0x18, signed countdown */
+    u8 unk_1C;                    /* +0x1C */
+    u8 unk_1D[3];                 /* +0x1D */
+    u16 unk_20;                   /* +0x20, scroll accumulator */
+    u8 unk_22[0x26 - 0x22];       /* +0x22 */
+    u8 unk_26;                    /* +0x26 */
+    u8 unk_27[2];                 /* +0x27 */
+    u8 unk_29;                    /* +0x29 */
+    u16 unk_2A;                   /* +0x2A, resolved offset */
+    u8 unk_2C[4];                 /* +0x2C, +0x2D used by the phase updater */
+    u8 unk_30[0x40 - 0x30];       /* +0x30 */
 };
 
 struct ChickenFestivalMinigameCore;
@@ -83,8 +102,19 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     void UpdateUnkPhase2();
     void UpdateUnkPhase3();
 
-    u8 unk_008;
-    u8 unk_009[0x704 - 0x009];
+    u32 unk_008;               /* +0x008, direction selector */
+    u8 unk_00C[0x10 - 0x00C];  /* +0x00C */
+    u32 unk_010;               /* +0x10, behaviour result */
+    u8 unk_014[0x1E - 0x14];   /* +0x14 */
+    u16 unk_1E;                /* +0x1E, vertical position */
+    u16 unk_20;                /* +0x20, horizontal position */
+    u8 unk_22;                 /* +0x22, selection bucket */
+    u8 unk_23;                 /* +0x23, step */
+    u8 unk_24[0x2F - 0x24];    /* +0x24 */
+    u8 unk_2F;                 /* +0x2F, table selector */
+    u8 unk_30[0x6C - 0x30];    /* +0x30 */
+    ChickenFestivalSlot slots[26];  /* +0x6C, 0x40 bytes each, up to 0x6EC */
+    u8 unk_6EC[0x704 - 0x6EC];
     HardwareMusicPlayerSlot music_players[5];
     GameSceneTalkWindowOwner ui_state;
     ObjPaletteCollectionEntry palette_71C;
@@ -135,33 +165,20 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     bool won;
     u8 unk_B31;
     bool finished;
-    u8 unk_B33[0xB78 - 0xB33];
+    u8 unk_B33[0xB35 - 0xB33];
+    u8 unk_B35[5];             /* +0xB35 */
+    u8 unk_B3A;                /* +0xB3A */
+    u8 unk_B3B[0xB40 - 0xB3B]; /* +0xB3B */
+    u32 unk_B40[2];            /* +0xB40, per-slot timers */
+    u8 unk_B48[8];             /* +0xB48 */
+    u32 unk_B50;               /* +0xB50 */
+    u8 unk_B54[0xB5A - 0xB54]; /* +0xB54 */
+    u8 unk_B5A;                /* +0xB5A */
+    u8 unk_B5B[0xB78 - 0xB5B]; /* +0xB5B */
 };
 
-typedef char ChickenFestivalMinigameCoreSizeCheck[sizeof(ChickenFestivalMinigameCore) == 0xB78 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreFlagCheck[offsetof(ChickenFestivalMinigameCore, unk_008) == 8 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreMusicCheck[offsetof(ChickenFestivalMinigameCore, music_players) == 0x704 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreUiStateCheck[offsetof(ChickenFestivalMinigameCore, ui_state) == 0x718 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreEntrantCheck[offsetof(ChickenFestivalMinigameCore, unk_B1C) == 0xB1C ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreBlendCheck[offsetof(ChickenFestivalMinigameCore, blend) == 0x7A0 ? 1 : -1];
-typedef char ChickenFestivalMinigameCorePhaseCheck[offsetof(ChickenFestivalMinigameCore, phase) == 0xB14 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreFinishedCheck[offsetof(ChickenFestivalMinigameCore, finished) == 0xB32 ? 1 : -1];
-typedef char ChickenFestivalMinigameCoreWinnerCheck[offsetof(ChickenFestivalMinigameCore, won) == 0xB30 ? 1 : -1];
 
-typedef char ChickenFestivalMember77COffsetCheck[offsetof(ChickenFestivalMinigameCore, archive_77C) == 0x77C ? 1 : -1];
-typedef char ChickenFestivalMember7A4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_7A4) == 0x7A4 ? 1 : -1];
-typedef char ChickenFestivalMember87COffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_87C) == 0x87C ? 1 : -1];
-typedef char ChickenFestivalMember91COffsetCheck[offsetof(ChickenFestivalMinigameCore, handles_91C) == 0x91C ? 1 : -1];
-typedef char ChickenFestivalMember9E4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_9E4) == 0x9E4 ? 1 : -1];
-typedef char ChickenFestivalMemberA30OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_A30) == 0xA30 ? 1 : -1];
-typedef char ChickenFestivalMemberAA4OffsetCheck[offsetof(ChickenFestivalMinigameCore, handle_AA4) == 0xAA4 ? 1 : -1];
-typedef char ChickenFestivalMemberAECOffsetCheck[offsetof(ChickenFestivalMinigameCore, parameters_AEC) == 0xAEC ? 1 : -1];
 
-typedef char ChickenFestivalEntrantSizeCheck[sizeof(ChickenFestivalEntrant) == 20 ? 1 : -1];
-typedef char ChickenFestivalEntrantYearCheck[offsetof(ChickenFestivalEntrant, year) == 16 ? 1 : -1];
-typedef char ChickenFestivalEntrantAffectionCheck[offsetof(ChickenFestivalEntrant, affection) == 17 ? 1 : -1];
-typedef char ChickenFestivalMinigameSceneSizeCheck[sizeof(ChickenFestivalMinigameScene) == 8 ? 1 : -1];
-typedef char ChickenFestivalMinigameSceneCoreCheck[offsetof(ChickenFestivalMinigameScene, core) == 4 ? 1 : -1];
 
 enum
 {

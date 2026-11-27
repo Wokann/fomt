@@ -47,18 +47,15 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start func_080AAF28\n"
-    "func_080AAF28:\n"
-    "lsls r1, r1, #0x18\n"
-    "ldr r2, .Lsaved_map_tree_reset_after_00f4\n"
-    "lsrs r1, r1, #0x17\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r1, r0\n"
-    "adds r1, r1, r2\n"
-    "ldrh r0, [r1]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lsaved_map_tree_reset_after_00f4: .word gUnk_FieldRenderLookupValues\n"
+);
+
+u16 func_080AAF28(u32 record_index, u8 variant)
+{
+    return gUnk_FieldRenderLookupValues[record_index][variant];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 EC u32 SelectSavedWorldMapData(GameSceneSavedMap * map)
@@ -74,29 +71,29 @@ EC u32 SelectSavedWorldMapData(GameSceneSavedMap * map)
 asm_unified(
     ".text\n"
     ".align 2, 0\n"
-    "thumb_func_start func_080AAF9C\n"
-    "func_080AAF9C:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0\n"
-    "cmp r1, #0\n"
-    "beq .Lworld_map_tail_0018\n"
-    "ldr r0, [r2]\n"
-    "cmp r0, #2\n"
-    "bne .Lworld_map_tail_0018\n"
-    "ldr r0, [r2, #0x2c]\n"
-    "movs r2, #0xb0\n"
-    "lsls r2, r2, #8\n"
-    "bl CopyHardwareDma3\n"
-    ".Lworld_map_tail_0018:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "thumb_func_start func_080AAFB8\n"
-    "func_080AAFB8:\n"
-    "push {lr}\n"
-    "ldr r0, [r0, #4]\n"
-    "bl GetMapData\n"
-    "adds r0, #0x24\n"
-    "ldrb r0, [r0]\n"
-    "pop {r1}\n"
-    "bx r1\n"
+);
+
+#include "hardware_dma.hh"
+void func_080AAF9C(GameSceneWorldMap * map, u32 enabled)
+{
+    if (enabled == 0)
+        return;
+    if (map->map != 2)
+        return;
+    CopyHardwareDma3(map->tile_attributes, (void *)enabled, 0xB000);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "world_map.hh"
+#include "map_data.hh"
+u8 func_080AAFB8(GameSceneWorldMap * map)
+{
+    return GetMapData(map->map_data_id)->flags;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );

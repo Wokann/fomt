@@ -117,39 +117,24 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
 #if defined(REGION_JP)
     "\n"
-    "    .global GetCharacterName__C13NpcCollectionUi\n"
-    "    .thumb_func\n"
-    "GetCharacterName__C13NpcCollectionUi: @ 0x0809F874\n"
-    "    push {lr}\n"
-    "    movs r2, #0\n"
-    "    cmp r1, #0x2a\n"
-    "    bhi .Ljp_0809F87E\n"
-    "    movs r2, #1\n"
-    ".Ljp_0809F87E:\n"
-    "    cmp r2, #0\n"
-    "    bne .Ljp_0809F88C\n"
-    "    ldr r0, .Ljp_0809F888\n"
-    "    b .Ljp_0809F8A4\n"
+);
+
+char const * NpcCollection::GetCharacterName(u32 character_id) const
+{
+    bool valid = character_id <= 0x2A;
+    if (!valid)
+        return gText_CharacterName_Empty;
+    switch (character_id) {
+    case 0x23:
+        return child.GetName();
+    case 0:
+    default:
+        return gCharacterNameEntries[character_id].text;
+    }
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0809F888: .word gText_CharacterName_Empty\n"
-    ".Ljp_0809F88C:\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_0809F89C\n"
-    "    cmp r1, #0x23\n"
-    "    bne .Ljp_0809F89C\n"
-    "    adds r0, #4\n"
-    "    bl GetName__C5Child\n"
-    "    b .Ljp_0809F8A4\n"
-    ".Ljp_0809F89C:\n"
-    "    ldr r0, .Ljp_0809F8A8\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r1, r1, r0\n"
-    "    ldr r0, [r1]\n"
-    ".Ljp_0809F8A4:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".Ljp_0809F8A8: .word gCharacterNameEntries\n"
     "    .global GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate\n"
     "    .thumb_func\n"
     "GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate: @ 0x0809F8AC\n"
@@ -721,39 +706,24 @@ asm_unified(
     "\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
-    "\tthumb_func_start GetCharacterName__C13NpcCollectionUi\n"
-    "GetCharacterName__C13NpcCollectionUi: @ 0x0809FE3C\n"
-    "\tpush {lr}\n"
-    "\tmovs r2, #0\n"
-    "\tcmp r1, #0x2a\n"
-    "\tbhi .L0809FE46\n"
-    "\tmovs r2, #1\n"
-    ".L0809FE46:\n"
-    "\tcmp r2, #0\n"
-    "\tbne .L0809FE54\n"
-    "\tldr r0, .L0809FE50 @ =gText_CharacterName_Empty\n"
-    "\tb .L0809FE6C\n"
-    "\t.align 2, 0\n"
-    ".L0809FE50: .word gText_CharacterName_Empty\n"
-    ".L0809FE54:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L0809FE64\n"
-    "\tcmp r1, #0x23\n"
-    "\tbne .L0809FE64\n"
-    "\tadds r0, #4\n"
-    "\tbl GetName__C5Child\n"
-    "\tb .L0809FE6C\n"
-    ".L0809FE64:\n"
-    "\tldr r0, .L0809FE70 @ =gCharacterNameEntries\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r1, r1, r0\n"
-    "\tldr r0, [r1]\n"
-    ".L0809FE6C:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L0809FE70: .word gCharacterNameEntries\n"
-    "\n"
+);
+
+char const * NpcCollection::GetCharacterName(u32 character_id) const
+{
+    bool valid = character_id <= 0x2A;
+    if (!valid)
+        return gText_CharacterName_Empty;
+    switch (character_id) {
+    case 0x23:
+        return child.GetName();
+    case 0:
+    default:
+        return gCharacterNameEntries[character_id].text;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate\n"
     "GetCharacterBirthdayCode__C13NpcCollectionUiRC8GameDate: @ 0x0809FE74\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -1346,152 +1316,72 @@ asm_unified(
     ".text\n"
 #if defined(REGION_JP)
     "\n"
-    "    thumb_func_start GetUnk03_2__C13NpcCollection\n"
-    "GetUnk03_2__C13NpcCollection: @ 0x0809FDD4\n"
-    "\tldrb r0, [r0, #3]\n"
-    "\tlsls r0, r0, #0x1b\n"
-    "\tlsrs r0, r0, #0x1d\n"
-    "\tbx lr\n"
-    "\n"
-    "    thumb_func_start SetUnk03_2__13NpcCollectionUi\n"
-    "SetUnk03_2__13NpcCollectionUi: @ 0x0809FDDC\n"
-    "\tmovs r2, #7\n"
-    "\tands r1, r2\n"
-    "\tlsls r1, r1, #2\n"
-    "\tldrb r3, [r0, #3]\n"
-    "\tmovs r2, #0x1d\n"
-    "\trsbs r2, r2, #0\n"
-    "\tands r2, r3\n"
-    "\torrs r2, r1\n"
-    "\tstrb r2, [r0, #3]\n"
-    "\tbx lr\n"
-    "\n"
-    "    thumb_func_start GetNpcLocation__C13NpcCollectionUi\n"
-    "GetNpcLocation__C13NpcCollectionUi: @ 0x0809FDF0\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #8\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r0, r1, #0\n"
-    "\tadds r1, r2, #0\n"
-    "\tbl GetNpc__C13NpcCollectionUi\n"
-    "\tadds r1, r0, #0\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080A03D4\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetLocation__C3Npc\n"
-    "\tb .L080A040E\n"
-    ".L080A03D4:\n"
-    "\tmov r1, sp\n"
-    "\tmovs r4, #2\n"
-    "\tldrh r2, [r1]\n"
-    "\tldr r3, .L080A0418 @ =0xFFFFFC00\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r4\n"
-    "\tstrh r0, [r1]\n"
-    "\tmovs r5, #0\n"
-    "\tldrb r4, [r1, #1]\n"
-    "\tmovs r2, #3\n"
-    "\tadds r0, r2, #0\n"
-    "\tands r0, r4\n"
-    "\tstrb r0, [r1, #1]\n"
-    "\tldrh r4, [r1, #2]\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r4\n"
-    "\tstrh r0, [r1, #2]\n"
-    "\tldrb r0, [r1, #3]\n"
-    "\tands r2, r0\n"
-    "\tstrb r2, [r1, #3]\n"
-    "\tldrh r0, [r1, #4]\n"
-    "\tands r3, r0\n"
-    "\tstrh r3, [r1, #4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tmovs r2, #6\n"
-    "\tbl memcpy\n"
-    "\tstrb r5, [r6, #6]\n"
-    ".L080A040E:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadd sp, #8\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080A0418: .word 0xFFFFFC00\n"
-    "\n"
+);
+
+u32 NpcCollection::GetUnk03_2() const
+{
+    return unk_03_2;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void NpcCollection::SetUnk03_2(u32 value)
+{
+    unk_03_2 = value;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
+{
+    Npc const * npc = GetNpc(character_id);
+
+    if (npc != nullptr)
+        return npc->GetLocation();
+
+    return ActorLocation(Location(MAP_FARM, 0, 0), 0);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
-    "\tthumb_func_start GetUnk03_2__C13NpcCollection\n"
-    "GetUnk03_2__C13NpcCollection: @ 0x080A039C\n"
-    "\tldrb r0, [r0, #3]\n"
-    "\tlsls r0, r0, #0x1b\n"
-    "\tlsrs r0, r0, #0x1d\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start SetUnk03_2__13NpcCollectionUi\n"
-    "SetUnk03_2__13NpcCollectionUi: @ 0x080A03A4\n"
-    "\tmovs r2, #7\n"
-    "\tands r1, r2\n"
-    "\tlsls r1, r1, #2\n"
-    "\tldrb r3, [r0, #3]\n"
-    "\tmovs r2, #0x1d\n"
-    "\trsbs r2, r2, #0\n"
-    "\tands r2, r3\n"
-    "\torrs r2, r1\n"
-    "\tstrb r2, [r0, #3]\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start GetNpcLocation__C13NpcCollectionUi\n"
-    "GetNpcLocation__C13NpcCollectionUi: @ 0x080A03B8\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #8\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r0, r1, #0\n"
-    "\tadds r1, r2, #0\n"
-    "\tbl GetNpc__C13NpcCollectionUi\n"
-    "\tadds r1, r0, #0\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080A03D4\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetLocation__C3Npc\n"
-    "\tb .L080A040E\n"
-    ".L080A03D4:\n"
-    "\tmov r1, sp\n"
-    "\tmovs r4, #2\n"
-    "\tldrh r2, [r1]\n"
-    "\tldr r3, .L080A0418 @ =0xFFFFFC00\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r2\n"
-    "\torrs r0, r4\n"
-    "\tstrh r0, [r1]\n"
-    "\tmovs r5, #0\n"
-    "\tldrb r4, [r1, #1]\n"
-    "\tmovs r2, #3\n"
-    "\tadds r0, r2, #0\n"
-    "\tands r0, r4\n"
-    "\tstrb r0, [r1, #1]\n"
-    "\tldrh r4, [r1, #2]\n"
-    "\tadds r0, r3, #0\n"
-    "\tands r0, r4\n"
-    "\tstrh r0, [r1, #2]\n"
-    "\tldrb r0, [r1, #3]\n"
-    "\tands r2, r0\n"
-    "\tstrb r2, [r1, #3]\n"
-    "\tldrh r0, [r1, #4]\n"
-    "\tands r3, r0\n"
-    "\tstrh r3, [r1, #4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tmovs r2, #6\n"
-    "\tbl memcpy\n"
-    "\tstrb r5, [r6, #6]\n"
-    ".L080A040E:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadd sp, #8\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080A0418: .word 0xFFFFFC00\n"
-    "\n"
+);
+
+u32 NpcCollection::GetUnk03_2() const
+{
+    return unk_03_2;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void NpcCollection::SetUnk03_2(u32 value)
+{
+    unk_03_2 = value;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation NpcCollection::GetNpcLocation(u32 character_id) const
+{
+    Npc const * npc = GetNpc(character_id);
+
+    if (npc != nullptr)
+        return npc->GetLocation();
+
+    return ActorLocation(Location(MAP_FARM, 0, 0), 0);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 
@@ -1526,137 +1416,109 @@ asm_unified(
     ".text\n"
 #if defined(REGION_JP)
     "\n"
-    "    thumb_func_start HasRequiredFriendshipLevels__C13NpcCollection\n"
-    "HasRequiredFriendshipLevels__C13NpcCollection: @ 0x0809FF50\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r6, r0, #0\n"
-    "\tmovs r5, #1\n"
-    "\tmovs r4, #1\n"
-    ".L080A0520:\n"
-    "\tadds r0, r4, #0\n"
-    "\tsubs r0, #0x17\n"
-    "\tcmp r0, #0xc\n"
-    "\tbhi .L080A056C\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .L080A0534 @ =.L080A0538\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".L080A0534: .word .L080A0538\n"
-    ".L080A0538: @ jump table\n"
-    "\t.word .L080A0582 @ case 0\n"
-    "\t.word .L080A056C @ case 1\n"
-    "\t.word .L080A056C @ case 2\n"
-    "\t.word .L080A0582 @ case 3\n"
-    "\t.word .L080A056C @ case 4\n"
-    "\t.word .L080A056C @ case 5\n"
-    "\t.word .L080A056C @ case 6\n"
-    "\t.word .L080A0582 @ case 7\n"
-    "\t.word .L080A056C @ case 8\n"
-    "\t.word .L080A0582 @ case 9\n"
-    "\t.word .L080A056C @ case 10\n"
-    "\t.word .L080A056C @ case 11\n"
-    "\t.word .L080A0582 @ case 12\n"
-    ".L080A056C:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl GetNpc__C13NpcCollectionUi\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080A0582\n"
-    "\tbl GetFriendship__C3Npc\n"
-    "\tcmp r0, #0xf9\n"
-    "\tbhi .L080A0582\n"
-    "\tmovs r5, #0\n"
-    ".L080A0582:\n"
-    "\tadds r4, #1\n"
-    "\tcmp r4, #0x2a\n"
-    "\tbls .L080A0520\n"
-    "\tadds r0, r5, #0\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "    .global GetUnk00_0__C13NpcCollection\n"
-    "    .thumb_func\n"
-    "GetUnk00_0__C13NpcCollection: @ 0x0809FFC8\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x1a\n"
-    "\tlsrs r0, r0, #0x1a\n"
-    "\tbx lr\n"
-    "\n"
-    "    .global GetUnk00_6__C13NpcCollection\n"
-    "    .thumb_func\n"
-    "GetUnk00_6__C13NpcCollection: @ 0x0809FFD0\n"
-    "\tldrh r0, [r0]\n"
-    "\tlsls r0, r0, #0x13\n"
-    "\tlsrs r0, r0, #0x19\n"
-    "\tbx lr\n"
-    "\n"
-    "    .global GetLibrarySecondFloorVisitCount__C13NpcCollection\n"
-    "    .thumb_func\n"
-    "GetLibrarySecondFloorVisitCount__C13NpcCollection: @ 0x0809FFD8\n"
-    "\tldr r0, [r0]\n"
-    "\tlsls r0, r0, #0xb\n"
-    "\tlsrs r0, r0, #0x18\n"
-    "\tbx lr\n"
-    "\n"
-    "    .global GetSouthTownNpcLocation1__C13NpcCollectionUi\n"
-    "    .thumb_func\n"
-    "GetSouthTownNpcLocation1__C13NpcCollectionUi: @ 0x0809FFE0\n"
-    "\tpush {lr}\n"
-    "\tcmp r1, #1\n"
-    "\tbeq .L080A05BA\n"
-    "\tcmp r1, #1\n"
-    "\tbcc .L080A05B6\n"
-    "\tcmp r1, #2\n"
-    "\tbeq .L080A05BE\n"
-    ".L080A05B6:\n"
-    "\tadds r0, #0x30\n"
-    "\tb .L080A05C0\n"
-    ".L080A05BA:\n"
-    "\tadds r0, #0x38\n"
-    "\tb .L080A05C0\n"
-    ".L080A05BE:\n"
-    "\tadds r0, #0x40\n"
-    ".L080A05C0:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "    .global GetSouthTownNpcLocation2__C13NpcCollectionUi\n"
-    "    .thumb_func\n"
-    "GetSouthTownNpcLocation2__C13NpcCollectionUi: @ 0x0809FFFC\n"
-    "\tpush {lr}\n"
-    "\tcmp r1, #1\n"
-    "\tbeq .L080A05D6\n"
-    "\tcmp r1, #1\n"
-    "\tbcc .L080A05D2\n"
-    "\tcmp r1, #2\n"
-    "\tbeq .L080A05DA\n"
-    ".L080A05D2:\n"
-    "\tadds r0, #0x48\n"
-    "\tb .L080A05DC\n"
-    ".L080A05D6:\n"
-    "\tadds r0, #0x50\n"
-    "\tb .L080A05DC\n"
-    ".L080A05DA:\n"
-    "\tadds r0, #0x58\n"
-    ".L080A05DC:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "    .global GetYodelRanchHouseNpcLocation__C13NpcCollection\n"
-    "    .thumb_func\n"
-    "GetYodelRanchHouseNpcLocation__C13NpcCollection: @ 0x080A0018\n"
-    "\tadds r0, #0x60\n"
-    "\tbx lr\n"
-    "\n"
-    "    .global GetInnSecondFloorNpcLocation__C13NpcCollection\n"
-    "    .thumb_func\n"
-    "GetInnSecondFloorNpcLocation__C13NpcCollection: @ 0x080A001C\n"
-    "\tadds r0, #0x68\n"
-    "\tbx lr\n"
-    "\n"
+);
+
+bool NpcCollection::HasRequiredFriendshipLevels() const
+{
+    bool result = true;
+
+    for (u32 id = 1; id <= 0x2A; id++)
+    {
+        switch (id)
+        {
+        case 0x17:
+        case 0x1A:
+        case 0x1E:
+        case 0x20:
+        case 0x23:
+            break;
+        default:
+            Npc const * npc = GetNpc(id);
+
+            if (npc != nullptr && npc->GetFriendship() <= 0xF9)
+                result = false;
+            break;
+        }
+    }
+
+    return result;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetUnk00_0() const
+{
+    return unk_00_0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetUnk00_6() const
+{
+    return unk_00_6;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetLibrarySecondFloorVisitCount() const
+{
+    return library_second_floor_visit_count;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_1_0;
+    case 1: return &locations.south_town_1_1;
+    case 2: return &locations.south_town_1_2;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_2_0;
+    case 1: return &locations.south_town_2_1;
+    case 2: return &locations.south_town_2_2;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetYodelRanchHouseNpcLocation() const
+{
+    return &locations.yodel_ranch_house;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
+{
+    return &locations.inn_second_floor;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    .global CreateChild__13NpcCollectionRC8GameDate\n"
     "    .thumb_func\n"
     "CreateChild__13NpcCollectionRC8GameDate: @ 0x080A0020\n"
@@ -1760,129 +1622,109 @@ asm_unified(
     ".L080A06AC: .word 0xFFFFFC00\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
-    "\tthumb_func_start HasRequiredFriendshipLevels__C13NpcCollection\n"
-    "HasRequiredFriendshipLevels__C13NpcCollection: @ 0x080A0518\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r6, r0, #0\n"
-    "\tmovs r5, #1\n"
-    "\tmovs r4, #1\n"
-    ".L080A0520:\n"
-    "\tadds r0, r4, #0\n"
-    "\tsubs r0, #0x17\n"
-    "\tcmp r0, #0xc\n"
-    "\tbhi .L080A056C\n"
-    "\tlsls r0, r0, #2\n"
-    "\tldr r1, .L080A0534 @ =.L080A0538\n"
-    "\tadds r0, r0, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmov pc, r0\n"
-    "\t.align 2, 0\n"
-    ".L080A0534: .word .L080A0538\n"
-    ".L080A0538: @ jump table\n"
-    "\t.word .L080A0582 @ case 0\n"
-    "\t.word .L080A056C @ case 1\n"
-    "\t.word .L080A056C @ case 2\n"
-    "\t.word .L080A0582 @ case 3\n"
-    "\t.word .L080A056C @ case 4\n"
-    "\t.word .L080A056C @ case 5\n"
-    "\t.word .L080A056C @ case 6\n"
-    "\t.word .L080A0582 @ case 7\n"
-    "\t.word .L080A056C @ case 8\n"
-    "\t.word .L080A0582 @ case 9\n"
-    "\t.word .L080A056C @ case 10\n"
-    "\t.word .L080A056C @ case 11\n"
-    "\t.word .L080A0582 @ case 12\n"
-    ".L080A056C:\n"
-    "\tadds r0, r6, #0\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl GetNpc__C13NpcCollectionUi\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080A0582\n"
-    "\tbl GetFriendship__C3Npc\n"
-    "\tcmp r0, #0xf9\n"
-    "\tbhi .L080A0582\n"
-    "\tmovs r5, #0\n"
-    ".L080A0582:\n"
-    "\tadds r4, #1\n"
-    "\tcmp r4, #0x2a\n"
-    "\tbls .L080A0520\n"
-    "\tadds r0, r5, #0\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\tthumb_func_start GetUnk00_0__C13NpcCollection\n"
-    "GetUnk00_0__C13NpcCollection: @ 0x080A0590\n"
-    "\tldrb r0, [r0]\n"
-    "\tlsls r0, r0, #0x1a\n"
-    "\tlsrs r0, r0, #0x1a\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start GetUnk00_6__C13NpcCollection\n"
-    "GetUnk00_6__C13NpcCollection: @ 0x080A0598\n"
-    "\tldrh r0, [r0]\n"
-    "\tlsls r0, r0, #0x13\n"
-    "\tlsrs r0, r0, #0x19\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start GetLibrarySecondFloorVisitCount__C13NpcCollection\n"
-    "GetLibrarySecondFloorVisitCount__C13NpcCollection: @ 0x080A05A0\n"
-    "\tldr r0, [r0]\n"
-    "\tlsls r0, r0, #0xb\n"
-    "\tlsrs r0, r0, #0x18\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start GetSouthTownNpcLocation1__C13NpcCollectionUi\n"
-    "GetSouthTownNpcLocation1__C13NpcCollectionUi: @ 0x080A05A8\n"
-    "\tpush {lr}\n"
-    "\tcmp r1, #1\n"
-    "\tbeq .L080A05BA\n"
-    "\tcmp r1, #1\n"
-    "\tbcc .L080A05B6\n"
-    "\tcmp r1, #2\n"
-    "\tbeq .L080A05BE\n"
-    ".L080A05B6:\n"
-    "\tadds r0, #0x30\n"
-    "\tb .L080A05C0\n"
-    ".L080A05BA:\n"
-    "\tadds r0, #0x38\n"
-    "\tb .L080A05C0\n"
-    ".L080A05BE:\n"
-    "\tadds r0, #0x40\n"
-    ".L080A05C0:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "\tthumb_func_start GetSouthTownNpcLocation2__C13NpcCollectionUi\n"
-    "GetSouthTownNpcLocation2__C13NpcCollectionUi: @ 0x080A05C4\n"
-    "\tpush {lr}\n"
-    "\tcmp r1, #1\n"
-    "\tbeq .L080A05D6\n"
-    "\tcmp r1, #1\n"
-    "\tbcc .L080A05D2\n"
-    "\tcmp r1, #2\n"
-    "\tbeq .L080A05DA\n"
-    ".L080A05D2:\n"
-    "\tadds r0, #0x48\n"
-    "\tb .L080A05DC\n"
-    ".L080A05D6:\n"
-    "\tadds r0, #0x50\n"
-    "\tb .L080A05DC\n"
-    ".L080A05DA:\n"
-    "\tadds r0, #0x58\n"
-    ".L080A05DC:\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "\tthumb_func_start GetYodelRanchHouseNpcLocation__C13NpcCollection\n"
-    "GetYodelRanchHouseNpcLocation__C13NpcCollection: @ 0x080A05E0\n"
-    "\tadds r0, #0x60\n"
-    "\tbx lr\n"
-    "\n"
-    "\tthumb_func_start GetInnSecondFloorNpcLocation__C13NpcCollection\n"
-    "GetInnSecondFloorNpcLocation__C13NpcCollection: @ 0x080A05E4\n"
-    "\tadds r0, #0x68\n"
-    "\tbx lr\n"
-    "\n"
+);
+
+bool NpcCollection::HasRequiredFriendshipLevels() const
+{
+    bool result = true;
+
+    for (u32 id = 1; id <= 0x2A; id++)
+    {
+        switch (id)
+        {
+        case 0x17:
+        case 0x1A:
+        case 0x1E:
+        case 0x20:
+        case 0x23:
+            break;
+        default:
+            Npc const * npc = GetNpc(id);
+
+            if (npc != nullptr && npc->GetFriendship() <= 0xF9)
+                result = false;
+            break;
+        }
+    }
+
+    return result;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetUnk00_0() const
+{
+    return unk_00_0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetUnk00_6() const
+{
+    return unk_00_6;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 NpcCollection::GetLibrarySecondFloorVisitCount() const
+{
+    return library_second_floor_visit_count;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetSouthTownNpcLocation1(u32 slot) const
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_1_0;
+    case 1: return &locations.south_town_1_1;
+    case 2: return &locations.south_town_1_2;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetSouthTownNpcLocation2(u32 slot) const
+{
+    switch (slot) {
+    case 0:
+    default: return &locations.south_town_2_0;
+    case 1: return &locations.south_town_2_1;
+    case 2: return &locations.south_town_2_2;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetYodelRanchHouseNpcLocation() const
+{
+    return &locations.yodel_ranch_house;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ActorLocation const * NpcCollection::GetInnSecondFloorNpcLocation() const
+{
+    return &locations.inn_second_floor;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start CreateChild__13NpcCollectionRC8GameDate\n"
     "CreateChild__13NpcCollectionRC8GameDate: @ 0x080A05E8\n"
     "\tpush {r4, r5, r6, r7, lr}\n"

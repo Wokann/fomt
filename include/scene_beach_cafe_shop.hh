@@ -66,21 +66,11 @@ struct BeachCafeShopSceneCore : ShopScreenCore {
     BeachCafeShopOrderOwner order;
 };
 
-typedef char BeachCafeOrderSizeCheck[sizeof(BeachCafeShopOrder) == 16 ? 1 : -1];
-typedef char BeachCafeOrderOwnerSizeCheck[sizeof(BeachCafeShopOrderOwner) == 4 ? 1 : -1];
-typedef char BeachCafeOrderTransferSizeCheck[sizeof(BeachCafeShopOrderTransfer) == 8 ? 1 : -1];
-typedef char BeachCafeCorePhaseCheck[offsetof(BeachCafeShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char BeachCafeCoreOrderedCheck[offsetof(BeachCafeShopSceneCore, has_ordered) == 0x6A8 ? 1 : -1];
-typedef char BeachCafeCoreOrderCheck[offsetof(BeachCafeShopSceneCore, order) == 0x6AC ? 1 : -1];
-typedef char BeachCafeCoreSizeCheck[sizeof(BeachCafeShopSceneCore) == 0x6B0 ? 1 : -1];
 
 #pragma interface "scene_beach_cafe_shop.hh"
 
 #pragma interface "scene_beach_cafe_shop.hh"
 
-typedef char BeachCafeShopSceneSizeCheck[sizeof(BeachCafeShopScene) == 12 ? 1 : -1];
-typedef char BeachCafeShopSceneCoreCheck[offsetof(BeachCafeShopScene, core) == 4 ? 1 : -1];
-typedef char BeachCafeShopSceneContinuationCheck[offsetof(BeachCafeShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

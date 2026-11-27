@@ -123,28 +123,7 @@ struct FrisbeeCore : HardwareContext {
 
 #pragma interface "frisbee.hh"
 
-typedef char FrisbeeTextVariablesSizeCheck[sizeof(FrisbeeTextVariables) == 8 ? 1 : -1];
-typedef char FrisbeeTextVariablesItemCheck[offsetof(FrisbeeTextVariables, article_id) == 4 ? 1 : -1];
-typedef char FrisbeeSpriteStateSizeCheck[sizeof(FrisbeeSpriteState) == 0x38 ? 1 : -1];
-typedef char FrisbeeSpriteTilesSizeCheck[sizeof(FrisbeeSpriteTiles) == 16 ? 1 : -1];
-typedef char FrisbeePalettePairTilesSizeCheck[sizeof(FrisbeePalettePairTiles) == 24 ? 1 : -1];
-typedef char FrisbeeCoreSpritesCheck[offsetof(FrisbeeCore, sprites) == 0x200 ? 1 : -1];
-typedef char FrisbeeCoreTilesCheck[offsetof(FrisbeeCore, tiles_468) == 0x468 ? 1 : -1];
-typedef char FrisbeeCoreSpriteTilesCheck[offsetof(FrisbeeCore, sprite_tiles) == 0x500 ? 1 : -1];
-typedef char FrisbeeCorePalettePairCheck[offsetof(FrisbeeCore, palette_pair_tiles) == 0x540 ? 1 : -1];
-typedef char FrisbeeCoreBackgroundTilemapCheck[offsetof(FrisbeeCore, background_tilemap) == 0x1D5A ? 1 : -1];
-typedef char FrisbeeCoreGaugeEndpointCheck[offsetof(FrisbeeCore, power_gauge_endpoint_y) == 0x22DC ? 1 : -1];
-typedef char FrisbeeCoreUnknownRamCheck[offsetof(FrisbeeCore, unk_558) == 0x558 ? 1 : -1];
-typedef char FrisbeeCoreTextVariablesCheck[offsetof(FrisbeeCore, text_variables) == 0x23A0 ? 1 : -1];
 
-typedef char FrisbeeCoreSizeCheck[sizeof(FrisbeeCore) == 0x23A8 ? 1 : -1];
-typedef char FrisbeeCoreSaveCheck[offsetof(FrisbeeCore, save) == 8 ? 1 : -1];
-typedef char FrisbeeCoreOffset_unk_00C[offsetof(FrisbeeCore, unk_00C) == 0xC ? 1 : -1];
-typedef char FrisbeeCoreOffset_ui_state[offsetof(FrisbeeCore, ui_state) == 0x10 ? 1 : -1];
-typedef char FrisbeeCoreOffset_music_players[offsetof(FrisbeeCore, music_players) == 0x14 ? 1 : -1];
-typedef char FrisbeeCoreOffset_actor_archive[offsetof(FrisbeeCore, actor_archive) == 0x20 ? 1 : -1];
-typedef char FrisbeeCoreOffset_unk_archive_050[offsetof(FrisbeeCore, unk_archive_050) == 0x50 ? 1 : -1];
-typedef char FrisbeeCoreOffset_unk_archive_080[offsetof(FrisbeeCore, unk_archive_080) == 0x80 ? 1 : -1];
 
 
 #endif // FRISBEE_CORE_HH

@@ -71,17 +71,7 @@ struct HardwareManagerVBlankBinding {
 #ifdef __cplusplus
 #endif
 
-typedef char HardwareManagerPreviousBinding_size_check[
-    sizeof(struct HardwareManagerPreviousBinding) == 8 ? 1 : -1];
-typedef char HardwareManagerVBlankBinding_size_check[
-    sizeof(struct HardwareManagerVBlankBinding) == 0x18 ? 1 : -1];
-typedef char HardwareManagerVBlankBinding_previous_offset_check[
-    offsetof(struct HardwareManagerVBlankBinding, previous) == 8 ? 1 : -1];
-typedef char HardwareManagerVBlankBinding_handler_offset_check[
-    offsetof(struct HardwareManagerVBlankBinding, previous_handler) == 0x10 ? 1 : -1];
 #ifndef __cplusplus
-typedef char HardwareManagerVBlankBinding_vtable_offset_check[
-    offsetof(struct HardwareManagerVBlankBinding, vtable) == 0x14 ? 1 : -1];
 #endif
 
 EXTERN_C

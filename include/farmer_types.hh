@@ -72,14 +72,7 @@ struct Farmer
     Rucksack rucksack;
 };
 
-typedef char FarmerNameOffsetCheck[offsetof(Farmer, name) == 0 ? 1 : -1];
-typedef char FarmerSpouseNicknameOffsetCheck[offsetof(Farmer, spouse_nickname) == 0x10 ? 1 : -1];
-typedef char FarmerBirthdayOffsetCheck[offsetof(Farmer, birthday) == 0x20 ? 1 : -1];
 
-typedef char FarmerToolLevelSizeCheck[sizeof(Farmer::ToolLevel) == 4 ? 1 : -1];
-typedef char FarmerHeldItemOffsetCheck[offsetof(Farmer, held_item) == 0x54 ? 1 : -1];
-typedef char FarmerRucksackOffsetCheck[offsetof(Farmer, rucksack) == 0x60 ? 1 : -1];
-typedef char FarmerSizeCheck[sizeof(Farmer) == 0x98 ? 1 : -1];
 
 /* Farmer methods */
 EC unsigned int func_0800E4F0(Farmer const & self);

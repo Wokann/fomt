@@ -995,28 +995,26 @@ asm_unified(
     "    pop {r2}\n"
     "    bx r2\n"
     "    .align 2, 0\n"
-    "    .global func_080249E8\n"
-    "    .thumb_func\n"
-    "func_080249E8:\n"
-    "    push {lr}\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0, #6]\n"
-    "    bl StopActorSpriteEffect\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+extern "C" void func_080249E8(AActorEntity * self)
+{
+    self->normal_update_suspended = true;
+    StopActorSpriteEffect(*self);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
-    "    .global func_080249F8\n"
-    "    .thumb_func\n"
-    "func_080249F8:\n"
-    "    push {lr}\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0, #6]\n"
-    "    bl StopActorSpriteEffect\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+extern "C" void func_080249F8(AActorEntity * self)
+{
+    self->normal_update_suspended = false;
+    StopActorSpriteEffect(*self);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
     "    .global func_08024A08\n"
     "    .thumb_func\n"
     "func_08024A08:\n"
@@ -11527,21 +11525,16 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .global PlayerPrepareForScriptedAnimation\n"
-    "    .thumb_func\n"
-    "PlayerPrepareForScriptedAnimation: @ 0x08029764\n"
-    "    push {lr}\n"
-    "    adds r1, r0, #0\n"
-    "    adds r1, #0xa4\n"
-    "    movs r2, #0\n"
-    "    strb r2, [r1]\n"
-    "    subs r1, #0x1c\n"
-    "    strb r2, [r1]\n"
-    "    movs r1, #0xc9\n"
-    "    lsls r1, r1, #1\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+extern "C" void PlayerPrepareForScriptedAnimation(PlayerActor * player)
+{
+    player->unk_89[0xA4 - 0x89] = 0;
+    player->held_actor_graphic_state = 0;
+    player->SetAnim(0x192);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    .global PlayerRestoreAfterScriptedAnimation\n"
     "    .thumb_func\n"
@@ -23323,22 +23316,17 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    thumb_func_start PlayerPrepareForScriptedAnimation\n"
-    "PlayerPrepareForScriptedAnimation: @ 0x080299D0\n"
-    "    push {lr}\n"
-    "    adds r1, r0, #0\n"
-    "    adds r1, #0xa4\n"
-    "    movs r2, #0\n"
-    "    strb r2, [r1]\n"
-    "    subs r1, #0x1c\n"
-    "    strb r2, [r1]\n"
-    "    movs r1, #0xc9\n"
-    "    lsls r1, r1, #1\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+extern "C" void PlayerPrepareForScriptedAnimation(PlayerActor * player)
+{
+    player->unk_89[0xA4 - 0x89] = 0;
+    player->held_actor_graphic_state = 0;
+    player->SetAnim(0x192);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
     "    thumb_func_start PlayerRestoreAfterScriptedAnimation\n"
     "PlayerRestoreAfterScriptedAnimation: @ 0x080299EC\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -27181,45 +27169,33 @@ EntityVisualController * FarmingTutorialPlayer::CreateVisualController()
 
 asm_unified(
     ".text\n"
-    "    thumb_func_start UpdateWhileSuspended__21FarmingTutorialPlayerRC19EntityUpdateContext\n"
-    "UpdateWhileSuspended__21FarmingTutorialPlayerRC19EntityUpdateContext:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #88\n"
-    "    ldrb r0, [r1, #0]\n"
-    "    cmp r0, #0\n"
-    "    bne .L0802BA60\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #84\n"
-    "    ldrb r0, [r0, #0]\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802BA64\n"
-    "    adds r0, r4, #0\n"
-    "    bl UpdateAction__21FarmingTutorialPlayer\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "    lsls r0, r0, #16\n"
-    "    lsrs r1, r0, #16\n"
-    "    ldrh r0, [r4, #34]\n"
-    "    cmp r0, r1\n"
-    "    beq .L0802BA64\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    b .L0802BA64\n"
-    ".L0802BA60:\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1, #0]\n"
-    ".L0802BA64:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+void FarmingTutorialPlayer::UpdateWhileSuspended(
+    EntityUpdateContext const & context)
+{
+    if (!skip_action_update)
+    {
+        if (action_active)
+        {
+            UpdateAction();
+
+            u16 animation = (u16)GetActionAnimation();
+
+            if (anim_id != animation)
+                SetAnim(animation);
+        }
+    }
+    else
+    {
+        skip_action_update = false;
+    }
+
+    AActorEntity::UpdateWhileSuspended(context);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
     "    thumb_func_start UpdateAction__21FarmingTutorialPlayer\n"
     "UpdateAction__21FarmingTutorialPlayer: @ 0x0802BA74\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -27469,55 +27445,34 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    thumb_func_start GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "GetActionAnimation__C21FarmingTutorialPlayer: @ 0x0802BC48\n"
-    "    push {lr}\n"
-    "    adds r2, r0, #0\n"
-    "    movs r1, #0xc9\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, #0x34\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #4\n"
-    "    bhi .L0802BC9C\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .L0802BC64 @ =.L0802BC68\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
+);
+
+u32 FarmingTutorialPlayer::GetActionAnimation() const
+{
+    u32 animation = 0x192;
+
+    switch (action)
+    {
+    case 0:
+        animation = !holding_item ? (0x152 + 0x40) : 0x152;
+        break;
+    case 1:
+    case 2:
+        animation = 0x19E;
+        break;
+    case 3:
+        animation = 0x146;
+        break;
+    case 4:
+        animation = 0x42;
+        break;
+    }
+
+    return animation;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".L0802BC64: .word .L0802BC68\n"
-    ".L0802BC68: @ jump table\n"
-    "    .word .L0802BC7C @ case 0\n"
-    "    .word .L0802BC8E @ case 1\n"
-    "    .word .L0802BC8E @ case 2\n"
-    "    .word .L0802BC94 @ case 3\n"
-    "    .word .L0802BC9A @ case 4\n"
-    ".L0802BC7C:\n"
-    "    adds r0, r2, #0\n"
-    "    adds r0, #0x59\n"
-    "    ldrb r0, [r0]\n"
-    "    movs r1, #0xa9\n"
-    "    lsls r1, r1, #1\n"
-    "    cmp r0, #0\n"
-    "    bne .L0802BC9C\n"
-    "    adds r1, #0x40\n"
-    "    b .L0802BC9C\n"
-    ".L0802BC8E:\n"
-    "    movs r1, #0xcf\n"
-    "    lsls r1, r1, #1\n"
-    "    b .L0802BC9C\n"
-    ".L0802BC94:\n"
-    "    movs r1, #0xa3\n"
-    "    lsls r1, r1, #1\n"
-    "    b .L0802BC9C\n"
-    ".L0802BC9A:\n"
-    "    movs r1, #0x42\n"
-    ".L0802BC9C:\n"
-    "    adds r0, r1, #0\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L0802BCA4:\n"
     "    .global ShowHoldingTool__21FarmingTutorialPlayer14MaryItemToolId\n"
     "    .thumb_func\n"
     "ShowHoldingTool__21FarmingTutorialPlayer14MaryItemToolId:\n"
@@ -27831,30 +27786,18 @@ asm_unified(
     "    .align 2, 0\n"
     ".L0802BEF8: .word 0x0001AAAA\n"
     "\n"
-    "    thumb_func_start UseHeldItem__21FarmingTutorialPlayer\n"
-    "UseHeldItem__21FarmingTutorialPlayer: @ 0x0802BEFC\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0x34\n"
-    "    movs r0, #2\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x58\n"
-    "    movs r5, #1\n"
-    "    strb r5, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetActionAnimation__C21FarmingTutorialPlayer\n"
-    "    adds r1, r0, #0\n"
-    "    lsls r1, r1, #0x10\n"
-    "    lsrs r1, r1, #0x10\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    adds r4, #0x54\n"
-    "    strb r5, [r4]\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+void FarmingTutorialPlayer::UseHeldItem()
+{
+    action = 2;
+    skip_action_update = true;
+    SetAnim((u16)GetActionAnimation());
+    action_active = true;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -28388,9 +28331,13 @@ bool FarmingTutorialPlayer::IsActionActive() const
 asm_unified(
     ".text\n"
 #if defined(REGION_JP)
-    "    thumb_func_start func_0802C070\n"
-    "func_0802C070:\n"
-    "    bx lr\n"
+);
+
+extern "C" void func_0802C070(void * self)
+{
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    .global func_0802C074\n"
     "    .thumb_func\n"
@@ -40278,19 +40225,15 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    .global sub_08031D60\n"
-    "    .thumb_func\n"
-    "sub_08031D60:\n"
-    "    push {lr}\n"
-    "    movs r0, #0\n"
-    "    subs r1, #0x2b\n"
-    "    cmp r1, #0x1a\n"
-    "    bhi .Ljp_08031D6C\n"
-    "    movs r0, #1\n"
-    ".Ljp_08031D6C:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
+);
+
+extern "C" u32 sub_08031D60(u32 unused, u32 value)
+{
+    return (u32)(value - 0x2B) <= 0x1A;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "    .global sub_08031D70\n"
     "    .thumb_func\n"
     "sub_08031D70:\n"

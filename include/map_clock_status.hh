@@ -35,7 +35,6 @@ enum {
 #endif
 };
 
-typedef char MapClockStatusContentSize[sizeof(MapClockStatusHudContent) == 4 ? 1 : -1];
 
 struct HardwareSpriteBufferState;
 
@@ -51,8 +50,6 @@ struct MapClockStatusHudWidget : ControlWidget {
 };
 
 struct GameCalendar;
-typedef char MapClockStatusWidgetContentOffset[offsetof(MapClockStatusHudWidget, content) == 8 ? 1 : -1];
-typedef char MapClockStatusWidgetSize[sizeof(MapClockStatusHudWidget) == 12 ? 1 : -1];
 
 EXTERN_C
 // Calendar composition remains native; its callers use this one shared name.

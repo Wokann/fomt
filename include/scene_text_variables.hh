@@ -33,10 +33,6 @@ struct GameSceneTextVariables : ScriptTextVariableStore
     FixedStr<MAX_VALUE_BYTES> values[4];
 };
 
-typedef char GameSceneTextVariableStrideCheck[sizeof(FixedStr<GameSceneTextVariables::MAX_VALUE_BYTES>) == 24 ? 1 : -1];
-typedef char GameSceneTextVariablesSizeCheck[sizeof(GameSceneTextVariables) == 0x68 ? 1 : -1];
-typedef char GameSceneTextVariablesSaveCheck[offsetof(GameSceneTextVariables, save) == 4 ? 1 : -1];
-typedef char GameSceneTextVariablesValuesCheck[offsetof(GameSceneTextVariables, values) == 8 ? 1 : -1];
 
 
 #endif

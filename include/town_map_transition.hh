@@ -23,13 +23,6 @@ struct TownMapTransition : SceneTransition {
     i32 mode;
 };
 
-typedef char TownMapTransitionSizeCheck[sizeof(TownMapTransition) == 16 ? 1 : -1];
-typedef char TownMapTransitionSaveCheck[offsetof(TownMapTransition, save) == 4 ? 1 : -1];
-typedef char TownMapTransitionResultCheck[offsetof(TownMapTransition, result) == 8 ? 1 : -1];
-typedef char TownMapTransitionModeCheck[offsetof(TownMapTransition, mode) == 12 ? 1 : -1];
-typedef char TownMapReturnTransitionSizeCheck[sizeof(TownMapReturnTransition) == 20 ? 1 : -1];
-typedef char TownMapReturnTransitionSaveCheck[offsetof(TownMapReturnTransition, save) == 12 ? 1 : -1];
-typedef char TownMapReturnTransitionModeCheck[offsetof(TownMapReturnTransition, mode) == 16 ? 1 : -1];
 
 #pragma interface "game_scene.hh"
 

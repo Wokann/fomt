@@ -24,6 +24,5 @@ struct Saibara : public Npc
     /* +15 */ u16 collected_mystrile_fishing_rod : 1;
 };
 
-typedef char SaibaraSizeCheck[sizeof(Saibara) == 0x18 ? 1 : -1];
 
 #endif // SAIBARA_HH

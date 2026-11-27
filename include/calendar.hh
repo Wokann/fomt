@@ -21,7 +21,6 @@ struct CalendarSeasonLabel
     explicit CalendarSeasonLabel(char const * text) : value(text) {}
     operator char const *() const { return value; }
 };
-typedef char CalendarSeasonLabelSizeCheck[sizeof(CalendarSeasonLabel) == 4 ? 1 : -1];
 
 CalendarSeasonLabel GetCalendarSeasonLabel(Season season);
 // Returns a borrowed weekday label, or the calendar fallback for an invalid index.

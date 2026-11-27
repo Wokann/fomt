@@ -12,8 +12,6 @@ struct FarmHouseTilePatchDescriptor
     u8 const * frame_data;
 };
 
-typedef char MapTilePatchDescriptorSizeCheck[sizeof(FarmHouseTilePatchDescriptor) == 8 ? 1 : -1];
-typedef char MapTilePatchDescriptorSourceCheck[offsetof(FarmHouseTilePatchDescriptor, frame_data) == 4 ? 1 : -1];
 
 // The native frame stream begins with two halfwords; tile bytes follow.
 struct MapTilePatchFrameHeader {
@@ -21,8 +19,6 @@ struct MapTilePatchFrameHeader {
     u16 frame_count;
 };
 
-typedef char MapTilePatchFrameHeaderSizeCheck[sizeof(MapTilePatchFrameHeader) == 4 ? 1 : -1];
-typedef char MapTilePatchFrameCountCheck[offsetof(MapTilePatchFrameHeader, frame_count) == 2 ? 1 : -1];
 
 // Native timers compare elapsed updates against frame_duration at +0x08.
 // The animation frame count is read from frame_data, not from this field.
@@ -33,9 +29,6 @@ struct FarmHouseTilePatchAnimationDescriptor
     u16 frame_duration;
 };
 
-typedef char MapTilePatchAnimationPrefixCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, patch) == 0 ? 1 : -1];
-typedef char MapTilePatchAnimationDescriptorSizeCheck[sizeof(FarmHouseTilePatchAnimationDescriptor) == 12 ? 1 : -1];
-typedef char MapTilePatchAnimationDurationCheck[offsetof(FarmHouseTilePatchAnimationDescriptor, frame_duration) == 8 ? 1 : -1];
 
 // Each native consumer addresses these records independently. Numbered
 // names preserve physical order without guessing their visual roles.

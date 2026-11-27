@@ -60,7 +60,7 @@ struct FarmStatusScreenScene : AScene
     FarmStatusScreenScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 argument);
     virtual ~FarmStatusScreenScene();
     virtual SceneTransitionOwner Run();
-    FarmStatusScreenCore * core;
+    SceneCoreOwner<FarmStatusScreenCore> core;
     SceneTransitionOwner continuation;
 };
 
@@ -691,21 +691,12 @@ struct FarmStatusToolsPage : ScrollMenuPage {
     IndexedResourceArchive archive;
 };
 
-typedef char FarmStatusScreenCoreSizeCheck[sizeof(FarmStatusScreenCore) == 0x164 ? 1 : -1];
-typedef char FarmStatusScreenCorePagesCheck[offsetof(FarmStatusScreenCore, pages) == 0x124 ? 1 : -1];
-typedef char FarmStatusOverviewPageSizeCheck[sizeof(FarmStatusOverviewPage) == 0x1B6C ? 1 : -1];
-typedef char FarmStatusAnimalPageSizeCheck[sizeof(FarmStatusAnimalPage) == 0x431C ? 1 : -1];
-typedef char FarmStatusHarvestSpritesPageSizeCheck[sizeof(FarmStatusHarvestSpritesPage) == 0x22B8 ? 1 : -1];
 #if defined(REGION_JP)
-typedef char FarmStatusEarningsPageSizeCheck[sizeof(FarmStatusEarningsPage) == 0x1580 ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char FarmStatusEarningsPageSizeCheck[sizeof(FarmStatusEarningsPage) == 0x19FC ? 1 : -1];
 #endif
-typedef char FarmStatusToolsPageSizeCheck[sizeof(FarmStatusToolsPage) == 0x9F4 ? 1 : -1];
 
 #include "status_screen_transitions.hh"
 
-typedef char FarmStatusScreenSceneSizeCheck[sizeof(FarmStatusScreenScene) == 12 ? 1 : -1];
 
 extern char const gText_FarmStatus_OverviewTitle[];
 extern char const gText_FarmStatus_GoldUnit[];

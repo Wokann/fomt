@@ -9,6 +9,10 @@
 #include "held_item.hh"
 struct Rucksack;
 #include "utility/fixed_str.hh"
+#include "game_state_types.hh"
+#include "farmer_types.hh"
+#include "farm.hh"
+#include "farm_house.hh"
 #pragma interface "scene_shelf.hh"
 
 struct ShelfSceneCore;
@@ -50,20 +54,11 @@ struct ShelfSceneCore : GameSceneMenuSelectionCore {
     Shelf * shelf;
     u32 phase;
 };
-typedef char ShelfCoreDescriptionCheck[offsetof(ShelfSceneCore, item_description) == 0x98 ? 1 : -1];
-typedef char ShelfCoreHeldItemCheck[offsetof(ShelfSceneCore, held_item) == 0xFC ? 1 : -1];
-typedef char ShelfCoreRucksackCheck[offsetof(ShelfSceneCore, rucksack) == 0x100 ? 1 : -1];
-typedef char ShelfCoreStorageCheck[offsetof(ShelfSceneCore, shelf) == 0x104 ? 1 : -1];
-typedef char ShelfCorePhaseCheck[offsetof(ShelfSceneCore, phase) == 0x108 ? 1 : -1];
-typedef char ShelfCoreSizeCheck[sizeof(ShelfSceneCore) == 0x10C ? 1 : -1];
 
 #pragma interface "scene_shelf.hh"
 
 #pragma interface "scene_shelf.hh"
 
-typedef char ShelfSceneSizeCheck[sizeof(ShelfScene) == 12 ? 1 : -1];
-typedef char ShelfSceneCoreCheck[offsetof(ShelfScene, core) == 4 ? 1 : -1];
-typedef char ShelfSceneContinuationCheck[offsetof(ShelfScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

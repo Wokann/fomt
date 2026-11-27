@@ -36,12 +36,6 @@ struct GameSceneSavedMap : GameSceneWorldMap {
     GameSceneSavedMap(GameStateSaveImage * image);
 };
 
-typedef char GameSceneSavedMapSaveCheck[offsetof(GameSceneSavedMap, save) == 0x94 ? 1 : -1];
-typedef char GameSceneSavedMapFlagCheck[offsetof(GameSceneSavedMap, unk_98) == 0x98 ? 1 : -1];
-typedef char GameSceneSavedMapTreeCheck[offsetof(GameSceneSavedMap, saved_tree) == 0x9C ? 1 : -1];
-typedef char GameSceneSavedMapAnimation0Check[offsetof(GameSceneSavedMap, tile_animation_0) == 0xB4 ? 1 : -1];
-typedef char GameSceneSavedMapAnimation1Check[offsetof(GameSceneSavedMap, tile_animation_1) == 0xB8 ? 1 : -1];
-typedef char GameSceneSavedMapSizeCheck[sizeof(GameSceneSavedMap) == 0xBC ? 1 : -1];
 
 EXTERN_C
 

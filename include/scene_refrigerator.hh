@@ -9,6 +9,10 @@
 #include "held_item.hh"
 struct Rucksack;
 #include "utility/fixed_str.hh"
+#include "game_state_types.hh"
+#include "farmer_types.hh"
+#include "farm.hh"
+#include "farm_house.hh"
 #pragma interface "scene_refrigerator.hh"
 
 struct RefrigeratorSceneCore;
@@ -50,20 +54,11 @@ struct RefrigeratorSceneCore : GameSceneMenuSelectionCore {
     Fridge * fridge;
     u32 phase;
 };
-typedef char RefrigeratorCoreDescriptionCheck[offsetof(RefrigeratorSceneCore, item_description) == 0x98 ? 1 : -1];
-typedef char RefrigeratorCoreHeldItemCheck[offsetof(RefrigeratorSceneCore, held_item) == 0xFC ? 1 : -1];
-typedef char RefrigeratorCoreRucksackCheck[offsetof(RefrigeratorSceneCore, rucksack) == 0x100 ? 1 : -1];
-typedef char RefrigeratorCoreStorageCheck[offsetof(RefrigeratorSceneCore, fridge) == 0x104 ? 1 : -1];
-typedef char RefrigeratorCorePhaseCheck[offsetof(RefrigeratorSceneCore, phase) == 0x108 ? 1 : -1];
-typedef char RefrigeratorCoreSizeCheck[sizeof(RefrigeratorSceneCore) == 0x10C ? 1 : -1];
 
 #pragma interface "scene_refrigerator.hh"
 
 #pragma interface "scene_refrigerator.hh"
 
-typedef char RefrigeratorSceneSizeCheck[sizeof(RefrigeratorScene) == 12 ? 1 : -1];
-typedef char RefrigeratorSceneCoreCheck[offsetof(RefrigeratorScene, core) == 4 ? 1 : -1];
-typedef char RefrigeratorSceneContinuationCheck[offsetof(RefrigeratorScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

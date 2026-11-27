@@ -3089,31 +3089,15 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L08078AE4: .word 0xFFFFFC00\n"
     ".L08078AE8:\n"
-    "\tthumb_func_start _._14TownMapUiScene\n"
-    "_._14TownMapUiScene:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r0, .Lraw_code_0803EE94_190932_0\n"
-    "    str r0, [r4]\n"
-    "    ldr r1, [r4, #4]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_0803EE94_190929_0\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".Lraw_code_0803EE94_190929_0:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "\tbl _._6AScene\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+TownMapUiScene::~TownMapUiScene()
+{
+    delete core;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lraw_code_0803EE94_190932_0: .word __vt_14TownMapUiScene\n"
-    "\n"
     "\tthumb_func_start Run__14TownMapUiScene\n"
     "Run__14TownMapUiScene:\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -3510,32 +3494,15 @@ asm_unified(
 asm_unified(
     ".text\n"
 #if defined(REGION_JP)
-    "    .global _._14TownMapUiScene\n"
-    "    .thumb_func\n"
-    "_._14TownMapUiScene:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r0, .Lraw_code_0803EE94_67321_0\n"
-    "    str r0, [r4]\n"
-    "    ldr r1, [r4, #4]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_0803EE94_67318_0\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".Lraw_code_0803EE94_67318_0:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "\tbl _._6AScene\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+TownMapUiScene::~TownMapUiScene()
+{
+    delete core;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Lraw_code_0803EE94_67321_0: .word __vt_14TownMapUiScene\n"
-    "\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
 );

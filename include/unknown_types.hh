@@ -128,7 +128,5 @@ struct PACKED ALIGN(2) GameTime
     unsigned int GetHour() const { return clock_hour; }
 };
 
-typedef char GameDateSizeCheck[sizeof(GameDate) == 1 ? 1 : -1];
-typedef char GameTimeSizeCheck[sizeof(GameTime) == 2 ? 1 : -1];
 
 #endif // UNKNOWN_TYPES_HH

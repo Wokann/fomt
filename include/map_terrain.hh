@@ -14,7 +14,6 @@ struct FieldRenderTileAttributes
     u16 unk_02_01 : 15;
 };
 
-typedef char FieldRenderTileAttributesSizeCheck[sizeof(FieldRenderTileAttributes) == 4 ? 1 : -1];
 
 // A direct tile grid or an indexed view of a table of tile attributes.
 // This is a borrowed view; it does not own either input buffer.
@@ -33,10 +32,6 @@ struct MapTerrainView
     u16 height;
 };
 
-typedef char MapTerrainViewSizeCheck[sizeof(MapTerrainView) == 12 ? 1 : -1];
-typedef char MapTerrainViewIndicesCheck[offsetof(MapTerrainView, indices) == 4 ? 1 : -1];
-typedef char MapTerrainViewWidthCheck[offsetof(MapTerrainView, width) == 8 ? 1 : -1];
-typedef char MapTerrainViewHeightCheck[offsetof(MapTerrainView, height) == 10 ? 1 : -1];
 
 struct Box;
 

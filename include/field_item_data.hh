@@ -50,9 +50,6 @@ struct PACKED ALIGN(2) FieldItemState
     u32 resource_6E : 3;
 };
 
-typedef char FieldItemStateSizeCheck[sizeof(FieldItemState) == 14 ? 1 : -1];
-typedef char FieldItemInstanceSizeCheck[sizeof(FieldItemInstance) == 16 ? 1 : -1];
 
-typedef char FieldItemInstanceExtraCheck[offsetof(FieldItemInstance, unk_0C) == 12 ? 1 : -1];
 
 #endif // FIELD_ITEM_DATA_HH

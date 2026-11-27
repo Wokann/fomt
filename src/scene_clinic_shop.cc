@@ -9,72 +9,39 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __19ClinicShopSceneCoreP18GameStateSaveImage\n"
-    "__19ClinicShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lclinic_0_002c\n"
-    "str r0, [r4, #4]\n"
-    "ldr r1, .Lclinic_0_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "movs r2, #0xe1\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lclinic_0_002c: .word __vt_19ClinicShopSceneCore\n"
-    ".Lclinic_0_0030: .word 0x6a4\n"
-    "\n"
-    "thumb_func_start _._19ClinicShopSceneCore\n"
-    "_._19ClinicShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lclinic_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lclinic_1_0010: .word __vt_19ClinicShopSceneCore\n"
-    "\n"
-    "thumb_func_start UpdateDescription__19ClinicShopSceneCoreUi\n"
-    "UpdateDescription__19ClinicShopSceneCoreUi:\n"
-    "push {r4, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "ldr r2, .Lclinic_2_0038\n"
-    "lsls r1, r1, #2\n"
-    "adds r1, r1, r4\n"
-    "movs r0, #0xaa\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r1, r0\n"
-    "ldr r0, [r1]\n"
-    "lsls r0, r0, #3\n"
-    "adds r0, r0, r2\n"
-    "ldr r1, [r0]\n"
-    "mov r0, sp\n"
-    "bl __4FoodUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C4Food\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl SetShopDescriptionText\n"
-    "add sp, #4\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lclinic_2_0038: .word gClinicCatalog\n"
-    "\n"
+);
+
+ClinicShopSceneCore::ClinicShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image)
+{
+    description[0] = '\0';
+    phase = 0;
+    has_purchased = false;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ClinicShopSceneCore::~ClinicShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
+
+void ClinicShopSceneCore::UpdateDescription(u32 selection)
+{
+    Food food(gClinicCatalog[catalog[selection]].food_id);
+
+    SetShopDescriptionText(this, food.GetDesc());
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__19ClinicShopSceneCore\n"
     "Run__19ClinicShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

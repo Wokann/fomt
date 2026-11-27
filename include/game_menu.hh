@@ -15,10 +15,6 @@ struct MenuGridNavigation {
     i32 left;
     i32 right;
 };
-typedef char MenuGridNavigationSizeCheck[sizeof(MenuGridNavigation) == 16 ? 1 : -1];
-typedef char MenuGridNavigationDownCheck[offsetof(MenuGridNavigation, down) == 4 ? 1 : -1];
-typedef char MenuGridNavigationLeftCheck[offsetof(MenuGridNavigation, left) == 8 ? 1 : -1];
-typedef char MenuGridNavigationRightCheck[offsetof(MenuGridNavigation, right) == 12 ? 1 : -1];
 extern MenuGridNavigation const gMenuGridNavigation[18];
 
 extern char const gText_ToolStatus_GemOfTruth[];

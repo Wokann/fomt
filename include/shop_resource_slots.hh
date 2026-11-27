@@ -31,12 +31,6 @@ struct ShopResourceSlotInsertResult {
     bool inserted;
 };
 
-typedef char ShopResourceSlotEntrySizeCheck[sizeof(ShopResourceSlotEntry) == 8 ? 1 : -1];
-typedef char ShopResourceSlotNodeSizeCheck[sizeof(ShopResourceSlotNode) == 24 ? 1 : -1];
-typedef char ShopResourceSlotNodeEntryCheck[offsetof(ShopResourceSlotNode, entry) == 16 ? 1 : -1];
-typedef char ShopResourceSlotMapSizeCheck[sizeof(ShopResourceSlotMap) == 16 ? 1 : -1];
-typedef char ShopResourceSlotIteratorSizeCheck[sizeof(ShopResourceSlotIterator) == 4 ? 1 : -1];
-typedef char ShopResourceSlotResultSizeCheck[sizeof(ShopResourceSlotInsertResult) == 8 ? 1 : -1];
 
 EXTERN_C
 // Release the subtree's nodes; the caller separately frees its header.

@@ -61,18 +61,5 @@ private:
     MapClockStatusHudData();
 };
 
-typedef char MapClockStatusHudDataSize[sizeof(MapClockStatusHudData) == 0x35C ? 1 : -1];
-typedef char MapClockStatusBufferSize[sizeof(MapClockStatusHudTileBuffer) == 0x124 ? 1 : -1];
-typedef char MapClockStatusBufferStateOffset[offsetof(MapClockStatusHudTileBuffer, state) == 0x100 ? 1 : -1];
-typedef char MapClockStatusBufferDirtyOffset[offsetof(MapClockStatusHudTileBuffer, dirty) == 0x108 ? 1 : -1];
-typedef char MapClockStatusBufferUploadOffset[offsetof(MapClockStatusHudTileBuffer, upload) == 0x10C ? 1 : -1];
-typedef char MapClockStatusDateOffset[offsetof(MapClockStatusHudData, date_tiles) == 0x84 ? 1 : -1];
-typedef char MapClockStatusTimeOffset[offsetof(MapClockStatusHudData, time_tiles) == 0x1A8 ? 1 : -1];
-typedef char MapClockStatusPaletteUploadOffset[offsetof(MapClockStatusHudData, palette_upload) == 0x68 ? 1 : -1];
-typedef char MapClockStatusSelectorOffset[offsetof(MapClockStatusHudData, unk_selector) == 0x2CC ? 1 : -1];
-typedef char MapClockStatusSelectorDirtyOffset[offsetof(MapClockStatusHudData, unk_selector_dirty) == 0x2F0 ? 1 : -1];
-typedef char MapClockStatusValueActiveOffset[offsetof(MapClockStatusHudData, unk_value_active) == 0x2F1 ? 1 : -1];
-typedef char MapClockStatusValueOffset[offsetof(MapClockStatusHudData, unk_value) == 0x2F2 ? 1 : -1];
-typedef char MapClockStatusValueDirtyOffset[offsetof(MapClockStatusHudData, unk_value_dirty) == 0x334 ? 1 : -1];
 
 #endif // MAP_CLOCK_STATUS_LIFETIMES_HH

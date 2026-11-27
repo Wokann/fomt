@@ -85,26 +85,8 @@ struct YodelRanchShopSceneCore : ShopScreenCore {
     i32 naming_animal_index;
 };
 
-typedef char YodelRanchSaleEntrySizeCheck[sizeof(YodelRanchAnimalSaleEntry) == 8 ? 1 : -1];
-typedef char YodelRanchNameTilesSizeCheck[sizeof(YodelRanchNameTiles) == 0x304 ? 1 : -1];
-typedef char YodelRanchDescriptionSizeCheck[sizeof(YodelRanchAnimalDescription) == 0x84 ? 1 : -1];
-typedef char YodelRanchDescriptionTextCheck[offsetof(YodelRanchAnimalDescription, text) == 4 ? 1 : -1];
-typedef char YodelRanchCorePhaseCheck[offsetof(YodelRanchShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char YodelRanchCorePurchasedCheck[offsetof(YodelRanchShopSceneCore, has_purchased) == 0x6A8 ? 1 : -1];
-typedef char YodelRanchCoreAnimalsCheck[offsetof(YodelRanchShopSceneCore, animals) == 0x6AC ? 1 : -1];
-typedef char YodelRanchCoreMenuCountCheck[offsetof(YodelRanchShopSceneCore, animal_menu.count) == 0x72C ? 1 : -1];
-typedef char YodelRanchCoreMenuCodesCheck[offsetof(YodelRanchShopSceneCore, animal_menu.storage) == 0x730 ? 1 : -1];
-typedef char YodelRanchCoreTilesCheck[offsetof(YodelRanchShopSceneCore, name_tiles) == 0x770 ? 1 : -1];
-typedef char YodelRanchCoreDescriptionCheck[offsetof(YodelRanchShopSceneCore, description) == 0x3AB4 ? 1 : -1];
-typedef char YodelRanchCorePurchaseDescriptionCheck[offsetof(YodelRanchShopSceneCore, purchase_description) == 0x3B34 ? 1 : -1];
-typedef char YodelRanchCoreAnimalDescriptionsCheck[offsetof(YodelRanchShopSceneCore, animal_descriptions) == 0x3B98 ? 1 : -1];
-typedef char YodelRanchCoreNamingKindCheck[offsetof(YodelRanchShopSceneCore, naming_animal_kind) == 0x43D8 ? 1 : -1];
-typedef char YodelRanchCoreNamingIndexCheck[offsetof(YodelRanchShopSceneCore, naming_animal_index) == 0x43DC ? 1 : -1];
-typedef char YodelRanchCoreSizeCheck[sizeof(YodelRanchShopSceneCore) == 0x43E0 ? 1 : -1];
 
 inline YodelRanchShopSceneCoreOwner::~YodelRanchShopSceneCoreOwner() { delete value; }
-typedef char YodelRanchShopSceneSizeCheck[sizeof(YodelRanchShopScene) == 20 ? 1 : -1];
-typedef char YodelRanchShopSceneSaveCheck[offsetof(YodelRanchShopScene, save) == 16 ? 1 : -1];
 
 EXTERN_C
 

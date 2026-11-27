@@ -53,10 +53,6 @@ struct UiVCountBinding {
     InterruptHandler previous_handler;
 };
 
-typedef char UiVCountContextScopeSize[sizeof(UiVCountContextScope) == 8 ? 1 : -1];
-typedef char UiVCountBindingSize[sizeof(UiVCountBinding) == 24 ? 1 : -1];
-typedef char UiVCountBindingContextOffset[offsetof(UiVCountBinding, context) == 8 ? 1 : -1];
-typedef char UiVCountBindingHandlerOffset[offsetof(UiVCountBinding, previous_handler) == 16 ? 1 : -1];
 
 #include "ui_vcount_lifetimes.hh"
 

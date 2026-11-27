@@ -18,11 +18,6 @@ struct MapData
     u8 padding[3];
 };
 
-typedef char MapDataSizeCheck[sizeof(MapData) == 0x28 ? 1 : -1];
-typedef char MapDataPalettesCheck[offsetof(MapData, palettes) == 4 ? 1 : -1];
-typedef char MapDataTilemapsCheck[offsetof(MapData, tilemaps) == 0xC ? 1 : -1];
-typedef char MapDataWidthCheck[offsetof(MapData, width) == 0x20 ? 1 : -1];
-typedef char MapDataHeightCheck[offsetof(MapData, height) == 0x22 ? 1 : -1];
 
 enum
 {

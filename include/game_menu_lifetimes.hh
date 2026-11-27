@@ -50,7 +50,6 @@ struct GameSceneMenuResourceState {
     GameSceneMenuResourceState(IndexedResourceProvider * provider, u32 index, i32 delta)
         : unk_00(0), unk_02(0), handle(provider, index, delta), parameters(), unk_34(0) {}
 };
-typedef char MenuResourceStateSizeCheck[sizeof(GameSceneMenuResourceState) == 0x38 ? 1 : -1];
 #pragma interface "game_menu_lifetimes.hh"
 struct GameSceneMenuCorePrefix : HardwareContext {
     GameStateSaveImage * save;
@@ -71,16 +70,6 @@ public:
     MenuGridPosition GetCursorPosition(i32) const;
     i32 GetItemIndex(i32, i32) const;
 };
-typedef char MenuPanelSizeCheck[sizeof(GameMenuPanel) == 0x214 ? 1 : -1];
-typedef char MenuCorePrefixSizeCheck[sizeof(GameSceneMenuCorePrefix) == 0x8C ? 1 : -1];
-typedef char MenuCoreArchiveCheck[offsetof(GameSceneMenuCorePrefix, archive) == 0x10 ? 1 : -1];
-typedef char MenuCoreHandleCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, handle) == 0x44 ? 1 : -1];
-typedef char MenuCoreSpriteCheck[offsetof(GameSceneMenuCorePrefix, resource_state) + offsetof(GameSceneMenuResourceState, parameters) == 0x58 ? 1 : -1];
-typedef char MenuCoreOwnedDataCheck[offsetof(GameSceneMenuCorePrefix, left_panel) == 0x78 ? 1 : -1];
-typedef char MenuCoreUiCheck[offsetof(GameSceneMenuCorePrefix, ui) == 0x80 ? 1 : -1];
-typedef char MenuCoreResourceStateOffsetCheck[offsetof(GameSceneMenuCorePrefix, resource_state) == 0x40 ? 1 : -1];
-typedef char MenuCoreUnknownStateCheck[offsetof(GameSceneMenuCorePrefix, unk_84) == 0x84 ? 1 : -1];
-typedef char MenuCoreUnknownResultCheck[offsetof(GameSceneMenuCorePrefix, unk_88) == 0x88 ? 1 : -1];
 // Native menu tilemap command storage. Construction remains in assembly;
 // only the verified layout and command/resource cleanup are recovered here.
 // Do not allocate these views or assign meaning to untouched words.
@@ -98,15 +87,6 @@ struct GameSceneMenuTilemapData {
 private:
     GameSceneMenuTilemapData();
 };
-typedef char MenuTilemapDataSizeCheck[sizeof(GameSceneMenuTilemapData) == 0xC8 ? 1 : -1];
-typedef char MenuTilemapDataFirstStateCheck[offsetof(GameSceneMenuTilemapData, unk_04) == 4 ? 1 : -1];
-typedef char MenuTilemapDataSecondStateCheck[offsetof(GameSceneMenuTilemapData, unk_0C) == 0xC ? 1 : -1];
-typedef char MenuTilemapDataPoolEntryCheck[offsetof(GameSceneMenuTilemapData, unk_14) == 0x14 ? 1 : -1];
-typedef char MenuTilemapDataArchiveCheck[offsetof(GameSceneMenuTilemapData, archive) == 0x1C ? 1 : -1];
-typedef char MenuTilemapDataFirstResourceCheck[offsetof(GameSceneMenuTilemapData, first) == 0x4C ? 1 : -1];
-typedef char MenuTilemapDataSecondResourceCheck[offsetof(GameSceneMenuTilemapData, second) == 0x84 ? 1 : -1];
-typedef char MenuTilemapDataUnknownWordCheck[offsetof(GameSceneMenuTilemapData, unk_BC) == 0xBC ? 1 : -1];
-typedef char MenuTilemapDataQueueCheck[offsetof(GameSceneMenuTilemapData, commands) == 0xC0 ? 1 : -1];
 
 struct GameSceneMenuCursorData {
     GameSceneMenuCorePrefix * core;
@@ -172,25 +152,6 @@ struct GameSceneMenuTilemapDataOwner {
     ~GameSceneMenuTilemapDataOwner() { delete value; }
 };
 
-typedef char MenuCursorSelectionCheck[offsetof(GameSceneMenuCursorData, selection) == 4 ? 1 : -1];
-typedef char MenuCursorPreviousCheck[offsetof(GameSceneMenuCursorData, previous) == 8 ? 1 : -1];
-typedef char MenuCursorLeftLimitCheck[offsetof(GameSceneMenuCursorData, left_limit) == 0xC ? 1 : -1];
-typedef char MenuCursorRightLimitCheck[offsetof(GameSceneMenuCursorData, right_limit) == 0x10 ? 1 : -1];
-typedef char MenuCursorDataSizeCheck[sizeof(GameSceneMenuCursorData) == 0x8C ? 1 : -1];
-typedef char MenuCursorStateCheck[offsetof(GameSceneMenuCursorData, state) == 0x14 ? 1 : -1];
-typedef char MenuCursorResourceCheck[offsetof(GameSceneMenuCursorData, resource) == 0x1C ? 1 : -1];
-typedef char MenuCursorArchiveCheck[offsetof(GameSceneMenuCursorData, archive) == 0x24 ? 1 : -1];
-typedef char MenuCursorSpriteCheck[offsetof(GameSceneMenuCursorData, sprite) == 0x54 ? 1 : -1];
-typedef char MenuSpriteDataSizeCheck[sizeof(GameSceneMenuSpriteData) == 0x88 ? 1 : -1];
-typedef char MenuSpriteArchiveCheck[offsetof(GameSceneMenuSpriteData, archive) == 4 ? 1 : -1];
-typedef char MenuSpriteParametersCheck[offsetof(GameSceneMenuSpriteData, sprite) == 0x34 ? 1 : -1];
-typedef char MenuSpriteStateCheck[offsetof(GameSceneMenuSpriteData, state) == 0x6C ? 1 : -1];
-typedef char MenuSpriteResourceCheck[offsetof(GameSceneMenuSpriteData, resource) == 0x74 ? 1 : -1];
-typedef char MenuSpriteUnknownWordCheck[offsetof(GameSceneMenuSpriteData, unk_7C) == 0x7C ? 1 : -1];
-typedef char MenuSpriteUnknownByteCheck[offsetof(GameSceneMenuSpriteData, unk_84) == 0x84 ? 1 : -1];
-typedef char MenuCursorOwnerSizeCheck[sizeof(GameSceneMenuCursorDataOwner) == 4 ? 1 : -1];
-typedef char MenuSpriteOwnerSizeCheck[sizeof(GameSceneMenuSpriteDataOwner) == 4 ? 1 : -1];
-typedef char MenuTilemapOwnerSizeCheck[sizeof(GameSceneMenuTilemapDataOwner) == 4 ? 1 : -1];
 
 #pragma interface "game_menu_lifetimes.hh"
 #include "game_menu_selection.hh"

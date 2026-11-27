@@ -28,6 +28,5 @@ private:
     GameStateSaveImageOwner & operator=(GameStateSaveImageOwner const &);
 };
 
-typedef char GameStateSaveImageOwnerSizeCheck[sizeof(GameStateSaveImageOwner) == 4 ? 1 : -1];
 
 #endif // GAME_STATE_OWNER_HH

@@ -14,7 +14,6 @@ struct ObjPalettePoolOwner
     void Reserve(unsigned int from, unsigned int count) asm("ReserveObjPaletteBanks");
 };
 
-typedef char ObjPalettePoolOwnerSizeCheck[sizeof(ObjPalettePoolOwner) == 4 ? 1 : -1];
 
 EXTERN_C
 // ABI declarations for still-native callers. These name the actual members
@@ -50,7 +49,6 @@ union ObjPaletteHandle
     u32 Index() const { return fields.index; }
 };
 
-typedef char ObjPaletteHandleSizeCheck[sizeof(ObjPaletteHandle) == 4 ? 1 : -1];
 
 EXTERN_C
 

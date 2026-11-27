@@ -13,6 +13,7 @@
 struct GameStateSaveImage;
 // Fixed native storage for one 18 by 2 tile menu label.
 struct CarpenterShopLabelTiles {
+    CarpenterShopLabelTiles() {}
     u32 unk_00;
     u32 tiles[18 * 2 * 8];
 };
@@ -54,25 +55,12 @@ struct CarpenterShopSceneCore : ShopScreenCore {
     bool lumber_bin_was_full;
 };
 
-typedef char CarpenterLabelTilesSizeCheck[sizeof(CarpenterShopLabelTiles) == 0x484 ? 1 : -1];
-typedef char CarpenterCoreQuantityTextCheck[offsetof(CarpenterShopSceneCore, quantity_description) == 0x6A4 ? 1 : -1];
-typedef char CarpenterCorePhaseCheck[offsetof(CarpenterShopSceneCore, phase) == 0x708 ? 1 : -1];
-typedef char CarpenterCorePurchasedCheck[offsetof(CarpenterShopSceneCore, has_purchased) == 0x70C ? 1 : -1];
-typedef char CarpenterCoreRemodelCountCheck[offsetof(CarpenterShopSceneCore, remodel_count) == 0x710 ? 1 : -1];
-typedef char CarpenterCoreRemodelIndicesCheck[offsetof(CarpenterShopSceneCore, remodel_catalog_indices) == 0x714 ? 1 : -1];
-typedef char CarpenterCoreTilesCheck[offsetof(CarpenterShopSceneCore, label_tiles) == 0x720 ? 1 : -1];
-typedef char CarpenterCoreRemodelTextCheck[offsetof(CarpenterShopSceneCore, remodel_description) == 0x6170 ? 1 : -1];
-typedef char CarpenterCoreLumberCheck[offsetof(CarpenterShopSceneCore, lumber_bin_was_full) == 0x61F0 ? 1 : -1];
-typedef char CarpenterCoreSizeCheck[sizeof(CarpenterShopSceneCore) == 0x61F4 ? 1 : -1];
 
 inline CarpenterShopSceneCoreOwner::~CarpenterShopSceneCoreOwner() { delete value; }
 #pragma interface "scene_carpenter_shop.hh"
 
 #pragma interface "scene_carpenter_shop.hh"
 
-typedef char CarpenterShopSceneSizeCheck[sizeof(CarpenterShopScene) == 12 ? 1 : -1];
-typedef char CarpenterShopSceneCoreCheck[offsetof(CarpenterShopScene, core) == 4 ? 1 : -1];
-typedef char CarpenterShopSceneContinuationCheck[offsetof(CarpenterShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

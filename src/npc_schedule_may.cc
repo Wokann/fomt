@@ -4,77 +4,41 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectMaySchedule\n"
-    "SelectMaySchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr6, [r4, #1]\n"
-    "    ldrb\tr0, [r4, #2]\n"
-    "    adds\tr7, r0, #0\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    adds\tr0, r6, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803EA6C\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803EABC\n"
-    ".Ljp_0803EA6C:\n"
-    "    cmp\tr6, #2\n"
-    "    bne .Ljp_0803EA8C\n"
-    "    cmp\tr7, #30\n"
-    "    bne .Ljp_0803EA8C\n"
-    "    ldr r1, .Ljp_0803EA88\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #26\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803EA8C\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803EABC\n"
+);
+
+extern "C" u32 SelectMaySchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 5;
+    if (season == 2 && day == 30
+        && (((u32)((u8 const *)context)[0x21A2] << 26) >> 30) != 2)
+        return 6;
+    if ((i32)(((u8 const *)context)[0x215A] << 28) < 0)
+        return 0;
+    if (*(u32 const *)((u8 const *)context + 8) == 0)
+    {
+        if (weekday == 1)
+            return 1;
+        if (weekday == 3)
+            return 2;
+        return 3;
+    }
+    return 4;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0803EA88: .word 0x000021A2\n"
-    ".Ljp_0803EA8C:\n"
-    "    ldr r1, .Ljp_0803EA9C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #28\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803EAA0\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803EABC\n"
-    ".Ljp_0803EA9C: .word 0x0000215A\n"
-    ".Ljp_0803EAA0:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803EABA\n"
-    "    cmp\tr4, #1\n"
-    "    bne .Ljp_0803EAAE\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803EABC\n"
-    ".Ljp_0803EAAE:\n"
-    "    cmp\tr4, #3\n"
-    "    bne .Ljp_0803EAB6\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803EABC\n"
-    ".Ljp_0803EAB6:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803EABC\n"
-    ".Ljp_0803EABA:\n"
-    "    movs\tr0, #4\n"
-    ".Ljp_0803EABC:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
 );
 
 extern "C" MayScheduleData const gMayScheduleData = {

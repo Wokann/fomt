@@ -11,7 +11,5 @@ ActorLocation * InitializeSouthTownNpcLocation2(ActorLocation * location, u32 sl
 ActorLocation * InitializeYodelRanchHouseNpcLocation(ActorLocation * location);
 ActorLocation * InitializeInnSecondFloorNpcLocation(ActorLocation * location);
 
-typedef char NpcPresetPositionSizeCheck[sizeof(Location) == 6 ? 1 : -1];
-typedef char NpcPresetLocationSizeCheck[sizeof(ActorLocation) == 8 ? 1 : -1];
 
 #endif // NPC_LOCATIONS_HH

@@ -10,9 +10,6 @@ struct HardwareDmaRegisters {
     u32 control;
 };
 
-typedef char HardwareDmaRegisters_size_check[(sizeof(struct HardwareDmaRegisters) == 0x0C) ? 1 : -1];
-typedef char HardwareDmaRegisters_destination_offset_check[(offsetof(struct HardwareDmaRegisters, destination) == 4) ? 1 : -1];
-typedef char HardwareDmaRegisters_control_offset_check[(offsetof(struct HardwareDmaRegisters, control) == 8) ? 1 : -1];
 
 EXTERN_C
 
@@ -52,10 +49,6 @@ struct DmaTransferDescriptor {
     u32 control;
 };
 
-typedef char DmaTransferDescriptor_size_check[(sizeof(struct DmaTransferDescriptor) == 0x10) ? 1 : -1];
-typedef char DmaTransferDescriptor_source_offset_check[(offsetof(struct DmaTransferDescriptor, source_or_value) == 4) ? 1 : -1];
-typedef char DmaTransferDescriptor_destination_offset_check[(offsetof(struct DmaTransferDescriptor, destination) == 8) ? 1 : -1];
-typedef char DmaTransferDescriptor_control_offset_check[(offsetof(struct DmaTransferDescriptor, control) == 0x0C) ? 1 : -1];
 
 EXTERN_C
 

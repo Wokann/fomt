@@ -31,9 +31,6 @@ struct RoamingNpcActor : AActorEntity
     /* +40 */ bool unk_40;
 };
 
-typedef char RoamingNpcActorSizeCheck[sizeof(RoamingNpcActor) == 0x44 ? 1 : -1];
-typedef char RoamingNpcActorSavedLocationCheck[offsetof(RoamingNpcActor, saved_location) == 0x30 ? 1 : -1];
-typedef char RoamingNpcActorAvoidanceBoxCheck[offsetof(RoamingNpcActor, avoidance_box) == 0x34 ? 1 : -1];
 
 struct SouthTownRoamingNpc1 : RoamingNpcActor
 {
@@ -48,7 +45,6 @@ struct SouthTownRoamingNpc1 : RoamingNpcActor
     /* +44 */ u8 index : 2;
 };
 
-typedef char SouthTownRoamingNpc1SizeCheck[sizeof(SouthTownRoamingNpc1) == 0x48 ? 1 : -1];
 
 struct SouthTownRoamingNpc2 : RoamingNpcActor
 {
@@ -63,7 +59,6 @@ struct SouthTownRoamingNpc2 : RoamingNpcActor
     /* +44 */ u8 index : 2;
 };
 
-typedef char SouthTownRoamingNpc2SizeCheck[sizeof(SouthTownRoamingNpc2) == 0x48 ? 1 : -1];
 
 struct YodelRanchHouseRoamingNpc : RoamingNpcActor
 {

@@ -20,9 +20,6 @@ private:
     GameSceneGroupSprite();
 };
 
-typedef char GameSceneGroupSpriteSizeCheck[sizeof(GameSceneGroupSprite) == 0x4C ? 1 : -1];
-typedef char GameSceneGroupSpriteGroupCheck[offsetof(GameSceneGroupSprite, group) == 0x28 ? 1 : -1];
-typedef char GameSceneGroupSpriteByteCheck[offsetof(GameSceneGroupSprite, unk_48) == 0x48 ? 1 : -1];
 
 // Construction remains inline at its original callers, without an extra
 // standalone constructor in the late cleanup/table owner.

@@ -4,41 +4,22 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectEllenSchedule\n"
-    "SelectEllenSchedule:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldr r2, .Ljp_0803DBDC\n"
-    "    adds\tr0, r1, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #26\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803DBE0\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803DBFE\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803DBDC: .word 0x000021CA\n"
-    ".Ljp_0803DBE0:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DBFC\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803DBFE\n"
-    ".Ljp_0803DBFC:\n"
-    "    movs\tr0, #2\n"
-    ".Ljp_0803DBFE:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectEllenSchedule(void const * context)
+{
+    if ((i32)(((u8 const *)context)[0x21CA] << 26) < 0)
+        return 0;
+    u8 date[4];
+    u8 const * raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    if ((u8)IsNpcScheduleDateListed(raw[1], raw[2]))
+        return 2;
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

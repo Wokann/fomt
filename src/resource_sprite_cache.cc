@@ -7,76 +7,48 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".thumb\n"
-    "\tthumb_func_start RotateRedBlackTreeLeft\n"
-    "RotateRedBlackTreeLeft: \n"
-    "\tpush {lr}\n"
-    "\tadds r2, r0, #0\n"
-    "\tldr r3, [r2, #0xc]\n"
-    "\tldr r0, [r3, #8]\n"
-    "\tstr r0, [r2, #0xc]\n"
-    "\tldr r0, [r3, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2182\n"
-    "\tstr r2, [r0, #4]\n"
-    ".L080E2182:\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tstr r0, [r3, #4]\n"
-    "\tldr r0, [r1]\n"
-    "\tcmp r2, r0\n"
-    "\tbne .L080E2190\n"
-    "\tstr r3, [r1]\n"
-    "\tb .L080E219E\n"
-    ".L080E2190:\n"
-    "\tldr r1, [r2, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r2, r0\n"
-    "\tbne .L080E219C\n"
-    "\tstr r3, [r1, #8]\n"
-    "\tb .L080E219E\n"
-    ".L080E219C:\n"
-    "\tstr r3, [r1, #0xc]\n"
-    ".L080E219E:\n"
-    "\tstr r2, [r3, #8]\n"
-    "\tstr r3, [r2, #4]\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
-    "\tthumb_func_start RotateRedBlackTreeRight\n"
-    "RotateRedBlackTreeRight: \n"
-    "\tpush {lr}\n"
-    "\tadds r2, r0, #0\n"
-    "\tldr r3, [r2, #8]\n"
-    "\tldr r0, [r3, #0xc]\n"
-    "\tstr r0, [r2, #8]\n"
-    "\tldr r0, [r3, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E21BA\n"
-    "\tstr r2, [r0, #4]\n"
-    ".L080E21BA:\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tstr r0, [r3, #4]\n"
-    "\tldr r0, [r1]\n"
-    "\tcmp r2, r0\n"
-    "\tbne .L080E21C8\n"
-    "\tstr r3, [r1]\n"
-    "\tb .L080E21D6\n"
-    ".L080E21C8:\n"
-    "\tldr r1, [r2, #4]\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r2, r0\n"
-    "\tbne .L080E21D4\n"
-    "\tstr r3, [r1, #0xc]\n"
-    "\tb .L080E21D6\n"
-    ".L080E21D4:\n"
-    "\tstr r3, [r1, #8]\n"
-    ".L080E21D6:\n"
-    "\tstr r2, [r3, #0xc]\n"
-    "\tstr r3, [r2, #4]\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+void RotateRedBlackTreeLeft(RedBlackTreeNode * node, RedBlackTreeNode *& root)
+{
+    RedBlackTreeNode * right = node->right;
+    node->right = right->left;
+    if (right->left != 0)
+        right->left->parent = node;
+    right->parent = node->parent;
+    if (node == root)
+        root = right;
+    else if (node == node->parent->left)
+        node->parent->left = right;
+    else
+        node->parent->right = right;
+    right->left = node;
+    node->parent = right;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void RotateRedBlackTreeRight(RedBlackTreeNode * node, RedBlackTreeNode *& root)
+{
+    RedBlackTreeNode * left = node->left;
+    node->left = left->right;
+    if (left->right != 0)
+        left->right->parent = node;
+    left->parent = node->parent;
+    if (node == root)
+        root = left;
+    else if (node == node->parent->right)
+        node->parent->right = left;
+    else
+        node->parent->left = left;
+    left->right = node;
+    node->parent = left;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start RebalanceRedBlackTreeAfterInsert\n"
     "RebalanceRedBlackTreeAfterInsert: \n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -232,46 +204,36 @@ extern "C" ResourceSpriteTileIterator InsertResourceSpriteTileNode(ResourceSprit
 
 asm_unified(
     ".text\n"
-    "\tthumb_func_start PreviousRedBlackTreeNode\n"
-    "PreviousRedBlackTreeNode: \n"
-    "\tpush {lr}\n"
-    "\tadds r2, r0, #0\n"
-    "\tldrb r0, [r2]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E236A\n"
-    "\tldr r0, [r2, #4]\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tcmp r0, r2\n"
-    "\tbne .L080E236A\n"
-    "\tldr r2, [r2, #0xc]\n"
-    "\tb .L080E238A\n"
-    ".L080E236A:\n"
-    "\tldr r0, [r2, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2380\n"
-    "\tadds r1, r0, #0\n"
-    "\tb .L080E2376\n"
-    ".L080E2374:\n"
-    "\tldr r1, [r1, #0xc]\n"
-    ".L080E2376:\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E2374\n"
-    "\tb .L080E2388\n"
-    ".L080E237E:\n"
-    "\tadds r2, r1, #0\n"
-    ".L080E2380:\n"
-    "\tldr r1, [r2, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r2, r0\n"
-    "\tbeq .L080E237E\n"
-    ".L080E2388:\n"
-    "\tadds r2, r1, #0\n"
-    ".L080E238A:\n"
-    "\tadds r0, r2, #0\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+RedBlackTreeNode * PreviousRedBlackTreeNode(RedBlackTreeNode * node)
+{
+    if (!node->black && node->parent->parent == node)
+    {
+        node = node->right;
+    }
+    else if (node->left != 0)
+    {
+        RedBlackTreeNode * child = node->left;
+        while (child->right != 0)
+            child = child->right;
+        node = child;
+    }
+    else
+    {
+        RedBlackTreeNode * parent = node->parent;
+        while (node == parent->left)
+        {
+            node = parent;
+            parent = parent->parent;
+        }
+        node = parent;
+    }
+    return node;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start InsertResourceSpriteTile\n"
     "InsertResourceSpriteTile: \n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -1290,91 +1252,62 @@ asm_unified(
     "\tbx r1\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start NextRedBlackTreeNode\n"
-    "NextRedBlackTreeNode: \n"
-    "\tpush {lr}\n"
-    "\tadds r1, r0, #0\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2B46\n"
-    "\tadds r1, r0, #0\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2B56\n"
-    ".L080E2B3A:\n"
-    "\tldr r1, [r1, #8]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E2B3A\n"
-    "\tb .L080E2B56\n"
-    ".L080E2B44:\n"
-    "\tadds r1, r2, #0\n"
-    ".L080E2B46:\n"
-    "\tldr r2, [r1, #4]\n"
-    "\tldr r0, [r2, #0xc]\n"
-    "\tcmp r1, r0\n"
-    "\tbeq .L080E2B44\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r0, r2\n"
-    "\tbeq .L080E2B56\n"
-    "\tadds r1, r2, #0\n"
-    ".L080E2B56:\n"
-    "\tadds r0, r1, #0\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-    "\tthumb_func_start EraseResourceSpriteTileNodes\n"
-    "EraseResourceSpriteTileNodes: \n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080E2B80\n"
-    ".L080E2B66:\n"
-    "\tldr r1, [r4, #0xc]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl EraseResourceSpriteTileNodes\n"
-    "\tldr r5, [r4, #8]\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080E2B7A\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl free\n"
-    ".L080E2B7A:\n"
-    "\tadds r4, r5, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbne .L080E2B66\n"
-    ".L080E2B80:\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
-    "\tthumb_func_start EraseResourceSpritePaletteNodes\n"
-    "EraseResourceSpritePaletteNodes: \n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080E2BAC\n"
-    ".L080E2B92:\n"
-    "\tldr r1, [r4, #0xc]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl EraseResourceSpritePaletteNodes\n"
-    "\tldr r5, [r4, #8]\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080E2BA6\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl free\n"
-    ".L080E2BA6:\n"
-    "\tadds r4, r5, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbne .L080E2B92\n"
-    ".L080E2BAC:\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+RedBlackTreeNode * NextRedBlackTreeNode(RedBlackTreeNode * node)
+{
+    if (node->right != 0)
+    {
+        node = node->right;
+        while (node->left != 0)
+            node = node->left;
+    }
+    else
+    {
+        RedBlackTreeNode * parent = node->parent;
+        while (node == parent->right)
+        {
+            node = parent;
+            parent = parent->parent;
+        }
+        if (node->right != parent)
+            node = parent;
+    }
+    return node;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void EraseResourceSpriteTileNodes(ResourceSpriteTileCache * cache, ResourceSpriteTileNode * node)
+{
+    while (node)
+    {
+        EraseResourceSpriteTileNodes(cache, (ResourceSpriteTileNode *)node->right);
+        ResourceSpriteTileNode * left = (ResourceSpriteTileNode *)node->left;
+        if (node) free(node);
+        node = left;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void EraseResourceSpritePaletteNodes(ResourceSpritePaletteCache * cache, ResourceSpritePaletteNode * node)
+{
+    while (node)
+    {
+        EraseResourceSpritePaletteNodes(cache, (ResourceSpritePaletteNode *)node->right);
+        ResourceSpritePaletteNode * left = (ResourceSpritePaletteNode *)node->left;
+        if (node) free(node);
+        node = left;
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start DrawCachedResourceSprites\n"
     "DrawCachedResourceSprites: \n"
     "\tpush {r4, r5, r6, r7, lr}\n"

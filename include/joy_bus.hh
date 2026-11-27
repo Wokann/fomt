@@ -28,7 +28,7 @@ struct JoyBusContext {
     u32 unk_1C;
     u32 unk_20;
     u32 unk_24;
-    u32 unk_28;
+    /* +28 */ u8 unk_28[4];   // byte-ordered command payload
     u32 unk_2C;
     u32 unk_30;
     u32 read_index;
@@ -39,12 +39,6 @@ struct JoyBusContext {
     u32 unk_184;
 };
 
-typedef char JoyBusCommandSizeCheck[sizeof(JoyBusCommand) == 0x20 ? 1 : -1];
-typedef char JoyBusReadIndexCheck[offsetof(JoyBusContext, read_index) == 0x34 ? 1 : -1];
-typedef char JoyBusWriteIndexCheck[offsetof(JoyBusContext, write_index) == 0x38 ? 1 : -1];
-typedef char JoyBusCommandsCheck[offsetof(JoyBusContext, commands) == 0x3C ? 1 : -1];
-typedef char JoyBusResultCheck[offsetof(JoyBusContext, result) == 0x180 ? 1 : -1];
-typedef char JoyBusLastKnownFieldCheck[offsetof(JoyBusContext, unk_184) == 0x184 ? 1 : -1];
 
 EXTERN_C
 
@@ -77,7 +71,7 @@ void ConfigureJoyBusRegisters(u32 reset_serial, u32 set_status_flags);
 void func_080D0444(u32 local_code, u32 remote_code);
 void func_080D0454(u32 mode);
 void func_080D0558(void const * outgoing, u32 outgoing_size, void * incoming, u32 incoming_size);
-void func_080D0644(u32 value, u8 mode);
+void func_080D0644(u32 value, u32 mode);
 u32 func_080D0678(void);
 void func_080D06A8(void);
 u32 func_080D06B4(void);

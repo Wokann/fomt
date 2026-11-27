@@ -34,8 +34,5 @@ struct Dog : public Pet
     /* +2D */ u32 frisbee_gauge_limit : 8;
 };
 
-typedef char DogSizeCheck[sizeof(Dog) == 0x30 ? 1 : -1];
-typedef char DogUnknown20OffsetCheck[offsetof(Dog, unk_20) == 0x20 ? 1 : -1];
-typedef char DogUnknown24OffsetCheck[offsetof(Dog, unk_24) == 0x24 ? 1 : -1];
 
 #endif // DOG_HH

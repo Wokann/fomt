@@ -566,21 +566,16 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .global DrawResourceSprite\n"
-    "    .thumb_func\n"
-    "DrawResourceSprite:\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #4\n"
-    "    ldr r4, [sp, #0xc]\n"
-    "    ldr r0, [r0]\n"
-    "    str r4, [sp]\n"
-    "    bl DrawCachedResourceSprites\n"
-    "    add sp, #4\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferState * buffer,
+    IndexedResourceGroupResult const * group, i32 x, i32 y)
+{
+    DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start _._22ResourceSpriteRenderer\n"
@@ -1139,20 +1134,16 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "\tthumb_func_start DrawResourceSprite\n"
-    "DrawResourceSprite: @ 0x08075AE8\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #4\n"
-    "\tldr r4, [sp, #0xc]\n"
-    "\tldr r0, [r0]\n"
-    "\tstr r4, [sp]\n"
-    "\tbl DrawCachedResourceSprites\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferState * buffer,
+    IndexedResourceGroupResult const * group, i32 x, i32 y)
+{
+    DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 

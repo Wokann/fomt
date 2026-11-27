@@ -7,59 +7,27 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __18ToolChestSceneCoreP18GameStateSaveImage\n"
-    "__18ToolChestSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage\n"
-    "ldr r0, .Ltool_chest_0_004c\n"
-    "str r0, [r4, #0x4]\n"
-    "adds r0, r4, #0x0\n"
-    "adds r0, #0x98\n"
-    "movs r3, #0x0\n"
-    "strb r3, [r0]\n"
-    "adds r2, r4, #0x0\n"
-    "adds r2, #0xfc\n"
-    "ldr r1, [r4, #0x8]\n"
-    "ldr r5, .Ltool_chest_0_0050\n"
-    "adds r0, r1, r5\n"
-    "str r0, [r2]\n"
-    "movs r0, #0x80\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r2, r4, r0\n"
-    "adds r5, #0x4\n"
-    "adds r0, r1, r5\n"
-    "str r0, [r2]\n"
-    "movs r2, #0x82\n"
-    "lsls r2, r2, #0x1\n"
-    "adds r0, r4, r2\n"
-    "movs r5, #0xe0\n"
-    "lsls r5, r5, #0x2\n"
-    "adds r1, r1, r5\n"
-    "str r1, [r0]\n"
-    "movs r1, #0x84\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r4, r1\n"
-    "str r3, [r0]\n"
-    "adds r0, r4, #0x0\n"
-    "pop {r4, r5}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Ltool_chest_0_004c: .word __vt_18ToolChestSceneCore\n"
-    ".Ltool_chest_0_0050: .word 0x1c34\n"
-    "\n"
-    "thumb_func_start _._18ToolChestSceneCore\n"
-    "_._18ToolChestSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Ltool_chest_1_0010\n"
-    "str r2, [r0, #0x4]\n"
-    "bl _._26GameSceneMenuSelectionCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Ltool_chest_1_0010: .word __vt_18ToolChestSceneCore\n"
-    "\n"
+);
+
+ToolChestSceneCore::ToolChestSceneCore(GameStateSaveImage * image)
+    : GameSceneMenuSelectionCore(image)
+{
+    held_tool = &save->farmer.unk_5C;
+    rucksack = &save->farmer.rucksack;
+    tool_chest = &save->farm.farm_house.tool_chest;
+    phase = 0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ToolChestSceneCore::~ToolChestSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawRucksackTools__18ToolChestSceneCoreUi\n"
     "DrawRucksackTools__18ToolChestSceneCoreUi:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -233,36 +201,26 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start ShowNextPage__18ToolChestSceneCore\n"
-    "ShowNextPage__18ToolChestSceneCore:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "bl func_080CEB80\n"
-    "adds r1, r0, #0x0\n"
-    "adds r0, r4, #0x0\n"
-    "bl DrawToolChestPage__18ToolChestSceneCoreUi\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ShowPreviousPage__18ToolChestSceneCore\n"
-    "ShowPreviousPage__18ToolChestSceneCore:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0x0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "bl func_080CEBC0\n"
-    "adds r1, r0, #0x0\n"
-    "adds r0, r4, #0x0\n"
-    "bl DrawToolChestPage__18ToolChestSceneCoreUi\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+extern "C" u32 func_080CEB80(void *);
+void ToolChestSceneCore::ShowNextPage()
+{
+    DrawToolChestPage(func_080CEB80(tilemap.value));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u32 func_080CEBC0(void *);
+void ToolChestSceneCore::ShowPreviousPage()
+{
+    DrawToolChestPage(func_080CEBC0(tilemap.value));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start UpdateDescription__18ToolChestSceneCorei\n"
     "UpdateDescription__18ToolChestSceneCorei:\n"
     "push {r4, r5, r6, r7, lr}\n"

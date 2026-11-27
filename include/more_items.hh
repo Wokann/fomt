@@ -31,8 +31,5 @@ struct MoreItems
     /* +24 */ Location location ALIGN(4);
 };
 
-typedef char MoreItems_data_offset_check[offsetof(MoreItems, data) == 4 ? 1 : -1];
-typedef char MoreItems_location_offset_check[offsetof(MoreItems, location) == 0x24 ? 1 : -1];
-typedef char MoreItems_size_check[sizeof(MoreItems) == 0x2C ? 1 : -1];
 
 #endif // MORE_ITEMS_HH

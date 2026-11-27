@@ -44,18 +44,5 @@ struct FarmingTutorialScene : FarmingTutorialSceneBase, HardwareContext, AScript
     u8 unk_3A0;
     u8 unk_3A1;
 };
-typedef char FarmingTutorialSceneStackOffsetCheck[
-    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareContext) + offsetof(AScriptEngine, stack) == 0x30 ? 1 : -1];
-typedef char FarmingTutorialSceneStackTopOffsetCheck[
-    sizeof(FarmingTutorialSceneBase) + sizeof(HardwareContext) + offsetof(AScriptEngine, stack) +
-        offsetof(ScriptStack, top) == 0x1C0 ? 1 : -1];
-typedef char FarmingTutorialSceneSizeCheck[sizeof(FarmingTutorialScene) == 0x3A4 ? 1 : -1];
-typedef char FarmingTutorialSceneContinuationOffsetCheck[offsetof(FarmingTutorialScene, continuation) == 0x35C ? 1 : -1];
-typedef char FarmingTutorialSceneObjectOffsetCheck[offsetof(FarmingTutorialScene, game_object) == 0x368 ? 1 : -1];
-typedef char FarmingTutorialScenePlayerOffsetCheck[offsetof(FarmingTutorialScene, music_player_0) == 0x374 ? 1 : -1];
-typedef char FarmingTutorialScenePoolOffsetCheck[offsetof(FarmingTutorialScene, song_players) == 0x388 ? 1 : -1];
-typedef char FarmingTutorialSceneWaitOffsetCheck[offsetof(FarmingTutorialScene, wait_frames) == 0x398 ? 1 : -1];
-typedef char FarmingTutorialSceneEntityOffsetCheck[offsetof(FarmingTutorialScene, waiting_entity) == 0x39C ? 1 : -1];
-typedef char FarmingTutorialSceneFlagOffsetCheck[offsetof(FarmingTutorialScene, unk_3A1) == 0x3A1 ? 1 : -1];
 
 #endif

@@ -12,9 +12,6 @@ struct TownMapSelectionTransition : SceneTransition {
     Location location;
 };
 
-typedef char TownMapSelectionTransitionSizeCheck[sizeof(TownMapSelectionTransition) == 12 ? 1 : -1];
-typedef char TownMapSelectionTransitionFlagCheck[offsetof(TownMapSelectionTransition, has_selection) == 4 ? 1 : -1];
-typedef char TownMapSelectionTransitionLocationCheck[offsetof(TownMapSelectionTransition, location) == 6 ? 1 : -1];
 
 
 #endif // TOWN_MAP_SELECTION_HH

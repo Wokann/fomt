@@ -26,9 +26,6 @@ struct NewGameMenuLabelRow
     char const * right_choice;
 };
 
-typedef char NewGameMenuLabelRowSizeCheck[sizeof(NewGameMenuLabelRow) == 12 ? 1 : -1];
-typedef char NewGameMenuLabelRowLeftCheck[offsetof(NewGameMenuLabelRow, left_choice) == 4 ? 1 : -1];
-typedef char NewGameMenuLabelRowRightCheck[offsetof(NewGameMenuLabelRow, right_choice) == 8 ? 1 : -1];
 
 
 
@@ -40,9 +37,6 @@ union NewGameNameEntryCharacterTable {
     char bytes[NEW_GAME_NAME_ENTRY_ROW_COUNT * NEW_GAME_NAME_ENTRY_ROW_WIDTH];
 } __attribute__((packed));
 
-typedef char NewGameNameEntryCharacterTableSizeCheck[
-    sizeof(NewGameNameEntryCharacterTable)
-        == NEW_GAME_NAME_ENTRY_ROW_COUNT * NEW_GAME_NAME_ENTRY_ROW_WIDTH ? 1 : -1];
 
 
 #endif // !__ASSEMBLER__

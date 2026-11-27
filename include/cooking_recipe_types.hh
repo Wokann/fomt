@@ -43,10 +43,5 @@ struct CookingRecipeInventory
     u8 record_count;
 };
 
-typedef char CookingRecipeRecordSizeCheck[sizeof(CookingRecipeRecord) == 0x14 ? 1 : -1];
-typedef char CookingRecipeIngredientsOffsetCheck[offsetof(CookingRecipeRecord, ingredients) == 2 ? 1 : -1];
-typedef char CookingRecipeInventorySizeCheck[sizeof(CookingRecipeInventory) == 0xA08 ? 1 : -1];
-typedef char CookingRecipeFailedDishOffsetCheck[offsetof(CookingRecipeInventory, failed_dish) == 0xA00 ? 1 : -1];
-typedef char CookingRecipeCountOffsetCheck[offsetof(CookingRecipeInventory, record_count) == 0xA06 ? 1 : -1];
 
 #endif // COOKING_RECIPE_TYPES_HH

@@ -4,95 +4,58 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectGraySchedule\n"
-    "SelectGraySchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r8\n"
-    "    push\t{r7}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803E82C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803E830\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E8AA\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803E82C: .word 0x000021CA\n"
-    ".Ljp_0803E830:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr6, [r4, #1]\n"
-    "    ldrb\tr0, [r4, #2]\n"
-    "    mov\tr8, r0\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    ldr r1, .Ljp_0803E864\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetRivalEventCount__C12Bachelorette\n"
-    "    adds\tr7, r0, #0\n"
-    "    cmp\tr7, #4\n"
-    "    bls .Ljp_0803E87E\n"
-    "    adds\tr0, r6, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E868\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E864: .word 0x00001E28\n"
-    ".Ljp_0803E868:\n"
-    "    cmp\tr4, #4\n"
-    "    bne .Ljp_0803E87A\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E876\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E876:\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E87A:\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E87E:\n"
-    "    adds\tr0, r6, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E890\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E890:\n"
-    "    cmp\tr7, #0\n"
-    "    beq .Ljp_0803E8A8\n"
-    "    cmp\tr4, #1\n"
-    "    bne .Ljp_0803E89C\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E89C:\n"
-    "    cmp\tr4, #4\n"
-    "    bne .Ljp_0803E8A4\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E8A4:\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803E8AA\n"
-    ".Ljp_0803E8A8:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803E8AA:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+#include "npc_schedule_gray.hh"
+#include "bachelorette.hh"
+extern "C" u32 SelectGraySchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    u32 count;
+    if ((i32)(((u8 const *)context)[0x21CA] << 27) < 0)
+        return 0;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    /* Offset form kept on purpose: +0x1E28 is GameStateSaveImage::npcs.mary
+       (NpcCollection offset 0x154, confirmed by the member table in
+       npc_collection.hh). The struct form changes register allocation and
+       no longer matches; see PROGRESS round 181. Tracked as a pending fix. */
+    count = ((Bachelorette const *)((u8 const *)context + 0x1E28))->GetRivalEventCount();
+    if (count > 4)
+    {
+        if ((u8)IsNpcScheduleDateListed(season, day))
+            return 9;
+        if (weekday == 4)
+        {
+            if (*(u32 const *)((u8 const *)context + 8) == 0)
+                return 6;
+            else
+                return 7;
+        }
+        return 5;
+    }
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 8;
+    if (count != 0)
+    {
+        if (weekday == 1)
+            return 3;
+        if (weekday == 4)
+            return 4;
+        return 2;
+    }
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

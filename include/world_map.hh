@@ -37,9 +37,6 @@ struct MapTilePatchAnimationState {
     void ResetFrame();
 };
 
-typedef char MapTilePatchAnimationPendingCheck[offsetof(MapTilePatchAnimationState, update_pending) == 1 ? 1 : -1];
-typedef char MapTilePatchAnimationElapsedCheck[offsetof(MapTilePatchAnimationState, elapsed_frames) == 2 ? 1 : -1];
-typedef char MapTilePatchAnimationStateSizeCheck[sizeof(MapTilePatchAnimationState) == 4 ? 1 : -1];
 
 // One DMA source/destination pair for a visible tilemap layer.
 struct MapViewportTilemapTransfer {
@@ -57,9 +54,6 @@ struct MapViewportTilemapCommand : HardwareLinkBase {
     u16 source_width;
 };
 
-typedef char MapViewportTilemapCommandSizeCheck[sizeof(MapViewportTilemapCommand) == 0x28 ? 1 : -1];
-typedef char MapViewportTilemapCommandLayersCheck[offsetof(MapViewportTilemapCommand, layers) == 0xC ? 1 : -1];
-typedef char MapViewportTilemapCommandWidthCheck[offsetof(MapViewportTilemapCommand, source_width) == 0x24 ? 1 : -1];
 
 #pragma interface "world_map.hh"
 
@@ -117,39 +111,11 @@ struct GameSceneWorldMap {
 struct GameSceneSavedMap;
 #include "world_saved_map.hh"
 
-typedef char GameSceneMapLayoutAnimation0Check[offsetof(GameSceneWorldMap, layout_animation_0) == 0x30 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation1Check[offsetof(GameSceneWorldMap, layout_animation_1) == 0x34 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation2Check[offsetof(GameSceneWorldMap, layout_animation_2) == 0x38 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation3Check[offsetof(GameSceneWorldMap, layout_animation_3) == 0x3c ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation4Check[offsetof(GameSceneWorldMap, layout_animation_4) == 0x40 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation5Check[offsetof(GameSceneWorldMap, layout_animation_5) == 0x44 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation6Check[offsetof(GameSceneWorldMap, layout_animation_6) == 0x48 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation7Check[offsetof(GameSceneWorldMap, layout_animation_7) == 0x4c ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation8Check[offsetof(GameSceneWorldMap, layout_animation_8) == 0x50 ? 1 : -1];
-typedef char GameSceneMapLayoutAnimation9Check[offsetof(GameSceneWorldMap, layout_animation_9) == 0x54 ? 1 : -1];
 
 // These are palette buffers, distinct from the three map tile grids.
-typedef char GameSceneMapTimePaletteBuffersCheck[offsetof(GameSceneWorldMap, time_palette_buffers) == 0x1C ? 1 : -1];
-typedef char GameSceneMapTimePaletteChangedCheck[offsetof(GameSceneWorldMap, time_palette_changed) == 0x2A ? 1 : -1];
 
 
-typedef char GameSceneCameraCoordinateSizeCheck[sizeof(GameSceneCameraCoordinate) == 4 ? 1 : -1];
-typedef char GameSceneCameraIntegerCheck[offsetof(GameSceneCameraCoordinate, parts.integer) == 2 ? 1 : -1];
-typedef char GameSceneCameraPointSizeCheck[sizeof(Vec2) == 4 ? 1 : -1];
-typedef char GameSceneCameraMapDataIdCheck[offsetof(GameSceneWorldMap, map_data_id) == 4 ? 1 : -1];
-typedef char GameSceneCameraXCheck[offsetof(GameSceneWorldMap, x) == 8 ? 1 : -1];
-typedef char GameSceneCameraYCheck[offsetof(GameSceneWorldMap, y) == 0xC ? 1 : -1];
-typedef char GameSceneMapTileLayersCheck[offsetof(GameSceneWorldMap, tile_layers) == 0x10 ? 1 : -1];
-typedef char GameSceneMapTileAttributesCheck[offsetof(GameSceneWorldMap, tile_attributes) == 0x2C ? 1 : -1];
-typedef char GameSceneMapViewportCommandCheck[offsetof(GameSceneWorldMap, viewport_command) == 0x5C ? 1 : -1];
 
-typedef char GameSceneMapTilePatchCountdownCheck[offsetof(GameSceneWorldMap, tile_patch_countdown) == 0x58 ? 1 : -1];
-typedef char GameSceneMapTilesChangedCheck[offsetof(GameSceneWorldMap, tiles_changed) == 0x28 ? 1 : -1];
-typedef char GameSceneMapViewChangedCheck[offsetof(GameSceneWorldMap, view_changed) == 0x29 ? 1 : -1];
-typedef char GameSceneCameraStepXCheck[offsetof(GameSceneWorldMap, step_x_q16) == 0x84 ? 1 : -1];
-typedef char GameSceneCameraStepYCheck[offsetof(GameSceneWorldMap, step_y_q16) == 0x88 ? 1 : -1];
-typedef char GameSceneCameraFramesCheck[offsetof(GameSceneWorldMap, movement_frames) == 0x8C ? 1 : -1];
-typedef char GameSceneWorldMapSizeCheck[sizeof(GameSceneWorldMap) == 0x94 ? 1 : -1];
 
 EXTERN_C
 

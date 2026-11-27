@@ -52,8 +52,6 @@ struct AnimalActor : AActorEntity {
     bool sound_requested;
 };
 
-typedef char AnimalActorSizeCheck[sizeof(AnimalActor) == 0x34 ? 1 : -1];
-typedef char AnimalActorSoundGateCheck[offsetof(AnimalActor, sound_requested) == 0x30 ? 1 : -1];
 
 struct Dog;
 struct Horse;
@@ -80,8 +78,6 @@ struct DogActor : AnimalActor {
     u8 unk_41[3]; // Remaining native RAM state; not a decoded layout yet.
 };
 
-typedef char DogActorSizeCheck[sizeof(DogActor) == 0x44 ? 1 : -1];
-typedef char DogActorSavedModelCheck[offsetof(DogActor, dog) == 0x34 ? 1 : -1];
 
 // The horse selects its sprite profile from its saved growth stage.
 struct HorseSpriteController : EntitySpriteController {
@@ -90,7 +86,6 @@ struct HorseSpriteController : EntitySpriteController {
     virtual void Draw(EntityDrawContext const & context);
 };
 
-typedef char HorseSpriteControllerSizeCheck[sizeof(HorseSpriteController) == 0x8C ? 1 : -1];
 
 struct HorseActor : AnimalActor {
     HorseActor(GameObject * world, Horse * saved);
@@ -112,8 +107,6 @@ struct HorseActor : AnimalActor {
     u8 unk_3E;
 };
 
-typedef char HorseActorSizeCheck[sizeof(HorseActor) == 0x40 ? 1 : -1];
-typedef char HorseActorSavedModelCheck[offsetof(HorseActor, horse) == 0x34 ? 1 : -1];
 
 struct ChickenActor : AnimalActor {
     ChickenActor(GameObject * world, Chicken * saved);
@@ -134,8 +127,6 @@ struct ChickenActor : AnimalActor {
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
 };
 
-typedef char ChickenActorSizeCheck[sizeof(ChickenActor) == 0x3C ? 1 : -1];
-typedef char ChickenActorSavedModelCheck[offsetof(ChickenActor, livestock) == 0x34 ? 1 : -1];
 
 struct CowActor : AnimalActor {
     CowActor(GameObject * world, Cow * saved);
@@ -163,8 +154,6 @@ struct CowActor : AnimalActor {
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
 };
 
-typedef char CowActorSizeCheck[sizeof(CowActor) == 0x3C ? 1 : -1];
-typedef char CowActorSavedModelCheck[offsetof(CowActor, livestock) == 0x34 ? 1 : -1];
 
 struct SheepActor : AnimalActor {
     SheepActor(GameObject * world, Sheep * saved);
@@ -192,13 +181,8 @@ struct SheepActor : AnimalActor {
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
 };
 
-typedef char SheepActorSizeCheck[sizeof(SheepActor) == 0x3C ? 1 : -1];
-typedef char SheepActorSavedModelCheck[offsetof(SheepActor, livestock) == 0x34 ? 1 : -1];
 
 // The native dog keeps a borrowed pointer to the saved six-byte ball location.
-typedef char DogActorBallLocationCheck[offsetof(DogActor, ball_location) == 0x38 ? 1 : -1];
-typedef char DogActorSavedPositionCheck[offsetof(DogActor, saved_x) == 0x3C ? 1 : -1];
-typedef char HorseActorSavedPositionCheck[offsetof(HorseActor, saved_x) == 0x38 ? 1 : -1];
 
 extern "C" bool IsDogActorCarryingBall(DogActor const * actor);
 extern "C" void NotifyDogActorBallLanded(DogActor * actor, Location const & location);

@@ -4,54 +4,46 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectRickSchedule\n"
-    "SelectRickSchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803D6B0\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr1, [r0, #0]\n"
-    "    movs\tr0, #12\n"
-    "    ands\tr0, r1\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D6B4\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803D6E8\n"
-    ".Ljp_0803D6B0: .word 0x000021CA\n"
-    ".Ljp_0803D6B4:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D6D4\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803D6E8\n"
-    ".Ljp_0803D6D4:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D6E6\n"
-    "    cmp\tr4, #2\n"
-    "    bne .Ljp_0803D6E2\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803D6E8\n"
-    ".Ljp_0803D6E2:\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803D6E8\n"
-    ".Ljp_0803D6E6:\n"
-    "    movs\tr0, #2\n"
-    ".Ljp_0803D6E8:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectRickSchedule(void const * context)
+{
+    GameStateSaveImage const & save = *(GameStateSaveImage const *)context;
+    GameDayDate date;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    u32 rival_wedding;
+
+    rival_wedding =
+        (u32)save.event_state.rick_and_karen_rival_wedding_routing_state
+        | (u32)save.event_state.popuri_and_kai_rival_wedding_routing_state;
+
+    if (rival_wedding != 0)
+        return 0;
+
+    DecodeGameDayDate(&date, &save.clock.calendar);
+
+    season = date.season;
+    day = date.day;
+    weekday = date.weekday;
+
+    if (IsNpcScheduleDateListed(season, day) << 0x18)
+        return 4;
+
+    if (save.clock.weather_today == 0)
+    {
+        if (weekday == 2)
+            return 3;
+
+        return 1;
+    }
+
+    return 2;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 extern "C" RickScheduleData const gRickScheduleData = {

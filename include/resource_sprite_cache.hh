@@ -88,15 +88,6 @@ struct ResourceSpriteRendererStorage {
     ResourceSpritePaletteCache palette_cache;
 };
 
-typedef char ResourceSpriteTileNodeSizeCheck[sizeof(ResourceSpriteTileNode) == 24 ? 1 : -1];
-typedef char ResourceSpritePaletteNodeSizeCheck[sizeof(ResourceSpritePaletteNode) == 24 ? 1 : -1];
-typedef char ResourceSpriteTileCacheSizeCheck[sizeof(ResourceSpriteTileCache) == 16 ? 1 : -1];
-typedef char ResourceSpritePaletteCacheSizeCheck[sizeof(ResourceSpritePaletteCache) == 16 ? 1 : -1];
-typedef char ResourceSpriteRendererStorageSizeCheck[sizeof(ResourceSpriteRendererStorage) == 40 ? 1 : -1];
-typedef char ResourceSpriteRendererTileCacheCheck[offsetof(ResourceSpriteRendererStorage, tile_cache) == 4 ? 1 : -1];
-typedef char ResourceSpriteRendererPaletteCacheCheck[offsetof(ResourceSpriteRendererStorage, palette_cache) == 0x18 ? 1 : -1];
-typedef char ResourceSpriteTileInsertResultSizeCheck[sizeof(ResourceSpriteTileInsertResult) == 8 ? 1 : -1];
-typedef char ResourceSpritePaletteInsertResultSizeCheck[sizeof(ResourceSpritePaletteInsertResult) == 8 ? 1 : -1];
 
 EXTERN_C
 

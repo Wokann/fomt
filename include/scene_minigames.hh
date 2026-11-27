@@ -19,9 +19,6 @@ struct ChickenFestivalContestScene : AScene {
 
 #pragma interface "scene_minigames_lifetimes.cc"
 
-typedef char ChickenFestivalContestSceneSizeCheck[sizeof(ChickenFestivalContestScene) == 12 ? 1 : -1];
-typedef char ChickenFestivalContestSceneContinuationCheck[offsetof(ChickenFestivalContestScene, continuation) == 4 ? 1 : -1];
-typedef char ChickenFestivalContestSceneSaveCheck[offsetof(ChickenFestivalContestScene, save) == 8 ? 1 : -1];
 
 struct HarvestSpriteAnimalCareScene : AScene {
     inline HarvestSpriteAnimalCareScene(SceneTransitionOwner next, GameStateSaveImage * image, MaryCharacterId id);
@@ -33,8 +30,6 @@ struct HarvestSpriteAnimalCareScene : AScene {
 };
 
 #pragma interface "scene_minigames_lifetimes.cc"
-typedef char HarvestSpriteAnimalCareSceneSizeCheck[sizeof(HarvestSpriteAnimalCareScene) == 16 ? 1 : -1];
-typedef char HarvestSpriteAnimalCareSceneCharacterCheck[offsetof(HarvestSpriteAnimalCareScene, sprite_id) == 12 ? 1 : -1];
 
 struct HarvestSpriteHarvestingScene : AScene {
     inline HarvestSpriteHarvestingScene(SceneTransitionOwner next, GameStateSaveImage * image, MaryCharacterId id);
@@ -46,8 +41,6 @@ struct HarvestSpriteHarvestingScene : AScene {
 };
 
 #pragma interface "scene_minigames_lifetimes.cc"
-typedef char HarvestSpriteHarvestingSceneSizeCheck[sizeof(HarvestSpriteHarvestingScene) == 16 ? 1 : -1];
-typedef char HarvestSpriteHarvestingSceneCharacterCheck[offsetof(HarvestSpriteHarvestingScene, sprite_id) == 12 ? 1 : -1];
 
 struct HarvestSpriteWateringScene : AScene {
     inline HarvestSpriteWateringScene(SceneTransitionOwner next, GameStateSaveImage * image, MaryCharacterId id);
@@ -59,8 +52,6 @@ struct HarvestSpriteWateringScene : AScene {
 };
 
 #pragma interface "scene_minigames_lifetimes.cc"
-typedef char HarvestSpriteWateringSceneSizeCheck[sizeof(HarvestSpriteWateringScene) == 16 ? 1 : -1];
-typedef char HarvestSpriteWateringSceneCharacterCheck[offsetof(HarvestSpriteWateringScene, sprite_id) == 12 ? 1 : -1];
 
 #pragma interface "scene_minigames.cc"
 

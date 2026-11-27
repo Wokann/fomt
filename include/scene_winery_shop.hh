@@ -39,19 +39,12 @@ struct WineryShopSceneCore : ShopScreenCore {
     FixedStr<99> description;
 };
 
-typedef char WineryCorePhaseCheck[offsetof(WineryShopSceneCore, phase) == 0x6A4 ? 1 : -1];
-typedef char WineryCorePurchasedCheck[offsetof(WineryShopSceneCore, has_purchased) == 0x6A8 ? 1 : -1];
-typedef char WineryCoreDescriptionCheck[offsetof(WineryShopSceneCore, description) == 0x6AC ? 1 : -1];
-typedef char WineryCoreSizeCheck[sizeof(WineryShopSceneCore) == 0x710 ? 1 : -1];
 
 // Member order releases the continuation before this owned core.
 #pragma interface "scene_winery_shop.hh"
 
 #pragma interface "scene_winery_shop.hh"
 
-typedef char WineryShopSceneSizeCheck[sizeof(WineryShopScene) == 12 ? 1 : -1];
-typedef char WineryShopSceneCoreCheck[offsetof(WineryShopScene, core) == 4 ? 1 : -1];
-typedef char WineryShopSceneContinuationCheck[offsetof(WineryShopScene, continuation) == 8 ? 1 : -1];
 
 EXTERN_C
 

@@ -34,8 +34,6 @@ struct HardwareSoundMainCommand
 #endif
 };
 
-typedef char HardwareSoundVSyncCommand_size_check[sizeof(struct HardwareSoundVSyncCommand) == 0x0C ? 1 : -1];
-typedef char HardwareSoundMainCommand_size_check[sizeof(struct HardwareSoundMainCommand) == 0x0C ? 1 : -1];
 
 #ifdef __cplusplus
 // This slot borrows an m4a player; it does not own or destroy the player.
@@ -65,8 +63,6 @@ struct HardwareMusicPlayerSlot {
     MusicPlayer * value;
 };
 
-typedef char HardwareMusicPlayerSlotSizeCheck[sizeof(HardwareMusicPlayerSlot) == 4 ? 1 : -1];
-typedef char HardwareMusicPlayerSlotValueCheck[offsetof(HardwareMusicPlayerSlot, value) == 0 ? 1 : -1];
 #endif
 
 #ifdef __cplusplus

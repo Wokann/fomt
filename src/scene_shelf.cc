@@ -7,60 +7,27 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __14ShelfSceneCoreP18GameStateSaveImage\n"
-    "__14ShelfSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r6, r0, #0\n"
-    "bl __26GameSceneMenuSelectionCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lshelf_0_0050\n"
-    "str r0, [r6, #4]\n"
-    "adds r0, r6, #0\n"
-    "adds r0, #0x98\n"
-    "movs r5, #0\n"
-    "strb r5, [r0]\n"
-    "adds r2, r6, #0\n"
-    "adds r2, #0xfc\n"
-    "ldr r0, [r6, #8]\n"
-    "ldr r3, .Lshelf_0_0054\n"
-    "adds r1, r0, r3\n"
-    "str r1, [r2]\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r2, r6, r1\n"
-    "adds r3, #0xc\n"
-    "adds r1, r0, r3\n"
-    "str r1, [r2]\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r4, r6, r1\n"
-    "movs r3, #0xfa\n"
-    "lsls r3, r3, #1\n"
-    "adds r0, r0, r3\n"
-    "bl GetShelf__9FarmHouse\n"
-    "str r0, [r4]\n"
-    "movs r1, #0x84\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "str r5, [r0]\n"
-    "adds r0, r6, #0\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lshelf_0_0050: .word __vt_14ShelfSceneCore\n"
-    ".Lshelf_0_0054: .word 0x1c2c\n"
-    "\n"
-    "thumb_func_start _._14ShelfSceneCore\n"
-    "_._14ShelfSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lshelf_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._26GameSceneMenuSelectionCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lshelf_1_0010: .word __vt_14ShelfSceneCore\n"
-    "\n"
+);
+
+ShelfSceneCore::ShelfSceneCore(GameStateSaveImage * image)
+    : GameSceneMenuSelectionCore(image)
+    , held_item(&save->farmer.held_item)
+    , rucksack(&save->farmer.rucksack)
+    , shelf(save->farm.farm_house.GetShelf())
+    , phase(0)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ShelfSceneCore::~ShelfSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawRucksackItems__14ShelfSceneCoreUi\n"
     "DrawRucksackItems__14ShelfSceneCoreUi:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -360,36 +327,26 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start ShowNextPage__14ShelfSceneCore\n"
-    "ShowNextPage__14ShelfSceneCore:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "bl func_080CEB80\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl DrawShelfPage__14ShelfSceneCoreUi\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start ShowPreviousPage__14ShelfSceneCore\n"
-    "ShowPreviousPage__14ShelfSceneCore:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "bl func_080CEBC0\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl DrawShelfPage__14ShelfSceneCoreUi\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+extern "C" u32 func_080CEB80(void *);
+void ShelfSceneCore::ShowNextPage()
+{
+    DrawShelfPage(func_080CEB80(tilemap.value));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" u32 func_080CEBC0(void *);
+void ShelfSceneCore::ShowPreviousPage()
+{
+    DrawShelfPage(func_080CEBC0(tilemap.value));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start UpdateDescription__14ShelfSceneCorei\n"
     "UpdateDescription__14ShelfSceneCorei:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -3788,80 +3745,37 @@ asm_unified(
     ".Lshelf_10_0210: .word gText_Shelf_Yes\n"
     ".Lshelf_10_0214: .word gText_Shelf_No\n"
     "\n"
-    "thumb_func_start DiscardItem__14ShelfSceneCorei\n"
-    "DiscardItem__14ShelfSceneCorei:\n"
-    "push {r4, r5, r6, lr}\n"
-    "sub sp, #4\n"
-    "adds r5, r0, #0\n"
-    "adds r6, r1, #0\n"
-    "cmp r6, #0\n"
-    "bne .Lshelf_11_001c\n"
-    "adds r0, #0xfc\n"
-    "ldr r0, [r0]\n"
-    "bl ClearHeldItem\n"
-    "ldr r0, [r5, #0x78]\n"
-    "bl func_080CC0B4\n"
-    "b .Lshelf_11_0098\n"
-    ".Lshelf_11_001c:\n"
-    "cmp r6, #8\n"
-    "bgt .Lshelf_11_0052\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r2, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r1, r4, #0\n"
-    "bl ExtractItemAt__8RucksackUi\n"
-    "ldr r4, [r5, #0x78]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl func_080CBA60\n"
-    "b .Lshelf_11_0098\n"
-    ".Lshelf_11_0052:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "adds r0, #0xbc\n"
-    "ldr r2, [r0]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "movs r2, #0x82\n"
-    "lsls r2, r2, #1\n"
-    "adds r0, r5, r2\n"
-    "ldr r0, [r0]\n"
-    "bl GetArticleStackAt__5ShelfUi\n"
-    "adds r4, r0, #0\n"
-    "mov r0, sp\n"
-    "bl __12ArticleStack\n"
-    "adds r0, r4, #0\n"
-    "mov r1, sp\n"
-    "movs r2, #2\n"
-    "bl memcpy\n"
-    "ldr r4, [r5, #0x7c]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl func_080CCDEC\n"
-    ".Lshelf_11_0098:\n"
-    "add sp, #4\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+extern "C" void func_080CC0B4(void *);
+extern "C" void func_080CBA60(void *, u32);
+extern "C" void func_080CCDEC(void *, u32);
+
+void ShelfSceneCore::DiscardItem(i32 selection)
+{
+    if (selection == 0)
+    {
+        ClearHeldItem(held_item);
+        func_080CC0B4(left_panel.value);
+    }
+    else if (selection <= 8)
+    {
+        RucksackItem item =
+            rucksack->ExtractItemAt(GetItemIndex(selection, 0));
+        func_080CBA60(left_panel.value, GetItemIndex(selection, 0));
+    }
+    else
+    {
+        i32 index = GetItemIndex(selection, tilemap.value->unk_BC);
+        ArticleStack * slot = shelf->GetArticleStackAt(index);
+        ArticleStack empty;
+        memcpy(slot, &empty, sizeof(empty));
+        func_080CCDEC(right_panel.value, GetItemIndex(selection, 0));
+    }
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start Run__14ShelfSceneCore\n"
     "Run__14ShelfSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

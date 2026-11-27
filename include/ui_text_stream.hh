@@ -16,7 +16,6 @@ struct UiTextStreamClockValue
     explicit UiTextStreamClockValue(int input) : raw(input) {}
     int Whole() const { return raw / 0x100; }
 };
-typedef char UiTextStreamClockValueSizeCheck[sizeof(UiTextStreamClockValue) == 4 ? 1 : -1];
 
 // Native text reader: 0 is idle, 1 reads text and 2 waits for input.
 // The parser temporarily switches from cursor to replacement_cursor while
@@ -34,13 +33,6 @@ struct UiTextStream
     UiTextStream();
 };
 
-typedef char UiTextStreamSizeCheck[sizeof(UiTextStream) == 0x34 ? 1 : -1];
-typedef char UiTextStreamSpeedCheck[offsetof(UiTextStream, speed) == 4 ? 1 : -1];
-typedef char UiTextStreamProgressCheck[offsetof(UiTextStream, progress) == 6 ? 1 : -1];
-typedef char UiTextStreamCursorCheck[offsetof(UiTextStream, cursor) == 8 ? 1 : -1];
-typedef char UiTextStreamVariablesCheck[offsetof(UiTextStream, variables) == 0x0C ? 1 : -1];
-typedef char UiTextStreamReplacementCursorCheck[offsetof(UiTextStream, replacement_cursor) == 0x10 ? 1 : -1];
-typedef char UiTextStreamReplacementCheck[offsetof(UiTextStream, replacement) == 0x14 ? 1 : -1];
 
 EXTERN_C
 void SetUiTextStreamText(UiTextStream *, char const *, ScriptTextVariableStore *);

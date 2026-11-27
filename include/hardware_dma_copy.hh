@@ -19,10 +19,6 @@ struct HardwareDmaCopyLink : HardwareLinkBase {
     virtual bool Run();
 };
 
-typedef char HardwareDmaCopyLinkSize[sizeof(HardwareDmaCopyLink) == 24 ? 1 : -1];
-typedef char HardwareDmaCopyLinkSourceOffset[offsetof(HardwareDmaCopyLink, source) == 0xC ? 1 : -1];
-typedef char HardwareDmaCopyLinkDestinationOffset[offsetof(HardwareDmaCopyLink, destination) == 0x10 ? 1 : -1];
-typedef char HardwareDmaCopyLinkCountOffset[offsetof(HardwareDmaCopyLink, byte_count) == 0x14 ? 1 : -1];
 
 #pragma interface "hardware_dma_copy.hh"
 

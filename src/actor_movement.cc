@@ -46,34 +46,33 @@ asm_unified(
     "\n"
     "    @ Select an index by first-byte weight on a 0..99 roll; fall back to zero.\n"
     "\n"
-    "\tthumb_func_start SelectActorBehaviorTimingIndex\n"
-    "SelectActorBehaviorTimingIndex:\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r5, r1, #0\n"
-    "\tmovs r0, #0x64\n"
-    "\tbl RandomBelow\n"
-    "\tadds r3, r0, #0\n"
-    "\tmovs r1, #0\n"
-    "\tldrb r2, [r4]\n"
-    ".L080AB83E:\n"
-    "\tcmp r3, r2\n"
-    "\tblo .L080AB854\n"
-    "\tadds r1, #1\n"
-    "\tcmp r1, r5\n"
-    "\tbhs .L080AB852\n"
-    "\tlsls r0, r1, #2\n"
-    "\tadds r0, r0, r4\n"
-    "\tldrb r0, [r0]\n"
-    "\tadds r2, r2, r0\n"
-    "\tb .L080AB83E\n"
-    ".L080AB852:\n"
-    "\tmovs r1, #0\n"
-    ".L080AB854:\n"
-    "\tadds r0, r1, #0\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
+);
+
+u32 SelectActorBehaviorTimingIndex(ActorBehaviorTiming const * entries,
+    u32 count)
+{
+    u32 value = RandomBelow(100);
+    u32 index = 0;
+    u32 sum = entries[0].weight;
+
+    while (value >= sum)
+    {
+        index++;
+
+        if (index < count)
+            sum += entries[index].weight;
+        else
+        {
+            index = 0;
+            break;
+        }
+    }
+
+    return index;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

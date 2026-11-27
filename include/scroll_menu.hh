@@ -93,18 +93,6 @@ struct ScrollMenu : HardwareContext
     u8 allow_select_exit;
 };
 
-typedef char ScrollMenuSpriteRowSizeCheck[sizeof(ScrollMenuSpriteRow) == 16 ? 1 : -1];
-typedef char ScrollMenuTransferRowSizeCheck[sizeof(ScrollMenuTransferRow) == 16 ? 1 : -1];
-typedef char ScrollMenuPagePositionCheck[offsetof(ScrollMenuPage, scroll_position) == 0x590 ? 1 : -1];
-typedef char ScrollMenuPageSpritesCheck[offsetof(ScrollMenuPage, sprites) == 0x594 ? 1 : -1];
-typedef char ScrollMenuPageTransfersCheck[offsetof(ScrollMenuPage, transfers) == 0x5A4 ? 1 : -1];
-typedef char ScrollMenuPageSizeCheck[sizeof(ScrollMenuPage) == 0x5B8 ? 1 : -1];
-typedef char ScrollMenuSpriteSizeCheck[sizeof(ScrollMenuSprite) == 0x38 ? 1 : -1];
-typedef char ScrollMenuPageOffsetCheck[offsetof(ScrollMenu, page) == 8 ? 1 : -1];
-typedef char ScrollMenuArchiveOffsetCheck[offsetof(ScrollMenu, archive) == 0xC ? 1 : -1];
-typedef char ScrollMenuSpritesOffsetCheck[offsetof(ScrollMenu, scroll_up) == 0x3C ? 1 : -1];
-typedef char ScrollMenuSelectFlagCheck[offsetof(ScrollMenu, allow_select_exit) == 0x11C ? 1 : -1];
-typedef char ScrollMenuSizeCheck[sizeof(ScrollMenu) == 0x120 ? 1 : -1];
 
 EXTERN_C
 

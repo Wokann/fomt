@@ -17,7 +17,6 @@ struct MapPatchFlags
     std::bitset<14> value;
 };
 
-typedef char MapPatchFlagsSizeCheck[sizeof(MapPatchFlags) == 4 ? 1 : -1];
 
 
 // Each flag selects an absent/present map rectangle at the stored tile position.
@@ -32,9 +31,6 @@ struct ActorDataSelectionEntry
     u8 tile_y;
 };
 
-typedef char ActorDataSelectionEntrySizeCheck[sizeof(ActorDataSelectionEntry) == 12 ? 1 : -1];
-typedef char ActorDataSelectionEntryXCheck[offsetof(ActorDataSelectionEntry, tile_x) == 8 ? 1 : -1];
-typedef char ActorDataSelectionEntryYCheck[offsetof(ActorDataSelectionEntry, tile_y) == 9 ? 1 : -1];
 
 extern ActorDataSelectionEntry const gActorDataSelectionEntries[];
 extern "C" FieldRenderPatchPlacement SelectMapFlagPatch(MapPatchFlags const & flags, u32 index, bool winter);

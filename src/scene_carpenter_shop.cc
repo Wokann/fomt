@@ -9,76 +9,27 @@ asm_unified(
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
     ".align 2, 0\n"
-    "thumb_func_start __22CarpenterShopSceneCoreP18GameStateSaveImage\n"
-    "__22CarpenterShopSceneCoreP18GameStateSaveImage:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "adds r5, r0, #0\n"
-    "bl __14ShopScreenCoreP18GameStateSaveImage\n"
-    "ldr r0, .Lcarpenter_0_0068\n"
-    "str r0, [r5, #4]\n"
-    "ldr r1, .Lcarpenter_0_006c\n"
-    "adds r0, r5, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "movs r2, #0xe1\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r5, r2\n"
-    "str r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r5, r2\n"
-    "strb r1, [r0]\n"
-    "adds r2, #4\n"
-    "adds r0, r5, r2\n"
-    "str r1, [r0]\n"
-    "movs r0, #0x13\n"
-    "subs r1, #1\n"
-    ".Lcarpenter_0_002c:\n"
-    "subs r0, #1\n"
-    "cmp r0, r1\n"
-    "bne .Lcarpenter_0_002c\n"
-    "ldr r0, .Lcarpenter_0_0070\n"
-    "adds r6, r5, r0\n"
-    "ldr r7, .Lcarpenter_0_0074\n"
-    "adds r0, r7, #0\n"
-    "bl strlen\n"
-    "adds r4, r0, #0\n"
-    "cmp r4, #0x7f\n"
-    "bls .Lcarpenter_0_0046\n"
-    "movs r4, #0x7f\n"
-    ".Lcarpenter_0_0046:\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r7, #0\n"
-    "adds r2, r4, #0\n"
-    "bl memcpy\n"
-    "adds r1, r6, r4\n"
-    "movs r0, #0\n"
-    "strb r0, [r1]\n"
-    "ldr r2, .Lcarpenter_0_0078\n"
-    "adds r1, r5, r2\n"
-    "movs r0, #0\n"
-    "strb r0, [r1]\n"
-    "adds r0, r5, #0\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lcarpenter_0_0068: .word __vt_22CarpenterShopSceneCore\n"
-    ".Lcarpenter_0_006c: .word 0x6a4\n"
-    ".Lcarpenter_0_0070: .word 0x6170\n"
-    ".Lcarpenter_0_0074: .word gText_Carpenter_InitialPageBreak\n"
-    ".Lcarpenter_0_0078: .word 0x61f0\n"
-    "\n"
-    "thumb_func_start _._22CarpenterShopSceneCore\n"
-    "_._22CarpenterShopSceneCore:\n"
-    "push {lr}\n"
-    "ldr r2, .Lcarpenter_1_0010\n"
-    "str r2, [r0, #4]\n"
-    "bl _._14ShopScreenCore\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lcarpenter_1_0010: .word __vt_22CarpenterShopSceneCore\n"
-    "\n"
+);
+
+CarpenterShopSceneCore::CarpenterShopSceneCore(GameStateSaveImage * image)
+    : ShopScreenCore(image), quantity_description(), phase(0),
+      has_purchased(false), remodel_count(0),
+      label_tiles(),
+      remodel_description(gText_Carpenter_InitialPageBreak),
+      lumber_bin_was_full(false)
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+CarpenterShopSceneCore::~CarpenterShopSceneCore()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start DrawCatalog__22CarpenterShopSceneCore\n"
     "DrawCatalog__22CarpenterShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -3098,39 +3049,14 @@ CarpenterShopScene::CarpenterShopScene(SceneTransitionOwner next, GameStateSaveI
 asm_unified(
     ".text\n"
     ".align 2, 0\n"
-    "thumb_func_start _._18CarpenterShopScene\n"
-    "_._18CarpenterShopScene:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "ldr r0, .Lcarpenter_6_003c\n"
-    "str r0, [r4]\n"
-    "ldr r1, [r4, #8]\n"
-    "cmp r1, #0\n"
-    "beq .Lcarpenter_6_001c\n"
-    "ldr r0, [r1]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lcarpenter_6_001c:\n"
-    "ldr r1, [r4, #4]\n"
-    "cmp r1, #0\n"
-    "beq .Lcarpenter_6_002e\n"
-    "ldr r0, [r1, #4]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lcarpenter_6_002e:\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl _._6AScene\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lcarpenter_6_003c: .word __vt_18CarpenterShopScene\n"
+);
+
+CarpenterShopScene::~CarpenterShopScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 

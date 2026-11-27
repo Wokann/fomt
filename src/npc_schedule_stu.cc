@@ -4,79 +4,39 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectStuSchedule\n"
-    "SelectStuSchedule:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803E598\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #26\n"
-    "    cmp\tr0, #0\n"
-    "    blt .Ljp_0803E5BC\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr2, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    cmp\tr2, #2\n"
-    "    bne .Ljp_0803E5A0\n"
-    "    cmp\tr1, #30\n"
-    "    bne .Ljp_0803E5A0\n"
-    "    ldr r3, .Ljp_0803E59C\n"
-    "    adds\tr0, r5, r3\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsrs\tr0, r0, #6\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803E5A0\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E5DC\n"
-    ".Ljp_0803E598: .word 0x000021CA\n"
-    ".Ljp_0803E59C: .word 0x000021A2\n"
-    ".Ljp_0803E5A0:\n"
-    "    adds\tr0, r2, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E5B0\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E5DC\n"
-    ".Ljp_0803E5B0:\n"
-    "    ldr r1, .Ljp_0803E5C0\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #28\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803E5C4\n"
-    ".Ljp_0803E5BC:\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E5DC\n"
-    ".Ljp_0803E5C0: .word 0x0000215A\n"
-    ".Ljp_0803E5C4:\n"
-    "    cmp\tr4, #1\n"
-    "    beq .Ljp_0803E5CC\n"
-    "    cmp\tr4, #3\n"
-    "    bne .Ljp_0803E5D0\n"
-    ".Ljp_0803E5CC:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E5DC\n"
-    ".Ljp_0803E5D0:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E5DA\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803E5DC\n"
-    ".Ljp_0803E5DA:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803E5DC:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+extern "C" u32 SelectStuSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    if ((i32)(((u8 const *)context)[0x21CA] << 26) < 0)
+        return 0;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    if (season == 2 && day == 30
+        && (((u8 const *)context)[0x21A2] >> 6) != 2)
+        return 5;
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 4;
+    if ((i32)(((u8 const *)context)[0x215A] << 28) < 0)
+        return 0;
+    if (weekday == 1 || weekday == 3)
+        return 3;
+    if (*(u32 const *)((u8 const *)context + 8) == 0)
+        return 1;
+    return 2;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 extern "C" StuScheduleData const gStuScheduleData = {

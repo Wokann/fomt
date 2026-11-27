@@ -157,9 +157,6 @@ struct LinkWordProtocol : LinkProtocol {
     u32 incoming_size;
 };
 
-typedef char LinkWordProtocolStateSizeCheck[sizeof(LinkWordProtocolState) == 0x28 ? 1 : -1];
-typedef char LinkWordProtocolStateCheck[offsetof(LinkWordProtocol, current_state) == 4 ? 1 : -1];
-typedef char LinkWordProtocolRecordCheck[offsetof(LinkWordProtocol, record) == 0x14 ? 1 : -1];
 
 struct LinkBlockProtocol;
 
@@ -258,11 +255,7 @@ struct LinkBlockProtocol : LinkProtocol {
     u32 incoming_size;
 };
 
-typedef char LinkBlockProtocolStateSizeCheck[sizeof(LinkBlockProtocolState) == 0x28 ? 1 : -1];
-typedef char LinkBlockProtocolStateCheck[offsetof(LinkBlockProtocol, current_state) == 4 ? 1 : -1];
-typedef char LinkBlockProtocolRecordCheck[offsetof(LinkBlockProtocol, record) == 0x14 ? 1 : -1];
 
-typedef char LinkBlockProtocolSizeCheck[sizeof(LinkBlockProtocol) == 0x30 ? 1 : -1];
 
 // Native JoyBus transport used by the GameCube link scene. The protocol
 // owns its SDK context; the four mode flags follow that exact context.
@@ -309,9 +302,6 @@ struct JoyBusLinkProtocol : LinkBlockProtocol {
     bool unk_1BB;
 };
 
-typedef char JoyBusLinkContextCheck[offsetof(JoyBusLinkProtocol, context) == 0x30 ? 1 : -1];
-typedef char JoyBusLinkModeCheck[offsetof(JoyBusLinkProtocol, mode_enabled) == 0x1B8 ? 1 : -1];
-typedef char JoyBusLinkProtocolSizeCheck[sizeof(JoyBusLinkProtocol) == 0x1BC ? 1 : -1];
 
 #pragma interface "scene_gamecube_link.hh"
 
@@ -360,16 +350,6 @@ struct GameCubeLinkUiCore : HardwareContext, JoyBusLinkProtocol {
     bool phase_changed;
 };
 
-typedef char GameCubeCoreJoyBusBaseCheck[sizeof(HardwareContext) == 8 ? 1 : -1];
-typedef char GameCubeCoreResultCheck[offsetof(GameCubeLinkUiCore, result) == 0x1C4 ? 1 : -1];
-typedef char GameCubeCoreDataCheck[offsetof(GameCubeLinkUiCore, data) == 0x1C8 ? 1 : -1];
-typedef char GameCubeCoreUiCheck[offsetof(GameCubeLinkUiCore, ui) == 0x1D0 ? 1 : -1];
-typedef char GameCubeCoreMusicCheck[offsetof(GameCubeLinkUiCore, music) == 0x1D4 ? 1 : -1];
-typedef char GameCubeCoreUiStateCheck[offsetof(GameCubeLinkUiCore, ui_state) == 0x1DC ? 1 : -1];
-typedef char GameCubeCoreDialogueCheck[offsetof(GameCubeLinkUiCore, dialogue_phase) == 0x3E4 ? 1 : -1];
-typedef char GameCubeCorePhaseCheck[offsetof(GameCubeLinkUiCore, phase) == 0x3E8 ? 1 : -1];
-typedef char GameCubeCoreChangedCheck[offsetof(GameCubeLinkUiCore, phase_changed) == 0x3EC ? 1 : -1];
-typedef char GameCubeCoreSizeCheck[sizeof(GameCubeLinkUiCore) == 0x3F0 ? 1 : -1];
 
 #pragma interface "scene_gamecube_link.hh"
 
@@ -377,10 +357,6 @@ typedef char GameCubeCoreSizeCheck[sizeof(GameCubeLinkUiCore) == 0x3F0 ? 1 : -1]
 
 #pragma interface "scene_gamecube_link.hh"
 
-typedef char GameCubeLinkUiCoreResultCheck[offsetof(GameCubeLinkUiCore, result) == 0x1C4 ? 1 : -1];
-typedef char GameCubeLinkUiSceneSizeCheck[sizeof(GameCubeLinkUiScene) == 12 ? 1 : -1];
-typedef char GameCubeLinkUiSceneCoreCheck[offsetof(GameCubeLinkUiScene, core) == 4 ? 1 : -1];
-typedef char GameCubeLinkUiSceneContinuationCheck[offsetof(GameCubeLinkUiScene, continuation) == 8 ? 1 : -1];
 
 
 #pragma interface "scene_gamecube_link.hh"

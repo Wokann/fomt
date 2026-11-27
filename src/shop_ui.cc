@@ -4,106 +4,69 @@ asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    "thumb_func_start SetShopMessageText\n"
-    "SetShopMessageText:\n"
-    ".align 2, 0\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "movs r0, #0xd2\n"
-    "lsls r0, r0, #2\n"
-    "adds r4, r4, r0\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #4\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #8\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #1\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #2\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #0x10\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #0x20\n"
-    "bl func_08050EBC\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "bl func_08050D8C\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start SetShopDescriptionText\n"
-    "SetShopDescriptionText:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "adds r5, r1, #0\n"
-    "movs r0, #0xd2\n"
-    "lsls r0, r0, #2\n"
-    "adds r4, r4, r0\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #4\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #8\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #1\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #2\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #0x10\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #0x20\n"
-    "bl func_08050E98\n"
-    "adds r0, r4, #0\n"
-    "adds r1, r5, #0\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080CAC3C\n"
-    "func_080CAC3C:\n"
-    "ldr r1, .Lmenu_1_2_0008\n"
-    "adds r0, r0, r1\n"
-    "ldrb r0, [r0]\n"
-    "bx lr\n"
-    ".Lmenu_1_2_0008: .word 0x6a3\n"
-    "\n"
-    "thumb_func_start func_080CAC48\n"
-    "func_080CAC48:\n"
-    "ldr r1, .Lmenu_1_3_0008\n"
-    "adds r0, r0, r1\n"
-    "ldrb r0, [r0]\n"
-    "bx lr\n"
-    ".Lmenu_1_3_0008: .word 0x6a1\n"
-    "\n"
-    "thumb_func_start SetVCountCompareRegister\n"
-    "SetVCountCompareRegister:\n"
-    "lsls r1, r1, #16\n"
-    "ldr r2, .Lmenu_1_4_0018\n"
-    "ldrh r3, [r2]\n"
-    "movs r0, #255\n"
-    "ands r0, r3\n"
-    "strh r0, [r2]\n"
-    "lsrs r1, r1, #8\n"
-    "ldrh r0, [r2]\n"
-    "orrs r1, r0\n"
-    "strh r1, [r2]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    ".Lmenu_1_4_0018: .word REG_DISPSTAT\n"
+);
+
+void SetShopMessageText(ShopScreenCore * core, char const * text)
+{
+    FirstFieldUiOwner & ui = (FirstFieldUiOwner &)core->dialog;
+
+    func_08050EBC(ui, 4);
+    func_08050EBC(ui, 8);
+    func_08050EBC(ui, 1);
+    func_08050EBC(ui, 2);
+    func_08050EBC(ui, 0x10);
+    func_08050EBC(ui, 0x20);
+
+    func_08050D8C(reinterpret_cast<void * const *>(&ui),
+        reinterpret_cast<u32>(text));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "ui_state.hh"
+void SetShopDescriptionText(ShopScreenCore * core, char const * text)
+{
+    FirstFieldUiOwner & ui = (FirstFieldUiOwner &)core->dialog;
+    func_08050E98(ui, 4);
+    func_08050E98(ui, 8);
+    func_08050E98(ui, 1);
+    func_08050E98(ui, 2);
+    func_08050E98(ui, 0x10);
+    func_08050E98(ui, 0x20);
+    func_08050DC8(reinterpret_cast<void * const *>(&ui),
+        reinterpret_cast<u32>(text), 0, 0);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u8 func_080CAC3C(ShopScreenCore const * core)
+{
+    return core->unk_6A3;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u8 func_080CAC48(ShopScreenCore const * core)
+{
+    return core->unk_6A1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void SetVCountCompareRegister(void * receiver, u16 line)
+{
+    REG_DISPSTAT = REG_DISPSTAT & 0xFF;
+    REG_DISPSTAT = REG_DISPSTAT | (line << 8);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );

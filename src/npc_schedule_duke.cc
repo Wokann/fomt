@@ -4,67 +4,46 @@
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectDukeSchedule\n"
-    "SelectDukeSchedule:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    adds\tr6, r4, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E60C\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E64E\n"
-    ".Ljp_0803E60C:\n"
-    "    ldr r1, .Ljp_0803E61C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803E620\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E64E\n"
-    ".Ljp_0803E61C: .word 0x000021CA\n"
-    ".Ljp_0803E620:\n"
-    "    ldr r1, .Ljp_0803E63C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    movs\tr1, #194\t@ 0xc2\n"
-    "    lsls\tr1, r1, #11\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #130\t@ 0x82\n"
-    "    lsls\tr1, r1, #11\n"
-    "    cmp\tr0, r1\n"
-    "    bne .Ljp_0803E644\n"
-    "    cmp\tr4, #6\n"
-    "    bne .Ljp_0803E640\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E64E\n"
-    ".Ljp_0803E63C: .word 0x00002174\n"
-    ".Ljp_0803E640:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E64E\n"
-    ".Ljp_0803E644:\n"
-    "    cmp\tr6, #6\n"
-    "    beq .Ljp_0803E64C\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803E64E\n"
-    ".Ljp_0803E64C:\n"
-    "    movs\tr0, #2\n"
-    ".Ljp_0803E64E:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+#include "npc_schedule_duke.hh"
+#include "game_state.hh"
+extern "C" u32 SelectDukeSchedule(void const * context)
+{
+    u8 date[4];
+    u8 const * raw;
+    u8 season;
+    u8 day;
+    u8 weekday;
+    u8 saved;
+    raw = date;
+    DecodeGameDayDate((GameDayDate *)date,
+        (GameCalendar const *)((u8 const *)context + 16));
+    season = raw[1];
+    day = raw[2];
+    weekday = raw[3];
+    saved = weekday;
+    if ((u8)IsNpcScheduleDateListed(season, day))
+        return 5;
+    if ((i32)(((u8 const *)context)[0x21CA] << 25) < 0)
+        return 0;
+    /* +0x2174 is GameStateSaveImage::event_state (offset 0x214C) + 0x28,
+       i.e. a 32-bit cell in the GameEventState bitfield region; the mask
+       selects bits 12-18. The exact named bitfield has not been resolved,
+       so the explicit mask is kept (H3 exception). */
+    if ((*(u32 const *)((u8 const *)context + 0x2174) & (0xC2u << 11))
+        == (0x82u << 11))
+    {
+        if (weekday == 6)
+            return 4;
+        return 3;
+    }
+    if (saved == 6)
+        return 2;
+    return 1;
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 

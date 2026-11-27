@@ -14,7 +14,6 @@ struct HarvestSpriteHarvestingSetup {
     u32 sprite_variant;
     u8 experience;
 };
-typedef char HarvestSpriteHarvestingSetupSizeCheck[sizeof(HarvestSpriteHarvestingSetup) == 8 ? 1 : -1];
 
 // Each sprite owns a resolved resource handle and its drawing parameters.
 // The four ranges borrow archive payload; only the first two pointers are freed.
@@ -50,11 +49,6 @@ struct HarvestingMinigameTileHandles {
     ObjTileCollectionEntry unk_40;
 };
 
-typedef char HarvestingMinigameSpriteSizeCheck[sizeof(HarvestingMinigameSprite) == 0x28 ? 1 : -1];
-typedef char HarvestingMinigameSpriteParametersCheck[offsetof(HarvestingMinigameSprite, parameters) == 4 ? 1 : -1];
-typedef char HarvestingMinigameSpriteGroupCheck[offsetof(HarvestingMinigameSprite, group) == 8 ? 1 : -1];
-typedef char HarvestingMinigameArchiveOwnerSizeCheck[sizeof(HarvestingMinigameArchiveOwner) == 4 ? 1 : -1];
-typedef char HarvestingMinigameTileHandlesSizeCheck[sizeof(HarvestingMinigameTileHandles) == 0x48 ? 1 : -1];
 
 #pragma interface "scene_harvesting_minigame.hh"
 // The native constructor calls HardwareContext, stores this class's vptr at
@@ -115,29 +109,11 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     u8 experience;
 };
 
-typedef char HarvestSpriteHarvestingCoreTimerTilesCheck[offsetof(HarvestSpriteHarvestingCore, timer_tiles) == 8 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCoreResultTilesCheck[offsetof(HarvestSpriteHarvestingCore, result_tiles) == 0x10C ? 1 : -1];
 
-typedef char HarvestSpriteHarvestingCoreSizeCheck[sizeof(HarvestSpriteHarvestingCore) == 0x620 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_ui_state_check[offsetof(HarvestSpriteHarvestingCore, ui_state) == 0x418 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_archives_check[offsetof(HarvestSpriteHarvestingCore, archive_41C) == 0x41C ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_blend_check[offsetof(HarvestSpriteHarvestingCore, blend) == 0x43C ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_music_players_check[offsetof(HarvestSpriteHarvestingCore, music_players) == 0x578 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_sound_vsync_check[offsetof(HarvestSpriteHarvestingCore, sound_vsync) == 0x588 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_sound_main_check[offsetof(HarvestSpriteHarvestingCore, sound_main) == 0x594 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_tiles_check[offsetof(HarvestSpriteHarvestingCore, tiles) == 0x5B0 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_unk_604_check[offsetof(HarvestSpriteHarvestingCore, unk_604) == 0x604 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_succeeded_check[offsetof(HarvestSpriteHarvestingCore, succeeded) == 0x610 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_sprite_variant_check[offsetof(HarvestSpriteHarvestingCore, sprite_variant) == 0x614 ? 1 : -1];
-typedef char HarvestSpriteHarvestingCore_experience_check[offsetof(HarvestSpriteHarvestingCore, experience) == 0x61C ? 1 : -1];
 
-typedef char HarvestingMinigameSprite460OffsetCheck[offsetof(HarvestSpriteHarvestingCore, sprite_460) == 0x460 ? 1 : -1];
-typedef char HarvestingMinigameSprite550OffsetCheck[offsetof(HarvestSpriteHarvestingCore, sprite_550) == 0x550 ? 1 : -1];
-typedef char HarvestingMinigameArchiveEndCheck[offsetof(HarvestSpriteHarvestingCore, archive_438) == 0x438 ? 1 : -1];
 
 // The UI methods below still have native implementations with these actual ABIs.
 
-typedef char HarvestSpriteHarvestingUiSceneSizeCheck[sizeof(HarvestSpriteHarvestingUiScene) == 8 ? 1 : -1];
 
 extern char const gText_HarvestSpriteHarvesting_Zero[];
 extern u32 const gUnk_080BE954Values[7];

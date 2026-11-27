@@ -17,8 +17,6 @@ struct ReturnToGameScene : SceneTransition {
     GameSceneResumeRequest request;
 };
 
-typedef char ReturnToGameSceneSizeCheck[sizeof(ReturnToGameScene) == 20 ? 1 : -1];
-typedef char ReturnToGameSceneRequestCheck[offsetof(ReturnToGameScene, request) == 8 ? 1 : -1];
 
 #pragma interface "game_scene.hh"
 

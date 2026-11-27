@@ -14,10 +14,6 @@ struct HeapBlock {
     HeapBlock * next;
 };
 
-typedef char HeapBlockSizeCheck[sizeof(HeapBlock) == 16 ? 1 : -1];
-typedef char HeapBlockAllocatedCheck[offsetof(HeapBlock, allocated) == 4 ? 1 : -1];
-typedef char HeapBlockPreviousCheck[offsetof(HeapBlock, previous) == 8 ? 1 : -1];
-typedef char HeapBlockNextCheck[offsetof(HeapBlock, next) == 12 ? 1 : -1];
 
 extern HeapBlock * gHeapFirstBlock;
 

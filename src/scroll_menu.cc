@@ -1670,33 +1670,15 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .global ClearScrollMenuPage\n"
-    "    .thumb_func\n"
-    "ClearScrollMenuPage: @ 0x080767C4\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r4, #8\n"
-    "    movs r5, #0\n"
-    "    ldr r1, [r0, #8]\n"
-    "    cmp r5, r1\n"
-    "    beq .Ljp_080767E6\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_080767E6\n"
-    "    ldr r2, .Ljp_080767F0\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_080767E6:\n"
-    "    str r5, [r4]\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+void ClearScrollMenuPage(ScrollMenu * menu)
+{
+    menu->page = nullptr;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_080767F0: .word 0x000005B4\n"
-    "\n"
     "    .global SetScrollMenuPage\n"
     "    .thumb_func\n"
     "SetScrollMenuPage: @ 0x080767F4\n"
@@ -3405,32 +3387,15 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\n"
-    "\tthumb_func_start ClearScrollMenuPage\n"
-    "ClearScrollMenuPage: @ 0x08076B64\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r4, #8\n"
-    "\tmovs r5, #0\n"
-    "\tldr r1, [r0, #8]\n"
-    "\tcmp r5, r1\n"
-    "\tbeq .L08076B86\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08076B86\n"
-    "\tldr r2, .L08076B90 @ =0x000005B4\n"
-    "\tadds r0, r1, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08076B86:\n"
-    "\tstr r5, [r4]\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L08076B90: .word 0x000005B4\n"
-    "\n"
+);
+
+void ClearScrollMenuPage(ScrollMenu * menu)
+{
+    menu->page = nullptr;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start SetScrollMenuPage\n"
     "SetScrollMenuPage: @ 0x08076B94\n"
     "\tpush {r4, r5, r6, lr}\n"
@@ -4526,33 +4491,44 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "\n"
-    "    thumb_func_start SetPosition__14ScrollMenuPages\n"
-    "SetPosition__14ScrollMenuPages:\n"
-    "    movs r2, #0xb2\n"
-    "    lsls r2, r2, #3\n"
-    "    adds r0, r0, r2\n"
-    "    strh r1, [r0]\n"
-    "    bx lr\n"
+);
+
+void ScrollMenuPage::SetPosition(i16 position)
+{
+    scroll_position = position;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start GetMaximumScrollPosition__C14ScrollMenuPage\n"
-    "GetMaximumScrollPosition__C14ScrollMenuPage:\n"
-    "    ldr r0, [r0, #4]\n"
-    "    movs r1, #0xe\n"
-    "    ldrsh r0, [r0, r1]\n"
-    "    subs r0, #0xa0\n"
-    "    lsls r0, r0, #16\n"
-    "    asrs r0, r0, #16\n"
-    "    bx lr\n"
+);
+
+#include "scroll_state.hh"
+i16 ScrollMenuPage::GetMaximumScrollPosition() const
+{
+    i32 limit = scroll->bottom_limit;
+    return limit - 0xA0;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start GetScrollState__C14ScrollMenuPage\n"
-    "GetScrollState__C14ScrollMenuPage:\n"
-    "    ldr r0, [r0, #4]\n"
-    "    bx lr\n"
-    "    thumb_func_start GetMenu__C14ScrollMenuPage\n"
-    "GetMenu__C14ScrollMenuPage:\n"
-    "    ldr r0, [r0]\n"
-    "    bx lr\n"
-    "\n"
+);
+
+ScrollState * ScrollMenuPage::GetScrollState() const
+{
+    return scroll;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ScrollMenu * ScrollMenuPage::GetMenu() const
+{
+    return menu;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
     "\tthumb_func_start __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
@@ -5609,33 +5585,44 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "    thumb_func_start SetPosition__14ScrollMenuPages\n"
-    "SetPosition__14ScrollMenuPages:\n"
-    "\tmovs r2, #0xb2\n"
-    "\tlsls r2, r2, #3\n"
-    "\tadds r0, r0, r2\n"
-    "\tstrh r1, [r0]\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    "    thumb_func_start GetMaximumScrollPosition__C14ScrollMenuPage\n"
-    "GetMaximumScrollPosition__C14ScrollMenuPage:\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tmovs r1, #0xe\n"
-    "\tldrsh r0, [r0, r1]\n"
-    "\tsubs r0, #0xa0\n"
-    "\tlsls r0, r0, #16\n"
-    "\tasrs r0, r0, #16\n"
-    "\tbx lr\n"
-    "\t.align 2, 0\n"
-    "    thumb_func_start GetScrollState__C14ScrollMenuPage\n"
-    "GetScrollState__C14ScrollMenuPage:\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tbx lr\n"
-    "    thumb_func_start GetMenu__C14ScrollMenuPage\n"
-    "GetMenu__C14ScrollMenuPage:\n"
-    "\tldr r0, [r0]\n"
-    "\tbx lr\n"
-    "\n"
+);
+
+void ScrollMenuPage::SetPosition(i16 position)
+{
+    scroll_position = position;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+#include "scroll_state.hh"
+i16 ScrollMenuPage::GetMaximumScrollPosition() const
+{
+    i32 limit = scroll->bottom_limit;
+    return limit - 0xA0;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ScrollState * ScrollMenuPage::GetScrollState() const
+{
+    return scroll;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+ScrollMenu * ScrollMenuPage::GetMenu() const
+{
+    return menu;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 

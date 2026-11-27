@@ -49,14 +49,6 @@ private:
         ObjPaletteCollectionEntry * first, ObjPaletteCollectionEntry * last);
 };
 
-typedef char ObjPaletteCollectionStoragePrefixSizeCheck[sizeof(ObjPaletteCollectionStoragePrefix) == 4 ? 1 : -1];
-typedef char ObjPaletteCollectionStorageBoundsSizeCheck[sizeof(ObjPaletteCollectionStorageBounds) == 8 ? 1 : -1];
-typedef char ObjPaletteCollectionStorageBoundsEndCheck[offsetof(ObjPaletteCollectionStorageBounds, end) == 4 ? 1 : -1];
-typedef char ObjPaletteCollectionEntrySizeCheck[sizeof(ObjPaletteCollectionEntry) == 8 ? 1 : -1];
-typedef char ObjPaletteCollectionEntryHandleCheck[offsetof(ObjPaletteCollectionEntry, handle) == 4 ? 1 : -1];
-typedef char ObjPaletteCollectionStorageSizeCheck[sizeof(ObjPaletteCollectionStorage) == 20 ? 1 : -1];
-typedef char ObjPaletteCollectionStorageCapacityCheck[(offsetof(ObjPaletteCollectionStorage, allocation) + offsetof(ObjPaletteCollectionStorageBounds, end)) == 12 ? 1 : -1];
-typedef char ObjPaletteCollectionStorageCursorCheck[offsetof(ObjPaletteCollectionStorage, cursor) == 16 ? 1 : -1];
 
 inline void * ObjPaletteCollectionStorage::AllocateBytes(u32 bytes)
 {

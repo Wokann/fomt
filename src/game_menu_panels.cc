@@ -1,19 +1,22 @@
 #include "game_menu_panels.hh"
 #include "hardware_dma_queue.hh"
+#include "gbaio.h"
 
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
-    "thumb_func_start InitializeMenuItemIcon\n"
-    "InitializeMenuItemIcon:\n"
-    "movs r1, #0\n"
-    "str r1, [r0]\n"
-    "str r1, [r0, #4]\n"
-    "str r1, [r0, #8]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void InitializeMenuItemIcon(GameMenuItemIcon * icon)
+{
+    icon->quantity = 0;
+    icon->tiles = nullptr;
+    icon->palette = nullptr;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start InitializeMenuItemIconFromArchive\n"
     "InitializeMenuItemIconFromArchive:\n"
     "push {r4, r5, r6, lr}\n"
@@ -83,23 +86,36 @@ asm_unified(
     ".align 2, 0\n"
     ".Lmenu_1_6_0088: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "thumb_func_start InitializeMenuItemIconFromData\n"
-    "InitializeMenuItemIconFromData:\n"
-    "str r1, [r0, #4]\n"
-    "str r2, [r0, #8]\n"
-    "str r3, [r0]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start SetMenuItemIconQuantity\n"
-    "SetMenuItemIconQuantity:\n"
-    "str r1, [r0]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start GetMenuItemIconQuantity\n"
-    "GetMenuItemIconQuantity:\n"
-    "ldr r0, [r0]\n"
-    "bx lr\n"
-    "\n"
+);
+
+GameMenuItemIcon * InitializeMenuItemIconFromData(GameMenuItemIcon * icon, IndexedResourceTileUnit const * tiles, IndexedResourcePaletteBank const * palette, u32 quantity)
+{
+    icon->tiles = tiles;
+    icon->palette = palette;
+    icon->quantity = quantity;
+    return icon;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void SetMenuItemIconQuantity(GameMenuItemIcon * icon, u32 quantity)
+{
+    icon->quantity = quantity;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+u32 GetMenuItemIconQuantity(GameMenuItemIcon const * icon)
+{
+    return icon->quantity;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start LoadMenuItemIconFromArchive\n"
     "LoadMenuItemIconFromArchive:\n"
     "push {r4, r5, r6, lr}\n"
@@ -171,22 +187,28 @@ asm_unified(
 #endif
     ".Lmenu_1_10_0084: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "thumb_func_start SetMenuItemIconData\n"
-    "SetMenuItemIconData:\n"
-    "str r1, [r0, #4]\n"
-    "str r2, [r0, #8]\n"
-    "str r3, [r0]\n"
-    "bx lr\n"
-    "\n"
-    "thumb_func_start ClearMenuItemIcon\n"
-    "ClearMenuItemIcon:\n"
-    "movs r1, #0\n"
-    "str r1, [r0]\n"
-    "str r1, [r0, #4]\n"
-    "str r1, [r0, #8]\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void SetMenuItemIconData(GameMenuItemIcon * icon, IndexedResourceTileUnit const * tiles, IndexedResourcePaletteBank const * palette, u32 quantity)
+{
+    icon->tiles = tiles;
+    icon->palette = palette;
+    icon->quantity = quantity;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+void ClearMenuItemIcon(GameMenuItemIcon * icon)
+{
+    icon->quantity = 0;
+    icon->tiles = nullptr;
+    icon->palette = nullptr;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start __13GameMenuPanelP18HardwareLinkedList\n"
     "__13GameMenuPanelP18HardwareLinkedList:\n"
     "push {r4, r5, lr}\n"
@@ -888,26 +910,25 @@ asm_unified(
     ".align 2, 0\n"
     ".Lmenu_1_19_0254: .word 0x600f00c\n"
     "\n"
-    "thumb_func_start GetMenuPanelItemIcon\n"
-    "GetMenuPanelItemIcon:\n"
-    "adds r2, r0, #0\n"
-    "lsls r0, r1, #1\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r0, r0, r2\n"
-    "movs r1, #0x86\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start GetMenuPanelHeaderIcon\n"
-    "GetMenuPanelHeaderIcon:\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    "\n"
+);
+
+GameMenuItemIcon * GetMenuPanelItemIcon(GameMenuPanel * panel, u32 index)
+{
+    GameMenuPanelState * s = &((GameMenuTilemapPanel *)panel)->state;
+    return &s->icons.items[index];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+GameMenuItemIcon * GetMenuPanelHeaderIcon(GameMenuPanel * panel)
+{
+    return &((GameMenuTilemapPanel *)panel)->state.header_icon;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080CB304\n"
     "func_080CB304:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -2866,15 +2887,15 @@ MenuGridPosition GetMenuGridLeftHeaderPosition(GameMenuPanel const *)
 
 asm_unified(
     ".text\n"
-    "thumb_func_start PruneCompletedCommands__20GameMenuTilemapPanel\n"
-    "PruneCompletedCommands__20GameMenuTilemapPanel:\n"
-    ".align 2, 0\n"
-    "push {lr}\n"
-    "bl PruneCompletedCommands__13GameMenuPanel\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void GameMenuTilemapPanel::PruneCompletedCommands()
+{
+    GameMenuPanel::PruneCompletedCommands();
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start __19GameMenuSpritePanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcb\n"
     "__19GameMenuSpritePanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcb:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -3609,26 +3630,25 @@ asm_unified(
     ".Lmenu_2_3_0178: .word 0xffffff00\n"
     ".Lmenu_2_3_017c: .word gMenuGridHeaderTilePosition\n"
     "\n"
-    "thumb_func_start func_080CC70C\n"
-    "func_080CC70C:\n"
-    "adds r2, r0, #0\n"
-    "lsls r0, r1, #1\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r0, r0, r2\n"
-    "movs r1, #0x86\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    ".align 2, 0\n"
-    "\n"
-    "thumb_func_start func_080CC720\n"
-    "func_080CC720:\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "bx lr\n"
-    "\n"
+);
+
+extern "C" GameMenuItemIcon * func_080CC70C(GameMenuPanel * panel, u32 index)
+{
+    GameMenuPanelState * s = &((GameMenuTilemapPanel *)panel)->state;
+    return &s->icons.items[index];
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" GameMenuItemIcon * func_080CC720(GameMenuPanel * panel)
+{
+    return &((GameMenuTilemapPanel *)panel)->state.header_icon;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080CC728\n"
     "func_080CC728:\n"
     "push {r4, r5, r6, r7, lr}\n"

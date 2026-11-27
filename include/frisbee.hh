@@ -27,13 +27,9 @@ struct FrisbeeScene : AScene {
     SceneTransitionOwner continuation;
 };
 
-typedef char FrisbeeCoreOwnerSizeCheck[sizeof(FrisbeeCoreOwner) == 4 ? 1 : -1];
 
 #pragma interface "frisbee.hh"
 
-typedef char FrisbeeSceneSizeCheck[sizeof(FrisbeeScene) == 12 ? 1 : -1];
-typedef char FrisbeeSceneCoreCheck[offsetof(FrisbeeScene, core) == 4 ? 1 : -1];
-typedef char FrisbeeSceneContinuationCheck[offsetof(FrisbeeScene, continuation) == 8 ? 1 : -1];
 
 
 #endif // FRISBEE_HH

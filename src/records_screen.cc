@@ -154,20 +154,14 @@ asm_unified(
     ".Ljp_080708D8: .word 0x000005B4\n"
     ".Ljp_080708DC: .word __vt_17RecordsScreenPage\n"
     ".Ljp_080708E0: .word 0x0000FFFF\n"
-    "\t.global _._17RecordsScreenPage\n"
-    "\t.thumb_func\n"
-    "_._17RecordsScreenPage:\n"
-    "\tpush {lr}\n"
-    "\tldr r2, .Ljp_080708F8\n"
-    "\tadds r3, r0, r2\n"
-    "\tldr r2, .Ljp_080708FC\n"
-    "\tstr r2, [r3]\n"
-    "\tbl _._14ScrollMenuPage\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080708F8: .word 0x000005B4\n"
-    ".Ljp_080708FC: .word __vt_17RecordsScreenPage\n"
+);
+
+RecordsScreenPage::~RecordsScreenPage()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global Draw__17RecordsScreenPage\n"
     "\t.thumb_func\n"
     "Draw__17RecordsScreenPage:\n"
@@ -1094,14 +1088,16 @@ asm_unified(
     ".Ljp_08071000: .word 0x0000058C\n"
     ".Ljp_08071004: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "    .global Draw__19ShippingRecordsPage\n"
-    "    .thumb_func\n"
-    "Draw__19ShippingRecordsPage: @ 0x08071008\n"
-    "    push {lr}\n"
-    "    bl Draw__17RecordsScreenPage\n"
-    "    movs r0, #1\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+);
+
+u32 ShippingRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global __18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
     "\t.thumb_func\n"
     "__18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage:\n"
@@ -3099,14 +3095,16 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     ".Ljp_08071F24: .word __vt_23IndexedResourceProvider\n"
-    "    .global Draw__18FishingRecordsPage\n"
-    "    .thumb_func\n"
-    "Draw__18FishingRecordsPage: @ 0x08071F28\n"
-    "    push {lr}\n"
-    "    bl Draw__17RecordsScreenPage\n"
-    "    movs r0, #1\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
+);
+
+u32 FishingRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global __16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
     "\t.thumb_func\n"
     "__16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage:\n"
@@ -9410,16 +9408,16 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    "    .global Draw__16OtherRecordsPage\n"
-    "    .thumb_func\n"
-    "Draw__16OtherRecordsPage: @ 0x08074F84\n"
-    "    push {lr}\n"
-    "    bl Draw__17RecordsScreenPage\n"
-    "    movs r0, #1\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    @ The following physical entry has not yet been matched semantically.\n"
+);
+
+u32 OtherRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global func_08075334\n"
     "\t.thumb_func\n"
     "func_08075334:\n"
@@ -9620,101 +9618,34 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_080750F0: .word 0x0000058C\n"
     ".Ljp_080750F4: .word 0x00001CD4\n"
-    "    .global SelectPage__17RecordsScreenCoreUi\n"
-    "    .thumb_func\n"
-    "SelectPage__17RecordsScreenCoreUi: @ 0x080750F8\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #0\n"
-    "    str r0, [sp]\n"
-    "    cmp r1, #1\n"
-    "    beq .Ljp_08075130\n"
-    "    cmp r1, #1\n"
-    "    bgt .Ljp_08075110\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_08075116\n"
-    "    b .Ljp_08075180\n"
-    ".Ljp_08075110:\n"
-    "    cmp r1, #2\n"
-    "    beq .Ljp_0807514C\n"
-    "    b .Ljp_08075180\n"
-    ".Ljp_08075116:\n"
-    "    ldr r0, .Ljp_0807512C @ =0x000042FC\n"
-    "    bl __builtin_new\n"
-    "    movs r2, #0x90\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r4, r2\n"
-    "    ldr r2, [r1]\n"
-    "    adds r1, r4, #0\n"
-    "    bl __19ShippingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    "    b .Ljp_08075160\n"
+);
+
+void RecordsScreenCore::SelectPage(u32 page)
+{
+    ScrollMenuPageOwner selected;
+
+    switch (static_cast<i32>(page))
+    {
+    case 0:
+        selected = new ShippingRecordsPage(this, this->save);
+        break;
+
+    case 1:
+        selected = new FishingRecordsPage(this, this->save);
+        break;
+
+    case 2:
+        selected = new OtherRecordsPage(this, this->save);
+        break;
+    }
+
+    ScrollMenuPage * moved = selected.Move();
+
+    SetScrollMenuPage(this, &moved);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0807512C: .word 0x000042FC\n"
-    ".Ljp_08075130:\n"
-    "    ldr r0, .Ljp_08075148 @ =0x00004994\n"
-    "    bl __builtin_new\n"
-    "    movs r2, #0x90\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r4, r2\n"
-    "    ldr r2, [r1]\n"
-    "    adds r1, r4, #0\n"
-    "    bl __18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    "    b .Ljp_08075160\n"
-    "    .align 2, 0\n"
-    ".Ljp_08075148: .word 0x00004994\n"
-    ".Ljp_0807514C:\n"
-    "    ldr r0, .Ljp_080751B0 @ =0x0000816C\n"
-    "    bl __builtin_new\n"
-    "    movs r2, #0x90\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r4, r2\n"
-    "    ldr r2, [r1]\n"
-    "    adds r1, r4, #0\n"
-    "    bl __16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    ".Ljp_08075160:\n"
-    "    mov r6, sp\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r1, [sp]\n"
-    "    cmp r5, r1\n"
-    "    beq .Ljp_0807517E\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_0807517E\n"
-    "    ldr r2, .Ljp_080751B4 @ =0x000005B4\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_0807517E:\n"
-    "    str r5, [r6]\n"
-    ".Ljp_08075180:\n"
-    "    ldr r0, [sp]\n"
-    "    movs r1, #0\n"
-    "    str r1, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    add r1, sp, #4\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetScrollMenuPage\n"
-    "    ldr r1, [sp]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_080751A6\n"
-    "    ldr r2, .Ljp_080751B4 @ =0x000005B4\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_080751A6:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_080751B0: .word 0x0000816C\n"
-    ".Ljp_080751B4: .word 0x000005B4\n"
     "    .global ChangePage__17RecordsScreenCorei\n"
     "    .thumb_func\n"
     "ChangePage__17RecordsScreenCorei: @ 0x080751B8\n"
@@ -9941,20 +9872,14 @@ asm_unified(
     ".L08070C80: .word __vt_17RecordsScreenPage\n"
     ".L08070C84: .word 0x0000FFFF\n"
     "\n"
-    "\tthumb_func_start _._17RecordsScreenPage\n"
-    "_._17RecordsScreenPage: @ 0x08070C88\n"
-    "\tpush {lr}\n"
-    "\tldr r2, .L08070C9C @ =0x000005B4\n"
-    "\tadds r3, r0, r2\n"
-    "\tldr r2, .L08070CA0 @ =__vt_17RecordsScreenPage\n"
-    "\tstr r2, [r3]\n"
-    "\tbl _._14ScrollMenuPage\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L08070C9C: .word 0x000005B4\n"
-    ".L08070CA0: .word __vt_17RecordsScreenPage\n"
-    "\n"
+);
+
+RecordsScreenPage::~RecordsScreenPage()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start Draw__17RecordsScreenPage\n"
     "Draw__17RecordsScreenPage: @ 0x08070CA4\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -10884,14 +10809,16 @@ asm_unified(
     ".L080713A4: .word 0x0000058C\n"
     ".L080713A8: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "\tthumb_func_start Draw__19ShippingRecordsPage\n"
-    "Draw__19ShippingRecordsPage: @ 0x080713AC\n"
-    "\tpush {lr}\n"
-    "\tbl Draw__17RecordsScreenPage\n"
-    "\tmovs r0, #1\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+u32 ShippingRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start __18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
     "__18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage: @ 0x080713B8\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -13227,14 +13154,16 @@ asm_unified(
     "\t.align 2, 0\n"
     ".L080722CC: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "\tthumb_func_start Draw__18FishingRecordsPage\n"
-    "Draw__18FishingRecordsPage: @ 0x080722D0\n"
-    "\tpush {lr}\n"
-    "\tbl Draw__17RecordsScreenPage\n"
-    "\tmovs r0, #1\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+u32 FishingRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start __16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
     "__16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage: @ 0x080722DC\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -20021,14 +19950,16 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start Draw__16OtherRecordsPage\n"
-    "Draw__16OtherRecordsPage: @ 0x08075328\n"
-    "\tpush {lr}\n"
-    "\tbl Draw__17RecordsScreenPage\n"
-    "\tmovs r0, #1\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
+);
+
+u32 OtherRecordsPage::Draw()
+{
+    RecordsScreenPage::Draw();
+    return 1;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_08075334\n"
     "func_08075334: @ 0x08075334\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -20229,109 +20160,34 @@ asm_unified(
     ".L08075494: .word 0x0000058C\n"
     ".L08075498: .word 0x00001CD4\n"
     "\n"
-    "\tthumb_func_start SelectPage__17RecordsScreenCoreUi\n"
-    "SelectPage__17RecordsScreenCoreUi: @ 0x0807549C\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #8\n"
-    "\tadds r4, r0, #0\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [sp]\n"
-    "\tcmp r1, #1\n"
-    "\tbeq .L080754D4\n"
-    "\tcmp r1, #1\n"
-    "\tbgt .L080754B4\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080754BA\n"
-    "\tb .L08075524\n"
-    ".L080754B4:\n"
-    "\tcmp r1, #2\n"
-    "\tbeq .L080754F0\n"
-    "\tb .L08075524\n"
-    ".L080754BA:\n"
-    "\tldr r0, .L080754D0 @ =0x000042FC\n"
-    "\tbl __builtin_new\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r1, r4, r2\n"
-    "\tldr r2, [r1]\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl __19ShippingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    "\tb .L08075504\n"
-    "\t.align 2, 0\n"
-    ".L080754D0: .word 0x000042FC\n"
-    ".L080754D4:\n"
-    "\tldr r0, .L080754EC @ =0x00004B94\n"
-    "\tbl __builtin_new\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r1, r4, r2\n"
-    "\tldr r2, [r1]\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl __18FishingRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    "\tb .L08075504\n"
-    "\t.align 2, 0\n"
-    "\t.ifdef REGION_DE\n"
-    ".L080754EC: .word 0x00004D14\n"
-    "\t.else\n"
-    ".L080754EC: .word 0x00004B94\n"
-    "\t.endif\n"
-    ".L080754F0:\n"
-    "\tldr r0, .L08075554 @ =0x00008E6C\n"
-    "\tbl __builtin_new\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r1, r4, r2\n"
-    "\tldr r2, [r1]\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl __16OtherRecordsPageP10ScrollMenuP18GameStateSaveImage\n"
-    ".L08075504:\n"
-    "\tmov r6, sp\n"
-    "\tadds r5, r0, #0\n"
-    "\tldr r1, [sp]\n"
-    "\tcmp r5, r1\n"
-    "\tbeq .L08075522\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08075522\n"
-    "\tldr r2, .L08075558 @ =0x000005B4\n"
-    "\tadds r0, r1, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08075522:\n"
-    "\tstr r5, [r6]\n"
-    ".L08075524:\n"
-    "\tldr r0, [sp]\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r1, sp, #4\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl SetScrollMenuPage\n"
-    "\tldr r1, [sp]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L0807554A\n"
-    "\tldr r2, .L08075558 @ =0x000005B4\n"
-    "\tadds r0, r1, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L0807554A:\n"
-    "\tadd sp, #8\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\t.ifdef REGION_DE\n"
-    ".L08075554: .word 0x00008FEC\n"
-    "\t.else\n"
-    ".L08075554: .word 0x00008E6C\n"
-    "\t.endif\n"
-    ".L08075558: .word 0x000005B4\n"
-    "\n"
+);
+
+void RecordsScreenCore::SelectPage(u32 page)
+{
+    ScrollMenuPageOwner selected;
+
+    switch (static_cast<i32>(page))
+    {
+    case 0:
+        selected = new ShippingRecordsPage(this, this->save);
+        break;
+
+    case 1:
+        selected = new FishingRecordsPage(this, this->save);
+        break;
+
+    case 2:
+        selected = new OtherRecordsPage(this, this->save);
+        break;
+    }
+
+    ScrollMenuPage * moved = selected.Move();
+
+    SetScrollMenuPage(this, &moved);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start ChangePage__17RecordsScreenCorei\n"
     "ChangePage__17RecordsScreenCorei: @ 0x0807555C\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
@@ -20416,173 +20272,96 @@ RecordsScreenScene::RecordsScreenScene(SceneTransitionOwner next, GameStateSaveI
 
 asm_unified(
 #if defined(REGION_JP)
-    "    .global _._18RecordsScreenScene\n"
-    "    .thumb_func\n"
-    "_._18RecordsScreenScene: @ 0x08075278\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r0, .Ljp_080752B4 @ =__vt_18RecordsScreenScene\n"
-    "    str r0, [r4]\n"
-    "    ldr r1, [r4, #8]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_08075294\n"
-    "    ldr r0, [r1]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_08075294:\n"
-    "    ldr r1, [r4, #4]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_080752A6\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_080752A6:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl _._6AScene\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
+);
+
+RecordsScreenScene::~RecordsScreenScene()
+{
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_080752B4: .word __vt_18RecordsScreenScene\n"
-    "\n"
-    "    .global Run__18RecordsScreenScene\n"
-    "    .thumb_func\n"
-    "Run__18RecordsScreenScene: @ 0x080752B8\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r1, #0\n"
-    "    ldr r0, [r4, #4]\n"
-    "    bl RunScrollMenu\n"
-    "    ldr r1, [r4, #8]\n"
-    "    movs r0, #0\n"
-    "    str r0, [r4, #8]\n"
-    "    str r1, [r5]\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "\t@ Record-page wrapper helpers shared by all regions.\n"
-    "\t.global func_08075678\n"
-    "\t.thumb_func\n"
-    "func_08075678:\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #4\n"
-    "\tldr r4, [r3, #8]\n"
-    "\tldr r3, [r3, #0x10]\n"
-    "\tstr r3, [sp]\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl func_08075334\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.global func_08075690\n"
-    "\t.thumb_func\n"
-    "func_08075690:\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #4\n"
-    "\tlsls r4, r3, #3\n"
-    "\tldr r3, .Ljp_08075308\n"
-    "\tadds r4, r4, r3\n"
-    "\tldr r3, [r4]\n"
-    "\tldr r4, [r4, #4]\n"
-    "\tstr r4, [sp]\n"
-    "\tbl func_08075334\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    ".Ljp_08075308: .word gRecordsScreenMinigameTaskResources\n"
+);
+
+SceneTransitionOwner RecordsScreenScene::Run()
+{
+    RunScrollMenu(core.value);
+    return continuation;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_08075334(u32 a, u32 b, u32 c,
+    u8 const * tiles, u8 const * palette);
+extern "C" void func_08075678(u32 a, u32 b, u32 c, u8 const * s)
+{
+    func_08075334(a, b, c,
+                  *(u8 const * const *)(s + 8),
+                  *(u8 const * const *)(s + 0x10));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_08075334(u32 a, u32 b, u32 c,
+    u8 const * tiles, u8 const * palette);
+extern "C" void func_08075690(u32 a, u32 b, u32 c, u32 index, u32 extra)
+{
+    RecordsScreenTaskResourcePair const * pair =
+        &gRecordsScreenMinigameTaskResources[index];
+    func_08075334(a, b, c, pair->tiles, pair->palette);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "\n"
-    "\tthumb_func_start _._18RecordsScreenScene\n"
-    "_._18RecordsScreenScene: @ 0x0807561C\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r4, r0, #0\n"
-    "\tadds r5, r1, #0\n"
-    "\tldr r0, .L08075658 @ =__vt_18RecordsScreenScene\n"
-    "\tstr r0, [r4]\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08075638\n"
-    "\tldr r0, [r1]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08075638:\n"
-    "\tldr r1, [r4, #4]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L0807564A\n"
-    "\tldr r0, [r1, #4]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L0807564A:\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r1, r5, #0\n"
-    "\tbl _._6AScene\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L08075658: .word __vt_18RecordsScreenScene\n"
-    "\n"
-    "\tthumb_func_start Run__18RecordsScreenScene\n"
-    "Run__18RecordsScreenScene: @ 0x0807565C\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tadds r5, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tldr r0, [r4, #4]\n"
-    "\tbl RunScrollMenu\n"
-    "\tldr r1, [r4, #8]\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r4, #8]\n"
-    "\tstr r1, [r5]\n"
-    "\tadds r0, r5, #0\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\tthumb_func_start func_08075678\n"
-    "func_08075678: @ 0x08075678\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #4\n"
-    "\tldr r4, [r3, #8]\n"
-    "\tldr r3, [r3, #0x10]\n"
-    "\tstr r3, [sp]\n"
-    "\tadds r3, r4, #0\n"
-    "\tbl func_08075334\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\n"
-    "\tthumb_func_start func_08075690\n"
-    "func_08075690: @ 0x08075690\n"
-    "\tpush {r4, lr}\n"
-    "\tsub sp, #4\n"
-    "\tlsls r4, r3, #3\n"
-    "\tldr r3, .L080756AC @ =gRecordsScreenMinigameTaskResources\n"
-    "\tadds r4, r4, r3\n"
-    "\tldr r3, [r4]\n"
-    "\tldr r4, [r4, #4]\n"
-    "\tstr r4, [sp]\n"
-    "\tbl func_08075334\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L080756AC: .word gRecordsScreenMinigameTaskResources\n"
-    "\n"
+);
+
+RecordsScreenScene::~RecordsScreenScene()
+{
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+SceneTransitionOwner RecordsScreenScene::Run()
+{
+    RunScrollMenu(core.value);
+    return continuation;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_08075334(u32 a, u32 b, u32 c,
+    u8 const * tiles, u8 const * palette);
+extern "C" void func_08075678(u32 a, u32 b, u32 c, u8 const * s)
+{
+    func_08075334(a, b, c,
+                  *(u8 const * const *)(s + 8),
+                  *(u8 const * const *)(s + 0x10));
+}
+
+asm_unified(
+    "    .align 2, 0\n"
+);
+
+extern "C" void func_08075334(u32 a, u32 b, u32 c,
+    u8 const * tiles, u8 const * palette);
+extern "C" void func_08075690(u32 a, u32 b, u32 c, u32 index, u32 extra)
+{
+    RecordsScreenTaskResourcePair const * pair =
+        &gRecordsScreenMinigameTaskResources[index];
+    func_08075334(a, b, c, pair->tiles, pair->palette);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 #endif
 );
 

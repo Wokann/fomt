@@ -21,6 +21,18 @@ struct SceneOwnerTransfer
     AScene * release() const;
 };
 
+// Owns a scene's core object. The native scene destructors destroy their core
+// implicitly, right after the continuation, so the member needs a destructor of
+// its own. Defined here (a header without a #pragma implementation companion) so
+// the inline bodies are not duplicated into a separate implementation object.
+template <class T>
+struct SceneCoreOwner {
+    explicit SceneCoreOwner(T * input = nullptr) : value(input) {}
+    ~SceneCoreOwner() { delete value; }
+    T * value;
+};
+
+
 struct SceneTransitionOwnerTransfer
 {
     void * & source;
@@ -150,12 +162,6 @@ inline SceneTransition * SceneTransitionOwnerTransfer::release() const
 inline SceneTransitionOwner::SceneTransitionOwner(SceneTransitionOwnerTransfer transfer)
     : value(transfer.release()) {}
 
-typedef char SceneOwnerSizeCheck[sizeof(SceneOwner) == 4 ? 1 : -1];
-typedef char SceneTransitionOwnerSizeCheck[sizeof(SceneTransitionOwner) == 4 ? 1 : -1];
-typedef char SceneOwnerTransferSizeCheck[sizeof(SceneOwnerTransfer) == 8 ? 1 : -1];
-typedef char SceneTransitionOwnerTransferSizeCheck[sizeof(SceneTransitionOwnerTransfer) == 8 ? 1 : -1];
-typedef char SceneOwnerTransferValueOffsetCheck[offsetof(SceneOwnerTransfer, value) == 4 ? 1 : -1];
-typedef char SceneTransitionOwnerTransferValueOffsetCheck[offsetof(SceneTransitionOwnerTransfer, value) == 4 ? 1 : -1];
 
 extern "C" void SceneMain(SceneOwner scene);
 

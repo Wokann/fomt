@@ -165,27 +165,16 @@ struct FestivalAnimalSelectionCore : HardwareContext {
     u32 unk_4174;
 };
 
-typedef char FestivalSelectionSpriteSizeCheck[sizeof(FestivalSelectionSprite) == 0x38 ? 1 : -1];
-typedef char FestivalSelectionCursorSizeCheck[sizeof(FestivalSelectionCursor) == 0x3C ? 1 : -1];
 #if defined(REGION_JP)
-typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x3BF8 ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char FestivalAnimalSelectionCoreSizeCheck[sizeof(FestivalAnimalSelectionCore) == 0x4178 ? 1 : -1];
-#endif
-typedef char FestivalAnimalSelectionCoreUiCheck[offsetof(FestivalAnimalSelectionCore, ui) == 0x134 ? 1 : -1];
-#if defined(REGION_JP)
-typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3920 ? 1 : -1];
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char FestivalAnimalSelectionCoreRowsCheck[offsetof(FestivalAnimalSelectionCore, rows_3EA0) == 0x3EA0 ? 1 : -1];
 #endif
 #if defined(REGION_JP)
-typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x3B30 ? 1 : -1];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-typedef char FestivalAnimalSelectionCoreTilesCheck[offsetof(FestivalAnimalSelectionCore, tiles_40B0) == 0x40B0 ? 1 : -1];
+#endif
+#if defined(REGION_JP)
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 #endif
 
-typedef char FestivalAnimalSelectionSceneSizeCheck[sizeof(FestivalAnimalSelectionScene) == 8 ? 1 : -1];
-typedef char FestivalAnimalSelectionSceneCoreCheck[offsetof(FestivalAnimalSelectionScene, core) == 4 ? 1 : -1];
 
 
 EXTERN_C

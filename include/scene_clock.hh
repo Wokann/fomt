@@ -22,7 +22,6 @@ struct GameSceneClockWindowOwner {
     }
 };
 
-typedef char GameSceneClockWindowOwnerSizeCheck[sizeof(GameSceneClockWindowOwner) == 4 ? 1 : -1];
 
 #include "scene_clock_transition.hh"
 

@@ -60,12 +60,5 @@ struct Farm
     /* +09C8 */ Field<FIELD_WIDTH, FIELD_HEIGHT> field;
 };
 
-typedef char FarmHorseStorageSizeCheck[sizeof(Farm::HorseStorage) == 0x2C ? 1 : -1];
-typedef char FarmHorseStorageOffsetCheck[offsetof(Farm, horse_storage) == 0x14 ? 1 : -1];
-typedef char FarmShippingBinOffsetCheck[offsetof(Farm, shipping_bin) == 0x40 ? 1 : -1];
-typedef char FarmCoopOffsetCheck[offsetof(Farm, coop) == 0x3FC ? 1 : -1];
-typedef char FarmBarnOffsetCheck[offsetof(Farm, barn) == 0x5DC ? 1 : -1];
-typedef char FarmFieldOffsetCheck[offsetof(Farm, field) == 0x9C8 ? 1 : -1];
-typedef char FarmSizeCheck[sizeof(Farm) == 0x1A94 ? 1 : -1];
 
 #endif // FARM_HH

@@ -28232,71 +28232,37 @@ asm_unified(
 #if defined(REGION_JP)
     "    .align 2, 0\n"
     "\n"
-    "    .global func_0804E0F8\n"
-    "    .thumb_func\n"
-    "func_0804E0F8: @ 0x0804DF20\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #4\n"
-    "    adds r6, r1, #0\n"
-    "    movs r1, #0xd4\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r5, r0, r1\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r1, .Ljp_0804DF90 @ =0x00001C34\n"
-    "    adds r0, r0, r1\n"
-    "    adds r4, r0, #0\n"
-    "    bl IsEmpty__C9ToolStack\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_0804DF98\n"
-    "    movs r7, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetTool__C9ToolStack\n"
-    "    mov r1, sp\n"
-    "    strb r0, [r1]\n"
-    "    mov r0, sp\n"
-    "    bl GetId__C4Tool\n"
-    "    cmp r0, r6\n"
-    "    bne .Ljp_0804DF64\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetAmount__C9ToolStack\n"
-    "    movs r1, #0x63\n"
-    "    eors r0, r1\n"
-    "    rsbs r1, r0, #0\n"
-    "    orrs r1, r0\n"
-    "    lsrs r7, r1, #0x1f\n"
-    ".Ljp_0804DF64:\n"
-    "    cmp r7, #0\n"
-    "    bne .Ljp_0804DF98\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r1, .Ljp_0804DF94 @ =0x00001C38\n"
-    "    adds r0, r0, r1\n"
-    "    adds r1, r6, #0\n"
-    "    bl GetAvailableSpaceForTool__C8RucksackUi\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_0804DF98\n"
-    "    ldr r0, [r5]\n"
-    "    movs r1, #0xe0\n"
-    "    lsls r1, r1, #2\n"
-    "    adds r0, r0, r1\n"
-    "    adds r1, r6, #0\n"
-    "    bl GetAvailableSpaceFor__C9ToolChestUi\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_0804DF98\n"
-    "    movs r0, #0\n"
-    "    b .Ljp_0804DF9A\n"
+);
+
+#include "game_state_types.hh"
+#include "farm.hh"
+
+extern "C" bool func_0804E0F8(ScriptEngine * engine, u32 tool_id);
+
+bool func_0804E0F8(ScriptEngine * engine, u32 tool_id)
+{
+    ToolStack & stack =
+        static_cast<GameStateSaveImage *>(engine->unk_350)->farmer.unk_5C;
+
+    if (stack.IsEmpty())
+        return true;
+
+    if (stack.GetTool().GetId() == tool_id && stack.GetAmount() != 0x63)
+        return true;
+
+    if (static_cast<GameStateSaveImage *>(engine->unk_350)->farmer.rucksack
+            .GetAvailableSpaceForTool(tool_id) != 0)
+        return true;
+
+    if (static_cast<GameStateSaveImage *>(engine->unk_350)->farm.farm_house
+            .tool_chest.GetAvailableSpaceFor(tool_id) != 0)
+        return true;
+
+    return false;
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0804DF90: .word 0x00001C34\n"
-    ".Ljp_0804DF94: .word 0x00001C38\n"
-    ".Ljp_0804DF98:\n"
-    "    movs r0, #1\n"
-    ".Ljp_0804DF9A:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
     "    .global func_0804E17C\n"
     "    .thumb_func\n"
     "func_0804E17C: @ 0x0804DFA4\n"
@@ -28708,70 +28674,37 @@ asm_unified(
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .align 2, 0\n"
     "\n"
-    "\tthumb_func_start func_0804E0F8\n"
-    "func_0804E0F8: @ 0x0804E0F8\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tsub sp, #4\n"
-    "\tadds r6, r1, #0\n"
-    "\tmovs r1, #0xd4\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r5, r0, r1\n"
-    "\tldr r0, [r5]\n"
-    "\tldr r1, .L0804E168 @ =0x00001C34\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r4, r0, #0\n"
-    "\tbl IsEmpty__C9ToolStack\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L0804E170\n"
-    "\tmovs r7, #0\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl GetTool__C9ToolStack\n"
-    "\tmov r1, sp\n"
-    "\tstrb r0, [r1]\n"
-    "\tmov r0, sp\n"
-    "\tbl GetId__C4Tool\n"
-    "\tcmp r0, r6\n"
-    "\tbne .L0804E13C\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl GetAmount__C9ToolStack\n"
-    "\tmovs r1, #0x63\n"
-    "\teors r0, r1\n"
-    "\trsbs r1, r0, #0\n"
-    "\torrs r1, r0\n"
-    "\tlsrs r7, r1, #0x1f\n"
-    ".L0804E13C:\n"
-    "\tcmp r7, #0\n"
-    "\tbne .L0804E170\n"
-    "\tldr r0, [r5]\n"
-    "\tldr r1, .L0804E16C @ =0x00001C38\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r1, r6, #0\n"
-    "\tbl GetAvailableSpaceForTool__C8RucksackUi\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L0804E170\n"
-    "\tldr r0, [r5]\n"
-    "\tmovs r1, #0xe0\n"
-    "\tlsls r1, r1, #2\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r1, r6, #0\n"
-    "\tbl GetAvailableSpaceFor__C9ToolChestUi\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L0804E170\n"
-    "\tmovs r0, #0\n"
-    "\tb .L0804E172\n"
-    "\t.align 2, 0\n"
-    ".L0804E168: .word 0x00001C34\n"
-    ".L0804E16C: .word 0x00001C38\n"
-    ".L0804E170:\n"
-    "\tmovs r0, #1\n"
-    ".L0804E172:\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    "\n"
+);
+
+#include "game_state_types.hh"
+#include "farm.hh"
+
+extern "C" bool func_0804E0F8(ScriptEngine * engine, u32 tool_id);
+
+bool func_0804E0F8(ScriptEngine * engine, u32 tool_id)
+{
+    ToolStack & stack =
+        static_cast<GameStateSaveImage *>(engine->unk_350)->farmer.unk_5C;
+
+    if (stack.IsEmpty())
+        return true;
+
+    if (stack.GetTool().GetId() == tool_id && stack.GetAmount() != 0x63)
+        return true;
+
+    if (static_cast<GameStateSaveImage *>(engine->unk_350)->farmer.rucksack
+            .GetAvailableSpaceForTool(tool_id) != 0)
+        return true;
+
+    if (static_cast<GameStateSaveImage *>(engine->unk_350)->farm.farm_house
+            .tool_chest.GetAvailableSpaceFor(tool_id) != 0)
+        return true;
+
+    return false;
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start func_0804E17C\n"
     "func_0804E17C: @ 0x0804E17C\n"
     "\tpush {r4, r5, lr}\n"

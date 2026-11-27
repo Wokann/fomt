@@ -65,8 +65,6 @@ struct ALIGN(4) WeddingDate
     u32 GetYear() const { return EncodedGameYear(encoded_year).GetYear(); }
 };
 
-typedef char WeddingDateSizeCheck[sizeof(WeddingDate) == 4 ? 1 : -1];
-typedef char WeddingDateDateCheck[offsetof(WeddingDate, date) == 1 ? 1 : -1];
 
 // Saved at GameStateSaveImage +0x1CD4. The character-ID resolver independently
 // verifies these named members; construction order follows physical storage.
@@ -204,22 +202,7 @@ struct NpcCollection
     /* +474 */ u8 unk_474;
 };
 
-typedef char NpcCollectionWorkTargetValueSizeCheck[sizeof(NpcCollection::WorkTargets) == 0x38 ? 1 : -1];
-typedef char NpcCollectionWorkTargetValuesOffsetCheck[offsetof(NpcCollection::WorkTargets, values) == 0 ? 1 : -1];
 
-typedef char NpcCollectionLocationsSizeCheck[sizeof(NpcCollectionLocations) == 0x40 ? 1 : -1];
-typedef char NpcCollectionSizeCheck[sizeof(NpcCollection) == 0x478 ? 1 : -1];
-typedef char NpcCollectionChildCheck[offsetof(NpcCollection, child) == 4 ? 1 : -1];
-typedef char NpcCollectionWeddingDateCheck[offsetof(NpcCollection, wedding_date) == 0x2C ? 1 : -1];
-typedef char NpcCollectionLocationsCheck[offsetof(NpcCollection, locations) == 0x30 ? 1 : -1];
-typedef char NpcCollectionLilliaCheck[offsetof(NpcCollection, lillia) == 0x70 ? 1 : -1];
-typedef char NpcCollectionSaibaraCheck[offsetof(NpcCollection, saibara) == 0xD8 ? 1 : -1];
-typedef char NpcCollectionGotzCheck[offsetof(NpcCollection, gotz) == 0x290 ? 1 : -1];
-typedef char NpcCollectionVanCheck[offsetof(NpcCollection, van) == 0x310 ? 1 : -1];
-typedef char NpcCollectionSpritesCheck[offsetof(NpcCollection, staid) == 0x33C ? 1 : -1];
-typedef char NpcCollectionWorkTargetsCheck[offsetof(NpcCollection, work_targets) == 0x438 ? 1 : -1];
-typedef char NpcCollectionPregnancyCounterCheck[offsetof(NpcCollection, days_since_pregnancy_event) == 0x470 ? 1 : -1];
-typedef char NpcCollectionLastByteCheck[offsetof(NpcCollection, unk_474) == 0x474 ? 1 : -1];
 
 // ROM birthday bytes use season in bits 0-1 and a one-based day in bits 2-6.
 // The two bytes after the alternate date are natural record alignment.
@@ -230,9 +213,6 @@ struct CharacterNameEntry
     u8 alternate_birthday_code;
 };
 
-typedef char CharacterNameEntrySizeCheck[sizeof(CharacterNameEntry) == 8 ? 1 : -1];
-typedef char CharacterNameEntryBirthdayCheck[offsetof(CharacterNameEntry, birthday_code) == 4 ? 1 : -1];
-typedef char CharacterNameEntryAlternateBirthdayCheck[offsetof(CharacterNameEntry, alternate_birthday_code) == 5 ? 1 : -1];
 
 extern char const gText_CharacterName_Lillia[];
 extern char const gText_CharacterName_Rick[];

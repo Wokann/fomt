@@ -18,6 +18,5 @@ struct HardwareBlendOwner {
     bool IsQueued() const { return object->previous_slot != nullptr; }
 };
 
-typedef char HardwareBlendOwner_size_check[(sizeof(HardwareBlendOwner) == 4) ? 1 : -1];
 
 #endif // HARDWARE_BLEND_OWNER_HH

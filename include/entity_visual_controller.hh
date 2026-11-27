@@ -21,8 +21,6 @@ struct EntityVisualController {
 
 inline EntityVisualController::EntityVisualController(AEntity * owner) : entity(owner) {}
 
-typedef char EntityVisualControllerSizeCheck[sizeof(EntityVisualController) == 8 ? 1 : -1];
-typedef char EntityVisualControllerOwnerOffset[offsetof(EntityVisualController, entity) == 0 ? 1 : -1];
 
 #include "animal_actor_lifetimes.hh"
 

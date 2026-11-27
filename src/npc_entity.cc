@@ -1,5 +1,14 @@
 
 #include "npc_entity.hh"
+
+extern "C" void func_08035C04(void * actor);
+extern "C" void func_08036084(void * actor);
+extern "C" void func_08036430(void * actor);
+extern "C" void func_080365CC(void * actor);
+extern "C" void func_08036768(void * actor);
+extern "C" void func_08036900(void * actor);
+extern "C" void func_08036AB4(void * actor);
+extern "C" void func_08036E70(void * actor);
 #include "npc.hh"
 #include "npc_schedule.hh"
 #include "npc_schedule_rick.hh"
@@ -4400,29 +4409,15 @@ LilliaNpcActor::LilliaNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14LilliaNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14LilliaNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * LilliaNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4436,29 +4431,15 @@ RickNpcActor::RickNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12RickNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12RickNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * RickNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4560,46 +4541,27 @@ asm_unified(
     "    .word 0x00000247\n"
     ".Lus_08035CB4:\n"
     "    .word 0x0000024B\n"
-    "    .global UpdateSchedule__14PopuriNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__14PopuriNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_08035CCC\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08035C04\n"
-    ".Lus_08035CCC:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void PopuriNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08035C04(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__14PopuriNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14PopuriNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08035C04\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * PopuriNpcActor::CreateVisualController()
+{
+    func_08035C04(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4613,30 +4575,14 @@ BarleyNpcActor::BarleyNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14BarleyNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14BarleyNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #3\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * BarleyNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 3, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -4651,29 +4597,15 @@ MayNpcActor::MayNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__11MayNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11MayNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * MayNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 1, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4687,29 +4619,15 @@ SaibaraNpcActor::SaibaraNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__15SaibaraNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__15SaibaraNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * SaibaraNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4723,30 +4641,14 @@ GrayNpcActor::GrayNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12GrayNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12GrayNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * GrayNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -4761,29 +4663,15 @@ DukeNpcActor::DukeNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12DukeNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12DukeNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * DukeNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4797,29 +4685,15 @@ MannaNpcActor::MannaNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__13MannaNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13MannaNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * MannaNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4833,30 +4707,14 @@ BasilNpcActor::BasilNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__13BasilNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13BasilNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * BasilNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -4871,29 +4729,15 @@ AnnaNpcActor::AnnaNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12AnnaNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12AnnaNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * AnnaNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -4995,46 +4839,27 @@ asm_unified(
     "    .word 0x0000082F\n"
     ".Lus_08036134:\n"
     "    .word 0x00000833\n"
-    "    .global UpdateSchedule__12MaryNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__12MaryNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_0803614C\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036084\n"
-    ".Lus_0803614C:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void MaryNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036084(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__12MaryNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12MaryNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08036084\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * MaryNpcActor::CreateVisualController()
+{
+    func_08036084(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5048,29 +4873,15 @@ ThomasNpcActor::ThomasNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14ThomasNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14ThomasNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * ThomasNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5084,30 +4895,14 @@ HarrisNpcActor::HarrisNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14HarrisNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14HarrisNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * HarrisNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -5122,30 +4917,14 @@ EllenNpcActor::EllenNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__13EllenNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13EllenNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * EllenNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -5160,29 +4939,15 @@ StuNpcActor::StuNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__11StuNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11StuNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * StuNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 1, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5196,29 +4961,15 @@ JeffNpcActor::JeffNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12JeffNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12JeffNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * JeffNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5232,29 +4983,15 @@ SashaNpcActor::SashaNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__13SashaNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13SashaNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * SashaNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5356,46 +5093,27 @@ asm_unified(
     "    .word 0x000006AD\n"
     ".Lus_080364E0:\n"
     "    .word 0x000006B1\n"
-    "    .global UpdateSchedule__13KarenNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__13KarenNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_080364F8\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036430\n"
-    ".Lus_080364F8:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void KarenNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036430(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__13KarenNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13KarenNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08036430\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * KarenNpcActor::CreateVisualController()
+{
+    func_08036430(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5409,29 +5127,15 @@ DoctorNpcActor::DoctorNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14DoctorNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14DoctorNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * DoctorNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5533,46 +5237,27 @@ asm_unified(
     "    .word 0x00000894\n"
     ".Lus_0803667C:\n"
     "    .word 0x00000898\n"
-    "    .global UpdateSchedule__12ElliNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__12ElliNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_08036694\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_080365CC\n"
-    ".Lus_08036694:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void ElliNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_080365CC(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__12ElliNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12ElliNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_080365CC\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * ElliNpcActor::CreateVisualController()
+{
+    func_080365CC(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5586,29 +5271,15 @@ CarterNpcActor::CarterNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__14CarterNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__14CarterNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * CarterNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5658,46 +5329,27 @@ asm_unified(
     "    .word 0x00002181\n"
     ".Lus_080367A8:\n"
     "    .word 0x0000027F\n"
-    "    .global UpdateSchedule__13CliffNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__13CliffNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_080367C0\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036768\n"
-    ".Lus_080367C0:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void CliffNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036768(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__13CliffNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13CliffNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08036768\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * CliffNpcActor::CreateVisualController()
+{
+    func_08036768(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5711,29 +5363,15 @@ DougNpcActor::DougNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12DougNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12DougNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * DougNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5747,29 +5385,15 @@ LouOrRubyNpcActor::LouOrRubyNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__17LouOrRubyNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__17LouOrRubyNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * LouOrRubyNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5879,46 +5503,27 @@ asm_unified(
     "    .word 0x000007CA\n"
     ".Lus_080369C0:\n"
     "    .word 0x000007CE\n"
-    "    .global UpdateSchedule__11AnnNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__11AnnNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_080369D8\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036900\n"
-    ".Lus_080369D8:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void AnnNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036900(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__11AnnNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11AnnNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08036900\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * AnnNpcActor::CreateVisualController()
+{
+    func_08036900(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -5932,29 +5537,15 @@ KaiNpcActor::KaiNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__11KaiNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11KaiNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * KaiNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6010,46 +5601,27 @@ asm_unified(
     "    .word 0x000009DF\n"
     ".Lus_08036AFC:\n"
     "    .word 0x000009E3\n"
-    "    .global UpdateSchedule__12GotzNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__12GotzNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_08036B14\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036AB4\n"
-    ".Lus_08036B14:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void GotzNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036AB4(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
-    "    .global CreateVisualController__12GotzNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12GotzNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    bl func_08036AB4\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #5\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * GotzNpcActor::CreateVisualController()
+{
+    func_08036AB4(this);
+    return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6063,30 +5635,14 @@ ZackNpcActor::ZackNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__12ZackNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12ZackNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * ZackNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    .global Update__12ZackNpcActorRC19EntityUpdateContext\n"
     "    .thumb_func\n"
@@ -6183,29 +5739,15 @@ WonNpcActor::WonNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__11WonNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11WonNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * WonNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6219,30 +5761,14 @@ GourmetNpcActor::GourmetNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__15GourmetNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__15GourmetNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    movs\tr2, #0\n"
-    "    str\tr2, [sp, #8]\n"
-    "    add\tr1, sp, #12\n"
-    "    strb\tr2, [r1, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * GourmetNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 2, 0, false);
+}
+
+asm_unified(
     "    .align 2, 0\n"
 );
 
@@ -6257,29 +5783,15 @@ HarvestGoddessNpcActor::HarvestGoddessNpcActor(GameObject * world, Npc * npc, u3
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__22HarvestGoddessNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__22HarvestGoddessNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * HarvestGoddessNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6293,29 +5805,15 @@ KappaNpcActor::KappaNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__13KappaNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__13KappaNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * KappaNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6329,29 +5827,15 @@ VanNpcActor::VanNpcActor(GameObject * world, Npc * npc, u32 context)
 
 asm_unified(
     ".text\n"
-    ".global CreateVisualController__11VanNpcActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__11VanNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #140\t@ 0x8c\n"
-    "    bl __builtin_new\n"
-    "    movs\tr1, #1\n"
-    "    str\tr1, [sp, #0]\n"
-    "    movs\tr1, #0\n"
-    "    str\tr1, [sp, #4]\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr2, sp, #12\n"
-    "    strb\tr1, [r2, #0]\n"
-    "    adds\tr1, r4, #0\n"
-    "    movs\tr2, #4\n"
-    "    movs\tr3, #27\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
+);
+
+EntityVisualController * VanNpcActor::CreateVisualController()
+{
+    return new EntitySpriteController(this, 4, 27, 1, 0, 0, false);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
 );
 
 
@@ -6430,21 +5914,16 @@ asm_unified(
     "    .word 0x0000026B\n"
     ".Lus_08036EEC:\n"
     "    .word 0x00000273\n"
-    "    .global UpdateSchedule__13ChildNpcActori\n"
-    "    .thumb_func\n"
-    "UpdateSchedule__13ChildNpcActori:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr4, r1, #0\n"
-    "    bl UpdateSchedule__10ANpcEntityi\n"
-    "    cmp\tr4, #1\n"
-    "    ble .Lus_08036F04\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl func_08036E70\n"
-    ".Lus_08036F04:\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+);
+
+void ChildNpcActor::UpdateSchedule(i32 time)
+{
+    ANpcEntity::UpdateSchedule(time);
+    if (time > 1)
+        func_08036E70(this);
+}
+
+asm_unified(
     "    .align 2, 0\n"
     "    .global CreateVisualController__13ChildNpcActor\n"
     "    .thumb_func\n"

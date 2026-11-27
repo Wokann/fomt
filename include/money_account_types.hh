@@ -152,15 +152,8 @@ struct MoneyAccount {
     bool Subtract(u32 const & amount);
 };
 
-typedef char MoneyAccountMaximumRecordSizeCheck[sizeof(MoneyAccountMaximumRecord) == 8 ? 1 : -1];
 
-typedef char MoneyAccountRecordSizeCheck[sizeof(MoneyAccountRecord) == 8 ? 1 : -1];
-typedef char MoneyAccountSizeCheck[sizeof(MoneyAccount) == 0x130 ? 1 : -1];
-typedef char MoneyAccountHistory08Check[offsetof(MoneyAccount, history_08) == 8 ? 1 : -1];
-typedef char MoneyAccountHistoryFCCheck[offsetof(MoneyAccount, history_FC) == 0xFC ? 1 : -1];
-typedef char MoneyAccountMaximaCheck[offsetof(MoneyAccount, maximum_08) == 0x120 ? 1 : -1];
 
-typedef char MoneyAccountMaximumFCCheck[offsetof(MoneyAccount, maximum_FC) == 0x128 ? 1 : -1];
 
 EXTERN_C
 

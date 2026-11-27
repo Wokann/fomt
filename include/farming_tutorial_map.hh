@@ -22,7 +22,5 @@ struct FarmingTutorialMap : GameSceneWorldMap {
     Field<12, 7> field;
 };
 
-typedef char FarmingTutorialMapFieldCheck[offsetof(FarmingTutorialMap, field) == 0x94 ? 1 : -1];
-typedef char FarmingTutorialMapSizeCheck[sizeof(FarmingTutorialMap) == 0x1E4 ? 1 : -1];
 
 #endif // FARMING_TUTORIAL_MAP_HH

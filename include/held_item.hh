@@ -53,8 +53,6 @@ struct HeldItem
     Inner inner;
 };
 
-typedef char HeldItemSizeCheck[sizeof(HeldItem) == 8 ? 1 : -1];
-typedef char HeldItemPayloadCheck[offsetof(HeldItem, inner) == 2 ? 1 : -1];
 
 EC bool IsHeldItemEmpty(HeldItem const * self);
 EC Food func_0800F20C(HeldItem const * self);

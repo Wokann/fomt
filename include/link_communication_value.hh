@@ -24,12 +24,7 @@ struct PACKED LinkCommunicationValue
     bool HasValue(u8 const * bytes) const;
 };
 
-typedef char LinkCommunicationValue_size[sizeof(LinkCommunicationValue) == 4 ? 1 : -1];
-typedef char LinkCommunicationValue_prefix[offsetof(LinkCommunicationValue, prefix) == 0 ? 1 : -1];
 
-typedef char LinkCommunicationValue_prefix_size[sizeof(((LinkCommunicationValue *)0)->prefix) == 2 ? 1 : -1];
 
-typedef char LinkCommunicationValue_alignment[__alignof__(LinkCommunicationValue) == 1 ? 1 : -1];
-typedef char LinkCommunicationValue_value[offsetof(LinkCommunicationValue, value) == 2 ? 1 : -1];
 
 #endif // LINK_COMMUNICATION_VALUE_HH

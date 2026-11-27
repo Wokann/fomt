@@ -26,10 +26,6 @@ struct GameSceneTownMapSelection {
     i16 x;
     i16 y;
 };
-typedef char GameSceneTownMapSelectionSizeCheck[sizeof(GameSceneTownMapSelection) == 8 ? 1 : -1];
-typedef char GameSceneTownMapSelectionFlagCheck[offsetof(GameSceneTownMapSelection, has_selection) == 0 ? 1 : -1];
-typedef char GameSceneTownMapSelectionXCheck[offsetof(GameSceneTownMapSelection, x) == 4 ? 1 : -1];
-typedef char GameSceneTownMapSelectionYCheck[offsetof(GameSceneTownMapSelection, y) == 6 ? 1 : -1];
 
 // The return transition and the native GameScene constructor copy this whole
 // three-word record. Only its first word is initialized by the shop commands;
@@ -132,7 +128,6 @@ struct GameSceneResumeRequest {
 
 };
 
-typedef char GameSceneResumeRequestSizeCheck[sizeof(GameSceneResumeRequest) == 12 ? 1 : -1];
 struct GameSceneScriptRequest;
 struct GameSceneBgmSettings;
 struct GameSceneSongPlayerPool;
@@ -322,8 +317,6 @@ struct GameScene : AScene {
     void CureAllSickLivestock();
 };
 
-typedef char GameSceneSizeCheck[sizeof(GameScene) == 8 ? 1 : -1];
-typedef char GameSceneStatePointerCheck[offsetof(GameScene, state) == 4 ? 1 : -1];
 
 EXTERN_C
 

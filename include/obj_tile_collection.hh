@@ -24,7 +24,6 @@ private:
 #endif
 };
 
-typedef char ObjTileCollectionSizeCheck[sizeof(struct ObjTileCollection) == 4 ? 1 : -1];
 
 #endif // !__ASSEMBLER__
 

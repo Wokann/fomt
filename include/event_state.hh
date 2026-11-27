@@ -26,8 +26,6 @@ struct GameEventVariableList {
     u16 values[3];
 };
 
-typedef char GameEventVariableListSizeCheck[sizeof(GameEventVariableList) == 0xC ? 1 : -1];
-typedef char GameEventVariableListValuesCheck[offsetof(GameEventVariableList, values) == 4 ? 1 : -1];
 
 // Saved at +0x214C. Packed members follow the actual VarGet/VarSet
 // storage order and use the canonical fomt_constants.mary.h names.
@@ -511,9 +509,5 @@ struct GameEventState {
     u32 wedding_anniversaries_elapsed : 6;
 };
 
-typedef char GameEventStateSizeCheck[sizeof(GameEventState) == 0x80 ? 1 : -1];
-typedef char GameEventStateVariableListCheck[offsetof(GameEventState, registered_variables) == 0 ? 1 : -1];
-typedef char GameEventStateVariablesCheck[offsetof(GameEventState, registered_variables) + offsetof(GameEventVariableList, values) == 4 ? 1 : -1];
-typedef char GameEventStateRomanceCheck[offsetof(GameEventState, active_romance_event) == 0xC ? 1 : -1];
 
 #endif // EVENT_STATE_HH

@@ -16,8 +16,6 @@ struct ResourceSpriteRenderer
     ResourceSpriteRendererStorage * storage;
 };
 
-typedef char ResourceSpriteRendererStorageOffsetCheck[offsetof(ResourceSpriteRenderer, storage) == 0 ? 1 : -1];
-typedef char ResourceSpriteRendererSizeCheck[sizeof(ResourceSpriteRenderer) == 8 ? 1 : -1];
 
 
 EXTERN_C

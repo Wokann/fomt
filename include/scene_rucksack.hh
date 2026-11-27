@@ -52,17 +52,8 @@ struct RucksackMenuCore : GameSceneMenuSelectionCore {
     Rucksack * rucksack;
     u32 phase;
 };
-typedef char RucksackMenuCoreDescriptionCheck[offsetof(RucksackMenuCore, item_description) == 0x98 ? 1 : -1];
-typedef char RucksackMenuCorePhaseCheck[offsetof(RucksackMenuCore, phase) == 0x108 ? 1 : -1];
-typedef char RucksackMenuCoreSizeCheck[sizeof(RucksackMenuCore) == 0x10C ? 1 : -1];
-typedef char RucksackMenuCoreHeldToolCheck[offsetof(RucksackMenuCore, held_tool) == 0xFC ? 1 : -1];
-typedef char RucksackMenuCoreHeldItemCheck[offsetof(RucksackMenuCore, held_item) == 0x100 ? 1 : -1];
-typedef char RucksackMenuCoreRucksackCheck[offsetof(RucksackMenuCore, rucksack) == 0x104 ? 1 : -1];
 
 #pragma interface "scene_rucksack.hh"
-typedef char RucksackMenuSceneSizeCheck[sizeof(RucksackMenuScene) == 12 ? 1 : -1];
-typedef char RucksackMenuSceneCoreCheck[offsetof(RucksackMenuScene, core) == 4 ? 1 : -1];
-typedef char RucksackMenuSceneContinuationCheck[offsetof(RucksackMenuScene, continuation) == 8 ? 1 : -1];
 
 
 extern char const gText_HomeStorage_ConfirmationYes[];

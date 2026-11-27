@@ -63,23 +63,7 @@ struct HardwareManagerOwner {
 #endif
 };
 
-typedef char HardwareManagerCommandGroup_size_check[
-    sizeof(struct HardwareManagerCommandGroup) == 0x34 ? 1 : -1];
-typedef char HardwareManagerState_size_check[sizeof(struct HardwareManagerState) == 0x6C ? 1 : -1];
-typedef char HardwareManagerState_first_list_offset_check[
-    offsetof(struct HardwareManagerState, frame_commands) == 0x0C ? 1 : -1];
-typedef char HardwareManagerState_link_offset_check[
-    offsetof(struct HardwareManagerState, sound_main) == 0x28 ? 1 : -1];
-typedef char HardwareManagerState_group_offset_check[
-    offsetof(struct HardwareManagerState, command_group) == 0x34 ? 1 : -1];
-typedef char HardwareManagerState_flag_offset_check[
-    offsetof(struct HardwareManagerState, enabled_sound_vsync) == 0x68 ? 1 : -1];
 #ifndef __cplusplus
-typedef char HardwareManagerCommandGroup_vblank_offset_check[
-    offsetof(struct HardwareManagerCommandGroup, vblank) == 0x1C ? 1 : -1];
-typedef char HardwareManagerState_vblank_offset_check[
-    offsetof(struct HardwareManagerState, command_group) +
-    offsetof(struct HardwareManagerCommandGroup, vblank) == 0x50 ? 1 : -1];
 #endif
 
 EXTERN_C

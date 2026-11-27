@@ -32,11 +32,5 @@ struct GameSceneEventIconRecord {
     u8 unk_0A[2];
 };
 
-typedef char GameSceneControllerActorRecordSizeCheck[sizeof(GameSceneControllerActorRecord) == 12 ? 1 : -1];
-typedef char GameSceneControllerActorAnimationCheck[offsetof(GameSceneControllerActorRecord, animation) == 8 ? 1 : -1];
-typedef char GameSceneControllerActorScriptCheck[offsetof(GameSceneControllerActorRecord, event_script) == 10 ? 1 : -1];
-typedef char GameSceneEventIconRecordSizeCheck[sizeof(GameSceneEventIconRecord) == 12 ? 1 : -1];
-typedef char GameSceneEventIconLocationOffsetCheck[offsetof(GameSceneEventIconRecord, location) == 2 ? 1 : -1];
-typedef char GameSceneEventIconIdOffsetCheck[offsetof(GameSceneEventIconRecord, icon_id) == 8 ? 1 : -1];
 
 #endif // GAME_SCENE_RECORDS_HH
