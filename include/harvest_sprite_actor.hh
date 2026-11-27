@@ -56,6 +56,10 @@ extern "C" void func_080330F4(EntityUiHarvestSpriteResult * result,
     Farm * farm, GameObject * game_object, Location const * location,
     HarvestSprite::Task task, HarvestSpriteWorkTarget const * entries);
 
+// Missing target entities use (0, 0); positions are signed world pixels.
+extern "C" Vec2 GetHarvestSpriteTargetEntityPosition(GameObject const * world, u32 entity_id);
+extern "C" bool RollHarvestSpriteWorkChance(u32 friendship);
+
 // Convert task experience to the native fixed-point value; exact use remains unnamed.
 extern "C" u32 func_08033914(u32 task_experience);
 
