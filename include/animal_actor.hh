@@ -69,12 +69,13 @@ struct DogActor : AnimalActor {
     virtual bool CanBeHit() const;
     virtual void ReactToToolHit();
     virtual void PauseMovement(u32 frames);
+    void UpdateBehavior();
 
     Dog * dog;
     Location * ball_location;
     i16 saved_x;
     i16 saved_y;
-    u8 unk_40;
+    bool unk_40;
     u8 unk_41[3]; // Remaining native RAM state; not a decoded layout yet.
 };
 
@@ -122,6 +123,7 @@ struct ChickenActor : AnimalActor {
     virtual void CureSickness();
     virtual void ReactToDogAttack();
     virtual void PauseMovement(u32 frames);
+    void UpdateBehavior(EntityUpdateContext const & context);
 
     Chicken * livestock;
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
