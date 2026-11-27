@@ -501,7 +501,7 @@ $(BUILD_DIR)/src/hardware_dma_copy.o \
 $(BUILD_DIR)/src/map_clock_status_lifetimes.o \
 $(BUILD_DIR)/src/entity_visual_controller.o \
 $(BUILD_DIR)/src/status_screen_transitions.o \
-$(BUILD_DIR)/src/world_ambient_behaviors.o \
+$(BUILD_DIR)/src/world_ambient_animation.o \
 $(BUILD_DIR)/src/world_sprite_effects.o: CXXFLAGS += -fno-weak -fno-implement-inlines
 
 $(BUILD_DIR)/src/hardware_context_commands.o \

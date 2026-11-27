@@ -1,54 +1,86 @@
-#pragma implementation "world_ambient_sprites.hh"
-#include "world_ambient_sprites.hh"
+#include "world_ambient_construction.hh"
 #include "random.hh"
 #include "actor_movement.hh"
+#include "calendar.hh"
+#include "time_of_day_types.hh"
 #include <stdlib.h>
 
 asm(".include \"asm/macro.inc\"\n");
 
 inline WorldAmbientKind1::WorldAmbientKind1(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x9B6 + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x9B6 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind2::WorldAmbientKind2(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x10 + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x10 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind3::WorldAmbientKind3(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x3DB + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x3DB + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind4::WorldAmbientKind4(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x806 + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x806 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind5::WorldAmbientKind5(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x202 + record.direction, 1),
-      motion(record.direction, record.x, record.y), height_q16(0)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x202 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
+    height_q16 = 0;
 }
 
 inline WorldAmbientKind6::WorldAmbientKind6(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x2A3 + record.direction, 1)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x2A3 + state.direction, 1)
 {
-    motion.direction = record.direction;
+    motion.direction = state.direction;
     next_position = -1;
     // The native restore path reads only the current saved nibble.
-    current_position = SelectWorldAmbientSpawnPosition(this, &motion, record.current_position);
+    current_position = SelectWorldAmbientSpawnPosition(this, &motion, state.current_position);
     motion.direction_ticks = 0;
     motion.state = 0;
     motion.x_q16 = motion.x * 0x10000;
@@ -57,45 +89,81 @@ inline WorldAmbientKind6::WorldAmbientKind6(GameObject * world,
 }
 
 inline WorldAmbientKind7::WorldAmbientKind7(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x87B + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x87B + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind8::WorldAmbientKind8(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x65C + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x65C + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind9::WorldAmbientKind9(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x8F9 + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x8F9 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind10::WorldAmbientKind10(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x9A9 + record.direction, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x9A9 + state.direction, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind11::WorldAmbientKind11(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x8FD, 1),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x8FD, 1)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 inline WorldAmbientKind12::WorldAmbientKind12(GameObject * world,
-    GameStateActorRecord const & record)
-    : WorldAmbientSprite(world, 0x15, 0),
-      motion(record.direction, record.x, record.y)
+    WorldAmbientSavedState const & state)
+    : WorldAmbientSprite(world, 0x15, 0)
 {
+    motion.direction = state.direction;
+    motion.x = state.x;
+    motion.y = state.y;
+    motion.direction_ticks = 0;
+    motion.state = 0;
+    motion.x_q16 = motion.x * 0x10000;
+    motion.y_q16 = motion.y * 0x10000;
 }
 
 asm_unified(
@@ -174,439 +242,81 @@ void WorldAmbientEntity::vfunc_14()
     restore_saved_records = false;
 }
 
-asm_unified(
-    ".text\n"
-    "    thumb_func_start CreateVisualController__18WorldAmbientEntity\n"
-    "CreateVisualController__18WorldAmbientEntity:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sl\n"
-    "    mov r6, r9\n"
-    "    mov r5, r8\n"
-    "    push {r5, r6, r7}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r7, #0\n"
-    "    ldrb r0, [r4, #28]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lambient_1_0\n"
-    "    b .Lambient_1_45\n"
-    ".Lambient_1_0:\n"
-    "    movs r0, #24\n"
-    "    bl __builtin_new\n"
-    "    adds r6, r0, #0\n"
-    "    ldr r0, [r4, #24]\n"
-    "    mov sl, r0\n"
-    "    str r4, [r6, #0]\n"
-    "    ldr r0, .Lambient_1_3\n"
-    "    str r0, [r6, #4]\n"
-    "    str r7, [r6, #8]\n"
-    "    ldr r4, [r4, #0]\n"
-    "    mov r8, r4\n"
-    "    movs r1, #0\n"
-    "    mov r9, r1\n"
-    ".Lambient_1_1:\n"
-    "    mov r2, r9\n"
-    "    lsls r0, r2, #4\n"
-    "    mov r1, sl\n"
-    "    adds r7, r1, r0\n"
-    "    ldrb r0, [r7, #0]\n"
-    "    lsls r0, r0, #28\n"
-    "    lsrs r0, r0, #28\n"
-    "    subs r0, #1\n"
-    "    cmp r0, #11\n"
-    "    bls .Lambient_1_2\n"
-    "    b .Lambient_1_42\n"
-    ".Lambient_1_2:\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .Lambient_1_4\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0, #0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_3: .word __vt_28WorldAmbientSpriteController\n"
-    ".Lambient_1_4: .word .Lambient_1_5\n"
-    ".Lambient_1_5: .word .Lambient_1_6\n"
-    "    .word .Lambient_1_9\n"
-    "    .word .Lambient_1_11\n"
-    "    .word .Lambient_1_14\n"
-    "    .word .Lambient_1_17\n"
-    "    .word .Lambient_1_20\n"
-    "    .word .Lambient_1_23\n"
-    "    .word .Lambient_1_26\n"
-    "    .word .Lambient_1_29\n"
-    "    .word .Lambient_1_32\n"
-    "    .word .Lambient_1_35\n"
-    "    .word .Lambient_1_38\n"
-    ".Lambient_1_6:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_7\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_8\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_7: .word 0x000009b6\n"
-    ".Lambient_1_8: .word __vt_17WorldAmbientKind1\n"
-    ".Lambient_1_9:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    adds r2, #16\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_10\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_10: .word __vt_17WorldAmbientKind2\n"
-    ".Lambient_1_11:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_12\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_13\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_12: .word 0x000003db\n"
-    ".Lambient_1_13: .word __vt_17WorldAmbientKind3\n"
-    ".Lambient_1_14:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_15\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_16\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_15: .word 0x00000806\n"
-    ".Lambient_1_16: .word __vt_17WorldAmbientKind4\n"
-    ".Lambient_1_17:\n"
-    "    movs r0, #108\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_18\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_19\n"
-    "    str r0, [r5, #76]\n"
-    "    ldr r0, [r7, #4]\n"
-    "    str r0, [r5, #80]\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #84\n"
-    "    movs r2, #0\n"
-    "    movs r3, #0\n"
-    "    strh r0, [r1, #0]\n"
-    "    ldrh r0, [r4, #6]\n"
-    "    adds r4, r5, #0\n"
-    "    adds r4, #86\n"
-    "    strh r0, [r4, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    strh r3, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    strb r2, [r0, #0]\n"
-    "    movs r2, #0\n"
-    "    ldrsh r0, [r1, r2]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #88]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r0, [r4, r1]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #92]\n"
-    "    str r3, [r5, #104]\n"
-    "    b .Lambient_1_40\n"
-    ".Lambient_1_18: .word 0x00000202\n"
-    ".Lambient_1_19: .word __vt_17WorldAmbientKind5\n"
-    ".Lambient_1_20:\n"
-    "    movs r0, #136\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_21\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_22\n"
-    "    str r0, [r5, #76]\n"
-    "    ldr r0, [r7, #4]\n"
-    "    str r0, [r5, #80]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #121\n"
-    "    movs r0, #255\n"
-    "    strb r0, [r1, #0]\n"
-    "    subs r1, #41\n"
-    "    ldrb r2, [r4, #8]\n"
-    "    lsls r2, r2, #28\n"
-    "    asrs r2, r2, #28\n"
-    "    adds r0, r5, #0\n"
-    "    bl SelectWorldAmbientSpawnPosition\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #120\n"
-    "    movs r2, #0\n"
-    "    strb r0, [r1, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    movs r1, #0\n"
-    "    strh r2, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0, #0]\n"
-    "    subs r0, #14\n"
-    "    movs r1, #0\n"
-    "    ldrsh r0, [r0, r1]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #88]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #86\n"
-    "    movs r2, #0\n"
-    "    ldrsh r0, [r0, r2]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #92]\n"
-    "    adds r1, r5, #0\n"
-    "    adds r1, #132\n"
-    "    movs r0, #248\n"
-    "    strb r0, [r1, #0]\n"
-    "    b .Lambient_1_40\n"
-    ".Lambient_1_21: .word 0x000002a3\n"
-    ".Lambient_1_22: .word __vt_17WorldAmbientKind6\n"
-    ".Lambient_1_23:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_24\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_25\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_24: .word 0x0000087b\n"
-    ".Lambient_1_25: .word __vt_17WorldAmbientKind7\n"
-    ".Lambient_1_26:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_27\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_28\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_27: .word 0x0000065c\n"
-    ".Lambient_1_28: .word __vt_17WorldAmbientKind8\n"
-    ".Lambient_1_29:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_30\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_31\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_30: .word 0x000008f9\n"
-    ".Lambient_1_31: .word __vt_17WorldAmbientKind9\n"
-    ".Lambient_1_32:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    ldr r2, [r7, #4]\n"
-    "    ldr r0, .Lambient_1_33\n"
-    "    adds r2, r2, r0\n"
-    "    adds r0, r5, #0\n"
-    "    mov r1, r8\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_34\n"
-    "    b .Lambient_1_39\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_33: .word 0x000009a9\n"
-    ".Lambient_1_34: .word __vt_18WorldAmbientKind10\n"
-    ".Lambient_1_35:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    mov r1, r8\n"
-    "    ldr r2, .Lambient_1_36\n"
-    "    movs r3, #1\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_37\n"
-    "    b .Lambient_1_39\n"
-    ".Lambient_1_36: .word 0x000008fd\n"
-    ".Lambient_1_37: .word __vt_18WorldAmbientKind11\n"
-    ".Lambient_1_38:\n"
-    "    movs r0, #100\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r7, #4\n"
-    "    mov r1, r8\n"
-    "    movs r2, #21\n"
-    "    movs r3, #0\n"
-    "    bl __18WorldAmbientSpriteP10GameObjectUiUi\n"
-    "    ldr r0, .Lambient_1_44\n"
-    ".Lambient_1_39:\n"
-    "    str r0, [r5, #76]\n"
-    "    ldr r0, [r7, #4]\n"
-    "    str r0, [r5, #80]\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #84\n"
-    "    movs r3, #0\n"
-    "    movs r1, #0\n"
-    "    strh r0, [r2, #0]\n"
-    "    ldrh r0, [r4, #6]\n"
-    "    adds r4, r5, #0\n"
-    "    adds r4, #86\n"
-    "    strh r0, [r4, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #96\n"
-    "    strh r1, [r0, #0]\n"
-    "    adds r0, #2\n"
-    "    strb r3, [r0, #0]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r0, [r2, r1]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #88]\n"
-    "    movs r2, #0\n"
-    "    ldrsh r0, [r4, r2]\n"
-    "    lsls r0, r0, #16\n"
-    "    str r0, [r5, #92]\n"
-    ".Lambient_1_40:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #8\n"
-    "    ldr r0, [r6, #8]\n"
-    "    cmp r0, #2\n"
-    "    bhi .Lambient_1_42\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r0, #4\n"
-    "    adds r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    beq .Lambient_1_41\n"
-    "    str r5, [r0, #0]\n"
-    ".Lambient_1_41:\n"
-    "    ldr r0, [r6, #8]\n"
-    "    adds r0, #1\n"
-    "    str r0, [r6, #8]\n"
-    ".Lambient_1_42:\n"
-    "    ldrb r1, [r7, #0]\n"
-    "    movs r0, #16\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    strb r0, [r7, #0]\n"
-    "    movs r0, #1\n"
-    "    add r9, r0\n"
-    "    mov r1, r9\n"
-    "    cmp r1, #2\n"
-    "    bhi .Lambient_1_43\n"
-    "    b .Lambient_1_1\n"
-    ".Lambient_1_43:\n"
-    "    adds r7, r6, #0\n"
-    "    b .Lambient_1_47\n"
-    ".Lambient_1_44: .word __vt_18WorldAmbientKind12\n"
-    ".Lambient_1_45:\n"
-    "    movs r0, #24\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    str r4, [r5, #0]\n"
-    "    ldr r0, .Lambient_1_48\n"
-    "    str r0, [r5, #4]\n"
-    "    str r7, [r5, #8]\n"
-    "    ldr r4, [r4, #0]\n"
-    "    ldr r0, [r4, #0]\n"
-    "    movs r2, #162\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r0, r2\n"
-    "    ldr r1, [r0, #0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #10]\n"
-    "    lsls r0, r0, #27\n"
-    "    lsrs r0, r0, #27\n"
-    "    movs r6, #0\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #11\n"
-    "    bls .Lambient_1_46\n"
-    "    movs r6, #1\n"
-    ".Lambient_1_46:\n"
-    "    ldr r0, [r4, #0]\n"
-    "    movs r1, #162\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0, #0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    adds r0, #8\n"
-    "    bl GetCalendarEffectiveSeason\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r4, #0\n"
-    "    adds r3, r6, #0\n"
-    "    bl PopulateWorldAmbientSprites\n"
-    "    adds r7, r5, #0\n"
-    ".Lambient_1_47:\n"
-    "    adds r0, r7, #0\n"
-    "    pop {r3, r4, r5}\n"
-    "    mov r8, r3\n"
-    "    mov r9, r4\n"
-    "    mov sl, r5\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".Lambient_1_48: .word __vt_28WorldAmbientSpriteController\n"
-);
+inline WorldAmbientSpriteController::WorldAmbientSpriteController(
+    WorldAmbientEntity * owner, GameStateActorRecord * saved)
+    : EntityVisualController(owner), sprites()
+{
+    GameObject * world = owner->GetGameObject();
+    for (u32 i = 0; i < WorldAmbientSpriteOwners::CAPACITY; ++i) {
+        GameStateActorRecord & record = saved[i];
+        switch (record.kind) {
+        case WorldAmbientKind1::KIND:
+            sprites.Append(new WorldAmbientKind1(world, record.state));
+            break;
+        case WorldAmbientKind2::KIND:
+            sprites.Append(new WorldAmbientKind2(world, record.state));
+            break;
+        case WorldAmbientKind3::KIND:
+            sprites.Append(new WorldAmbientKind3(world, record.state));
+            break;
+        case WorldAmbientKind4::KIND:
+            sprites.Append(new WorldAmbientKind4(world, record.state));
+            break;
+        case WorldAmbientKind5::KIND:
+            sprites.Append(new WorldAmbientKind5(world, record.state));
+            break;
+        case WorldAmbientKind6::KIND:
+            sprites.Append(new WorldAmbientKind6(world, record.state));
+            break;
+        case WorldAmbientKind7::KIND:
+            sprites.Append(new WorldAmbientKind7(world, record.state));
+            break;
+        case WorldAmbientKind8::KIND:
+            sprites.Append(new WorldAmbientKind8(world, record.state));
+            break;
+        case WorldAmbientKind9::KIND:
+            sprites.Append(new WorldAmbientKind9(world, record.state));
+            break;
+        case WorldAmbientKind10::KIND:
+            sprites.Append(new WorldAmbientKind10(world, record.state));
+            break;
+        case WorldAmbientKind11::KIND:
+            sprites.Append(new WorldAmbientKind11(world, record.state));
+            break;
+        case WorldAmbientKind12::KIND:
+            sprites.Append(new WorldAmbientKind12(world, record.state));
+            break;
+        }
+        record.kind = 0;
+    }
+}
+
+inline WorldAmbientSpriteController::WorldAmbientSpriteController(WorldAmbientEntity * owner)
+    : EntityVisualController(owner), sprites()
+{
+    GameObject * world = owner->GetGameObject();
+    u32 hour = world->GetClock()->calendar.time.clock_hour;
+    u8 nighttime = hour - 6 > 11;
+    PopulateWorldAmbientSprites(this, world,
+        GetCalendarEffectiveSeason(world->GetClock()->calendar), nighttime);
+}
+
+EntityVisualController * WorldAmbientEntity::CreateVisualController()
+{
+    WorldAmbientSpriteController * result = nullptr;
+    if (restore_saved_records)
+        result = new WorldAmbientSpriteController(this, records);
+    else
+        result = new WorldAmbientSpriteController(this);
+    return result;
+}
 
 void WorldAmbientKind12::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind12::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -634,9 +344,9 @@ asm_unified(
 void WorldAmbientKind11::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind11::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -676,9 +386,9 @@ asm_unified(
 void WorldAmbientKind10::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind10::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -712,9 +422,9 @@ asm_unified(
 void WorldAmbientKind9::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind9::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -787,9 +497,9 @@ asm_unified(
 void WorldAmbientKind8::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind8::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -831,9 +541,9 @@ asm_unified(
 void WorldAmbientKind7::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind7::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -875,11 +585,11 @@ asm_unified(
 void WorldAmbientKind6::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
-    record.current_position = current_position;
-    record.next_position = next_position;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
+    record.state.current_position = current_position;
+    record.state.next_position = next_position;
 }
 
 void WorldAmbientKind6::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -973,9 +683,9 @@ asm_unified(
 void WorldAmbientKind5::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind5::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -1254,9 +964,9 @@ asm_unified(
 void WorldAmbientKind4::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind4::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -1290,9 +1000,9 @@ asm_unified(
 void WorldAmbientKind3::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind3::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -1326,9 +1036,9 @@ asm_unified(
 void WorldAmbientKind2::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind2::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,
@@ -1362,9 +1072,9 @@ asm_unified(
 void WorldAmbientKind1::SaveState(GameStateActorRecord & record) const
 {
     record.kind = KIND;
-    record.direction = motion.direction;
-    record.x = motion.x;
-    record.y = motion.y;
+    record.state.direction = motion.direction;
+    record.state.x = motion.x;
+    record.state.y = motion.y;
 }
 
 void WorldAmbientKind1::Draw(GameObject * world, WorldSpriteDrawBuffer * buffer,

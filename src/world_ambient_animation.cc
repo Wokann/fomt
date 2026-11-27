@@ -1,3 +1,4 @@
+#pragma implementation "world_ambient_sprites.hh"
 #include "world_ambient_animation.hh"
 
 asm(".include \"asm/macro.inc\"\n");

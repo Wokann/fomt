@@ -1,4 +1,4 @@
-#include "world_ambient_sprites.hh"
+#include "world_ambient_construction.hh"
 #include "game_object.hh"
 #include "game_scene_actions.hh"
 #include "actor_movement.hh"
@@ -351,14 +351,6 @@ void PlayWorldAmbientSpriteSound(WorldAmbientSprite * self, u32 song_id)
 {
     GameSceneSongPlayerPool const & pool = self->world->GetSongPlayerPool();
     FindActorSoundPlayer(pool)->Start(static_cast<u16>(song_id));
-}
-
-inline void WorldAmbientSpriteOwners::Append(WorldAmbientSprite * sprite)
-{
-    if (count < CAPACITY) {
-        new (&(*this)[count]) Owner(sprite);
-        ++count;
-    }
 }
 
 inline WorldAmbientKind1::WorldAmbientKind1(GameObject * world, i32 x, i32 y)

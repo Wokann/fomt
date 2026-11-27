@@ -78,16 +78,6 @@ struct GameStateLinkRecord {
 
 
 
-// DayUpdate promotes tomorrow's weather to today before choosing the next forecast.
-// Keep both saved words unvalidated, as with the native weather-variable interface.
-struct GameStateClock {
-    u32 weather_today;
-    u32 weather_tomorrow;
-    GameCalendar calendar;
-    GameStateClock(GameCalendar const & value)
-        : weather_today(WEATHER_SUNNY), weather_tomorrow(WEATHER_SUNNY), calendar(value) {}
-};
-
 // Saved entrants occupy twelve name IDs and four eight-byte race records.
 // The two bytes after the odds are native word-alignment padding.
 struct HorseRaceSavedEntry {
