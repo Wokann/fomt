@@ -7,15 +7,15 @@
 extern char const gCppRuntimeError_AnimalData[];
 extern char const gText_AnimalDataFallbackNone[];
 extern ActorBehaviorTiming const gUnk_080F0838[2][2][13];
-extern u16 const gUnk_080F0908[2][13];
+extern u16 const gDogBehaviorAnimations[2][13];
 extern ActorBehaviorTiming const gUnk_080F093C[28];
-extern u16 const gUnk_080F09AC[2][7];
+extern u16 const gHorseBehaviorAnimations[2][7];
 extern ActorBehaviorTiming const gUnk_080F09C8[40];
-extern u16 const gUnk_080F0A68[10];
+extern u16 const gChickenBehaviorAnimations[2][5];
 extern ActorBehaviorTiming const gUnk_080F0A7C[112];
-extern u16 const gUnk_080F0C3C[28];
+extern u16 const gCowBehaviorAnimations[4][7];
 extern ActorBehaviorTiming const gUnk_080F0C74[112];
-extern u16 const gUnk_080F0E34[28];
+extern u16 const gSheepBehaviorAnimations[4][7];
 
 #pragma interface "animal_actor.hh"
 
@@ -70,13 +70,18 @@ struct DogActor : AnimalActor {
     virtual void ReactToToolHit();
     virtual void PauseMovement(u32 frames);
     void UpdateBehavior();
+    u32 GetBehaviorAnimation(u32 behavior) const;
+    i32 GetBehaviorMoveSpeed(u32 behavior) const;
+    void SetBehavior(u32 behavior, u32 direction);
+    u32 GetBehavior() const;
 
     Dog * dog;
     Location * ball_location;
     i16 saved_x;
     i16 saved_y;
     bool unk_40;
-    u8 unk_41[3]; // Remaining native RAM state; not a decoded layout yet.
+    u8 last_behavior;
+    u8 unk_42[2];
 };
 
 
@@ -99,6 +104,7 @@ struct HorseActor : AnimalActor {
     virtual void Brush();
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
+    u32 GetBehaviorAnimation(u32 behavior) const;
 
     Horse * horse;
     i16 saved_x;
@@ -124,9 +130,14 @@ struct ChickenActor : AnimalActor {
     virtual void ReactToDogAttack();
     virtual void PauseMovement(u32 frames);
     void UpdateBehavior(EntityUpdateContext const & context);
+    u32 GetBehaviorAnimation(u32 behavior) const;
+    i32 GetBehaviorMoveSpeed(u32 behavior) const;
+    void SetBehavior(u32 behavior, u32 direction);
+    u32 GetBehavior() const;
 
     Chicken * livestock;
-    u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
+    u8 last_behavior;
+    u8 unk_39[3];
 };
 
 
@@ -151,6 +162,8 @@ struct CowActor : AnimalActor {
     virtual void ReactToDogAttack();
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
+    u32 GetBehaviorAnimation(u32 behavior) const;
+    i32 GetBehaviorMoveSpeed(u32 behavior) const;
 
     Cow * livestock;
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
@@ -178,6 +191,8 @@ struct SheepActor : AnimalActor {
     virtual void ReactToDogAttack();
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
+    u32 GetBehaviorAnimation(u32 behavior) const;
+    i32 GetBehaviorMoveSpeed(u32 behavior) const;
 
     Sheep * livestock;
     u8 unk_38[4]; // Native motion state; individual byte roles remain under review.
