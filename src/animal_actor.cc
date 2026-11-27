@@ -1,4 +1,5 @@
 #include "animal_actor.hh"
+#include "player_actor.hh"
 #include "world_prop_entities.hh"
 #include "dog.hh"
 #include "cow.hh"
@@ -218,157 +219,26 @@ asm_unified(
     "\n"
     "    .align 2, 0\n"
     "\n"
-    "    .global __8DogActorP10GameObjectP3DogP8Location\n"
-    "    .thumb_func\n"
-    "__8DogActorP10GameObjectP3DogP8Location:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0xc\n"
-    "    adds r6, r0, #0\n"
-    "    adds r7, r1, #0\n"
-    "    adds r4, r2, #0\n"
-    "    adds r5, r3, #0\n"
-    "    add r0, sp, #4\n"
-    "    adds r1, r4, #0\n"
-    "    bl __5ActorRC5Actor\n"
-    "    movs r3, #0xd0\n"
-    "    lsls r3, r3, #2\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r7, #0\n"
-    "    add r2, sp, #4\n"
-    "    bl __11AnimalActorP10GameObjectRC13ActorLocationUi\n"
-    "    ldr r0, .Ljp_0802010C\n"
-    "    str r0, [r6, #0x14]\n"
-    "    str r4, [r6, #0x34]\n"
-    "    str r5, [r6, #0x38]\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x40\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r0, [r4, #0x20]\n"
-    "    cmp r0, #5\n"
-    "    bne .Ljp_08020118\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4b\n"
-    "    bl _call_via_r2\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r4, #0\n"
-    "    beq .Ljp_08020118\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    ldrh r1, [r6, #4]\n"
-    "    cmp r0, r1\n"
-    "    bne .Ljp_08020110\n"
-    "    ldr r1, [r6, #8]\n"
-    "    ldr r2, [r6, #0xc]\n"
-    "    ldrh r3, [r6, #0x22]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    str r0, [sp]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetCarriedPosition__13DogBallEntityiiUiUi\n"
-    "    b .Ljp_08020118\n"
-    ".Ljp_0802010C: .word __vt_8DogActor\n"
-    ".Ljp_08020110:\n"
-    "    adds r0, r6, #0\n"
-    "    movs r1, #0\n"
-    "    bl PauseMovement__8DogActorUi\n"
-    ".Ljp_08020118:\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetBehavior__C8DogActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetBehavior__8DogActorUiUi\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #0xc\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start __8DogActorP10GameObjectP3DogP8Location\n"
-    "__8DogActorP10GameObjectP3DogP8Location: @ 0x08020310\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0xc\n"
-    "    adds r6, r0, #0\n"
-    "    adds r7, r1, #0\n"
-    "    adds r4, r2, #0\n"
-    "    adds r5, r3, #0\n"
-    "    add r0, sp, #4\n"
-    "    adds r1, r4, #0\n"
-    "    bl __5ActorRC5Actor\n"
-    "    movs r3, #0xd0\n"
-    "    lsls r3, r3, #2\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r7, #0\n"
-    "    add r2, sp, #4\n"
-    "    bl __11AnimalActorP10GameObjectRC13ActorLocationUi\n"
-    "    ldr r0, .L08020378 @ =__vt_8DogActor\n"
-    "    str r0, [r6, #0x14]\n"
-    "    str r4, [r6, #0x34]\n"
-    "    str r5, [r6, #0x38]\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x40\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r0, [r4, #0x20]\n"
-    "    cmp r0, #5\n"
-    "    bne .L08020384\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4b\n"
-    "    bl _call_via_r2\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r4, #0\n"
-    "    beq .L08020384\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    ldrh r1, [r6, #4]\n"
-    "    cmp r0, r1\n"
-    "    bne .L0802037C\n"
-    "    ldr r1, [r6, #8]\n"
-    "    ldr r2, [r6, #0xc]\n"
-    "    ldrh r3, [r6, #0x22]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    str r0, [sp]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetCarriedPosition__13DogBallEntityiiUiUi\n"
-    "    b .L08020384\n"
-    "    .align 2, 0\n"
-    ".L08020378: .word __vt_8DogActor\n"
-    ".L0802037C:\n"
-    "    adds r0, r6, #0\n"
-    "    movs r1, #0\n"
-    "    bl PauseMovement__8DogActorUi\n"
-    ".L08020384:\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetBehavior__C8DogActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetBehavior__8DogActorUiUi\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #0xc\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L080203A4:\n"
-);
 #endif
+
+DogActor::DogActor(GameObject * world, Dog * saved, Location * ball_location)
+    : AnimalActor(world, Actor(*saved).location, ANIMATION_ID_0832),
+      dog(saved), ball_location(ball_location), unk_40(false)
+{
+    if (saved->unk_20 == 5) {
+        DogBallEntity * ball = static_cast<DogBallEntity *>(world->GetEntity(ENTITY_BALL));
+        if (ball != 0) {
+            if (ball->GetMap() == GetMap())
+                ball->SetCarriedPosition(GetQ16X(), GetQ16Y(), GetAnim(), facing);
+            else
+                PauseMovement(0);
+        }
+    }
+    SetBehavior(GetBehavior(), facing);
+}
+
 
 DogActor::~DogActor()
 {
@@ -3937,31 +3807,29 @@ extern "C" void NotifyDogActorBallLanded(DogActor * actor, Location const & orig
     }
 }
 
-#if defined(REGION_JP)
-
-
 Box DogActor::GetBox() const
 {
     return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
 
-extern "C" u32 func_080213B0(void * self)
+extern "C" u32 GetDogAuxRenderProfile(u32 growth_stage)
 {
-    return 0;
+    return ENTITY_AUX_RENDER_SMALL_ANIMAL;
 }
 
-extern "C" u32 func_080213B4(u32 kind)
+extern "C" u32 GetDogSpriteUnknown8A2(u32 growth_stage)
 {
-    switch (kind)
+    switch (growth_stage)
     {
-    case 0:
+    case Dog::STAGE_0:
         return 6;
-    case 1:
+    case Dog::STAGE_1:
         return 8;
     }
     return 6;
 }
 
+#if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
     "    .global CreateVisualController__8DogActor\n"
@@ -3979,10 +3847,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080213B0\n"
+    "    bl GetDogAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080213B4\n"
+    "    bl GetDogSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -4031,99 +3899,11 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    .global __10HorseActorP10GameObjectP5Horse\n"
-    "    .thumb_func\n"
-    "__10HorseActorP10GameObjectP5Horse:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r6, r0, #0\n"
-    "    adds r4, r1, #0\n"
-    "    adds r5, r2, #0\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl __5ActorRC5Actor\n"
-    "    ldr r3, .Ljp_080214C8\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    mov r2, sp\n"
-    "    bl __11AnimalActorP10GameObjectRC13ActorLocationUi\n"
-    "    ldr r0, .Ljp_080214CC\n"
-    "    str r0, [r6, #0x14]\n"
-    "    str r5, [r6, #0x34]\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3d\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r0, [r4]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r2, r0, #0\n"
-    "    movs r0, #0\n"
-    "    cmp r2, #0\n"
-    "    beq .Ljp_080214A2\n"
-    "    ldr r0, [r2, #0x14]\n"
-    "    ldr r1, [r0, #0x40]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r0, r0, #0x1f\n"
-    ".Ljp_080214A2:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3e\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".Ljp_080214C8: .word 0x00000782\n"
-    ".Ljp_080214CC: .word __vt_10HorseActor\n"
-    "\n"
+
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-Box DogActor::GetBox() const
-{
-    return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
-}
-
 asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start func_0802161C\n"
-    "func_0802161C: @ 0x0802161C\n"
-    "    movs r0, #0\n"
-    "    bx lr\n"
-    "\n"
-    "    thumb_func_start func_08021620\n"
-    "func_08021620: @ 0x08021620\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802162A\n"
-    "    cmp r0, #1\n"
-    "    beq .L0802162E\n"
-    ".L0802162A:\n"
-    "    movs r0, #6\n"
-    "    b .L08021630\n"
-    ".L0802162E:\n"
-    "    movs r0, #8\n"
-    ".L08021630:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".L08021634:\n"
     "    .global CreateVisualController__8DogActor\n"
     "    .thumb_func\n"
     "CreateVisualController__8DogActor:\n"
@@ -4139,10 +3919,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_0802161C\n"
+    "    bl GetDogAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_08021620\n"
+    "    bl GetDogSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -4191,68 +3971,20 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start __10HorseActorP10GameObjectP5Horse\n"
-    "__10HorseActorP10GameObjectP5Horse: @ 0x080216BC\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r6, r0, #0\n"
-    "    adds r4, r1, #0\n"
-    "    adds r5, r2, #0\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl __5ActorRC5Actor\n"
-    "    ldr r3, .L08021734 @ =0x00000782\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    mov r2, sp\n"
-    "    bl __11AnimalActorP10GameObjectRC13ActorLocationUi\n"
-    "    ldr r0, .L08021738 @ =__vt_10HorseActor\n"
-    "    str r0, [r6, #0x14]\n"
-    "    str r5, [r6, #0x34]\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3d\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r0, [r4]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r4, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r2, r0, #0\n"
-    "    movs r0, #0\n"
-    "    cmp r2, #0\n"
-    "    beq .L0802170E\n"
-    "    ldr r0, [r2, #0x14]\n"
-    "    ldr r1, [r0, #0x40]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r0, r0, #0x1f\n"
-    ".L0802170E:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3e\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L08021734: .word 0x00000782\n"
-    ".L08021738: .word __vt_10HorseActor\n"
-    ".L0802173C:\n"
+
 );
 #endif
+
+
+
+HorseActor::HorseActor(GameObject * world, Horse * saved)
+    : AnimalActor(world, Actor(*saved).location, ANIMATION_ID_1922), horse(saved), unk_3D(false)
+{
+    PlayerActor * player = static_cast<PlayerActor *>(world->GetEntity(ENTITY_PLAYER));
+    unk_3E = player != 0 && player->IsRidingHorse();
+    SetBehavior(GetBehavior(), facing);
+}
+
 
 HorseActor::~HorseActor()
 {
@@ -7847,31 +7579,29 @@ void ChickenActor::ReactToDogAttack()
     RequestSound(livestock->GetGrowthStage() == Chicken::STAGE_1 ? AUDIO_SEQUENCE_166 : AUDIO_SEQUENCE_165);
 }
 
-#if defined(REGION_JP)
-
-
 Box ChickenActor::GetBox() const
 {
     return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
 }
 
-extern "C" u32 func_080228EC(void * self)
+extern "C" u32 GetChickenAuxRenderProfile(u32 growth_stage)
 {
-    return 0;
+    return ENTITY_AUX_RENDER_SMALL_ANIMAL;
 }
 
-extern "C" u32 func_080228F0(u32 kind)
+extern "C" u32 GetChickenSpriteUnknown8A2(u32 growth_stage)
 {
-    switch (kind)
+    switch (growth_stage)
     {
-    case 0:
+    case Chicken::STAGE_0:
         return 6;
-    case 1:
+    case Chicken::STAGE_1:
         return 7;
     }
     return 6;
 }
 
+#if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
     "    .global CreateVisualController__12ChickenActor\n"
@@ -7887,10 +7617,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    adds r6, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl func_080228EC\n"
+    "    bl GetChickenAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl func_080228F0\n"
+    "    bl GetChickenSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r5, #0\n"
@@ -7957,47 +7687,9 @@ asm_unified(
     "    bx r1\n"
     "\n"
 );
-
-
-CowActor::CowActor(GameObject * world, Cow * saved)
-    : AnimalActor(world, Actor(*saved).location, 0x2B0)
-{
-    livestock = saved;
-
-    SetBehavior(GetBehavior(), facing);
-}
-
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-Box ChickenActor::GetBox() const
-{
-    return Box(-7, -4, 7, 5, x_q16 >> 16, y_q16 >> 16);
-}
-
 asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start func_08022B58\n"
-    "func_08022B58: @ 0x08022B58\n"
-    "    movs r0, #0\n"
-    "    bx lr\n"
-    "\n"
-    "    thumb_func_start func_08022B5C\n"
-    "func_08022B5C: @ 0x08022B5C\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L08022B66\n"
-    "    cmp r0, #1\n"
-    "    beq .L08022B6A\n"
-    ".L08022B66:\n"
-    "    movs r0, #6\n"
-    "    b .L08022B6C\n"
-    ".L08022B6A:\n"
-    "    movs r0, #7\n"
-    ".L08022B6C:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".L08022B70:\n"
     "    .global CreateVisualController__12ChickenActor\n"
     "    .thumb_func\n"
     "CreateVisualController__12ChickenActor:\n"
@@ -8011,10 +7703,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    adds r6, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl func_08022B58\n"
+    "    bl GetChickenAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl func_08022B5C\n"
+    "    bl GetChickenSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r5, #0\n"
@@ -8081,6 +7773,7 @@ asm_unified(
     "    bx r1\n"
     "\n"
 );
+#endif
 
 
 CowActor::CowActor(GameObject * world, Cow * saved)
@@ -8090,8 +7783,6 @@ CowActor::CowActor(GameObject * world, Cow * saved)
 
     SetBehavior(GetBehavior(), facing);
 }
-
-#endif
 
 CowActor::~CowActor()
 {
@@ -9942,36 +9633,34 @@ void CowActor::RespondToPush(u32 direction, u32 frames)
     }
 }
 
-#if defined(REGION_JP)
-
-
-extern "C" u32 func_08023584(u32 kind)
+extern "C" u32 GetCowAuxRenderProfile(u32 growth_stage)
 {
-    switch (kind)
+    switch (growth_stage)
     {
-    case 0:
-    case 1:
-        return 1;
-    case 2:
-        return 2;
+    case Cow::STAGE_0:
+    case Cow::STAGE_1:
+        return ENTITY_AUX_RENDER_DEFAULT;
+    case Cow::STAGE_2:
+        return ENTITY_AUX_RENDER_LIVESTOCK;
     }
-    return 1;
+    return ENTITY_AUX_RENDER_DEFAULT;
 }
 
-extern "C" u32 func_08023598(u32 kind)
+extern "C" u32 GetCowSpriteUnknown8A2(u32 growth_stage)
 {
-    switch (kind)
+    switch (growth_stage)
     {
-    case 0:
+    case Cow::STAGE_0:
         return 9;
-    case 1:
+    case Cow::STAGE_1:
         return 0xB;
-    case 2:
+    case Cow::STAGE_2:
         return 0xC;
     }
     return 9;
 }
 
+#if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
     "    .global CreateVisualController__8CowActor\n"
@@ -9989,10 +9678,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_08023584\n"
+    "    bl GetCowAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_08023598\n"
+    "    bl GetCowSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -10041,56 +9730,9 @@ asm_unified(
     "    bx r1\n"
     "\n"
 );
-
-
-SheepActor::SheepActor(GameObject * world, Sheep * saved)
-    : AnimalActor(world, Actor(*saved).location, 0x921)
-{
-    livestock = saved;
-
-    SetBehavior(GetBehavior(), facing);
-}
-
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start func_080237F0\n"
-    "func_080237F0: @ 0x080237F0\n"
-    "    push {lr}\n"
-    "    cmp r0, #1\n"
-    "    bls .L080237FA\n"
-    "    cmp r0, #2\n"
-    "    beq .L080237FE\n"
-    ".L080237FA:\n"
-    "    movs r0, #1\n"
-    "    b .L08023800\n"
-    ".L080237FE:\n"
-    "    movs r0, #2\n"
-    ".L08023800:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    thumb_func_start func_08023804\n"
-    "func_08023804: @ 0x08023804\n"
-    "    push {lr}\n"
-    "    cmp r0, #1\n"
-    "    beq .L08023816\n"
-    "    cmp r0, #1\n"
-    "    blo .L08023812\n"
-    "    cmp r0, #2\n"
-    "    beq .L0802381A\n"
-    ".L08023812:\n"
-    "    movs r0, #9\n"
-    "    b .L0802381C\n"
-    ".L08023816:\n"
-    "    movs r0, #0xb\n"
-    "    b .L0802381C\n"
-    ".L0802381A:\n"
-    "    movs r0, #0xc\n"
-    ".L0802381C:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".L08023820:\n"
     "    .global CreateVisualController__8CowActor\n"
     "    .thumb_func\n"
     "CreateVisualController__8CowActor:\n"
@@ -10106,10 +9748,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080237F0\n"
+    "    bl GetCowAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_08023804\n"
+    "    bl GetCowSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -10159,6 +9801,7 @@ asm_unified(
     "    .align 2, 0\n"
     "\n"
 );
+#endif
 
 
 SheepActor::SheepActor(GameObject * world, Sheep * saved)
@@ -10168,8 +9811,6 @@ SheepActor::SheepActor(GameObject * world, Sheep * saved)
 
     SetBehavior(GetBehavior(), facing);
 }
-
-#endif
 
 SheepActor::~SheepActor()
 {
@@ -12041,34 +11682,32 @@ void SheepActor::RespondToPush(u32 direction, u32 frames)
     }
 }
 
-#if defined(REGION_JP)
-
-
-extern "C" u32 func_08024258(u32 value)
+extern "C" u32 GetSheepAuxRenderProfile(u32 growth_stage)
 {
-    switch (value)
+    switch (growth_stage)
     {
-    case 0:
-        return 1;
-    case 1:
-        return 2;
+    case Sheep::STAGE_0:
+        return ENTITY_AUX_RENDER_DEFAULT;
+    case Sheep::STAGE_1:
+        return ENTITY_AUX_RENDER_LIVESTOCK;
     default:
-        return 1;
+        return ENTITY_AUX_RENDER_DEFAULT;
     }
 }
 
-extern "C" u32 func_0802426C(u32 kind)
+extern "C" u32 GetSheepSpriteUnknown8A2(u32 growth_stage)
 {
-    switch (kind)
+    switch (growth_stage)
     {
-    case 0:
+    case Sheep::STAGE_0:
         return 0xA;
-    case 1:
+    case Sheep::STAGE_1:
         return 0xD;
     }
     return 0xA;
 }
 
+#if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
     "    .global CreateVisualController__10SheepActor\n"
@@ -12086,10 +11725,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_08024258\n"
+    "    bl GetSheepAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_0802426C\n"
+    "    bl GetSheepSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -12138,58 +11777,9 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
 );
-
-extern "C" void func_08024308(Box * out, i32 x, i32 y)
-{
-    out->x1 = x - 7;
-    out->y1 = y - 4;
-    out->x2 = x + 7;
-    out->y2 = y + 5;
-}
-
-extern "C" void func_0802431C(Box * out, i32 x, i32 y)
-{
-    out->x1 = x - 7;
-    out->y1 = y - 4;
-    out->x2 = x + 7;
-    out->y2 = y + 5;
-}
-
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start func_080244C4\n"
-    "func_080244C4: @ 0x080244C4\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L080244CE\n"
-    "    cmp r0, #1\n"
-    "    beq .L080244D2\n"
-    ".L080244CE:\n"
-    "    movs r0, #1\n"
-    "    b .L080244D4\n"
-    ".L080244D2:\n"
-    "    movs r0, #2\n"
-    ".L080244D4:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    thumb_func_start func_080244D8\n"
-    "func_080244D8: @ 0x080244D8\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L080244E2\n"
-    "    cmp r0, #1\n"
-    "    beq .L080244E6\n"
-    ".L080244E2:\n"
-    "    movs r0, #0xa\n"
-    "    b .L080244E8\n"
-    ".L080244E6:\n"
-    "    movs r0, #0xd\n"
-    ".L080244E8:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".L080244EC:\n"
     "    .global CreateVisualController__10SheepActor\n"
     "    .thumb_func\n"
     "CreateVisualController__10SheepActor:\n"
@@ -12205,10 +11795,10 @@ asm_unified(
     "    bl __builtin_new\n"
     "    mov r8, r0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080244C4\n"
+    "    bl GetSheepAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl func_080244D8\n"
+    "    bl GetSheepSpriteUnknown8A2\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -12256,34 +11846,20 @@ asm_unified(
     "    pop {r1}\n"
     "    bx r1\n"
     "    .align 2, 0\n"
-    "    .global func_08024574\n"
-    "    .thumb_func\n"
-    "func_08024574:\n"
-    "    subs r3, r1, #7\n"
-    "    strh r3, [r0]\n"
-    "    subs r3, r2, #4\n"
-    "    strh r3, [r0, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r0, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r0, #6]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "    .global func_08024588\n"
-    "    .thumb_func\n"
-    "func_08024588:\n"
-    "    subs r3, r1, #7\n"
-    "    strh r3, [r0]\n"
-    "    subs r3, r2, #4\n"
-    "    strh r3, [r0, #2]\n"
-    "    adds r1, #7\n"
-    "    strh r1, [r0, #4]\n"
-    "    adds r2, #5\n"
-    "    strh r2, [r0, #6]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
+
 );
 #endif
+
+
+extern "C" Box func_08024308(i32 x, i32 y)
+{
+    return Box(-7, -4, 7, 5, x, y);
+}
+
+extern "C" Box func_0802431C(i32 x, i32 y)
+{
+    return Box(-7, -4, 7, 5, x, y);
+}
 
 void AnimalActor::Update(EntityUpdateContext const & context)
 {

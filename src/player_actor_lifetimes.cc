@@ -45,7 +45,7 @@ asm_unified(
     "    .word SetEventScript__12AActorEntityi\n"
 #if defined(REGION_JP)
     "    .word func_08031E08\n"
-    "    .word func_08031DF0\n"
+    "    .word IsRidingHorse__11PlayerActor\n"
     "    .word func_08031DE8\n"
     "    .word func_08027990\n"
     "    .word func_080283D8\n"
@@ -53,7 +53,7 @@ asm_unified(
     "    .word func_08028E10\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word func_08032074\n"
-    "    .word func_0803205C\n"
+    "    .word IsRidingHorse__11PlayerActor\n"
     "    .word func_08032054\n"
     "    .word func_08027BFC\n"
     "    .word func_08028644\n"
