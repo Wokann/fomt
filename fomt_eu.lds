@@ -324,7 +324,9 @@ SECTIONS
         src/npc_path_search.o(.text);
         src/npc_actor_lifetimes.o(.text);
         src/world_prop_lifetimes.o(.text);
+        src/world_ambient_entity_lifetimes.o(.text);
         src/world_ambient_behaviors.o(.text);
+        src/world_ambient_controller.o(.text);
         src/scene_text_variable_lifetimes.o(.text);
         src/farming_tutorial.o(.text);
         src/farming_tutorial_transition_lifetimes.o(.text);
@@ -419,7 +421,7 @@ SECTIONS
         src/npc_actor_lifetimes.o(.rodata);
         src/world_prop_lifetimes.o(.rodata);
         src/animal_actor_lifetimes.o(.rodata);
-        src/world_ambient_animation.o(.rodata);
+        src/world_ambient_behaviors.o(.rodata);
         src/scene_text_variable_lifetimes.o(.rodata);
         src/farming_tutorial.o(.rodata);
         src/farming_tutorial_transition_lifetimes.o(.rodata);
@@ -514,7 +516,7 @@ SECTIONS
         src/world_prop_entities.o(.rodata);
         src/wild_dog_actor.o(.rodata);
         src/world_ambient_sprites.o(.rodata);
-        src/world_ambient_behaviors.o(.rodata);
+        src/world_ambient_entity_lifetimes.o(.rodata);
         src/world_sprite_buffer.o(.rodata);
         src/game_world_interface.o(.rodata);
         src/world_weather.o(.rodata);

@@ -1,4 +1,3 @@
-#pragma implementation "world_ambient_sprites.hh"
 #include "world_ambient_animation.hh"
 
 asm(".include \"asm/macro.inc\"\n");
@@ -36,7 +35,7 @@ void UpdateWorldAmbientSpriteAnimation(WorldAmbientSprite * self)
 
 void SetWorldAmbientSpriteAnimation(WorldAmbientSprite * self, u32 animation)
 {
-    self->SetAnimation(animation);
+    ApplyWorldAmbientSpriteAnimation(self, animation);
 }
 
 GameObject * GetWorldAmbientSpriteWorld(WorldAmbientSprite const * self)
