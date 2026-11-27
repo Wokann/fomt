@@ -69,6 +69,9 @@ static inline void ApplyEntityLocation(GameSceneState * current, i32 entity_id,
 
 EXTERN_C
 
+void RemoveLivestockDeadFromNeglect(GameScene * scene);
+void RemoveNaturallyDeadLivestock(GameScene * scene);
+
 // Load the controller's event script, then suspend ordinary world updates.
 void StartSceneEventScript(GameSceneState * state, i32 script_id, i32 context_value);
 

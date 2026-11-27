@@ -146,6 +146,7 @@ struct GameSceneWorldOwner {
     GameObject * value;
     explicit GameSceneWorldOwner(GameObject * input = nullptr) : value(input) {}
     GameSceneWorldOwner(GameSceneWorldOwnerTransfer other) : value(other.release()) {}
+    GameObject * operator->() const { return value; }
     ~GameSceneWorldOwner() { delete value; }
     GameSceneWorldOwner & operator=(GameObject * world)
     {
