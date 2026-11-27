@@ -1401,88 +1401,38 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     ".Lfarming_tutorial_world_0be8: .word 0xfffffc00\n"
-    "thumb_func_start vfunc_48__20FarmingTutorialWorldi\n"
-    "vfunc_48__20FarmingTutorialWorldi:\n"
-    "push {lr}\n"
-    "adds r3, r0, #0\n"
-    "cmp r1, #0x1a\n"
-    "bhi .Lfarming_tutorial_world_0c90\n"
-    "lsls r0, r1, #2\n"
-    "ldr r1, .Lfarming_tutorial_world_0c00\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_0c00: .word .Lfarming_tutorial_world_0c04\n"
-    ".Lfarming_tutorial_world_0c04:\n"
-    ".word .Lfarming_tutorial_world_0c70\n"
-    ".word .Lfarming_tutorial_world_0c74\n"
-    ".word .Lfarming_tutorial_world_0c74\n"
-    ".word .Lfarming_tutorial_world_0c78\n"
-    ".word .Lfarming_tutorial_world_0c74\n"
-    ".word .Lfarming_tutorial_world_0c78\n"
-    ".word .Lfarming_tutorial_world_0c84\n"
-    ".word .Lfarming_tutorial_world_0c84\n"
-    ".word .Lfarming_tutorial_world_0c84\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c7c\n"
-    ".word .Lfarming_tutorial_world_0c80\n"
-    ".word .Lfarming_tutorial_world_0c80\n"
-    ".word .Lfarming_tutorial_world_0c80\n"
-    ".word .Lfarming_tutorial_world_0c80\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c90\n"
-    ".word .Lfarming_tutorial_world_0c84\n"
-    ".Lfarming_tutorial_world_0c70:\n"
-    "movs r0, #0\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c74:\n"
-    "movs r0, #1\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c78:\n"
-    "movs r0, #2\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c7c:\n"
-    "movs r0, #3\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c80:\n"
-    "movs r0, #4\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c84:\n"
-    "movs r0, #5\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c88:\n"
-    "movs r0, #1\n"
-    "strb r0, [r1]\n"
-    "adds r0, r2, #0\n"
-    "b .Lfarming_tutorial_world_0ca6\n"
-    ".Lfarming_tutorial_world_0c90:\n"
-    "movs r2, #6\n"
-    "ldr r0, .Lfarming_tutorial_world_0cac\n"
-    "adds r1, r3, r0\n"
-    ".Lfarming_tutorial_world_0c96:\n"
-    "ldrb r0, [r1]\n"
-    "cmp r0, #0\n"
-    "beq .Lfarming_tutorial_world_0c88\n"
-    "adds r1, #0x84\n"
-    "adds r2, #1\n"
-    "cmp r2, #0x16\n"
-    "blo .Lfarming_tutorial_world_0c96\n"
-    "movs r0, #0x15\n"
-    ".Lfarming_tutorial_world_0ca6:\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_0cac: .word 0x555\n"
+);
+
+u32 FarmingTutorialWorld::vfunc_48(i32 kind)
+{
+    switch (static_cast<u32>(kind)) {
+    case 0: return 0;
+    case 1:
+    case 2:
+    case 4: return 1;
+    case 3:
+    case 5: return 2;
+    case 14: return 3;
+    case 15:
+    case 16:
+    case 17:
+    case 18: return 4;
+    case 6:
+    case 7:
+    case 8:
+    case 26: return 5;
+    }
+    for (u32 index = 6; index < data.palette_cache.ResourceCount(); ++index) {
+        u8 & claimed = data.palette_cache.resources[index].claimed;
+        if (claimed == 0) {
+            claimed = 1;
+            return index;
+        }
+    }
+    return data.palette_cache.ResourceCount() - 1;
+}
+
+asm_unified(
     "thumb_func_start GetMapTerrain__20FarmingTutorialWorldUi\n"
     "GetMapTerrain__20FarmingTutorialWorldUi:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -2001,7 +1951,7 @@ i32 FarmingTutorialWorld::GetSpritePaletteBank(u32 index)
 
 void FarmingTutorialWorld::ClearSpritePaletteResourceFlag(u32 index)
 {
-    data.palette_cache.resources[index].unk_81 = 0;
+    data.palette_cache.resources[index].claimed = 0;
 }
 
 AEntity * FarmingTutorialWorld::GetEntity(u32 id) const

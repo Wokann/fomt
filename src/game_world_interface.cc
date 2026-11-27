@@ -122,7 +122,7 @@ i32 GameSceneWorld::GetSpritePaletteBank(u32 index)
 void GameSceneWorld::ClearSpritePaletteResourceFlag(u32 index)
 {
     GameSceneWorld & world = *this;
-    world.data.palette_cache.resources[index].unk_81 = 0;
+    world.data.palette_cache.resources[index].claimed = 0;
 }
 
 AEntity * GameSceneWorld::GetEntity(u32 index) const

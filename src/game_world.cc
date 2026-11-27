@@ -6986,8 +6986,8 @@ u32 GameSceneWorld::vfunc_48(i32 kind)
     GameScenePaletteCache & cache = this->data.palette_cache;
     for (u32 index = first; index < cache.ResourceCount(); ++index) {
         GameScenePaletteResource & resource = cache.resources[index];
-        if (resource.unk_81 == 0) {
-            resource.unk_81 = 1;
+        if (resource.claimed == 0) {
+            resource.claimed = 1;
             return index;
         }
     }

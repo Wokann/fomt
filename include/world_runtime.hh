@@ -22,11 +22,11 @@ struct GameSceneIndexedSprite;
 // Keep the remaining record bytes and flags opaque until their users are recovered.
 struct GameScenePaletteResource {
     GameScenePaletteResource()
-        : palette_slot(-1), unk_81(0), unk_82(0), unk_83(1) {}
+        : palette_slot(-1), claimed(0), unk_82(0), unk_83(1) {}
 
     u8 unk_00[0x80];
     i8 palette_slot : 8;
-    u8 unk_81;
+    u8 claimed; // Dynamic resource ID ownership, independent of hardware banks.
     u8 unk_82;
     u8 unk_83;
 };
