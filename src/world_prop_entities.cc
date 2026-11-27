@@ -22,10 +22,10 @@ extern "C" u32 const gEntityEventScrollingSpeeds[] = {
     0x00001999, 0x00003333, 0x00004CCC,
 };
 
-extern "C" u16 const gUnk_080F1684[][4] = {
-    { 0x0000, 0x0003, 0x00A8, 0x0000 },
-    { 0x0001, 0x0004, 0x00C8, 0x0000 },
-    { 0x0002, 0x0005, 0x00F0, 0x0000 },
+extern "C" EntityEventScrollingSpriteType const gEntityEventScrollingSpriteTypes[] = {
+    { 0, 3, 168, 0, 0 },
+    { 1, 4, 200, 0, 0 },
+    { 2, 5, 240, 0, 0 },
 };
 
 CoopEggEntity::CoopEggEntity(GameObject * world, Location const & location)

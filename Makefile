@@ -466,8 +466,8 @@ $(BUILD_DIR)/src/scene_reference_page_lifetimes.o: CXXFLAGS += -fno-rerun-loop-o
 # Native standalone entries coexist with the callers' inline definitions.
 $(BUILD_DIR)/src/farm_map_screen_lifetimes.o: CXXFLAGS += -fno-implement-inlines
 $(BUILD_DIR)/src/animal_actor_lifetimes.o: CXXFLAGS += -fno-weak
-$(BUILD_DIR)/src/harvest_sprite_actor_lifetimes.o \
-$(BUILD_DIR)/src/world_prop_lifetimes.o: CXXFLAGS += -fno-weak -fno-implement-inlines
+$(BUILD_DIR)/src/harvest_sprite_actor_lifetimes.o: CXXFLAGS += -fno-weak -fno-implement-inlines
+$(BUILD_DIR)/src/world_prop_lifetimes.o: CXXFLAGS += -fno-weak
 
 
 $(BUILD_DIR)/src/hardware_blend_tables.o: CXXFLAGS += -fno-weak

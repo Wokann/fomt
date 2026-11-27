@@ -53,7 +53,11 @@ struct EventScrollingSprites {
 
     EventScrollingSprites(GameObject * world, bool new_year_sunrise);
     EventScrollingSprite * Data() { return reinterpret_cast<EventScrollingSprite *>(storage); }
-    EventScrollingSprite * End() { return &Data()[count]; }
+    EventScrollingSprite * End()
+    {
+        return reinterpret_cast<EventScrollingSprite *>(
+            &storage[count * (sizeof(EventScrollingSprite) / sizeof(u32))]);
+    }
     void Push(EventScrollingSprite const & sprite);
     ~EventScrollingSprites()
     {
@@ -73,7 +77,11 @@ struct EntityStarSparkles {
     bool complete[CAPACITY];
 
     GameSceneIndexedSprite * Data() { return reinterpret_cast<GameSceneIndexedSprite *>(storage); }
-    GameSceneIndexedSprite * End() { return &Data()[count]; }
+    GameSceneIndexedSprite * End()
+    {
+        return reinterpret_cast<GameSceneIndexedSprite *>(
+            &storage[count * (sizeof(GameSceneIndexedSprite) / sizeof(u32))]);
+    }
     ~EntityStarSparkles()
     {
         GameSceneIndexedSprite * last = End();
@@ -91,7 +99,6 @@ struct CoopEggEntity;
 
 struct CoopEggVisualController : EntityVisualController {
     CoopEggVisualController(CoopEggEntity * entity);
-    virtual ~CoopEggVisualController();
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
@@ -101,7 +108,6 @@ struct CoopEggVisualController : EntityVisualController {
 struct CoopEggEntity : AEntity {
     // The world passes the Location at the beginning of Coop::Egg.
     CoopEggEntity(GameObject * world, Location const & location);
-    virtual ~CoopEggEntity();
     virtual Box GetBox() const;
     virtual EntityVisualController * CreateVisualController();
 };
@@ -116,7 +122,6 @@ struct ShippingBasketEntity;
 
 struct ShippingBasketVisualController : EntityVisualController {
     ShippingBasketVisualController(ShippingBasketEntity * entity);
-    virtual ~ShippingBasketVisualController();
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
@@ -146,7 +151,6 @@ struct DogBallEntity;
 
 struct DogBallVisualController : EntityVisualController {
     DogBallVisualController(DogBallEntity * entity);
-    virtual ~DogBallVisualController();
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
@@ -187,7 +191,6 @@ struct DogBallEntity : AEntity {
 
 struct EntityEventEffectHost : AEntity {
     EntityEventEffectHost(GameObject * world, GameEventState * event_state);
-    virtual ~EntityEventEffectHost();
     virtual EntityVisualController * CreateVisualController();
 
     GameEventState * event_state;
@@ -195,7 +198,6 @@ struct EntityEventEffectHost : AEntity {
 
 struct EntityEventEffectController : EntityVisualController {
     EntityEventEffectController(EntityEventEffectHost * host);
-    virtual ~EntityEventEffectController();
     virtual void Update();
     virtual void Draw(EntityDrawContext const & context);
 
@@ -239,7 +241,17 @@ struct EntityEventSparklePosition {
 extern "C" EntityEventSparklePosition const gEntityEventSparklePositions[];
 extern "C" u8 const gEntityEventScrollingHeights[];
 extern "C" u32 const gEntityEventScrollingSpeeds[];
-extern "C" u16 const gUnk_080F1684[][4];
+// Each record selects one normal/sunrise animation pair and a byte width.
+// The remaining bytes are not read by the recovered construction path.
+struct EntityEventScrollingSpriteType {
+    u16 normal_animation;
+    u16 sunrise_animation;
+    u8 width;
+    u8 unknown_05;
+    u16 unknown_06;
+};
+
+extern "C" EntityEventScrollingSpriteType const gEntityEventScrollingSpriteTypes[];
 
 
 extern "C" char const gCppRuntimeError_EntityUiThird[];
