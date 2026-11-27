@@ -1,5 +1,6 @@
 #include "world_ambient_sprites.hh"
 #include "game_object.hh"
+#include "game_scene_actions.hh"
 #include "actor_movement.hh"
 #include "calendar.hh"
 #include "random.hh"
@@ -272,227 +273,69 @@ asm_unified(
     "    bx\tr1\n"
     "    .align 2, 0\n"
     ".Lambient_20: .word gWorldAmbientSpawnPositions\n"
-    "    thumb_func_start UpdateWorldAmbientMotion\n"
-    "UpdateWorldAmbientMotion:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r9\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6, r7}\n"
-    "    sub\tsp, #72\t@ 0x48\n"
-    "    mov\tr8, r0\n"
-    "    adds\tr4, r1, #0\n"
-    "    adds\tr5, r2, #0\n"
-    "    movs\tr0, #0\n"
-    "    mov\tr9, r0\n"
-    "    mov\tr2, r8\n"
-    "    ldr\tr1, [r2, #0]\n"
-    "    ldr\tr2, [r1, #0]\n"
-    "    mov\tr0, sp\n"
-    "    ldr\tr3, [r2, #52]\t@ 0x34\n"
-    "    movs\tr2, #0\n"
-    "    bl _call_via_r3\n"
-    "    movs\tr6, #4\n"
-    "    ldrsh\tr1, [r4, r6]\n"
-    "    movs\tr7, #6\n"
-    "    ldrsh\tr3, [r4, r7]\n"
-    "    add\tr2, sp, #64\t@ 0x40\n"
-    "    adds\tr0, r1, #0\n"
-    "    subs\tr0, #8\n"
-    "    strh\tr0, [r2, #0]\n"
-    "    adds\tr0, r3, #0\n"
-    "    subs\tr0, #8\n"
-    "    strh\tr0, [r2, #2]\n"
-    "    adds\tr1, #8\n"
-    "    strh\tr1, [r2, #4]\n"
-    "    adds\tr3, #8\n"
-    "    strh\tr3, [r2, #6]\n"
-    "    add\tr3, sp, #12\n"
-    "    movs\tr0, #32\n"
-    "    mov\tip, r0\n"
-    "    movs\tr1, #33\t@ 0x21\n"
-    "    str\tr1, [sp, #12]\n"
-    "    subs\tr0, #65\t@ 0x41\n"
-    "    str\tr0, [r3, #4]\n"
-    "    str\tr0, [r3, #8]\n"
-    "    str\tr1, [r3, #12]\n"
-    "    add\tr1, sp, #32\n"
-    "    mov\tr0, sp\n"
-    "    ldmia\tr0!, {r2, r6, r7}\n"
-    "    stmia\tr1!, {r2, r6, r7}\n"
-    "    ldr\tr0, [sp, #64]\t@ 0x40\n"
-    "    ldr\tr1, [sp, #68]\t@ 0x44\n"
-    "    str\tr0, [sp, #44]\t@ 0x2c\n"
-    "    str\tr1, [sp, #48]\t@ 0x30\n"
-    "    mov\tr0, ip\n"
-    "    str\tr0, [r3, #40]\t@ 0x28\n"
-    "    mov\tr1, r9\n"
-    "    str\tr1, [r3, #44]\t@ 0x2c\n"
-    "    str\tr1, [r3, #48]\t@ 0x30\n"
-    "    movs\tr0, #18\n"
-    "    ldrsb\tr0, [r4, r0]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lambient_33\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lambient_33\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    cmp\tr0, #1\n"
-    "    beq .Lambient_25\n"
-    "    cmp\tr0, #1\n"
-    "    bgt .Lambient_21\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lambient_22\n"
-    "    b .Lambient_32\n"
-    ".Lambient_21:\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Lambient_27\n"
-    "    cmp\tr0, #3\n"
-    "    beq .Lambient_29\n"
-    "    b .Lambient_32\n"
-    ".Lambient_22:\n"
-    "    ldr\tr1, [sp, #12]\n"
-    "    ldr\tr0, [sp, #52]\t@ 0x34\n"
-    "    cmp\tr1, r0\n"
-    "    ble .Lambient_23\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl RefreshDown__19ActorMovementBounds\n"
-    "    ldr\tr0, [sp, #12]\n"
-    "    b .Lambient_24\n"
-    ".Lambient_23:\n"
-    "    adds\tr0, r1, #0\n"
-    ".Lambient_24:\n"
-    "    cmp\tr0, #1\n"
-    "    ble .Lambient_32\n"
-    "    ldr\tr0, [r4, #12]\n"
-    "    adds\tr0, r0, r5\n"
-    "    str\tr0, [r4, #12]\n"
-    "    b .Lambient_33\n"
-    ".Lambient_25:\n"
-    "    ldr\tr1, [sp, #16]\n"
-    "    ldr\tr0, [sp, #52]\t@ 0x34\n"
-    "    cmn\tr1, r0\n"
-    "    bge .Lambient_26\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl RefreshUp__19ActorMovementBounds\n"
-    "    ldr\tr1, [sp, #16]\n"
-    ".Lambient_26:\n"
-    "    movs\tr0, #1\n"
-    "    negs\tr0, r0\n"
-    "    cmp\tr1, r0\n"
-    "    bge .Lambient_32\n"
-    "    ldr\tr0, [r4, #12]\n"
-    "    subs\tr0, r0, r5\n"
-    "    str\tr0, [r4, #12]\n"
-    "    b .Lambient_33\n"
-    ".Lambient_27:\n"
-    "    ldr\tr1, [sp, #20]\n"
-    "    ldr\tr0, [sp, #52]\t@ 0x34\n"
-    "    cmn\tr1, r0\n"
-    "    bge .Lambient_28\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl RefreshLeft__19ActorMovementBounds\n"
-    "    ldr\tr1, [sp, #20]\n"
-    ".Lambient_28:\n"
-    "    movs\tr0, #1\n"
-    "    negs\tr0, r0\n"
-    "    cmp\tr1, r0\n"
-    "    bge .Lambient_32\n"
-    "    ldr\tr0, [r4, #8]\n"
-    "    subs\tr0, r0, r5\n"
-    "    str\tr0, [r4, #8]\n"
-    "    b .Lambient_33\n"
-    ".Lambient_29:\n"
-    "    ldr\tr1, [sp, #24]\n"
-    "    ldr\tr0, [sp, #52]\t@ 0x34\n"
-    "    cmp\tr1, r0\n"
-    "    ble .Lambient_30\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl RefreshRight__19ActorMovementBounds\n"
-    "    ldr\tr0, [sp, #24]\n"
-    "    b .Lambient_31\n"
-    ".Lambient_30:\n"
-    "    adds\tr0, r1, #0\n"
-    ".Lambient_31:\n"
-    "    cmp\tr0, #1\n"
-    "    ble .Lambient_32\n"
-    "    ldr\tr0, [r4, #8]\n"
-    "    adds\tr0, r0, r5\n"
-    "    str\tr0, [r4, #8]\n"
-    "    asrs\tr0, r0, #16\n"
-    "    movs\tr1, #145\t@ 0x91\n"
-    "    lsls\tr1, r1, #2\n"
-    "    cmp\tr0, r1\n"
-    "    ble .Lambient_33\n"
-    "    movs\tr0, #145\t@ 0x91\n"
-    "    lsls\tr0, r0, #18\n"
-    "    str\tr0, [r4, #8]\n"
-    ".Lambient_32:\n"
-    "    movs\tr0, #0\n"
-    "    strh\tr0, [r4, #16]\n"
-    ".Lambient_33:\n"
-    "    movs\tr2, #10\n"
-    "    ldrsh\tr0, [r4, r2]\n"
-    "    strh\tr0, [r4, #4]\n"
-    "    movs\tr6, #14\n"
-    "    ldrsh\tr0, [r4, r6]\n"
-    "    strh\tr0, [r4, #6]\n"
-    "    mov\tr1, r8\n"
-    "    adds\tr1, #71\t@ 0x47\n"
-    "    ldrb\tr0, [r1, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lambient_34\n"
-    "    mov\tr0, r8\n"
-    "    adds\tr0, #48\t@ 0x30\n"
-    "    bl UpdateIndexedResourceHandle\n"
-    "    lsls\tr0, r0, #30\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Lambient_36\n"
-    "    mov\tr1, r8\n"
-    "    adds\tr1, #68\t@ 0x44\n"
-    "    movs\tr0, #1\n"
-    "    b .Lambient_35\n"
-    ".Lambient_34:\n"
-    "    movs\tr0, #0\n"
-    ".Lambient_35:\n"
-    "    strb\tr0, [r1, #0]\n"
-    ".Lambient_36:\n"
-    "    ldrh\tr0, [r4, #16]\n"
-    "    subs\tr0, #1\n"
-    "    strh\tr0, [r4, #16]\n"
-    "    lsls\tr0, r0, #16\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Lambient_39\n"
-    "    movs\tr0, #3\n"
-    "    bl RandomBelow\n"
-    "    lsls\tr0, r0, #16\n"
-    "    asrs\tr1, r0, #16\n"
-    "    cmp\tr1, #3\n"
-    "    bne .Lambient_37\n"
-    "    movs\tr0, #0\n"
-    "    strb\tr0, [r4, #18]\n"
-    "    b .Lambient_38\n"
-    ".Lambient_37:\n"
-    "    movs\tr0, #1\n"
-    "    strb\tr0, [r4, #18]\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    bl GetRelativeFacing\n"
-    "    str\tr0, [r4, #0]\n"
-    ".Lambient_38:\n"
-    "    movs\tr0, #31\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #16\n"
-    "    strh\tr0, [r4, #16]\n"
-    "    movs\tr7, #1\n"
-    "    mov\tr9, r7\n"
-    ".Lambient_39:\n"
-    "    mov\tr0, r9\n"
-    "    add\tsp, #72\t@ 0x48\n"
-    "    pop\t{r3, r4}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
 );
+
+u32 UpdateWorldAmbientMotion(WorldAmbientSprite * self,
+    WorldAmbientMotion * motion, i32 speed_q16)
+{
+    u32 changed = 0;
+    MapTerrainView const & terrain = self->world->GetMapTerrain(0);
+    ActorMovementBounds limits(terrain, Box(motion->x, motion->y, 16, 16), 32);
+    switch (motion->state) {
+    case 0:
+        break;
+    case 1:
+        switch (static_cast<i32>(motion->direction)) {
+        case FACING_DOWN:
+            if (limits.GetDown() > 1)
+                motion->y_q16 += speed_q16;
+            else
+                motion->direction_ticks = 0;
+            break;
+        case FACING_UP:
+            if (limits.GetUp() < -1)
+                motion->y_q16 -= speed_q16;
+            else
+                motion->direction_ticks = 0;
+            break;
+        case FACING_LEFT:
+            if (limits.GetLeft() < -1)
+                motion->x_q16 -= speed_q16;
+            else
+                motion->direction_ticks = 0;
+            break;
+        case FACING_RIGHT:
+            if (limits.GetRight() > 1) {
+                motion->x_q16 += speed_q16;
+                if ((motion->x_q16 >> 16) > 580) {
+                    motion->x_q16 = 580 * 0x10000;
+                    motion->direction_ticks = 0;
+                }
+            } else
+                motion->direction_ticks = 0;
+            break;
+        default:
+            motion->direction_ticks = 0;
+            break;
+        }
+        break;
+    }
+    motion->x = motion->x_q16 >> 16;
+    motion->y = motion->y_q16 >> 16;
+    self->sprite.UpdateAnimation();
+    if (--motion->direction_ticks < 0) {
+        i16 relative = RandomBelow(3);
+        if (relative == 3)
+            motion->state = 0;
+        else {
+            motion->state = 1;
+            motion->direction = GetRelativeFacing(motion->direction, relative);
+        }
+        motion->direction_ticks = RandomBelow(31) + 16;
+        changed = 1;
+    }
+    return changed;
+}
 
 i32 GetWorldAmbientSpriteSine(WorldAmbientSprite const * self, i16 phase)
 {
@@ -504,45 +347,14 @@ i32 GetWorldAmbientSpriteCosine(WorldAmbientSprite const * self, i16 phase)
     return gWorldAmbientSineTable[(phase + 64) & 0xFF];
 }
 
+void PlayWorldAmbientSpriteSound(WorldAmbientSprite * self, u32 song_id)
+{
+    GameSceneSongPlayerPool const & pool = self->world->GetSongPlayerPool();
+    FindActorSoundPlayer(pool)->Start(static_cast<u16>(song_id));
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start PlayWorldAmbientSpriteSound\n"
-    "PlayWorldAmbientSpriteSound:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    adds\tr6, r1, #0\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #166\t@ 0xa6\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    ldr\tr4, [r0, #0]\n"
-    "    ldr\tr5, [r0, #4]\n"
-    "    cmp\tr4, r5\n"
-    "    beq .Lambient_44\n"
-    ".Lambient_42:\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    bl IsUnpaused__C23HardwareMusicPlayerSlot\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lambient_43\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    b .Lambient_45\n"
-    ".Lambient_43:\n"
-    "    adds\tr4, #4\n"
-    "    cmp\tr4, r5\n"
-    "    bne .Lambient_42\n"
-    ".Lambient_44:\n"
-    "    subs\tr0, r5, #4\n"
-    "    ldr\tr0, [r0, #0]\n"
-    ".Lambient_45:\n"
-    "    lsls\tr1, r6, #16\n"
-    "    lsrs\tr1, r1, #16\n"
-    "    bl Start__23HardwareMusicPlayerSlotUs\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
+    ".text\n"
     "    thumb_func_start PopulateWorldAmbientSprites\n"
     "PopulateWorldAmbientSprites:\n"
     "    push\t{r4, r5, r6, r7, lr}\n"
