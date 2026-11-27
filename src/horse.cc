@@ -4,16 +4,16 @@ Horse::Horse(char const * name, ActorLocation const & location, u32 age)
     : Pet(name, location, age)
 {
     unk_20 = 0;
-    unk_24.a.unk_00 = 0;
-    unk_24.a.unk_02 = 0;
+    movement.frames_remaining = 0;
+    movement.behavior = 0;
 }
 
 Horse::Horse(ActorLocation const & location, u32 age)
     : Pet(location, age)
 {
     unk_20 = 0;
-    unk_24.a.unk_00 = 0;
-    unk_24.a.unk_02 = 0;
+    movement.frames_remaining = 0;
+    movement.behavior = 0;
 }
 
 Horse::GrowthStage Horse::GetGrowthStage() const
@@ -21,9 +21,9 @@ Horse::GrowthStage Horse::GetGrowthStage() const
     return GetAge() < 120 ? STAGE_0 : STAGE_1;
 }
 
-void Horse::method_0809BC24(UnkBarnAnimal2C const * param)
+void Horse::SetMovementState(HorseMovementState const * param)
 {
-    unk_24.a = *param;
+    movement = *param;
     unk_20 = 0;
 }
 
@@ -43,6 +43,6 @@ void Horse::DayUpdate()
     Pet::DayUpdate(false);
 
     unk_20 = 0;
-    unk_24.a.unk_00 = 0;
-    unk_24.a.unk_02 = 0;
+    movement.frames_remaining = 0;
+    movement.behavior = 0;
 }

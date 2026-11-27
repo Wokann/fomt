@@ -3981,7 +3981,7 @@ HorseActor::HorseActor(GameObject * world, Horse * saved)
     : AnimalActor(world, Actor(*saved).location, ANIMATION_ID_1922), horse(saved), unk_3D(false)
 {
     PlayerActor * player = static_cast<PlayerActor *>(world->GetEntity(ENTITY_PLAYER));
-    unk_3E = player != 0 && player->IsRidingHorse();
+    rider_mounted = player != 0 && player->IsRidingHorse();
     SetBehavior(GetBehavior(), facing);
 }
 
@@ -3998,10 +3998,10 @@ HorseActor::~HorseActor()
 
 void HorseActor::PauseMovement(u32 frames)
 {
-    UnkBarnAnimal2C command;
-    command.unk_00 = frames;
-    command.unk_02 = 0;
-    horse->method_0809BC24(&command);
+    HorseMovementState command;
+    command.frames_remaining = frames;
+    command.behavior = 0;
+    horse->SetMovementState(&command);
     SetBehavior(GetBehavior(), facing);
 }
 
@@ -4731,7 +4731,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    ldr r0, [sp, #0xbc]\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__5HorsePC18HorseMovementState\n"
     ".Lraw_code_entities_3473_0:\n"
     "    adds r0, r6, #0\n"
     "    bl GetBehavior__C10HorseActor\n"
@@ -4848,7 +4848,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    ldr r0, [sp, #0xbc]\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__5HorsePC18HorseMovementState\n"
     "    adds r0, r6, #0\n"
     "    bl GetBehavior__C10HorseActor\n"
     "    adds r1, r0, #0\n"
@@ -4898,119 +4898,6 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .global UpdateWhileSuspended__10HorseActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "UpdateWhileSuspended__10HorseActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    adds r0, #0x3e\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_08021C66\n"
-    "    ldr r0, [r4]\n"
-    "    ldr r1, [r0]\n"
-    "    ldr r2, [r1, #0x40]\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    ldr r1, [r0, #0x14]\n"
-    "    adds r1, #0xa0\n"
-    "    ldr r1, [r1]\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_08021C6E\n"
-    ".Ljp_08021C66:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext\n"
-    ".Ljp_08021C6E:\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    .global func_08021C74\n"
-    "    .thumb_func\n"
-    "func_08021C74:\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #4\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl GetGrowthStage__C5Horse\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r5, #1\n"
-    "    bne .Ljp_08021CBE\n"
-    "    ldr r1, .Ljp_08021CC8\n"
-    "    ldr r0, [sp]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0x78\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Ljp_08021CCC\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    mov r1, sp\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x3e\n"
-    "    strb r5, [r0]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetHasPlayedToday__3Pet\n"
-    ".Ljp_08021CBE:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_08021CC8: .word 0xFFFF0000\n"
-    ".Ljp_08021CCC: .word 0xFF00FFFF\n"
-    "\n"
-    "    .global func_08021CD0\n"
-    "    .thumb_func\n"
-    "func_08021CD0:\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #4\n"
-    "    adds r4, r0, #0\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0x3e\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r1, .Ljp_08021D14\n"
-    "    ldr r0, [sp]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0x78\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Ljp_08021D18\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    mov r1, sp\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    add sp, #4\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_08021D14: .word 0xFFFF0000\n"
-    ".Ljp_08021D18: .word 0xFF00FFFF\n"
-    "\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -5738,7 +5625,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    ldr r0, [sp, #0xbc]\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__5HorsePC18HorseMovementState\n"
     ".Lraw_code_entities_37680_0:\n"
     "    adds r0, r6, #0\n"
     "    bl GetBehavior__C10HorseActor\n"
@@ -5855,7 +5742,7 @@ asm_unified(
     "    ands r0, r2\n"
     "    str r0, [r1]\n"
     "    ldr r0, [sp, #0xbc]\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
+    "    bl SetMovementState__5HorsePC18HorseMovementState\n"
     "    adds r0, r6, #0\n"
     "    bl GetBehavior__C10HorseActor\n"
     "    adds r1, r0, #0\n"
@@ -5905,119 +5792,41 @@ asm_unified(
     "    pop {r4, r5, r6, r7}\n"
     "    pop {r0}\n"
     "    bx r0\n"
-    "    .global UpdateWhileSuspended__10HorseActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "UpdateWhileSuspended__10HorseActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    adds r0, #0x3e\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .L08021ED2\n"
-    "    ldr r0, [r4]\n"
-    "    ldr r1, [r0]\n"
-    "    ldr r2, [r1, #0x40]\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    ldr r1, [r0, #0x14]\n"
-    "    adds r1, #0xa0\n"
-    "    ldr r1, [r1]\n"
-    "    bl _call_via_r1\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .L08021EDA\n"
-    ".L08021ED2:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl UpdateWhileSuspended__12AActorEntityRC19EntityUpdateContext\n"
-    ".L08021EDA:\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start func_08021EE0\n"
-    "func_08021EE0: @ 0x08021EE0\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #4\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl GetGrowthStage__C5Horse\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r5, #1\n"
-    "    bne .L08021F2A\n"
-    "    ldr r1, .L08021F34 @ =0xFFFF0000\n"
-    "    ldr r0, [sp]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0x78\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .L08021F38 @ =0xFF00FFFF\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    mov r1, sp\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x3e\n"
-    "    strb r5, [r0]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl SetHasPlayedToday__3Pet\n"
-    ".L08021F2A:\n"
-    "    add sp, #4\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".L08021F34: .word 0xFFFF0000\n"
-    ".L08021F38: .word 0xFF00FFFF\n"
-    "\n"
-    "    thumb_func_start func_08021F3C\n"
-    "func_08021F3C: @ 0x08021F3C\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #4\n"
-    "    adds r4, r0, #0\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0x3e\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    ldr r1, .L08021F80 @ =0xFFFF0000\n"
-    "    ldr r0, [sp]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0x78\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .L08021F84 @ =0xFF00FFFF\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp]\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    mov r1, sp\n"
-    "    bl method_0809BC24__5HorsePC15UnkBarnAnimal2C\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetBehavior__C10HorseActor\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    adds r0, r4, #0\n"
-    "    bl SetBehavior__10HorseActorUiUi\n"
-    "    add sp, #4\n"
-    "    pop {r4}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".L08021F80: .word 0xFFFF0000\n"
-    ".L08021F84: .word 0xFF00FFFF\n"
-    "\n"
 );
 #endif
+
+void HorseActor::UpdateWhileSuspended(EntityUpdateContext const & context)
+{
+    if (rider_mounted != 0 && static_cast<PlayerActor *>(game_object->GetEntity(ENTITY_PLAYER))
+        ->GetUpdateSuspended() != 0)
+        return;
+    AActorEntity::UpdateWhileSuspended(context);
+}
+
+void HorseActor::BeginRiding()
+{
+    Horse::GrowthStage growth = horse->GetGrowthStage();
+    if (growth == Horse::STAGE_1) {
+        HorseMovementState command;
+        command.frames_remaining = 120;
+        command.behavior = 0;
+        horse->SetMovementState(&command);
+        SetBehavior(GetBehavior(), facing);
+        rider_mounted = true;
+        horse->SetHasPlayedToday();
+    }
+}
+
+void HorseActor::EndRiding()
+{
+    rider_mounted = 0;
+    HorseMovementState command;
+    command.frames_remaining = 120;
+    command.behavior = 0;
+    horse->SetMovementState(&command);
+    SetBehavior(GetBehavior(), facing);
+}
+
 
 u32 HorseActor::GetBehaviorAnimation(u32 behavior) const
 {
@@ -6205,7 +6014,7 @@ void HorseActor::SetBehavior(u32 behavior, u32 direction)
     SetAnimIfChanged(GetBehaviorAnimation(behavior));
     SetFacingIfChanged(direction);
     SetMovementSpeed(GetBehaviorMoveSpeed(behavior));
-    if (behavior != last_behavior && !unk_3E) {
+    if (behavior != last_behavior && !rider_mounted) {
         i32 effect = -1;
         if (behavior == 4)
             effect = 8;
@@ -6223,7 +6032,7 @@ u32 HorseActor::GetBehavior() const
     default:
         return 0;
     case 0:
-        return horse->unk_24.a.unk_02;
+        return horse->movement.behavior;
     case 1:
         return 2;
     case 2:
@@ -6235,10 +6044,10 @@ u32 HorseActor::GetBehavior() const
 void HorseActor::vfunc_40()
 {
     if (horse->unk_20 == 2) {
-        UnkBarnAnimal2C command;
-        command.unk_00 = 180;
-        command.unk_02 = 0;
-        horse->method_0809BC24(&command);
+        HorseMovementState command;
+        command.frames_remaining = 180;
+        command.behavior = 0;
+        horse->SetMovementState(&command);
         if (!unk_3D)
             SetBehavior(GetBehavior(), facing);
     }
@@ -7601,179 +7410,28 @@ extern "C" u32 GetChickenEffectOffsetKind(u32 growth_stage)
     return 6;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__12ChickenActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12ChickenActor:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [r7, #0x34]\n"
-    "    bl GetGrowthStage__C7Chicken\n"
-    "    adds r5, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    adds r6, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetChickenAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetChickenEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r5, #0\n"
-    "    str r5, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r5, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r7, #0\n"
-    "    movs r2, #2\n"
-    "    movs r3, #9\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r7, #0x34]\n"
-    "    bl GetGrowthStage__C7Chicken\n"
-    "    movs r1, #0\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022950\n"
-    "    movs r1, #3\n"
-    "    .Lauto_08022950:\n"
-    "    adds r0, r7, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lauto_080229A2\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r1, [r0]\n"
-    "    movs r2, #0xa2\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r1, r2\n"
-    "    ldr r1, [r1]\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lauto_080229A2\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r5, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r3, r4, #0\n"
-    "    adds r3, #0x8a\n"
-    "    movs r2, #2\n"
-    "    ldrb r1, [r3]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r2\n"
-    "    strb r0, [r3]\n"
-    "    .Lauto_080229A2:\n"
-    "    adds r0, r4, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__12ChickenActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__12ChickenActor:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [r7, #0x34]\n"
-    "    bl GetGrowthStage__C7Chicken\n"
-    "    adds r5, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    adds r6, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetChickenAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetChickenEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r5, #0\n"
-    "    str r5, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r5, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r7, #0\n"
-    "    movs r2, #2\n"
-    "    movs r3, #9\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    ldr r0, [r7, #0x34]\n"
-    "    bl GetGrowthStage__C7Chicken\n"
-    "    movs r1, #0\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39253_8\n"
-    "    movs r1, #3\n"
-    ".Lraw_code_entities_39253_8:\n"
-    "    adds r0, r7, #0\n"
-    "    adds r0, #0x38\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lraw_code_entities_39262_14\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r1, [r0]\n"
-    "    movs r2, #0xa2\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r1, r1, r2\n"
-    "    ldr r1, [r1]\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lraw_code_entities_39262_14\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r5, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r3, r4, #0\n"
-    "    adds r3, #0x8a\n"
-    "    movs r2, #2\n"
-    "    ldrb r1, [r3]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r2\n"
-    "    strb r0, [r3]\n"
-    ".Lraw_code_entities_39262_14:\n"
-    "    adds r0, r4, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-);
-#endif
+static inline void StartAnimalSpriteEffect(EntitySpriteController * controller,
+    u32 index, EntitySpriteEffectMode mode)
+{
+    controller->effect.SetAnimation(index);
+    controller->effect_mode = mode;
+}
+
+EntityVisualController * ChickenActor::CreateVisualController()
+{
+    Chicken::GrowthStage growth = livestock->GetGrowthStage();
+    EntitySpriteController * controller = new EntitySpriteController(this, 2, 9,
+        GetChickenAuxRenderProfile(growth), GetChickenEffectOffsetKind(growth), 0, false);
+    u32 sleeping_behavior = livestock->GetGrowthStage() == Chicken::STAGE_0 ? 0 : 3;
+    if (last_behavior == sleeping_behavior) {
+        u32 hour = game_object->GetClock()->calendar.time.clock_hour;
+        if (hour < 6 || hour > 20) {
+            StartAnimalSpriteEffect(controller, 8, ENTITY_SPRITE_EFFECT_PERSISTENT);
+        }
+    }
+    return controller;
+}
+
 
 
 CowActor::CowActor(GameObject * world, Cow * saved)

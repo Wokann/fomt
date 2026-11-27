@@ -107,6 +107,8 @@ struct HorseActor : AnimalActor {
     virtual void RespondToPush(u32 facing, u32 frames);
     virtual void PauseMovement(u32 frames);
     void RespondToCall(Location const & origin);
+    void BeginRiding();
+    void EndRiding();
     i32 GetBehaviorMoveSpeed(u32 behavior) const;
     u32 GetBehaviorAnimation(u32 behavior) const;
     u32 GetBehavior() const;
@@ -117,7 +119,7 @@ struct HorseActor : AnimalActor {
     i16 saved_y;
     u8 last_behavior;
     u8 unk_3D;
-    u8 unk_3E;
+    u8 rider_mounted;
 };
 
 

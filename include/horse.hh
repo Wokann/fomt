@@ -6,6 +6,14 @@
 #include "pet.hh"
 #include "unknown_types.hh"
 
+// Movement commands preserve the unread upper byte when changing their
+// countdown and behavior. Call/bell approach uses a separate eight-byte state.
+struct HorseMovementState {
+    u32 frames_remaining : 16;
+    u32 behavior : 8;
+    u32 unknown_high_byte : 8;
+};
+
 struct Horse : public Pet
 {
     enum GrowthStage
@@ -18,14 +26,14 @@ struct Horse : public Pet
     Horse(ActorLocation const & location, u32 age);
 
     GrowthStage GetGrowthStage() const;
-    void method_0809BC24(UnkBarnAnimal2C const * param);
+    void SetMovementState(HorseMovementState const * param);
     void SetApproachState(AnimalApproachPayload const * param);
     void SetPushedState(UnkBarnAnimal2C const * command);
     void DayUpdate();
 
     /* +20 */ u32 unk_20;
     /* +24 */ union {
-        UnkBarnAnimal2C_x2 unk_24;
+        HorseMovementState movement;
         AnimalApproachPayload approach;
     };
 };
