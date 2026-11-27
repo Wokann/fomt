@@ -13,7 +13,7 @@
 #endif
 
 // ABI layout shared with the remaining assembly consumers. These offsets
-// follow member order; C++ sizeof/offsetof checks below verify the contract.
+// follow the declared member order.
 #define INTRO_SCENE_RESOURCE_HANDLE_SIZE 0x14
 #define INTRO_SCENE_RESOURCE_HANDLE_OFFSET 0
 #define INTRO_SCENE_RESOURCE_RESOLVED_OFFSET (INTRO_SCENE_RESOURCE_HANDLE_OFFSET + 4)
@@ -93,11 +93,11 @@ struct IntroSceneUnpackedResources
 union IntroSceneResourceFlags
 {
     // Native frame updates store the complete returned word. Consumers test
-    // its low-byte fields; the signed wrap bit reads as zero or minus one.
+    // its low-byte fields; signed group/wrap flags read as zero or minus one.
     u32 raw;
     struct {
         u8 entry_advanced : 1;
-        u8 group_changed : 1;
+        i8 group_changed : 1;
         i8 wrapped : 1;
         u8 unk_3 : 5;
     } bits;
