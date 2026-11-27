@@ -1,73 +1,38 @@
 #include "prelude.h"
+#include <iterator>
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "thumb_func_start find__H2ZPUcZUc_X01T0RCX11G26random_access_iterator_tag_X01\n"
-    "find__H2ZPUcZUc_X01T0RCX11G26random_access_iterator_tag_X01:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r5, r1, #0\n"
-    "    adds r4, r2, #0\n"
-    "    adds r3, r0, #0\n"
-    "    subs r0, r5, r3\n"
-    "    asrs r2, r0, #2\n"
-    "    cmp r2, #0\n"
-    "    ble .Lscalar_5_1\n"
-    "    ldrb r1, [r4, #0]\n"
-    ".Lscalar_5_0:\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    "    subs r2, #1\n"
-    "    cmp r2, #0\n"
-    "    bgt .Lscalar_5_0\n"
-    ".Lscalar_5_1:\n"
-    "    subs r0, r5, r3\n"
-    "    cmp r0, #1\n"
-    "    beq .Lscalar_5_3\n"
-    "    cmp r0, #1\n"
-    "    ble .Lscalar_5_5\n"
-    "    cmp r0, #2\n"
-    "    beq .Lscalar_5_2\n"
-    "    cmp r0, #3\n"
-    "    bne .Lscalar_5_5\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    ldrb r1, [r4, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    ".Lscalar_5_2:\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    ldrb r1, [r4, #0]\n"
-    "    cmp r0, r1\n"
-    "    beq .Lscalar_5_4\n"
-    "    adds r3, #1\n"
-    ".Lscalar_5_3:\n"
-    "    ldrb r0, [r3, #0]\n"
-    "    ldrb r4, [r4, #0]\n"
-    "    cmp r0, r4\n"
-    "    bne .Lscalar_5_5\n"
-    ".Lscalar_5_4:\n"
-    "    adds r0, r3, #0\n"
-    "    b .Lscalar_5_6\n"
-    ".Lscalar_5_5:\n"
-    "    adds r0, r5, #0\n"
-    ".Lscalar_5_6:\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
+namespace std {
+template <class Iterator, class Value>
+Iterator find(Iterator, Iterator, Value const &, random_access_iterator_tag);
+
+template <>
+u8 * find<u8 *, u8>(u8 * begin, u8 * last, u8 const & value, random_access_iterator_tag)
+{
+    u8 * current = begin;
+    ptrdiff_t groups = (last - current) >> 2;
+    for (; groups > 0; --groups) {
+        if (*current == value) return current;
+        ++current;
+        if (*current == value) return current;
+        ++current;
+        if (*current == value) return current;
+        ++current;
+        if (*current == value) return current;
+        ++current;
+    }
+    switch (last - current) {
+    case 3:
+        if (*current == value) return current;
+        ++current;
+    case 2:
+        if (*current == value) return current;
+        ++current;
+    case 1:
+        if (*current == value) return current;
+        ++current;
+    case 0:
+    default:
+        return last;
+    }
+}
+}
