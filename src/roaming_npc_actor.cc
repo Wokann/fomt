@@ -574,30 +574,13 @@ u32 RoamingNpcActor::vfunc_34()
     return unk_3C;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start vfunc_10__15RoamingNpcActor\n"
-    "vfunc_10__15RoamingNpcActor:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    adds\tr0, #64\t@ 0x40\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_0803744A\n"
-    "    ldr\tr0, [r4, #20]\n"
-    "    ldr\tr1, [r0, #60]\t@ 0x3c\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    ".Lus_0803744A:\n"
-    "    movs\tr0, #0\n"
-    "    strh\tr0, [r4, #62]\t@ 0x3e\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl vfunc_10__7AEntity\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-);
+void RoamingNpcActor::vfunc_10()
+{
+    if (!unk_40)
+        ResetLocation();
+    behavior_countdown = 0;
+    AEntity::vfunc_10();
+}
 
 void RoamingNpcActor::vfunc_14()
 {
@@ -1096,45 +1079,30 @@ u32 YodelRanchHouseRoamingNpc::GetBehaviorAnimation(u32 behavior) const
     return gUnk_080F161C[behavior];
 }
 
+i32 YodelRanchHouseRoamingNpc::GetBehaviorSpeed(u32 behavior) const
+{
+    switch (behavior) {
+    case 0:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 12:
+    default:
+        return 0;
+    case 1:
+        return 0x8000;
+    case 2:
+    case 11:
+        return 0x10000;
+    }
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorSpeed__C25YodelRanchHouseRoamingNpcUi\n"
-    "GetBehaviorSpeed__C25YodelRanchHouseRoamingNpcUi:\n"
-    "    push\t{lr}\n"
-    "    cmp\tr1, #12\n"
-    "    bhi .Lus_08037944\n"
-    "    lsls\tr0, r1, #2\n"
-    "    ldr r1, .Lus_0803790C\n"
-    "    adds\tr0, r0, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    mov\tpc, r0\n"
-    ".Lus_0803790C: .word .Lus_08037910\n"
-    ".Lus_08037910: .word .Lus_08037944\n"
-    "    .word .Lus_08037948\n"
-    "    .word .Lus_0803794E\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_08037944\n"
-    "    .word .Lus_0803794E\n"
-    "    .word .Lus_08037944\n"
-    ".Lus_08037944:\n"
-    "    movs\tr0, #0\n"
-    "    b .Lus_08037952\n"
-    ".Lus_08037948:\n"
-    "    movs r0, #128\n"
-    "    lsls r0, r0, #8\n"
-    "    b .Lus_08037952\n"
-    ".Lus_0803794E:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #9\n"
-    ".Lus_08037952:\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
     "    .align 2, 0\n"
     "    thumb_func_start SelectNextBehavior__24InnSecondFloorRoamingNpc\n"
     "SelectNextBehavior__24InnSecondFloorRoamingNpc:\n"
@@ -1409,101 +1377,18 @@ YodelRanchHouseRoamingNpc::YodelRanchHouseRoamingNpc(GameObject * game_object,
 {
 }
 
-asm_unified(
-    ".text\n"
-    "thumb_func_start __20SouthTownRoamingNpc2P10GameObjectP13ActorLocationUi\n"
-    "__20SouthTownRoamingNpc2P10GameObjectP13ActorLocationUi:\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #12\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r3, #0\n"
-    "    movs r3, #171\n"
-    "    lsls r3, r3, #2\n"
-    "    movs r0, #11\n"
-    "    str r0, [sp, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lscalar_7450_0\n"
-    "    str r0, [r5, #20]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #68\n"
-    "    movs r0, #3\n"
-    "    ands r4, r0\n"
-    "    ldrb r1, [r2, #0]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r4\n"
-    "    strb r0, [r2, #0]\n"
-    "    add r3, sp, #4\n"
-    "    movs r1, #230\n"
-    "    lsls r1, r1, #2\n"
-    "    movs r2, #144\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r0, r3, #0\n"
-    "    strh r1, [r0, #0]\n"
-    "    strh r2, [r3, #2]\n"
-    "    movs r0, #164\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r1, r1, r0\n"
-    "    strh r1, [r3, #4]\n"
-    "    adds r2, #8\n"
-    "    strh r2, [r3, #6]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r3, #0\n"
-    "    bl SetAvoidanceBox__15RoamingNpcActorRC3Box\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #12\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".Lscalar_7450_0: .word __vt_20SouthTownRoamingNpc2\n"
-);
+SouthTownRoamingNpc2::SouthTownRoamingNpc2(GameObject * game_object,
+    ActorLocation * saved_location, u32 index)
+    : RoamingNpcActor(game_object, saved_location, ANIMATION_COW_IDLE, 11),
+      index(index)
+{
+    SetAvoidanceBox(Box(0, 0, 328, 8, 920, 288));
+}
 
-asm_unified(
-    ".text\n"
-    "thumb_func_start __20SouthTownRoamingNpc1P10GameObjectP13ActorLocationUi\n"
-    "__20SouthTownRoamingNpc1P10GameObjectP13ActorLocationUi:\n"
-    "    push {r4, r5, lr}\n"
-    "    sub sp, #12\n"
-    "    adds r5, r0, #0\n"
-    "    adds r4, r3, #0\n"
-    "    ldr r3, .Lscalar_7451_0\n"
-    "    movs r0, #0\n"
-    "    str r0, [sp, #0]\n"
-    "    adds r0, r5, #0\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lscalar_7451_1\n"
-    "    str r0, [r5, #20]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #68\n"
-    "    movs r0, #3\n"
-    "    ands r4, r0\n"
-    "    ldrb r1, [r2, #0]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r4\n"
-    "    strb r0, [r2, #0]\n"
-    "    add r2, sp, #4\n"
-    "    movs r1, #176\n"
-    "    lsls r1, r1, #1\n"
-    "    movs r3, #216\n"
-    "    adds r0, r2, #0\n"
-    "    strh r1, [r0, #0]\n"
-    "    strh r3, [r2, #2]\n"
-    "    adds r1, #56\n"
-    "    strh r1, [r2, #4]\n"
-    "    movs r0, #232\n"
-    "    strh r0, [r2, #6]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r2, #0\n"
-    "    bl SetAvoidanceBox__15RoamingNpcActorRC3Box\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #12\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".Lscalar_7451_0: .word 0x0000071c\n"
-    ".Lscalar_7451_1: .word __vt_20SouthTownRoamingNpc1\n"
-);
+SouthTownRoamingNpc1::SouthTownRoamingNpc1(GameObject * game_object,
+    ActorLocation * saved_location, u32 index)
+    : RoamingNpcActor(game_object, saved_location, ANIMATION_CHICKEN_IDLE, 0),
+      index(index)
+{
+    SetAvoidanceBox(Box(0, 0, 56, 16, 352, 216));
+}
