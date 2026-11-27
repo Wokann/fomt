@@ -63,6 +63,8 @@ struct ObjTileCollectionEntry {
         handle = AllocateObjTileHandle(this, size_shift);
     }
 
+    bool HasHandle() const { return handle != 0; }
+
     u32 GetTileIndex() const
     { return GetObjTileIndex(this, handle); }
 

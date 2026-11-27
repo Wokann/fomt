@@ -56,6 +56,14 @@ public:
 struct HardwareDmaQueue;
 struct WorldSpriteDrawBuffer;
 
+struct GameSceneSpriteDrawContext {
+    HardwareDmaQueue * queue;
+    WorldSpriteDrawBuffer * buffer;
+
+    GameSceneSpriteDrawContext(HardwareDmaQueue * queue, WorldSpriteDrawBuffer * buffer)
+        : queue(queue), buffer(buffer) {}
+};
+
 // Native base owns OBJ tiles and the palette slots returned by GameObject.
 struct GameSceneSpriteBase {
     GameObject * world;
@@ -88,6 +96,20 @@ u32 SubmitWorldSpriteRecords(WorldSpriteDrawBuffer * buffer, i32 x, i32 y,
     GameScenePaletteIndices const & palette_map) __attribute__((long_call));
 
 EXTERN_C_END
+
+static inline u32 SubmitGameSceneSprite(GameSceneSpriteBase const * sprite,
+    WorldSpriteDrawBuffer * buffer, i32 x, i32 y, u32 priorities, u32 sort_key,
+    IndexedResourceSpriteRange const & range, GameObject * palette_source)
+{
+    bool has_handle = sprite->tiles.HasHandle();
+    if (has_handle) {
+        u32 first_tile = sprite->tile_index;
+        GameScenePaletteIndices const & palette_indices = sprite->palettes;
+        return SubmitWorldSpriteRecords(buffer, x, y, priorities, sort_key,
+            range, palette_source, first_tile, palette_indices);
+    }
+    return 0;
+}
 
 
 #endif // SCENE_SPRITE_HH

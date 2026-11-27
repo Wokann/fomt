@@ -20,6 +20,8 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
 
     inline void SetAnimation(u32 index);
     inline IndexedResourceUpdateResult UpdateAnimation();
+    inline void Draw(GameSceneSpriteDrawContext const & context, i32 x, i32 y,
+        u32 priorities, u32 sort_key);
 };
 
 
@@ -48,6 +50,25 @@ inline IndexedResourceUpdateResult GameSceneIndexedSprite::UpdateAnimation()
     initial.value = INDEXED_RESOURCE_GROUP_CHANGED;
     return initial;
 }
+
+inline void GameSceneIndexedSprite::Draw(GameSceneSpriteDrawContext const & context,
+    i32 x, i32 y, u32 priorities, u32 sort_key)
+{
+    IndexedResourceGroupResult const & group = handle.GetGroupData();
+    u32 submitted = SubmitGameSceneSprite(this, context.buffer, x, y,
+        priorities, sort_key, group.sprites, world);
+    if (submitted != 0 && unk_3C) {
+        QueueTileUpload(*context.queue, group.tiles);
+        if (unk_3D)
+            UploadPalettes(group.palettes, 1);
+        else if (!unk_3E) {
+            UploadPalettes(group.palettes, 1);
+            unk_3E = 1;
+        }
+        unk_3C = 0;
+    }
+}
+
 
 
 #endif // SCENE_SPRITE_INDEXED_HH

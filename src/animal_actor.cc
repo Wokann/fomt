@@ -3817,7 +3817,7 @@ extern "C" u32 GetDogAuxRenderProfile(u32 growth_stage)
     return ENTITY_AUX_RENDER_SMALL_ANIMAL;
 }
 
-extern "C" u32 GetDogSpriteUnknown8A2(u32 growth_stage)
+extern "C" u32 GetDogEffectOffsetKind(u32 growth_stage)
 {
     switch (growth_stage)
     {
@@ -3850,7 +3850,7 @@ asm_unified(
     "    bl GetDogAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetDogSpriteUnknown8A2\n"
+    "    bl GetDogEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -3922,7 +3922,7 @@ asm_unified(
     "    bl GetDogAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetDogSpriteUnknown8A2\n"
+    "    bl GetDogEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -6294,11 +6294,11 @@ void HorseActor::RespondToCall(Location const & origin)
 
 
 extern "C" u32 GetHorseAuxRenderProfile(u32 growth_stage);
-extern "C" u32 GetHorseSpriteUnknown8A2(u32 growth_stage);
+extern "C" u32 GetHorseEffectOffsetKind(u32 growth_stage);
 
 HorseSpriteController::HorseSpriteController(AActorEntity * owner, u32 growth_stage)
     : EntitySpriteController(owner, 5, 13, GetHorseAuxRenderProfile(growth_stage),
-          GetHorseSpriteUnknown8A2(growth_stage), 0, false)
+          GetHorseEffectOffsetKind(growth_stage), 0, false)
 {
 }
 
@@ -6320,7 +6320,7 @@ extern "C" u32 GetHorseAuxRenderProfile(u32 growth_stage)
     }
 }
 
-extern "C" u32 GetHorseSpriteUnknown8A2(u32 growth_stage)
+extern "C" u32 GetHorseEffectOffsetKind(u32 growth_stage)
 {
     switch (growth_stage) {
     case Horse::STAGE_0:
@@ -7589,7 +7589,7 @@ extern "C" u32 GetChickenAuxRenderProfile(u32 growth_stage)
     return ENTITY_AUX_RENDER_SMALL_ANIMAL;
 }
 
-extern "C" u32 GetChickenSpriteUnknown8A2(u32 growth_stage)
+extern "C" u32 GetChickenEffectOffsetKind(u32 growth_stage)
 {
     switch (growth_stage)
     {
@@ -7620,7 +7620,7 @@ asm_unified(
     "    bl GetChickenAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl GetChickenSpriteUnknown8A2\n"
+    "    bl GetChickenEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r5, #0\n"
@@ -7706,7 +7706,7 @@ asm_unified(
     "    bl GetChickenAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r5, #0\n"
-    "    bl GetChickenSpriteUnknown8A2\n"
+    "    bl GetChickenEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r5, #0\n"
@@ -9646,7 +9646,7 @@ extern "C" u32 GetCowAuxRenderProfile(u32 growth_stage)
     return ENTITY_AUX_RENDER_DEFAULT;
 }
 
-extern "C" u32 GetCowSpriteUnknown8A2(u32 growth_stage)
+extern "C" u32 GetCowEffectOffsetKind(u32 growth_stage)
 {
     switch (growth_stage)
     {
@@ -9681,7 +9681,7 @@ asm_unified(
     "    bl GetCowAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetCowSpriteUnknown8A2\n"
+    "    bl GetCowEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -9751,7 +9751,7 @@ asm_unified(
     "    bl GetCowAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetCowSpriteUnknown8A2\n"
+    "    bl GetCowEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -11695,7 +11695,7 @@ extern "C" u32 GetSheepAuxRenderProfile(u32 growth_stage)
     }
 }
 
-extern "C" u32 GetSheepSpriteUnknown8A2(u32 growth_stage)
+extern "C" u32 GetSheepEffectOffsetKind(u32 growth_stage)
 {
     switch (growth_stage)
     {
@@ -11728,7 +11728,7 @@ asm_unified(
     "    bl GetSheepAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetSheepSpriteUnknown8A2\n"
+    "    bl GetSheepEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"
@@ -11798,7 +11798,7 @@ asm_unified(
     "    bl GetSheepAuxRenderProfile\n"
     "    adds r4, r0, #0\n"
     "    adds r0, r6, #0\n"
-    "    bl GetSheepSpriteUnknown8A2\n"
+    "    bl GetSheepEffectOffsetKind\n"
     "    str r4, [sp]\n"
     "    str r0, [sp, #4]\n"
     "    movs r6, #0\n"

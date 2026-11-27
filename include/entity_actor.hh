@@ -28,14 +28,14 @@ enum EntitySpriteEffectMode {
 struct AActorEntity;
 
 // Two independently allocated OBJ resources: the actor animation and
-// its attached effect. Virtual Update/Draw bodies remain assembly;
-// construction, controls and cleanup use the observed member lifetimes.
+// its attached effect. Updates and drawing use their borrowed resource
+// groups; construction and cleanup follow the observed member lifetimes.
 #pragma interface "entity_actor_lifetimes.hh"
 struct EntitySpriteController : EntityVisualController {
     EntitySpriteController(AActorEntity * entity, u32 size_shift, u32 palette_kind,
-        u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B, bool sprite_unknown_3D);
+        u32 aux_render_profile, u32 effect_offset_kind, u32 unknown_8B, bool sprite_unknown_3D);
     EntitySpriteController(AActorEntity * entity, u32 size_shift, i32 const * palette_kinds,
-        u32 palette_count, u32 aux_render_profile, u32 unknown_8A2, u32 unknown_8B,
+        u32 palette_count, u32 aux_render_profile, u32 effect_offset_kind, u32 unknown_8B,
         bool sprite_unknown_3D);
 
     virtual void Update();
@@ -44,13 +44,13 @@ struct EntitySpriteController : EntityVisualController {
     GameSceneIndexedSprite sprite;
     GameSceneIndexedSprite effect;
     u8 aux_render_profile;
-    u8 unk_89;
+    i8 unk_89;
     u8 effect_mode : 2;
-    u8 unk_8A_2 : 6;
+    u8 effect_offset_kind : 6;
     u8 unk_8B;
 
     void SetAnimation(u32 index);
-    void SetUnknown8A2(u32 value);
+    void SetEffectOffsetKind(u32 value);
     void StartEffect(u32 index, bool persistent);
     void StopEffect();
     // Canonical values are MaryEntityAuxRenderProfile. Native callers
@@ -221,9 +221,9 @@ inline void EntitySpriteController::SetAnimation(u32 index)
     this->sprite.unk_3F = 1;
 }
 
-inline void EntitySpriteController::SetUnknown8A2(u32 value)
+inline void EntitySpriteController::SetEffectOffsetKind(u32 value)
 {
-    this->unk_8A_2 = value;
+    this->effect_offset_kind = value;
 }
 
 inline void EntitySpriteController::StartEffect(u32 index, bool persistent)
@@ -278,13 +278,13 @@ inline bool EntitySpriteController::WouldAnimationWrap() const
 
 #include "entity_actor_lifetimes.hh"
 
-struct EntityUiScreenOffset
+struct EntitySpriteEffectOffset
 {
     i16 x;
     i16 y;
 };
 
-extern "C" EntityUiScreenOffset const gUnk_080F1328[];
+extern "C" EntitySpriteEffectOffset const gEntitySpriteEffectOffsets[][4];
 
 
 extern "C" char const gCppRuntimeError_EntityUiBeforeOffsets[];
