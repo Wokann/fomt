@@ -18,6 +18,7 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
     u8 unk_3E;
     u8 unk_3F;
 
+    inline void SetResource(IndexedResourceProvider * resource, u32 index);
     inline void SetAnimation(u32 index);
     inline IndexedResourceUpdateResult UpdateAnimation();
     inline void Draw(GameSceneSpriteDrawContext const & context, i32 x, i32 y,
@@ -28,6 +29,14 @@ struct GameSceneIndexedSprite : GameSceneSpriteBase {
 // These accessors belong to the ordinary sprite interface. They remain
 // available for inlining; the native ROM has no separate accessor entries.
 #pragma interface "scene_sprite.hh"
+
+inline void GameSceneIndexedSprite::SetResource(IndexedResourceProvider * resource, u32 index)
+{
+    InitializeIndexedResourceHandle(&handle, resource, index);
+    unk_3C = 1;
+    unk_3E = 0;
+    unk_3F = 1;
+}
 
 inline void GameSceneIndexedSprite::SetAnimation(u32 index)
 {

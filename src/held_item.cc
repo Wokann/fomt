@@ -4,7 +4,7 @@ HeldItem::HeldItem()
 {
     kind = HeldItem::KIND_ACTOR_GRAPHIC;
     wrapped = 0;
-    inner.unk_k5_02 = UINT16_MAX;
+    inner.actor_graphic_index = UINT16_MAX;
 }
 
 EC bool IsHeldItemEmpty(HeldItem const * self)
@@ -30,7 +30,7 @@ EC bool IsHeldItemEmpty(HeldItem const * self)
             return false;
 
         case HeldItem::KIND_ACTOR_GRAPHIC:
-            return self->inner.unk_k5_02 == 0xFFFF;
+            return self->inner.actor_graphic_index == 0xFFFF;
     }
 }
 
@@ -106,10 +106,10 @@ EC int GetHeldChickenSlot(HeldItem const * self)
     return -1;
 }
 
-EC int func_0800F360(HeldItem const * self)
+EC int GetHeldActorGraphicIndex(HeldItem const * self)
 {
-    if (self->kind == HeldItem::KIND_ACTOR_GRAPHIC && self->inner.unk_k5_02 < 0xFFFF)
-        return self->inner.unk_k5_02;
+    if (self->kind == HeldItem::KIND_ACTOR_GRAPHIC && self->inner.actor_graphic_index < 0xFFFF)
+        return self->inner.actor_graphic_index;
 
     return -1;
 }
@@ -123,7 +123,7 @@ EC void ClearHeldItem(HeldItem * self)
 {
     self->kind = HeldItem::KIND_ACTOR_GRAPHIC;
     self->wrapped = 0;
-    self->inner.unk_k5_02 = UINT16_MAX;
+    self->inner.actor_graphic_index = UINT16_MAX;
 }
 
 EC void func_0800F3B0(HeldItem * self, Food food)
@@ -195,7 +195,7 @@ EC void func_0800F510(HeldItem * self, int arg_1)
 {
     self->kind = HeldItem::KIND_ACTOR_GRAPHIC;
     self->wrapped = 0;
-    self->inner.unk_k5_02 = arg_1;
+    self->inner.actor_graphic_index = arg_1;
 }
 
 EC bool func_0800F528(HeldItem * self)

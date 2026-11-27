@@ -14,6 +14,27 @@ struct Article;
 struct Food;
 struct GameStateSaveImage;
 struct Farmer;
+// Q16 offsets, planar velocity and vertical motion of the held graphic.
+// The native renderer accepts state 1; retain the full stored state byte.
+struct PlayerHeldGraphic
+{
+    u8 state;
+    u8 shadow_visible;
+    i32 x_offset;
+    i32 y_offset;
+    i32 x_velocity;
+    i32 y_velocity;
+    i32 height;
+    i32 vertical_velocity;
+
+    void SetPosition(i32 x, i32 y, i32 z)
+    {
+        x_offset = x;
+        y_offset = y;
+        height = z;
+    }
+};
+
 #pragma interface "player_actor.hh"
 // Address-only declaration of the native ABI table; calls use PlayerActorBase.
 
@@ -22,7 +43,12 @@ struct PlayerActor : PlayerActorBase {
     virtual void vfunc_10();
     virtual void SuspendNormalUpdates();
     virtual void ResumeNormalUpdates();
+    // Shadow values other than 0 and 1 leave the existing flag unchanged.
+    void SetHeldGraphic(u32 resource_index, i32 shadow);
+    void ShowSelectedToolGraphic();
     void RefreshHeldItemGraphic();
+    void HideHeldGraphic();
+    bool IsOnOverworld() const;
     /* vt+3C */ virtual u8 vfunc_3C() const;
     /* vt+40 */ virtual bool IsRidingHorse() const;
     /* vt+44 */ virtual bool IsHoldingTool();
@@ -63,7 +89,7 @@ struct PlayerActor : PlayerActorBase {
     Farmer * farmer;
     bool IsHoldingActorGraphic() const
     {
-        u8 const & state = held_actor_graphic_state;
+        u8 const & state = held_graphic.state;
         bool holding = false;
         if (state == 1)
             holding = true;
@@ -79,8 +105,7 @@ struct PlayerActor : PlayerActorBase {
     bool holding_tool;
     u16 unk_7C;
     u8 unk_7E[0x0A];
-    u8 held_actor_graphic_state;
-    u8 unk_89[0xA4 - 0x89];
+    PlayerHeldGraphic held_graphic;
     u8 unk_A4;
     u8 unk_A5[0xA8 - 0xA5];
     MaryHeldItemKind presented_item_kind;

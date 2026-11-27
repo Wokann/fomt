@@ -44,7 +44,7 @@ struct HeldItem
             u8 slot;
         } chicken;
 
-        u16 unk_k5_02;
+        u16 actor_graphic_index;
     };
 
     Kind kind : 3;
@@ -64,6 +64,7 @@ EC void func_0800F3B0(HeldItem * self, Food food);
 EC void func_0800F3E8(HeldItem * self, Article article);
 // A missing, wrong-kind or out-of-range chicken slot returns -1.
 EC int GetHeldChickenSlot(HeldItem const * self);
+EC int GetHeldActorGraphicIndex(HeldItem const * self);
 // Preserve the native modulo-eight selection, rather than clamping the slot.
 EC void SetHeldChickenSlot(HeldItem * self, fu8 slot);
 EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item);
