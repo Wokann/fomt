@@ -94,7 +94,7 @@ struct FarmingTutorialWorldBase : GameObjectBase {
     virtual void ChangeMap(Location const & location) = 0;
     virtual void SetPlot(i32 x, i32 y, FieldPlot const & plot) = 0;
     virtual void SpawnEffect(i32 x, i32 y, u32 kind) = 0;
-    virtual void vfunc_BC(Location const & location, u16 resource_index) = 0;
+    virtual u32 vfunc_BC(Location const & location, u16 resource_index) = 0;
 };
 
 // Tutorial livestock use the ordinary actor state and a dedicated visual setup.
@@ -156,7 +156,7 @@ struct FarmingTutorialWorld : FarmingTutorialWorldBase {
     virtual void ChangeMap(Location const & location);
     virtual void SetPlot(i32 x, i32 y, FieldPlot const & plot);
     virtual void SpawnEffect(i32 x, i32 y, u32 kind);
-    virtual void vfunc_BC(Location const & location, u16 resource_index);
+    virtual u32 vfunc_BC(Location const & location, u16 resource_index);
 
     GameSceneWorldData data;
 };

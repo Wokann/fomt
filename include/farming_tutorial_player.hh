@@ -25,6 +25,20 @@ struct FarmingTutorialHeldGraphic {
         vertical_velocity = z;
     }
 
+    void UpdateMotion()
+    {
+        x_offset += x_velocity;
+        y_offset += y_velocity;
+        vertical_velocity -= 0x4AAA;
+        i32 next_height = height + vertical_velocity;
+        if (next_height > 0)
+            height = next_height;
+        else {
+            height = 0;
+            vertical_velocity = 0;
+        }
+    }
+
     bool IsVisible() const
     {
         bool visible = false;

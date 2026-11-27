@@ -692,13 +692,13 @@ static inline HardwareMusicPlayerSlot * FindWorldUpdateSoundPlayer(GameSceneSong
     return *(end - 1);
 }
 
-inline void GameSceneWorldUnk1028::Reset(IndexedResourceProvider * resource, u32 index,
+inline void WorldItemLandingGraphic::Reset(IndexedResourceProvider * resource, u32 index,
     GameObject * world, Vec2 const & position)
 {
-    unk_04 = position;
-    value = nullptr;
-    unk_08 = 0;
-    value = new GameSceneIndexedSprite(resource, index, world, 2, 3, false);
+    this->position = position;
+    sprite = nullptr;
+    timed = 0;
+    sprite = new GameSceneIndexedSprite(resource, index, world, 2, 3, false);
 }
 
 void GameSceneWorld::Update(GameObjectUpdateContext const & input)
@@ -714,7 +714,7 @@ void GameSceneWorld::Update(GameObjectUpdateContext const & input)
             if (GetFishingArea(location) != 2) {
                 save->npcs.ApplyDroppedItemFriendshipPenalty(location, save->event_state);
                 Vec2 position(location.x, location.y);
-                data.unk_1028.Reset(vfunc_64(), 0x1A9, this, position);
+                data.item_landing_graphic.Reset(vfunc_64(), 0x1A9, this, position);
             } else {
                 QueueScript(GameSceneScriptRequest(
                     EventScript_0571_NPCEvent_HarvestGoddess_OfferingsAndMatchmakingChoices, 0), 0);

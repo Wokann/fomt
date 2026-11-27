@@ -7,8 +7,8 @@
 #include "world_sprite_effects.hh"
 #include "scene_sprite.hh"
 
-inline GameSceneWorldUnk1028::GameSceneWorldUnk1028()
-    : unk_04(0, 0), unk_09(0) {}
+inline WorldItemLandingGraphic::WorldItemLandingGraphic()
+    : position(0, 0), remaining_frames(0) {}
 
 GameSceneWorldData::GameSceneWorldData(GameSceneWorldMapOwner source)
     : map(source), unk_194(0), actor_archive(gActorIndexedResourceArchive),

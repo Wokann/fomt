@@ -84,15 +84,19 @@ private:
     GameSceneWorldMapOwner & operator=(GameSceneWorldMapOwner const &);
 };
 
-struct GameSceneWorldUnk1028 {
-    GameSceneWorldUnk1028();
+// A landed item either blinks until its timer expires or plays a splash once.
+struct WorldItemLandingGraphic {
+    WorldItemLandingGraphic();
 
     void Reset(IndexedResourceProvider * resource, u32 index,
         GameObject * world, Vec2 const & position);
-    SmartPtr<GameSceneIndexedSprite> value;
-    Vec2 unk_04;
-    u8 unk_08;
-    u8 unk_09;
+    bool HasSprite() const { return sprite.Get() != nullptr; }
+
+    SmartPtr<GameSceneIndexedSprite> sprite;
+    Vec2 position;
+    u8 timed;
+    u8 remaining_frames;
+    u8 flicker_phase;
 };
 
 
@@ -120,7 +124,7 @@ struct GameSceneWorldData {
     IndexedResourceArchive unk_FF0;
     SmartPtr<EntityAuxiliarySprites> entity_auxiliary_sprites;
     SmartPtr<WorldSpriteEffects> sprite_effects;
-    GameSceneWorldUnk1028 unk_1028;
+    WorldItemLandingGraphic item_landing_graphic;
 
     AEntity ** EntitiesEnd() { return entities + ARRAY_COUNT(entities); }
 

@@ -1,6 +1,8 @@
 #include <new>
 #include "hardware_dma_queue.hh"
 #include "farming_tutorial_world.hh"
+#include "scene_sprite_indexed.hh"
+#include "world_sprite_effects.hh"
 
 // Native implementations in physical ROM order. This is module ownership,
 // not a claim that these functions have already been recovered as C++.
@@ -131,158 +133,42 @@ asm_unified(
     ".Lfarming_tutorial_world_00f8: .word 0xfffffc00\n"
     ".Lfarming_tutorial_world_00fc: .word 0x1024\n"
     ".Lfarming_tutorial_world_0100: .word 0x1028\n"
-    "thumb_func_start Update__20FarmingTutorialWorldRC23GameObjectUpdateContext\n"
-    "Update__20FarmingTutorialWorldRC23GameObjectUpdateContext:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #8\n"
-    "adds r6, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "ldr r0, [r6, #4]\n"
-    "adds r1, r0, #0\n"
-    "adds r1, #0x90\n"
-    "ldr r1, [r1]\n"
-    "ldr r1, [r1, #0xc]\n"
-    "bl _call_via_r1\n"
-    "ldr r1, .Lfarming_tutorial_world_0168\n"
-    "adds r0, r6, r1\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #0\n"
-    "beq .Lfarming_tutorial_world_0128\n"
-    "bl Update__18WorldSpriteEffects\n"
-    ".Lfarming_tutorial_world_0128:\n"
-    "ldr r0, .Lfarming_tutorial_world_016c\n"
-    "adds r1, r6, r0\n"
-    "ldr r4, [r1]\n"
-    "rsbs r0, r4, #0\n"
-    "orrs r0, r4\n"
-    "cmp r0, #0\n"
-    "bge .Lfarming_tutorial_world_01ec\n"
-    "adds r5, r1, #0\n"
-    "ldrb r2, [r5, #8]\n"
-    "cmp r2, #0\n"
-    "beq .Lfarming_tutorial_world_01a2\n"
-    "ldrb r0, [r5, #9]\n"
-    "subs r0, #1\n"
-    "movs r2, #0\n"
-    "strb r0, [r5, #9]\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lfarming_tutorial_world_0170\n"
-    "ldr r1, [r5]\n"
-    "cmp r2, r1\n"
-    "beq .Lfarming_tutorial_world_0162\n"
-    "cmp r1, #0\n"
-    "beq .Lfarming_tutorial_world_0162\n"
-    "ldr r0, [r1, #0x24]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lfarming_tutorial_world_0162:\n"
-    "movs r0, #0\n"
-    "str r0, [r5]\n"
-    "b .Lfarming_tutorial_world_0196\n"
-    ".align 2, 0\n"
-    ".Lfarming_tutorial_world_0168: .word 0x1028\n"
-    ".Lfarming_tutorial_world_016c: .word 0x102c\n"
-    ".Lfarming_tutorial_world_0170:\n"
-    "ldr r4, [r5]\n"
-    "adds r1, r4, #0\n"
-    "adds r1, #0x3f\n"
-    "ldrb r0, [r1]\n"
-    "cmp r0, #0\n"
-    "bne .Lfarming_tutorial_world_0194\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0x28\n"
-    "bl UpdateIndexedResourceHandle\n"
-    "lsls r0, r0, #0x1e\n"
-    "cmp r0, #0\n"
-    "bge .Lfarming_tutorial_world_0196\n"
-    "adds r1, r4, #0\n"
-    "adds r1, #0x3c\n"
-    "movs r0, #1\n"
-    "strb r0, [r1]\n"
-    "b .Lfarming_tutorial_world_0196\n"
-    ".Lfarming_tutorial_world_0194:\n"
-    "strb r2, [r1]\n"
-    ".Lfarming_tutorial_world_0196:\n"
-    "ldrb r0, [r5, #0xa]\n"
-    "adds r0, #1\n"
-    "movs r1, #7\n"
-    "ands r0, r1\n"
-    "strb r0, [r5, #0xa]\n"
-    "b .Lfarming_tutorial_world_01ec\n"
-    ".Lfarming_tutorial_world_01a2:\n"
-    "adds r1, r4, #0\n"
-    "adds r1, #0x3f\n"
-    "ldrb r0, [r1]\n"
-    "cmp r0, #0\n"
-    "bne .Lfarming_tutorial_world_01c8\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0x28\n"
-    "bl UpdateIndexedResourceHandle\n"
-    "adds r2, r0, #0\n"
-    "lsls r0, r2, #0x1e\n"
-    "cmp r0, #0\n"
-    "bge .Lfarming_tutorial_world_01c4\n"
-    "adds r1, r4, #0\n"
-    "adds r1, #0x3c\n"
-    "movs r0, #1\n"
-    "strb r0, [r1]\n"
-    ".Lfarming_tutorial_world_01c4:\n"
-    "adds r0, r2, #0\n"
-    "b .Lfarming_tutorial_world_01cc\n"
-    ".Lfarming_tutorial_world_01c8:\n"
-    "strb r2, [r1]\n"
-    "movs r0, #2\n"
-    ".Lfarming_tutorial_world_01cc:\n"
-    "lsls r0, r0, #0x1d\n"
-    "cmp r0, #0\n"
-    "bge .Lfarming_tutorial_world_01ec\n"
-    "movs r4, #0\n"
-    "ldr r1, [r5]\n"
-    "cmp r4, r1\n"
-    "beq .Lfarming_tutorial_world_01ea\n"
-    "cmp r1, #0\n"
-    "beq .Lfarming_tutorial_world_01ea\n"
-    "ldr r0, [r1, #0x24]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lfarming_tutorial_world_01ea:\n"
-    "str r4, [r5]\n"
-    ".Lfarming_tutorial_world_01ec:\n"
-    "adds r4, r6, #0\n"
-    "adds r4, #8\n"
-    "movs r1, #0xcc\n"
-    "lsls r1, r1, #1\n"
-    "adds r5, r6, r1\n"
-    "mov r0, sp\n"
-    "ldr r1, [r7]\n"
-    "str r1, [sp]\n"
-    "movs r1, #0\n"
-    "strb r1, [r0, #4]\n"
-    "cmp r4, r5\n"
-    "beq .Lfarming_tutorial_world_021c\n"
-    ".Lfarming_tutorial_world_0204:\n"
-    "ldr r1, [r4]\n"
-    "cmp r1, #0\n"
-    "beq .Lfarming_tutorial_world_0216\n"
-    "ldr r0, [r1, #0x14]\n"
-    "ldr r2, [r0, #0x2c]\n"
-    "adds r0, r1, #0\n"
-    "mov r1, sp\n"
-    "bl _call_via_r2\n"
-    ".Lfarming_tutorial_world_0216:\n"
-    "adds r4, #4\n"
-    "cmp r4, r5\n"
-    "bne .Lfarming_tutorial_world_0204\n"
-    ".Lfarming_tutorial_world_021c:\n"
-    "add sp, #8\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
+);
+
+void FarmingTutorialWorld::Update(GameObjectUpdateContext const & input)
+{
+    data.map->Update();
+    if (data.sprite_effects.Get() != nullptr)
+        data.sprite_effects->Update();
+    bool has_sprite = data.item_landing_graphic.HasSprite();
+    if (has_sprite) {
+        WorldItemLandingGraphic & landing = data.item_landing_graphic;
+        if (landing.timed) {
+            if (--landing.remaining_frames == 0)
+                landing.sprite = nullptr;
+            else {
+                GameSceneIndexedSprite * sprite = landing.sprite.Get();
+                if (sprite->unk_3F == 0) {
+                    if (UpdateIndexedResourceHandle(&sprite->handle).flags.group_changed)
+                        sprite->unk_3C = 1;
+                } else
+                    sprite->unk_3F = 0;
+            }
+            landing.flicker_phase = (landing.flicker_phase + 1) & 7;
+        } else if (landing.sprite->UpdateAnimation().flags.wrapped)
+            landing.sprite = nullptr;
+    }
+    AEntity ** current = data.entities;
+    AEntity ** end = data.EntitiesEnd();
+    EntityUpdateContext context(input.input, false);
+    for (; current != end; ++current) {
+        AEntity * entity = *current;
+        if (entity != nullptr)
+            entity->UpdateWhileSuspended(context);
+    }
+}
+
+asm_unified(
     "thumb_func_start Draw__20FarmingTutorialWorldRC21GameObjectDrawContext\n"
     "Draw__20FarmingTutorialWorldRC21GameObjectDrawContext:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1726,6 +1612,9 @@ extern "C" GameSceneWorldMap * func_080AD778(FarmingTutorialWorld * world)
 
 asm_unified(
     "    .align 2, 0\n"
+);
+
+asm_unified(
     "thumb_func_start vfunc_BC__20FarmingTutorialWorldRC8LocationUs\n"
     "vfunc_BC__20FarmingTutorialWorldRC8LocationUs:\n"
     "push {r4, r5, r6, r7, lr}\n"
