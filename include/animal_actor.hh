@@ -216,4 +216,10 @@ extern "C" void NotifyDogActorBallLanded(DogActor * actor, Location const & loca
 extern "C" Box MakeAnimalActorBounds(i32 x, i32 y);
 
 
+#pragma interface "animal_actor_lifetimes.hh"
+
+inline AnimalActor::~AnimalActor()
+{
+}
+
 #endif // ANIMAL_ACTOR_HH

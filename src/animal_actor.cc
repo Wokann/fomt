@@ -288,61 +288,6 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    .global _._8DogActor\n"
-    "    .thumb_func\n"
-    "_._8DogActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Ljp_0802019C\n"
-    "    str r0, [r5, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x40\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802015E\n"
-    "    movs r1, #0x3c\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #8]\n"
-    "    movs r1, #0x3e\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0xc]\n"
-    ".Ljp_0802015E:\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Ljp_080201A0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_08020186\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_08020186:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_08020194\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".Ljp_08020194:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".Ljp_0802019C: .word __vt_8DogActor\n"
-    ".Ljp_080201A0: .word __vt_7AEntity\n"
-    "\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -420,63 +365,18 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     ".L080203A4:\n"
-    "    .global _._8DogActor\n"
-    "    .thumb_func\n"
-    "_._8DogActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .L08020408\n"
-    "    str r0, [r5, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x40\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .L080203CA\n"
-    "    movs r1, #0x3c\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #8]\n"
-    "    movs r1, #0x3e\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0xc]\n"
-    ".L080203CA:\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .L0802040C\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .L080203F2\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".L080203F2:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .L08020400\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".L08020400:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    ".L08020408: .word __vt_8DogActor\n"
-    ".L0802040C: .word __vt_7AEntity\n"
-    "\n"
 );
 #endif
+
+DogActor::~DogActor()
+{
+    if (unk_40) {
+        x_q16 = saved_x * 65536;
+        y_q16 = saved_y * 65536;
+    }
+    dog->SetLocation(GetLocation());
+}
+
 
 void DogActor::PauseMovement(u32 frames)
 {
@@ -489,23 +389,10 @@ void DogActor::PauseMovement(u32 frames)
     SetBehavior(0, facing);
 }
 
-#if defined(REGION_JP)
-
-
 bool IsDogActorCarryingBall(DogActor const * actor)
 {
     return actor->dog->unk_20 == 5;
 }
-
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-bool IsDogActorCarryingBall(DogActor const * actor)
-{
-    return actor->dog->unk_20 == 5;
-}
-
-#endif
 
 void DogActor::Update(EntityUpdateContext const & context)
 {
@@ -4641,62 +4528,6 @@ asm_unified(
     ".Ljp_080214C8: .word 0x00000782\n"
     ".Ljp_080214CC: .word __vt_10HorseActor\n"
     "\n"
-    "    .global _._10HorseActor\n"
-    "    .thumb_func\n"
-    "_._10HorseActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Ljp_08021534\n"
-    "    str r0, [r5, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x3d\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_080214F6\n"
-    "    movs r1, #0x38\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #8]\n"
-    "    movs r1, #0x3a\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0xc]\n"
-    ".Ljp_080214F6:\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Ljp_08021538\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_0802151E\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_0802151E:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802152C\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".Ljp_0802152C:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_08021534: .word __vt_10HorseActor\n"
-    ".Ljp_08021538: .word __vt_7AEntity\n"
-    "\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 
@@ -5141,64 +4972,18 @@ asm_unified(
     ".L08021734: .word 0x00000782\n"
     ".L08021738: .word __vt_10HorseActor\n"
     ".L0802173C:\n"
-    "    .global _._10HorseActor\n"
-    "    .thumb_func\n"
-    "_._10HorseActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .L080217A0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x3d\n"
-    "    ldrb r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .L08021762\n"
-    "    movs r1, #0x38\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #8]\n"
-    "    movs r1, #0x3a\n"
-    "    ldrsh r0, [r5, r1]\n"
-    "    lsls r0, r0, #0x10\n"
-    "    str r0, [r5, #0xc]\n"
-    ".L08021762:\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .L080217A4\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .L0802178A\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".L0802178A:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .L08021798\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".L08021798:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".L080217A0: .word __vt_10HorseActor\n"
-    ".L080217A4: .word __vt_7AEntity\n"
-    "\n"
 );
 #endif
+
+HorseActor::~HorseActor()
+{
+    if (unk_3D) {
+        x_q16 = saved_x * 65536;
+        y_q16 = saved_y * 65536;
+    }
+    horse->SetLocation(GetLocation());
+}
+
 
 void HorseActor::PauseMovement(u32 frames)
 {
@@ -7448,29 +7233,10 @@ void HorseActor::vfunc_40()
     }
 }
 
-#if defined(REGION_JP)
-
-
 bool HorseActor::CanBeBrushed() const
 {
     return !horse->HasBeenBrushedToday();
 }
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-bool HorseActor::CanBeBrushed() const
-{
-    return !horse->HasBeenBrushedToday();
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-);
-#endif
 
 void HorseActor::Brush()
 {
@@ -7616,200 +7382,6 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Lraw_code_entities_4107_12: .word 0x000003FF\n"
-    "    .global __21HorseSpriteControllerP12AActorEntityUi\n"
-    "    .thumb_func\n"
-    "    __21HorseSpriteControllerP12AActorEntityUi:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r6, r0, #0\n"
-    "    mov r8, r1\n"
-    "    adds r4, r2, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_080220B4\n"
-    "    adds r5, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_080220C8\n"
-    "    str r5, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r1, #0\n"
-    "    str r1, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    mov r1, r8\n"
-    "    movs r2, #5\n"
-    "    movs r3, #0xd\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    ldr r0, .Lraw_code_entities_4143_2\n"
-    "    str r0, [r6, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_4143_2: .word __vt_21HorseSpriteController\n"
-    "    .global Draw__21HorseSpriteControllerRC17EntityDrawContext\n"
-    "    .thumb_func\n"
-    "Draw__21HorseSpriteControllerRC17EntityDrawContext:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r2, [r4]\n"
-    "    ldrh r0, [r2, #4]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r1, [r2, r3]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r2, [r2, r3]\n"
-    "    bl func_08032900\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0x8b\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl Draw__22EntitySpriteControllerRC17EntityDrawContext\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-
-extern "C" u32 func_080220B4(u32 value)
-{
-    switch (value)
-    {
-    case 0:
-        return 1;
-    case 1:
-        return 2;
-    default:
-        return 1;
-    }
-}
-
-extern "C" u32 func_080220C8(u32 kind)
-{
-    switch (kind)
-    {
-    case 0:
-        return 0xE;
-    case 1:
-        return 0xF;
-    }
-    return 0xE;
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__10HorseActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__10HorseActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl GetGrowthStage__C5Horse\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl __21HorseSpriteControllerP12AActorEntityUi\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r5, #0\n"
-    "    adds r4, #0x3c\n"
-    "    ldrb r0, [r4]\n"
-    "    cmp r0, #4\n"
-    "    bne .Lauto_08022132\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r2, #0\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r2, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    "    .Lauto_08022132:\n"
-    "    adds r0, r6, #0\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-);
-
-extern "C" u32 GetBehavior__C12ChickenActor(ChickenActor * self);
-extern "C" void SetBehavior__12ChickenActorUiUi(AnimalActor * self, u32 value, u8 facing);
-
-ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
-    : AnimalActor(world, Actor(*saved).location, 0x720)
-{
-    livestock = saved;
-
-    SetBehavior__12ChickenActorUiUi(this, GetBehavior__C12ChickenActor(this), facing);
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._12ChickenActor\n"
-    "    .thumb_func\n"
-    "_._12ChickenActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_4321_2\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_4321_6\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_080221B8\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    "    .Lauto_080221B8:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080221C6\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    "    .Lauto_080221C6:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_4321_2: .word __vt_12ChickenActor\n"
-    ".Lraw_code_entities_4321_6: .word __vt_7AEntity\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -7946,99 +7518,111 @@ asm_unified(
     "    .align 2, 0\n"
     ".L080222A4: .word 0x000003FF\n"
     "\n"
-    "    thumb_func_start __21HorseSpriteControllerP12AActorEntityUi\n"
-    "__21HorseSpriteControllerP12AActorEntityUi: @ 0x080222A8\n"
+);
+#endif
+
+extern "C" u32 GetHorseAuxRenderProfile(u32 growth_stage);
+extern "C" u32 GetHorseSpriteUnknown8A2(u32 growth_stage);
+
+HorseSpriteController::HorseSpriteController(AActorEntity * owner, u32 growth_stage)
+    : EntitySpriteController(owner, 5, 13, GetHorseAuxRenderProfile(growth_stage),
+          GetHorseSpriteUnknown8A2(growth_stage), 0, false)
+{
+}
+
+void HorseSpriteController::Draw(EntityDrawContext const & context)
+{
+    unk_8B = func_08032900(entity->GetMap(), entity->GetQ16X() >> 16, entity->GetQ16Y() >> 16);
+    EntitySpriteController::Draw(context);
+}
+
+extern "C" u32 GetHorseAuxRenderProfile(u32 growth_stage)
+{
+    switch (growth_stage) {
+    case Horse::STAGE_0:
+        return ENTITY_AUX_RENDER_DEFAULT;
+    case Horse::STAGE_1:
+        return ENTITY_AUX_RENDER_LIVESTOCK;
+    default:
+        return ENTITY_AUX_RENDER_DEFAULT;
+    }
+}
+
+extern "C" u32 GetHorseSpriteUnknown8A2(u32 growth_stage)
+{
+    switch (growth_stage) {
+    case Horse::STAGE_0:
+        return 14;
+    case Horse::STAGE_1:
+        return 15;
+    }
+    return 14;
+}
+
+#if defined(REGION_JP)
+asm_unified(
+    "    .align 2, 0\n"
+    "    .global CreateVisualController__10HorseActor\n"
+    "    .thumb_func\n"
+    "CreateVisualController__10HorseActor:\n"
     "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r6, r0, #0\n"
-    "    mov r8, r1\n"
-    "    adds r4, r2, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_08022320\n"
+    "    adds r4, r0, #0\n"
+    "    movs r0, #0x8c\n"
+    "    bl __builtin_new\n"
     "    adds r5, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl func_08022334\n"
-    "    str r5, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r1, #0\n"
-    "    str r1, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
+    "    ldr r0, [r4, #0x34]\n"
+    "    bl GetGrowthStage__C5Horse\n"
+    "    adds r2, r0, #0\n"
+    "    adds r0, r5, #0\n"
+    "    adds r1, r4, #0\n"
+    "    bl __21HorseSpriteControllerP12AActorEntityUi\n"
+    "    adds r5, r0, #0\n"
+    "    adds r6, r5, #0\n"
+    "    adds r4, #0x3c\n"
+    "    ldrb r0, [r4]\n"
+    "    cmp r0, #4\n"
+    "    bne .Lauto_08022132\n"
+    "    adds r0, r5, #0\n"
+    "    adds r0, #0x70\n"
+    "    movs r1, #8\n"
+    "    bl ResolveIndexedResourceHandle\n"
+    "    adds r0, r5, #0\n"
+    "    adds r0, #0x84\n"
+    "    movs r2, #0\n"
+    "    movs r1, #1\n"
     "    strb r1, [r0]\n"
+    "    adds r0, #2\n"
+    "    strb r2, [r0]\n"
+    "    adds r0, #1\n"
+    "    strb r1, [r0]\n"
+    "    adds r2, r5, #0\n"
+    "    adds r2, #0x8a\n"
+    "    movs r3, #2\n"
+    "    ldrb r1, [r2]\n"
+    "    movs r0, #4\n"
+    "    rsbs r0, r0, #0\n"
+    "    ands r0, r1\n"
+    "    orrs r0, r3\n"
+    "    strb r0, [r2]\n"
+    "    .Lauto_08022132:\n"
     "    adds r0, r6, #0\n"
-    "    mov r1, r8\n"
-    "    movs r2, #5\n"
-    "    movs r3, #0xd\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    ldr r0, .L080222F0 @ =__vt_21HorseSpriteController\n"
-    "    str r0, [r6, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
     "    pop {r4, r5, r6}\n"
     "    pop {r1}\n"
     "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L080222F0: .word __vt_21HorseSpriteController\n"
-    ".L080222F4:\n"
-    "    .global Draw__21HorseSpriteControllerRC17EntityDrawContext\n"
-    "    .thumb_func\n"
-    "Draw__21HorseSpriteControllerRC17EntityDrawContext:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    adds r5, r1, #0\n"
-    "    ldr r2, [r4]\n"
-    "    ldrh r0, [r2, #4]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r1, [r2, r3]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r2, [r2, r3]\n"
-    "    bl func_08032900\n"
-    "    adds r1, r4, #0\n"
-    "    adds r1, #0x8b\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl Draw__22EntitySpriteControllerRC17EntityDrawContext\n"
-    "    pop {r4, r5}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start func_08022320\n"
-    "func_08022320: @ 0x08022320\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802232A\n"
-    "    cmp r0, #1\n"
-    "    beq .L0802232E\n"
-    ".L0802232A:\n"
-    "    movs r0, #1\n"
-    "    b .L08022330\n"
-    ".L0802232E:\n"
-    "    movs r0, #2\n"
-    ".L08022330:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    thumb_func_start func_08022334\n"
-    "func_08022334: @ 0x08022334\n"
-    "    push {lr}\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802233E\n"
-    "    cmp r0, #1\n"
-    "    beq .L08022342\n"
-    ".L0802233E:\n"
-    "    movs r0, #0xe\n"
-    "    b .L08022344\n"
-    ".L08022342:\n"
-    "    movs r0, #0xf\n"
-    ".L08022344:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    ".L08022348:\n"
+);
+
+ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
+    : AnimalActor(world, Actor(*saved).location, 0x720)
+{
+    livestock = saved;
+
+    SetBehavior(GetBehavior(), facing);
+}
+
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
+    "    .align 2, 0\n"
     "    .global CreateVisualController__10HorseActor\n"
     "    .thumb_func\n"
     "CreateVisualController__10HorseActor:\n"
@@ -8090,62 +7674,21 @@ asm_unified(
     "\n"
 );
 
-extern "C" u32 GetBehavior__C12ChickenActor(ChickenActor * self);
-extern "C" void SetBehavior__12ChickenActorUiUi(AnimalActor * self, u32 value, u8 facing);
-
 ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
     : AnimalActor(world, Actor(*saved).location, 0x720)
 {
     livestock = saved;
 
-    SetBehavior__12ChickenActorUiUi(this, GetBehavior__C12ChickenActor(this), facing);
+    SetBehavior(GetBehavior(), facing);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._12ChickenActor\n"
-    "    .thumb_func\n"
-    "_._12ChickenActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_38379_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_38380_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_38376_0\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Lraw_code_entities_38376_0:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_38378_0\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".Lraw_code_entities_38378_0:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_38379_0: .word __vt_12ChickenActor\n"
-    ".Lraw_code_entities_38380_0: .word __vt_7AEntity\n"
-);
 #endif
+
+ChickenActor::~ChickenActor()
+{
+    livestock->SetLocation(GetLocation());
+}
+
 
 void ChickenActor::PauseMovement(u32 frames)
 {
@@ -9551,50 +9094,6 @@ CowActor::CowActor(GameObject * world, Cow * saved)
     SetBehavior(GetBehavior(), facing);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._8CowActor\n"
-    "    .thumb_func\n"
-    "_._8CowActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_5238_2\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_5238_6\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_08022A28\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    "    .Lauto_08022A28:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022A36\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    "    .Lauto_08022A36:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_5238_2: .word __vt_8CowActor\n"
-    ".Lraw_code_entities_5238_6: .word __vt_7AEntity\n"
-);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
@@ -9784,51 +9283,13 @@ CowActor::CowActor(GameObject * world, Cow * saved)
     SetBehavior(GetBehavior(), facing);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._8CowActor\n"
-    "    .thumb_func\n"
-    "_._8CowActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_39314_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_39315_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_39311_0\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Lraw_code_entities_39311_0:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39313_0\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".Lraw_code_entities_39313_0:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_39314_0: .word __vt_8CowActor\n"
-    ".Lraw_code_entities_39315_0: .word __vt_7AEntity\n"
-);
 #endif
+
+CowActor::~CowActor()
+{
+    livestock->SetLocation(GetLocation());
+}
+
 
 void CowActor::PauseMovement(u32 frames)
 {
@@ -11862,9 +11323,6 @@ void CowActor::StartCowPregnancy()
     livestock->StartPregnancy();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
@@ -11938,9 +11396,6 @@ void CowActor::StartCowPregnancy()
     livestock->StartPregnancy();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
 #endif
 
 void CowActor::Brush()
@@ -12197,50 +11652,6 @@ SheepActor::SheepActor(GameObject * world, Sheep * saved)
     SetBehavior(GetBehavior(), facing);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._10SheepActor\n"
-    "    .thumb_func\n"
-    "_._10SheepActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_6669_2\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_6669_6\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_080236BC\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    "    .Lauto_080236BC:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080236CA\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    "    .Lauto_080236CA:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_6669_2: .word __vt_10SheepActor\n"
-    ".Lraw_code_entities_6669_6: .word __vt_7AEntity\n"
-);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
@@ -12471,51 +11882,13 @@ SheepActor::SheepActor(GameObject * world, Sheep * saved)
     SetBehavior(GetBehavior(), facing);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global _._10SheepActor\n"
-    "    .thumb_func\n"
-    "_._10SheepActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    sub sp, #8\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r1, #0\n"
-    "    ldr r0, .Lraw_code_entities_40124_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r4, [r5, #0x34]\n"
-    "    mov r0, sp\n"
-    "    adds r1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds r0, r4, #0\n"
-    "    mov r1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    ldr r0, .Lraw_code_entities_40125_0\n"
-    "    str r0, [r5, #0x14]\n"
-    "    ldr r1, [r5, #0x10]\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_40120_0\n"
-    "    ldr r0, [r1, #4]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Lraw_code_entities_40120_0:\n"
-    "    movs r0, #1\n"
-    "    ands r0, r6\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40123_0\n"
-    "    adds r0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".Lraw_code_entities_40123_0:\n"
-    "    add sp, #8\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_40124_0: .word __vt_10SheepActor\n"
-    ".Lraw_code_entities_40125_0: .word __vt_7AEntity\n"
-);
 #endif
+
+SheepActor::~SheepActor()
+{
+    livestock->SetLocation(GetLocation());
+}
+
 
 void SheepActor::PauseMovement(u32 frames)
 {
@@ -14559,9 +13932,6 @@ void SheepActor::StartSheepPregnancy()
     livestock->StartPregnancy();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
@@ -14635,9 +14005,6 @@ void SheepActor::StartSheepPregnancy()
     livestock->StartPregnancy();
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-);
 #endif
 
 void SheepActor::Brush()

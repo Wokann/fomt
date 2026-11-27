@@ -983,70 +983,15 @@ WildDogActor::WildDogActor(GameObject * world, Unk_Actor_0809BFE8 * saved)
     cached_facing = facing;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start _._12WildDogActor\n"
-    "_._12WildDogActor:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr7, r1, #0\n"
-    "    ldr r0, .LwildDog_08039A28\n"
-    "    str\tr0, [r5, #20]\n"
-    "    ldr\tr4, [r5, #52]\t@ 0x34\n"
-    "    mov\tr0, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    bl GetLocation__C12AActorEntity\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl SetLocation__5ActorRC13ActorLocation\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr0, #56\t@ 0x38\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_080399FC\n"
-    "    adds\tr4, r5, #0\n"
-    "    adds\tr4, #76\t@ 0x4c\n"
-    "    cmp\tr0, r4\n"
-    "    beq .LwildDog_080399FC\n"
-    "    adds\tr6, r0, #0\n"
-    ".LwildDog_080399F0:\n"
-    "    subs\tr4, #4\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    bl __builtin_delete\n"
-    "    cmp\tr6, r4\n"
-    "    bne .LwildDog_080399F0\n"
-    ".LwildDog_080399FC:\n"
-    "    ldr r0, .LwildDog_08039A2C\n"
-    "    str\tr0, [r5, #20]\n"
-    "    ldr\tr1, [r5, #16]\n"
-    "    cmp\tr1, #0\n"
-    "    beq .LwildDog_08039A12\n"
-    "    ldr\tr0, [r1, #4]\n"
-    "    ldr\tr2, [r0, #8]\n"
-    "    adds\tr0, r1, #0\n"
-    "    movs\tr1, #3\n"
-    "    bl _call_via_r2\n"
-    ".LwildDog_08039A12:\n"
-    "    movs\tr0, #1\n"
-    "    ands\tr0, r7\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_08039A20\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl __builtin_delete\n"
-    ".LwildDog_08039A20:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    ".LwildDog_08039A28: .word __vt_12WildDogActor\n"
-    ".LwildDog_08039A2C: .word __vt_7AEntity\n"
-);
+WildDogActor::~WildDogActor()
+{
+    saved_model->SetLocation(GetLocation());
+}
+
 EntityVisualController * WildDogActor::CreateVisualController()
 {
     return new EntitySpriteController(this, 2, 27, 0, 8, 0, false);
 }
-asm_unified(
-);
 
 void WildDogActor::PauseMovement(u32 frames)
 {

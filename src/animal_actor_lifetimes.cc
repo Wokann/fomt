@@ -34,7 +34,3 @@ asm_unified(
     "    .align 2, 0\n"
     ".Lhorse_controller_base_vtable: .word __vt_22EntityVisualController\n"
 );
-
-AnimalActor::~AnimalActor()
-{
-}
