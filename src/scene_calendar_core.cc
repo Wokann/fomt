@@ -2414,86 +2414,44 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start DrawNumber__17CalendarSceneCoreiiiii\n"
-    "DrawNumber__17CalendarSceneCoreiiiii:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sl\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6, r7}\n"
-    "sub sp, #4\n"
-    "mov sl, r0\n"
-    "adds r7, r1, #0\n"
-    "mov sb, r2\n"
-    "adds r6, r3, #0\n"
-    "ldr r4, [sp, #0x24]\n"
-    "movs r0, #0\n"
-    "mov r8, r0\n"
-    "cmp r4, #1\n"
-    "ble .Lcalendar_6_0036\n"
-    "subs r4, #1\n"
-    "movs r5, #0xa\n"
-    "cmp r4, #1\n"
-    "ble .Lcalendar_6_0032\n"
-    ".Lcalendar_6_0026:\n"
-    "lsls r0, r5, #2\n"
-    "adds r0, r0, r5\n"
-    "lsls r5, r0, #1\n"
-    "subs r4, #1\n"
-    "cmp r4, #1\n"
-    "bgt .Lcalendar_6_0026\n"
-    ".Lcalendar_6_0032:\n"
-    "adds r4, r5, #0\n"
-    "b .Lcalendar_6_007a\n"
-    ".Lcalendar_6_0036:\n"
-    "movs r4, #1\n"
-    ".Lcalendar_6_0038:\n"
-    "cmp r4, #1\n"
-    "bne .Lcalendar_6_0040\n"
-    "movs r0, #1\n"
-    "mov r8, r0\n"
-    ".Lcalendar_6_0040:\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r4, #0\n"
-    "bl __divsi3\n"
-    "adds r5, r0, #0\n"
-    "cmp r5, #0\n"
-    "bne .Lcalendar_6_0054\n"
-    "mov r0, r8\n"
-    "cmp r0, #0\n"
-    "beq .Lcalendar_6_0068\n"
-    ".Lcalendar_6_0054:\n"
-    "ldr r0, [sp, #0x28]\n"
-    "str r0, [sp]\n"
-    "mov r0, sl\n"
-    "adds r1, r7, #0\n"
-    "mov r2, sb\n"
-    "adds r3, r5, #0\n"
-    "bl DrawGlyph__17CalendarSceneCoreiiii\n"
-    "movs r0, #1\n"
-    "mov r8, r0\n"
-    ".Lcalendar_6_0068:\n"
-    "adds r7, #0x10\n"
-    "adds r0, r5, #0\n"
-    "muls r0, r4, r0\n"
-    "subs r6, r6, r0\n"
-    "adds r0, r4, #0\n"
-    "movs r1, #0xa\n"
-    "bl __divsi3\n"
-    "adds r4, r0, #0\n"
-    ".Lcalendar_6_007a:\n"
-    "cmp r4, #0\n"
-    "bgt .Lcalendar_6_0038\n"
-    "add sp, #4\n"
-    "pop {r3, r4, r5}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "mov sl, r5\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void CalendarSceneCore::DrawNumber(i32 x, i32 y, i32 value, i32 width, i32 palette)
+{
+    i32 divisor = width;
+    bool started = false;
+    i32 digit;
+    if (divisor > 1)
+    {
+        --divisor;
+        digit = 10;
+        while (divisor > 1)
+        {
+            digit *= 10;
+            --divisor;
+        }
+        divisor = digit;
+    }
+    else
+        divisor = 1;
+
+    while (divisor > 0)
+    {
+        if (divisor == 1)
+            started = true;
+        digit = value / divisor;
+        if (digit != 0 || started)
+        {
+            DrawGlyph(x, y, digit, palette);
+            started = true;
+        }
+        x += 16;
+        value -= digit * divisor;
+        divisor /= 10;
+    }
+}
+
+asm_unified(
     "thumb_func_start DrawGlyph__17CalendarSceneCoreiiii\n"
     "DrawGlyph__17CalendarSceneCoreiiii:\n"
     "push {r4, r5, r6, r7, lr}\n"

@@ -1,3 +1,7 @@
+## 日历数字到字形的调用（2026-11-28）
+
+CalendarSceneCore::DrawNumber保留原值、位数、坐标与调色板的传递；逐位调用现有DrawGlyph，前导零与个位处理不变。完整日历对象的原始装载字节和重定位及四版默认ROM均通过baserom对照。
+
 ## 地图切换的坐标和虚调用关系（2026-11-28）
 
 ChangeSceneMap用Location临时对象传递原地图与坐标，调用现有世界对象ChangeMap槽位并刷新NPC日程。RelocateEntityInSceneMap经世界对象查询当前地图，向RelocateEntityToMap传递原实体、坐标和朝向参数。没有添加裸偏移视图或手写虚表取址，完整动作／场景／状态对象及四版默认完整ROM均通过baserom字节与SHA-1。
