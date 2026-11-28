@@ -9101,39 +9101,15 @@ void CowActor::vfunc_40()
     }
 }
 
-#if defined(REGION_JP)
-
-
 bool CowActor::CanBeHit() const
 {
     return true;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CanReceiveCowMiraclePotion__C8CowActor\n"
-    "    .thumb_func\n"
-    "CanReceiveCowMiraclePotion__C8CowActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_080232FC\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl CanBeMadePregnant__C3Cow\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r5, r0, #0x1f\n"
-    "    .Lauto_080232FC:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-);
+bool CowActor::CanReceiveCowMiraclePotion() const
+{
+    return !livestock->IsPregnant() && livestock->CanBeMadePregnant();
+}
 
 bool CowActor::CanBeBrushed() const
 {
@@ -9145,51 +9121,6 @@ bool CowActor::CanBeMilked() const
     return livestock->CanBeMilked();
 }
 
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-bool CowActor::CanBeHit() const
-{
-    return true;
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CanReceiveCowMiraclePotion__C8CowActor\n"
-    "    .thumb_func\n"
-    "CanReceiveCowMiraclePotion__C8CowActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39736_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl CanBeMadePregnant__C3Cow\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r5, r0, #0x1f\n"
-    ".Lraw_code_entities_39736_8:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-);
-
-bool CowActor::CanBeBrushed() const
-{
-    return !livestock->HasBeenBrushedToday();
-}
-
-bool CowActor::CanBeMilked() const
-{
-    return livestock->CanBeMilked();
-}
-
-#endif
 
 bool CowActor::IsSick() const
 {
@@ -11149,39 +11080,15 @@ void SheepActor::vfunc_40()
     }
 }
 
-#if defined(REGION_JP)
-
-
 bool SheepActor::CanBeHit() const
 {
     return true;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CanReceiveSheepMiraclePotion__C10SheepActor\n"
-    "    .thumb_func\n"
-    "CanReceiveSheepMiraclePotion__C10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08023FB0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl CanBeMadePregnant__C5Sheep\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r5, r0, #0x1f\n"
-    "    .Lauto_08023FB0:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-);
+bool SheepActor::CanReceiveSheepMiraclePotion() const
+{
+    return !livestock->IsPregnant() && livestock->CanBeMadePregnant();
+}
 
 bool SheepActor::CanBeBrushed() const
 {
@@ -11193,51 +11100,6 @@ bool SheepActor::CanBeSheared() const
     return livestock->CanBeSheared();
 }
 
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-
-
-bool SheepActor::CanBeHit() const
-{
-    return true;
-}
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CanReceiveSheepMiraclePotion__C10SheepActor\n"
-    "    .thumb_func\n"
-    "CanReceiveSheepMiraclePotion__C10SheepActor:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_40566_8\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl CanBeMadePregnant__C5Sheep\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    rsbs r0, r0, #0\n"
-    "    lsrs r5, r0, #0x1f\n"
-    ".Lraw_code_entities_40566_8:\n"
-    "    adds r0, r5, #0\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-);
-
-bool SheepActor::CanBeBrushed() const
-{
-    return !livestock->HasBeenBrushedToday();
-}
-
-bool SheepActor::CanBeSheared() const
-{
-    return livestock->CanBeSheared();
-}
-
-#endif
 
 bool SheepActor::IsSick() const
 {
