@@ -242,38 +242,19 @@ asm_unified(
     "    pop\t{r4, r5, r6, r7}\n"
     "    pop\t{r0}\n"
     "    bx\tr0\n"
-    "    thumb_func_start SelectWorldAmbientSpawnPosition\n"
-    "SelectWorldAmbientSpawnPosition:\n"
-    "    push\t{r4, lr}\n"
-    "    adds\tr4, r1, #0\n"
-    "    lsls\tr2, r2, #24\n"
-    "    lsrs\tr0, r2, #24\n"
-    "    cmp\tr2, #0\n"
-    "    bge .Lambient_19\n"
-    "    movs\tr0, #3\n"
-    "    bl RandomBelow\n"
-    "    lsls\tr0, r0, #24\n"
-    "    lsrs\tr0, r0, #24\n"
-    ".Lambient_19:\n"
-    "    ldr r2, .Lambient_20\n"
-    "    lsls\tr0, r0, #24\n"
-    "    asrs\tr0, r0, #24\n"
-    "    lsls\tr1, r0, #2\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldrh\tr1, [r1, #0]\n"
-    "    strh\tr1, [r4, #4]\n"
-    "    lsls\tr1, r0, #1\n"
-    "    adds\tr1, #1\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldrh\tr1, [r1, #0]\n"
-    "    strh\tr1, [r4, #6]\n"
-    "    pop\t{r4}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lambient_20: .word gWorldAmbientSpawnPositions\n"
+
 );
+
+u32 SelectWorldAmbientSpawnPosition(WorldAmbientSprite * self,
+    WorldAmbientMotion * motion, i8 position_index)
+{
+    if (position_index < 0)
+        position_index = RandomBelow(3);
+    motion->x = gWorldAmbientSpawnPositions[2 * position_index];
+    motion->y = gWorldAmbientSpawnPositions[2 * position_index + 1];
+    return position_index;
+}
+
 
 u32 UpdateWorldAmbientMotion(WorldAmbientSprite * self,
     WorldAmbientMotion * motion, i32 speed_q16)
@@ -577,11 +558,12 @@ void PopulateWorldAmbientSprites(WorldAmbientSpriteController * controller,
     }
 }
 
-extern "C" WorldAmbientSpawnPosition const gWorldAmbientSpawnPositions[] ALIGN(2) = {
-    { 180, 428 },
-    { 164, 652 },
-    { 420, 668 },
-    { 252, 628 },
+// Interleaved X/Y halfwords, indexed as 2 * position and 2 * position + 1.
+extern "C" i16 const gWorldAmbientSpawnPositions[] ALIGN(2) = {
+    180, 428,
+    164, 652,
+    420, 668,
+    252, 628,
 };
 
 // One signed Q8.8 sine cycle; the cosine lookup advances the index by 64.

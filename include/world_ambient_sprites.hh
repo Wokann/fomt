@@ -854,7 +854,7 @@ struct WorldAmbientEntity : AEntity {
 
 
 
-extern "C" WorldAmbientSpawnPosition const gWorldAmbientSpawnPositions[];
+extern "C" i16 const gWorldAmbientSpawnPositions[];
 extern "C" i16 const gWorldAmbientSineTable[];
 extern "C" WorldAmbientSpawnWeights const gWorldAmbientDaySpawnWeights[];
 extern "C" WorldAmbientSpawnWeights const gWorldAmbientNightSpawnWeights[];

@@ -27,14 +27,6 @@ struct GameStateActorRecord {
 };
 
 
-// The ambient-sprite position selector reads consecutive X/Y halfwords.
-struct WorldAmbientSpawnPosition {
-    i16 x;
-    i16 y;
-}
-    PACKED ALIGN(2)
-;
-
 // The selector uses a five-byte stride: four seasonal weights, then its count
 // parameter. A parameter above 1 produces 1 + RandomBelow(parameter - 1).
 struct WorldAmbientSpawnWeights {
