@@ -6,6 +6,15 @@
 #include "scene_chicken_festival.hh"
 #include "random.hh"
 
+extern "C" {
+void func_080BA1F4(void *);
+void func_080BA1F8(void *);
+void func_080BA1FC(void *);
+void func_080BA200(void *);
+void func_080BA204(ChickenFestivalSlot *);
+}
+
+
 ChickenFestivalEntrant::ChickenFestivalEntrant()
     : name(gText_ChickenFestival_EmptyEntrantName), year(0), affection(0)
 {
@@ -2027,7 +2036,7 @@ asm_unified(
     "ldr r1, [sp, #0x88]\n"
     "bl func_080BB8EC\n"
     "adds r0, r7, #0\n"
-    "bl func_080B9AC0\n"
+    "bl UpdateParticipantSlots__27ChickenFestivalMinigameCore\n"
     "movs r4, #0\n"
     "mov sl, r4\n"
     ".Lchicken_festival_11d0:\n"
@@ -8511,7 +8520,7 @@ asm_unified(
     "adds r0, r7, #0\n"
     "bl func_080BA734\n"
     "adds r0, r7, #0\n"
-    "bl func_080B9AC0\n"
+    "bl UpdateParticipantSlots__27ChickenFestivalMinigameCore\n"
     "b .Lchicken_festival_4424\n"
     ".Lchicken_festival_43f6:\n"
     "adds r0, r7, #0\n"
@@ -11783,78 +11792,35 @@ asm_unified(
     ".Lchicken_festival_5e28: .word 0xb5e\n"
     ".Lchicken_festival_5e2c: .word 0xb59\n"
     "\n"
-    "thumb_func_start func_080B9AC0\n"
-    "func_080B9AC0:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "movs r5, #0\n"
-    ".Lchicken_festival_5e36:\n"
-    "lsls r1, r5, #6\n"
-    "adds r0, r4, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "adds r2, r1, #0\n"
-    "cmp r0, #5\n"
-    "bhi .Lchicken_festival_5eb2\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lchicken_festival_5e50\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_5e50: .word .Lchicken_festival_5e54\n"
-    ".Lchicken_festival_5e54:\n"
-    ".word .Lchicken_festival_5e90\n"
-    ".word .Lchicken_festival_5e6c\n"
-    ".word .Lchicken_festival_5e78\n"
-    ".word .Lchicken_festival_5e9c\n"
-    ".word .Lchicken_festival_5e84\n"
-    ".word .Lchicken_festival_5ea8\n"
-    ".Lchicken_festival_5e6c:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA1A4\n"
-    "b .Lchicken_festival_5eb2\n"
-    ".Lchicken_festival_5e78:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA1F4\n"
-    "b .Lchicken_festival_5eb2\n"
-    ".Lchicken_festival_5e84:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA1F8\n"
-    "b .Lchicken_festival_5eb2\n"
-    ".Lchicken_festival_5e90:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA1FC\n"
-    "b .Lchicken_festival_5eb2\n"
-    ".Lchicken_festival_5e9c:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA200\n"
-    "b .Lchicken_festival_5eb2\n"
-    ".Lchicken_festival_5ea8:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r4, r0\n"
-    "bl func_080BA204\n"
-    ".Lchicken_festival_5eb2:\n"
-    "adds r5, #1\n"
-    "cmp r5, #1\n"
-    "bls .Lchicken_festival_5e36\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+void ChickenFestivalMinigameCore::UpdateParticipantSlots()
+{
+    for (u32 index = 0; index < 2; ++index) {
+        switch (slots[index].state) {
+        case 1:
+            slots[index].Move();
+            break;
+        case 2:
+            func_080BA1F4(&slots[index]);
+            break;
+        case 4:
+            func_080BA1F8(&slots[index]);
+            break;
+        case 0:
+            func_080BA1FC(&slots[index]);
+            break;
+        case 3:
+            func_080BA200(&slots[index]);
+            break;
+        case 5:
+            func_080BA204(&slots[index]);
+            break;
+        }
+    }
+}
+
+asm_unified(
     "thumb_func_start func_080B9B50\n"
     "func_080B9B50:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -12359,14 +12325,14 @@ void ChickenFestivalMinigameCore::SetSlotState2(u8 index)
 {
     slots[index].state = 2;
     u32 choice = (static_cast<u32>(rand()) & 0xFFFF) >> 14;
-    slots[index].value = choice;
+    slots[index].direction = choice;
 }
 
 void ChickenFestivalMinigameCore::SetSlotState4(u8 index)
 {
     slots[index].state = 4;
     u32 choice = (static_cast<u32>(rand()) & 0xFFFF) >> 14;
-    slots[index].value = choice;
+    slots[index].direction = choice;
 }
 
 asm_unified(
@@ -12703,55 +12669,19 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080BA1A4\n"
-    "func_080BA1A4:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0\n"
-    "ldr r0, [r2, #8]\n"
-    "cmp r0, #0\n"
-    "bne .Lchicken_festival_652c\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x23\n"
-    "ldrb r1, [r0]\n"
-    "ldrh r0, [r2, #0x20]\n"
-    "subs r0, r0, r1\n"
-    "strh r0, [r2, #0x20]\n"
-    "b .Lchicken_festival_655e\n"
-    ".Lchicken_festival_652c:\n"
-    "cmp r0, #1\n"
-    "bne .Lchicken_festival_653c\n"
-    "adds r1, r2, #0\n"
-    "adds r1, #0x23\n"
-    "ldrh r0, [r2, #0x1e]\n"
-    "ldrb r1, [r1]\n"
-    "adds r0, r0, r1\n"
-    "b .Lchicken_festival_655c\n"
-    ".Lchicken_festival_653c:\n"
-    "cmp r0, #2\n"
-    "bne .Lchicken_festival_654e\n"
-    "adds r1, r2, #0\n"
-    "adds r1, #0x23\n"
-    "ldrh r0, [r2, #0x20]\n"
-    "ldrb r1, [r1]\n"
-    "adds r0, r0, r1\n"
-    "strh r0, [r2, #0x20]\n"
-    "b .Lchicken_festival_655e\n"
-    ".Lchicken_festival_654e:\n"
-    "cmp r0, #3\n"
-    "bne .Lchicken_festival_655e\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #0x23\n"
-    "ldrb r1, [r0]\n"
-    "ldrh r0, [r2, #0x1e]\n"
-    "subs r0, r0, r1\n"
-    ".Lchicken_festival_655c:\n"
-    "strh r0, [r2, #0x1e]\n"
-    ".Lchicken_festival_655e:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
 );
+
+void ChickenFestivalSlot::Move()
+{
+    if (direction == DIRECTION_LEFT)
+        x_q8 -= movement_step;
+    else if (direction == DIRECTION_DOWN)
+        y_q8 += movement_step;
+    else if (direction == DIRECTION_RIGHT)
+        x_q8 += movement_step;
+    else if (direction == DIRECTION_UP)
+        y_q8 -= movement_step;
+}
 
 // Anonymous four-byte stubs reached from the minigame phase dispatch. The JP
 // object keeps them as bare returns; the dispatch already holds the receiver
@@ -13368,12 +13298,12 @@ extern "C" void func_080BA734(ChickenFestivalMinigameCore * self)
 {
     if (static_cast<i32>(self->slots[0].unk_18) < 0)
     {
-        if ((self->slots[0].unk_20 >> 8) <= 0x47)
+        if ((self->slots[0].x_q8 >> 8) <= 0x47)
         {
             self->slots[0].unk_29 = 2;
         }
 
-        self->slots[0].unk_20 += 0x300;
+        self->slots[0].x_q8 += 0x300;
 
         self->phase = 3;
         self->unk_B40[0] = 0;
@@ -13382,12 +13312,12 @@ extern "C" void func_080BA734(ChickenFestivalMinigameCore * self)
     }
     else if (static_cast<i32>(self->slots[1].unk_18) < 0)
     {
-        if ((self->slots[0].unk_20 >> 8) <= 0x47)
+        if ((self->slots[0].x_q8 >> 8) <= 0x47)
         {
             self->slots[1].unk_29 = 2;
         }
 
-        self->slots[1].unk_20 += 0x300;
+        self->slots[1].x_q8 += 0x300;
 
         self->phase = 3;
         self->unk_B40[1] = 1;
@@ -14124,7 +14054,7 @@ asm_unified(
     "movs r1, #0\n"
     "ldr r2, [sp, #0x94]\n"
     "movs r3, #0\n"
-    "bl func_080BB890\n"
+    "bl GetSpriteAnimationIndex__C27ChickenFestivalMinigameCoreiUiUi\n"
     "adds r1, r0, #0\n"
     "lsls r1, r1, #0x10\n"
     "lsrs r1, r1, #0x10\n"
@@ -14266,7 +14196,7 @@ asm_unified(
     "mov r0, sb\n"
     "movs r1, #1\n"
     "ldr r2, [sp, #0x94]\n"
-    "bl func_080BB890\n"
+    "bl GetSpriteAnimationIndex__C27ChickenFestivalMinigameCoreiUiUi\n"
     "adds r1, r0, #0\n"
     "lsls r1, r1, #0x10\n"
     "lsrs r1, r1, #0x10\n"
@@ -14385,7 +14315,7 @@ asm_unified(
     "mov r0, sb\n"
     "movs r1, #2\n"
     "movs r2, #0\n"
-    "bl func_080BB890\n"
+    "bl GetSpriteAnimationIndex__C27ChickenFestivalMinigameCoreiUiUi\n"
     "adds r1, r0, #0\n"
     "lsls r1, r1, #0x10\n"
     "lsrs r1, r1, #0x10\n"
@@ -15607,59 +15537,28 @@ asm_unified(
     ".align 2, 0\n"
     ".Lchicken_festival_7bfc: .word 0x8d4\n"
     "\n"
-    "thumb_func_start func_080BB890\n"
-    "func_080BB890:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "movs r0, #0\n"
-    "cmp r1, #1\n"
-    "beq .Lchicken_festival_7c24\n"
-    "cmp r1, #1\n"
-    "bgt .Lchicken_festival_7c14\n"
-    "cmp r1, #0\n"
-    "beq .Lchicken_festival_7c1a\n"
-    "b .Lchicken_festival_7c50\n"
-    ".Lchicken_festival_7c14:\n"
-    "cmp r1, #2\n"
-    "beq .Lchicken_festival_7c48\n"
-    "b .Lchicken_festival_7c50\n"
-    ".Lchicken_festival_7c1a:\n"
-    "ldr r1, .Lchicken_festival_7c20\n"
-    "lsls r0, r2, #1\n"
-    "b .Lchicken_festival_7c4c\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_7c20: .word gUnk_080BB890FirstValues\n"
-    ".Lchicken_festival_7c24:\n"
-    "cmp r2, #0\n"
-    "beq .Lchicken_festival_7c30\n"
-    "ldr r1, .Lchicken_festival_7c40\n"
-    "adds r0, r4, r1\n"
-    "ldr r0, [r0]\n"
-    "adds r2, r2, r0\n"
-    ".Lchicken_festival_7c30:\n"
-    "ldr r0, .Lchicken_festival_7c44\n"
-    "lsls r1, r3, #1\n"
-    "lsls r2, r2, #3\n"
-    "adds r1, r1, r2\n"
-    "adds r1, r1, r0\n"
-    "ldrh r0, [r1]\n"
-    "b .Lchicken_festival_7c50\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_7c40: .word 0xb18\n"
-    ".Lchicken_festival_7c44: .word gUnk_080BB890TableValues\n"
-    ".Lchicken_festival_7c48:\n"
-    "ldr r1, .Lchicken_festival_7c58\n"
-    "lsls r0, r3, #1\n"
-    ".Lchicken_festival_7c4c:\n"
-    "adds r0, r0, r1\n"
-    "ldrh r0, [r0]\n"
-    ".Lchicken_festival_7c50:\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_7c58: .word gUnk_080BB890LastValues\n"
-    "\n"
+);
+
+u16 ChickenFestivalMinigameCore::GetSpriteAnimationIndex(i32 kind, u32 index, u32 frame) const
+{
+    u16 animation = 0;
+    switch (kind) {
+    case 0:
+        animation = gUnk_080BB890FirstValues[index];
+        break;
+    case 1:
+        if (index != 0)
+            index += unk_B18;
+        animation = gUnk_080BB890TableValues[index][frame];
+        break;
+    case 2:
+        animation = gUnk_080BB890LastValues[frame];
+        break;
+    }
+    return animation;
+}
+
+asm_unified(
     "thumb_func_start func_080BB8EC\n"
     "func_080BB8EC:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -16100,7 +15999,7 @@ asm_unified(
     "ldr r4, [r0]\n"
     "mov r0, r8\n"
     "movs r1, #1\n"
-    "bl func_080BB890\n"
+    "bl GetSpriteAnimationIndex__C27ChickenFestivalMinigameCoreiUiUi\n"
     "adds r1, r0, #0\n"
     "lsls r1, r1, #0x10\n"
     "lsrs r1, r1, #0x10\n"
@@ -16533,7 +16432,7 @@ asm_unified(
     "mov r0, r8\n"
     "movs r1, #2\n"
     "movs r2, #0\n"
-    "bl func_080BB890\n"
+    "bl GetSpriteAnimationIndex__C27ChickenFestivalMinigameCoreiUiUi\n"
     "adds r1, r0, #0\n"
     "lsls r1, r1, #0x10\n"
     "lsrs r1, r1, #0x10\n"

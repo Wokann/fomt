@@ -1,3 +1,7 @@
+## 鸡祭参与记录的移动字段（2026-11-28）
+
+ChickenFestivalSlot保持原0x40步幅，+0x08为方向，+0x1E/+0x20为Q8.8的y/x，+0x23为移动增量；原数组与核心对象大小不变。两个原调用方分别形成槽0/槽1地址后读取这些字段，未把槽位指针误作场景核心。每版3函数312有效字节及4原对齐恢复为C++；三个完整对象与四版默认ROM通过baserom对照。统计见 [进度](PROGRESS.md)。
+
 ## 玩家控制器工厂的类型边界（2026-11-28）
 
 PlayerActor的虚拟工厂返回EntityVisualController指针，实际分配已有完整PlayerSpriteController类型；不分配仍属部分视图的PlayerActor。每版76字节恢复为C++，原两个对象及四版默认ROM通过baserom对照。统计见 [进度](PROGRESS.md)。

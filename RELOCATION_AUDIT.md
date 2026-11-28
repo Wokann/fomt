@@ -1,3 +1,7 @@
+## 鸡祭状态分派与资源索引（2026-11-28）
+
+UpdateParticipantSlots依次读取前两个槽位的state，按原跳转表调用移动、四个既有空处理入口或原偏移更新入口。Move直接访问对应槽位成员，不读取核心头部的同偏移字段。GetSpriteAnimationIndex按kind选择原三个表，保留原索引偏移与u16返回。调用重定位、跳转表内容、完整对象及四版默认ROM均与baserom对照通过，无额外包装、地址硬编码或输出修补。
+
 ## 玩家显示控制器到事件状态的引用（2026-11-28）
 
 玩家工厂读取已有save_image->event_state.player_collapse_recovery_event_state，并通过IsActiveRomanceEvent检查VAR_KAREN_YELLOW_HEART_EVENT_STATE；仅诊所一楼走原优先级分支。通过实际PlayerSpriteController构造函数分配和返回，虚表直接引用成员函数。两个完整对象及四版默认ROM通过baserom对照，无地址取值、对象占位或编译器补正。

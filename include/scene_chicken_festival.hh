@@ -56,19 +56,30 @@ struct ChickenFestivalEntrant {
 
 
 // Per-slot record of the minigame's 0x40-byte stride array at +0x6C.
-// Offsets proven by SetSlotState2 (+0x00 state, +0x08 value) and
+// Offsets proven by SetSlotState2 (+0x00 state, +0x08 direction) and
 // func_080B97FC (+0x14 flags, seen at +0x80 for slot 0 and +0xC0 for slot 1).
 struct ChickenFestivalSlot {
+    enum Direction {
+        DIRECTION_LEFT = 0,
+        DIRECTION_DOWN = 1,
+        DIRECTION_RIGHT = 2,
+        DIRECTION_UP = 3,
+    };
+    void Move();
+
     u32 state;                    /* +0x00 */
     u8 unk_04[4];                 /* +0x04 */
-    u32 value;                    /* +0x08 */
+    u32 direction;                /* +0x08 */
     u8 unk_0C[0x14 - 0x0C];       /* +0x0C */
     u32 flags;                    /* +0x14 */
     u32 unk_18;                   /* +0x18, signed countdown */
     u8 unk_1C;                    /* +0x1C */
-    u8 unk_1D[3];                 /* +0x1D */
-    u16 unk_20;                   /* +0x20, scroll accumulator */
-    u8 unk_22[0x26 - 0x22];       /* +0x22 */
+    u8 unk_1D;                    /* +0x1D */
+    u16 y_q8;                     /* +0x1E, Q8.8 position */
+    u16 x_q8;                     /* +0x20, Q8.8 position */
+    u8 unk_22;                    /* +0x22 */
+    u8 movement_step;             /* +0x23, Q8.8 increment */
+    u8 unk_24[2];                 /* +0x24 */
     u8 unk_26;                    /* +0x26 */
     u8 unk_27[2];                 /* +0x27 */
     u8 unk_29;                    /* +0x29 */
@@ -96,6 +107,8 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     bool HasWon() const;
     SceneTransitionOwner Run();
     void PrepareDisplay();
+    void UpdateParticipantSlots();
+    u16 GetSpriteAnimationIndex(i32 kind, u32 index, u32 frame) const;
     void ResetRun();
     void SetSlotState2(u8 index);
     void SetSlotState4(u8 index);
