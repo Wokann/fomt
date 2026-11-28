@@ -30,10 +30,10 @@ asm_unified(
     "    .word ResumeNormalUpdates__11PlayerActor\n"
     "    .word IsNormalUpdateSuspended__C7AEntity\n"
 #if defined(REGION_JP)
-    "    .word func_08024DAC\n"
+    "    .word UpdateWhileSuspended__11PlayerActorRC19EntityUpdateContext\n"
     "    .word CreateVisualController__11PlayerActor\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .word func_08025018\n"
+    "    .word UpdateWhileSuspended__11PlayerActorRC19EntityUpdateContext\n"
     "    .word CreateVisualController__11PlayerActor\n"
 #endif
     "    .word vfunc_34__12AActorEntity\n"
@@ -45,7 +45,7 @@ asm_unified(
     "    .word func_08027990\n"
     "    .word func_080283D8\n"
     "    .word func_080288E4\n"
-    "    .word func_08028E10\n"
+    "    .word ClearHeldItem__11PlayerActor\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word vfunc_3C__C11PlayerActor\n"
     "    .word IsRidingHorse__C11PlayerActor\n"
@@ -53,7 +53,7 @@ asm_unified(
     "    .word func_08027BFC\n"
     "    .word func_08028644\n"
     "    .word func_08028B50\n"
-    "    .word func_0802907C\n"
+    "    .word ClearHeldItem__11PlayerActor\n"
 #endif
     "    .word PlayerEatFood\n"
 #if defined(REGION_JP)

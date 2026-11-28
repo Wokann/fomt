@@ -65,6 +65,8 @@ EC void func_0800F3E8(HeldItem * self, Article article);
 // A missing, wrong-kind or out-of-range chicken slot returns -1.
 EC int GetHeldChickenSlot(HeldItem const * self);
 EC int GetHeldActorGraphicIndex(HeldItem const * self);
+EC void SetHeldDog(HeldItem * self);
+EC void SetHeldBasket(HeldItem * self);
 // Preserve the native modulo-eight selection, rather than clamping the slot.
 EC void SetHeldChickenSlot(HeldItem * self, fu8 slot);
 EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item);

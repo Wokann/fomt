@@ -43,6 +43,7 @@ struct PlayerActor : PlayerActorBase {
     virtual Box GetBox() const;
     virtual EntityVisualController * CreateVisualController();
     virtual void vfunc_10();
+    virtual void UpdateWhileSuspended(EntityUpdateContext const & context);
     virtual void SuspendNormalUpdates();
     virtual void ResumeNormalUpdates();
     // Shadow values other than 0 and 1 leave the existing flag unchanged.
@@ -50,11 +51,17 @@ struct PlayerActor : PlayerActorBase {
     void ShowSelectedToolGraphic();
     void RefreshHeldItemGraphic();
     void HideHeldGraphic();
+    void PickUpDog();
+    void PickUpChicken(u8 slot);
+    void PickUpBasket();
+    void PickUpActorGraphic(u16 graphic_index);
     void CycleRucksackWhileHolding(bool front);
     void CycleRucksackWhileEmptyHanded(bool front);
     void StoreHeldItemInRucksack();
     bool IsSelectedToolCursed() const;
     void CycleSelectedTool(bool front);
+    void UpdateAction(HardwareInputState * input, bool minute_advanced);
+    u32 SelectActionAnimation();
     PlayerHeldGraphic * GetHeldGraphic();
     u32 IsActionTargetEntityId(u32 entity_id) const;
     bool IsOnOverworld() const;

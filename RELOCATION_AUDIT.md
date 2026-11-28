@@ -1,3 +1,7 @@
+## 玩家动作接口和手持物引用（2026-11-28）
+
+暂停更新虚表绑定 PlayerActor::UpdateWhileSuspended；其动作处理接受可空 HardwareInputState 指针与分钟推进标志，动画选择依赖仍保留原汇编。清除手持物先从 save_image->farmer.held_item 判断种类，再按原顺序操作 farmer；球继续同步原标志。狗、鸡、篮子和角色图像使用原 HeldItem 设置函数和图像刷新，Q16 相对位置由既有 PlayerHeldGraphic 成员写入。原局部图像例程补出独立符号，其装载位置及所有原引用值不变。三个对象的装载内容和重定位一致，四版默认 ROM 对照 baserom 逐字节及 SHA-1 通过。
+
 ## 年龄显示的滚动行引用（2026-11-28）
 
 动物记录通过页面持有的 ScrollState 指针取得 rows，再以 row／column 访问真实图块表，未缓存跨调用可能变化的行数据指针。单位区域由 Fill2DGfxTilemapRect 写入，数字按地区使用现有 2×2 或 1×2 绘制入口。原天／季／年的运算和海外值复用均保留；完整对象的装载内容、重定位及边界相同，四版默认 ROM 对照 baserom 的逐字节和 SHA-1 验收通过。

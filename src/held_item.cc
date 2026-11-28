@@ -172,13 +172,13 @@ EC void func_0800F418(HeldItem * self, RucksackItem rucksack_item)
     }
 }
 
-EC void func_0800F4C0(HeldItem * self)
+EC void SetHeldDog(HeldItem * self)
 {
     self->kind = HeldItem::KIND_DOG;
     self->wrapped = 0;
 }
 
-EC void func_0800F4D8(HeldItem * self)
+EC void SetHeldBasket(HeldItem * self)
 {
     self->kind = HeldItem::KIND_BASKET;
     self->wrapped = 0;
