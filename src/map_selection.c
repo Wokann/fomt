@@ -95,7 +95,7 @@ u32 SelectMapDataId(i32 map, u32 season, u32 house, u32 coop, u32 barn)
     case MAP_BEACH_HOUSE: return 54;
     case MAP_TOWN_COTTAGE: return 55;
     case MAP_LAKE_MINE_ENTRANCE: return 60;
-    case MAP_TUTORIAL_ANIMAL_FIELD: return 62;
+    case MAP_TUTORIAL_ANIMAL_FIELD: return MAP_DATA_TUTORIAL_ANIMAL_FIELD;
     case MAP_TUTORIAL_CHICKEN_COOP: return 63;
     case MAP_TUTORIAL_BARN: return 64;
     case MAP_SPRING_MINE_ENTRANCE: return 65;

@@ -1,4 +1,8 @@
 #include "farming_tutorial_map.hh"
+#include "map_data.hh"
+#include "map_selection.h"
+#include "compression.hh"
+#include "hardware_dma.hh"
 
 asm_unified(
     ".text\n"
@@ -9,52 +13,29 @@ FarmingTutorialMap::FarmingTutorialMap()
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start LoadTimeOfDayPalette__18FarmingTutorialMapiUi\n"
-    "LoadTimeOfDayPalette__18FarmingTutorialMapiUi:\n"
-    "push {r4, r5, lr}\n"
-    "adds r5, r0, #0\n"
-    "adds r4, r2, #0\n"
-    "ldr r0, [r5, #4]\n"
-    "bl GetMapData\n"
-    "ldr r0, [r0, #4]\n"
-    "lsls r4, r4, #2\n"
-    "adds r1, r5, #0\n"
-    "adds r1, #0x1c\n"
-    "adds r4, r1, r4\n"
-    "ldr r1, [r4]\n"
-    "bl Unpack\n"
-    "ldr r0, [r5, #4]\n"
-    "cmp r0, #0x3e\n"
-    "bne .Lmenu_10_7_0042\n"
-    "ldr r0, .Lmenu_10_7_0048\n"
-    "ldr r1, [r4]\n"
-    "movs r2, #0x80\n"
-    "lsls r2, r2, #1\n"
-    "adds r1, r1, r2\n"
-    "movs r2, #0x60\n"
-    "bl CopyHardwareDma3\n"
-    "ldr r0, .Lmenu_10_7_004c\n"
-    "ldr r1, [r4]\n"
-    "movs r2, #0xb0\n"
-    "lsls r2, r2, #1\n"
-    "adds r1, r1, r2\n"
-    "movs r2, #0x80\n"
-    "bl CopyHardwareDma3\n"
-    ".Lmenu_10_7_0042:\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
 #if defined(REGION_JP)
-    ".Lmenu_10_7_0048: .word gUnk_0845C4C4\n"
-    ".Lmenu_10_7_004c: .word gUnk_08420150\n"
+extern "C" u8 const gUnk_0845C4C4[];
+extern "C" u8 const gUnk_08420150[];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-    ".Lmenu_10_7_0048: .word gUnk_086D6368\n"
-    ".Lmenu_10_7_004c: .word gUnk_08699FF4\n"
+extern "C" u8 const gUnk_086D6368[];
+extern "C" u8 const gUnk_08699FF4[];
 #endif
-    "\n"
+
+void FarmingTutorialMap::LoadTimeOfDayPalette(i32 period, u32 buffer_index)
+{
+    Unpack(GetMapData(map_data_id)->palettes[0], time_palette_buffers[buffer_index]);
+    if (map_data_id == MAP_DATA_TUTORIAL_ANIMAL_FIELD) {
+#if defined(REGION_JP)
+        CopyHardwareDma3(gUnk_0845C4C4, time_palette_buffers[buffer_index] + 8 * 16, 3 * 16 * sizeof(u16));
+        CopyHardwareDma3(gUnk_08420150, time_palette_buffers[buffer_index] + 11 * 16, 4 * 16 * sizeof(u16));
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+        CopyHardwareDma3(gUnk_086D6368, time_palette_buffers[buffer_index] + 8 * 16, 3 * 16 * sizeof(u16));
+        CopyHardwareDma3(gUnk_08699FF4, time_palette_buffers[buffer_index] + 11 * 16, 4 * 16 * sizeof(u16));
+#endif
+    }
+}
+
+asm_unified(
     "thumb_func_start LoadTilemaps__18FarmingTutorialMap\n"
     "LoadTilemaps__18FarmingTutorialMap:\n"
     "push {r4, r5, r6, r7, lr}\n"

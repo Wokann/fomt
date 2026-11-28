@@ -3,6 +3,8 @@
 #include "farming_tutorial_world.hh"
 #include "scene_sprite_indexed.hh"
 #include "world_sprite_effects.hh"
+#include "map_data.hh"
+#include "map_selection.h"
 
 // Native implementations in physical ROM order. This is module ownership,
 // not a claim that these functions have already been recovered as C++.
@@ -1918,7 +1920,6 @@ EntityAuxiliarySprites * FarmingTutorialWorld::GetEntityAuxiliarySprites()
     return data.entity_auxiliary_sprites.Get();
 }
 
-extern "C" u32 SelectMapDataId(u32 map_id, u32 a, u32 b, u32 c, u32 d);
 i32 FarmingTutorialWorld::GetMapPixelHeight(u32 map_id)
 {
     return GetMapData(SelectMapDataId(map_id, 1, 0, 0, 0))->height * 8;
