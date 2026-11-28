@@ -1,3 +1,7 @@
+## 漫游移动裁剪边界（2026-11-28）
+
+四版各将300字节ApplyRoamingMovement恢复为普通C++成员函数，输入仍为已有ActorMovementBounds借用指针，输出仍为既有两轴Q16位置。没有新增存储、改变对象布局或共用GetDown／Up／Left／Right接口的定义。完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。
+
 ## 漫游工厂与构造入口（2026-11-28）
 
 四个工厂按真实SouthTownRoamingNpc1／2、YodelRanchHouseRoamingNpc、InnSecondFloorRoamingNpc类型分配，每版分别116、120、56、56字节。既有独立构造入口的正文和顺序保持，由普通内联输出生成。五张虚表及四个隐式析构的强定义仍归npc_actor_lifetimes；编译器生成的同名弱副本逐字节及重定位与之相同，按未改动的LDS舍弃。没有新增LDS子项或固定布局。统计见 [进度](PROGRESS.md)。
