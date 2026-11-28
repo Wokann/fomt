@@ -1,263 +1,86 @@
 #include "npc_schedule_popuri.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectPopuriSchedule\n"
-    "SelectPopuriSchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r9\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6, r7}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803D73C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #28\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803D70A\n"
-    "    b .Ljp_0803D896\n"
-    ".Ljp_0803D70A:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr7, [r4, #1]\n"
-    "    ldrb\tr0, [r4, #2]\n"
-    "    mov\tr8, r0\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    mov\tr9, r4\n"
-    "    ldr r1, .Ljp_0803D740\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #3\n"
-    "    bne .Ljp_0803D7DE\n"
-    "    cmp\tr7, #2\n"
-    "    bne .Ljp_0803D744\n"
-    "    mov\tr0, r8\n"
-    "    cmp\tr0, #13\n"
-    "    bne .Ljp_0803D744\n"
-    "    movs\tr0, #22\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D73C: .word 0x000021CA\n"
-    ".Ljp_0803D740: .word 0x00001CD4\n"
-    ".Ljp_0803D744:\n"
-    "    ldr r1, .Ljp_0803D758\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Ljp_0803D75C\n"
-    "    movs\tr0, #23\n"
-    "    b .Ljp_0803D8C8\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803D758: .word 0x0000216B\n"
-    ".Ljp_0803D75C:\n"
-    "    ldr r1, .Ljp_0803D794\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr6, [r0, #0]\n"
-    "    ldr r1, .Ljp_0803D798\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    negs\tr1, r0\n"
-    "    orrs\tr1, r0\n"
-    "    lsrs\tr4, r1, #31\n"
-    "    adds\tr0, r7, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D788\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #3\n"
-    "    beq .Ljp_0803D788\n"
-    "    cmp\tr0, #4\n"
-    "    bne .Ljp_0803D7AC\n"
-    ".Ljp_0803D788:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803D7A0\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803D79C\n"
-    "    movs\tr0, #13\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D794: .word 0x00002148\n"
-    ".Ljp_0803D798: .word 0x00001CD4\n"
-    ".Ljp_0803D79C:\n"
-    "    movs\tr0, #12\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7A0:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803D7A8\n"
-    "    movs\tr0, #15\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7A8:\n"
-    "    movs\tr0, #14\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7AC:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803D7C2\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D7C2\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803D7BE\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7BE:\n"
-    "    movs\tr0, #11\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7C2:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803D7D2\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803D7CE\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7CE:\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7D2:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803D7DA\n"
-    "    movs\tr0, #10\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7DA:\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D7DE:\n"
-    "    ldr r1, .Ljp_0803D800\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetRivalEventCount__C12Bachelorette\n"
-    "    cmp\tr0, #4\n"
-    "    bls .Ljp_0803D812\n"
-    "    cmp\tr7, #1\n"
-    "    bne .Ljp_0803D896\n"
-    "    movs\tr0, #1\n"
-    "    mov\tr1, r8\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D804\n"
-    "    movs\tr0, #19\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D800: .word 0x00001D6C\n"
-    ".Ljp_0803D804:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D80E\n"
-    "    movs\tr0, #20\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D80E:\n"
-    "    movs\tr0, #21\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D812:\n"
-    "    cmp\tr7, #2\n"
-    "    bne .Ljp_0803D834\n"
-    "    mov\tr0, r8\n"
-    "    cmp\tr0, #30\n"
-    "    bne .Ljp_0803D834\n"
-    "    ldr r1, .Ljp_0803D830\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #30\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803D834\n"
-    "    movs\tr0, #17\n"
-    "    b .Ljp_0803D8C8\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803D830: .word 0x000021A3\n"
-    ".Ljp_0803D834:\n"
-    "    ldr r1, .Ljp_0803D86C\n"
-    "    adds\tr0, r5, r1\n"
-    "    movs\tr1, #3\n"
-    "    bl GetBachelorette__C13NpcCollectionUi\n"
-    "    cmp\tr7, #3\n"
-    "    bne .Ljp_0803D878\n"
-    "    mov\tr1, r8\n"
-    "    cmp\tr1, #14\n"
-    "    bne .Ljp_0803D878\n"
-    "    cmp\tr4, #0\n"
-    "    bne .Ljp_0803D878\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D878\n"
-    "    bl GetLove__C12Bachelorette\n"
-    "    ldr r1, .Ljp_0803D870\n"
-    "    cmp\tr0, r1\n"
-    "    bls .Ljp_0803D878\n"
-    "    ldr r1, .Ljp_0803D874\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #26\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803D878\n"
-    "    movs\tr0, #18\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D86C: .word 0x00001CD4\n"
-    ".Ljp_0803D870: .word 0x0000270F\n"
-    ".Ljp_0803D874: .word 0x000021A3\n"
-    ".Ljp_0803D878:\n"
-    "    adds\tr0, r7, #0\n"
-    "    mov\tr1, r8\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D88A\n"
-    "    movs\tr0, #16\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D88A:\n"
-    "    ldr r1, .Ljp_0803D89C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #28\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803D8A0\n"
-    ".Ljp_0803D896:\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803D8C8\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803D89C: .word 0x0000215A\n"
-    ".Ljp_0803D8A0:\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D8BC\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803D8B8\n"
-    "    cmp\tr7, #1\n"
-    "    bne .Ljp_0803D8B4\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D8B4:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D8B8:\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D8BC:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803D8C6\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803D8C8\n"
-    ".Ljp_0803D8C6:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803D8C8:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r3, r4}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-);
+extern "C" u32 SelectPopuriSchedule(void const * context)
+{
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    if (save.event_state.popuri_and_kai_rival_wedding_routing_state)
+        return 0;
+
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    u8 season = date.season;
+    u8 day = date.day;
+    u8 weekday = date.weekday;
+    u32 spouse = save.npcs.GetSpouseCharacterId();
+    if (spouse == CHARACTER_POPURI) {
+        if (season == SEASON_FALL && day == DAY_13)
+            return 22;
+        if (save.event_state.popuri_spouse_collapse_event_state == 1)
+            return 23;
+        u8 family_state = save.npcs.unk_474;
+        bool has_child = save.npcs.GetChild() != nullptr;
+        if (static_cast<u8>(IsNpcScheduleDateListed(season, day))
+            || save.clock.weather_today == WEATHER_TYPHOON
+            || save.clock.weather_today == WEATHER_SNOWSTORM) {
+            if (has_child) {
+                if (family_state != 0)
+                    return 13;
+                return 12;
+            }
+            if (family_state != 0)
+                return 15;
+            return 14;
+        }
+        if (family_state != 0 && weekday == DAY_OF_WEEK_SUNDAY) {
+            if (has_child)
+                return 8;
+            return 11;
+        }
+        if (has_child) {
+            if (family_state != 0)
+                return 7;
+            return 6;
+        }
+        if (family_state != 0)
+            return 10;
+        return 9;
+    }
+
+    if (save.npcs.popuri.GetRivalEventCount() > 4) {
+        if (season != SEASON_SUMMER)
+            return 0;
+        if (static_cast<u8>(IsNpcScheduleDateListed(SEASON_SUMMER, day)))
+            return 19;
+        if (save.clock.weather_today == WEATHER_SUNNY)
+            return 20;
+        return 21;
+    }
+    if (season == SEASON_FALL && day == DAY_30
+        && save.event_state.pumpkin_festival_popuri_treat_visit_state != 2)
+        return 17;
+    Bachelorette const * popuri = save.npcs.GetBachelorette(CHARACTER_POPURI);
+    if (season == SEASON_WINTER && day == DAY_14 && spouse == 0
+        && popuri != nullptr && popuri->GetLove() >= LOVE_HEART_PURPLE_MIN
+        && save.event_state.winter_thanksgiving_popuri_visit_event_state != 2)
+        return 18;
+    if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+        return 16;
+    if (save.event_state.popuri_blue_heart_event_choice)
+        return 0;
+    if (weekday == DAY_OF_WEEK_SUNDAY) {
+        if (save.clock.weather_today == WEATHER_SUNNY) {
+            if (season == SEASON_SUMMER)
+                return 5;
+            return 3;
+        }
+        return 4;
+    }
+    if (save.clock.weather_today == WEATHER_SUNNY)
+        return 1;
+    else
+        return 2;
+}
 
 // Recovered schedule data at US ROM 0x080F1FC0 (JP 0x080F181C).
 // The two regional payloads differ only in relocated function/data pointers.

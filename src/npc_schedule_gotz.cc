@@ -1,141 +1,53 @@
 #include "npc_schedule_gotz.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectGotzSchedule\n"
-    "SelectGotzSchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    ldrb\tr1, [r4, #2]\n"
-    "    ldrb\tr6, [r4, #3]\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E95A\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803E95A:\n"
-    "    ldr\tr7, [r5, #8]\n"
-    "    ldr r0, .Ljp_0803E99C\n"
-    "    adds\tr4, r5, r0\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl GetConstruction__C4Gotz\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803EA18\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsConstructionComplete__C4Gotz\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803EA18\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsConstructionOrderedToday__C4Gotz\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803EA18\n"
-    "    subs\tr0, r7, #3\n"
-    "    cmp\tr0, #1\n"
-    "    bls .Ljp_0803EA18\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl GetConstruction__C4Gotz\n"
-    "    cmp\tr0, #13\n"
-    "    bhi .Ljp_0803EA18\n"
-    "    lsls\tr0, r0, #2\n"
-    "    ldr r1, .Ljp_0803E9A0\n"
-    "    adds\tr0, r0, r1\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    mov\tpc, r0\n"
-    ".Ljp_0803E99C: .word 0x00001F64\n"
-    ".Ljp_0803E9A0: .word .Ljp_0803E9A4\n"
-    ".Ljp_0803E9A4: .word .Ljp_0803EA18\n"
-    "    .word .Ljp_0803E9DC\n"
-    "    .word .Ljp_0803EA00\n"
-    "    .word .Ljp_0803EA04\n"
-    "    .word .Ljp_0803EA08\n"
-    "    .word .Ljp_0803EA0C\n"
-    "    .word .Ljp_0803EA0C\n"
-    "    .word .Ljp_0803EA0C\n"
-    "    .word .Ljp_0803EA10\n"
-    "    .word .Ljp_0803EA10\n"
-    "    .word .Ljp_0803EA10\n"
-    "    .word .Ljp_0803EA14\n"
-    "    .word .Ljp_0803EA14\n"
-    "    .word .Ljp_0803EA14\n"
-    ".Ljp_0803E9DC:\n"
-    "    movs\tr1, #250\t@ 0xfa\n"
-    "    lsls\tr1, r1, #1\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetUpgradeLevel__C9FarmHouse\n"
-    "    cmp\tr0, #1\n"
-    "    beq .Ljp_0803E9F8\n"
-    "    cmp\tr0, #1\n"
-    "    bcc .Ljp_0803E9F4\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803E9FC\n"
-    "    b .Ljp_0803EA18\n"
-    ".Ljp_0803E9F4:\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803E9F8:\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803E9FC:\n"
-    "    movs\tr0, #13\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA00:\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA04:\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA08:\n"
-    "    movs\tr0, #14\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA0C:\n"
-    "    movs\tr0, #10\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA10:\n"
-    "    movs\tr0, #11\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA14:\n"
-    "    movs\tr0, #12\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA18:\n"
-    "    cmp\tr6, #5\n"
-    "    bgt .Ljp_0803EA26\n"
-    "    cmp\tr6, #4\n"
-    "    bge .Ljp_0803EA2E\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803EA36\n"
-    "    b .Ljp_0803EA2A\n"
-    ".Ljp_0803EA26:\n"
-    "    cmp\tr6, #6\n"
-    "    beq .Ljp_0803EA32\n"
-    ".Ljp_0803EA2A:\n"
-    "    movs\tr0, #1\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA2E:\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA32:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803EA38\n"
-    ".Ljp_0803EA36:\n"
-    "    movs\tr0, #4\n"
-    ".Ljp_0803EA38:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-);
+extern "C" u32 SelectGotzSchedule(void const * context)
+{
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    u8 season = date.season;
+    u8 day = date.day;
+    u8 weekday = date.weekday;
+    if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+        return 5;
+
+    u32 weather = save.clock.weather_today;
+    Gotz const & carpenter = save.npcs.gotz;
+    if (carpenter.GetConstruction() != 0 && !carpenter.IsConstructionComplete()
+        && !carpenter.IsConstructionOrderedToday()
+        && (weather < WEATHER_TYPHOON || weather > WEATHER_SNOWSTORM)) {
+        switch (carpenter.GetConstruction()) {
+        case 0: break;
+        case 1:
+            switch (save.farm.farm_house.GetUpgradeLevel()) {
+            case FARMHOUSE_UPGRADE_ORIGINAL: return 6;
+            case FARMHOUSE_UPGRADE_FIRST_EXTENSION: return 7;
+            case FARMHOUSE_UPGRADE_SECOND_EXTENSION: return 13;
+            }
+            break;
+        case 2: return 8;
+        case 3: return 9;
+        case 4: return 14;
+        case 5:
+        case 6:
+        case 7: return 10;
+        case 8:
+        case 9:
+        case 10: return 11;
+        case 11:
+        case 12:
+        case 13: return 12;
+        }
+    }
+    switch (weekday) {
+    default: return 1;
+    case DAY_OF_WEEK_THURSDAY:
+    case DAY_OF_WEEK_FRIDAY: return 2;
+    case DAY_OF_WEEK_SATURDAY: return 3;
+    case DAY_OF_WEEK_SUNDAY: return 4;
+    }
+}
 
 extern "C" GotzScheduleData const gGotzScheduleData = {
     // descriptor
