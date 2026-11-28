@@ -1,4 +1,5 @@
 #include "game_menu_panels.hh"
+#include "game_menu_lifetimes.hh"
 #include "hardware_dma_queue.hh"
 #include "gbaio.h"
 
@@ -15,78 +16,16 @@ void InitializeMenuItemIcon(GameMenuItemIcon * icon)
     icon->palette = nullptr;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start InitializeMenuItemIconFromArchive\n"
-    "InitializeMenuItemIconFromArchive:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6}\n"
-    "sub sp, #0x88\n"
-    "mov r8, r0\n"
-    "adds r5, r2, #0\n"
-    "mov sb, r3\n"
-    "lsls r5, r5, #0x10\n"
-    "lsrs r5, r5, #0x10\n"
-    "mov r0, sp\n"
-    "bl __22IndexedResourceArchivePCUc\n"
-    "add r0, sp, #0x30\n"
-    "movs r6, #0\n"
-    "movs r4, #0\n"
-    "strh r4, [r0]\n"
-    "strh r4, [r0, #2]\n"
-    "add r0, sp, #0x34\n"
-    "mov r1, sp\n"
-    "adds r2, r5, #0\n"
-    "movs r3, #0x80\n"
-    "lsls r3, r3, #1\n"
-    "bl __21IndexedResourceHandleP23IndexedResourceProviderUii\n"
-    "add r0, sp, #0x48\n"
-    "strh r4, [r0]\n"
-    "strh r4, [r0, #2]\n"
-    "strh r4, [r0, #4]\n"
-    "strh r4, [r0, #6]\n"
-    "strh r4, [r0, #8]\n"
-    "str r4, [r0, #0xc]\n"
-    "strb r6, [r0, #0x10]\n"
-    "strb r6, [r0, #0x11]\n"
-    "str r4, [r0, #0x14]\n"
-    "strb r6, [r0, #0x18]\n"
-    "add r0, sp, #0x64\n"
-    "strb r6, [r0]\n"
-    "add r0, sp, #0x68\n"
-    "add r2, sp, #0x34\n"
-    "ldr r1, [sp, #0x34]\n"
-    "ldr r4, [r1]\n"
-    "ldrh r3, [r2, #0xc]\n"
-    "lsls r3, r3, #2\n"
-    "ldr r2, [sp, #0x38]\n"
-    "adds r2, r2, r3\n"
-    "ldrh r2, [r2]\n"
-    "ldr r3, [r4, #0x10]\n"
-    "bl _call_via_r3\n"
-    "ldr r0, [sp, #0x70]\n"
-    "mov r1, r8\n"
-    "str r0, [r1, #4]\n"
-    "ldr r0, [sp, #0x78]\n"
-    "str r0, [r1, #8]\n"
-    "mov r0, sb\n"
-    "str r0, [r1]\n"
-    "ldr r0, .Lmenu_1_6_0088\n"
-    "str r0, [sp]\n"
-    "mov r0, r8\n"
-    "add sp, #0x88\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-    ".Lmenu_1_6_0088: .word __vt_23IndexedResourceProvider\n"
-    "\n"
-);
+GameMenuItemIcon * InitializeMenuItemIconFromArchive(GameMenuItemIcon * icon, u8 const * data, u16 index, u32 quantity)
+{
+    IndexedResourceArchive archive(data);
+    GameSceneMenuResourceState sprite(&archive, index, 256);
+    IndexedResourceGroupResult group = sprite.handle.GetGroupData();
+    icon->tiles = group.tiles.GetData();
+    icon->palette = group.palettes.GetData();
+    icon->quantity = quantity;
+    return icon;
+}
 
 GameMenuItemIcon * InitializeMenuItemIconFromData(GameMenuItemIcon * icon, IndexedResourceTileUnit const * tiles, IndexedResourcePaletteBank const * palette, u32 quantity)
 {
@@ -106,80 +45,15 @@ u32 GetMenuItemIconQuantity(GameMenuItemIcon const * icon)
     return icon->quantity;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start LoadMenuItemIconFromArchive\n"
-    "LoadMenuItemIconFromArchive:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6}\n"
-    "sub sp, #0x88\n"
-    "mov r8, r0\n"
-    "adds r5, r2, #0\n"
-    "mov sb, r3\n"
-    "lsls r5, r5, #0x10\n"
-    "lsrs r5, r5, #0x10\n"
-    "mov r0, sp\n"
-    "bl __22IndexedResourceArchivePCUc\n"
-    "add r0, sp, #0x30\n"
-    "movs r6, #0\n"
-    "movs r4, #0\n"
-    "strh r4, [r0]\n"
-    "strh r4, [r0, #2]\n"
-    "add r0, sp, #0x34\n"
-    "mov r1, sp\n"
-    "adds r2, r5, #0\n"
-    "movs r3, #0x80\n"
-    "lsls r3, r3, #1\n"
-    "bl __21IndexedResourceHandleP23IndexedResourceProviderUii\n"
-    "add r0, sp, #0x48\n"
-    "strh r4, [r0]\n"
-    "strh r4, [r0, #2]\n"
-    "strh r4, [r0, #4]\n"
-    "strh r4, [r0, #6]\n"
-    "strh r4, [r0, #8]\n"
-    "str r4, [r0, #0xc]\n"
-    "strb r6, [r0, #0x10]\n"
-    "strb r6, [r0, #0x11]\n"
-    "str r4, [r0, #0x14]\n"
-    "strb r6, [r0, #0x18]\n"
-    "add r0, sp, #0x64\n"
-    "strb r6, [r0]\n"
-    "add r0, sp, #0x68\n"
-    "add r2, sp, #0x34\n"
-    "ldr r1, [sp, #0x34]\n"
-    "ldr r4, [r1]\n"
-    "ldrh r3, [r2, #0xc]\n"
-    "lsls r3, r3, #2\n"
-    "ldr r2, [sp, #0x38]\n"
-    "adds r2, r2, r3\n"
-    "ldrh r2, [r2]\n"
-    "ldr r3, [r4, #0x10]\n"
-    "bl _call_via_r3\n"
-    "ldr r0, [sp, #0x70]\n"
-    "mov r1, r8\n"
-    "str r0, [r1, #4]\n"
-    "ldr r0, [sp, #0x78]\n"
-    "str r0, [r1, #8]\n"
-    "mov r0, sb\n"
-    "str r0, [r1]\n"
-    "ldr r0, .Lmenu_1_10_0084\n"
-    "str r0, [sp]\n"
-    "add sp, #0x88\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-#if defined(REGION_JP)
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-#endif
-    ".Lmenu_1_10_0084: .word __vt_23IndexedResourceProvider\n"
-    "\n"
-);
+void LoadMenuItemIconFromArchive(GameMenuItemIcon * icon, u8 const * data, u16 index, u32 quantity)
+{
+    IndexedResourceArchive archive(data);
+    GameSceneMenuResourceState sprite(&archive, index, 256);
+    IndexedResourceGroupResult group = sprite.handle.GetGroupData();
+    icon->tiles = group.tiles.GetData();
+    icon->palette = group.palettes.GetData();
+    icon->quantity = quantity;
+}
 
 void SetMenuItemIconData(GameMenuItemIcon * icon, IndexedResourceTileUnit const * tiles, IndexedResourcePaletteBank const * palette, u32 quantity)
 {
