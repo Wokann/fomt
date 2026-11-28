@@ -26534,461 +26534,236 @@ void PlayerActor::AdvanceToolCharge()
 #if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
-    "    .global func_0802C718\n"
-    "    .thumb_func\n"
-    "func_0802C718:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r6, r0, #0\n"
-    "    adds r0, #0x40\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    ldr r0, [r6, #0x38]\n"
-    "    adds r0, #0x5c\n"
-    "    bl IsEmpty__C9ToolStack\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802C73E\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802C73E:\n"
-    "    ldr r4, [r6, #0x38]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x5c\n"
-    "    bl GetTool__C9ToolStack\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetUpgradedTool__C6FarmerG4Tool\n"
-    "    adds r1, r0, #0\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r1, [r0]\n"
-    "    bl GetId__C4Tool\n"
-    "    cmp r0, #0x50\n"
-    "    bls .Ljp_0802C760\n"
-    "    b .Ljp_0802CA1E\n"
-    ".Ljp_0802C760:\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .Ljp_0802C76C @ =.Ljp_0802C770\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
+);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0802C76C: .word .Ljp_0802C770\n"
-    ".Ljp_0802C770: @ jump table\n"
-    "    .word .Ljp_0802C8B4 @ case 0\n"
-    "    .word .Ljp_0802C8B4 @ case 1\n"
-    "    .word .Ljp_0802C8B4 @ case 2\n"
-    "    .word .Ljp_0802C8B4 @ case 3\n"
-    "    .word .Ljp_0802C8B4 @ case 4\n"
-    "    .word .Ljp_0802C8B4 @ case 5\n"
-    "    .word .Ljp_0802C8B4 @ case 6\n"
-    "    .word .Ljp_0802C8B4 @ case 7\n"
-    "    .word .Ljp_0802C8BC @ case 8\n"
-    "    .word .Ljp_0802C8BC @ case 9\n"
-    "    .word .Ljp_0802C8BC @ case 10\n"
-    "    .word .Ljp_0802C8BC @ case 11\n"
-    "    .word .Ljp_0802C8BC @ case 12\n"
-    "    .word .Ljp_0802C8BC @ case 13\n"
-    "    .word .Ljp_0802C8BC @ case 14\n"
-    "    .word .Ljp_0802C8BC @ case 15\n"
-    "    .word .Ljp_0802C8C4 @ case 16\n"
-    "    .word .Ljp_0802C8C4 @ case 17\n"
-    "    .word .Ljp_0802C8C4 @ case 18\n"
-    "    .word .Ljp_0802C8C4 @ case 19\n"
-    "    .word .Ljp_0802C8C4 @ case 20\n"
-    "    .word .Ljp_0802C8C4 @ case 21\n"
-    "    .word .Ljp_0802C8C4 @ case 22\n"
-    "    .word .Ljp_0802C8C4 @ case 23\n"
-    "    .word .Ljp_0802C8CC @ case 24\n"
-    "    .word .Ljp_0802C8CC @ case 25\n"
-    "    .word .Ljp_0802C8CC @ case 26\n"
-    "    .word .Ljp_0802C8CC @ case 27\n"
-    "    .word .Ljp_0802C8CC @ case 28\n"
-    "    .word .Ljp_0802C8CC @ case 29\n"
-    "    .word .Ljp_0802C8CC @ case 30\n"
-    "    .word .Ljp_0802C8CC @ case 31\n"
-    "    .word .Ljp_0802C8D4 @ case 32\n"
-    "    .word .Ljp_0802C8D4 @ case 33\n"
-    "    .word .Ljp_0802C8D4 @ case 34\n"
-    "    .word .Ljp_0802C8D4 @ case 35\n"
-    "    .word .Ljp_0802C8D4 @ case 36\n"
-    "    .word .Ljp_0802C8D4 @ case 37\n"
-    "    .word .Ljp_0802C8D4 @ case 38\n"
-    "    .word .Ljp_0802C8D4 @ case 39\n"
-    "    .word .Ljp_0802C9CE @ case 40\n"
-    "    .word .Ljp_0802C9CE @ case 41\n"
-    "    .word .Ljp_0802C9CE @ case 42\n"
-    "    .word .Ljp_0802C9CE @ case 43\n"
-    "    .word .Ljp_0802C9CE @ case 44\n"
-    "    .word .Ljp_0802C9CE @ case 45\n"
-    "    .word .Ljp_0802C9CE @ case 46\n"
-    "    .word .Ljp_0802C9CE @ case 47\n"
-    "    .word .Ljp_0802C9D6 @ case 48\n"
-    "    .word .Ljp_0802C9DE @ case 49\n"
-    "    .word .Ljp_0802C9E6 @ case 50\n"
-    "    .word .Ljp_0802C9E6 @ case 51\n"
-    "    .word .Ljp_0802C9E6 @ case 52\n"
-    "    .word .Ljp_0802C9E6 @ case 53\n"
-    "    .word .Ljp_0802C9E6 @ case 54\n"
-    "    .word .Ljp_0802C9E6 @ case 55\n"
-    "    .word .Ljp_0802C9E6 @ case 56\n"
-    "    .word .Ljp_0802C9E6 @ case 57\n"
-    "    .word .Ljp_0802C9E6 @ case 58\n"
-    "    .word .Ljp_0802C9E6 @ case 59\n"
-    "    .word .Ljp_0802C9E6 @ case 60\n"
-    "    .word .Ljp_0802C9E6 @ case 61\n"
-    "    .word .Ljp_0802C9E6 @ case 62\n"
-    "    .word .Ljp_0802C9E6 @ case 63\n"
-    "    .word .Ljp_0802C9E6 @ case 64\n"
-    "    .word .Ljp_0802C9E6 @ case 65\n"
-    "    .word .Ljp_0802C9E6 @ case 66\n"
-    "    .word .Ljp_0802C9E6 @ case 67\n"
-    "    .word .Ljp_0802C9E6 @ case 68\n"
-    "    .word .Ljp_0802C9E6 @ case 69\n"
-    "    .word .Ljp_0802C9EE @ case 70\n"
-    "    .word .Ljp_0802C9F6 @ case 71\n"
-    "    .word .Ljp_0802C9FE @ case 72\n"
-    "    .word .Ljp_0802CA06 @ case 73\n"
-    "    .word .Ljp_0802CA0E @ case 74\n"
-    "    .word .Ljp_0802CA16 @ case 75\n"
-    "    .word .Ljp_0802CA16 @ case 76\n"
-    "    .word .Ljp_0802CA16 @ case 77\n"
-    "    .word .Ljp_0802CA16 @ case 78\n"
-    "    .word .Ljp_0802CA16 @ case 79\n"
-    "    .word .Ljp_0802CA16 @ case 80\n"
-    ".Ljp_0802C8B4:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C8BC:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #3\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C8C4:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #1\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C8CC:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #4\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C8D4:\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r5, [r6, r0]\n"
-    "    movs r1, #0xe\n"
-    "    ldrsh r4, [r6, r1]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r0, #1\n"
-    "    beq .Ljp_0802C8FC\n"
-    "    cmp r0, #1\n"
-    "    bgt .Ljp_0802C8F2\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802C900\n"
-    "    b .Ljp_0802C90A\n"
-    ".Ljp_0802C8F2:\n"
-    "    cmp r1, #2\n"
-    "    beq .Ljp_0802C904\n"
-    "    cmp r1, #3\n"
-    "    beq .Ljp_0802C908\n"
-    "    b .Ljp_0802C90A\n"
-    ".Ljp_0802C8FC:\n"
-    "    subs r4, #0x10\n"
-    "    b .Ljp_0802C90A\n"
-    ".Ljp_0802C900:\n"
-    "    adds r4, #0x10\n"
-    "    b .Ljp_0802C90A\n"
-    ".Ljp_0802C904:\n"
-    "    subs r5, #0x10\n"
-    "    b .Ljp_0802C90A\n"
-    ".Ljp_0802C908:\n"
-    "    adds r5, #0x10\n"
-    ".Ljp_0802C90A:\n"
-    "    ldrh r2, [r6, #4]\n"
-    "    ldr r7, [r6]\n"
-    "    ldr r1, [r7]\n"
-    "    mov r0, sp\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    bl _call_via_r3\n"
-    "    mov r1, sp\n"
-    "    asrs r5, r5, #3\n"
-    "    asrs r3, r4, #3\n"
-    "    ldr r2, [sp]\n"
-    "    ldrh r0, [r1, #8]\n"
-    "    cmp r2, #0\n"
-    "    beq .Ljp_0802C94A\n"
-    "    cmp r5, r0\n"
-    "    bhi .Ljp_0802C94A\n"
-    "    ldrh r1, [r1, #0xa]\n"
-    "    cmp r3, r1\n"
-    "    bhi .Ljp_0802C94A\n"
-    "    ldr r1, [sp, #4]\n"
-    "    muls r0, r3, r0\n"
-    "    adds r0, r0, r5\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_0802C940\n"
-    "    adds r0, r1, r0\n"
-    "    ldrb r0, [r0]\n"
-    ".Ljp_0802C940:\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r0, r2, r0\n"
-    "    b .Ljp_0802C94C\n"
-    ".Ljp_0802C946:\n"
-    "    ldr r0, [r4]\n"
-    "    b .Ljp_0802C9AC\n"
-    ".Ljp_0802C94A:\n"
-    "    movs r0, #0\n"
-    ".Ljp_0802C94C:\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802C9B4\n"
-    "    ldr r0, [r0]\n"
-    "    lsls r0, r0, #0x1e\n"
-    "    cmp r0, #0\n"
-    "    bge .Ljp_0802C9B4\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x1b\n"
-    "    strb r0, [r1]\n"
-    "    adds r1, #3\n"
-    "    movs r0, #0xf\n"
-    "    strb r0, [r1]\n"
-    "    ldr r4, [r6, #0x14]\n"
-    "    movs r5, #2\n"
-    "    rsbs r5, r5, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetToolFatiguePenalty__C11PlayerActor\n"
-    "    adds r2, r0, #0\n"
-    "    ldr r3, [r4, #0x64]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r3\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa6\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r4, [r0]\n"
-    "    ldr r5, [r0, #4]\n"
-    "    cmp r4, r5\n"
-    "    beq .Ljp_0802C9A8\n"
-    ".Ljp_0802C996:\n"
-    "    ldr r0, [r4]\n"
-    "    bl IsUnpaused__C23HardwareMusicPlayerSlot\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802C946\n"
-    "    adds r4, #4\n"
-    "    cmp r4, r5\n"
-    "    bne .Ljp_0802C996\n"
-    ".Ljp_0802C9A8:\n"
-    "    subs r0, r5, #4\n"
-    "    ldr r0, [r0]\n"
-    ".Ljp_0802C9AC:\n"
-    "    movs r1, #0x92\n"
-    "    bl Start__23HardwareMusicPlayerSlotUs\n"
-    "    b .Ljp_0802CB58\n"
-    ".Ljp_0802C9B4:\n"
-    "    ldr r0, [r6, #0x38]\n"
-    "    bl func_0800E94C\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802C9C6\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #2\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9C6:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802C9CE:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #5\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9D6:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #6\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9DE:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #7\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9E6:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #8\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9EE:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #9\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9F6:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xa\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802C9FE:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xb\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802CA06:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xc\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802CA0E:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xd\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802CA16:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xe\n"
-    "    b .Ljp_0802CA24\n"
-    ".Ljp_0802CA1E:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    ".Ljp_0802CA24:\n"
-    "    strb r0, [r1]\n"
-    "    ldr r4, [r6, #0x38]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x5c\n"
-    "    bl GetTool__C9ToolStack\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetUpgradedTool__C6FarmerG4Tool\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, sp\n"
-    "    adds r0, #0xd\n"
-    "    strb r1, [r0]\n"
-    "    bl GetId__C4Tool\n"
-    "    cmp r0, #0x2f\n"
-    "    bls .Ljp_0802CA4A\n"
-    "    b .Ljp_0802CB50\n"
-    ".Ljp_0802CA4A:\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .Ljp_0802CA54 @ =.Ljp_0802CA58\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
+);
+#endif
+
+void PlayerActor::InitializeToolCharge()
+{
+    tool_charge_level = 0;
+    tool_charge_frames = 0;
+    if (farmer->unk_5C.IsEmpty()) {
+        tool_action_kind = PLAYER_TOOL_ACTION_NONE;
+        return;
+    }
+    switch (farmer->GetUpgradedTool(farmer->unk_5C.GetTool()).GetId()) {
+    case ITEM_TOOL_SICKLE_IRON:
+    case ITEM_TOOL_SICKLE_COPPER:
+    case ITEM_TOOL_SICKLE_SILVER:
+    case ITEM_TOOL_SICKLE_GOLD:
+    case ITEM_TOOL_SICKLE_MYSTRILE:
+    case ITEM_TOOL_SICKLE_CURSED:
+    case ITEM_TOOL_SICKLE_BLESSED:
+    case ITEM_TOOL_SICKLE_MYTHIC:
+        tool_action_kind = PLAYER_TOOL_ACTION_SICKLE;
+        break;
+    case ITEM_TOOL_HOE_IRON:
+    case ITEM_TOOL_HOE_COPPER:
+    case ITEM_TOOL_HOE_SILVER:
+    case ITEM_TOOL_HOE_GOLD:
+    case ITEM_TOOL_HOE_MYSTRILE:
+    case ITEM_TOOL_HOE_CURSED:
+    case ITEM_TOOL_HOE_BLESSED:
+    case ITEM_TOOL_HOE_MYTHIC:
+        tool_action_kind = PLAYER_TOOL_ACTION_HOE;
+        break;
+    case ITEM_TOOL_AXE_IRON:
+    case ITEM_TOOL_AXE_COPPER:
+    case ITEM_TOOL_AXE_SILVER:
+    case ITEM_TOOL_AXE_GOLD:
+    case ITEM_TOOL_AXE_MYSTRILE:
+    case ITEM_TOOL_AXE_CURSED:
+    case ITEM_TOOL_AXE_BLESSED:
+    case ITEM_TOOL_AXE_MYTHIC:
+        tool_action_kind = PLAYER_TOOL_ACTION_AXE;
+        break;
+    case ITEM_TOOL_HAMMER_IRON:
+    case ITEM_TOOL_HAMMER_COPPER:
+    case ITEM_TOOL_HAMMER_SILVER:
+    case ITEM_TOOL_HAMMER_GOLD:
+    case ITEM_TOOL_HAMMER_MYSTRILE:
+    case ITEM_TOOL_HAMMER_CURSED:
+    case ITEM_TOOL_HAMMER_BLESSED:
+    case ITEM_TOOL_HAMMER_MYTHIC:
+        tool_action_kind = PLAYER_TOOL_ACTION_HAMMER;
+        break;
+    case ITEM_TOOL_WATERING_CAN_IRON:
+    case ITEM_TOOL_WATERING_CAN_COPPER:
+    case ITEM_TOOL_WATERING_CAN_SILVER:
+    case ITEM_TOOL_WATERING_CAN_GOLD:
+    case ITEM_TOOL_WATERING_CAN_MYSTRILE:
+    case ITEM_TOOL_WATERING_CAN_CURSED:
+    case ITEM_TOOL_WATERING_CAN_BLESSED:
+    case ITEM_TOOL_WATERING_CAN_MYTHIC:
+    {
+        i32 x = GetQ16X() >> 16;
+        i32 y = GetQ16Y() >> 16;
+        fu8 direction = facing;
+        switch (direction) {
+        case FACING_UP: y -= 16; break;
+        case FACING_DOWN: y += 16; break;
+        case FACING_LEFT: x -= 16; break;
+        case FACING_RIGHT: x += 16; break;
+        }
+        u32 map = location_map;
+        GameObject * world = game_object;
+        MapTerrainView const & terrain = world->GetMapTerrain(map);
+        FieldRenderTileAttributes const * tile = GetTerrainTile(terrain, x >> 3, y >> 3);
+        if (tile != nullptr && tile->unk_00_01) {
+            action_state = 0x1B;
+            tool_action_kind = PLAYER_TOOL_ACTION_NONE;
+            ChangeStaminaAndFatigue(-2, GetToolFatiguePenalty());
+            FindActorSoundPlayer(world->GetSongPlayerPool())->Start(AUDIO_SFX_WATER_SPLASH);
+            return;
+        }
+        if (func_0800E94C(*farmer) != 0) {
+            tool_action_kind = PLAYER_TOOL_ACTION_WATERING_CAN;
+        } else {
+            tool_action_kind = PLAYER_TOOL_ACTION_NONE;
+            return;
+        }
+        break;
+    }
+    case ITEM_TOOL_FISHING_ROD_IRON:
+    case ITEM_TOOL_FISHING_ROD_COPPER:
+    case ITEM_TOOL_FISHING_ROD_SILVER:
+    case ITEM_TOOL_FISHING_ROD_GOLD:
+    case ITEM_TOOL_FISHING_ROD_MYSTRILE:
+    case ITEM_TOOL_FISHING_ROD_CURSED:
+    case ITEM_TOOL_FISHING_ROD_BLESSED:
+    case ITEM_TOOL_FISHING_ROD_MYTHIC:
+        tool_action_kind = PLAYER_TOOL_ACTION_FISHING_ROD;
+        break;
+    case ITEM_TOOL_MIRACLE_POTION_COW:
+        tool_action_kind = PLAYER_TOOL_ACTION_COW_POTION;
+        break;
+    case ITEM_TOOL_MIRACLE_POTION_SHEEP:
+        tool_action_kind = PLAYER_TOOL_ACTION_SHEEP_POTION;
+        break;
+    case ITEM_TOOL_SEEDS_TURNIP:
+    case ITEM_TOOL_SEEDS_POTATO:
+    case ITEM_TOOL_SEEDS_CUCUMBER:
+    case ITEM_TOOL_SEEDS_STRAWBERRY:
+    case ITEM_TOOL_SEEDS_CABBAGE:
+    case ITEM_TOOL_SEEDS_TOMATO:
+    case ITEM_TOOL_SEEDS_CORN:
+    case ITEM_TOOL_SEEDS_ONION:
+    case ITEM_TOOL_SEEDS_PUMPKIN:
+    case ITEM_TOOL_SEEDS_PINEAPPLE:
+    case ITEM_TOOL_SEEDS_EGGPLANT:
+    case ITEM_TOOL_SEEDS_CARROT:
+    case ITEM_TOOL_SEEDS_SWEET_POTATO:
+    case ITEM_TOOL_SEEDS_SPINACH:
+    case ITEM_TOOL_SEEDS_GREEN_PEPPER:
+    case ITEM_TOOL_SEEDS_GRASS:
+    case ITEM_TOOL_SEEDS_MOON_DROP:
+    case ITEM_TOOL_SEEDS_PINK_CAT:
+    case ITEM_TOOL_SEEDS_MAGIC:
+    case ITEM_TOOL_SEEDS_TOY_FLOWER:
+        tool_action_kind = PLAYER_TOOL_ACTION_SEEDS;
+        break;
+    case ITEM_TOOL_BRUSH:
+        tool_action_kind = PLAYER_TOOL_ACTION_BRUSH;
+        break;
+    case ITEM_TOOL_MILKER:
+        tool_action_kind = PLAYER_TOOL_ACTION_MILKER;
+        break;
+    case ITEM_TOOL_CLIPPER_OR_CLIPPERS:
+        tool_action_kind = PLAYER_TOOL_ACTION_CLIPPERS;
+        break;
+    case ITEM_TOOL_BELL:
+        tool_action_kind = PLAYER_TOOL_ACTION_BELL;
+        break;
+    case ITEM_TOOL_ANIMAL_MEDICINE:
+        tool_action_kind = PLAYER_TOOL_ACTION_MEDICINE;
+        break;
+    case ITEM_TOOL_BLUE_FEATHER:
+    case ITEM_TOOL_PEDOMETER:
+    case ITEM_TOOL_TELEPORT_STONE:
+    case ITEM_TOOL_GEM_GODDESS:
+    case ITEM_TOOL_GEM_KAPPA:
+    case ITEM_TOOL_GEM_TRUTH:
+        tool_action_kind = PLAYER_TOOL_ACTION_SPECIAL;
+        break;
+    default:
+        tool_action_kind = PLAYER_TOOL_ACTION_NONE;
+        break;
+    }
+    switch (farmer->GetUpgradedTool(farmer->unk_5C.GetTool()).GetId()) {
+    case ITEM_TOOL_SICKLE_IRON:
+    case ITEM_TOOL_HOE_IRON:
+    case ITEM_TOOL_AXE_IRON:
+    case ITEM_TOOL_HAMMER_IRON:
+    case ITEM_TOOL_WATERING_CAN_IRON:
+    case ITEM_TOOL_FISHING_ROD_IRON:
+        tool_charge_count = 1;
+        break;
+    case ITEM_TOOL_SICKLE_COPPER:
+    case ITEM_TOOL_HOE_COPPER:
+    case ITEM_TOOL_AXE_COPPER:
+    case ITEM_TOOL_HAMMER_COPPER:
+    case ITEM_TOOL_WATERING_CAN_COPPER:
+    case ITEM_TOOL_FISHING_ROD_COPPER:
+        tool_charge_count = 2;
+        break;
+    case ITEM_TOOL_SICKLE_SILVER:
+    case ITEM_TOOL_HOE_SILVER:
+    case ITEM_TOOL_AXE_SILVER:
+    case ITEM_TOOL_HAMMER_SILVER:
+    case ITEM_TOOL_WATERING_CAN_SILVER:
+    case ITEM_TOOL_FISHING_ROD_SILVER:
+        tool_charge_count = 3;
+        break;
+    case ITEM_TOOL_SICKLE_GOLD:
+    case ITEM_TOOL_HOE_GOLD:
+    case ITEM_TOOL_AXE_GOLD:
+    case ITEM_TOOL_HAMMER_GOLD:
+    case ITEM_TOOL_WATERING_CAN_GOLD:
+    case ITEM_TOOL_FISHING_ROD_GOLD:
+        tool_charge_count = 4;
+        break;
+    case ITEM_TOOL_SICKLE_MYSTRILE:
+    case ITEM_TOOL_HOE_MYSTRILE:
+    case ITEM_TOOL_AXE_MYSTRILE:
+    case ITEM_TOOL_HAMMER_MYSTRILE:
+    case ITEM_TOOL_WATERING_CAN_MYSTRILE:
+    case ITEM_TOOL_FISHING_ROD_MYSTRILE:
+        tool_charge_count = 5;
+        break;
+    case ITEM_TOOL_SICKLE_CURSED:
+    case ITEM_TOOL_SICKLE_BLESSED:
+    case ITEM_TOOL_HOE_CURSED:
+    case ITEM_TOOL_HOE_BLESSED:
+    case ITEM_TOOL_AXE_CURSED:
+    case ITEM_TOOL_AXE_BLESSED:
+    case ITEM_TOOL_HAMMER_CURSED:
+    case ITEM_TOOL_HAMMER_BLESSED:
+    case ITEM_TOOL_WATERING_CAN_CURSED:
+    case ITEM_TOOL_WATERING_CAN_BLESSED:
+    case ITEM_TOOL_FISHING_ROD_CURSED:
+    case ITEM_TOOL_FISHING_ROD_BLESSED:
+        tool_charge_count = 6;
+        break;
+    case ITEM_TOOL_SICKLE_MYTHIC:
+    case ITEM_TOOL_HOE_MYTHIC:
+    case ITEM_TOOL_AXE_MYTHIC:
+    case ITEM_TOOL_HAMMER_MYTHIC:
+    case ITEM_TOOL_WATERING_CAN_MYTHIC:
+    case ITEM_TOOL_FISHING_ROD_MYTHIC:
+        tool_charge_count = 7;
+        break;
+    default:
+        tool_charge_count = 0;
+        break;
+    }
+}
+
+#if defined(REGION_JP)
+asm_unified(
     "    .align 2, 0\n"
-    ".Ljp_0802CA54: .word .Ljp_0802CA58\n"
-    ".Ljp_0802CA58: @ jump table\n"
-    "    .word .Ljp_0802CB18 @ case 0\n"
-    "    .word .Ljp_0802CB20 @ case 1\n"
-    "    .word .Ljp_0802CB28 @ case 2\n"
-    "    .word .Ljp_0802CB30 @ case 3\n"
-    "    .word .Ljp_0802CB38 @ case 4\n"
-    "    .word .Ljp_0802CB40 @ case 5\n"
-    "    .word .Ljp_0802CB40 @ case 6\n"
-    "    .word .Ljp_0802CB48 @ case 7\n"
-    "    .word .Ljp_0802CB18 @ case 8\n"
-    "    .word .Ljp_0802CB20 @ case 9\n"
-    "    .word .Ljp_0802CB28 @ case 10\n"
-    "    .word .Ljp_0802CB30 @ case 11\n"
-    "    .word .Ljp_0802CB38 @ case 12\n"
-    "    .word .Ljp_0802CB40 @ case 13\n"
-    "    .word .Ljp_0802CB40 @ case 14\n"
-    "    .word .Ljp_0802CB48 @ case 15\n"
-    "    .word .Ljp_0802CB18 @ case 16\n"
-    "    .word .Ljp_0802CB20 @ case 17\n"
-    "    .word .Ljp_0802CB28 @ case 18\n"
-    "    .word .Ljp_0802CB30 @ case 19\n"
-    "    .word .Ljp_0802CB38 @ case 20\n"
-    "    .word .Ljp_0802CB40 @ case 21\n"
-    "    .word .Ljp_0802CB40 @ case 22\n"
-    "    .word .Ljp_0802CB48 @ case 23\n"
-    "    .word .Ljp_0802CB18 @ case 24\n"
-    "    .word .Ljp_0802CB20 @ case 25\n"
-    "    .word .Ljp_0802CB28 @ case 26\n"
-    "    .word .Ljp_0802CB30 @ case 27\n"
-    "    .word .Ljp_0802CB38 @ case 28\n"
-    "    .word .Ljp_0802CB40 @ case 29\n"
-    "    .word .Ljp_0802CB40 @ case 30\n"
-    "    .word .Ljp_0802CB48 @ case 31\n"
-    "    .word .Ljp_0802CB18 @ case 32\n"
-    "    .word .Ljp_0802CB20 @ case 33\n"
-    "    .word .Ljp_0802CB28 @ case 34\n"
-    "    .word .Ljp_0802CB30 @ case 35\n"
-    "    .word .Ljp_0802CB38 @ case 36\n"
-    "    .word .Ljp_0802CB40 @ case 37\n"
-    "    .word .Ljp_0802CB40 @ case 38\n"
-    "    .word .Ljp_0802CB48 @ case 39\n"
-    "    .word .Ljp_0802CB18 @ case 40\n"
-    "    .word .Ljp_0802CB20 @ case 41\n"
-    "    .word .Ljp_0802CB28 @ case 42\n"
-    "    .word .Ljp_0802CB30 @ case 43\n"
-    "    .word .Ljp_0802CB38 @ case 44\n"
-    "    .word .Ljp_0802CB40 @ case 45\n"
-    "    .word .Ljp_0802CB40 @ case 46\n"
-    "    .word .Ljp_0802CB48 @ case 47\n"
-    ".Ljp_0802CB18:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #1\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB20:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #2\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB28:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #3\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB30:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #4\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB38:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #5\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB40:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #6\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB48:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #7\n"
-    "    b .Ljp_0802CB56\n"
-    ".Ljp_0802CB50:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #0\n"
-    ".Ljp_0802CB56:\n"
-    "    strb r0, [r1]\n"
-    ".Ljp_0802CB58:\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
     "    .global func_0802CB60\n"
     "    .thumb_func\n"
     "func_0802CB60:\n"
@@ -31174,7 +30949,7 @@ asm_unified(
     "    b .Ljp_0802ED36\n"
     ".Ljp_0802EBF4:\n"
     "    adds r0, r7, #0\n"
-    "    bl func_0802C718\n"
+    "    bl InitializeToolCharge__11PlayerActor\n"
     "    b .Ljp_0802ED36\n"
     ".Ljp_0802EBFC:\n"
     "    ldrb r1, [r4, #1]\n"
@@ -37452,460 +37227,6 @@ asm_unified(
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
-    "    thumb_func_start func_0802C984\n"
-    "func_0802C984: @ 0x0802C984\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r6, r0, #0\n"
-    "    adds r0, #0x40\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    ldr r0, [r6, #0x38]\n"
-    "    adds r0, #0x5c\n"
-    "    bl IsEmpty__C9ToolStack\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802C9AA\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    "    b .L0802CDC2\n"
-    ".L0802C9AA:\n"
-    "    ldr r4, [r6, #0x38]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x5c\n"
-    "    bl GetTool__C9ToolStack\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetUpgradedTool__C6FarmerG4Tool\n"
-    "    adds r1, r0, #0\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r1, [r0]\n"
-    "    bl GetId__C4Tool\n"
-    "    cmp r0, #0x50\n"
-    "    bls .L0802C9CC\n"
-    "    b .L0802CC8A\n"
-    ".L0802C9CC:\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .L0802C9D8 @ =.L0802C9DC\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".L0802C9D8: .word .L0802C9DC\n"
-    ".L0802C9DC: @ jump table\n"
-    "    .word .L0802CB20 @ case 0\n"
-    "    .word .L0802CB20 @ case 1\n"
-    "    .word .L0802CB20 @ case 2\n"
-    "    .word .L0802CB20 @ case 3\n"
-    "    .word .L0802CB20 @ case 4\n"
-    "    .word .L0802CB20 @ case 5\n"
-    "    .word .L0802CB20 @ case 6\n"
-    "    .word .L0802CB20 @ case 7\n"
-    "    .word .L0802CB28 @ case 8\n"
-    "    .word .L0802CB28 @ case 9\n"
-    "    .word .L0802CB28 @ case 10\n"
-    "    .word .L0802CB28 @ case 11\n"
-    "    .word .L0802CB28 @ case 12\n"
-    "    .word .L0802CB28 @ case 13\n"
-    "    .word .L0802CB28 @ case 14\n"
-    "    .word .L0802CB28 @ case 15\n"
-    "    .word .L0802CB30 @ case 16\n"
-    "    .word .L0802CB30 @ case 17\n"
-    "    .word .L0802CB30 @ case 18\n"
-    "    .word .L0802CB30 @ case 19\n"
-    "    .word .L0802CB30 @ case 20\n"
-    "    .word .L0802CB30 @ case 21\n"
-    "    .word .L0802CB30 @ case 22\n"
-    "    .word .L0802CB30 @ case 23\n"
-    "    .word .L0802CB38 @ case 24\n"
-    "    .word .L0802CB38 @ case 25\n"
-    "    .word .L0802CB38 @ case 26\n"
-    "    .word .L0802CB38 @ case 27\n"
-    "    .word .L0802CB38 @ case 28\n"
-    "    .word .L0802CB38 @ case 29\n"
-    "    .word .L0802CB38 @ case 30\n"
-    "    .word .L0802CB38 @ case 31\n"
-    "    .word .L0802CB40 @ case 32\n"
-    "    .word .L0802CB40 @ case 33\n"
-    "    .word .L0802CB40 @ case 34\n"
-    "    .word .L0802CB40 @ case 35\n"
-    "    .word .L0802CB40 @ case 36\n"
-    "    .word .L0802CB40 @ case 37\n"
-    "    .word .L0802CB40 @ case 38\n"
-    "    .word .L0802CB40 @ case 39\n"
-    "    .word .L0802CC3A @ case 40\n"
-    "    .word .L0802CC3A @ case 41\n"
-    "    .word .L0802CC3A @ case 42\n"
-    "    .word .L0802CC3A @ case 43\n"
-    "    .word .L0802CC3A @ case 44\n"
-    "    .word .L0802CC3A @ case 45\n"
-    "    .word .L0802CC3A @ case 46\n"
-    "    .word .L0802CC3A @ case 47\n"
-    "    .word .L0802CC42 @ case 48\n"
-    "    .word .L0802CC4A @ case 49\n"
-    "    .word .L0802CC52 @ case 50\n"
-    "    .word .L0802CC52 @ case 51\n"
-    "    .word .L0802CC52 @ case 52\n"
-    "    .word .L0802CC52 @ case 53\n"
-    "    .word .L0802CC52 @ case 54\n"
-    "    .word .L0802CC52 @ case 55\n"
-    "    .word .L0802CC52 @ case 56\n"
-    "    .word .L0802CC52 @ case 57\n"
-    "    .word .L0802CC52 @ case 58\n"
-    "    .word .L0802CC52 @ case 59\n"
-    "    .word .L0802CC52 @ case 60\n"
-    "    .word .L0802CC52 @ case 61\n"
-    "    .word .L0802CC52 @ case 62\n"
-    "    .word .L0802CC52 @ case 63\n"
-    "    .word .L0802CC52 @ case 64\n"
-    "    .word .L0802CC52 @ case 65\n"
-    "    .word .L0802CC52 @ case 66\n"
-    "    .word .L0802CC52 @ case 67\n"
-    "    .word .L0802CC52 @ case 68\n"
-    "    .word .L0802CC52 @ case 69\n"
-    "    .word .L0802CC5A @ case 70\n"
-    "    .word .L0802CC62 @ case 71\n"
-    "    .word .L0802CC6A @ case 72\n"
-    "    .word .L0802CC72 @ case 73\n"
-    "    .word .L0802CC7A @ case 74\n"
-    "    .word .L0802CC82 @ case 75\n"
-    "    .word .L0802CC82 @ case 76\n"
-    "    .word .L0802CC82 @ case 77\n"
-    "    .word .L0802CC82 @ case 78\n"
-    "    .word .L0802CC82 @ case 79\n"
-    "    .word .L0802CC82 @ case 80\n"
-    ".L0802CB20:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0\n"
-    "    b .L0802CC90\n"
-    ".L0802CB28:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #3\n"
-    "    b .L0802CC90\n"
-    ".L0802CB30:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #1\n"
-    "    b .L0802CC90\n"
-    ".L0802CB38:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #4\n"
-    "    b .L0802CC90\n"
-    ".L0802CB40:\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r5, [r6, r0]\n"
-    "    movs r1, #0xe\n"
-    "    ldrsh r4, [r6, r1]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r0, #1\n"
-    "    beq .L0802CB68\n"
-    "    cmp r0, #1\n"
-    "    bgt .L0802CB5E\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802CB6C\n"
-    "    b .L0802CB76\n"
-    ".L0802CB5E:\n"
-    "    cmp r1, #2\n"
-    "    beq .L0802CB70\n"
-    "    cmp r1, #3\n"
-    "    beq .L0802CB74\n"
-    "    b .L0802CB76\n"
-    ".L0802CB68:\n"
-    "    subs r4, #0x10\n"
-    "    b .L0802CB76\n"
-    ".L0802CB6C:\n"
-    "    adds r4, #0x10\n"
-    "    b .L0802CB76\n"
-    ".L0802CB70:\n"
-    "    subs r5, #0x10\n"
-    "    b .L0802CB76\n"
-    ".L0802CB74:\n"
-    "    adds r5, #0x10\n"
-    ".L0802CB76:\n"
-    "    ldrh r2, [r6, #4]\n"
-    "    ldr r7, [r6]\n"
-    "    ldr r1, [r7]\n"
-    "    mov r0, sp\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    bl _call_via_r3\n"
-    "    mov r1, sp\n"
-    "    asrs r5, r5, #3\n"
-    "    asrs r3, r4, #3\n"
-    "    ldr r2, [sp]\n"
-    "    ldrh r0, [r1, #8]\n"
-    "    cmp r2, #0\n"
-    "    beq .L0802CBB6\n"
-    "    cmp r5, r0\n"
-    "    bhi .L0802CBB6\n"
-    "    ldrh r1, [r1, #0xa]\n"
-    "    cmp r3, r1\n"
-    "    bhi .L0802CBB6\n"
-    "    ldr r1, [sp, #4]\n"
-    "    muls r0, r3, r0\n"
-    "    adds r0, r0, r5\n"
-    "    cmp r1, #0\n"
-    "    beq .L0802CBAC\n"
-    "    adds r0, r1, r0\n"
-    "    ldrb r0, [r0]\n"
-    ".L0802CBAC:\n"
-    "    lsls r0, r0, #2\n"
-    "    adds r0, r2, r0\n"
-    "    b .L0802CBB8\n"
-    ".L0802CBB2:\n"
-    "    ldr r0, [r4]\n"
-    "    b .L0802CC18\n"
-    ".L0802CBB6:\n"
-    "    movs r0, #0\n"
-    ".L0802CBB8:\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802CC20\n"
-    "    ldr r0, [r0]\n"
-    "    lsls r0, r0, #0x1e\n"
-    "    cmp r0, #0\n"
-    "    bge .L0802CC20\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x1b\n"
-    "    strb r0, [r1]\n"
-    "    adds r1, #3\n"
-    "    movs r0, #0xf\n"
-    "    strb r0, [r1]\n"
-    "    ldr r4, [r6, #0x14]\n"
-    "    movs r5, #2\n"
-    "    rsbs r5, r5, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetToolFatiguePenalty__C11PlayerActor\n"
-    "    adds r2, r0, #0\n"
-    "    ldr r3, [r4, #0x64]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r3\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa6\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r4, [r0]\n"
-    "    ldr r5, [r0, #4]\n"
-    "    cmp r4, r5\n"
-    "    beq .L0802CC14\n"
-    ".L0802CC02:\n"
-    "    ldr r0, [r4]\n"
-    "    bl IsUnpaused__C23HardwareMusicPlayerSlot\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802CBB2\n"
-    "    adds r4, #4\n"
-    "    cmp r4, r5\n"
-    "    bne .L0802CC02\n"
-    ".L0802CC14:\n"
-    "    subs r0, r5, #4\n"
-    "    ldr r0, [r0]\n"
-    ".L0802CC18:\n"
-    "    movs r1, #0x92\n"
-    "    bl Start__23HardwareMusicPlayerSlotUs\n"
-    "    b .L0802CDC4\n"
-    ".L0802CC20:\n"
-    "    ldr r0, [r6, #0x38]\n"
-    "    bl func_0800E94C\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802CC32\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #2\n"
-    "    b .L0802CC90\n"
-    ".L0802CC32:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    "    b .L0802CDC2\n"
-    ".L0802CC3A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #5\n"
-    "    b .L0802CC90\n"
-    ".L0802CC42:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #6\n"
-    "    b .L0802CC90\n"
-    ".L0802CC4A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #7\n"
-    "    b .L0802CC90\n"
-    ".L0802CC52:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #8\n"
-    "    b .L0802CC90\n"
-    ".L0802CC5A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #9\n"
-    "    b .L0802CC90\n"
-    ".L0802CC62:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xa\n"
-    "    b .L0802CC90\n"
-    ".L0802CC6A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xb\n"
-    "    b .L0802CC90\n"
-    ".L0802CC72:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xc\n"
-    "    b .L0802CC90\n"
-    ".L0802CC7A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xd\n"
-    "    b .L0802CC90\n"
-    ".L0802CC82:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xe\n"
-    "    b .L0802CC90\n"
-    ".L0802CC8A:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3f\n"
-    "    movs r0, #0xf\n"
-    ".L0802CC90:\n"
-    "    strb r0, [r1]\n"
-    "    ldr r4, [r6, #0x38]\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x5c\n"
-    "    bl GetTool__C9ToolStack\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r4, #0\n"
-    "    bl GetUpgradedTool__C6FarmerG4Tool\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, sp\n"
-    "    adds r0, #0xd\n"
-    "    strb r1, [r0]\n"
-    "    bl GetId__C4Tool\n"
-    "    cmp r0, #0x2f\n"
-    "    bls .L0802CCB6\n"
-    "    b .L0802CDBC\n"
-    ".L0802CCB6:\n"
-    "    lsls r0, r0, #2\n"
-    "    ldr r1, .L0802CCC0 @ =.L0802CCC4\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".L0802CCC0: .word .L0802CCC4\n"
-    ".L0802CCC4: @ jump table\n"
-    "    .word .L0802CD84 @ case 0\n"
-    "    .word .L0802CD8C @ case 1\n"
-    "    .word .L0802CD94 @ case 2\n"
-    "    .word .L0802CD9C @ case 3\n"
-    "    .word .L0802CDA4 @ case 4\n"
-    "    .word .L0802CDAC @ case 5\n"
-    "    .word .L0802CDAC @ case 6\n"
-    "    .word .L0802CDB4 @ case 7\n"
-    "    .word .L0802CD84 @ case 8\n"
-    "    .word .L0802CD8C @ case 9\n"
-    "    .word .L0802CD94 @ case 10\n"
-    "    .word .L0802CD9C @ case 11\n"
-    "    .word .L0802CDA4 @ case 12\n"
-    "    .word .L0802CDAC @ case 13\n"
-    "    .word .L0802CDAC @ case 14\n"
-    "    .word .L0802CDB4 @ case 15\n"
-    "    .word .L0802CD84 @ case 16\n"
-    "    .word .L0802CD8C @ case 17\n"
-    "    .word .L0802CD94 @ case 18\n"
-    "    .word .L0802CD9C @ case 19\n"
-    "    .word .L0802CDA4 @ case 20\n"
-    "    .word .L0802CDAC @ case 21\n"
-    "    .word .L0802CDAC @ case 22\n"
-    "    .word .L0802CDB4 @ case 23\n"
-    "    .word .L0802CD84 @ case 24\n"
-    "    .word .L0802CD8C @ case 25\n"
-    "    .word .L0802CD94 @ case 26\n"
-    "    .word .L0802CD9C @ case 27\n"
-    "    .word .L0802CDA4 @ case 28\n"
-    "    .word .L0802CDAC @ case 29\n"
-    "    .word .L0802CDAC @ case 30\n"
-    "    .word .L0802CDB4 @ case 31\n"
-    "    .word .L0802CD84 @ case 32\n"
-    "    .word .L0802CD8C @ case 33\n"
-    "    .word .L0802CD94 @ case 34\n"
-    "    .word .L0802CD9C @ case 35\n"
-    "    .word .L0802CDA4 @ case 36\n"
-    "    .word .L0802CDAC @ case 37\n"
-    "    .word .L0802CDAC @ case 38\n"
-    "    .word .L0802CDB4 @ case 39\n"
-    "    .word .L0802CD84 @ case 40\n"
-    "    .word .L0802CD8C @ case 41\n"
-    "    .word .L0802CD94 @ case 42\n"
-    "    .word .L0802CD9C @ case 43\n"
-    "    .word .L0802CDA4 @ case 44\n"
-    "    .word .L0802CDAC @ case 45\n"
-    "    .word .L0802CDAC @ case 46\n"
-    "    .word .L0802CDB4 @ case 47\n"
-    ".L0802CD84:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #1\n"
-    "    b .L0802CDC2\n"
-    ".L0802CD8C:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #2\n"
-    "    b .L0802CDC2\n"
-    ".L0802CD94:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #3\n"
-    "    b .L0802CDC2\n"
-    ".L0802CD9C:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #4\n"
-    "    b .L0802CDC2\n"
-    ".L0802CDA4:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #5\n"
-    "    b .L0802CDC2\n"
-    ".L0802CDAC:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #6\n"
-    "    b .L0802CDC2\n"
-    ".L0802CDB4:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #7\n"
-    "    b .L0802CDC2\n"
-    ".L0802CDBC:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x41\n"
-    "    movs r0, #0\n"
-    ".L0802CDC2:\n"
-    "    strb r0, [r1]\n"
-    ".L0802CDC4:\n"
-    "    add sp, #0x10\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
     "    thumb_func_start func_0802CDCC\n"
     "func_0802CDCC: @ 0x0802CDCC\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -42081,7 +41402,7 @@ asm_unified(
     "    b .L0802EFA2\n"
     ".L0802EE60:\n"
     "    adds r0, r7, #0\n"
-    "    bl func_0802C984\n"
+    "    bl InitializeToolCharge__11PlayerActor\n"
     "    b .L0802EFA2\n"
     ".L0802EE68:\n"
     "    ldrb r1, [r4, #1]\n"

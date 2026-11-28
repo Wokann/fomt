@@ -16,6 +16,25 @@ struct Product;
 struct GameStateSaveImage;
 struct Farmer;
 struct MapTerrainView;
+enum PlayerToolActionKind {
+    PLAYER_TOOL_ACTION_SICKLE = 0,
+    PLAYER_TOOL_ACTION_AXE = 1,
+    PLAYER_TOOL_ACTION_WATERING_CAN = 2,
+    PLAYER_TOOL_ACTION_HOE = 3,
+    PLAYER_TOOL_ACTION_HAMMER = 4,
+    PLAYER_TOOL_ACTION_FISHING_ROD = 5,
+    PLAYER_TOOL_ACTION_COW_POTION = 6,
+    PLAYER_TOOL_ACTION_SHEEP_POTION = 7,
+    PLAYER_TOOL_ACTION_SEEDS = 8,
+    PLAYER_TOOL_ACTION_BRUSH = 9,
+    PLAYER_TOOL_ACTION_MILKER = 10,
+    PLAYER_TOOL_ACTION_CLIPPERS = 11,
+    PLAYER_TOOL_ACTION_BELL = 12,
+    PLAYER_TOOL_ACTION_MEDICINE = 13,
+    PLAYER_TOOL_ACTION_SPECIAL = 14,
+    PLAYER_TOOL_ACTION_NONE = 15,
+};
+
 // Q16 offsets, planar velocity and vertical motion of the held graphic.
 // The native renderer accepts state 1; retain the full stored state byte.
 struct PlayerHeldGraphic
@@ -56,6 +75,7 @@ struct PlayerActor : PlayerActorBase {
     u32 GetToolFatiguePenalty() const;
     void BeginToolUse();
     void AdvanceToolCharge();
+    void InitializeToolCharge();
     void PickUpDog();
     void PickUpChicken(u8 slot);
     void PickUpBasket();
@@ -124,7 +144,7 @@ struct PlayerActor : PlayerActorBase {
     u8 action_state;
     u8 unk_3D;
     u8 unk_3E;
-    u8 unk_3F;
+    u8 tool_action_kind;
     u8 tool_charge_level;
     u8 tool_charge_count;
     u8 tool_charge_frames;
