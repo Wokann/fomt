@@ -5,7 +5,7 @@
 #include "game_scene_actions.hh"
 #include "npc_entity.hh"
 
-EC void func_080D7F08(GameSceneState * state)
+EC void RefreshSceneNpcSchedules(GameSceneState * state)
 {
     for (u32 id = ENTITY_LILLIA; id <= ENTITY_CHILD; ++id) {
         GameObject * & game_object = state->game_object.value;

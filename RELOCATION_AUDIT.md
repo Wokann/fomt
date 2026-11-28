@@ -1,3 +1,7 @@
+## 地图切换的坐标和虚调用关系（2026-11-28）
+
+ChangeSceneMap用Location临时对象传递原地图与坐标，调用现有世界对象ChangeMap槽位并刷新NPC日程。RelocateEntityInSceneMap经世界对象查询当前地图，向RelocateEntityToMap传递原实体、坐标和朝向参数。没有添加裸偏移视图或手写虚表取址，完整动作／场景／状态对象及四版默认完整ROM均通过baserom字节与SHA-1。
+
 ## 记录页上下文与角色指标访问（2026-11-28）
 
 ScrollMenuPage保存调用者提供的通用32位上下文，其构造ABI和存储不变；RecordsScreenPage将该值解释为实际传入的save指针，通过NpcCollection查七个精灵及其对应任务经验。动物爱心数通过Animal::GetAffection和标准min计算。原所有调用更新到具含义入口，两个完整对象及四版默认完整ROM通过各自baserom字节与SHA-1。

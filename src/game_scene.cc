@@ -323,7 +323,7 @@ void GameScene::ChangeMap(u32 map, i32 x, i32 y)
 {
     GameSceneState * current = state;
     current->game_object.value->ChangeMap(Location(map, x, y), true);
-    func_080D7F08(current);
+    RefreshSceneNpcSchedules(current);
 }
 
 void GameScene::PanCameraTo(i32 x, i32 y, u32 speed)
@@ -1250,7 +1250,7 @@ void GameScene::SetGameTime(GameTime const & time)
         bool show_colon = IsSceneClockColonVisible(current);
         clock->UpdateCalendar(current->save->clock.calendar, show_colon);
     }
-    func_080D7F08(current);
+    RefreshSceneNpcSchedules(current);
 }
 
 void GameScene::RunChickenFestivalContest()
@@ -6080,7 +6080,7 @@ asm_unified(
     "    movs r2, #1\n"
     "    bl _call_via_r3\n"
     "    ldr r0, [sp, #0xd8]\n"
-    "    bl func_080D7F08\n"
+    "    bl RefreshSceneNpcSchedules\n"
     "    movs r4, #0\n"
     "    ldr r3, [sp, #0xe0]\n"
     "    ldr r0, [r3]\n"

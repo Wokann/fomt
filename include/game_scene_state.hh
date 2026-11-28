@@ -231,7 +231,7 @@ inline GameSceneState::GameSceneState(GameScene * owner, GameStateSaveImage * im
 EXTERN_C
 
 // Recovered state callbacks retain address names where semantics are unresolved.
-void func_080D7F08(GameSceneState * state);
+void RefreshSceneNpcSchedules(GameSceneState * state);
 // Pause the world while the controller runs its active event script.
 void SuspendSceneWorldForScript(GameSceneState * state);
 
