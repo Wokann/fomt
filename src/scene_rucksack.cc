@@ -1636,218 +1636,75 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start BeginDiscard__16RucksackMenuCorei\n"
-    "BeginDiscard__16RucksackMenuCorei:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0x14\n"
-    "adds r5, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "cmp r7, #8\n"
-    "bgt .Lrucksack_2_0046\n"
-    "cmp r7, #0\n"
-    "bne .Lrucksack_2_0018\n"
-    "ldr r0, [r5, #0x78]\n"
-    "bl GetMenuPanelHeaderIcon\n"
-    "b .Lrucksack_2_002c\n"
-    ".Lrucksack_2_0018:\n"
-    "ldr r4, [r5, #0x78]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetMenuPanelItemIcon\n"
-    ".Lrucksack_2_002c:\n"
-    "adds r1, r0, #0\n"
-    "movs r2, #0\n"
-    "ldr r0, [r1, #4]\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_2_003c\n"
-    "ldr r0, [r1, #8]\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_2_003e\n"
-    ".Lrucksack_2_003c:\n"
-    "movs r2, #1\n"
-    ".Lrucksack_2_003e:\n"
-    "cmp r2, #0\n"
-    "beq .Lrucksack_2_0044\n"
-    "b .Lrucksack_2_01a0\n"
-    ".Lrucksack_2_0044:\n"
-    "b .Lrucksack_2_012a\n"
-    ".Lrucksack_2_0046:\n"
-    "cmp r7, #9\n"
-    "bne .Lrucksack_2_00b8\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r4, r5, r1\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_2_005e\n"
-    "b .Lrucksack_2_01a0\n"
-    ".Lrucksack_2_005e:\n"
-    "ldr r0, [r4]\n"
-    "bl GetKind__C8HeldItem\n"
-    "adds r6, r0, #0\n"
-    "cmp r6, #0\n"
-    "bne .Lrucksack_2_006c\n"
-    "b .Lrucksack_2_0180\n"
-    ".Lrucksack_2_006c:\n"
-    "cmp r6, #1\n"
-    "bne .Lrucksack_2_012a\n"
-    "ldr r0, [r4]\n"
-    "bl GetArticle__C8HeldItem\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #0x10\n"
-    "strb r1, [r0]\n"
-    "bl CanBeDiscarded__C7Article\n"
-    "movs r1, #1\n"
-    "eors r0, r1\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r4, r0, #0x18\n"
-    "cmp r4, #0\n"
-    "bne .Lrucksack_2_012a\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrucksack_2_00ac\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrucksack_2_00b0\n"
-    "ldr r3, .Lrucksack_2_00b4\n"
-    "str r4, [sp]\n"
-    "str r4, [sp, #4]\n"
-    "str r4, [sp, #8]\n"
-    "bl func_08050E30\n"
-    "movs r1, #0x84\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "str r6, [r0]\n"
-    "b .Lrucksack_2_01a0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_2_00ac: .word gItemDiscardConfirmTextRef\n"
-    ".Lrucksack_2_00b0: .word gText_HomeStorage_ConfirmationYes\n"
-    ".Lrucksack_2_00b4: .word gText_HomeStorage_ConfirmationNo\n"
-    ".Lrucksack_2_00b8:\n"
-    "ldr r4, [r5, #0x7c]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl func_080CC70C\n"
-    "adds r1, r0, #0\n"
-    "movs r2, #0\n"
-    "ldr r0, [r1, #4]\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_2_00dc\n"
-    "ldr r0, [r1, #8]\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_2_00de\n"
-    ".Lrucksack_2_00dc:\n"
-    "movs r2, #1\n"
-    ".Lrucksack_2_00de:\n"
-    "adds r6, r2, #0\n"
-    "cmp r6, #0\n"
-    "bne .Lrucksack_2_01a0\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp, #0xc]\n"
-    "add r0, sp, #0xc\n"
-    "bl GetKind__C12RucksackItem\n"
-    "adds r4, r0, #0\n"
-    "cmp r4, #1\n"
-    "bne .Lrucksack_2_0180\n"
-    "add r0, sp, #0xc\n"
-    "bl GetArticle__C12RucksackItem\n"
-    "adds r1, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r0, #0x11\n"
-    "strb r1, [r0]\n"
-    "bl CanBeDiscarded__C7Article\n"
-    "movs r1, #1\n"
-    "eors r0, r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_2_0154\n"
-    ".Lrucksack_2_012a:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrucksack_2_0150\n"
-    "ldr r1, [r1]\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #1\n"
-    "adds r1, r5, r0\n"
-    "movs r0, #2\n"
-    "str r0, [r1]\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0xc\n"
-    "movs r1, #0xc7\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "b .Lrucksack_2_01a0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_2_0150: .word gItemDiscardCannotDiscardTextRef\n"
-    ".Lrucksack_2_0154:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrucksack_2_0174\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrucksack_2_0178\n"
-    "ldr r3, .Lrucksack_2_017c\n"
-    "str r6, [sp]\n"
-    "str r6, [sp, #4]\n"
-    "str r6, [sp, #8]\n"
-    "bl func_08050E30\n"
-    "movs r1, #0x84\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "str r4, [r0]\n"
-    "b .Lrucksack_2_01a0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_2_0174: .word gItemDiscardConfirmTextRef\n"
-    ".Lrucksack_2_0178: .word gText_HomeStorage_ConfirmationYes\n"
-    ".Lrucksack_2_017c: .word gText_HomeStorage_ConfirmationNo\n"
-    ".Lrucksack_2_0180:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrucksack_2_01a8\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrucksack_2_01ac\n"
-    "ldr r3, .Lrucksack_2_01b0\n"
-    "str r6, [sp]\n"
-    "str r6, [sp, #4]\n"
-    "str r6, [sp, #8]\n"
-    "bl func_08050E30\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #1\n"
-    "adds r1, r5, r0\n"
-    "movs r0, #1\n"
-    "str r0, [r1]\n"
-    ".Lrucksack_2_01a0:\n"
-    "add sp, #0x14\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_2_01a8: .word gItemDiscardConfirmTextRef\n"
-    ".Lrucksack_2_01ac: .word gText_HomeStorage_ConfirmationYes\n"
-    ".Lrucksack_2_01b0: .word gText_HomeStorage_ConfirmationNo\n"
-    "\n"
 );
+
+void RucksackMenuCore::BeginDiscard(i32 selection)
+{
+    if (selection <= 8) {
+        GameMenuItemIcon const * icon;
+        if (selection == 0)
+            icon = GetMenuPanelHeaderIcon(left_panel.value);
+        else
+            icon = GetMenuPanelItemIcon(left_panel.value, GetItemIndex(selection, 0));
+        if (!IsMenuItemIconEmpty(icon)) {
+            func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+            phase = 2;
+            music.Start(0xC7);
+        }
+    } else if (selection == 9) {
+        if (IsHeldItemEmpty(held_item))
+            return;
+        switch (held_item->GetKind()) {
+        case HeldItem::KIND_FOOD:
+            ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                gText_HomeStorage_ConfirmationYes, gText_HomeStorage_ConfirmationNo, nullptr);
+            phase = 1;
+            break;
+        case HeldItem::KIND_ARTICLE:
+            if (!held_item->GetArticle().CanBeDiscarded()) {
+                func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                    reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+                phase = 2;
+                music.Start(0xC7);
+            } else {
+                ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                    gText_HomeStorage_ConfirmationYes, gText_HomeStorage_ConfirmationNo, nullptr);
+                phase = 1;
+            }
+            break;
+        default:
+            func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+            phase = 2;
+            music.Start(0xC7);
+            break;
+        }
+    } else {
+        GameMenuItemIcon const & icon = *func_080CC70C(
+            right_panel.value, GetItemIndex(selection, 0));
+        if (IsMenuItemIconEmpty(&icon))
+            return;
+        RucksackItem item = rucksack->GetItemAt(GetItemIndex(selection, 0));
+        if (item.GetKind() == RucksackItem::KIND_ARTICLE) {
+            if (!item.GetArticle().CanBeDiscarded()) {
+                func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                    reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+                phase = 2;
+                music.Start(0xC7);
+            } else {
+                ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                    gText_HomeStorage_ConfirmationYes, gText_HomeStorage_ConfirmationNo, nullptr);
+                phase = 1;
+            }
+        } else {
+            ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                gText_HomeStorage_ConfirmationYes, gText_HomeStorage_ConfirmationNo, nullptr);
+            phase = 1;
+        }
+    }
+}
+
 
 extern "C" void func_080CD4D4(void * panel);
 

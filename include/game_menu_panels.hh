@@ -46,6 +46,11 @@ struct GameMenuItemIcon {
     IndexedResourcePaletteBank const * palette;
 };
 
+static inline bool IsMenuItemIconEmpty(GameMenuItemIcon const * icon)
+{
+    return icon->tiles == nullptr || icon->palette == nullptr;
+}
+
 // The native constructors initialize only count active entries (at most eight).
 // Retain their counted lifetime instead of interpreting unused slots as items.
 #pragma interface "game_menu.hh"
@@ -127,6 +132,7 @@ void ClearMenuItemIcon(GameMenuItemIcon *);
 // index must refer to one of the panel's active icon entries.
 GameMenuItemIcon * GetMenuPanelItemIcon(GameMenuPanel *, u32 index);
 GameMenuItemIcon * GetMenuPanelHeaderIcon(GameMenuPanel *);
+GameMenuItemIcon * func_080CC70C(GameMenuPanel *, u32 index);
 }
 
 // Coordinate readers retain the native unused panel argument, without

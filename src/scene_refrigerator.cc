@@ -3479,227 +3479,71 @@ asm_unified(
     ".Lrefrigerator_9_0818: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start BeginDiscard__21RefrigeratorSceneCorei\n"
-    "BeginDiscard__21RefrigeratorSceneCorei:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0x14\n"
-    "adds r5, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "cmp r7, #0\n"
-    "bne .Lrefrigerator_10_008c\n"
-    "adds r4, r5, #0\n"
-    "adds r4, #0xfc\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_10_001e\n"
-    "b .Lrefrigerator_10_01b8\n"
-    ".Lrefrigerator_10_001e:\n"
-    "ldr r0, [r4]\n"
-    "bl GetKind__C8HeldItem\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_10_002e\n"
-    "cmp r0, #1\n"
-    "beq .Lrefrigerator_10_0050\n"
-    "b .Lrefrigerator_10_0102\n"
-    ".Lrefrigerator_10_002e:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_0044\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrefrigerator_10_0048\n"
-    "ldr r3, .Lrefrigerator_10_004c\n"
-    "str r7, [sp]\n"
-    "str r7, [sp, #4]\n"
-    "str r7, [sp, #8]\n"
-    "b .Lrefrigerator_10_01aa\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_0044: .word gItemDiscardConfirmTextRef\n"
-    ".Lrefrigerator_10_0048: .word gText_Fridge_Yes\n"
-    ".Lrefrigerator_10_004c: .word gText_Fridge_No\n"
-    ".Lrefrigerator_10_0050:\n"
-    "ldr r0, [r4]\n"
-    "bl GetArticle__C8HeldItem\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #0x10\n"
-    "strb r1, [r0]\n"
-    "bl CanBeDiscarded__C7Article\n"
-    "movs r1, #1\n"
-    "eors r0, r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_10_0102\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_0080\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrefrigerator_10_0084\n"
-    "ldr r3, .Lrefrigerator_10_0088\n"
-    "str r7, [sp]\n"
-    "str r7, [sp, #4]\n"
-    "str r7, [sp, #8]\n"
-    "b .Lrefrigerator_10_01aa\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_0080: .word gItemDiscardConfirmTextRef\n"
-    ".Lrefrigerator_10_0084: .word gText_Fridge_Yes\n"
-    ".Lrefrigerator_10_0088: .word gText_Fridge_No\n"
-    ".Lrefrigerator_10_008c:\n"
-    "cmp r7, #8\n"
-    "bgt .Lrefrigerator_10_016c\n"
-    "ldr r4, [r5, #0x78]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetMenuPanelItemIcon\n"
-    "adds r1, r0, #0\n"
-    "movs r2, #0\n"
-    "ldr r0, [r1, #4]\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_10_00b4\n"
-    "ldr r0, [r1, #8]\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_10_00b6\n"
-    ".Lrefrigerator_10_00b4:\n"
-    "movs r2, #1\n"
-    ".Lrefrigerator_10_00b6:\n"
-    "adds r6, r2, #0\n"
-    "cmp r6, #0\n"
-    "beq .Lrefrigerator_10_00be\n"
-    "b .Lrefrigerator_10_01b8\n"
-    ".Lrefrigerator_10_00be:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp, #0xc]\n"
-    "add r0, sp, #0xc\n"
-    "bl GetKind__C12RucksackItem\n"
-    "cmp r0, #1\n"
-    "bne .Lrefrigerator_10_014c\n"
-    "add r0, sp, #0xc\n"
-    "bl GetArticle__C12RucksackItem\n"
-    "adds r1, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r0, #0x11\n"
-    "strb r1, [r0]\n"
-    "bl CanBeDiscarded__C7Article\n"
-    "movs r1, #1\n"
-    "eors r0, r1\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_10_012c\n"
-    ".Lrefrigerator_10_0102:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_0128\n"
-    "ldr r1, [r1]\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #1\n"
-    "adds r1, r5, r0\n"
-    "movs r0, #4\n"
-    "str r0, [r1]\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0xc\n"
-    "movs r1, #0xc7\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "b .Lrefrigerator_10_01b8\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_0128: .word gItemDiscardCannotDiscardTextRef\n"
-    ".Lrefrigerator_10_012c:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_0140\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrefrigerator_10_0144\n"
-    "ldr r3, .Lrefrigerator_10_0148\n"
-    "str r6, [sp]\n"
-    "str r6, [sp, #4]\n"
-    "str r6, [sp, #8]\n"
-    "b .Lrefrigerator_10_01aa\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_0140: .word gItemDiscardConfirmTextRef\n"
-    ".Lrefrigerator_10_0144: .word gText_Fridge_Yes\n"
-    ".Lrefrigerator_10_0148: .word gText_Fridge_No\n"
-    ".Lrefrigerator_10_014c:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_0160\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrefrigerator_10_0164\n"
-    "ldr r3, .Lrefrigerator_10_0168\n"
-    "str r6, [sp]\n"
-    "str r6, [sp, #4]\n"
-    "str r6, [sp, #8]\n"
-    "b .Lrefrigerator_10_01aa\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_0160: .word gItemDiscardConfirmTextRef\n"
-    ".Lrefrigerator_10_0164: .word gText_Fridge_Yes\n"
-    ".Lrefrigerator_10_0168: .word gText_Fridge_No\n"
-    ".Lrefrigerator_10_016c:\n"
-    "ldr r4, [r5, #0x7c]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl func_080CC70C\n"
-    "adds r1, r0, #0\n"
-    "movs r2, #0\n"
-    "ldr r0, [r1, #4]\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_10_0190\n"
-    "ldr r0, [r1, #8]\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_10_0192\n"
-    ".Lrefrigerator_10_0190:\n"
-    "movs r2, #1\n"
-    ".Lrefrigerator_10_0192:\n"
-    "adds r4, r2, #0\n"
-    "cmp r4, #0\n"
-    "bne .Lrefrigerator_10_01b8\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrefrigerator_10_01c0\n"
-    "ldr r1, [r1]\n"
-    "ldr r2, .Lrefrigerator_10_01c4\n"
-    "ldr r3, .Lrefrigerator_10_01c8\n"
-    "str r4, [sp]\n"
-    "str r4, [sp, #4]\n"
-    "str r4, [sp, #8]\n"
-    ".Lrefrigerator_10_01aa:\n"
-    "bl func_08050E30\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #1\n"
-    "adds r1, r5, r0\n"
-    "movs r0, #3\n"
-    "str r0, [r1]\n"
-    ".Lrefrigerator_10_01b8:\n"
-    "add sp, #0x14\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_10_01c0: .word gItemDiscardConfirmTextRef\n"
-    ".Lrefrigerator_10_01c4: .word gText_Fridge_Yes\n"
-    ".Lrefrigerator_10_01c8: .word gText_Fridge_No\n"
-    "\n"
 );
+
+void RefrigeratorSceneCore::BeginDiscard(i32 selection)
+{
+    if (selection == 0) {
+        if (IsHeldItemEmpty(held_item))
+            return;
+        switch (held_item->GetKind()) {
+        case HeldItem::KIND_FOOD:
+            ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                gText_Fridge_Yes, gText_Fridge_No, nullptr);
+            phase = 3;
+            break;
+        case HeldItem::KIND_ARTICLE:
+            if (!held_item->GetArticle().CanBeDiscarded()) {
+                func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                    reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+                phase = 4;
+                music.Start(0xC7);
+            } else {
+                ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                    gText_Fridge_Yes, gText_Fridge_No, nullptr);
+                phase = 3;
+            }
+            break;
+        default:
+            func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+            phase = 4;
+            music.Start(0xC7);
+            break;
+        }
+    } else if (selection <= 8) {
+        GameMenuItemIcon const & icon = *GetMenuPanelItemIcon(
+            left_panel.value, GetItemIndex(selection, 0));
+        if (IsMenuItemIconEmpty(&icon))
+            return;
+        RucksackItem item = rucksack->GetItemAt(GetItemIndex(selection, 0));
+        if (item.GetKind() == RucksackItem::KIND_ARTICLE) {
+            if (!item.GetArticle().CanBeDiscarded()) {
+                func_08050DC8(reinterpret_cast<void * const *>(&ui),
+                    reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+                phase = 4;
+                music.Start(0xC7);
+            } else {
+                ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                    gText_Fridge_Yes, gText_Fridge_No, nullptr);
+                phase = 3;
+            }
+        } else {
+            ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+                gText_Fridge_Yes, gText_Fridge_No, nullptr);
+            phase = 3;
+        }
+    } else {
+        GameMenuItemIcon const & icon = *func_080CC70C(
+            right_panel.value, GetItemIndex(selection, 0));
+        if (IsMenuItemIconEmpty(&icon))
+            return;
+        ShowUiTwoChoicePrompt(&ui, gItemDiscardConfirmTextRef,
+            gText_Fridge_Yes, gText_Fridge_No, nullptr);
+        phase = 3;
+    }
+}
+
 
 extern "C" void func_080CC0B4(void *);
 extern "C" void func_080CBA60(void *, u32);
