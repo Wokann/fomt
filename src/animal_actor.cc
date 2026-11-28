@@ -1,4 +1,5 @@
 #include "animal_actor.hh"
+#include <stdlib.h>
 #include "player_actor.hh"
 #include "world_prop_entities.hh"
 #include "dog.hh"
@@ -7460,1566 +7461,191 @@ void CowActor::PauseMovement(u32 frames)
     SetBehavior(GetBehavior(), facing);
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__8CowActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__8CowActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sl\n"
-    "    mov r6, sb\n"
-    "    mov r5, r8\n"
-    "    push {r5, r6, r7}\n"
-    "    sub sp, #0xa0\n"
-    "    mov r8, r0\n"
-    "    ldr r7, [r0]\n"
-    "    ldr r0, [r0, #0x34]\n"
-    "    mov sb, r0\n"
-    "    mov r2, r8\n"
-    "    ldrh r2, [r2, #4]\n"
-    "    str r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lauto_08022B70\n"
-    "    ldrb r0, [r1, #4]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022B70\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r5, r0, #0\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddOutdoorMinutes__9LivestockUi\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r5, #0xb3\n"
-    "    bhi .Lauto_08022AF8\n"
-    "    cmp r4, #0xb3\n"
-    "    bls .Lauto_08022AF8\n"
-    "    ldr r0, [r7]\n"
-    "    movs r3, #0xa2\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r0, r3\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022AF8\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08022AF8\n"
-    "    mov r0, sb\n"
-    "    bl SetUnhappy__9Livestock\n"
-    "    .Lauto_08022AF8:\n"
-    "    cmp r5, #0xef\n"
-    "    bhi .Lauto_08022B2C\n"
-    "    cmp r4, #0xef\n"
-    "    bls .Lauto_08022B2C\n"
-    "    ldr r0, [r7]\n"
-    "    movs r6, #0x84\n"
-    "    lsls r6, r6, #1\n"
-    "    adds r0, r0, r6\n"
-    "    mov r1, r8\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r6, #0xe\n"
-    "    ldrsh r3, [r1, r6]\n"
-    "    add r1, sp, #0x48\n"
-    "    strh r2, [r1]\n"
-    "    strh r3, [r1, #2]\n"
-    "    ldr r2, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r2\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022B2C\n"
-    "    mov r0, sb\n"
-    "    bl SetFed__10BarnAnimal\n"
-    "    .Lauto_08022B2C:\n"
-    "    ldr r0, .Lraw_code_entities_5452_2\n"
-    "    cmp r5, r0\n"
-    "    bhi .Lauto_08022B70\n"
-    "    cmp r4, r0\n"
-    "    bls .Lauto_08022B70\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08022B70\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022B68\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .Lauto_08022B68\n"
-    "    mov r0, sb\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    "    .Lauto_08022B68:\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    .Lauto_08022B70:\n"
-    "    ldr r1, [r7]\n"
-    "    add r0, sp, #8\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    bl _call_via_r3\n"
-    "    mov r2, r8\n"
-    "    ldr r1, [r2, #0x14]\n"
-    "    add r0, sp, #0x4c\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    mov r1, r8\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp, #0x4c]\n"
-    "    ldr r1, [sp, #0x50]\n"
-    "    str r0, [sp, #0x98]\n"
-    "    str r1, [sp, #0x9c]\n"
-    "    add r4, sp, #0x14\n"
-    "    movs r1, #0x10\n"
-    "    mov sl, r1\n"
-    "    movs r5, #0\n"
-    "    movs r1, #0x11\n"
-    "    str r1, [sp, #0x14]\n"
-    "    movs r0, #0x11\n"
-    "    rsbs r0, r0, #0\n"
-    "    str r0, [r4, #4]\n"
-    "    str r0, [r4, #8]\n"
-    "    str r1, [r4, #0xc]\n"
-    "    add r1, sp, #0x28\n"
-    "    add r0, sp, #8\n"
-    "    ldm r0!, {r2, r3, r6}\n"
-    "    stm r1!, {r2, r3, r6}\n"
-    "    ldr r0, [sp, #0x98]\n"
-    "    ldr r1, [sp, #0x9c]\n"
-    "    str r0, [sp, #0x34]\n"
-    "    str r1, [sp, #0x38]\n"
-    "    mov r1, sl\n"
-    "    str r1, [r4, #0x28]\n"
-    "    str r5, [r4, #0x2c]\n"
-    "    str r5, [r4, #0x30]\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r6, r0, #0\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4a\n"
-    "    bl _call_via_r2\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r6, #0\n"
-    "    beq .Lauto_08022C02\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r0, r2\n"
-    "    bne .Lauto_08022C02\n"
-    "    ldr r1, [r6, #0x14]\n"
-    "    add r4, sp, #0x54\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r6, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    "    .Lauto_08022C02:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_08022C26\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lauto_08022C26\n"
-    "    ldr r1, [r5, #0x14]\n"
-    "    add r4, sp, #0x5c\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    "    .Lauto_08022C26:\n"
-    "    mov r1, sb\n"
-    "    ldr r0, [r1, #0x28]\n"
-    "    cmp r0, #1\n"
-    "    bne .Lauto_08022C30\n"
-    "    b .L08022DA0\n"
-    "    .Lauto_08022C30:\n"
-    "    cmp r0, #1\n"
-    "    bgt .Lauto_08022C40\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08022C4E\n"
-    "    b .Lauto_0802304C\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_5452_2: .word 0x0000012B\n"
-    "    .Lauto_08022C40:\n"
-    "    cmp r0, #2\n"
-    "    bne .Lauto_08022C46\n"
-    "    b .L08022E74\n"
-    "    .Lauto_08022C46:\n"
-    "    cmp r0, #3\n"
-    "    bne .Lauto_08022C4C\n"
-    "    b .L08022F58\n"
-    "    .Lauto_08022C4C:\n"
-    "    b .Lauto_0802304C\n"
-    "    .Lauto_08022C4E:\n"
-    "    movs r2, #0x2c\n"
-    "    add r2, sb\n"
-    "    mov sl, r2\n"
-    "    mov r3, sb\n"
-    "    ldrh r4, [r3, #0x2c]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lauto_08022CE2\n"
-    "    mov r6, r8\n"
-    "    ldr r5, [r6, #0x18]\n"
-    "    ldr r6, [r6, #0x1c]\n"
-    "    movs r7, #0\n"
-    "    cmp r5, #0\n"
-    "    bge .Lauto_08022C80\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lauto_08022C78\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshLeft__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    .Lauto_08022C78:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lauto_08022CD4\n"
-    "    .Lauto_08022C80:\n"
-    "    cmp r5, #0\n"
-    "    ble .Lauto_08022C9C\n"
-    "    ldr r1, [sp, #0x20]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lauto_08022C96\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshRight__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x20]\n"
-    "    b .Lauto_08022C98\n"
-    "    .Lauto_08022C96:\n"
-    "    adds r0, r1, #0\n"
-    "    .Lauto_08022C98:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lauto_08022CD4\n"
-    "    .Lauto_08022C9C:\n"
-    "    cmp r6, #0\n"
-    "    bge .Lauto_08022CB8\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lauto_08022CB0\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshUp__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    .Lauto_08022CB0:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lauto_08022CD4\n"
-    "    .Lauto_08022CB8:\n"
-    "    cmp r6, #0\n"
-    "    ble .Lauto_08022CD6\n"
-    "    ldr r1, [sp, #0x14]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lauto_08022CCE\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshDown__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x14]\n"
-    "    b .Lauto_08022CD0\n"
-    "    .Lauto_08022CCE:\n"
-    "    adds r0, r1, #0\n"
-    "    .Lauto_08022CD0:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08022CD6\n"
-    "    .Lauto_08022CD4:\n"
-    "    movs r7, #1\n"
-    "    .Lauto_08022CD6:\n"
-    "    cmp r7, #0\n"
-    "    beq .Lauto_08022CDE\n"
-    "    movs r4, #0\n"
-    "    b .L08022D9A\n"
-    "    .Lauto_08022CDE:\n"
-    "    subs r4, #1\n"
-    "    b .L08022D9A\n"
-    "    .Lauto_08022CE2:\n"
-    "    mov r0, r8\n"
-    "    bl IsAnimationComplete__C12AActorEntity\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08022D9A\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    movs r1, #0\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lauto_08022D0E\n"
-    "    movs r1, #1\n"
-    "    .Lauto_08022D0E:\n"
-    "    lsls r0, r1, #3\n"
-    "    subs r0, r0, r1\n"
-    "    lsls r0, r0, #5\n"
-    "    ldr r1, .Lraw_code_entities_5589_0\n"
-    "    adds r5, r0, r1\n"
-    "    mov r0, sb\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r4, r1, #2\n"
-    "    mov r0, sb\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08022D40\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xa8\n"
-    "    adds r5, r5, r0\n"
-    "    b .L08022D50\n"
-    ".Lraw_code_entities_5589_0: .word gUnk_080F0A7C\n"
-    ".L08022D40:\n"
-    "    mov r0, sb\n"
-    "    bl GetGrowthStage__C3Cow\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r1, r5, r1\n"
-    "    adds r5, r1, r4\n"
-    ".L08022D50:\n"
-    "    adds r0, r5, #0\n"
-    "    movs r1, #7\n"
-    "    bl SelectActorBehaviorTimingIndex\n"
-    "    adds r6, r0, #0\n"
-    "    lsls r4, r6, #2\n"
-    "    adds r4, r5, r4\n"
-    "    movs r5, #0x3c\n"
-    "    ldrb r0, [r4, #2]\n"
-    "    muls r0, r5, r0\n"
-    "    bl RandomBelow\n"
-    "    ldrb r1, [r4, #1]\n"
-    "    muls r1, r5, r1\n"
-    "    adds r4, r1, r0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r5, [r0]\n"
-    "    movs r0, #4\n"
-    "    bl RandomBelow\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_08022D8C\n"
-    "    cmp r1, #3\n"
-    "    beq .Lauto_08022D8C\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetRelativeFacing\n"
-    "    adds r5, r0, #0\n"
-    "    .Lauto_08022D8C:\n"
-    "    mov r0, r8\n"
-    "    adds r1, r6, #0\n"
-    "    adds r2, r5, #0\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    mov r2, sl\n"
-    "    strb r6, [r2, #2]\n"
-    ".L08022D9A:\n"
-    "    mov r3, sl\n"
-    "    strh r4, [r3]\n"
-    "    b .Lauto_0802304C\n"
-    ".L08022DA0:\n"
-    "    mov r0, sb\n"
-    "    adds r0, #0x2c\n"
-    "    str r0, [sp, #0x94]\n"
-    "    mov r1, sb\n"
-    "    ldrh r1, [r1, #0x2c]\n"
-    "    mov sl, r1\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_08022DB6\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    add sl, r2\n"
-    "    .Lauto_08022DB6:\n"
-    "    mov r3, sb\n"
-    "    ldr r1, [r3, #0x2c]\n"
-    "    lsls r0, r1, #9\n"
-    "    lsrs r5, r0, #0x19\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_5658_12\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_5658_12:\n"
-    "    ldr r0, [sp, #0x94]\n"
-    "    ldrb r4, [r0, #3]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_5659_6\n"
-    "    subs r4, #1\n"
-    ".Lraw_code_entities_5659_6:\n"
-    "    mov r2, sl\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_5669_14\n"
-    "    lsls r0, r1, #8\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_5661_2\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x2d\n"
-    "    bl _call_via_r2\n"
-    "    adds r1, r0, #0\n"
-    "    b .Lraw_code_entities_5661_4\n"
-    ".Lraw_code_entities_5661_2:\n"
-    "    adds r1, r6, #0\n"
-    ".Lraw_code_entities_5661_4:\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_5669_14\n"
-    "    ldrh r0, [r1, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_5669_14\n"
-    "    cmp r4, #0\n"
-    "    bne .Lraw_code_entities_5668_2\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r6, [r7, r0]\n"
-    "    movs r2, #0xe\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r3, [r1, r7]\n"
-    "    movs r7, #1\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_5663_14\n"
-    "    movs r7, #6\n"
-    ".Lraw_code_entities_5663_14:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r1, sp, #0x14\n"
-    "    str r1, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl SelectRetreatFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r1, r7, #0\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r4, r0, #1\n"
-    ".Lraw_code_entities_5668_2:\n"
-    "    mov r3, sl\n"
-    "    ldr r2, [sp, #0x94]\n"
-    "    strh r3, [r2]\n"
-    "    movs r0, #0x7f\n"
-    "    ands r5, r0\n"
-    "    ldrb r1, [r2, #2]\n"
-    "    movs r0, #0x80\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r5\n"
-    "    strb r0, [r2, #2]\n"
-    "    strb r4, [r2, #3]\n"
-    "    b .Lauto_0802304C\n"
-    ".Lraw_code_entities_5669_14:\n"
-    "    ldr r1, .Lraw_code_entities_5671_4\n"
-    "    ldr r0, [sp, #0x64]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_5671_8\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x64]\n"
-    "    add r1, sp, #0x64\n"
-    "    b .Lraw_code_entities_5777_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_5671_4: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_5671_8: .word 0xFF00FFFF\n"
-    ".L08022E74:\n"
-    "    mov r4, sb\n"
-    "    adds r4, #0x2c\n"
-    "    mov r7, sb\n"
-    "    ldrh r5, [r7, #0x2c]\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_08022E82\n"
-    "    subs r5, #1\n"
-    "    .Lauto_08022E82:\n"
-    "    ldrh r2, [r4, #2]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_08022E8A\n"
-    "    subs r2, #1\n"
-    "    .Lauto_08022E8A:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_08022F20\n"
-    "    cmp r6, #0\n"
-    "    beq .Lauto_08022F20\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r1, [sp, #0x90]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lauto_08022F20\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r3, [r7, r0]\n"
-    "    movs r0, #0xe\n"
-    "    ldrsh r1, [r7, r0]\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r7, [r6, r0]\n"
-    "    mov sl, r7\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r6, [r6, r7]\n"
-    "    mov r7, sl\n"
-    "    subs r0, r7, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022EB8\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022EB8:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08022EC8\n"
-    "    subs r0, r6, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022EC4\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022EC4:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lauto_08022F20\n"
-    "    .Lauto_08022EC8:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_08022EEC\n"
-    "    movs r7, #4\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022ED8\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022ED8:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08022F1A\n"
-    "    movs r7, #6\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022EE8\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022EE8:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08022F1A\n"
-    "    .Lauto_08022EEC:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r2, sp, #0x14\n"
-    "    str r2, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r3, #0\n"
-    "    mov r2, sl\n"
-    "    adds r3, r6, #0\n"
-    "    bl SelectApproachFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    movs r1, #1\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r2, r0, #1\n"
-    "    mov r3, sl\n"
-    "    strh r3, [r4, #4]\n"
-    "    strh r6, [r4, #6]\n"
-    "    .Lauto_08022F1A:\n"
-    "    strh r5, [r4]\n"
-    "    strh r2, [r4, #2]\n"
-    "    b .Lauto_0802304C\n"
-    "    .Lauto_08022F20:\n"
-    "    ldr r1, .Lraw_code_entities_5788_2\n"
-    "    ldr r0, [sp, #0x68]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_5788_6\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x68]\n"
-    "    add r1, sp, #0x68\n"
-    ".Lraw_code_entities_5777_0:\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C8CowActor\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    b .Lauto_0802304C\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_5788_2: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_5788_6: .word 0xFF00FFFF\n"
-    ".L08022F58:\n"
-    "    mov r6, sb\n"
-    "    adds r6, #0x2c\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r1, [r0]\n"
-    "    mov r7, r8\n"
-    "    movs r2, #0xa\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r5, [r7, r3]\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [sp, #0x90]\n"
-    "    cmp r0, #0x25\n"
-    "    bne .Lauto_08022FB8\n"
-    "    cmp r1, #0\n"
-    "    bne .Lauto_08022FB8\n"
-    "    add r0, sp, #0x6c\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r0, [sp, #0x6c]\n"
-    "    str r0, [sp, #0x70]\n"
-    "    add r0, sp, #0x70\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r0, r2]\n"
-    "    adds r0, r5, #0\n"
-    "    subs r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022F94\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022F94:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lauto_08023018\n"
-    "    add r0, sp, #0x74\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x74]\n"
-    "    str r0, [sp, #0x78]\n"
-    "    add r0, sp, #0x78\n"
-    "    movs r3, #0\n"
-    "    ldrsh r2, [r0, r3]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    adds r3, #0x10\n"
-    "    mov r0, r8\n"
-    "    movs r1, #2\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    b .Lauto_08023018\n"
-    "    .Lauto_08022FB8:\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lauto_08023018\n"
-    "    cmp r1, #1\n"
-    "    bne .Lauto_08023018\n"
-    "    add r0, sp, #0x7c\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x7c]\n"
-    "    str r0, [sp, #0x80]\n"
-    "    add r0, sp, #0x80\n"
-    "    adds r1, r0, #0\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r1, r3]\n"
-    "    subs r0, r0, r4\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022FDC\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022FDC:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08023018\n"
-    "    movs r0, #2\n"
-    "    ldrsh r1, [r1, r0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08022FF0\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08022FF0:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lauto_08023018\n"
-    "    add r0, sp, #0x84\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r1, [sp, #0x84]\n"
-    "    add r0, sp, #0x88\n"
-    "    str r1, [r0]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r2, [r0, r1]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    subs r3, #0x20\n"
-    "    mov r0, r8\n"
-    "    movs r1, #0x25\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    mov r0, sb\n"
-    "    bl ResetCurrentOutdoorMinutes__9Livestock\n"
-    "    .Lauto_08023018:\n"
-    "    ldrh r0, [r6]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08023024\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r6]\n"
-    "    b .Lauto_0802304C\n"
-    "    .Lauto_08023024:\n"
-    "    ldr r2, .Lraw_code_entities_5928_2\n"
-    "    add r1, sp, #0x8c\n"
-    "    ldr r0, [r1]\n"
-    "    ands r0, r2\n"
-    "    movs r2, #0xb4\n"
-    "    orrs r0, r2\n"
-    "    ldr r2, .Lraw_code_entities_5928_6\n"
-    "    ands r0, r2\n"
-    "    str r0, [r1]\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C8CowActor\n"
-    "    adds r1, r0, #0\n"
-    "    ldrb r2, [r7]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    .Lauto_0802304C:\n"
-    "    mov r0, r8\n"
-    "    add r1, sp, #0x14\n"
-    "    bl ApplyMovement__12AActorEntityP19ActorMovementBounds\n"
-    "    mov r1, r8\n"
-    "    adds r1, #0x30\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    mov r2, r8\n"
-    "    ldrh r0, [r2, #0x24]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08023074\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r2, #0x24]\n"
-    "    b .Lauto_0802307A\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_5928_2: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_5928_6: .word 0xFF00FFFF\n"
-    "    .Lauto_08023074:\n"
-    "    mov r3, r8\n"
-    "    ldrh r0, [r3, #0x26]\n"
-    "    strh r0, [r3, #0x24]\n"
-    "    .Lauto_0802307A:\n"
-    "    mov r6, r8\n"
-    "    ldr r2, [r6, #0x10]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_0802308C\n"
-    "    ldr r0, [r2, #4]\n"
-    "    ldr r1, [r0, #0xc]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    "    .Lauto_0802308C:\n"
-    "    add sp, #0xa0\n"
-    "    pop {r3, r4, r5}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    mov sl, r5\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__8CowActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__8CowActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sl\n"
-    "    mov r6, sb\n"
-    "    mov r5, r8\n"
-    "    push {r5, r6, r7}\n"
-    "    sub sp, #0xa0\n"
-    "    mov r8, r0\n"
-    "    ldr r7, [r0]\n"
-    "    ldr r0, [r0, #0x34]\n"
-    "    mov sb, r0\n"
-    "    mov r2, r8\n"
-    "    ldrh r2, [r2, #4]\n"
-    "    str r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lraw_code_entities_39367_0\n"
-    "    ldrb r0, [r1, #4]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39367_0\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r5, r0, #0\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddOutdoorMinutes__9LivestockUi\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r5, #0xb3\n"
-    "    bhi .Lraw_code_entities_39348_0\n"
-    "    cmp r4, #0xb3\n"
-    "    bls .Lraw_code_entities_39348_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r3, #0xa2\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r0, r3\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39348_0\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39348_0\n"
-    "    mov r0, sb\n"
-    "    bl SetUnhappy__9Livestock\n"
-    ".Lraw_code_entities_39348_0:\n"
-    "    cmp r5, #0xef\n"
-    "    bhi .Lraw_code_entities_39355_0\n"
-    "    cmp r4, #0xef\n"
-    "    bls .Lraw_code_entities_39355_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r6, #0x84\n"
-    "    lsls r6, r6, #1\n"
-    "    adds r0, r0, r6\n"
-    "    mov r1, r8\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r6, #0xe\n"
-    "    ldrsh r3, [r1, r6]\n"
-    "    add r1, sp, #0x48\n"
-    "    strh r2, [r1]\n"
-    "    strh r3, [r1, #2]\n"
-    "    ldr r2, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r2\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39355_0\n"
-    "    mov r0, sb\n"
-    "    bl SetFed__10BarnAnimal\n"
-    ".Lraw_code_entities_39355_0:\n"
-    "    ldr r0, .Lraw_code_entities_39394_8\n"
-    "    cmp r5, r0\n"
-    "    bhi .Lraw_code_entities_39367_0\n"
-    "    cmp r4, r0\n"
-    "    bls .Lraw_code_entities_39367_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_39367_0\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39365_0\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .Lraw_code_entities_39365_0\n"
-    "    mov r0, sb\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".Lraw_code_entities_39365_0:\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    ".Lraw_code_entities_39367_0:\n"
-    "    ldr r1, [r7]\n"
-    "    add r0, sp, #8\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    bl _call_via_r3\n"
-    "    mov r2, r8\n"
-    "    ldr r1, [r2, #0x14]\n"
-    "    add r0, sp, #0x4c\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    mov r1, r8\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp, #0x4c]\n"
-    "    ldr r1, [sp, #0x50]\n"
-    "    str r0, [sp, #0x98]\n"
-    "    str r1, [sp, #0x9c]\n"
-    "    add r4, sp, #0x14\n"
-    "    movs r1, #0x10\n"
-    "    mov sl, r1\n"
-    "    movs r5, #0\n"
-    "    movs r1, #0x11\n"
-    "    str r1, [sp, #0x14]\n"
-    "    movs r0, #0x11\n"
-    "    rsbs r0, r0, #0\n"
-    "    str r0, [r4, #4]\n"
-    "    str r0, [r4, #8]\n"
-    "    str r1, [r4, #0xc]\n"
-    "    add r1, sp, #0x28\n"
-    "    add r0, sp, #8\n"
-    "    ldm r0!, {r2, r3, r6}\n"
-    "    stm r1!, {r2, r3, r6}\n"
-    "    ldr r0, [sp, #0x98]\n"
-    "    ldr r1, [sp, #0x9c]\n"
-    "    str r0, [sp, #0x34]\n"
-    "    str r1, [sp, #0x38]\n"
-    "    mov r1, sl\n"
-    "    str r1, [r4, #0x28]\n"
-    "    str r5, [r4, #0x2c]\n"
-    "    str r5, [r4, #0x30]\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r6, r0, #0\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4a\n"
-    "    bl _call_via_r2\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r6, #0\n"
-    "    beq .Lraw_code_entities_39387_0\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r0, r2\n"
-    "    bne .Lraw_code_entities_39387_0\n"
-    "    ldr r1, [r6, #0x14]\n"
-    "    add r4, sp, #0x54\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r6, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    ".Lraw_code_entities_39387_0:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_39393_0\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_39393_0\n"
-    "    ldr r1, [r5, #0x14]\n"
-    "    add r4, sp, #0x5c\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    ".Lraw_code_entities_39393_0:\n"
-    "    mov r1, sb\n"
-    "    ldr r0, [r1, #0x28]\n"
-    "    cmp r0, #1\n"
-    "    bne .Lraw_code_entities_39393_10\n"
-    "    b .Lraw_code_entities_39440_10\n"
-    ".Lraw_code_entities_39393_10:\n"
-    "    cmp r0, #1\n"
-    "    bgt .Lraw_code_entities_39394_12\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39395_10\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_39394_8: .word 0x0000012B\n"
-    ".Lraw_code_entities_39394_12:\n"
-    "    cmp r0, #2\n"
-    "    bne .Lraw_code_entities_39395_2\n"
-    "    b .Lraw_code_entities_39460_0\n"
-    ".Lraw_code_entities_39395_2:\n"
-    "    cmp r0, #3\n"
-    "    bne .Lraw_code_entities_39395_8\n"
-    "    b .Lraw_code_entities_39485_4\n"
-    ".Lraw_code_entities_39395_8:\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    ".Lraw_code_entities_39395_10:\n"
-    "    movs r2, #0x2c\n"
-    "    add r2, sb\n"
-    "    mov sl, r2\n"
-    "    mov r3, sb\n"
-    "    ldrh r4, [r3, #0x2c]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_39411_14\n"
-    "    mov r6, r8\n"
-    "    ldr r5, [r6, #0x18]\n"
-    "    ldr r6, [r6, #0x1c]\n"
-    "    movs r7, #0\n"
-    "    cmp r5, #0\n"
-    "    bge .Lraw_code_entities_39399_10\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lraw_code_entities_39399_2\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshLeft__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    ".Lraw_code_entities_39399_2:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lraw_code_entities_39411_0\n"
-    ".Lraw_code_entities_39399_10:\n"
-    "    cmp r5, #0\n"
-    "    ble .Lraw_code_entities_39403_8\n"
-    "    ldr r1, [sp, #0x20]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lraw_code_entities_39403_2\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshRight__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x20]\n"
-    "    b .Lraw_code_entities_39403_4\n"
-    ".Lraw_code_entities_39403_2:\n"
-    "    adds r0, r1, #0\n"
-    ".Lraw_code_entities_39403_4:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lraw_code_entities_39411_0\n"
-    ".Lraw_code_entities_39403_8:\n"
-    "    cmp r6, #0\n"
-    "    bge .Lraw_code_entities_39407_4\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lraw_code_entities_39406_2\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshUp__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x18]\n"
-    ".Lraw_code_entities_39406_2:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lraw_code_entities_39411_0\n"
-    ".Lraw_code_entities_39407_4:\n"
-    "    cmp r6, #0\n"
-    "    ble .Lraw_code_entities_39411_2\n"
-    "    ldr r1, [sp, #0x14]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lraw_code_entities_39410_4\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshDown__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x14]\n"
-    "    b .Lraw_code_entities_39410_6\n"
-    ".Lraw_code_entities_39410_4:\n"
-    "    adds r0, r1, #0\n"
-    ".Lraw_code_entities_39410_6:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_39411_2\n"
-    ".Lraw_code_entities_39411_0:\n"
-    "    movs r7, #1\n"
-    ".Lraw_code_entities_39411_2:\n"
-    "    cmp r7, #0\n"
-    "    beq .Lraw_code_entities_39411_10\n"
-    "    movs r4, #0\n"
-    "    b .Lraw_code_entities_39440_4\n"
-    ".Lraw_code_entities_39411_10:\n"
-    "    subs r4, #1\n"
-    "    b .Lraw_code_entities_39440_4\n"
-    ".Lraw_code_entities_39411_14:\n"
-    "    mov r0, r8\n"
-    "    bl IsAnimationComplete__C12AActorEntity\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39440_4\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    movs r1, #0\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lraw_code_entities_39417_10\n"
-    "    movs r1, #1\n"
-    ".Lraw_code_entities_39417_10:\n"
-    "    lsls r0, r1, #3\n"
-    "    subs r0, r0, r1\n"
-    "    lsls r0, r0, #5\n"
-    "    ldr r1, .Lraw_code_entities_39425_0\n"
-    "    adds r5, r0, r1\n"
-    "    mov r0, sb\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r4, r1, #2\n"
-    "    mov r0, sb\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39426_0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xa8\n"
-    "    adds r5, r5, r0\n"
-    "    b .Lraw_code_entities_39428_10\n"
-    ".Lraw_code_entities_39425_0: .word gUnk_080F0A7C\n"
-    ".Lraw_code_entities_39426_0:\n"
-    "    mov r0, sb\n"
-    "    bl GetGrowthStage__C3Cow\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r1, r5, r1\n"
-    "    adds r5, r1, r4\n"
-    ".Lraw_code_entities_39428_10:\n"
-    "    adds r0, r5, #0\n"
-    "    movs r1, #7\n"
-    "    bl SelectActorBehaviorTimingIndex\n"
-    "    adds r6, r0, #0\n"
-    "    lsls r4, r6, #2\n"
-    "    adds r4, r5, r4\n"
-    "    movs r5, #0x3c\n"
-    "    ldrb r0, [r4, #2]\n"
-    "    muls r0, r5, r0\n"
-    "    bl RandomBelow\n"
-    "    ldrb r1, [r4, #1]\n"
-    "    muls r1, r5, r1\n"
-    "    adds r4, r1, r0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r5, [r0]\n"
-    "    movs r0, #4\n"
-    "    bl RandomBelow\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_39438_2\n"
-    "    cmp r1, #3\n"
-    "    beq .Lraw_code_entities_39438_2\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetRelativeFacing\n"
-    "    adds r5, r0, #0\n"
-    ".Lraw_code_entities_39438_2:\n"
-    "    mov r0, r8\n"
-    "    adds r1, r6, #0\n"
-    "    adds r2, r5, #0\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    mov r2, sl\n"
-    "    strb r6, [r2, #2]\n"
-    ".Lraw_code_entities_39440_4:\n"
-    "    mov r3, sl\n"
-    "    strh r4, [r3]\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    ".Lraw_code_entities_39440_10:\n"
-    "    mov r0, sb\n"
-    "    adds r0, #0x2c\n"
-    "    str r0, [sp, #0x94]\n"
-    "    mov r1, sb\n"
-    "    ldrh r1, [r1, #0x2c]\n"
-    "    mov sl, r1\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_39442_2\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    add sl, r2\n"
-    ".Lraw_code_entities_39442_2:\n"
-    "    mov r3, sb\n"
-    "    ldr r1, [r3, #0x2c]\n"
-    "    lsls r0, r1, #9\n"
-    "    lsrs r5, r0, #0x19\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_39443_0\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_39443_0:\n"
-    "    ldr r0, [sp, #0x94]\n"
-    "    ldrb r4, [r0, #3]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_39443_10\n"
-    "    subs r4, #1\n"
-    ".Lraw_code_entities_39443_10:\n"
-    "    mov r2, sl\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_39458_2\n"
-    "    lsls r0, r1, #8\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39446_4\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x2d\n"
-    "    bl _call_via_r2\n"
-    "    adds r1, r0, #0\n"
-    "    b .Lraw_code_entities_39446_6\n"
-    ".Lraw_code_entities_39446_4:\n"
-    "    adds r1, r6, #0\n"
-    ".Lraw_code_entities_39446_6:\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_39458_2\n"
-    "    ldrh r0, [r1, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_39458_2\n"
-    "    cmp r4, #0\n"
-    "    bne .Lraw_code_entities_39456_2\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r6, [r7, r0]\n"
-    "    movs r2, #0xe\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r3, [r1, r7]\n"
-    "    movs r7, #1\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_39449_2\n"
-    "    movs r7, #6\n"
-    ".Lraw_code_entities_39449_2:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r1, sp, #0x14\n"
-    "    str r1, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl SelectRetreatFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r1, r7, #0\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r4, r0, #1\n"
-    ".Lraw_code_entities_39456_2:\n"
-    "    mov r3, sl\n"
-    "    ldr r2, [sp, #0x94]\n"
-    "    strh r3, [r2]\n"
-    "    movs r0, #0x7f\n"
-    "    ands r5, r0\n"
-    "    ldrb r1, [r2, #2]\n"
-    "    movs r0, #0x80\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r5\n"
-    "    strb r0, [r2, #2]\n"
-    "    strb r4, [r2, #3]\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    ".Lraw_code_entities_39458_2:\n"
-    "    ldr r1, .Lraw_code_entities_39459_8\n"
-    "    ldr r0, [sp, #0x64]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_39459_12\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x64]\n"
-    "    add r1, sp, #0x64\n"
-    "    b .Lraw_code_entities_39477_14\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_39459_8: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_39459_12: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_39460_0:\n"
-    "    mov r4, sb\n"
-    "    adds r4, #0x2c\n"
-    "    mov r7, sb\n"
-    "    ldrh r5, [r7, #0x2c]\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_39460_14\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_39460_14:\n"
-    "    ldrh r2, [r4, #2]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_39461_6\n"
-    "    subs r2, #1\n"
-    ".Lraw_code_entities_39461_6:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_39476_12\n"
-    "    cmp r6, #0\n"
-    "    beq .Lraw_code_entities_39476_12\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r1, [sp, #0x90]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lraw_code_entities_39476_12\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r3, [r7, r0]\n"
-    "    movs r0, #0xe\n"
-    "    ldrsh r1, [r7, r0]\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r7, [r6, r0]\n"
-    "    mov sl, r7\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r6, [r6, r7]\n"
-    "    mov r7, sl\n"
-    "    subs r0, r7, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39464_4\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39464_4:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_39465_4\n"
-    "    subs r0, r6, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39465_0\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39465_0:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lraw_code_entities_39476_12\n"
-    ".Lraw_code_entities_39465_4:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_39467_8\n"
-    "    movs r7, #4\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39466_4\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39466_4:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_39476_6\n"
-    "    movs r7, #6\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39467_4\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39467_4:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_39476_6\n"
-    ".Lraw_code_entities_39467_8:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r2, sp, #0x14\n"
-    "    str r2, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r3, #0\n"
-    "    mov r2, sl\n"
-    "    adds r3, r6, #0\n"
-    "    bl SelectApproachFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    movs r1, #1\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r2, r0, #1\n"
-    "    mov r3, sl\n"
-    "    strh r3, [r4, #4]\n"
-    "    strh r6, [r4, #6]\n"
-    ".Lraw_code_entities_39476_6:\n"
-    "    strh r5, [r4]\n"
-    "    strh r2, [r4, #2]\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    ".Lraw_code_entities_39476_12:\n"
-    "    ldr r1, .Lraw_code_entities_39484_4\n"
-    "    ldr r0, [sp, #0x68]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_39485_0\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x68]\n"
-    "    add r1, sp, #0x68\n"
-    ".Lraw_code_entities_39477_14:\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C8CowActor\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_39484_4: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_39485_0: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_39485_4:\n"
-    "    mov r6, sb\n"
-    "    adds r6, #0x2c\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r1, [r0]\n"
-    "    mov r7, r8\n"
-    "    movs r2, #0xa\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r5, [r7, r3]\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [sp, #0x90]\n"
-    "    cmp r0, #0x25\n"
-    "    bne .Lraw_code_entities_39496_2\n"
-    "    cmp r1, #0\n"
-    "    bne .Lraw_code_entities_39496_2\n"
-    "    add r0, sp, #0x6c\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r0, [sp, #0x6c]\n"
-    "    str r0, [sp, #0x70]\n"
-    "    add r0, sp, #0x70\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r0, r2]\n"
-    "    adds r0, r5, #0\n"
-    "    subs r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39491_0\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39491_0:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lraw_code_entities_39508_0\n"
-    "    add r0, sp, #0x74\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x74]\n"
-    "    str r0, [sp, #0x78]\n"
-    "    add r0, sp, #0x78\n"
-    "    movs r3, #0\n"
-    "    ldrsh r2, [r0, r3]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    adds r3, #0x10\n"
-    "    mov r0, r8\n"
-    "    movs r1, #2\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    b .Lraw_code_entities_39508_0\n"
-    ".Lraw_code_entities_39496_2:\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lraw_code_entities_39508_0\n"
-    "    cmp r1, #1\n"
-    "    bne .Lraw_code_entities_39508_0\n"
-    "    add r0, sp, #0x7c\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x7c]\n"
-    "    str r0, [sp, #0x80]\n"
-    "    add r0, sp, #0x80\n"
-    "    adds r1, r0, #0\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r1, r3]\n"
-    "    subs r0, r0, r4\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39499_8\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39499_8:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_39508_0\n"
-    "    movs r0, #2\n"
-    "    ldrsh r1, [r1, r0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_39500_12\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_39500_12:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lraw_code_entities_39508_0\n"
-    "    add r0, sp, #0x84\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r1, [sp, #0x84]\n"
-    "    add r0, sp, #0x88\n"
-    "    str r1, [r0]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r2, [r0, r1]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    subs r3, #0x20\n"
-    "    mov r0, r8\n"
-    "    movs r1, #0x25\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    mov r0, sb\n"
-    "    bl ResetCurrentOutdoorMinutes__9Livestock\n"
-    ".Lraw_code_entities_39508_0:\n"
-    "    ldrh r0, [r6]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39509_0\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r6]\n"
-    "    b .Lraw_code_entities_39517_0\n"
-    ".Lraw_code_entities_39509_0:\n"
-    "    ldr r2, .Lraw_code_entities_39520_8\n"
-    "    add r1, sp, #0x8c\n"
-    "    ldr r0, [r1]\n"
-    "    ands r0, r2\n"
-    "    movs r2, #0xb4\n"
-    "    orrs r0, r2\n"
-    "    ldr r2, .Lraw_code_entities_39520_12\n"
-    "    ands r0, r2\n"
-    "    str r0, [r1]\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C8CowActor\n"
-    "    adds r1, r0, #0\n"
-    "    ldrb r2, [r7]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__8CowActorUiUi\n"
-    ".Lraw_code_entities_39517_0:\n"
-    "    mov r0, r8\n"
-    "    add r1, sp, #0x14\n"
-    "    bl ApplyMovement__12AActorEntityP19ActorMovementBounds\n"
-    "    mov r1, r8\n"
-    "    adds r1, #0x30\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    mov r2, r8\n"
-    "    ldrh r0, [r2, #0x24]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_39521_0\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r2, #0x24]\n"
-    "    b .Lraw_code_entities_39521_6\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_39520_8: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_39520_12: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_39521_0:\n"
-    "    mov r3, r8\n"
-    "    ldrh r0, [r3, #0x26]\n"
-    "    strh r0, [r3, #0x24]\n"
-    ".Lraw_code_entities_39521_6:\n"
-    "    mov r6, r8\n"
-    "    ldr r2, [r6, #0x10]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_39524_0\n"
-    "    ldr r0, [r2, #4]\n"
-    "    ldr r1, [r0, #0xc]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    ".Lraw_code_entities_39524_0:\n"
-    "    add sp, #0xa0\n"
-    "    pop {r3, r4, r5}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    mov sl, r5\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
-);
-#endif
+static inline i32 AnimalActorDistance(i32 a, i32 b)
+{
+    return abs(a - b);
+}
+
+static inline u32 SelectAnimalBehaviorDuration(ActorBehaviorTiming const & timing, u32 frames_per_unit)
+{
+    return timing.base_duration * frames_per_unit + RandomBelow(timing.random_duration * frames_per_unit);
+}
+
+void CowActor::Update(EntityUpdateContext const & context)
+{
+    GameObject & world = *game_object;
+    Cow * saved = livestock;
+    u32 map = GetMap();
+    if (map == MAP_FARM && context.minute_advanced) {
+        u32 previous = saved->GetCurrentOutdoorMinutes();
+        saved->AddOutdoorMinutes(1);
+        u32 current = saved->GetCurrentOutdoorMinutes();
+        if (previous < 180 && current >= 180
+            && world.GetClock()->weather_today != 0 && !saved->IsUnhappy())
+            saved->SetUnhappy();
+        if (previous < 240 && current >= 240) {
+            if (world.vfunc_108(Vec2((GetQ16X() >> 16), (GetQ16Y() >> 16))))
+                saved->SetFed();
+        }
+        if (previous < 300 && current >= 300 && world.GetClock()->weather_today == 0) {
+            if (saved->IsUnhappy() && RandomBelow(100) < 30)
+                saved->ResetUnhappy();
+            saved->AddAffection(1);
+        }
+    }
+    MapTerrainView const & terrain = world.GetMapTerrain(map);
+    Box const & box = GetBox();
+    ActorMovementBounds bounds(terrain, box, 16);
+    AEntity * player = world.GetEntity(ENTITY_PLAYER);
+    AEntity * basket = world.GetEntity(ENTITY_BASKET);
+    if (player != nullptr && player->GetMap() == map)
+        bounds.ClipAgainstBox(player->GetBox(), 0);
+    if (basket != nullptr && basket->GetMap() == map)
+        bounds.ClipAgainstBox(basket->GetBox(), 0);
+    switch (static_cast<i32>(saved->state)) {
+    case BarnAnimal::STATE_MOVEMENT: {
+        BarnAnimalMovementState & movement = saved->movement;
+        u32 remaining = movement.frames_remaining;
+        if (remaining != 0) {
+            i32 dx = x_speed_q16;
+            i32 dy = y_speed_q16;
+            bool blocked = (dx < 0 && bounds.GetLeft() > -16)
+                || (dx > 0 && bounds.GetRight() < 16)
+                || (dy < 0 && bounds.GetUp() > -16)
+                || (dy > 0 && bounds.GetDown() < 16);
+            if (blocked)
+                remaining = 0;
+            else
+                --remaining;
+        } else if (IsAnimationComplete()) {
+            u32 hour = world.GetClock()->calendar.time.clock_hour;
+            u32 night = hour - 6 > 14;
+            ActorBehaviorTiming const (*profile)[2][7] = gUnk_080F0A7C[night];
+            i32 sick = saved->IsSick();
+            ActorBehaviorTiming const * table = profile[saved->IsPregnant() ? 3 : saved->GetGrowthStage()][sick];
+            u32 behavior = SelectActorBehaviorTimingIndex(table, 7);
+            ActorBehaviorTiming const & timing = table[behavior];
+            remaining = SelectAnimalBehaviorDuration(timing, 60);
+            u32 direction = facing;
+            u32 relative = RandomBelow(4);
+            if (relative != 0 && relative != 3)
+                direction = GetRelativeFacing(direction, relative);
+            SetBehavior(behavior, direction);
+            movement.behavior = behavior;
+        }
+        movement.frames_remaining = remaining;
+        break;
+    }
+    case BarnAnimal::STATE_REACTION: {
+        AnimalReactionPayload & reaction = saved->reaction;
+        u32 remaining = reaction.bits.frames_remaining;
+        if (remaining != 0)
+            --remaining;
+        AnimalReactionPayload::WordBits const flags = saved->reaction.word_bits;
+        u32 retreat = flags.retreat_frames;
+        if (retreat != 0)
+            --retreat;
+        u32 retarget = reaction.bits.retarget_frames;
+        if (retarget != 0)
+            --retarget;
+        if (remaining != 0) {
+            AEntity * target = flags.target_is_dog ? world.GetEntity(ENTITY_FRISBEE) : player;
+            if (target != nullptr && target->GetMap() == map) {
+                if (retarget == 0) {
+                    i32 x = (GetQ16X() >> 16);
+                    i32 y = (GetQ16Y() >> 16);
+                    i32 target_x = (target->GetQ16X() >> 16);
+                    i32 target_y = (target->GetQ16Y() >> 16);
+                    u32 behavior = retreat ? 6 : 1;
+                    u32 direction = GetFacing();
+                    direction = SelectRetreatFacing(x, y, target_x, target_y, bounds, direction);
+                    SetBehavior(behavior, direction);
+                    retarget = RandomBelow(30) + 1;
+                }
+                reaction.bits.frames_remaining = remaining;
+                reaction.bits.retreat_frames = retreat;
+                reaction.bits.retarget_frames = retarget;
+                break;
+            }
+        }
+        BarnAnimalMovementState movement;
+        movement.frames_remaining = 180;
+        movement.behavior = 0;
+        saved->SetMovementState(&movement);
+        SetBehavior(GetBehavior(), facing);
+        break;
+    }
+    case BarnAnimal::STATE_APPROACH: {
+        AnimalApproachPayload & approach = saved->approach;
+        u32 remaining = approach.frames_remaining;
+        if (remaining != 0)
+            --remaining;
+        u32 retarget = approach.retarget_frames;
+        if (retarget != 0)
+            --retarget;
+        if (remaining != 0 && player != nullptr && player->GetMap() == map) {
+            i32 x = (GetQ16X() >> 16);
+            i32 y = (GetQ16Y() >> 16);
+            i32 target_x = (player->GetQ16X() >> 16);
+            i32 target_y = (player->GetQ16Y() >> 16);
+            if (abs(target_x - x) >= 16 || abs(target_y - y) >= 16) {
+                if (retarget == 0 || (abs(approach.last_target_x - x) < 16
+                    && abs(approach.last_target_y - y) < 16)) {
+                    u32 direction = GetFacing();
+                    direction = SelectApproachFacing(x, y, target_x, target_y, bounds, direction);
+                    SetBehavior(1, direction);
+                    retarget = RandomBelow(30) + 1;
+                    approach.last_target_x = target_x;
+                    approach.last_target_y = target_y;
+                }
+                approach.frames_remaining = remaining;
+                approach.retarget_frames = retarget;
+                break;
+            }
+        }
+        BarnAnimalMovementState movement;
+        movement.frames_remaining = 180;
+        movement.behavior = 0;
+        saved->SetMovementState(&movement);
+        SetBehavior(GetBehavior(), facing);
+        break;
+    }
+    case BarnAnimal::STATE_PUSHED: {
+        BarnAnimalMovementState & movement = saved->movement;
+        u32 direction = facing;
+        i32 x = (GetQ16X() >> 16);
+        i32 y = (GetQ16Y() >> 16);
+        if (map == MAP_BARN && direction == FACING_DOWN) {
+            Vec2 const & inside = Barn::method_0800CE58();
+            if (AnimalActorDistance(inside.y, y - 8) < 8) {
+                Vec2 const & outside = Farm::smethod_08009ADC();
+                AEntity::SetLocation(MAP_FARM, outside.x, outside.y + 16);
+            }
+        } else if (map == MAP_FARM && direction == FACING_UP) {
+            Vec2 const & outside = Farm::smethod_08009ADC();
+            if (abs(outside.x - x) < 16 && AnimalActorDistance(outside.y, y + 8) < 8) {
+                Vec2 const & inside = Barn::method_0800CE58();
+                AEntity::SetLocation(MAP_BARN, inside.x, inside.y - 32);
+                saved->ResetCurrentOutdoorMinutes();
+            }
+        }
+        u32 remaining = movement.frames_remaining;
+        if (remaining != 0)
+            movement.frames_remaining = remaining - 1;
+        else {
+            BarnAnimalMovementState next;
+            next.frames_remaining = 180;
+            next.behavior = 0;
+            saved->SetMovementState(&next);
+            SetBehavior(GetBehavior(), facing);
+        }
+        break;
+    }
+    }
+    ApplyMovement(&bounds);
+    UpdateAnimalActorVisual(*this);
+}
+
 
 void CowActor::SetBehavior(u32 behavior, u32 direction)
 {
@@ -9420,1586 +8046,181 @@ void SheepActor::PauseMovement(u32 frames)
     SetBehavior(GetBehavior(), facing);
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__10SheepActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__10SheepActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sl\n"
-    "    mov r6, sb\n"
-    "    mov r5, r8\n"
-    "    push {r5, r6, r7}\n"
-    "    sub sp, #0xa0\n"
-    "    mov r8, r0\n"
-    "    ldr r7, [r0]\n"
-    "    ldr r0, [r0, #0x34]\n"
-    "    mov sb, r0\n"
-    "    mov r2, r8\n"
-    "    ldrh r2, [r2, #4]\n"
-    "    str r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lauto_08023804\n"
-    "    ldrb r0, [r1, #4]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08023804\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r5, r0, #0\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddOutdoorMinutes__9LivestockUi\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r5, #0xb3\n"
-    "    bhi .Lauto_0802378C\n"
-    "    cmp r4, #0xb3\n"
-    "    bls .Lauto_0802378C\n"
-    "    ldr r0, [r7]\n"
-    "    movs r3, #0xa2\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r0, r3\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_0802378C\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_0802378C\n"
-    "    mov r0, sb\n"
-    "    bl SetUnhappy__9Livestock\n"
-    "    .Lauto_0802378C:\n"
-    "    cmp r5, #0xef\n"
-    "    bhi .Lauto_080237C0\n"
-    "    cmp r4, #0xef\n"
-    "    bls .Lauto_080237C0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r6, #0x84\n"
-    "    lsls r6, r6, #1\n"
-    "    adds r0, r0, r6\n"
-    "    mov r1, r8\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r6, #0xe\n"
-    "    ldrsh r3, [r1, r6]\n"
-    "    add r1, sp, #0x48\n"
-    "    strh r2, [r1]\n"
-    "    strh r3, [r1, #2]\n"
-    "    ldr r2, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r2\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080237C0\n"
-    "    mov r0, sb\n"
-    "    bl SetFed__10BarnAnimal\n"
-    "    .Lauto_080237C0:\n"
-    "    ldr r0, .Lraw_code_entities_6883_2\n"
-    "    cmp r5, r0\n"
-    "    bhi .Lauto_08023804\n"
-    "    cmp r4, r0\n"
-    "    bls .Lauto_08023804\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lauto_08023804\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080237FC\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .Lauto_080237FC\n"
-    "    mov r0, sb\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    "    .Lauto_080237FC:\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    "    .Lauto_08023804:\n"
-    "    ldr r1, [r7]\n"
-    "    add r0, sp, #8\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    bl _call_via_r3\n"
-    "    mov r2, r8\n"
-    "    ldr r1, [r2, #0x14]\n"
-    "    add r0, sp, #0x4c\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    mov r1, r8\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp, #0x4c]\n"
-    "    ldr r1, [sp, #0x50]\n"
-    "    str r0, [sp, #0x98]\n"
-    "    str r1, [sp, #0x9c]\n"
-    "    add r4, sp, #0x14\n"
-    "    movs r1, #0x10\n"
-    "    mov sl, r1\n"
-    "    movs r5, #0\n"
-    "    movs r1, #0x11\n"
-    "    str r1, [sp, #0x14]\n"
-    "    movs r0, #0x11\n"
-    "    rsbs r0, r0, #0\n"
-    "    str r0, [r4, #4]\n"
-    "    str r0, [r4, #8]\n"
-    "    str r1, [r4, #0xc]\n"
-    "    add r1, sp, #0x28\n"
-    "    add r0, sp, #8\n"
-    "    ldm r0!, {r2, r3, r6}\n"
-    "    stm r1!, {r2, r3, r6}\n"
-    "    ldr r0, [sp, #0x98]\n"
-    "    ldr r1, [sp, #0x9c]\n"
-    "    str r0, [sp, #0x34]\n"
-    "    str r1, [sp, #0x38]\n"
-    "    mov r1, sl\n"
-    "    str r1, [r4, #0x28]\n"
-    "    str r5, [r4, #0x2c]\n"
-    "    str r5, [r4, #0x30]\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r6, r0, #0\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4a\n"
-    "    bl _call_via_r2\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r6, #0\n"
-    "    beq .Lauto_08023896\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r0, r2\n"
-    "    bne .Lauto_08023896\n"
-    "    ldr r1, [r6, #0x14]\n"
-    "    add r4, sp, #0x54\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r6, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    "    .Lauto_08023896:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_080238BA\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lauto_080238BA\n"
-    "    ldr r1, [r5, #0x14]\n"
-    "    add r4, sp, #0x5c\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    "    .Lauto_080238BA:\n"
-    "    mov r1, sb\n"
-    "    ldr r0, [r1, #0x28]\n"
-    "    cmp r0, #1\n"
-    "    bne .Lauto_080238C4\n"
-    "    b .L08023A48\n"
-    "    .Lauto_080238C4:\n"
-    "    cmp r0, #1\n"
-    "    bgt .Lauto_080238D4\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080238E2\n"
-    "    b .Lauto_08023CF4\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_6883_2: .word 0x0000012B\n"
-    "    .Lauto_080238D4:\n"
-    "    cmp r0, #2\n"
-    "    bne .Lauto_080238DA\n"
-    "    b .L08023B1C\n"
-    "    .Lauto_080238DA:\n"
-    "    cmp r0, #3\n"
-    "    bne .Lauto_080238E0\n"
-    "    b .L08023C00\n"
-    "    .Lauto_080238E0:\n"
-    "    b .Lauto_08023CF4\n"
-    "    .Lauto_080238E2:\n"
-    "    movs r2, #0x2c\n"
-    "    add r2, sb\n"
-    "    mov sl, r2\n"
-    "    mov r3, sb\n"
-    "    ldrh r4, [r3, #0x2c]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lauto_08023976\n"
-    "    mov r6, r8\n"
-    "    ldr r5, [r6, #0x18]\n"
-    "    ldr r6, [r6, #0x1c]\n"
-    "    movs r7, #0\n"
-    "    cmp r5, #0\n"
-    "    bge .Lauto_08023914\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lauto_0802390C\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshLeft__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    .Lauto_0802390C:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lauto_08023968\n"
-    "    .Lauto_08023914:\n"
-    "    cmp r5, #0\n"
-    "    ble .Lauto_08023930\n"
-    "    ldr r1, [sp, #0x20]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lauto_0802392A\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshRight__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x20]\n"
-    "    b .Lauto_0802392C\n"
-    "    .Lauto_0802392A:\n"
-    "    adds r0, r1, #0\n"
-    "    .Lauto_0802392C:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lauto_08023968\n"
-    "    .Lauto_08023930:\n"
-    "    cmp r6, #0\n"
-    "    bge .Lauto_0802394C\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lauto_08023944\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshUp__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    .Lauto_08023944:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lauto_08023968\n"
-    "    .Lauto_0802394C:\n"
-    "    cmp r6, #0\n"
-    "    ble .Lauto_0802396A\n"
-    "    ldr r1, [sp, #0x14]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lauto_08023962\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshDown__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x14]\n"
-    "    b .Lauto_08023964\n"
-    "    .Lauto_08023962:\n"
-    "    adds r0, r1, #0\n"
-    "    .Lauto_08023964:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_0802396A\n"
-    "    .Lauto_08023968:\n"
-    "    movs r7, #1\n"
-    "    .Lauto_0802396A:\n"
-    "    cmp r7, #0\n"
-    "    beq .Lauto_08023972\n"
-    "    movs r4, #0\n"
-    "    b .L08023A42\n"
-    "    .Lauto_08023972:\n"
-    "    subs r4, #1\n"
-    "    b .L08023A42\n"
-    "    .Lauto_08023976:\n"
-    "    mov r0, r8\n"
-    "    bl IsAnimationComplete__C12AActorEntity\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08023A42\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    movs r1, #0\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lauto_080239A2\n"
-    "    movs r1, #1\n"
-    "    .Lauto_080239A2:\n"
-    "    lsls r0, r1, #3\n"
-    "    subs r0, r0, r1\n"
-    "    lsls r0, r0, #5\n"
-    "    ldr r1, .Lraw_code_entities_7020_0\n"
-    "    adds r5, r0, r1\n"
-    "    mov r0, sb\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r4, r1, #2\n"
-    "    mov r0, sb\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L080239D4\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xa8\n"
-    "    adds r5, r5, r0\n"
-    "    b .Lauto_080239F8\n"
-    ".Lraw_code_entities_7020_0: .word gUnk_080F0C74\n"
-    ".L080239D4:\n"
-    "    mov r0, sb\n"
-    "    bl IsSheared__C5Sheep\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_080239E8\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    adds r5, r5, r0\n"
-    "    b .Lauto_080239F8\n"
-    "    .Lauto_080239E8:\n"
-    "    mov r0, sb\n"
-    "    bl GetGrowthStage__C5Sheep\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r1, r5, r1\n"
-    "    adds r5, r1, r4\n"
-    "    .Lauto_080239F8:\n"
-    "    adds r0, r5, #0\n"
-    "    movs r1, #7\n"
-    "    bl SelectActorBehaviorTimingIndex\n"
-    "    adds r6, r0, #0\n"
-    "    lsls r4, r6, #2\n"
-    "    adds r4, r5, r4\n"
-    "    movs r5, #0x3c\n"
-    "    ldrb r0, [r4, #2]\n"
-    "    muls r0, r5, r0\n"
-    "    bl RandomBelow\n"
-    "    ldrb r1, [r4, #1]\n"
-    "    muls r1, r5, r1\n"
-    "    adds r4, r1, r0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r5, [r0]\n"
-    "    movs r0, #4\n"
-    "    bl RandomBelow\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_08023A34\n"
-    "    cmp r1, #3\n"
-    "    beq .Lauto_08023A34\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetRelativeFacing\n"
-    "    adds r5, r0, #0\n"
-    "    .Lauto_08023A34:\n"
-    "    mov r0, r8\n"
-    "    adds r1, r6, #0\n"
-    "    adds r2, r5, #0\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    mov r2, sl\n"
-    "    strb r6, [r2, #2]\n"
-    ".L08023A42:\n"
-    "    mov r3, sl\n"
-    "    strh r4, [r3]\n"
-    "    b .Lauto_08023CF4\n"
-    ".L08023A48:\n"
-    "    mov r0, sb\n"
-    "    adds r0, #0x2c\n"
-    "    str r0, [sp, #0x94]\n"
-    "    mov r1, sb\n"
-    "    ldrh r1, [r1, #0x2c]\n"
-    "    mov sl, r1\n"
-    "    cmp r1, #0\n"
-    "    beq .Lauto_08023A5E\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    add sl, r2\n"
-    "    .Lauto_08023A5E:\n"
-    "    mov r3, sb\n"
-    "    ldr r1, [r3, #0x2c]\n"
-    "    lsls r0, r1, #9\n"
-    "    lsrs r5, r0, #0x19\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_7100_12\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_7100_12:\n"
-    "    ldr r0, [sp, #0x94]\n"
-    "    ldrb r4, [r0, #3]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_7101_6\n"
-    "    subs r4, #1\n"
-    ".Lraw_code_entities_7101_6:\n"
-    "    mov r2, sl\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_7111_14\n"
-    "    lsls r0, r1, #8\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_7103_2\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x2d\n"
-    "    bl _call_via_r2\n"
-    "    adds r1, r0, #0\n"
-    "    b .Lraw_code_entities_7103_4\n"
-    ".Lraw_code_entities_7103_2:\n"
-    "    adds r1, r6, #0\n"
-    ".Lraw_code_entities_7103_4:\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_7111_14\n"
-    "    ldrh r0, [r1, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_7111_14\n"
-    "    cmp r4, #0\n"
-    "    bne .Lraw_code_entities_7110_2\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r6, [r7, r0]\n"
-    "    movs r2, #0xe\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r3, [r1, r7]\n"
-    "    movs r7, #1\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_7105_14\n"
-    "    movs r7, #6\n"
-    ".Lraw_code_entities_7105_14:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r1, sp, #0x14\n"
-    "    str r1, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl SelectRetreatFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r1, r7, #0\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r4, r0, #1\n"
-    ".Lraw_code_entities_7110_2:\n"
-    "    mov r3, sl\n"
-    "    ldr r2, [sp, #0x94]\n"
-    "    strh r3, [r2]\n"
-    "    movs r0, #0x7f\n"
-    "    ands r5, r0\n"
-    "    ldrb r1, [r2, #2]\n"
-    "    movs r0, #0x80\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r5\n"
-    "    strb r0, [r2, #2]\n"
-    "    strb r4, [r2, #3]\n"
-    "    b .Lauto_08023CF4\n"
-    ".Lraw_code_entities_7111_14:\n"
-    "    ldr r1, .Lraw_code_entities_7113_4\n"
-    "    ldr r0, [sp, #0x64]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_7113_8\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x64]\n"
-    "    add r1, sp, #0x64\n"
-    "    b .Lraw_code_entities_7219_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_7113_4: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_7113_8: .word 0xFF00FFFF\n"
-    ".L08023B1C:\n"
-    "    mov r4, sb\n"
-    "    adds r4, #0x2c\n"
-    "    mov r7, sb\n"
-    "    ldrh r5, [r7, #0x2c]\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_08023B2A\n"
-    "    subs r5, #1\n"
-    "    .Lauto_08023B2A:\n"
-    "    ldrh r2, [r4, #2]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_08023B32\n"
-    "    subs r2, #1\n"
-    "    .Lauto_08023B32:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lauto_08023BC8\n"
-    "    cmp r6, #0\n"
-    "    beq .Lauto_08023BC8\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r1, [sp, #0x90]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lauto_08023BC8\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r3, [r7, r0]\n"
-    "    movs r0, #0xe\n"
-    "    ldrsh r1, [r7, r0]\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r7, [r6, r0]\n"
-    "    mov sl, r7\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r6, [r6, r7]\n"
-    "    mov r7, sl\n"
-    "    subs r0, r7, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023B60\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023B60:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08023B70\n"
-    "    subs r0, r6, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023B6C\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023B6C:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lauto_08023BC8\n"
-    "    .Lauto_08023B70:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_08023B94\n"
-    "    movs r7, #4\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023B80\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023B80:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08023BC2\n"
-    "    movs r7, #6\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023B90\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023B90:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08023BC2\n"
-    "    .Lauto_08023B94:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r2, sp, #0x14\n"
-    "    str r2, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r3, #0\n"
-    "    mov r2, sl\n"
-    "    adds r3, r6, #0\n"
-    "    bl SelectApproachFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    movs r1, #1\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r2, r0, #1\n"
-    "    mov r3, sl\n"
-    "    strh r3, [r4, #4]\n"
-    "    strh r6, [r4, #6]\n"
-    "    .Lauto_08023BC2:\n"
-    "    strh r5, [r4]\n"
-    "    strh r2, [r4, #2]\n"
-    "    b .Lauto_08023CF4\n"
-    "    .Lauto_08023BC8:\n"
-    "    ldr r1, .Lraw_code_entities_7230_2\n"
-    "    ldr r0, [sp, #0x68]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_7230_6\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x68]\n"
-    "    add r1, sp, #0x68\n"
-    ".Lraw_code_entities_7219_0:\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C10SheepActor\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    b .Lauto_08023CF4\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_7230_2: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_7230_6: .word 0xFF00FFFF\n"
-    ".L08023C00:\n"
-    "    mov r6, sb\n"
-    "    adds r6, #0x2c\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r1, [r0]\n"
-    "    mov r7, r8\n"
-    "    movs r2, #0xa\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r5, [r7, r3]\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [sp, #0x90]\n"
-    "    cmp r0, #0x25\n"
-    "    bne .Lauto_08023C60\n"
-    "    cmp r1, #0\n"
-    "    bne .Lauto_08023C60\n"
-    "    add r0, sp, #0x6c\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r0, [sp, #0x6c]\n"
-    "    str r0, [sp, #0x70]\n"
-    "    add r0, sp, #0x70\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r0, r2]\n"
-    "    adds r0, r5, #0\n"
-    "    subs r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023C3C\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023C3C:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lauto_08023CC0\n"
-    "    add r0, sp, #0x74\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x74]\n"
-    "    str r0, [sp, #0x78]\n"
-    "    add r0, sp, #0x78\n"
-    "    movs r3, #0\n"
-    "    ldrsh r2, [r0, r3]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    adds r3, #0x10\n"
-    "    mov r0, r8\n"
-    "    movs r1, #2\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    b .Lauto_08023CC0\n"
-    "    .Lauto_08023C60:\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lauto_08023CC0\n"
-    "    cmp r1, #1\n"
-    "    bne .Lauto_08023CC0\n"
-    "    add r0, sp, #0x7c\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x7c]\n"
-    "    str r0, [sp, #0x80]\n"
-    "    add r0, sp, #0x80\n"
-    "    adds r1, r0, #0\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r1, r3]\n"
-    "    subs r0, r0, r4\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023C84\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023C84:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lauto_08023CC0\n"
-    "    movs r0, #2\n"
-    "    ldrsh r1, [r1, r0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lauto_08023C98\n"
-    "    rsbs r0, r0, #0\n"
-    "    .Lauto_08023C98:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lauto_08023CC0\n"
-    "    add r0, sp, #0x84\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r1, [sp, #0x84]\n"
-    "    add r0, sp, #0x88\n"
-    "    str r1, [r0]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r2, [r0, r1]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    subs r3, #0x20\n"
-    "    mov r0, r8\n"
-    "    movs r1, #0x25\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    mov r0, sb\n"
-    "    bl ResetCurrentOutdoorMinutes__9Livestock\n"
-    "    .Lauto_08023CC0:\n"
-    "    ldrh r0, [r6]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08023CCC\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r6]\n"
-    "    b .Lauto_08023CF4\n"
-    "    .Lauto_08023CCC:\n"
-    "    ldr r2, .Lraw_code_entities_7370_2\n"
-    "    add r1, sp, #0x8c\n"
-    "    ldr r0, [r1]\n"
-    "    ands r0, r2\n"
-    "    movs r2, #0xb4\n"
-    "    orrs r0, r2\n"
-    "    ldr r2, .Lraw_code_entities_7370_6\n"
-    "    ands r0, r2\n"
-    "    str r0, [r1]\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C10SheepActor\n"
-    "    adds r1, r0, #0\n"
-    "    ldrb r2, [r7]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    .Lauto_08023CF4:\n"
-    "    mov r0, r8\n"
-    "    add r1, sp, #0x14\n"
-    "    bl ApplyMovement__12AActorEntityP19ActorMovementBounds\n"
-    "    mov r1, r8\n"
-    "    adds r1, #0x30\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    mov r2, r8\n"
-    "    ldrh r0, [r2, #0x24]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lauto_08023D1C\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r2, #0x24]\n"
-    "    b .Lauto_08023D22\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_7370_2: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_7370_6: .word 0xFF00FFFF\n"
-    "    .Lauto_08023D1C:\n"
-    "    mov r3, r8\n"
-    "    ldrh r0, [r3, #0x26]\n"
-    "    strh r0, [r3, #0x24]\n"
-    "    .Lauto_08023D22:\n"
-    "    mov r6, r8\n"
-    "    ldr r2, [r6, #0x10]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lauto_08023D34\n"
-    "    ldr r0, [r2, #4]\n"
-    "    ldr r1, [r0, #0xc]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    "    .Lauto_08023D34:\n"
-    "    add sp, #0xa0\n"
-    "    pop {r3, r4, r5}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    mov sl, r5\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__10SheepActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__10SheepActorRC19EntityUpdateContext:\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sl\n"
-    "    mov r6, sb\n"
-    "    mov r5, r8\n"
-    "    push {r5, r6, r7}\n"
-    "    sub sp, #0xa0\n"
-    "    mov r8, r0\n"
-    "    ldr r7, [r0]\n"
-    "    ldr r0, [r0, #0x34]\n"
-    "    mov sb, r0\n"
-    "    mov r2, r8\n"
-    "    ldrh r2, [r2, #4]\n"
-    "    str r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lraw_code_entities_40179_0\n"
-    "    ldrb r0, [r1, #4]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40179_0\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r5, r0, #0\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddOutdoorMinutes__9LivestockUi\n"
-    "    mov r0, sb\n"
-    "    bl GetCurrentOutdoorMinutes__C9Livestock\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r5, #0xb3\n"
-    "    bhi .Lraw_code_entities_40160_0\n"
-    "    cmp r4, #0xb3\n"
-    "    bls .Lraw_code_entities_40160_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r3, #0xa2\n"
-    "    lsls r3, r3, #1\n"
-    "    adds r0, r0, r3\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40160_0\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_40160_0\n"
-    "    mov r0, sb\n"
-    "    bl SetUnhappy__9Livestock\n"
-    ".Lraw_code_entities_40160_0:\n"
-    "    cmp r5, #0xef\n"
-    "    bhi .Lraw_code_entities_40166_0\n"
-    "    cmp r4, #0xef\n"
-    "    bls .Lraw_code_entities_40166_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r6, #0x84\n"
-    "    lsls r6, r6, #1\n"
-    "    adds r0, r0, r6\n"
-    "    mov r1, r8\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r6, #0xe\n"
-    "    ldrsh r3, [r1, r6]\n"
-    "    add r1, sp, #0x48\n"
-    "    strh r2, [r1]\n"
-    "    strh r3, [r1, #2]\n"
-    "    ldr r2, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r2\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40166_0\n"
-    "    mov r0, sb\n"
-    "    bl SetFed__10BarnAnimal\n"
-    ".Lraw_code_entities_40166_0:\n"
-    "    ldr r0, .Lraw_code_entities_40206_12\n"
-    "    cmp r5, r0\n"
-    "    bhi .Lraw_code_entities_40179_0\n"
-    "    cmp r4, r0\n"
-    "    bls .Lraw_code_entities_40179_0\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldr r0, [r0]\n"
-    "    cmp r0, #0\n"
-    "    bne .Lraw_code_entities_40179_0\n"
-    "    mov r0, sb\n"
-    "    bl IsUnhappy__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40177_0\n"
-    "    movs r0, #0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp r0, #0x1d\n"
-    "    bhi .Lraw_code_entities_40177_0\n"
-    "    mov r0, sb\n"
-    "    bl ResetUnhappy__9Livestock\n"
-    ".Lraw_code_entities_40177_0:\n"
-    "    mov r0, sb\n"
-    "    movs r1, #1\n"
-    "    bl AddAffection__6Animali\n"
-    ".Lraw_code_entities_40179_0:\n"
-    "    ldr r1, [r7]\n"
-    "    add r0, sp, #8\n"
-    "    ldr r3, [r1, #0x34]\n"
-    "    adds r1, r7, #0\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    bl _call_via_r3\n"
-    "    mov r2, r8\n"
-    "    ldr r1, [r2, #0x14]\n"
-    "    add r0, sp, #0x4c\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    mov r1, r8\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp, #0x4c]\n"
-    "    ldr r1, [sp, #0x50]\n"
-    "    str r0, [sp, #0x98]\n"
-    "    str r1, [sp, #0x9c]\n"
-    "    add r4, sp, #0x14\n"
-    "    movs r1, #0x10\n"
-    "    mov sl, r1\n"
-    "    movs r5, #0\n"
-    "    movs r1, #0x11\n"
-    "    str r1, [sp, #0x14]\n"
-    "    movs r0, #0x11\n"
-    "    rsbs r0, r0, #0\n"
-    "    str r0, [r4, #4]\n"
-    "    str r0, [r4, #8]\n"
-    "    str r1, [r4, #0xc]\n"
-    "    add r1, sp, #0x28\n"
-    "    add r0, sp, #8\n"
-    "    ldm r0!, {r2, r3, r6}\n"
-    "    stm r1!, {r2, r3, r6}\n"
-    "    ldr r0, [sp, #0x98]\n"
-    "    ldr r1, [sp, #0x9c]\n"
-    "    str r0, [sp, #0x34]\n"
-    "    str r1, [sp, #0x38]\n"
-    "    mov r1, sl\n"
-    "    str r1, [r4, #0x28]\n"
-    "    str r5, [r4, #0x2c]\n"
-    "    str r5, [r4, #0x30]\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds r6, r0, #0\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x4a\n"
-    "    bl _call_via_r2\n"
-    "    adds r5, r0, #0\n"
-    "    cmp r6, #0\n"
-    "    beq .Lraw_code_entities_40199_0\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r0, r2\n"
-    "    bne .Lraw_code_entities_40199_0\n"
-    "    ldr r1, [r6, #0x14]\n"
-    "    add r4, sp, #0x54\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r6, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    ".Lraw_code_entities_40199_0:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_40205_0\n"
-    "    ldrh r0, [r5, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_40205_0\n"
-    "    ldr r1, [r5, #0x14]\n"
-    "    add r4, sp, #0x5c\n"
-    "    adds r0, r4, #0\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r5, #0\n"
-    "    bl _call_via_r2\n"
-    "    add r0, sp, #0x14\n"
-    "    adds r1, r4, #0\n"
-    "    movs r2, #0\n"
-    "    bl ClipAgainstBox__19ActorMovementBoundsRC3BoxUi\n"
-    ".Lraw_code_entities_40205_0:\n"
-    "    mov r1, sb\n"
-    "    ldr r0, [r1, #0x28]\n"
-    "    cmp r0, #1\n"
-    "    bne .Lraw_code_entities_40206_0\n"
-    "    b .Lraw_code_entities_40260_4\n"
-    ".Lraw_code_entities_40206_0:\n"
-    "    cmp r0, #1\n"
-    "    bgt .Lraw_code_entities_40207_0\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40207_14\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_40206_12: .word 0x0000012B\n"
-    ".Lraw_code_entities_40207_0:\n"
-    "    cmp r0, #2\n"
-    "    bne .Lraw_code_entities_40207_6\n"
-    "    b .Lraw_code_entities_40281_8\n"
-    ".Lraw_code_entities_40207_6:\n"
-    "    cmp r0, #3\n"
-    "    bne .Lraw_code_entities_40207_12\n"
-    "    b .Lraw_code_entities_40304_12\n"
-    ".Lraw_code_entities_40207_12:\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    ".Lraw_code_entities_40207_14:\n"
-    "    movs r2, #0x2c\n"
-    "    add r2, sb\n"
-    "    mov sl, r2\n"
-    "    mov r3, sb\n"
-    "    ldrh r4, [r3, #0x2c]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_40224_2\n"
-    "    mov r6, r8\n"
-    "    ldr r5, [r6, #0x18]\n"
-    "    ldr r6, [r6, #0x1c]\n"
-    "    movs r7, #0\n"
-    "    cmp r5, #0\n"
-    "    bge .Lraw_code_entities_40213_0\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lraw_code_entities_40212_2\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshLeft__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x1c]\n"
-    ".Lraw_code_entities_40212_2:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lraw_code_entities_40223_4\n"
-    ".Lraw_code_entities_40213_0:\n"
-    "    cmp r5, #0\n"
-    "    ble .Lraw_code_entities_40215_10\n"
-    "    ldr r1, [sp, #0x20]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lraw_code_entities_40215_4\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshRight__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x20]\n"
-    "    b .Lraw_code_entities_40215_6\n"
-    ".Lraw_code_entities_40215_4:\n"
-    "    adds r0, r1, #0\n"
-    ".Lraw_code_entities_40215_6:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lraw_code_entities_40223_4\n"
-    ".Lraw_code_entities_40215_10:\n"
-    "    cmp r6, #0\n"
-    "    bge .Lraw_code_entities_40219_8\n"
-    "    ldr r1, [sp, #0x18]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmn r1, r0\n"
-    "    bge .Lraw_code_entities_40219_0\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshUp__19ActorMovementBounds\n"
-    "    ldr r1, [sp, #0x18]\n"
-    ".Lraw_code_entities_40219_0:\n"
-    "    movs r0, #0x10\n"
-    "    rsbs r0, r0, #0\n"
-    "    cmp r1, r0\n"
-    "    bgt .Lraw_code_entities_40223_4\n"
-    ".Lraw_code_entities_40219_8:\n"
-    "    cmp r6, #0\n"
-    "    ble .Lraw_code_entities_40223_6\n"
-    "    ldr r1, [sp, #0x14]\n"
-    "    ldr r0, [sp, #0x3c]\n"
-    "    cmp r1, r0\n"
-    "    ble .Lraw_code_entities_40222_4\n"
-    "    add r0, sp, #0x14\n"
-    "    bl RefreshDown__19ActorMovementBounds\n"
-    "    ldr r0, [sp, #0x14]\n"
-    "    b .Lraw_code_entities_40223_0\n"
-    ".Lraw_code_entities_40222_4:\n"
-    "    adds r0, r1, #0\n"
-    ".Lraw_code_entities_40223_0:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_40223_6\n"
-    ".Lraw_code_entities_40223_4:\n"
-    "    movs r7, #1\n"
-    ".Lraw_code_entities_40223_6:\n"
-    "    cmp r7, #0\n"
-    "    beq .Lraw_code_entities_40223_14\n"
-    "    movs r4, #0\n"
-    "    b .Lraw_code_entities_40259_4\n"
-    ".Lraw_code_entities_40223_14:\n"
-    "    subs r4, #1\n"
-    "    b .Lraw_code_entities_40259_4\n"
-    ".Lraw_code_entities_40224_2:\n"
-    "    mov r0, r8\n"
-    "    bl IsAnimationComplete__C12AActorEntity\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40259_4\n"
-    "    ldr r0, [r7]\n"
-    "    movs r1, #0xa2\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r7, #0\n"
-    "    bl _call_via_r1\n"
-    "    ldrb r0, [r0, #0xa]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1b\n"
-    "    movs r1, #0\n"
-    "    subs r0, #6\n"
-    "    cmp r0, #0xe\n"
-    "    bls .Lraw_code_entities_40230_14\n"
-    "    movs r1, #1\n"
-    ".Lraw_code_entities_40230_14:\n"
-    "    lsls r0, r1, #3\n"
-    "    subs r0, r0, r1\n"
-    "    lsls r0, r0, #5\n"
-    "    ldr r1, .Lraw_code_entities_40238_0\n"
-    "    adds r5, r0, r1\n"
-    "    mov r0, sb\n"
-    "    bl IsSick__C9Livestock\n"
-    "    lsls r0, r0, #0x18\n"
-    "    lsrs r0, r0, #0x18\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r4, r1, #2\n"
-    "    mov r0, sb\n"
-    "    bl IsPregnant__C10BarnAnimal\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40239_0\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0xa8\n"
-    "    adds r5, r5, r0\n"
-    "    b .Lraw_code_entities_40245_4\n"
-    ".Lraw_code_entities_40238_0: .word gUnk_080F0C74\n"
-    ".Lraw_code_entities_40239_0:\n"
-    "    mov r0, sb\n"
-    "    bl IsSheared__C5Sheep\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40242_4\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    adds r5, r5, r0\n"
-    "    b .Lraw_code_entities_40245_4\n"
-    ".Lraw_code_entities_40242_4:\n"
-    "    mov r0, sb\n"
-    "    bl GetGrowthStage__C5Sheep\n"
-    "    lsls r1, r0, #3\n"
-    "    subs r1, r1, r0\n"
-    "    lsls r1, r1, #3\n"
-    "    adds r1, r5, r1\n"
-    "    adds r5, r1, r4\n"
-    ".Lraw_code_entities_40245_4:\n"
-    "    adds r0, r5, #0\n"
-    "    movs r1, #7\n"
-    "    bl SelectActorBehaviorTimingIndex\n"
-    "    adds r6, r0, #0\n"
-    "    lsls r4, r6, #2\n"
-    "    adds r4, r5, r4\n"
-    "    movs r5, #0x3c\n"
-    "    ldrb r0, [r4, #2]\n"
-    "    muls r0, r5, r0\n"
-    "    bl RandomBelow\n"
-    "    ldrb r1, [r4, #1]\n"
-    "    muls r1, r5, r1\n"
-    "    adds r4, r1, r0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r5, [r0]\n"
-    "    movs r0, #4\n"
-    "    bl RandomBelow\n"
-    "    adds r1, r0, #0\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_40257_0\n"
-    "    cmp r1, #3\n"
-    "    beq .Lraw_code_entities_40257_0\n"
-    "    adds r0, r5, #0\n"
-    "    bl GetRelativeFacing\n"
-    "    adds r5, r0, #0\n"
-    ".Lraw_code_entities_40257_0:\n"
-    "    mov r0, r8\n"
-    "    adds r1, r6, #0\n"
-    "    adds r2, r5, #0\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    mov r2, sl\n"
-    "    strb r6, [r2, #2]\n"
-    ".Lraw_code_entities_40259_4:\n"
-    "    mov r3, sl\n"
-    "    strh r4, [r3]\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    ".Lraw_code_entities_40260_4:\n"
-    "    mov r0, sb\n"
-    "    adds r0, #0x2c\n"
-    "    str r0, [sp, #0x94]\n"
-    "    mov r1, sb\n"
-    "    ldrh r1, [r1, #0x2c]\n"
-    "    mov sl, r1\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_40261_10\n"
-    "    movs r2, #1\n"
-    "    rsbs r2, r2, #0\n"
-    "    add sl, r2\n"
-    ".Lraw_code_entities_40261_10:\n"
-    "    mov r3, sb\n"
-    "    ldr r1, [r3, #0x2c]\n"
-    "    lsls r0, r1, #9\n"
-    "    lsrs r5, r0, #0x19\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_40262_8\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_40262_8:\n"
-    "    ldr r0, [sp, #0x94]\n"
-    "    ldrb r4, [r0, #3]\n"
-    "    cmp r4, #0\n"
-    "    beq .Lraw_code_entities_40263_2\n"
-    "    subs r4, #1\n"
-    ".Lraw_code_entities_40263_2:\n"
-    "    mov r2, sl\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_40279_10\n"
-    "    lsls r0, r1, #8\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40266_4\n"
-    "    ldr r0, [r7]\n"
-    "    ldr r2, [r0, #0x40]\n"
-    "    adds r0, r7, #0\n"
-    "    movs r1, #0x2d\n"
-    "    bl _call_via_r2\n"
-    "    adds r1, r0, #0\n"
-    "    b .Lraw_code_entities_40267_0\n"
-    ".Lraw_code_entities_40266_4:\n"
-    "    adds r1, r6, #0\n"
-    ".Lraw_code_entities_40267_0:\n"
-    "    cmp r1, #0\n"
-    "    beq .Lraw_code_entities_40279_10\n"
-    "    ldrh r0, [r1, #4]\n"
-    "    ldr r3, [sp, #0x90]\n"
-    "    cmp r0, r3\n"
-    "    bne .Lraw_code_entities_40279_10\n"
-    "    cmp r4, #0\n"
-    "    bne .Lraw_code_entities_40278_0\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r6, [r7, r0]\n"
-    "    movs r2, #0xe\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xa\n"
-    "    ldrsh r2, [r1, r3]\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r3, [r1, r7]\n"
-    "    movs r7, #1\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_40269_10\n"
-    "    movs r7, #6\n"
-    ".Lraw_code_entities_40269_10:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r1, sp, #0x14\n"
-    "    str r1, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl SelectRetreatFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r1, r7, #0\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r4, r0, #1\n"
-    ".Lraw_code_entities_40278_0:\n"
-    "    mov r3, sl\n"
-    "    ldr r2, [sp, #0x94]\n"
-    "    strh r3, [r2]\n"
-    "    movs r0, #0x7f\n"
-    "    ands r5, r0\n"
-    "    ldrb r1, [r2, #2]\n"
-    "    movs r0, #0x80\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r5\n"
-    "    strb r0, [r2, #2]\n"
-    "    strb r4, [r2, #3]\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    ".Lraw_code_entities_40279_10:\n"
-    "    ldr r1, .Lraw_code_entities_40281_0\n"
-    "    ldr r0, [sp, #0x64]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_40281_4\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x64]\n"
-    "    add r1, sp, #0x64\n"
-    "    b .Lraw_code_entities_40298_6\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_40281_0: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_40281_4: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_40281_8:\n"
-    "    mov r4, sb\n"
-    "    adds r4, #0x2c\n"
-    "    mov r7, sb\n"
-    "    ldrh r5, [r7, #0x2c]\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_40282_6\n"
-    "    subs r5, #1\n"
-    ".Lraw_code_entities_40282_6:\n"
-    "    ldrh r2, [r4, #2]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_40282_14\n"
-    "    subs r2, #1\n"
-    ".Lraw_code_entities_40282_14:\n"
-    "    cmp r5, #0\n"
-    "    beq .Lraw_code_entities_40297_4\n"
-    "    cmp r6, #0\n"
-    "    beq .Lraw_code_entities_40297_4\n"
-    "    ldrh r0, [r6, #4]\n"
-    "    ldr r1, [sp, #0x90]\n"
-    "    cmp r0, r1\n"
-    "    bne .Lraw_code_entities_40297_4\n"
-    "    mov r7, r8\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r3, [r7, r0]\n"
-    "    movs r0, #0xe\n"
-    "    ldrsh r1, [r7, r0]\n"
-    "    movs r0, #0xa\n"
-    "    ldrsh r7, [r6, r0]\n"
-    "    mov sl, r7\n"
-    "    movs r7, #0xe\n"
-    "    ldrsh r6, [r6, r7]\n"
-    "    mov r7, sl\n"
-    "    subs r0, r7, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40285_12\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40285_12:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_40286_12\n"
-    "    subs r0, r6, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40286_8\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40286_8:\n"
-    "    cmp r0, #0xf\n"
-    "    ble .Lraw_code_entities_40297_4\n"
-    ".Lraw_code_entities_40286_12:\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_40289_0\n"
-    "    movs r7, #4\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r3\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40287_12\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40287_12:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_40296_8\n"
-    "    movs r7, #6\n"
-    "    ldrsh r0, [r4, r7]\n"
-    "    subs r0, r0, r1\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40288_12\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40288_12:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_40296_8\n"
-    ".Lraw_code_entities_40289_0:\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    add r2, sp, #0x14\n"
-    "    str r2, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    adds r0, r3, #0\n"
-    "    mov r2, sl\n"
-    "    adds r3, r6, #0\n"
-    "    bl SelectApproachFacing\n"
-    "    adds r2, r0, #0\n"
-    "    mov r0, r8\n"
-    "    movs r1, #1\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    movs r0, #0x1e\n"
-    "    bl RandomBelow\n"
-    "    adds r2, r0, #1\n"
-    "    mov r3, sl\n"
-    "    strh r3, [r4, #4]\n"
-    "    strh r6, [r4, #6]\n"
-    ".Lraw_code_entities_40296_8:\n"
-    "    strh r5, [r4]\n"
-    "    strh r2, [r4, #2]\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    ".Lraw_code_entities_40297_4:\n"
-    "    ldr r1, .Lraw_code_entities_40304_4\n"
-    "    ldr r0, [sp, #0x68]\n"
-    "    ands r0, r1\n"
-    "    movs r1, #0xb4\n"
-    "    orrs r0, r1\n"
-    "    ldr r1, .Lraw_code_entities_40304_8\n"
-    "    ands r0, r1\n"
-    "    str r0, [sp, #0x68]\n"
-    "    add r1, sp, #0x68\n"
-    ".Lraw_code_entities_40298_6:\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C10SheepActor\n"
-    "    adds r1, r0, #0\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r2, [r0]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_40304_4: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_40304_8: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_40304_12:\n"
-    "    mov r6, sb\n"
-    "    adds r6, #0x2c\n"
-    "    mov r0, r8\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r1, [r0]\n"
-    "    mov r7, r8\n"
-    "    movs r2, #0xa\n"
-    "    ldrsh r4, [r7, r2]\n"
-    "    movs r3, #0xe\n"
-    "    ldrsh r5, [r7, r3]\n"
-    "    adds r7, r0, #0\n"
-    "    ldr r0, [sp, #0x90]\n"
-    "    cmp r0, #0x25\n"
-    "    bne .Lraw_code_entities_40314_2\n"
-    "    cmp r1, #0\n"
-    "    bne .Lraw_code_entities_40314_2\n"
-    "    add r0, sp, #0x6c\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r0, [sp, #0x6c]\n"
-    "    str r0, [sp, #0x70]\n"
-    "    add r0, sp, #0x70\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r0, r2]\n"
-    "    adds r0, r5, #0\n"
-    "    subs r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40309_8\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40309_8:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lraw_code_entities_40328_0\n"
-    "    add r0, sp, #0x74\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x74]\n"
-    "    str r0, [sp, #0x78]\n"
-    "    add r0, sp, #0x78\n"
-    "    movs r3, #0\n"
-    "    ldrsh r2, [r0, r3]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    adds r3, #0x10\n"
-    "    mov r0, r8\n"
-    "    movs r1, #2\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    b .Lraw_code_entities_40328_0\n"
-    ".Lraw_code_entities_40314_2:\n"
-    "    ldr r2, [sp, #0x90]\n"
-    "    cmp r2, #2\n"
-    "    bne .Lraw_code_entities_40328_0\n"
-    "    cmp r1, #1\n"
-    "    bne .Lraw_code_entities_40328_0\n"
-    "    add r0, sp, #0x7c\n"
-    "    bl smethod_08009ADC__4Farm\n"
-    "    ldr r0, [sp, #0x7c]\n"
-    "    str r0, [sp, #0x80]\n"
-    "    add r0, sp, #0x80\n"
-    "    adds r1, r0, #0\n"
-    "    movs r3, #0\n"
-    "    ldrsh r0, [r1, r3]\n"
-    "    subs r0, r0, r4\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40319_0\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40319_0:\n"
-    "    cmp r0, #0xf\n"
-    "    bgt .Lraw_code_entities_40328_0\n"
-    "    movs r0, #2\n"
-    "    ldrsh r1, [r1, r0]\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #8\n"
-    "    subs r0, r1, r0\n"
-    "    cmp r0, #0\n"
-    "    bge .Lraw_code_entities_40320_4\n"
-    "    rsbs r0, r0, #0\n"
-    ".Lraw_code_entities_40320_4:\n"
-    "    cmp r0, #7\n"
-    "    bgt .Lraw_code_entities_40328_0\n"
-    "    add r0, sp, #0x84\n"
-    "    bl method_0800CE58__4Barn\n"
-    "    ldr r1, [sp, #0x84]\n"
-    "    add r0, sp, #0x88\n"
-    "    str r1, [r0]\n"
-    "    movs r1, #0\n"
-    "    ldrsh r2, [r0, r1]\n"
-    "    movs r1, #2\n"
-    "    ldrsh r3, [r0, r1]\n"
-    "    subs r3, #0x20\n"
-    "    mov r0, r8\n"
-    "    movs r1, #0x25\n"
-    "    bl SetLocation__7AEntityUiii\n"
-    "    mov r0, sb\n"
-    "    bl ResetCurrentOutdoorMinutes__9Livestock\n"
-    ".Lraw_code_entities_40328_0:\n"
-    "    ldrh r0, [r6]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40329_8\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r6]\n"
-    "    b .Lraw_code_entities_40336_0\n"
-    ".Lraw_code_entities_40329_8:\n"
-    "    ldr r2, .Lraw_code_entities_40340_0\n"
-    "    add r1, sp, #0x8c\n"
-    "    ldr r0, [r1]\n"
-    "    ands r0, r2\n"
-    "    movs r2, #0xb4\n"
-    "    orrs r0, r2\n"
-    "    ldr r2, .Lraw_code_entities_40340_4\n"
-    "    ands r0, r2\n"
-    "    str r0, [r1]\n"
-    "    mov r0, sb\n"
-    "    bl SetMovementState__10BarnAnimalPC23BarnAnimalMovementState\n"
-    "    mov r0, r8\n"
-    "    bl GetBehavior__C10SheepActor\n"
-    "    adds r1, r0, #0\n"
-    "    ldrb r2, [r7]\n"
-    "    mov r0, r8\n"
-    "    bl SetBehavior__10SheepActorUiUi\n"
-    ".Lraw_code_entities_40336_0:\n"
-    "    mov r0, r8\n"
-    "    add r1, sp, #0x14\n"
-    "    bl ApplyMovement__12AActorEntityP19ActorMovementBounds\n"
-    "    mov r1, r8\n"
-    "    adds r1, #0x30\n"
-    "    movs r0, #0\n"
-    "    strb r0, [r1]\n"
-    "    mov r2, r8\n"
-    "    ldrh r0, [r2, #0x24]\n"
-    "    cmp r0, #0\n"
-    "    beq .Lraw_code_entities_40340_8\n"
-    "    subs r0, #1\n"
-    "    strh r0, [r2, #0x24]\n"
-    "    b .Lraw_code_entities_40340_14\n"
-    "    .align 2, 0\n"
-    ".Lraw_code_entities_40340_0: .word 0xFFFF0000\n"
-    ".Lraw_code_entities_40340_4: .word 0xFF00FFFF\n"
-    ".Lraw_code_entities_40340_8:\n"
-    "    mov r3, r8\n"
-    "    ldrh r0, [r3, #0x26]\n"
-    "    strh r0, [r3, #0x24]\n"
-    ".Lraw_code_entities_40340_14:\n"
-    "    mov r6, r8\n"
-    "    ldr r2, [r6, #0x10]\n"
-    "    cmp r2, #0\n"
-    "    beq .Lraw_code_entities_40343_0\n"
-    "    ldr r0, [r2, #4]\n"
-    "    ldr r1, [r0, #0xc]\n"
-    "    adds r0, r2, #0\n"
-    "    bl _call_via_r1\n"
-    ".Lraw_code_entities_40343_0:\n"
-    "    add sp, #0xa0\n"
-    "    pop {r3, r4, r5}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    mov sl, r5\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
-);
-#endif
+void SheepActor::Update(EntityUpdateContext const & context)
+{
+    GameObject & world = *game_object;
+    Sheep * saved = livestock;
+    u32 map = GetMap();
+    if (map == MAP_FARM && context.minute_advanced) {
+        u32 previous = saved->GetCurrentOutdoorMinutes();
+        saved->AddOutdoorMinutes(1);
+        u32 current = saved->GetCurrentOutdoorMinutes();
+        if (previous < 180 && current >= 180
+            && world.GetClock()->weather_today != 0 && !saved->IsUnhappy())
+            saved->SetUnhappy();
+        if (previous < 240 && current >= 240) {
+            if (world.vfunc_108(Vec2((GetQ16X() >> 16), (GetQ16Y() >> 16))))
+                saved->SetFed();
+        }
+        if (previous < 300 && current >= 300 && world.GetClock()->weather_today == 0) {
+            if (saved->IsUnhappy() && RandomBelow(100) < 30)
+                saved->ResetUnhappy();
+            saved->AddAffection(1);
+        }
+    }
+    MapTerrainView const & terrain = world.GetMapTerrain(map);
+    Box const & box = GetBox();
+    ActorMovementBounds bounds(terrain, box, 16);
+    AEntity * player = world.GetEntity(ENTITY_PLAYER);
+    AEntity * basket = world.GetEntity(ENTITY_BASKET);
+    if (player != nullptr && player->GetMap() == map)
+        bounds.ClipAgainstBox(player->GetBox(), 0);
+    if (basket != nullptr && basket->GetMap() == map)
+        bounds.ClipAgainstBox(basket->GetBox(), 0);
+    switch (static_cast<i32>(saved->state)) {
+    case BarnAnimal::STATE_MOVEMENT: {
+        BarnAnimalMovementState & movement = saved->movement;
+        u32 remaining = movement.frames_remaining;
+        if (remaining != 0) {
+            i32 dx = x_speed_q16;
+            i32 dy = y_speed_q16;
+            bool blocked = (dx < 0 && bounds.GetLeft() > -16)
+                || (dx > 0 && bounds.GetRight() < 16)
+                || (dy < 0 && bounds.GetUp() > -16)
+                || (dy > 0 && bounds.GetDown() < 16);
+            if (blocked)
+                remaining = 0;
+            else
+                --remaining;
+        } else if (IsAnimationComplete()) {
+            u32 hour = world.GetClock()->calendar.time.clock_hour;
+            u32 night = hour - 6 > 14;
+            ActorBehaviorTiming const (*profile)[2][7] = gUnk_080F0C74[night];
+            i32 sick = saved->IsSick();
+            ActorBehaviorTiming const * table = profile[saved->IsPregnant() ? 3 : saved->IsSheared() ? 2 : saved->GetGrowthStage()][sick];
+            u32 behavior = SelectActorBehaviorTimingIndex(table, 7);
+            ActorBehaviorTiming const & timing = table[behavior];
+            remaining = SelectAnimalBehaviorDuration(timing, 60);
+            u32 direction = facing;
+            u32 relative = RandomBelow(4);
+            if (relative != 0 && relative != 3)
+                direction = GetRelativeFacing(direction, relative);
+            SetBehavior(behavior, direction);
+            movement.behavior = behavior;
+        }
+        movement.frames_remaining = remaining;
+        break;
+    }
+    case BarnAnimal::STATE_REACTION: {
+        AnimalReactionPayload & reaction = saved->reaction;
+        u32 remaining = reaction.bits.frames_remaining;
+        if (remaining != 0)
+            --remaining;
+        AnimalReactionPayload::WordBits const flags = saved->reaction.word_bits;
+        u32 retreat = flags.retreat_frames;
+        if (retreat != 0)
+            --retreat;
+        u32 retarget = reaction.bits.retarget_frames;
+        if (retarget != 0)
+            --retarget;
+        if (remaining != 0) {
+            AEntity * target = flags.target_is_dog ? world.GetEntity(ENTITY_FRISBEE) : player;
+            if (target != nullptr && target->GetMap() == map) {
+                if (retarget == 0) {
+                    i32 x = (GetQ16X() >> 16);
+                    i32 y = (GetQ16Y() >> 16);
+                    i32 target_x = (target->GetQ16X() >> 16);
+                    i32 target_y = (target->GetQ16Y() >> 16);
+                    u32 behavior = retreat ? 6 : 1;
+                    u32 direction = GetFacing();
+                    direction = SelectRetreatFacing(x, y, target_x, target_y, bounds, direction);
+                    SetBehavior(behavior, direction);
+                    retarget = RandomBelow(30) + 1;
+                }
+                reaction.bits.frames_remaining = remaining;
+                reaction.bits.retreat_frames = retreat;
+                reaction.bits.retarget_frames = retarget;
+                break;
+            }
+        }
+        BarnAnimalMovementState movement;
+        movement.frames_remaining = 180;
+        movement.behavior = 0;
+        saved->SetMovementState(&movement);
+        SetBehavior(GetBehavior(), facing);
+        break;
+    }
+    case BarnAnimal::STATE_APPROACH: {
+        AnimalApproachPayload & approach = saved->approach;
+        u32 remaining = approach.frames_remaining;
+        if (remaining != 0)
+            --remaining;
+        u32 retarget = approach.retarget_frames;
+        if (retarget != 0)
+            --retarget;
+        if (remaining != 0 && player != nullptr && player->GetMap() == map) {
+            i32 x = (GetQ16X() >> 16);
+            i32 y = (GetQ16Y() >> 16);
+            i32 target_x = (player->GetQ16X() >> 16);
+            i32 target_y = (player->GetQ16Y() >> 16);
+            if (abs(target_x - x) >= 16 || abs(target_y - y) >= 16) {
+                if (retarget == 0 || (abs(approach.last_target_x - x) < 16
+                    && abs(approach.last_target_y - y) < 16)) {
+                    u32 direction = GetFacing();
+                    direction = SelectApproachFacing(x, y, target_x, target_y, bounds, direction);
+                    SetBehavior(1, direction);
+                    retarget = RandomBelow(30) + 1;
+                    approach.last_target_x = target_x;
+                    approach.last_target_y = target_y;
+                }
+                approach.frames_remaining = remaining;
+                approach.retarget_frames = retarget;
+                break;
+            }
+        }
+        BarnAnimalMovementState movement;
+        movement.frames_remaining = 180;
+        movement.behavior = 0;
+        saved->SetMovementState(&movement);
+        SetBehavior(GetBehavior(), facing);
+        break;
+    }
+    case BarnAnimal::STATE_PUSHED: {
+        BarnAnimalMovementState & movement = saved->movement;
+        u32 direction = facing;
+        i32 x = (GetQ16X() >> 16);
+        i32 y = (GetQ16Y() >> 16);
+        if (map == MAP_BARN && direction == FACING_DOWN) {
+            Vec2 const & inside = Barn::method_0800CE58();
+            if (AnimalActorDistance(inside.y, y - 8) < 8) {
+                Vec2 const & outside = Farm::smethod_08009ADC();
+                AEntity::SetLocation(MAP_FARM, outside.x, outside.y + 16);
+            }
+        } else if (map == MAP_FARM && direction == FACING_UP) {
+            Vec2 const & outside = Farm::smethod_08009ADC();
+            if (abs(outside.x - x) < 16 && AnimalActorDistance(outside.y, y + 8) < 8) {
+                Vec2 const & inside = Barn::method_0800CE58();
+                AEntity::SetLocation(MAP_BARN, inside.x, inside.y - 32);
+                saved->ResetCurrentOutdoorMinutes();
+            }
+        }
+        u32 remaining = movement.frames_remaining;
+        if (remaining != 0)
+            movement.frames_remaining = remaining - 1;
+        else {
+            BarnAnimalMovementState next;
+            next.frames_remaining = 180;
+            next.behavior = 0;
+            saved->SetMovementState(&next);
+            SetBehavior(GetBehavior(), facing);
+        }
+        break;
+    }
+    }
+    ApplyMovement(&bounds);
+    UpdateAnimalActorVisual(*this);
+}
+
 
 void SheepActor::SetBehavior(u32 behavior, u32 direction)
 {
@@ -11482,35 +8703,171 @@ u16 const gChickenBehaviorAnimations[2][5] = {
     { 0x071C, 0x0720, 0x0724, 0x072C, 0x0728 },
 };
 
-ActorBehaviorTiming const gUnk_080F0A7C[112] = {
-    {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 }, {  45, 1, 2, 0 },
-    {  30, 1, 2, 0 }, {  10, 1, 2, 0 }, {   5, 1, 1, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {  10, 1, 2, 0 }, {   5, 1, 1, 0 }, {  15, 1, 2, 0 },
-    {  30, 3, 2, 0 }, {  40, 3, 2, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  50, 3, 2, 0 }, {   0, 0, 0, 0 },
-    {  30, 1, 1, 0 }, {  10, 3, 2, 0 }, {  20, 1, 1, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {  10, 1, 1, 0 }, {   0, 0, 0, 0 }, {  10, 1, 1, 0 },
-    {  30, 3, 2, 0 }, {  50, 5, 3, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
+ActorBehaviorTiming const gUnk_080F0A7C[2][4][2][7] = {
+    {
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  50, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {  30, 1, 1, 0 },
+                {  10, 3, 2, 0 },
+                {  20, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {  10, 1, 1, 0 },
+                {  30, 3, 2, 0 },
+                {  50, 5, 3, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        }
+    },
+    {
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        }
+    }
 };
 
 u16 const gCowBehaviorAnimations[4][7] = {
@@ -11520,35 +8877,171 @@ u16 const gCowBehaviorAnimations[4][7] = {
     { 0x02E4, 0x02B0, 0x02E8, 0x02EC, 0x02F0, 0x02F4, 0x02F8 },
 };
 
-ActorBehaviorTiming const gUnk_080F0C74[112] = {
-    {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 }, {  45, 1, 2, 0 },
-    {  30, 1, 2, 0 }, {  10, 1, 2, 0 }, {   5, 1, 1, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {  10, 1, 2, 0 }, {   5, 1, 1, 0 }, {  15, 1, 2, 0 },
-    {  30, 3, 2, 0 }, {  40, 3, 2, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {  10, 1, 2, 0 }, {  45, 1, 2, 0 }, {  30, 1, 2, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  10, 1, 2, 0 },
-    {   5, 1, 1, 0 }, {  15, 1, 2, 0 }, {  30, 3, 2, 0 }, {  40, 3, 2, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {  50, 3, 2, 0 }, {   0, 0, 0, 0 },
-    {  30, 1, 1, 0 }, {  10, 3, 2, 0 }, {  20, 1, 1, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {  10, 1, 1, 0 }, {   0, 0, 0, 0 }, {  10, 1, 1, 0 },
-    {  30, 3, 2, 0 }, {  50, 5, 3, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
-    {   0, 0, 0, 0 }, { 100, 9, 0, 0 }, {   0, 0, 0, 0 }, {   0, 0, 0, 0 },
+ActorBehaviorTiming const gUnk_080F0C74[2][4][2][7] = {
+    {
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  10, 1, 2, 0 },
+                {  45, 1, 2, 0 },
+                {  30, 1, 2, 0 },
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 2, 0 },
+                {   5, 1, 1, 0 },
+                {  15, 1, 2, 0 },
+                {  30, 3, 2, 0 },
+                {  40, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {  50, 3, 2, 0 },
+                {   0, 0, 0, 0 },
+                {  30, 1, 1, 0 },
+                {  10, 3, 2, 0 },
+                {  20, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {  10, 1, 1, 0 },
+                {   0, 0, 0, 0 },
+                {  10, 1, 1, 0 },
+                {  30, 3, 2, 0 },
+                {  50, 5, 3, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        }
+    },
+    {
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        },
+        {
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            },
+            {
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 },
+                { 100, 9, 0, 0 },
+                {   0, 0, 0, 0 },
+                {   0, 0, 0, 0 }
+            }
+        }
+    }
 };
 
 u16 const gSheepBehaviorAnimations[4][7] = {

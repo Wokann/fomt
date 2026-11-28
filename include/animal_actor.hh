@@ -12,9 +12,9 @@ extern ActorBehaviorTiming const gUnk_080F093C[28];
 extern u16 const gHorseBehaviorAnimations[2][7];
 extern ActorBehaviorTiming const gUnk_080F09C8[40];
 extern u16 const gChickenBehaviorAnimations[2][5];
-extern ActorBehaviorTiming const gUnk_080F0A7C[112];
+extern ActorBehaviorTiming const gUnk_080F0A7C[2][4][2][7];
 extern u16 const gCowBehaviorAnimations[4][7];
-extern ActorBehaviorTiming const gUnk_080F0C74[112];
+extern ActorBehaviorTiming const gUnk_080F0C74[2][4][2][7];
 extern u16 const gSheepBehaviorAnimations[4][7];
 
 #pragma interface "animal_actor.hh"
