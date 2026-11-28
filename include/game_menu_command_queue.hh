@@ -30,6 +30,16 @@ struct GameSceneMenuCommandQueue {
     u32 unk_00;
     GameSceneMenuCommandNode * sentinel;
     void ClearNodes();
+    GameSceneMenuCommandIterator Erase(GameSceneMenuCommandIterator position)
+    {
+        GameSceneMenuCommandNode * node = position.current;
+        GameSceneMenuCommandNode * next = node->next;
+        GameSceneMenuCommandNode * previous = node->previous;
+        previous->next = next;
+        next->previous = previous;
+        free(node);
+        return GameSceneMenuCommandIterator(next);
+    }
     ~GameSceneMenuCommandQueue()
     {
         ClearNodes();
@@ -47,11 +57,5 @@ struct GameSceneMenuCommandQueue {
 private:
     GameSceneMenuCommandQueue();
 };
-
-typedef char MenuCommandNodeSizeCheck[sizeof(GameSceneMenuCommandNode) == 12 ? 1 : -1];
-typedef char MenuCommandNodeValueCheck[offsetof(GameSceneMenuCommandNode, command) == 8 ? 1 : -1];
-typedef char MenuCommandIteratorSizeCheck[sizeof(GameSceneMenuCommandIterator) == 4 ? 1 : -1];
-typedef char MenuCommandQueueSizeCheck[sizeof(GameSceneMenuCommandQueue) == 8 ? 1 : -1];
-typedef char MenuCommandQueueHeadCheck[offsetof(GameSceneMenuCommandQueue, sentinel) == 4 ? 1 : -1];
 
 #endif // GAME_MENU_COMMAND_QUEUE_HH

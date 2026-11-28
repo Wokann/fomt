@@ -196,7 +196,6 @@ void ClearMenuItemIcon(GameMenuItemIcon * icon)
 }
 
 asm_unified(
-    "    .align 2, 0\n"
     "thumb_func_start __13GameMenuPanelP18HardwareLinkedList\n"
     "__13GameMenuPanelP18HardwareLinkedList:\n"
     "push {r4, r5, lr}\n"
@@ -233,70 +232,20 @@ asm_unified(
     ".Lmenu_1_13_0038: .word __vt_13GameMenuPanel\n"
 #endif
     "\n"
-    "thumb_func_start _._13GameMenuPanel\n"
-    "_._13GameMenuPanel:\n"
-    "push {r4, r5, r6, lr}\n"
-    "sub sp, #8\n"
-    "adds r5, r0, #0\n"
-    "adds r6, r1, #0\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r5, r0\n"
-    "ldr r0, .Lmenu_1_14_001c\n"
-    "str r0, [r1]\n"
-    "ldr r0, [r5, #8]\n"
-    "ldr r1, [r0]\n"
-    "str r1, [sp]\n"
-    "str r0, [sp, #4]\n"
-    "b .Lmenu_1_14_003c\n"
-#if defined(REGION_JP)
-    ".Lmenu_1_14_001c: .word __vt_13GameMenuPanel\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-    ".Lmenu_1_14_001c: .word __vt_13GameMenuPanel\n"
-#endif
-    ".Lmenu_1_14_0020:\n"
-    "ldr r0, [sp]\n"
-    "ldr r1, [r0, #8]\n"
-    "cmp r1, #0\n"
-    "beq .Lmenu_1_14_0034\n"
-    "ldr r0, [r1, #8]\n"
-    "ldr r2, [r0, #0xc]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    ".Lmenu_1_14_0034:\n"
-    "ldr r0, [sp]\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp]\n"
-    "ldr r1, [sp, #4]\n"
-    ".Lmenu_1_14_003c:\n"
-    "eors r1, r0\n"
-    "rsbs r0, r1, #0\n"
-    "orrs r0, r1\n"
-    "cmp r0, #0\n"
-    "blt .Lmenu_1_14_0020\n"
-    "adds r4, r5, #4\n"
-    "adds r0, r4, #0\n"
-    "bl ClearNodes__25GameSceneMenuCommandQueue\n"
-    "ldr r0, [r4, #4]\n"
-    "cmp r0, #0\n"
-    "beq .Lmenu_1_14_0058\n"
-    "bl free\n"
-    ".Lmenu_1_14_0058:\n"
-    "movs r0, #1\n"
-    "ands r0, r6\n"
-    "cmp r0, #0\n"
-    "beq .Lmenu_1_14_0066\n"
-    "adds r0, r5, #0\n"
-    "bl __builtin_delete\n"
-    ".Lmenu_1_14_0066:\n"
-    "add sp, #8\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
+);
+
+GameMenuPanel::~GameMenuPanel()
+{
+    GameSceneMenuCommandIterator current = commands.Begin();
+    GameSceneMenuCommandIterator end = commands.End();
+    while (current != end)
+    {
+        delete *current;
+        ++current;
+    }
+}
+
+asm_unified(
     "thumb_func_start func_080CAE60\n"
     "func_080CAE60:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -431,55 +380,27 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start PruneCompletedCommands__13GameMenuPanel\n"
-    "PruneCompletedCommands__13GameMenuPanel:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0x10\n"
-    "ldr r0, [r0, #8]\n"
-    "ldr r1, [r0]\n"
-    "str r1, [sp]\n"
-    "str r0, [sp, #4]\n"
-    "b .Lmenu_1_17_0046\n"
-    ".Lmenu_1_17_000e:\n"
-    "ldr r2, [sp]\n"
-    "ldr r3, [r2, #8]\n"
-    "ldr r1, [r3]\n"
-    "rsbs r0, r1, #0\n"
-    "orrs r0, r1\n"
-    "cmp r0, #0\n"
-    "blt .Lmenu_1_17_003e\n"
-    "ldr r0, [r3, #8]\n"
-    "ldr r2, [r0, #0xc]\n"
-    "adds r0, r3, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    "ldr r0, [sp]\n"
-    "str r0, [sp, #0xc]\n"
-    "ldr r4, [r0]\n"
-    "ldr r1, [r0, #4]\n"
-    "str r4, [r1]\n"
-    "str r1, [r4, #4]\n"
-    "bl free\n"
-    "str r4, [sp, #8]\n"
-    "str r4, [sp]\n"
-    "b .Lmenu_1_17_0042\n"
-    ".Lmenu_1_17_003e:\n"
-    "ldr r0, [r2]\n"
-    "str r0, [sp]\n"
-    ".Lmenu_1_17_0042:\n"
-    "ldr r1, [sp]\n"
-    "ldr r0, [sp, #4]\n"
-    ".Lmenu_1_17_0046:\n"
-    "eors r1, r0\n"
-    "rsbs r0, r1, #0\n"
-    "orrs r0, r1\n"
-    "cmp r0, #0\n"
-    "blt .Lmenu_1_17_000e\n"
-    "add sp, #0x10\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+void GameMenuPanel::PruneCompletedCommands()
+{
+    GameSceneMenuCommandIterator current = commands.Begin();
+    GameSceneMenuCommandIterator end = commands.End();
+    while (current != end)
+    {
+        HardwareLinkBase * command = *current;
+        bool linked = command->previous_slot != nullptr;
+        if (!linked)
+        {
+            delete command;
+            current = commands.Erase(current);
+        }
+        else
+            ++current;
+    }
+}
+
+asm_unified(
     "thumb_func_start __20GameMenuTilemapPanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcb\n"
     "__20GameMenuTilemapPanelP16HardwareDmaQueueP18HardwareLinkedListUiPCcb:\n"
     "push {r4, r5, r6, r7, lr}\n"

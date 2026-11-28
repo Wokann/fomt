@@ -383,52 +383,9 @@ u8 GetMenuPanelHeaderEnabled(GameMenuPanel const * panel)
     return state->show_header;
 }
 
-asm_unified(
-    ".text\n"
-    "thumb_func_start _._20GameMenuTilemapPanel\n"
-    "_._20GameMenuTilemapPanel:\n"
-    ".align 2, 0\n"
-    "push {r4, lr}\n"
-    "adds r3, r0, #0\n"
-    "adds r4, r1, #0\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r3, r0\n"
-    "ldr r0, .Lmenu_4_0_0040\n"
-    "str r0, [r1]\n"
-    "movs r1, #0x85\n"
-    "lsls r1, r1, #2\n"
-    "adds r2, r3, r1\n"
-    "ldr r1, [r2]\n"
-    "lsls r0, r1, #1\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "adds r0, #4\n"
-    "adds r2, r2, r0\n"
-    "movs r1, #0x86\n"
-    "lsls r1, r1, #2\n"
-    "adds r0, r3, r1\n"
-    "cmp r0, r2\n"
-    "beq .Lmenu_4_0_0032\n"
-    ".Lmenu_4_0_002c:\n"
-    "adds r0, #0xc\n"
-    "cmp r0, r2\n"
-    "bne .Lmenu_4_0_002c\n"
-    ".Lmenu_4_0_0032:\n"
-    "adds r0, r3, #0\n"
-    "adds r1, r4, #0\n"
-    "bl _._13GameMenuPanel\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-#if defined(REGION_JP)
-    ".Lmenu_4_0_0040: .word __vt_20GameMenuTilemapPanel\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".align 2, 0\n"
-    ".Lmenu_4_0_0040: .word __vt_20GameMenuTilemapPanel\n"
-#endif
-    "\n"
-);
+GameMenuTilemapPanel::~GameMenuTilemapPanel()
+{
+}
 
 #include "game_menu_panels.hh"
 extern "C" void func_080CD994(MenuGridPosition * out)

@@ -1,3 +1,7 @@
+## 菜单绘制命令的节点和值生命周期（2026-11-28）
+
+GameMenuPanel拥有命令值，GameSceneMenuCommandQueue负责链表节点。PruneCompletedCommands在previous_slot为空时先销毁命令，再通过Erase连接前后节点、释放当前节点并继续遍历。面板析构遍历销毁所有命令，随后队列成员析构清理节点和哨兵；图块面板通过正常成员／基类析构收尾。三个完整对象真实字节、数据、重定位及四版默认完整ROM通过baserom对照。
+
 ## 动物照料计数及动画状态引用（2026-11-28）
 
 AdvanceAnimalCareSlotCounters对齐现有五个状态、计数字节和phase_flags；ToggleAnimalCareAnimationPause通过实际音乐槽及+0x83C状态调用原动画控制入口。暂停／恢复只更名，不计高级语言函数。完整对象真实字节、数据、重定位及四版默认完整ROM通过baserom对照。
