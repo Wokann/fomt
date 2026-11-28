@@ -12,6 +12,7 @@
 struct RucksackItem;
 struct Article;
 struct Food;
+struct Product;
 struct GameStateSaveImage;
 struct Farmer;
 struct MapTerrainView;
@@ -51,6 +52,10 @@ struct PlayerActor : PlayerActorBase {
     void ShowSelectedToolGraphic();
     void RefreshHeldItemGraphic();
     void HideHeldGraphic();
+    Product GetHeldProduct() const;
+    u32 GetToolFatiguePenalty() const;
+    void BeginToolUse();
+    void AdvanceToolCharge();
     void PickUpDog();
     void PickUpChicken(u8 slot);
     void PickUpBasket();
@@ -119,7 +124,11 @@ struct PlayerActor : PlayerActorBase {
     u8 action_state;
     u8 unk_3D;
     u8 unk_3E;
-    u8 unk_3F[0x60 - 0x3F];
+    u8 unk_3F;
+    u8 tool_charge_level;
+    u8 tool_charge_count;
+    u8 tool_charge_frames;
+    u8 unk_43[0x60 - 0x43];
     FishingCatchResult caught_fish;
     u8 unk_78;
     u8 unk_79;
