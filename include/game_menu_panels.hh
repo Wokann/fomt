@@ -33,6 +33,11 @@ protected:
     GameMenuPanel(HardwareLinkedList *);
 };
 
+enum GameMenuItemIconId {
+    GAME_MENU_ICON_BASKET       = 53,
+    GAME_MENU_ICON_WRAPPED_ITEM = 352,
+};
+
 // A menu icon borrows its archive data. The first word is the quantity
 // displayed as a decimal number when it exceeds one.
 struct GameMenuItemIcon {
@@ -96,6 +101,7 @@ void QueueMenuPanelDecimal(GameMenuPanel *, u32 value, u16 * right_tile,
 void func_080CB090(GameMenuTilemapPanel *);
 void func_080CC310(GameMenuSpritePanel *);
 void func_080CCDEC(GameMenuSpritePanel *, u32 index);
+extern u8 const gActorIndexedResourceArchive[];
 extern u8 const gUnk_083ED9FC[];
 extern u8 const gUnk_086678A0[];
 void func_080CC728(GameMenuSpritePanel *, u32 index, u8 const * archive,

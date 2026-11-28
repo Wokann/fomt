@@ -21,245 +21,84 @@ RefrigeratorSceneCore::~RefrigeratorSceneCore()
 {
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start DrawRucksackItems__21RefrigeratorSceneCoreUi\n"
-    "DrawRucksackItems__21RefrigeratorSceneCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0x10\n"
-    "adds r6, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "movs r5, #0\n"
-    "cmp r5, r7\n"
-    "bhs .Lrefrigerator_2_008a\n"
-    ".Lrefrigerator_2_000e:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r0, [r0]\n"
-    "adds r1, r5, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp, #4]\n"
-    "add r0, sp, #4\n"
-    "bl IsEmpty__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_2_0084\n"
-    "movs r4, #0\n"
-    "add r0, sp, #4\n"
-    "bl GetKind__C12RucksackItem\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_003e\n"
-    "cmp r0, #1\n"
-    "beq .Lrefrigerator_2_0050\n"
-    "b .Lrefrigerator_2_0064\n"
-    ".Lrefrigerator_2_003e:\n"
-    "add r4, sp, #8\n"
-    "adds r0, r4, #0\n"
-    "add r1, sp, #4\n"
-    "bl GetFood__C12RucksackItem\n"
-    "adds r0, r4, #0\n"
-    "bl GetIconId__C4Food\n"
-    "b .Lrefrigerator_2_0060\n"
-    ".Lrefrigerator_2_0050:\n"
-    "add r0, sp, #4\n"
-    "bl GetArticle__C12RucksackItem\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #0xc\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C7Article\n"
-    ".Lrefrigerator_2_0060:\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r4, r0, #0x10\n"
-    ".Lrefrigerator_2_0064:\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_0074\n"
-    "movs r4, #0xb0\n"
-    "lsls r4, r4, #1\n"
-    ".Lrefrigerator_2_0074:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "movs r1, #1\n"
-    "str r1, [sp]\n"
-    "adds r1, r5, #0\n"
-    "ldr r2, .Lrefrigerator_2_00b4\n"
-    "adds r3, r4, #0\n"
-    "bl func_080CB304\n"
-    ".Lrefrigerator_2_0084:\n"
-    "adds r5, #1\n"
-    "cmp r5, r7\n"
-    "blo .Lrefrigerator_2_000e\n"
-    ".Lrefrigerator_2_008a:\n"
-    "adds r4, r6, #0\n"
-    "adds r4, #0xfc\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_009c\n"
-    "b .Lrefrigerator_2_01d0\n"
-    ".Lrefrigerator_2_009c:\n"
-    "ldr r0, [r4]\n"
-    "bl GetKind__C8HeldItem\n"
-    "cmp r0, #5\n"
-    "bls .Lrefrigerator_2_00a8\n"
-    "b .Lrefrigerator_2_01d0\n"
-    ".Lrefrigerator_2_00a8:\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lrefrigerator_2_00b8\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
+void RefrigeratorSceneCore::DrawRucksackItems(u32 count)
+{
+    for (u32 slot = 0; slot < count; ++slot) {
+        RucksackItem item = rucksack->GetItemAt(slot);
+        if (!item.IsEmpty()) {
+            u16 icon = 0;
+            switch (item.GetKind()) {
+            case RucksackItem::KIND_FOOD:
+                icon = item.GetFood().GetIconId();
+                break;
+            case RucksackItem::KIND_ARTICLE:
+                icon = item.GetArticle().GetIconId();
+                break;
+            }
+            if (item.IsWrapped())
+                icon = GAME_MENU_ICON_WRAPPED_ITEM;
 #if defined(REGION_JP)
-    ".Lrefrigerator_2_00b4: .word gUnk_083ED9FC\n"
+            func_080CB304(left_panel.value, slot, gUnk_083ED9FC, icon, 1);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrefrigerator_2_00b4: .word gUnk_086678A0\n"
+            func_080CB304(left_panel.value, slot, gUnk_086678A0, icon, 1);
 #endif
-    ".Lrefrigerator_2_00b8: .word .Lrefrigerator_2_00bc\n"
-    ".Lrefrigerator_2_00bc: .word .Lrefrigerator_2_00d4\n"
-    ".word .Lrefrigerator_2_010c\n"
-    ".word .Lrefrigerator_2_0148\n"
-    ".word .Lrefrigerator_2_017c\n"
-    ".word .Lrefrigerator_2_01c4\n"
-    ".word .Lrefrigerator_2_01d0\n"
-    ".Lrefrigerator_2_00d4:\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F20C\n"
-    "add r0, sp, #4\n"
-    "bl GetIconId__C4Food\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r5, r0, #0x10\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F294\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_00fe\n"
-    "movs r5, #0xb0\n"
-    "lsls r5, r5, #1\n"
-    ".Lrefrigerator_2_00fe:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_0108\n"
-    "adds r2, r5, #0\n"
-    "b .Lrefrigerator_2_01b2\n"
-    ".align 2, 0\n"
+        }
+    }
+    if (IsHeldItemEmpty(held_item))
+        return;
+    u16 icon;
+    switch (held_item->GetKind()) {
+    case HeldItem::KIND_FOOD: {
+        icon = func_0800F20C(held_item).GetIconId();
+        if (func_0800F294(held_item).IsWrapped())
+            icon = GAME_MENU_ICON_WRAPPED_ITEM;
 #if defined(REGION_JP)
-    ".Lrefrigerator_2_0108: .word gUnk_083ED9FC\n"
+        func_080CBAF0(left_panel.value, gUnk_083ED9FC, icon, 1);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrefrigerator_2_0108: .word gUnk_086678A0\n"
+        func_080CBAF0(left_panel.value, gUnk_086678A0, icon, 1);
 #endif
-    ".Lrefrigerator_2_010c:\n"
-    "ldr r0, [r4]\n"
-    "bl GetArticle__C8HeldItem\n"
-    "adds r1, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r0, #0xd\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C7Article\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r5, r0, #0x10\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F294\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_013a\n"
-    "movs r5, #0xb0\n"
-    "lsls r5, r5, #1\n"
-    ".Lrefrigerator_2_013a:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_0144\n"
-    "adds r2, r5, #0\n"
-    "b .Lrefrigerator_2_01b2\n"
-    ".align 2, 0\n"
+        break;
+    }
+    case HeldItem::KIND_ARTICLE: {
+        icon = held_item->GetArticle().GetIconId();
+        if (func_0800F294(held_item).IsWrapped())
+            icon = GAME_MENU_ICON_WRAPPED_ITEM;
 #if defined(REGION_JP)
-    ".Lrefrigerator_2_0144: .word gUnk_083ED9FC\n"
+        func_080CBAF0(left_panel.value, gUnk_083ED9FC, icon, 1);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrefrigerator_2_0144: .word gUnk_086678A0\n"
+        func_080CBAF0(left_panel.value, gUnk_086678A0, icon, 1);
 #endif
-    ".Lrefrigerator_2_0148:\n"
-    "ldr r0, [r6, #8]\n"
-    "ldr r2, .Lrefrigerator_2_0160\n"
-    "adds r0, r0, r2\n"
-    "bl GetGrowthStage__C3Dog\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_2_016c\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_0164\n"
-    "ldr r2, .Lrefrigerator_2_0168\n"
-    "b .Lrefrigerator_2_01b2\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_2_0160: .word 0x1c70\n"
-    ".Lrefrigerator_2_0164: .word gActorIndexedResourceArchive\n"
-    ".Lrefrigerator_2_0168: .word 0x3da\n"
-    ".Lrefrigerator_2_016c:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_0178\n"
-    "movs r2, #0xdd\n"
-    "lsls r2, r2, #2\n"
-    "b .Lrefrigerator_2_01b2\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_2_0178: .word gActorIndexedResourceArchive\n"
-    ".Lrefrigerator_2_017c:\n"
-    "ldr r0, [r4]\n"
-    "bl GetHeldChickenSlot\n"
-    "adds r1, r0, #0\n"
-    "ldr r0, [r6, #8]\n"
-    "movs r2, #0x82\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r0, r2\n"
-    "bl GetChicken__4CoopUi\n"
-    "cmp r0, #0\n"
-    "beq .Lrefrigerator_2_01d0\n"
-    "bl GetGrowthStage__C7Chicken\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_2_01ac\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_01a4\n"
-    "ldr r2, .Lrefrigerator_2_01a8\n"
-    "b .Lrefrigerator_2_01b2\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_2_01a4: .word gActorIndexedResourceArchive\n"
-    ".Lrefrigerator_2_01a8: .word 0x73d\n"
-    ".Lrefrigerator_2_01ac:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_01bc\n"
-    "ldr r2, .Lrefrigerator_2_01c0\n"
-    ".Lrefrigerator_2_01b2:\n"
-    "movs r3, #1\n"
-    "bl func_080CBAF0\n"
-    "b .Lrefrigerator_2_01d0\n"
-    ".align 2, 0\n"
-    ".Lrefrigerator_2_01bc: .word gActorIndexedResourceArchive\n"
-    ".Lrefrigerator_2_01c0: .word 0x734\n"
-    ".Lrefrigerator_2_01c4:\n"
-    "ldr r0, [r6, #0x78]\n"
-    "ldr r1, .Lrefrigerator_2_01d8\n"
-    "movs r2, #0x35\n"
-    "movs r3, #1\n"
-    "bl func_080CBAF0\n"
-    ".Lrefrigerator_2_01d0:\n"
-    "add sp, #0x10\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
+        break;
+    }
+    case HeldItem::KIND_DOG:
+        if (save->dog.GetGrowthStage() == Dog::STAGE_0)
+            func_080CBAF0(left_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_0986, 1);
+        else
+            func_080CBAF0(left_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_0884, 1);
+        break;
+    case HeldItem::KIND_CHICKEN: {
+        u32 slot = GetHeldChickenSlot(held_item);
+        Chicken * chicken = save->farm.coop.GetChicken(slot);
+        if (chicken) {
+            if (chicken->GetGrowthStage() == Chicken::STAGE_0)
+                func_080CBAF0(left_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_1853, 1);
+            else
+                func_080CBAF0(left_panel.value, gActorIndexedResourceArchive, ANIMATION_CHICKEN_HELD, 1);
+        }
+        break;
+    }
+    case HeldItem::KIND_BASKET:
 #if defined(REGION_JP)
-    ".Lrefrigerator_2_01d8: .word gUnk_083ED9FC\n"
+        func_080CBAF0(left_panel.value, gUnk_083ED9FC, GAME_MENU_ICON_BASKET, 1);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrefrigerator_2_01d8: .word gUnk_086678A0\n"
+        func_080CBAF0(left_panel.value, gUnk_086678A0, GAME_MENU_ICON_BASKET, 1);
 #endif
-    "\n"
-);
+        break;
+    case HeldItem::KIND_ACTOR_GRAPHIC:
+        break;
+    }
+}
+
 
 void RefrigeratorSceneCore::DrawFridgePage(u32 page)
 {

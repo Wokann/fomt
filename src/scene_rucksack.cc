@@ -1985,253 +1985,85 @@ asm_unified(
     ".Lrucksack_4_00cc: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start DrawItems__16RucksackMenuCoreUi\n"
-    "DrawItems__16RucksackMenuCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0x10\n"
-    "adds r5, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "movs r6, #0\n"
-    "cmp r6, r7\n"
-    "bhs .Lrucksack_5_008a\n"
-    ".Lrucksack_5_000e:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r0, [r0]\n"
-    "adds r1, r6, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp, #4]\n"
-    "add r0, sp, #4\n"
-    "bl IsEmpty__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_5_0084\n"
-    "movs r4, #0\n"
-    "add r0, sp, #4\n"
-    "bl GetKind__C12RucksackItem\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_003e\n"
-    "cmp r0, #1\n"
-    "beq .Lrucksack_5_0050\n"
-    "b .Lrucksack_5_0064\n"
-    ".Lrucksack_5_003e:\n"
-    "add r4, sp, #8\n"
-    "adds r0, r4, #0\n"
-    "add r1, sp, #4\n"
-    "bl GetFood__C12RucksackItem\n"
-    "adds r0, r4, #0\n"
-    "bl GetIconId__C4Food\n"
-    "b .Lrucksack_5_0060\n"
-    ".Lrucksack_5_0050:\n"
-    "add r0, sp, #4\n"
-    "bl GetArticle__C12RucksackItem\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #0xc\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C7Article\n"
-    ".Lrucksack_5_0060:\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r4, r0, #0x10\n"
-    ".Lrucksack_5_0064:\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_0074\n"
-    "movs r4, #0xb0\n"
-    "lsls r4, r4, #1\n"
-    ".Lrucksack_5_0074:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "movs r1, #1\n"
-    "str r1, [sp]\n"
-    "adds r1, r6, #0\n"
-    "ldr r2, .Lrucksack_5_00b4\n"
-    "adds r3, r4, #0\n"
-    "bl func_080CC728\n"
-    ".Lrucksack_5_0084:\n"
-    "adds r6, #1\n"
-    "cmp r6, r7\n"
-    "blo .Lrucksack_5_000e\n"
-    ".Lrucksack_5_008a:\n"
-    "movs r2, #0x80\n"
-    "lsls r2, r2, #1\n"
-    "adds r4, r5, r2\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_009e\n"
-    "b .Lrucksack_5_01e0\n"
-    ".Lrucksack_5_009e:\n"
-    "ldr r0, [r4]\n"
-    "bl GetKind__C8HeldItem\n"
-    "cmp r0, #5\n"
-    "bls .Lrucksack_5_00aa\n"
-    "b .Lrucksack_5_01e0\n"
-    ".Lrucksack_5_00aa:\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lrucksack_5_00b8\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lrucksack_5_00b4: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrucksack_5_00b4: .word gUnk_086678A0\n"
-#endif
-    ".Lrucksack_5_00b8: .word .Lrucksack_5_00bc\n"
-    ".Lrucksack_5_00bc: .word .Lrucksack_5_00d4\n"
-    ".word .Lrucksack_5_0110\n"
-    ".word .Lrucksack_5_0150\n"
-    ".word .Lrucksack_5_0184\n"
-    ".word .Lrucksack_5_01d4\n"
-    ".word .Lrucksack_5_01e0\n"
-    ".Lrucksack_5_00d4:\n"
-    "movs r0, #0x80\n"
-    "lsls r0, r0, #1\n"
-    "adds r4, r5, r0\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F20C\n"
-    "add r0, sp, #4\n"
-    "bl GetIconId__C4Food\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r6, r0, #0x10\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F294\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_0104\n"
-    "movs r6, #0xb0\n"
-    "lsls r6, r6, #1\n"
-    ".Lrucksack_5_0104:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_010c\n"
-    "adds r2, r6, #0\n"
-    "b .Lrucksack_5_01c2\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lrucksack_5_010c: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrucksack_5_010c: .word gUnk_086678A0\n"
-#endif
-    ".Lrucksack_5_0110:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r4, r5, r1\n"
-    "ldr r0, [r4]\n"
-    "bl GetArticle__C8HeldItem\n"
-    "adds r1, r0, #0\n"
-    "mov r0, sp\n"
-    "adds r0, #0xd\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C7Article\n"
-    "lsls r0, r0, #0x10\n"
-    "lsrs r6, r0, #0x10\n"
-    "ldr r1, [r4]\n"
-    "add r0, sp, #4\n"
-    "bl func_0800F294\n"
-    "add r0, sp, #4\n"
-    "bl IsWrapped__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_0144\n"
-    "movs r6, #0xb0\n"
-    "lsls r6, r6, #1\n"
-    ".Lrucksack_5_0144:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_014c\n"
-    "adds r2, r6, #0\n"
-    "b .Lrucksack_5_01c2\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lrucksack_5_014c: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrucksack_5_014c: .word gUnk_086678A0\n"
-#endif
-    ".Lrucksack_5_0150:\n"
-    "ldr r0, [r5, #8]\n"
-    "ldr r2, .Lrucksack_5_0168\n"
-    "adds r0, r0, r2\n"
-    "bl GetGrowthStage__C3Dog\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_5_0174\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_016c\n"
-    "ldr r2, .Lrucksack_5_0170\n"
-    "b .Lrucksack_5_01c2\n"
-    ".align 2, 0\n"
-    ".Lrucksack_5_0168: .word 0x1c70\n"
-    ".Lrucksack_5_016c: .word gActorIndexedResourceArchive\n"
-    ".Lrucksack_5_0170: .word 0x3da\n"
-    ".Lrucksack_5_0174:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_0180\n"
-    "movs r2, #0xdd\n"
-    "lsls r2, r2, #2\n"
-    "b .Lrucksack_5_01c2\n"
-    ".align 2, 0\n"
-    ".Lrucksack_5_0180: .word gActorIndexedResourceArchive\n"
-    ".Lrucksack_5_0184:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r5, r1\n"
-    "ldr r0, [r0]\n"
-    "bl GetHeldChickenSlot\n"
-    "adds r1, r0, #0\n"
-    "ldr r0, [r5, #8]\n"
-    "movs r2, #0x82\n"
-    "lsls r2, r2, #3\n"
-    "adds r0, r0, r2\n"
-    "bl GetChicken__4CoopUi\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_5_01e0\n"
-    "bl GetGrowthStage__C7Chicken\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_5_01bc\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_01b4\n"
-    "ldr r2, .Lrucksack_5_01b8\n"
-    "b .Lrucksack_5_01c2\n"
-    ".align 2, 0\n"
-    ".Lrucksack_5_01b4: .word gActorIndexedResourceArchive\n"
-    ".Lrucksack_5_01b8: .word 0x73d\n"
-    ".Lrucksack_5_01bc:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_01cc\n"
-    "ldr r2, .Lrucksack_5_01d0\n"
-    ".Lrucksack_5_01c2:\n"
-    "movs r3, #1\n"
-    "bl func_080CCE58\n"
-    "b .Lrucksack_5_01e0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_5_01cc: .word gActorIndexedResourceArchive\n"
-    ".Lrucksack_5_01d0: .word 0x734\n"
-    ".Lrucksack_5_01d4:\n"
-    "ldr r0, [r5, #0x7c]\n"
-    "ldr r1, .Lrucksack_5_01e8\n"
-    "movs r2, #0x35\n"
-    "movs r3, #1\n"
-    "bl func_080CCE58\n"
-    ".Lrucksack_5_01e0:\n"
-    "add sp, #0x10\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lrucksack_5_01e8: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrucksack_5_01e8: .word gUnk_086678A0\n"
-#endif
-    "\n"
 );
+
+void RucksackMenuCore::DrawItems(u32 count)
+{
+    for (u32 slot = 0; slot < count; ++slot) {
+        RucksackItem item = rucksack->GetItemAt(slot);
+        if (!item.IsEmpty()) {
+            u16 icon = 0;
+            switch (item.GetKind()) {
+            case RucksackItem::KIND_FOOD:
+                icon = item.GetFood().GetIconId();
+                break;
+            case RucksackItem::KIND_ARTICLE:
+                icon = item.GetArticle().GetIconId();
+                break;
+            }
+            if (item.IsWrapped())
+                icon = GAME_MENU_ICON_WRAPPED_ITEM;
+#if defined(REGION_JP)
+            func_080CC728(right_panel.value, slot, gUnk_083ED9FC, icon, 1);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            func_080CC728(right_panel.value, slot, gUnk_086678A0, icon, 1);
+#endif
+        }
+    }
+    if (IsHeldItemEmpty(held_item))
+        return;
+    switch (held_item->GetKind()) {
+    case HeldItem::KIND_FOOD: {
+        u16 icon = func_0800F20C(held_item).GetIconId();
+        if (func_0800F294(held_item).IsWrapped())
+            icon = GAME_MENU_ICON_WRAPPED_ITEM;
+#if defined(REGION_JP)
+        func_080CCE58(right_panel.value, gUnk_083ED9FC, icon, 1);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+        func_080CCE58(right_panel.value, gUnk_086678A0, icon, 1);
+#endif
+        break;
+    }
+    case HeldItem::KIND_ARTICLE: {
+        u16 icon = held_item->GetArticle().GetIconId();
+        if (func_0800F294(held_item).IsWrapped())
+            icon = GAME_MENU_ICON_WRAPPED_ITEM;
+#if defined(REGION_JP)
+        func_080CCE58(right_panel.value, gUnk_083ED9FC, icon, 1);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+        func_080CCE58(right_panel.value, gUnk_086678A0, icon, 1);
+#endif
+        break;
+    }
+    case HeldItem::KIND_DOG:
+        if (save->dog.GetGrowthStage() == Dog::STAGE_0)
+            func_080CCE58(right_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_0986, 1);
+        else
+            func_080CCE58(right_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_0884, 1);
+        break;
+    case HeldItem::KIND_CHICKEN: {
+        u32 slot = GetHeldChickenSlot(held_item);
+        Chicken * chicken = save->farm.coop.GetChicken(slot);
+        if (chicken) {
+            if (chicken->GetGrowthStage() == Chicken::STAGE_0)
+                func_080CCE58(right_panel.value, gActorIndexedResourceArchive, ANIMATION_ID_1853, 1);
+            else
+                func_080CCE58(right_panel.value, gActorIndexedResourceArchive, ANIMATION_CHICKEN_HELD, 1);
+        }
+        break;
+    }
+    case HeldItem::KIND_BASKET:
+#if defined(REGION_JP)
+        func_080CCE58(right_panel.value, gUnk_083ED9FC, GAME_MENU_ICON_BASKET, 1);
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+        func_080CCE58(right_panel.value, gUnk_086678A0, GAME_MENU_ICON_BASKET, 1);
+#endif
+        break;
+    case HeldItem::KIND_ACTOR_GRAPHIC:
+        break;
+    }
+}
+
 
 void RucksackMenuCore::UpdateDescription(i32 selection)
 {
