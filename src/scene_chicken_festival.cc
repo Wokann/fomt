@@ -8471,7 +8471,7 @@ asm_unified(
     "bne .Lchicken_festival_43c6\n"
     "adds r0, r7, #0\n"
     "mov r1, sb\n"
-    "bl func_080B9F0C\n"
+    "bl SetSlotState2__27ChickenFestivalMinigameCoreUc\n"
     "b .Lchicken_festival_43c6\n"
     ".Lchicken_festival_43a8:\n"
     "ldrb r0, [r4]\n"
@@ -8479,7 +8479,7 @@ asm_unified(
     "bne .Lchicken_festival_43c6\n"
     "adds r0, r7, #0\n"
     "mov r1, sb\n"
-    "bl func_080B9F38\n"
+    "bl SetSlotState4__27ChickenFestivalMinigameCoreUc\n"
     "b .Lchicken_festival_43c6\n"
     ".Lchicken_festival_43b8:\n"
     "ldrb r0, [r4]\n"
@@ -12353,52 +12353,24 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start func_080B9F0C\n"
-    "func_080B9F0C:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "lsls r5, r1, #0x18\n"
-    "lsrs r5, r5, #0x12\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r0, r5\n"
-    "movs r1, #2\n"
-    "str r1, [r0]\n"
-    "bl rand\n"
-    "ldr r1, .Lchicken_festival_62a4\n"
-    "ands r1, r0\n"
-    "lsrs r1, r1, #0xe\n"
-    "adds r4, #0x74\n"
-    "adds r4, r4, r5\n"
-    "str r1, [r4]\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_62a4: .word 0xffff\n"
-    "\n"
-    "thumb_func_start func_080B9F38\n"
-    "func_080B9F38:\n"
-    "push {r4, r5, lr}\n"
-    "adds r4, r0, #0\n"
-    "lsls r5, r1, #0x18\n"
-    "lsrs r5, r5, #0x12\n"
-    "adds r0, #0x6c\n"
-    "adds r0, r0, r5\n"
-    "movs r1, #4\n"
-    "str r1, [r0]\n"
-    "bl rand\n"
-    "ldr r1, .Lchicken_festival_62d0\n"
-    "ands r1, r0\n"
-    "lsrs r1, r1, #0xe\n"
-    "adds r4, #0x74\n"
-    "adds r4, r4, r5\n"
-    "str r1, [r4]\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_62d0: .word 0xffff\n"
-    "\n"
+);
+
+void ChickenFestivalMinigameCore::SetSlotState2(u8 index)
+{
+    slots[index].state = 2;
+    u32 choice = (static_cast<u32>(rand()) & 0xFFFF) >> 14;
+    slots[index].value = choice;
+}
+
+void ChickenFestivalMinigameCore::SetSlotState4(u8 index)
+{
+    slots[index].state = 4;
+    u32 choice = (static_cast<u32>(rand()) & 0xFFFF) >> 14;
+    slots[index].value = choice;
+}
+
+asm_unified(
+    ".text\n"
     "thumb_func_start func_080B9F64\n"
     "func_080B9F64:\n"
     "push {r4, r5, r6, lr}\n"

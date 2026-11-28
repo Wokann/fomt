@@ -56,7 +56,7 @@ struct ChickenFestivalEntrant {
 
 
 // Per-slot record of the minigame's 0x40-byte stride array at +0x6C.
-// Offsets proven by func_080B9F0C (+0x00 state, +0x08 value) and
+// Offsets proven by SetSlotState2 (+0x00 state, +0x08 value) and
 // func_080B97FC (+0x14 flags, seen at +0x80 for slot 0 and +0xC0 for slot 1).
 struct ChickenFestivalSlot {
     u32 state;                    /* +0x00 */
@@ -97,6 +97,8 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     SceneTransitionOwner Run();
     void PrepareDisplay();
     void ResetRun();
+    void SetSlotState2(u8 index);
+    void SetSlotState4(u8 index);
     void UpdateUnkPhase0();
     void UpdateUnkPhase1();
     void UpdateUnkPhase2();
