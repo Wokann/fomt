@@ -14875,19 +14875,10 @@ SceneTransitionOwner FestivalAnimalSelectionScene::Run()
     return RunFestivalAnimalSelectionCore(core.Get());
 }
 
-asm_unified(
-    ".text\n"
-    "    .align 2, 0\n"
-    "    .global func_0806D984\n"
-    "    .thumb_func\n"
-    "func_0806D984:\n"
-    "    ldr r1, [r1, #4]\n"
-    "    ldr r2, [r1, #0x18]\n"
-    "    ldr r1, [r1, #0x14]\n"
-    "    str r1, [r0]\n"
-    "    str r2, [r0, #4]\n"
-    "    bx lr\n"
-);
+FestivalAnimalSelectionResult FestivalAnimalSelectionScene::GetSelectionResult() const
+{
+    return core.Get()->result;
+}
 
 
 

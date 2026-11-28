@@ -118,11 +118,18 @@ struct FestivalSelectionScrollOwner {
 
 struct FestivalAnimalSelectionCore;
 
+// The native selection keeps the requested kind even when no animal is chosen.
+struct FestivalAnimalSelectionResult {
+    MaryFestivalAnimalKind kind;
+    i32 animal_index; // -1 means the selection was cancelled.
+};
+
 struct FestivalAnimalSelectionScene : AScene {
     FestivalAnimalSelectionScene(SceneTransitionOwner next, GameStateSaveImage * image,
         MaryFestivalAnimalKind kind);
     virtual ~FestivalAnimalSelectionScene();
     virtual SceneTransitionOwner Run();
+    FestivalAnimalSelectionResult GetSelectionResult() const;
     SmartPtr<FestivalAnimalSelectionCore> core;
 };
 
@@ -135,8 +142,7 @@ struct FestivalAnimalSelectionCore : HardwareContext {
     SceneTransitionOwner continuation;
     GameStateSaveImage * save;
     MaryFestivalAnimalKind kind;
-    u32 unk_14;
-    i32 unk_18;
+    FestivalAnimalSelectionResult result;
     FestivalSelectionScrollOwner scroll;
     u16 unk_20;
     IndexedResourceArchive archive;
