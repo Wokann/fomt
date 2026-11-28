@@ -2231,151 +2231,42 @@ asm_unified(
     ".Lrucksack_5_01e8: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start UpdateDescription__16RucksackMenuCorei\n"
-    "UpdateDescription__16RucksackMenuCorei:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sb\n"
-    "mov r6, r8\n"
-    "push {r6, r7}\n"
-    "sub sp, #0xc\n"
-    "adds r6, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "movs r0, #0\n"
-    "mov r8, r0\n"
-    "adds r5, r6, #0\n"
-    "adds r5, #0x98\n"
-    "mov r1, r8\n"
-    "strb r1, [r5]\n"
-    "cmp r7, #0\n"
-    "beq .Lrucksack_6_004e\n"
-    "cmp r7, #9\n"
-    "beq .Lrucksack_6_0074\n"
-    "cmp r7, #8\n"
-    "bgt .Lrucksack_6_00c2\n"
-    "movs r0, #0x82\n"
-    "lsls r0, r0, #1\n"
-    "adds r0, r0, r6\n"
-    "mov sb, r0\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetToolAt__8RucksackUi\n"
-    "bl IsEmpty__C9ToolStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_6_00fa\n"
-    "b .Lrucksack_6_0092\n"
-    ".Lrucksack_6_004e:\n"
-    "adds r4, r6, #0\n"
-    "adds r4, #0xfc\n"
-    "ldr r0, [r4]\n"
-    "bl IsEmpty__C9ToolStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_6_00fa\n"
-    "ldr r0, [r4]\n"
-    "bl GetTool__C9ToolStack\n"
-    "add r2, sp, #8\n"
-    "strb r0, [r2]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r5, #0\n"
-    "movs r3, #1\n"
-    "bl FormatMenuToolDescription\n"
-    "b .Lrucksack_6_00f8\n"
-    ".Lrucksack_6_0074:\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "adds r4, r6, r1\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_6_00fa\n"
-    "ldr r2, [r4]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r5, #0\n"
-    "bl FormatMenuHeldItemDescription\n"
-    "b .Lrucksack_6_00f8\n"
-    ".Lrucksack_6_0092:\n"
-    "adds r5, r6, #0\n"
-    "adds r5, #0x98\n"
-    "mov r0, sb\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetToolAt__8RucksackUi\n"
-    "bl GetTool__C9ToolStack\n"
-    "mov r2, sp\n"
-    "adds r2, #9\n"
-    "strb r0, [r2]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r5, #0\n"
-    "movs r3, #0\n"
-    "bl FormatMenuToolDescription\n"
-    "b .Lrucksack_6_00f8\n"
-    ".Lrucksack_6_00c2:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp]\n"
-    "mov r0, sp\n"
-    "bl IsEmpty__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrucksack_6_00fa\n"
-    "ldr r2, [sp]\n"
-    "str r2, [sp, #4]\n"
-    "adds r0, r6, #0\n"
-    "adds r1, r5, #0\n"
-    "bl func_080CFA38\n"
-    ".Lrucksack_6_00f8:\n"
-    "mov r8, r0\n"
-    ".Lrucksack_6_00fa:\n"
-    "mov r0, r8\n"
-    "cmp r0, #0\n"
-    "beq .Lrucksack_6_0110\n"
-    "adds r0, r6, #0\n"
-    "adds r0, #0x80\n"
-    "mov r1, r8\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    "b .Lrucksack_6_011e\n"
-    ".Lrucksack_6_0110:\n"
-    "adds r0, r6, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lrucksack_6_012c\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    ".Lrucksack_6_011e:\n"
-    "add sp, #0xc\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lrucksack_6_012c: .word gText_HomeStorage_EmptyDescription\n"
-    "\n"
+);
+
+void RucksackMenuCore::UpdateDescription(i32 selection)
+{
+    char const * text = nullptr;
+    item_description[0] = '\0';
+    switch (selection) {
+    case 0:
+        if (!held_tool->IsEmpty())
+            text = FormatMenuToolDescription(this, item_description, held_tool->GetTool(), 1);
+        break;
+    case 9:
+        if (!IsHeldItemEmpty(held_item))
+            text = FormatMenuHeldItemDescription(this, item_description, held_item);
+        break;
+    default:
+        if (selection <= 8) {
+            if (!rucksack->GetToolAt(GetItemIndex(selection, 0)).IsEmpty())
+                text = FormatMenuToolDescription(this, item_description,
+                    rucksack->GetToolAt(GetItemIndex(selection, 0)).GetTool(), 0);
+        } else {
+            RucksackItem item = rucksack->GetItemAt(GetItemIndex(selection, 0));
+            if (!item.IsEmpty())
+                text = func_080CFA38(this, item_description, item);
+        }
+        break;
+    }
+    if (text)
+        func_08050DC8(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(text), 0, 0);
+    else
+        func_08050DC8(reinterpret_cast<void * const *>(&ui),
+            reinterpret_cast<u32>(gText_HomeStorage_EmptyDescription), 0, 0);
+}
+
+asm_unified(
+    ".text\n"
     "thumb_func_start Run__16RucksackMenuCore\n"
     "Run__16RucksackMenuCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
