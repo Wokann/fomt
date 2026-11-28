@@ -899,46 +899,7 @@ asm_unified(
     "    .align 2, 0\n"
     ".Ljp_0802492C: .word __vt_7AEntity\n"
     "\n"
-    "    .global func_08024930\n"
-    "    .thumb_func\n"
-    "func_08024930:\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #2\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #0x13\n"
-    "    bne .L0802495E\n"
-    "    ldr r1, [r4, #0x34]\n"
-    "    ldr r2, .L08024978\n"
-    "    adds r0, r1, r2\n"
-    "    ldrb r0, [r0]\n"
-    "    lsls r0, r0, #0x1B\n"
-    "    lsrs r0, r0, #0x1E\n"
-    "    cmp r0, #1\n"
-    "    beq .L0802495C\n"
-    "    subs r2, #0x25\n"
-    "    adds r0, r1, r2\n"
-    "    movs r1, #0x4A\n"
-    "    bl IsActiveRomanceEvent__C14GameEventStateUs\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802495E\n"
-    ".L0802495C:\n"
-    "    movs r5, #1\n"
-    ".L0802495E:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x21\n"
-    "    strb r5, [r0]\n"
-    "    movs r0, #0xA1\n"
-    "    lsls r0, r0, #2\n"
-    "    bl __builtin_new\n"
-    "    adds r1, r4, #0\n"
-    "    bl __22PlayerSpriteControllerP11PlayerActor\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L08024978: .word 0x00002171\n"
+
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -1503,48 +1464,22 @@ asm_unified(
     "    .align 2, 0\n"
     ".L08024B98: .word __vt_7AEntity\n"
     "\n"
-    "    thumb_func_start func_08024B9C\n"
-    "func_08024B9C: @ 0x08024B9C\n"
-    "    push {r4, r5, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r5, #2\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    cmp r0, #0x13\n"
-    "    bne .L08024BCA\n"
-    "    ldr r1, [r4, #0x34]\n"
-    "    ldr r2, .L08024BE4 @ =0x00002171\n"
-    "    adds r0, r1, r2\n"
-    "    ldrb r0, [r0]\n"
-    "    lsls r0, r0, #0x1b\n"
-    "    lsrs r0, r0, #0x1e\n"
-    "    cmp r0, #1\n"
-    "    beq .L08024BC8\n"
-    "    subs r2, #0x25\n"
-    "    adds r0, r1, r2\n"
-    "    movs r1, #0x4a\n"
-    "    bl IsActiveRomanceEvent__C14GameEventStateUs\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08024BCA\n"
-    ".L08024BC8:\n"
-    "    movs r5, #1\n"
-    ".L08024BCA:\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x21\n"
-    "    strb r5, [r0]\n"
-    "    movs r0, #0xa1\n"
-    "    lsls r0, r0, #2\n"
-    "    bl __builtin_new\n"
-    "    adds r1, r4, #0\n"
-    "    bl __22PlayerSpriteControllerP11PlayerActor\n"
-    "    pop {r4, r5}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".L08024BE4: .word 0x00002171\n"
-    "\n"
+
 );
 #endif
+
+EntityVisualController * PlayerActor::CreateVisualController()
+{
+    u32 priority = 2;
+    if (location_map == MAP_MINERAL_CLINIC_1F) {
+        u32 collapse_state = save_image->event_state.player_collapse_recovery_event_state;
+        if (collapse_state == EVENT_LIFECYCLE_IN_PROGRESS
+            || save_image->event_state.IsActiveRomanceEvent(VAR_KAREN_YELLOW_HEART_EVENT_STATE))
+            priority = 1;
+    }
+    unk_21 = priority;
+    return new PlayerSpriteController(this);
+}
 
 void PlayerActor::vfunc_10()
 {

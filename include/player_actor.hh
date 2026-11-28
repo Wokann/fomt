@@ -40,6 +40,7 @@ struct PlayerHeldGraphic
 
 struct PlayerActor : PlayerActorBase {
     virtual Box GetBox() const;
+    virtual EntityVisualController * CreateVisualController();
     virtual void vfunc_10();
     virtual void SuspendNormalUpdates();
     virtual void ResumeNormalUpdates();

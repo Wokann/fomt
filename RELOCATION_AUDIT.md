@@ -1,3 +1,7 @@
+## 玩家显示控制器到事件状态的引用（2026-11-28）
+
+玩家工厂读取已有save_image->event_state.player_collapse_recovery_event_state，并通过IsActiveRomanceEvent检查VAR_KAREN_YELLOW_HEART_EVENT_STATE；仅诊所一楼走原优先级分支。通过实际PlayerSpriteController构造函数分配和返回，虚表直接引用成员函数。两个完整对象及四版默认ROM通过baserom对照，无地址取值、对象占位或编译器补正。
+
 ## 菜单图标到借用归档的引用（2026-11-28）
 
 两个加载入口从传入的归档建立借用IndexedResourceArchive，通过已有菜单资源状态的handle取得当前组，并保存tiles、palette及quantity。归档析构不释放底层资源，图标数据的借用关系不变；没有裸偏移或额外包装。完整对象和四版默认ROM通过baserom对照。

@@ -31,10 +31,10 @@ asm_unified(
     "    .word IsNormalUpdateSuspended__C7AEntity\n"
 #if defined(REGION_JP)
     "    .word func_08024DAC\n"
-    "    .word func_08024930\n"
+    "    .word CreateVisualController__11PlayerActor\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     "    .word func_08025018\n"
-    "    .word func_08024B9C\n"
+    "    .word CreateVisualController__11PlayerActor\n"
 #endif
     "    .word vfunc_34__12AActorEntity\n"
     "    .word SetEventScript__12AActorEntityi\n"

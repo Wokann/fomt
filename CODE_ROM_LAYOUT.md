@@ -1,3 +1,7 @@
+## 玩家控制器工厂的类型边界（2026-11-28）
+
+PlayerActor的虚拟工厂返回EntityVisualController指针，实际分配已有完整PlayerSpriteController类型；不分配仍属部分视图的PlayerActor。每版76字节恢复为C++，原两个对象及四版默认ROM通过baserom对照。统计见 [进度](PROGRESS.md)。
+
 ## 菜单图标加载的临时资源对象（2026-11-28）
 
 两个归档加载入口恢复为C++，每版276字节。原栈上的归档、菜单资源状态与资源组均对应已有真实类型，其布局和生命周期自然生成原字节；完整对象及四版默认ROM通过baserom对照。统计见 [进度](PROGRESS.md)。
