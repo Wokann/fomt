@@ -706,7 +706,7 @@ void GameSceneWorld::Update(GameObjectUpdateContext const & input)
     u32 previous_condition = func_0800E4FC(save->farmer);
     if (unk_10C8 != 0) {
         unk_10C8 = 0;
-        vfunc_3C(ENTITY_BALL);
+        RemoveEntity(ENTITY_BALL);
         func_0800ED2C(save->farmer);
         Location const & location = save->ball_location;
         if (unk_10C9 == 0) {

@@ -139,7 +139,7 @@ AEntity * GameSceneWorld::GetEntity(u32 index)
     return *first;
 }
 
-void GameSceneWorld::vfunc_3C(u32 index)
+void GameSceneWorld::RemoveEntity(u32 index)
 {
     GameSceneWorld & world = *this;
     AEntity ** entity = world.data.entities;

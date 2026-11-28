@@ -109,7 +109,7 @@ struct GameSceneWorld : GameObject {
     virtual i32 GetMapPixelHeight(u32 map_id) asm("GetWorldMapPixelHeight");
     virtual MapTerrainView GetMapTerrain(u32 map_id) asm("GetWorldMapTerrain");
     virtual void vfunc_38(u32 entity_id) asm("RefreshWorldEntitySlot");
-    virtual void vfunc_3C(u32 index) asm("RemoveWorldEntity");
+    virtual void RemoveEntity(u32 index) asm("RemoveWorldEntity");
     virtual AEntity * GetEntity(u32 id);
     virtual AEntity * GetEntity(u32 id) const;
     virtual u32 vfunc_48(i32 kind) asm("func_0801B5C0");

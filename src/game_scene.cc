@@ -1940,7 +1940,7 @@ void GameScene::RemoveFarmHorse(MaryBool skip_removal, i32 unused_value)
     GameSceneState * current = state;
     // The VM consumes unused_value, but the native operation never reads it.
     if (skip_removal == FALSE) {
-        current->game_object.value->vfunc_3C(ENTITY_FARM_HORSE);
+        current->game_object.value->RemoveEntity(ENTITY_FARM_HORSE);
         current->save->farm.RemoveHorse();
     }
 }
@@ -1963,7 +1963,7 @@ static inline void RemoveDeadLivestock(GameSceneState * state, MaryLivestockLife
     for (u32 slot = 0; slot < coop_capacity; ++slot) {
         Chicken * chicken = state->save->farm.coop.GetChicken(slot);
         if (chicken != nullptr && chicken->GetLifeState() == life_state) {
-            state->game_object->vfunc_3C(ENTITY_ANIMAL_CHICKEN_SLOT_1 + slot);
+            state->game_object->RemoveEntity(ENTITY_ANIMAL_CHICKEN_SLOT_1 + slot);
             state->save->farm.coop.RemoveAndRememberUnk(slot);
         }
     }
@@ -1978,7 +1978,7 @@ static inline void RemoveDeadLivestock(GameSceneState * state, MaryLivestockLife
     for (u32 slot = 0; slot < barn_capacity; ++slot) {
         BarnAnimal * animal = state->save->farm.barn.GetBarnAnimal(slot);
         if (animal != nullptr && animal->GetLifeState() == life_state) {
-            state->game_object->vfunc_3C(ENTITY_BARN_ANIMAL_SLOT_1 + slot);
+            state->game_object->RemoveEntity(ENTITY_BARN_ANIMAL_SLOT_1 + slot);
             state->save->farm.barn.RemoveAndRememberUnk(slot);
         }
     }
@@ -6160,19 +6160,19 @@ void GameScene::SetContestAnimal(MaryAnimalKind animal_kind, MaryAnimalSlotIndex
     GameSceneState * current = state;
     switch (animal_kind) {
     case ANIMAL_KIND_HORSE:
-        current->game_object.value->vfunc_3C(ENTITY_FARM_HORSE);
+        current->game_object.value->RemoveEntity(ENTITY_FARM_HORSE);
         break;
     case ANIMAL_KIND_DOG:
-        current->game_object.value->vfunc_3C(ENTITY_FARM_DOG);
+        current->game_object.value->RemoveEntity(ENTITY_FARM_DOG);
         break;
     case ANIMAL_KIND_COW:
     case ANIMAL_KIND_SHEEP:
         current->save->farm.barn.method_0800D80C(animal_index);
-        current->game_object.value->vfunc_3C(ENTITY_BARN_ANIMAL_SLOT_1 + static_cast<u32>(animal_index));
+        current->game_object.value->RemoveEntity(ENTITY_BARN_ANIMAL_SLOT_1 + static_cast<u32>(animal_index));
         break;
     case ANIMAL_KIND_CHICKEN:
         current->save->farm.coop.method_0800CB7C(animal_index);
-        current->game_object.value->vfunc_3C(ENTITY_ANIMAL_CHICKEN_SLOT_1 + static_cast<u32>(animal_index));
+        current->game_object.value->RemoveEntity(ENTITY_ANIMAL_CHICKEN_SLOT_1 + static_cast<u32>(animal_index));
         break;
     }
 }
@@ -6550,7 +6550,7 @@ void GameScene::RefreshEntity(MaryEntityId entity_id)
 
 void GameScene::RemoveEntity(MaryEntityId entity_id)
 {
-    state->game_object.value->vfunc_3C(entity_id);
+    state->game_object.value->RemoveEntity(entity_id);
 }
 
 void GameScene::PreservePlayerLocationForNextDay()

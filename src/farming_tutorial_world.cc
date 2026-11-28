@@ -1,4 +1,5 @@
 #include <new>
+#include <iterator>
 #include "hardware_dma_queue.hh"
 #include "farming_tutorial_world.hh"
 #include "scene_sprite_indexed.hh"
@@ -1726,6 +1727,7 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     ".Lfarming_tutorial_world_0ed4: .word 0x1a9\n"
+
     "thumb_func_start SpawnEffect__20FarmingTutorialWorldiiUi\n"
     "SpawnEffect__20FarmingTutorialWorldiiUi:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1969,29 +1971,16 @@ AEntity * FarmingTutorialWorld::GetEntity(u32 id)
     return *entries;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start vfunc_3C__20FarmingTutorialWorldUi\n"
-    "vfunc_3C__20FarmingTutorialWorldUi:\n"
-    "push {r4, lr}\n"
-    "adds r0, #8\n"
-    "lsls r1, r1, #2\n"
-    "adds r4, r0, r1\n"
-    "ldr r1, [r4]\n"
-    "cmp r1, #0\n"
-    "beq .Lfarming_tutorial_world_1186\n"
-    "ldr r0, [r1, #0x14]\n"
-    "ldr r2, [r0, #8]\n"
-    "adds r0, r1, #0\n"
-    "movs r1, #3\n"
-    "bl _call_via_r2\n"
-    "movs r0, #0\n"
-    "str r0, [r4]\n"
-    ".Lfarming_tutorial_world_1186:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-);
+void FarmingTutorialWorld::RemoveEntity(u32 index)
+{
+    AEntity ** entry = data.entities;
+    std::advance(entry, index);
+    if (*entry != nullptr) {
+        delete *entry;
+        *entry = nullptr;
+    }
+}
+
 
 bool FarmingTutorialWorld::IsCameraMovementComplete()
 {

@@ -57,7 +57,7 @@ struct GameObjectBase
     virtual i32 GetMapPixelHeight(u32 map_id) = 0;
     virtual MapTerrainView GetMapTerrain(u32 map_id) = 0;
     virtual void vfunc_38(u32 entity_id) = 0;
-    virtual void vfunc_3C(u32 index) = 0;
+    virtual void RemoveEntity(u32 index) = 0;
     virtual AEntity * GetEntity(u32 id) = 0;
     virtual AEntity * GetEntity(u32 id) const = 0;
     virtual u32 vfunc_48(i32 kind) = 0;
