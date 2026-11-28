@@ -1541,6 +1541,18 @@ bool PlayerActor::IsClockPausedByAction()
 asm_unified(
     ".text\n"
 );
+static inline void MoveTerrainProbeBoxX(Box & box, i32 step)
+{
+    box.x1 += step;
+    box.x2 += step;
+}
+
+static inline void MoveTerrainProbeBoxY(Box & box, i32 step)
+{
+    box.y1 += step;
+    box.y2 += step;
+}
+
 #if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
@@ -2239,92 +2251,35 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    .global func_08024F90\n"
-    "    .thumb_func\n"
-    "func_08024F90: @ 0x080251FC\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    sub sp, #8\n"
-    "    mov r8, r1\n"
-    "    adds r6, r3, #0\n"
-    "    ldr r7, [sp, #0x20]\n"
-    "    ldr r0, [r2]\n"
-    "    ldr r1, [r2, #4]\n"
-    "    str r0, [sp]\n"
-    "    str r1, [sp, #4]\n"
-    "    movs r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bhi .Ljp_08024FCE\n"
-    "    mov r4, sp\n"
-    ".Ljp_08024FAE:\n"
-    "    ldrh r0, [r4]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4]\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #4]\n"
-    "    mov r0, r8\n"
-    "    mov r1, sp\n"
-    "    bl IsMapTerrainBoxBlocked\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_08024FCE\n"
-    "    adds r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bls .Ljp_08024FAE\n"
-    ".Ljp_08024FCE:\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #8\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    .global func_08024FDC\n"
-    "    .thumb_func\n"
-    "func_08024FDC: @ 0x08025248\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    sub sp, #8\n"
-    "    mov r8, r1\n"
-    "    adds r6, r3, #0\n"
-    "    ldr r7, [sp, #0x20]\n"
-    "    ldr r0, [r2]\n"
-    "    ldr r1, [r2, #4]\n"
-    "    str r0, [sp]\n"
-    "    str r1, [sp, #4]\n"
-    "    movs r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bhi .Ljp_0802501A\n"
-    "    mov r4, sp\n"
-    ".Ljp_08024FFA:\n"
-    "    ldrh r0, [r4, #2]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #2]\n"
-    "    ldrh r0, [r4, #6]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #6]\n"
-    "    mov r0, r8\n"
-    "    mov r1, sp\n"
-    "    bl IsMapTerrainBoxBlocked\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_0802501A\n"
-    "    adds r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bls .Ljp_08024FFA\n"
-    ".Ljp_0802501A:\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #8\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
+);
+
+u32 PlayerActor::FindUnblockedTerrainStepX(MapTerrainView const & map, Box const & bounds,
+    i32 step, u32 max_steps)
+{
+    Box moved = bounds;
+    u32 count;
+    for (count = 1; count <= max_steps; ++count) {
+        MoveTerrainProbeBoxX(moved, step);
+        if (!IsMapTerrainBoxBlocked(map, moved))
+            break;
+    }
+    return count;
+}
+
+u32 PlayerActor::FindUnblockedTerrainStepY(MapTerrainView const & map, Box const & bounds,
+    i32 step, u32 max_steps)
+{
+    Box moved = bounds;
+    u32 count;
+    for (count = 1; count <= max_steps; ++count) {
+        MoveTerrainProbeBoxY(moved, step);
+        if (!IsMapTerrainBoxBlocked(map, moved))
+            break;
+    }
+    return count;
+}
+
+asm_unified(
     "    .global func_08025028\n"
     "    .thumb_func\n"
     "func_08025028: @ 0x08025294\n"
@@ -2683,7 +2638,7 @@ asm_unified(
     "    mov r0, sb\n"
     "    mov r1, sl\n"
     "    adds r2, r4, #0\n"
-    "    bl func_08024FDC\n"
+    "    bl FindUnblockedTerrainStepY__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .Ljp_080253AA\n"
@@ -2721,7 +2676,7 @@ asm_unified(
     "    mov r0, sb\n"
     "    mov r1, sl\n"
     "    adds r2, r4, #0\n"
-    "    bl func_08024F90\n"
+    "    bl FindUnblockedTerrainStepX__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .Ljp_0802534E\n"
@@ -2758,7 +2713,7 @@ asm_unified(
     "    mov r1, sl\n"
     "    add r2, sp, #0x20\n"
     "    movs r3, #1\n"
-    "    bl func_08024F90\n"
+    "    bl FindUnblockedTerrainStepX__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .Ljp_080253F8\n"
@@ -2805,7 +2760,7 @@ asm_unified(
     "    mov r1, sl\n"
     "    add r2, sp, #0x20\n"
     "    movs r3, #1\n"
-    "    bl func_08024FDC\n"
+    "    bl FindUnblockedTerrainStepY__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .Ljp_080253F8\n"
@@ -13347,90 +13302,35 @@ asm_unified(
     "    bx r1\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start func_080251FC\n"
-    "func_080251FC: @ 0x080251FC\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    sub sp, #8\n"
-    "    mov r8, r1\n"
-    "    adds r6, r3, #0\n"
-    "    ldr r7, [sp, #0x20]\n"
-    "    ldr r0, [r2]\n"
-    "    ldr r1, [r2, #4]\n"
-    "    str r0, [sp]\n"
-    "    str r1, [sp, #4]\n"
-    "    movs r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bhi .L0802523A\n"
-    "    mov r4, sp\n"
-    ".L0802521A:\n"
-    "    ldrh r0, [r4]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4]\n"
-    "    ldrh r0, [r4, #4]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #4]\n"
-    "    mov r0, r8\n"
-    "    mov r1, sp\n"
-    "    bl IsMapTerrainBoxBlocked\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L0802523A\n"
-    "    adds r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bls .L0802521A\n"
-    ".L0802523A:\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #8\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    thumb_func_start func_08025248\n"
-    "func_08025248: @ 0x08025248\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    sub sp, #8\n"
-    "    mov r8, r1\n"
-    "    adds r6, r3, #0\n"
-    "    ldr r7, [sp, #0x20]\n"
-    "    ldr r0, [r2]\n"
-    "    ldr r1, [r2, #4]\n"
-    "    str r0, [sp]\n"
-    "    str r1, [sp, #4]\n"
-    "    movs r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bhi .L08025286\n"
-    "    mov r4, sp\n"
-    ".L08025266:\n"
-    "    ldrh r0, [r4, #2]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #2]\n"
-    "    ldrh r0, [r4, #6]\n"
-    "    adds r0, r0, r6\n"
-    "    strh r0, [r4, #6]\n"
-    "    mov r0, r8\n"
-    "    mov r1, sp\n"
-    "    bl IsMapTerrainBoxBlocked\n"
-    "    lsls r0, r0, #0x18\n"
-    "    cmp r0, #0\n"
-    "    beq .L08025286\n"
-    "    adds r5, #1\n"
-    "    cmp r5, r7\n"
-    "    bls .L08025266\n"
-    ".L08025286:\n"
-    "    adds r0, r5, #0\n"
-    "    add sp, #8\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
+);
+
+u32 PlayerActor::FindUnblockedTerrainStepX(MapTerrainView const & map, Box const & bounds,
+    i32 step, u32 max_steps)
+{
+    Box moved = bounds;
+    u32 count;
+    for (count = 1; count <= max_steps; ++count) {
+        MoveTerrainProbeBoxX(moved, step);
+        if (!IsMapTerrainBoxBlocked(map, moved))
+            break;
+    }
+    return count;
+}
+
+u32 PlayerActor::FindUnblockedTerrainStepY(MapTerrainView const & map, Box const & bounds,
+    i32 step, u32 max_steps)
+{
+    Box moved = bounds;
+    u32 count;
+    for (count = 1; count <= max_steps; ++count) {
+        MoveTerrainProbeBoxY(moved, step);
+        if (!IsMapTerrainBoxBlocked(map, moved))
+            break;
+    }
+    return count;
+}
+
+asm_unified(
     "    thumb_func_start func_08025294\n"
     "func_08025294: @ 0x08025294\n"
     "    push {r4, r5, r6, r7, lr}\n"
@@ -13787,7 +13687,7 @@ asm_unified(
     "    mov r0, sb\n"
     "    mov r1, sl\n"
     "    adds r2, r4, #0\n"
-    "    bl func_08025248\n"
+    "    bl FindUnblockedTerrainStepY__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .L08025616\n"
@@ -13825,7 +13725,7 @@ asm_unified(
     "    mov r0, sb\n"
     "    mov r1, sl\n"
     "    adds r2, r4, #0\n"
-    "    bl func_080251FC\n"
+    "    bl FindUnblockedTerrainStepX__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .L080255BA\n"
@@ -13862,7 +13762,7 @@ asm_unified(
     "    mov r1, sl\n"
     "    add r2, sp, #0x20\n"
     "    movs r3, #1\n"
-    "    bl func_080251FC\n"
+    "    bl FindUnblockedTerrainStepX__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .L08025664\n"
@@ -13909,7 +13809,7 @@ asm_unified(
     "    mov r1, sl\n"
     "    add r2, sp, #0x20\n"
     "    movs r3, #1\n"
-    "    bl func_08025248\n"
+    "    bl FindUnblockedTerrainStepY__11PlayerActorRC14MapTerrainViewRC3BoxiUi\n"
     "    str r0, [sp, #0x48]\n"
     "    cmp r0, #8\n"
     "    bhi .L08025664\n"

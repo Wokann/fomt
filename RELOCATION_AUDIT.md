@@ -1,3 +1,7 @@
+## 玩家地形脱离探测的调用（2026-11-28）
+
+FindUnblockedTerrainStepX／Y借用MapTerrainView和源Box，以局部碰撞框调用已有IsMapTerrainBoxBlocked。原JP和海外入口统一为真实成员符号，相关汇编调用同步引用；没有用裸地址替代调用。两完整对象的实际字节、重定位及符号边界保持，四版默认完整ROM均通过baserom逐字节和SHA-1对照。
+
 ## 漫游角色的日历与地图调用（2026-11-28）
 
 归位函数借用GameObject::GetClock返回的实际时钟，以calendar.time.clock_hour及GameCalendar::GetWeekday检查原出现条件。EncodedGameYear的周循环读取保留低三位原编码，包括值7；完整年读取接口未改。符合条件时按index构造ActorLocation、设置位置并选择行为0动画，不符合时调用已有PutOutOfTown。三个完整对象的真实字节和引用保持，四版默认ROM均通过baserom逐字节和SHA-1对照。

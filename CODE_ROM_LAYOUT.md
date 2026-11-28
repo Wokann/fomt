@@ -1,3 +1,7 @@
+## 玩家地形探测函数边界（2026-11-28）
+
+四版各将水平、垂直地形脱离探测恢复为PlayerActor成员函数，各76字节。输入为现有MapTerrainView、Box、步长和最大次数；Box使用自身复制及坐标成员，没有新增结构或存储。两完整对象和四版默认ROM通过原版对照，进度见 [统计](PROGRESS.md)。
+
 ## 周期日期与漫游位置边界（2026-11-28）
 
 GameCalendar和EncodedGameYear只增加读取接口，原存储布局保持。GameWeekday是独立三位值表示，接收累计日数并按原规则归入0–6；不加入存档。两种南镇角色仍以原两位index调用对应ActorLocation初始化函数，复用AActorEntity::SetLocation及原动画接口。每版恢复348函数字节，另保留原4字节对齐；三个完整对象和四版默认ROM通过对照。统计见 [进度](PROGRESS.md)。

@@ -14,6 +14,7 @@ struct Article;
 struct Food;
 struct GameStateSaveImage;
 struct Farmer;
+struct MapTerrainView;
 // Q16 offsets, planar velocity and vertical motion of the held graphic.
 // The native renderer accepts state 1; retain the full stored state byte.
 struct PlayerHeldGraphic
@@ -85,6 +86,10 @@ struct PlayerActor : PlayerActorBase {
     /* vt+A4 */ virtual void vfunc_A4();
     /* vt+A8 */ virtual void EnterHotSpringBathingState();
     /* vt+AC */ virtual void ExitHotSpringBathingState();
+    u32 FindUnblockedTerrainStepX(MapTerrainView const & map, Box const & bounds,
+        i32 step, u32 max_steps);
+    u32 FindUnblockedTerrainStepY(MapTerrainView const & map, Box const & bounds,
+        i32 step, u32 max_steps);
     u32 GetMaxWateringCanCapacity() const;
 
     u8 unk_30[4];
