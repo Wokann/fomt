@@ -16,22 +16,31 @@ struct InnShopOrder {
     i32 unk_0C;
 };
 
-// The native return conversion retains both the source slot and its value.
+// The transfer retains the erased owner slot and its cached typed order.
 struct InnShopOrderTransfer {
-    InnShopOrder * & source;
+    void * & source;
     InnShopOrder * value;
-    InnShopOrderTransfer(InnShopOrder * & input) : source(input), value(input) {}
+    InnShopOrderTransfer(void * & input, InnShopOrder * order)
+        : source(input), value(order) {}
     InnShopOrder * release() const { source = nullptr; return value; }
 };
 
 struct InnShopOrderOwner {
-    InnShopOrder * value;
-    InnShopOrder * release() { InnShopOrder * result = value; value = nullptr; return result; }
+    void * value;
+    InnShopOrder * release()
+    {
+        InnShopOrder * result = static_cast<InnShopOrder *>(value);
+        value = nullptr;
+        return result;
+    }
     explicit InnShopOrderOwner(InnShopOrder * input = nullptr) : value(input) {}
     InnShopOrderOwner(InnShopOrderOwner & other) : value(other.release()) {}
     InnShopOrderOwner(InnShopOrderTransfer transfer) : value(transfer.release()) {}
-    ~InnShopOrderOwner() { delete value; }
-    operator InnShopOrderTransfer() { return InnShopOrderTransfer(value); }
+    ~InnShopOrderOwner() { delete static_cast<InnShopOrder *>(value); }
+    operator InnShopOrderTransfer()
+    {
+        return InnShopOrderTransfer(value, static_cast<InnShopOrder *>(value));
+    }
 };
 #pragma interface "scene_inn_shop.hh"
 

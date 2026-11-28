@@ -16,22 +16,31 @@ struct BeachCafeShopOrder {
     i32 unk_0C;
 };
 
-// The native return conversion retains both the source slot and its value.
+// The transfer retains the erased owner slot and its cached typed order.
 struct BeachCafeShopOrderTransfer {
-    BeachCafeShopOrder * & source;
+    void * & source;
     BeachCafeShopOrder * value;
-    BeachCafeShopOrderTransfer(BeachCafeShopOrder * & input) : source(input), value(input) {}
+    BeachCafeShopOrderTransfer(void * & input, BeachCafeShopOrder * order)
+        : source(input), value(order) {}
     BeachCafeShopOrder * release() const { source = nullptr; return value; }
 };
 
 struct BeachCafeShopOrderOwner {
-    BeachCafeShopOrder * value;
-    BeachCafeShopOrder * release() { BeachCafeShopOrder * result = value; value = nullptr; return result; }
+    void * value;
+    BeachCafeShopOrder * release()
+    {
+        BeachCafeShopOrder * result = static_cast<BeachCafeShopOrder *>(value);
+        value = nullptr;
+        return result;
+    }
     explicit BeachCafeShopOrderOwner(BeachCafeShopOrder * input = nullptr) : value(input) {}
     BeachCafeShopOrderOwner(BeachCafeShopOrderOwner & other) : value(other.release()) {}
     BeachCafeShopOrderOwner(BeachCafeShopOrderTransfer transfer) : value(transfer.release()) {}
-    ~BeachCafeShopOrderOwner() { delete value; }
-    operator BeachCafeShopOrderTransfer() { return BeachCafeShopOrderTransfer(value); }
+    ~BeachCafeShopOrderOwner() { delete static_cast<BeachCafeShopOrder *>(value); }
+    operator BeachCafeShopOrderTransfer()
+    {
+        return BeachCafeShopOrderTransfer(value, static_cast<BeachCafeShopOrder *>(value));
+    }
 };
 #pragma interface "scene_beach_cafe_shop.hh"
 

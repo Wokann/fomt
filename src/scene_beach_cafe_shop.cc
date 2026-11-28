@@ -730,35 +730,10 @@ SceneTransitionOwner BeachCafeShopScene::Run()
     return continuation;
 }
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/gba.inc\"\n"
-    ".align 2, 0\n"
-    "thumb_func_start TakeOrder__18BeachCafeShopScene\n"
-    "TakeOrder__18BeachCafeShopScene:\n"
-    "push {r4, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, [r1, #4]\n"
-    "mov r0, sp\n"
-    "bl TakeOrder__22BeachCafeShopSceneCore\n"
-    "ldr r2, [sp]\n"
-    "mov r0, sp\n"
-    "str r0, [sp, #4]\n"
-    "str r2, [sp, #8]\n"
-    "adds r1, r0, #0\n"
-    "movs r0, #0\n"
-    "str r0, [r1]\n"
-    "str r2, [r4]\n"
-    "ldr r0, [sp]\n"
-    "bl __builtin_delete\n"
-    "adds r0, r4, #0\n"
-    "add sp, #0xc\n"
-    "pop {r4}\n"
-    "pop {r1}\n"
-    "bx r1\n"
-    ".align 2, 0\n"
-);
+BeachCafeShopOrderOwner BeachCafeShopScene::TakeOrder()
+{
+    return core.value->TakeOrder();
+}
 
 #include FOMT_TEXT_INCLUDE(scene_beach_cafe_shop_1.cc)
 
