@@ -3483,190 +3483,44 @@ u32 DogActor::GetBehaviorAnimation(u32 behavior) const
 }
 
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global GetBehaviorMoveSpeed__C8DogActorUi\n"
-    "    .thumb_func\n"
-    "GetBehaviorMoveSpeed__C8DogActorUi:\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r1, #0xc\n"
-    "    bhi .Ljp_08020F10\n"
-    "    lsls r0, r1, #2\n"
-    "    ldr r1, .Ljp_08020ED8\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_08020ED8: .word .Ljp_08020EDC\n"
-    ".Ljp_08020EDC: .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F14\n"
-    "    .word .Ljp_08020F1A\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F10\n"
-    "    .word .Ljp_08020F20\n"
-    ".Ljp_08020F10:\n"
-    "    movs r0, #0\n"
-    "    b .Ljp_08020F6E\n"
-    ".Ljp_08020F14:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #8\n"
-    "    b .Ljp_08020F6E\n"
-    ".Ljp_08020F1A:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #9\n"
-    "    b .Ljp_08020F6E\n"
-    ".Ljp_08020F20:\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "    mov r0, sp\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r4, #0\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp]\n"
-    "    ldr r1, [sp, #4]\n"
-    "    str r0, [sp, #8]\n"
-    "    str r1, [sp, #0xc]\n"
-    "    add r1, sp, #8\n"
-    "    movs r2, #0x10\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    adds r3, r1, #0\n"
-    "    cmp r0, #0\n"
-    "    blt .Ljp_08020F66\n"
-    "    cmp r0, #1\n"
-    "    ble .Ljp_08020F4E\n"
-    "    cmp r0, #3\n"
-    "    ble .Ljp_08020F58\n"
-    "    b .Ljp_08020F66\n"
-    ".Ljp_08020F4E:\n"
-    "    movs r1, #6\n"
-    "    ldrsh r0, [r3, r1]\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r3, r2]\n"
-    "    b .Ljp_08020F60\n"
-    ".Ljp_08020F58:\n"
-    "    movs r2, #4\n"
-    "    ldrsh r0, [r1, r2]\n"
-    "    movs r2, #0\n"
-    "    ldrsh r1, [r1, r2]\n"
-    ".Ljp_08020F60:\n"
-    "    subs r0, r0, r1\n"
-    "    adds r2, r0, #0\n"
-    "    adds r2, #0x10\n"
-    ".Ljp_08020F66:\n"
-    "    lsls r0, r2, #0x10\n"
-    "    movs r1, #0x1e\n"
-    "    bl __divsi3\n"
-    ".Ljp_08020F6E:\n"
-    "    add sp, #0x10\n"
-    "    pop {r4}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start GetBehaviorMoveSpeed__C8DogActorUi\n"
-    "GetBehaviorMoveSpeed__C8DogActorUi: @ 0x08021130\n"
-    "    push {r4, lr}\n"
-    "    sub sp, #0x10\n"
-    "    adds r4, r0, #0\n"
-    "    cmp r1, #0xc\n"
-    "    bhi .L0802117C\n"
-    "    lsls r0, r1, #2\n"
-    "    ldr r1, .L08021144 @ =.L08021148\n"
-    "    adds r0, r0, r1\n"
-    "    ldr r0, [r0]\n"
-    "    mov pc, r0\n"
-    "    .align 2, 0\n"
-    ".L08021144: .word .L08021148\n"
-    ".L08021148: @ jump table\n"
-    "    .word .L0802117C @ case 0\n"
-    "    .word .L08021180 @ case 1\n"
-    "    .word .L08021186 @ case 2\n"
-    "    .word .L0802117C @ case 3\n"
-    "    .word .L0802117C @ case 4\n"
-    "    .word .L0802117C @ case 5\n"
-    "    .word .L0802117C @ case 6\n"
-    "    .word .L0802117C @ case 7\n"
-    "    .word .L0802117C @ case 8\n"
-    "    .word .L0802117C @ case 9\n"
-    "    .word .L0802117C @ case 10\n"
-    "    .word .L0802117C @ case 11\n"
-    "    .word .L0802118C @ case 12\n"
-    ".L0802117C:\n"
-    "    movs r0, #0\n"
-    "    b .L080211DA\n"
-    ".L08021180:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #8\n"
-    "    b .L080211DA\n"
-    ".L08021186:\n"
-    "    movs r0, #0x80\n"
-    "    lsls r0, r0, #9\n"
-    "    b .L080211DA\n"
-    ".L0802118C:\n"
-    "    ldr r1, [r4, #0x14]\n"
-    "    mov r0, sp\n"
-    "    ldr r2, [r1, #0xc]\n"
-    "    adds r1, r4, #0\n"
-    "    bl _call_via_r2\n"
-    "    ldr r0, [sp]\n"
-    "    ldr r1, [sp, #4]\n"
-    "    str r0, [sp, #8]\n"
-    "    str r1, [sp, #0xc]\n"
-    "    add r1, sp, #8\n"
-    "    movs r2, #0x10\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x20\n"
-    "    ldrb r0, [r0]\n"
-    "    adds r3, r1, #0\n"
-    "    cmp r0, #0\n"
-    "    blt .L080211D2\n"
-    "    cmp r0, #1\n"
-    "    ble .L080211BA\n"
-    "    cmp r0, #3\n"
-    "    ble .L080211C4\n"
-    "    b .L080211D2\n"
-    ".L080211BA:\n"
-    "    movs r1, #6\n"
-    "    ldrsh r0, [r3, r1]\n"
-    "    movs r2, #2\n"
-    "    ldrsh r1, [r3, r2]\n"
-    "    b .L080211CC\n"
-    ".L080211C4:\n"
-    "    movs r2, #4\n"
-    "    ldrsh r0, [r1, r2]\n"
-    "    movs r2, #0\n"
-    "    ldrsh r1, [r1, r2]\n"
-    ".L080211CC:\n"
-    "    subs r0, r0, r1\n"
-    "    adds r2, r0, #0\n"
-    "    adds r2, #0x10\n"
-    ".L080211D2:\n"
-    "    lsls r0, r2, #0x10\n"
-    "    movs r1, #0x1e\n"
-    "    bl __divsi3\n"
-    ".L080211DA:\n"
-    "    add sp, #0x10\n"
-    "    pop {r4}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#endif
+i32 DogActor::GetBehaviorMoveSpeed(u32 behavior) const
+{
+    switch (behavior) {
+    default:
+    case 0:
+    case 3:
+    case 4:
+    case 5:
+    case 6:
+    case 7:
+    case 8:
+    case 9:
+    case 10:
+    case 11:
+        return 0;
+    case 1:
+        return 0x8000;
+    case 2:
+        return 0x10000;
+    case 12: {
+        Box const & box = GetBox();
+        i32 distance = 16;
+        switch (static_cast<i32>(facing)) {
+        default:
+            break;
+        case FACING_DOWN:
+        case FACING_UP:
+            distance += box.y2 - box.y1;
+            break;
+        case FACING_LEFT:
+        case FACING_RIGHT:
+            distance += box.x2 - box.x1;
+            break;
+        }
+        return (distance << 16) / 30;
+    }
+    }
+}
 
 void DogActor::SetBehavior(u32 behavior, u32 direction)
 {
@@ -3842,151 +3696,23 @@ extern "C" u32 GetDogEffectOffsetKind(u32 growth_stage)
     return 6;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__8DogActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__8DogActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C3Dog\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetDogAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetDogEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #2\n"
-    "    movs r3, #6\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x41\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #8\n"
-    "    bne .Ljp_08021440\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".Ljp_08021440:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
+static inline void StartAnimalSpriteEffect(EntitySpriteController * controller,
+    u32 index, EntitySpriteEffectMode mode)
+{
+    controller->effect.SetAnimation(index);
+    controller->effect_mode = mode;
+}
 
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__8DogActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__8DogActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C3Dog\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetDogAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetDogEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #2\n"
-    "    movs r3, #6\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x41\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #8\n"
-    "    bne .L080216AC\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".L080216AC:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-
-);
-#endif
+EntityVisualController * DogActor::CreateVisualController()
+{
+    u32 growth = dog->GetGrowthStage();
+    EntitySpriteController * controller = new EntitySpriteController(this, 2, 6,
+        GetDogAuxRenderProfile(growth), GetDogEffectOffsetKind(growth), 0, false);
+    EntityVisualController * visual = controller;
+    if (last_behavior == 8)
+        StartAnimalSpriteEffect(controller, 8, ENTITY_SPRITE_EFFECT_PERSISTENT);
+    return visual;
+}
 
 
 
@@ -4402,58 +4128,14 @@ extern "C" u32 GetHorseEffectOffsetKind(u32 growth_stage)
     return 14;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__10HorseActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__10HorseActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl GetGrowthStage__C5Horse\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl __21HorseSpriteControllerP12AActorEntityUi\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r5, #0\n"
-    "    adds r4, #0x3c\n"
-    "    ldrb r0, [r4]\n"
-    "    cmp r0, #4\n"
-    "    bne .Lauto_08022132\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r2, #0\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r2, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    "    .Lauto_08022132:\n"
-    "    adds r0, r6, #0\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-);
+EntityVisualController * HorseActor::CreateVisualController()
+{
+    HorseSpriteController * controller = new HorseSpriteController(this, horse->GetGrowthStage());
+    EntityVisualController * visual = controller;
+    if (last_behavior == 4)
+        StartAnimalSpriteEffect(controller, 8, ENTITY_SPRITE_EFFECT_PERSISTENT);
+    return visual;
+}
 
 ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
     : AnimalActor(world, Actor(*saved).location, 0x720)
@@ -4463,69 +4145,7 @@ ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
     SetBehavior(GetBehavior(), facing);
 }
 
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__10HorseActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__10HorseActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    adds r4, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r4, #0x34]\n"
-    "    bl GetGrowthStage__C5Horse\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl __21HorseSpriteControllerP12AActorEntityUi\n"
-    "    adds r5, r0, #0\n"
-    "    adds r6, r5, #0\n"
-    "    adds r4, #0x3c\n"
-    "    ldrb r0, [r4]\n"
-    "    cmp r0, #4\n"
-    "    bne .Lraw_code_entities_38327_14\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r2, #0\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r2, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r5, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".Lraw_code_entities_38327_14:\n"
-    "    adds r0, r6, #0\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-);
 
-ChickenActor::ChickenActor(GameObject * world, Chicken * saved)
-    : AnimalActor(world, Actor(*saved).location, 0x720)
-{
-    livestock = saved;
-
-    SetBehavior(GetBehavior(), facing);
-}
-
-#endif
 
 ChickenActor::~ChickenActor()
 {
@@ -5672,12 +5292,6 @@ extern "C" u32 GetChickenEffectOffsetKind(u32 growth_stage)
     return 6;
 }
 
-static inline void StartAnimalSpriteEffect(EntitySpriteController * controller,
-    u32 index, EntitySpriteEffectMode mode)
-{
-    controller->effect.SetAnimation(index);
-    controller->effect_mode = mode;
-}
 
 EntityVisualController * ChickenActor::CreateVisualController()
 {
@@ -6127,148 +5741,16 @@ extern "C" u32 GetCowEffectOffsetKind(u32 growth_stage)
     return 9;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__8CowActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__8CowActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C3Cow\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetCowAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetCowEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #4\n"
-    "    movs r3, #0xc\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x38\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #4\n"
-    "    bne .Lauto_0802362C\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    "    .Lauto_0802362C:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__8CowActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__8CowActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C3Cow\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8c\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetCowAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetCowEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xc\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #4\n"
-    "    movs r3, #0xc\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x38\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #4\n"
-    "    bne .Lraw_code_entities_40071_8\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8a\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    rsbs r0, r0, #0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".Lraw_code_entities_40071_8:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#endif
+EntityVisualController * CowActor::CreateVisualController()
+{
+    u32 growth = livestock->GetGrowthStage();
+    EntitySpriteController * controller = new EntitySpriteController(this, 4, 12,
+        GetCowAuxRenderProfile(growth), GetCowEffectOffsetKind(growth), 0, false);
+    EntityVisualController * visual = controller;
+    if (last_behavior == 4)
+        StartAnimalSpriteEffect(controller, 8, ENTITY_SPRITE_EFFECT_PERSISTENT);
+    return visual;
+}
 
 
 SheepActor::SheepActor(GameObject * world, Sheep * saved)
@@ -6701,148 +6183,16 @@ extern "C" u32 GetSheepEffectOffsetKind(u32 growth_stage)
     return 0xA;
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__10SheepActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__10SheepActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C5Sheep\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8C\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetSheepAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetSheepEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xC\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #4\n"
-    "    movs r3, #0xB\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x38\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #4\n"
-    "    bne .Ljp_080242F8\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8A\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".Ljp_080242F8:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global CreateVisualController__10SheepActor\n"
-    "    .thumb_func\n"
-    "CreateVisualController__10SheepActor:\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    mov r6, r8\n"
-    "    push {r6}\n"
-    "    sub sp, #0x10\n"
-    "    adds r5, r0, #0\n"
-    "    ldr r0, [r5, #0x34]\n"
-    "    bl GetGrowthStage__C5Sheep\n"
-    "    adds r6, r0, #0\n"
-    "    movs r0, #0x8C\n"
-    "    bl __builtin_new\n"
-    "    mov r8, r0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetSheepAuxRenderProfile\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetSheepEffectOffsetKind\n"
-    "    str r4, [sp]\n"
-    "    str r0, [sp, #4]\n"
-    "    movs r6, #0\n"
-    "    str r6, [sp, #8]\n"
-    "    add r0, sp, #0xC\n"
-    "    strb r6, [r0]\n"
-    "    mov r0, r8\n"
-    "    adds r1, r5, #0\n"
-    "    movs r2, #4\n"
-    "    movs r3, #0xB\n"
-    "    bl __22EntitySpriteControllerP12AActorEntityUiUiUiUiUib\n"
-    "    adds r4, r0, #0\n"
-    "    mov r8, r4\n"
-    "    adds r5, #0x38\n"
-    "    ldrb r0, [r5]\n"
-    "    cmp r0, #4\n"
-    "    bne .L08024564\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x70\n"
-    "    movs r1, #8\n"
-    "    bl ResolveIndexedResourceHandle\n"
-    "    adds r0, r4, #0\n"
-    "    adds r0, #0x84\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r6, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    "    adds r2, r4, #0\n"
-    "    adds r2, #0x8A\n"
-    "    movs r3, #2\n"
-    "    ldrb r1, [r2]\n"
-    "    movs r0, #4\n"
-    "    negs r0, r0\n"
-    "    ands r0, r1\n"
-    "    orrs r0, r3\n"
-    "    strb r0, [r2]\n"
-    ".L08024564:\n"
-    "    mov r0, r8\n"
-    "    add sp, #0x10\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-
-);
-#endif
+EntityVisualController * SheepActor::CreateVisualController()
+{
+    u32 growth = livestock->GetGrowthStage();
+    EntitySpriteController * controller = new EntitySpriteController(this, 4, 11,
+        GetSheepAuxRenderProfile(growth), GetSheepEffectOffsetKind(growth), 0, false);
+    EntityVisualController * visual = controller;
+    if (last_behavior == 4)
+        StartAnimalSpriteEffect(controller, 8, ENTITY_SPRITE_EFFECT_PERSISTENT);
+    return visual;
+}
 
 
 extern "C" Box func_08024308(i32 x, i32 y)
