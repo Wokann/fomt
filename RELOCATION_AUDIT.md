@@ -1,3 +1,7 @@
+## OAM 返回区与硬件字段（2026-11-28）
+
+InitializeMosaicSpriteOam 的调用者在调用后从临时返回区读取属性，再复制到精灵缓冲区，并不消费显式指针返回值。现恢复 HardwareSpriteOamEntry 按值返回，硬件坐标保留无符号环绕，归档坐标的原有符号解释不变。正常 C++ ABI 生成原隐藏返回参数和八字节复制；完整对象的装载内容、重定位和边界相同，四版默认 ROM 对照各自 baserom 的逐字节及 SHA-1 验收通过。
+
 ## 丢弃提示的物品与文本引用（2026-11-28）
 
 三种菜单通过原面板访问器取得当前图标，使用原背包、手持物或置物架条目检查能否丢弃。确认及拒绝提示仍读取原gItemDiscardConfirmTextRef／gItemDiscardCannotDiscardTextRef，并传入对应界面的原是／否选项。静态内联图标判空不生成独立CPU入口。三个完整对象的装载内容、重定位及符号边界相同，四版默认ROM逐字节及SHA-1对照baserom通过。
