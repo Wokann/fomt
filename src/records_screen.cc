@@ -1,6 +1,9 @@
 #include "records_screen.hh"
 #include "config.h"
 #include "game_state.hh"
+#include "scroll_state.hh"
+#include "font_draw.hh"
+#include "font_decimal.hh"
 
 #include <new>
 
@@ -9024,135 +9027,35 @@ asm_unified(
     ".Ljp_08074E70: .word 0x00001BD8\n"
     ".Ljp_08074E74: .word 0x0000086B\n"
     ".Ljp_08074E78: .word __vt_23IndexedResourceProvider\n"
-    "    thumb_func_start DrawAnimalLifetime__16OtherRecordsPageUiUi\n"
-    "DrawAnimalLifetime__16OtherRecordsPageUiUi:\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #8\n"
-    "\tmov sb, r1\n"
-    "\tmov sl, r2\n"
-    "\tmovs r7, #0x1a\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tmov r8, r0\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .Ljp_08074F74\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x1e\n"
-    "\tbl __umodsi3\n"
-    "\tadds r6, r0, #0\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .Ljp_08074EDA\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tadds r0, #0x34\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x68\n"
-    "\tmovs r2, #2\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tadds r1, #0x32\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r6, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo2x2Tilemap\n"
-    "\tmovs r7, #0x16\n"
-    ".Ljp_08074EDA:\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x1e\n"
-    "\tbl __udivsi3\n"
-    "\tadds r6, r0, #0\n"
-    "\tmovs r0, #3\n"
-    "\tands r6, r0\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .Ljp_08074F2A\n"
-    "\tsubs r7, #4\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tlsls r1, r7, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x60\n"
-    "\tmovs r2, #4\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tsubs r0, r7, #1\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r1, r0\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r6, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo2x2Tilemap\n"
-    "\tsubs r7, #2\n"
-    ".Ljp_08074F2A:\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x78\n"
-    "\tbl __udivsi3\n"
-    "\tadds r6, r0, #0\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .Ljp_08074F74\n"
-    "\tsubs r7, #2\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tlsls r1, r7, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x5c\n"
-    "\tmovs r2, #2\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tsubs r0, r7, #1\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r1, r0\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r6, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo2x2Tilemap\n"
-    ".Ljp_08074F74:\n"
-    "\tadd sp, #8\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
 );
+
+void OtherRecordsPage::DrawAnimalLifetime(u32 days, u32 row)
+{
+    u32 column = 26;
+    ScrollState * state = scroll;
+    if (days != 0) {
+        u32 days_part = days % 30;
+        if (days_part != 0) {
+            Fill2DGfxTilemapRect(&state->rows[row][26], 104, 2, 2, 0, 32);
+            DrawDecimalTo2x2Tilemap(days_part, &state->rows[row][25], 0x120, 0, 32);
+            column = 22;
+        }
+        u32 seasons = (days / 30) & 3;
+        if (seasons != 0) {
+            column -= 4;
+            Fill2DGfxTilemapRect(&state->rows[row][column], 96, 4, 2, 0, 32);
+            DrawDecimalTo2x2Tilemap(seasons, &state->rows[row][column - 1], 0x120, 0, 32);
+            column -= 2;
+        }
+        u32 years = days / 120;
+        if (years != 0) {
+            column -= 2;
+            Fill2DGfxTilemapRect(&state->rows[row][column], 92, 2, 2, 0, 32);
+            DrawDecimalTo2x2Tilemap(years, &state->rows[row][column - 1], 0x120, 0, 32);
+        }
+    }
+}
+
 
 u32 OtherRecordsPage::Draw()
 {
@@ -19152,136 +19055,36 @@ asm_unified(
     ".L08075218: .word 0x0000086B\n"
     ".L0807521C: .word __vt_23IndexedResourceProvider\n"
     "\n"
-    "\tthumb_func_start DrawAnimalLifetime__16OtherRecordsPageUiUi\n"
-    "DrawAnimalLifetime__16OtherRecordsPageUiUi: @ 0x08075220\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #8\n"
-    "\tmov sb, r1\n"
-    "\tmov sl, r2\n"
-    "\tmovs r6, #0x1a\n"
-    "\tldr r0, [r0, #4]\n"
-    "\tmov r8, r0\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08075316\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x1e\n"
-    "\tbl __umodsi3\n"
-    "\tadds r7, r0, #0\n"
-    "\tcmp r7, #0\n"
-    "\tbeq .L0807527E\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tadds r0, #0x34\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x88\n"
-    "\tmovs r2, #2\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tadds r1, #0x32\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo1x2Tilemap\n"
-    "\tmovs r6, #0x16\n"
-    ".L0807527E:\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x1e\n"
-    "\tbl __udivsi3\n"
-    "\tadds r7, r0, #0\n"
-    "\tmovs r0, #3\n"
-    "\tands r7, r0\n"
-    "\tcmp r7, #0\n"
-    "\tbeq .L080752CE\n"
-    "\tsubs r6, #4\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tlsls r1, r6, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x84\n"
-    "\tmovs r2, #2\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tsubs r0, r6, #1\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r1, r0\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo1x2Tilemap\n"
-    "\tsubs r6, #6\n"
-    ".L080752CE:\n"
-    "\tmov r0, sb\n"
-    "\tmovs r1, #0x78\n"
-    "\tbl __udivsi3\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L08075316\n"
-    "\tsubs r6, #6\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1, #0x18]\n"
-    "\tmov r1, sl\n"
-    "\tlsls r5, r1, #6\n"
-    "\tadds r0, r0, r5\n"
-    "\tlsls r1, r6, #1\n"
-    "\tadds r0, r0, r1\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [sp]\n"
-    "\tmovs r4, #0x20\n"
-    "\tstr r4, [sp, #4]\n"
-    "\tmovs r1, #0x78\n"
-    "\tmovs r2, #6\n"
-    "\tmovs r3, #2\n"
-    "\tbl Fill2DGfxTilemapRect\n"
-    "\tmov r0, r8\n"
-    "\tldr r1, [r0, #0x18]\n"
-    "\tadds r1, r1, r5\n"
-    "\tsubs r0, r6, #1\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r1, r0\n"
-    "\tmovs r2, #0x90\n"
-    "\tlsls r2, r2, #1\n"
-    "\tstr r4, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawDecimalTo1x2Tilemap\n"
-    ".L08075316:\n"
-    "\tadd sp, #8\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    "\n"
 );
+
+void OtherRecordsPage::DrawAnimalLifetime(u32 days, u32 row)
+{
+    u32 column = 26;
+    ScrollState * state = scroll;
+    if (days != 0) {
+        u32 days_part = days % 30;
+        if (days_part != 0) {
+            Fill2DGfxTilemapRect(&state->rows[row][26], 136, 2, 2, 0, 32);
+            DrawDecimalTo1x2Tilemap(days_part, &state->rows[row][25], 0x120, 0, 32);
+            column = 22;
+        }
+        u32 seasons = (days / 30) & 3;
+        if (seasons != 0) {
+            column -= 4;
+            Fill2DGfxTilemapRect(&state->rows[row][column], 132, 2, 2, 0, 32);
+            DrawDecimalTo1x2Tilemap(seasons, &state->rows[row][column - 1], 0x120, 0, 32);
+            column -= 6;
+        }
+        // The retail overseas year field reuses the preceding season seasons.
+        u32 years = days / 120;
+        if (years != 0) {
+            column -= 6;
+            Fill2DGfxTilemapRect(&state->rows[row][column], 120, 6, 2, 0, 32);
+            DrawDecimalTo1x2Tilemap(seasons, &state->rows[row][column - 1], 0x120, 0, 32);
+        }
+    }
+}
+
 
 u32 OtherRecordsPage::Draw()
 {

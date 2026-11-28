@@ -1,3 +1,7 @@
+## 年龄显示的滚动行引用（2026-11-28）
+
+动物记录通过页面持有的 ScrollState 指针取得 rows，再以 row／column 访问真实图块表，未缓存跨调用可能变化的行数据指针。单位区域由 Fill2DGfxTilemapRect 写入，数字按地区使用现有 2×2 或 1×2 绘制入口。原天／季／年的运算和海外值复用均保留；完整对象的装载内容、重定位及边界相同，四版默认 ROM 对照 baserom 的逐字节和 SHA-1 验收通过。
+
 ## 玩家切换操作的物品与音效引用（2026-11-28）
 
 背包切换继续调用 Farmer 的前／后循环；收纳通过 Rucksack::GetFirstFreeItemSlot 和 GetItemAt 写入真实 RucksackItem 值。诅咒限制读取当前 ToolStack，经 Farmer::GetUpgradedTool 得到 Tool，再检查六种原有诅咒工具编号。音效从 GameObject::GetSongPlayerPool 借用槽位，动作表及四版调用同步改为成员符号，无地址加数或输出修补。两个完整对象的装载内容、重定位和边界一致，四版默认 ROM 对照 baserom 逐字节及 SHA-1 通过。
