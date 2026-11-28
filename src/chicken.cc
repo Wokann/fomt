@@ -56,9 +56,9 @@ Livestock::ProductRank Chicken::ConsumeProduct()
     return rank;
 }
 
-void Chicken::method_0809BD20(UnkBarnAnimal2C const * param)
+void Chicken::SetMovementState(ChickenMovementState const * param)
 {
-    unk_28 = *param;
+    movement = *param;
     unk_24 = 0;
 }
 

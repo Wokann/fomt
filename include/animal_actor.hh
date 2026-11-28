@@ -10,7 +10,7 @@ extern ActorBehaviorTiming const gUnk_080F0838[2][2][13];
 extern u16 const gDogBehaviorAnimations[2][13];
 extern ActorBehaviorTiming const gUnk_080F093C[2][2][7];
 extern u16 const gHorseBehaviorAnimations[2][7];
-extern ActorBehaviorTiming const gUnk_080F09C8[40];
+extern ActorBehaviorTiming const gUnk_080F09C8[2][2][2][5];
 extern u16 const gChickenBehaviorAnimations[2][5];
 extern ActorBehaviorTiming const gUnk_080F0A7C[2][4][2][7];
 extern u16 const gCowBehaviorAnimations[4][7];
