@@ -1,3 +1,7 @@
+## 室内标记行的分配子对象（2026-11-28）
+
+FarmMapScreenIndoorMarkerRow保留原first、last指针，末尾Allocation由无状态Allocator和容量终点组成，原未初始化字节保持。三个行成员仍按原顺序构造和反向释放；父组构造恢复42字节C++，另2字节原对齐不计代码。三个完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。
+
 ## 漫游移动裁剪边界（2026-11-28）
 
 四版各将300字节ApplyRoamingMovement恢复为普通C++成员函数，输入仍为已有ActorMovementBounds借用指针，输出仍为既有两轴Q16位置。没有新增存储、改变对象布局或共用GetDown／Up／Left／Right接口的定义。完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。

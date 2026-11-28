@@ -69,32 +69,11 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     ".Lmap_cleanup_0_provider_vtable: .word __vt_23IndexedResourceProvider\n"
-    "    .align 2, 0\n"
-    "    thumb_func_start __26FarmMapScreenIndoorMarkers\n"
-    "__26FarmMapScreenIndoorMarkers:\n"
-    "    sub sp, #12\n"
-    "    adds r2, r0, #0\n"
-    "    movs r0, #0\n"
-    "    str r0, [r2, #0]\n"
-    "    str r0, [r2, #4]\n"
-    "    adds r1, r2, #0\n"
-    "    adds r1, #8\n"
-    "    str r0, [r1, #4]\n"
-    "    adds r1, #8\n"
-    "    str r0, [r2, #16]\n"
-    "    str r0, [r1, #4]\n"
-    "    adds r1, #8\n"
-    "    str r0, [r1, #4]\n"
-    "    adds r1, #8\n"
-    "    str r0, [r2, #32]\n"
-    "    str r0, [r1, #4]\n"
-    "    adds r1, #8\n"
-    "    str r0, [r1, #4]\n"
-    "    adds r0, r2, #0\n"
-    "    add sp, #12\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
 );
+
+FarmMapScreenIndoorMarkers::FarmMapScreenIndoorMarkers()
+{
+}
 
 FarmMapScreenIndoorMarkers::~FarmMapScreenIndoorMarkers()
 {

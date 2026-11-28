@@ -36,9 +36,21 @@ struct FarmMapScreenMarkers
     FarmMapScreenMarker * capacity_end;
 };
 
+// Each row owns a range; its stateless allocator and capacity form the final subobject.
 struct FarmMapScreenIndoorMarkerRow
 {
-    FarmMapScreenIndoorMarkerRow() : first(nullptr), last(nullptr), capacity_end(nullptr) {}
+    struct Allocator {
+        Allocator() {}
+        Allocator(Allocator const &) {}
+    };
+    struct Allocation {
+        Allocator allocator;
+        u32 * end;
+        Allocation(Allocator const & value) : allocator(value), end(nullptr) {}
+    };
+
+    FarmMapScreenIndoorMarkerRow(Allocator const & value = Allocator())
+        : first(nullptr), last(nullptr), allocation(value) {}
     ~FarmMapScreenIndoorMarkerRow()
     {
         if (first != nullptr)
@@ -47,14 +59,13 @@ struct FarmMapScreenIndoorMarkerRow
 
     u32 * first;
     u32 * last;
-    u32 unk_08;
-    u32 * capacity_end;
+    Allocation allocation;
 };
 
 #pragma interface "farm_map_screen.hh"
 struct FarmMapScreenIndoorMarkers
 {
-    FarmMapScreenIndoorMarkers() {}
+    FarmMapScreenIndoorMarkers();
     ~FarmMapScreenIndoorMarkers();
     // Three independently constructed rows; cleanup releases them in reverse order.
     FarmMapScreenIndoorMarkerRow row_00;
