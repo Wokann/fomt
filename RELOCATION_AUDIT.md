@@ -1,3 +1,7 @@
+## 野狗目标选择的虚调用（2026-11-28）
+
+目标查询通过已有GameObject::GetEntity和AnimalActor::CanBeAttackedByWildDog，替代原虚表槽位汇编；返回的槽号及所有调用者接口保持。像素距离只借用实体坐标，不转移所有权。完整对象的实际字节、重定位和符号边界相同，四版默认ROM通过baserom逐字节与SHA-1对照。
+
 ## 玩家地形脱离探测的调用（2026-11-28）
 
 FindUnblockedTerrainStepX／Y借用MapTerrainView和源Box，以局部碰撞框调用已有IsMapTerrainBoxBlocked。原JP和海外入口统一为真实成员符号，相关汇编调用同步引用；没有用裸地址替代调用。两完整对象的实际字节、重定位及符号边界保持，四版默认完整ROM均通过baserom逐字节和SHA-1对照。

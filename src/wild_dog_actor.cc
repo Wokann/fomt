@@ -1,5 +1,6 @@
 
 #include "wild_dog_actor.hh"
+#include "game_object.hh"
 #include "actor_runtime_data.hh"
 
 #include <new>
@@ -14,80 +15,31 @@ extern "C" u16 const gWildDogMotionAnimations[] = {
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start FindNearestWildDogTarget\n"
-    "FindNearestWildDogTarget:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, sl\n"
-    "    mov\tr6, r9\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5, r6, r7}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr6, r0, #0\n"
-    "    str\tr1, [sp, #0]\n"
-    "    mov\tsl, r2\n"
-    "    mov\tr9, r3\n"
-    "    movs\tr7, #100\t@ 0x64\n"
-    "    movs\tr0, #0\n"
-    "    mov\tr8, r0\n"
-    "    movs\tr5, #46\t@ 0x2e\n"
-    ".LwildDog_08039150:\n"
-    "    ldr\tr0, [r6, #0]\n"
-    "    ldr\tr2, [r0, #64]\t@ 0x40\n"
-    "    adds\tr0, r6, #0\n"
-    "    adds\tr1, r5, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #0\n"
-    "    beq .LwildDog_080391A6\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    ldr\tr1, [sp, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    bne .LwildDog_080391A6\n"
-    "    ldr\tr0, [r4, #20]\n"
-    "    ldr\tr1, [r0, #96]\t@ 0x60\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_080391A6\n"
-    "    movs\tr2, #10\n"
-    "    ldrsh\tr1, [r4, r2]\n"
-    "    mov\tr0, sl\n"
-    "    subs\tr1, r1, r0\n"
-    "    movs\tr2, #14\n"
-    "    ldrsh\tr0, [r4, r2]\n"
-    "    mov\tr2, r9\n"
-    "    subs\tr0, r0, r2\n"
-    "    adds\tr2, r1, #0\n"
-    "    muls\tr2, r1\n"
-    "    adds\tr1, r2, #0\n"
-    "    adds\tr2, r0, #0\n"
-    "    muls\tr2, r0\n"
-    "    adds\tr0, r2, #0\n"
-    "    adds\tr0, r1, r0\n"
-    "    adds\tr1, r0, #0\n"
-    "    cmp\tr7, #100\t@ 0x64\n"
-    "    beq .LwildDog_080391A2\n"
-    "    cmp\tr8, r0\n"
-    "    ble .LwildDog_080391A6\n"
-    ".LwildDog_080391A2:\n"
-    "    adds\tr7, r5, #0\n"
-    "    mov\tr8, r1\n"
-    ".LwildDog_080391A6:\n"
-    "    adds\tr5, #1\n"
-    "    cmp\tr5, #69\t@ 0x45\n"
-    "    ble .LwildDog_08039150\n"
-    "    adds\tr0, r7, #0\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r3, r4, r5}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    mov\tsl, r5\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
 );
+
+static inline i32 SquaredPixelDistance(AEntity const & entity, i32 x, i32 y)
+{
+    i32 dx = (entity.GetQ16X() >> 16) - x;
+    i32 dy = (entity.GetQ16Y() >> 16) - y;
+    return dx * dx + dy * dy;
+}
+
+u32 FindNearestWildDogTarget(GameObject * world, u32 map, i32 x, i32 y)
+{
+    u32 nearest = 100;
+    i32 nearest_distance = 0;
+    for (i32 id = ENTITY_ANIMAL_CHICKEN_SLOT_1; id <= ENTITY_BARN_ANIMAL_SLOT_16; ++id) {
+        AnimalActor * animal = static_cast<AnimalActor *>(world->GetEntity(id));
+        if (animal != nullptr && animal->GetMap() == map && animal->CanBeAttackedByWildDog()) {
+            i32 distance = SquaredPixelDistance(*animal, x, y);
+            if (nearest == 100 || nearest_distance > distance) {
+                nearest = id;
+                nearest_distance = distance;
+            }
+        }
+    }
+    return nearest;
+}
 
 bool IsWildDogExitCorridor(i32 x, i32 y)
 {
