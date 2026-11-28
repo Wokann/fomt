@@ -91,6 +91,9 @@ struct GameMenuSpritePanel : GameMenuPanel {
 extern "C" {
 void func_080CB090(GameMenuTilemapPanel *);
 void func_080CC310(GameMenuSpritePanel *);
+void func_080CCDEC(GameMenuSpritePanel *, u32 index);
+extern u8 const gUnk_083ED9FC[];
+extern u8 const gUnk_086678A0[];
 void func_080CC728(GameMenuSpritePanel *, u32 index, u8 const * archive,
     u16 icon, u32 quantity);
 void func_080CCE58(GameMenuSpritePanel *, u8 const * archive,

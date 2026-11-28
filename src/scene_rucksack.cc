@@ -1850,7 +1850,6 @@ asm_unified(
 );
 
 extern "C" void func_080CD4D4(void * panel);
-extern "C" void func_080CCDEC(void * panel, u32 item_index);
 
 void RucksackMenuCore::DiscardItem(i32 selection)
 {

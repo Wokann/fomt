@@ -259,70 +259,24 @@ asm_unified(
     ".Lshelf_2_01d8: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start DrawShelfPage__14ShelfSceneCoreUi\n"
-    "DrawShelfPage__14ShelfSceneCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r6, r0, #0\n"
-    "adds r7, r1, #0\n"
-    "movs r5, #0\n"
-    ".Lshelf_3_000a:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r0, [r0]\n"
-    "lsls r1, r7, #3\n"
-    "adds r1, r1, r5\n"
-    "bl GetArticleStackAt__5ShelfUi\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #4\n"
-    "movs r2, #2\n"
-    "bl memcpy\n"
-    "add r0, sp, #4\n"
-    "bl IsEmpty__C12ArticleStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lshelf_3_0064\n"
-    "add r0, sp, #4\n"
-    "bl GetArticle__C12ArticleStack\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #8\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C7Article\n"
-    "adds r4, r0, #0\n"
-    "lsls r4, r4, #0x10\n"
-    "lsrs r4, r4, #0x10\n"
-    "add r0, sp, #4\n"
-    "bl GetAmount__C12ArticleStack\n"
-    "ldr r1, [r6, #0x7c]\n"
-    "str r0, [sp]\n"
-    "adds r0, r1, #0\n"
-    "adds r1, r5, #0\n"
-    "ldr r2, .Lshelf_3_0060\n"
-    "adds r3, r4, #0\n"
-    "bl func_080CC728\n"
-    "b .Lshelf_3_006c\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lshelf_3_0060: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lshelf_3_0060: .word gUnk_086678A0\n"
-#endif
-    ".Lshelf_3_0064:\n"
-    "ldr r0, [r6, #0x7c]\n"
-    "adds r1, r5, #0\n"
-    "bl func_080CCDEC\n"
-    ".Lshelf_3_006c:\n"
-    "adds r5, #1\n"
-    "cmp r5, #7\n"
-    "bls .Lshelf_3_000a\n"
-    "add sp, #0xc\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
 );
+
+void ShelfSceneCore::DrawShelfPage(u32 page)
+{
+    for (u32 slot = 0; slot < 8; ++slot) {
+        ArticleStack stack = *shelf->GetArticleStackAt(page * 8 + slot);
+        if (!stack.IsEmpty()) {
+            u16 icon = stack.GetArticle().GetIconId();
+#if defined(REGION_JP)
+            func_080CC728(right_panel.value, slot, gUnk_083ED9FC, icon, stack.GetAmount());
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            func_080CC728(right_panel.value, slot, gUnk_086678A0, icon, stack.GetAmount());
+#endif
+        } else {
+            func_080CCDEC(right_panel.value, slot);
+        }
+    }
+}
 
 extern "C" u32 func_080CEB80(void *);
 void ShelfSceneCore::ShowNextPage()
@@ -3740,7 +3694,6 @@ asm_unified(
 
 extern "C" void func_080CC0B4(void *);
 extern "C" void func_080CBA60(void *, u32);
-extern "C" void func_080CCDEC(void *, u32);
 
 void ShelfSceneCore::DiscardItem(i32 selection)
 {

@@ -259,73 +259,24 @@ asm_unified(
     ".Lrefrigerator_2_01d8: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start DrawFridgePage__21RefrigeratorSceneCoreUi\n"
-    "DrawFridgePage__21RefrigeratorSceneCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, r8\n"
-    "push {r7}\n"
-    "sub sp, #0xc\n"
-    "adds r6, r0, #0\n"
-    "mov r8, r1\n"
-    "movs r5, #0\n"
-    "add r7, sp, #8\n"
-    ".Lrefrigerator_3_0010:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #1\n"
-    "adds r0, r6, r1\n"
-    "ldr r0, [r0]\n"
-    "mov r2, r8\n"
-    "lsls r1, r2, #3\n"
-    "adds r1, r1, r5\n"
-    "bl GetFoodStackAt__6FridgeUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp, #4]\n"
-    "add r0, sp, #4\n"
-    "bl IsEmpty__C9FoodStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lrefrigerator_3_0064\n"
-    "adds r0, r7, #0\n"
-    "add r1, sp, #4\n"
-    "bl GetFood__C9FoodStack\n"
-    "adds r0, r7, #0\n"
-    "bl GetIconId__C4Food\n"
-    "adds r4, r0, #0\n"
-    "lsls r4, r4, #0x10\n"
-    "lsrs r4, r4, #0x10\n"
-    "add r0, sp, #4\n"
-    "bl GetAmount__C9FoodStack\n"
-    "ldr r1, [r6, #0x7c]\n"
-    "str r0, [sp]\n"
-    "adds r0, r1, #0\n"
-    "adds r1, r5, #0\n"
-    "ldr r2, .Lrefrigerator_3_0060\n"
-    "adds r3, r4, #0\n"
-    "bl func_080CC728\n"
-    "b .Lrefrigerator_3_006c\n"
-    ".align 2, 0\n"
-#if defined(REGION_JP)
-    ".Lrefrigerator_3_0060: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Lrefrigerator_3_0060: .word gUnk_086678A0\n"
-#endif
-    ".Lrefrigerator_3_0064:\n"
-    "ldr r0, [r6, #0x7c]\n"
-    "adds r1, r5, #0\n"
-    "bl func_080CCDEC\n"
-    ".Lrefrigerator_3_006c:\n"
-    "adds r5, #1\n"
-    "cmp r5, #7\n"
-    "bls .Lrefrigerator_3_0010\n"
-    "add sp, #0xc\n"
-    "pop {r3}\n"
-    "mov r8, r3\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
 );
+
+void RefrigeratorSceneCore::DrawFridgePage(u32 page)
+{
+    for (u32 slot = 0; slot < 8; ++slot) {
+        FoodStack stack = *fridge->GetFoodStackAt(page * 8 + slot);
+        if (!stack.IsEmpty()) {
+            u16 icon = stack.GetFood().GetIconId();
+#if defined(REGION_JP)
+            func_080CC728(right_panel.value, slot, gUnk_083ED9FC, icon, stack.GetAmount());
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            func_080CC728(right_panel.value, slot, gUnk_086678A0, icon, stack.GetAmount());
+#endif
+        } else {
+            func_080CCDEC(right_panel.value, slot);
+        }
+    }
+}
 
 extern "C" u32 func_080CEB80(void *);
 void RefrigeratorSceneCore::ShowNextPage()
@@ -3993,7 +3944,6 @@ asm_unified(
 
 extern "C" void func_080CC0B4(void *);
 extern "C" void func_080CBA60(void *, u32);
-extern "C" void func_080CCDEC(void *, u32);
 
 void RefrigeratorSceneCore::DiscardItem(i32 selection)
 {

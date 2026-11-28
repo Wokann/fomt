@@ -122,81 +122,26 @@ asm_unified(
     ".Ltool_chest_2_00cc: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start DrawToolChestPage__18ToolChestSceneCoreUi\n"
-    "DrawToolChestPage__18ToolChestSceneCoreUi:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, r8\n"
-    "push {r7}\n"
-    "sub sp, #0xc\n"
-    "adds r6, r0, #0x0\n"
-    "mov r8, r1\n"
-    "movs r7, #0x0\n"
-    ".Ltool_chest_3_000e:\n"
-    "movs r1, #0x82\n"
-    "lsls r1, r1, #0x1\n"
-    "adds r0, r6, r1\n"
-    "ldr r0, [r0]\n"
-    "mov r2, r8\n"
-    "lsls r1, r2, #0x3\n"
-    "adds r1, r1, r7\n"
-    "bl GetToolStackAt__9ToolChestUi\n"
-    "adds r1, r0, #0x0\n"
-    "add r0, sp, #0x4\n"
-    "movs r2, #0x2\n"
-    "bl memcpy\n"
-    "add r0, sp, #0x4\n"
-    "bl IsEmpty__C9ToolStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0x0\n"
-    "bne .Ltool_chest_3_0078\n"
-    "add r0, sp, #0x4\n"
-    "bl GetTool__C9ToolStack\n"
-    "adds r1, r0, #0x0\n"
-    "ldr r0, [r6, #0x8]\n"
-    "ldr r2, .Ltool_chest_3_0070\n"
-    "adds r0, r0, r2\n"
-    "bl GetUpgradedTool__C6FarmerG4Tool\n"
-    "adds r1, r0, #0x0\n"
-    "add r0, sp, #0x8\n"
-    "strb r1, [r0]\n"
-    "bl GetIconId__C4Tool\n"
-    "adds r4, r0, #0x0\n"
-    "lsls r4, r4, #0x10\n"
-    "lsrs r4, r4, #0x10\n"
-    "ldr r5, [r6, #0x7c]\n"
-    "add r0, sp, #0x4\n"
-    "bl GetAmount__C9ToolStack\n"
-    "str r0, [sp]\n"
-    "adds r0, r5, #0x0\n"
-    "adds r1, r7, #0x0\n"
-    "ldr r2, .Ltool_chest_3_0074\n"
-    "adds r3, r4, #0x0\n"
-    "bl func_080CC728\n"
-    "b .Ltool_chest_3_0080\n"
-    ".align 2, 0\n"
-    ".Ltool_chest_3_0070: .word 0x1bd8\n"
-#if defined(REGION_JP)
-    ".Ltool_chest_3_0074: .word gUnk_083ED9FC\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    ".Ltool_chest_3_0074: .word gUnk_086678A0\n"
-#endif
-    ".Ltool_chest_3_0078:\n"
-    "ldr r0, [r6, #0x7c]\n"
-    "adds r1, r7, #0x0\n"
-    "bl func_080CCDEC\n"
-    ".Ltool_chest_3_0080:\n"
-    "adds r7, #0x1\n"
-    "cmp r7, #0x7\n"
-    "bls .Ltool_chest_3_000e\n"
-    "add sp, #0xc\n"
-    "pop {r3}\n"
-    "mov r8, r3\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
 );
+
+void ToolChestSceneCore::DrawToolChestPage(u32 page)
+{
+    for (u32 slot = 0; slot < 8; ++slot) {
+        ToolStack stack = *tool_chest->GetToolStackAt(page * 8 + slot);
+        if (!stack.IsEmpty()) {
+            Tool tool = stack.GetTool();
+            u16 icon = save->farmer.GetUpgradedTool(tool).GetIconId();
+            GameMenuSpritePanel * panel = right_panel.value;
+#if defined(REGION_JP)
+            func_080CC728(panel, slot, gUnk_083ED9FC, icon, stack.GetAmount());
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+            func_080CC728(panel, slot, gUnk_086678A0, icon, stack.GetAmount());
+#endif
+        } else {
+            func_080CCDEC(right_panel.value, slot);
+        }
+    }
+}
 
 extern "C" u32 func_080CEB80(void *);
 void ToolChestSceneCore::ShowNextPage()
