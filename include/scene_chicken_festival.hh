@@ -85,7 +85,9 @@ struct ChickenFestivalSlot {
     u8 unk_29;                    /* +0x29 */
     u16 unk_2A;                   /* +0x2A, resolved offset */
     u8 unk_2C[4];                 /* +0x2C, +0x2D used by the phase updater */
-    u8 unk_30[0x40 - 0x30];       /* +0x30 */
+    u8 unk_30;                    /* +0x30 */
+    u8 unk_31;                    /* +0x31 */
+    char name[14];                /* +0x32 */
 };
 
 struct ChickenFestivalMinigameCore;
@@ -110,6 +112,8 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     void UpdateParticipantSlots();
     u16 GetSpriteAnimationIndex(i32 kind, u32 index, u32 frame) const;
     void ResetRun();
+    void SelectRoundOpponent();
+    void PrepareRoundDisplay();
     void SetSlotState2(u8 index);
     void SetSlotState4(u8 index);
     void UpdateUnkPhase0();
@@ -175,7 +179,7 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     IndexedResourceGroupResult group_ACC;
     ChickenFestivalSpriteParametersOwner parameters_AEC[10];
     i32 phase;
-    u32 unk_B18;
+    i32 round_index;
     ChickenFestivalEntrant unk_B1C;
     bool won;
     u8 unk_B31;
@@ -183,16 +187,24 @@ struct ChickenFestivalMinigameCore : HardwareContext {
     u8 unk_B33[0xB35 - 0xB33];
     u8 unk_B35[5];             /* +0xB35 */
     u8 unk_B3A;                /* +0xB3A */
-    u8 unk_B3B[0xB40 - 0xB3B]; /* +0xB3B */
+    u8 unk_B3B[2];            /* +0xB3B */
+    u8 opponent_indices[3];   /* +0xB3D */
     u32 unk_B40[2];            /* +0xB40, per-slot timers */
     u8 unk_B48[8];             /* +0xB48 */
     u32 unk_B50;               /* +0xB50 */
-    u8 unk_B54[0xB5A - 0xB54]; /* +0xB54 */
+    u8 unk_B54[4];            /* +0xB54 */
+    u8 unk_B58;
+    u8 unk_B59;
     u8 unk_B5A;                /* +0xB5A */
     u8 unk_B5B[0xB78 - 0xB5B]; /* +0xB5B */
 };
 
 
+
+
+extern "C" bool IsChickenFestivalTargetInCone(ChickenFestivalMinigameCore const *,
+    u16 origin_y, u16 origin_x, i32 direction, u16 target_y, u16 target_x,
+    u8 radius, u16 half_angle);
 
 
 enum

@@ -1000,87 +1000,27 @@ void ChickenFestivalMinigameCore::PrepareDisplay()
     EnableHardwareForcedBlank(this);
 }
 
+void ChickenFestivalMinigameCore::ResetRun()
+{
+    unk_B31 = 0;
+    finished = false;
+    round_index = unk_B58;
+    phase = 0;
+    opponent_indices[0] = 22;
+    opponent_indices[1] = 22;
+    opponent_indices[2] = 22;
+    UiStateOwner * window = ui_state.Get();
+    HardwareInputState * input = &GetHardwareCoreState(reinterpret_cast<void * const *>(this))->input;
+    HardwareSpriteBufferState * sprites = GetHardwareSpriteBuffer(reinterpret_cast<void * const *>(this));
+    HardwareDisplayState * display = GetHardwareDisplayState(reinterpret_cast<void * const *>(this));
+    HardwareLinkedList * commands = GetHardwareCommandList(reinterpret_cast<void * const *>(this));
+    HardwareInterruptList * interrupts = GetHardwareInterruptList(reinterpret_cast<void * const *>(this));
+    HardwareMusicPlayerSlot * music = &music_players[1];
+    window->Update(input, sprites, display, commands, interrupts, music);
+}
+
 asm_unified(
-    ".text\n"
-    "thumb_func_start ResetRun__27ChickenFestivalMinigameCore\n"
-    "ResetRun__27ChickenFestivalMinigameCore:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, sl\n"
-    "mov r5, sb\n"
-    "mov r4, r8\n"
-    "push {r4, r5, r6}\n"
-    "sub sp, #0xc\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, .Lchicken_festival_09fc\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0\n"
-    "strb r1, [r0]\n"
-    "ldr r2, .Lchicken_festival_0a00\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "ldr r3, .Lchicken_festival_0a04\n"
-    "adds r2, r4, r3\n"
-    "adds r3, #0x40\n"
-    "adds r0, r4, r3\n"
-    "ldrb r0, [r0]\n"
-    "str r0, [r2]\n"
-    "ldr r2, .Lchicken_festival_0a08\n"
-    "adds r0, r4, r2\n"
-    "str r1, [r0]\n"
-    "subs r3, #0x1b\n"
-    "adds r0, r4, r3\n"
-    "movs r1, #0x16\n"
-    "strb r1, [r0]\n"
-    "adds r2, #0x2a\n"
-    "adds r0, r4, r2\n"
-    "strb r1, [r0]\n"
-    "adds r3, #2\n"
-    "adds r0, r4, r3\n"
-    "strb r1, [r0]\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r4, r1\n"
-    "ldr r0, [r0]\n"
-    "mov sl, r0\n"
-    "adds r0, r4, #0\n"
-    "bl GetHardwareCoreState\n"
-    "mov sb, r0\n"
-    "adds r0, r4, #0\n"
-    "bl GetHardwareSpriteBuffer\n"
-    "mov r8, r0\n"
-    "adds r0, r4, #0\n"
-    "bl GetHardwareDisplayState\n"
-    "adds r6, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetHardwareCommandList\n"
-    "adds r5, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetHardwareInterruptList\n"
-    "movs r2, #0xe1\n"
-    "lsls r2, r2, #3\n"
-    "adds r4, r4, r2\n"
-    "str r5, [sp]\n"
-    "str r0, [sp, #4]\n"
-    "str r4, [sp, #8]\n"
-    "mov r0, sl\n"
-    "mov r1, sb\n"
-    "mov r2, r8\n"
-    "adds r3, r6, #0\n"
-    "bl Update__C12UiStateOwnerP18HardwareInputStateP25HardwareSpriteBufferStateP20HardwareDisplayStateP18HardwareLinkedListP21HardwareInterruptListP23HardwareMusicPlayerSlot\n"
-    "add sp, #0xc\n"
-    "pop {r3, r4, r5}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "mov sl, r5\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_09fc: .word 0xb31\n"
-    ".Lchicken_festival_0a00: .word 0xb32\n"
-    ".Lchicken_festival_0a04: .word 0xb18\n"
-    ".Lchicken_festival_0a08: .word 0xb14\n"
-    "\n"
+    "    .align 2, 0\n"
     "thumb_func_start UpdateUnkPhase1__27ChickenFestivalMinigameCore\n"
     "UpdateUnkPhase1__27ChickenFestivalMinigameCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -3368,7 +3308,7 @@ asm_unified(
     "bl GetObjTileIndex\n"
     "str r0, [sp, #0x150]\n"
     "ldr r0, [sp, #0x138]\n"
-    "bl func_080B757C\n"
+    "bl SelectRoundOpponent__27ChickenFestivalMinigameCore\n"
     "ldr r0, [sp, #0x138]\n"
     "ldr r1, [sp, #0x13c]\n"
     "bl func_080B7164\n"
@@ -7086,8 +7026,8 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start func_080B757C\n"
-    "func_080B757C:\n"
+    "thumb_func_start SelectRoundOpponent__27ChickenFestivalMinigameCore\n"
+    "SelectRoundOpponent__27ChickenFestivalMinigameCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
     "mov r7, r8\n"
     "push {r7}\n"
@@ -9445,8 +9385,8 @@ asm_unified(
     ".Lchicken_festival_4b2c: .word 0xb2d\n"
     ".Lchicken_festival_4b30: .word 0xb3a\n"
     "\n"
-    "thumb_func_start func_080B87C4\n"
-    "func_080B87C4:\n"
+    "thumb_func_start PrepareRoundDisplay__27ChickenFestivalMinigameCore\n"
+    "PrepareRoundDisplay__27ChickenFestivalMinigameCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
     "mov r7, sl\n"
     "mov r6, sb\n"
@@ -9707,7 +9647,7 @@ asm_unified(
     "movs r0, #0\n"
     "str r0, [sp, #0x50]\n"
     "adds r0, r7, #0\n"
-    "bl func_080B87C4\n"
+    "bl PrepareRoundDisplay__27ChickenFestivalMinigameCore\n"
     "add r0, sp, #0x3c\n"
     "bl ConstructObjPalettePoolOwner\n"
     "ldr r1, [sp, #0x38]\n"
@@ -10144,7 +10084,7 @@ asm_unified(
 extern "C" u16 func_080B8DAC(ChickenFestivalMinigameCore * core, i32 a, i32 b, u8 c)
 {
     if (c == 1)
-        c = core->unk_B18 + 1;
+        c = core->round_index + 1;
 
     return gUnk_HarvestSpriteMiniGameChickenFestivalValues[c][a]
          + gUnk_HarvestSpriteMiniGameChickenFestivalOffsets[b];
@@ -10815,7 +10755,7 @@ asm_unified(
     "ldrh r0, [r0]\n"
     "str r0, [sp, #0xc]\n"
     "adds r0, r4, #0\n"
-    "bl func_080B96AC\n"
+    "bl IsChickenFestivalTargetInCone\n"
     "lsls r0, r0, #0x18\n"
     "cmp r0, #0\n"
     "beq .Lchicken_festival_56b0\n"
@@ -10970,7 +10910,7 @@ extern "C" void func_080B9428(ChickenFestivalMinigameCore * self)
         return;
     }
 
-    self->slots[1].unk_30[0] = 0;
+    self->slots[1].unk_30 = 0;
     self->slots[1].unk_1C = 0;
     self->slots[1].unk_2C[1] = 1;
     self->slots[1].state = 5;
@@ -11076,7 +11016,7 @@ asm_unified(
     "ldrh r0, [r7]\n"
     "str r0, [sp, #0xc]\n"
     "adds r0, r5, #0\n"
-    "bl func_080B96AC\n"
+    "bl IsChickenFestivalTargetInCone\n"
     "lsls r0, r0, #0x18\n"
     "cmp r0, #0\n"
     "bne .Lchicken_festival_58ba\n"
@@ -11102,7 +11042,7 @@ asm_unified(
     "ldrh r0, [r7]\n"
     "str r0, [sp, #0xc]\n"
     "adds r0, r5, #0\n"
-    "bl func_080B96AC\n"
+    "bl IsChickenFestivalTargetInCone\n"
     "lsls r0, r0, #0x18\n"
     "cmp r0, #0\n"
     "beq .Lchicken_festival_59c4\n"
@@ -11166,7 +11106,7 @@ asm_unified(
     "ldrh r0, [r0]\n"
     "str r0, [sp, #0xc]\n"
     "adds r0, r5, #0\n"
-    "bl func_080B96AC\n"
+    "bl IsChickenFestivalTargetInCone\n"
     "lsls r0, r0, #0x18\n"
     "cmp r0, #0\n"
     "beq .Lchicken_festival_59c4\n"
@@ -11252,8 +11192,12 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080B96AC\n"
-    "func_080B96AC:\n"
+);
+
+asm_unified(
+    "    .align 2, 0\n"
+    "thumb_func_start IsChickenFestivalTargetInCone\n"
+    "IsChickenFestivalTargetInCone:\n"
     "push {r4, r5, r6, r7, lr}\n"
     "mov r7, r8\n"
     "push {r7}\n"
@@ -11328,6 +11272,10 @@ asm_unified(
     "bx r1\n"
     ".align 2, 0\n"
     "\n"
+);
+
+asm_unified(
+    "    .align 2, 0\n"
     "thumb_func_start func_080B9734\n"
     "func_080B9734:\n"
     "push {r4, r5, r6, lr}\n"
@@ -12073,7 +12021,7 @@ asm_unified(
     "lsls r0, r0, #6\n"
     "str r0, [sp, #0xc]\n"
     "mov r0, r8\n"
-    "bl func_080B96AC\n"
+    "bl IsChickenFestivalTargetInCone\n"
     "lsls r0, r0, #0x18\n"
     "cmp r0, #0\n"
     "beq .Lchicken_festival_6122\n"
@@ -13222,13 +13170,13 @@ extern "C" void func_080BA6B8(ChickenFestivalMinigameCore * self)
 {
     u32 const keys = GetHardwareRepeatedKeys(reinterpret_cast<void * const *>(self));
 
-    if (self->slots[0].unk_30[0] == 1 && (keys & 1) != 0)
+    if (self->slots[0].unk_30 == 1 && (keys & 1) != 0)
     {
         self->slots[0].unk_2C[0] = 1;
 
         if (self->slots[0].state <= 1)
         {
-            self->slots[0].unk_30[0] = 0;
+            self->slots[0].unk_30 = 0;
             self->slots[0].unk_1C = 0;
             self->slots[0].unk_2C[1] = 1;
             self->slots[0].state = 5;
@@ -13237,7 +13185,7 @@ extern "C" void func_080BA6B8(ChickenFestivalMinigameCore * self)
         }
     }
 
-    if (self->slots[1].unk_30[0] == 1)
+    if (self->slots[1].unk_30 == 1)
     {
         self->unk_B3A++;
 
@@ -15504,7 +15452,7 @@ u16 ChickenFestivalMinigameCore::GetSpriteAnimationIndex(i32 kind, u32 index, u3
         break;
     case 1:
         if (index != 0)
-            index += unk_B18;
+            index += round_index;
         animation = gUnk_080BB890TableValues[index][frame];
         break;
     case 2:
