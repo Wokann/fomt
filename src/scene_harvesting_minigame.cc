@@ -5,6 +5,9 @@
 #include <new>
 #include "hardware_display_state.hh"
 #include "gbaio.h"
+#include "compression.hh"
+#include "hardware_dma.hh"
+#include "hardware_display_state.hh"
 
 extern "C" void func_080BDF40(HarvestSpriteHarvestingCore *);
 
@@ -485,7 +488,7 @@ asm_unified(
     "adds r0, r7, #0\n"
     "bl func_080BEA34\n"
     "adds r0, r7, #0\n"
-    "bl func_080BCFAC\n"
+    "bl LoadHarvestingMinigameGraphics\n"
     "adds r0, r7, #0\n"
     "bl func_080BD064\n"
     "movs r1, #0xaf\n"
@@ -774,84 +777,25 @@ asm_unified(
     "bx r0\n"
     ".align 2, 0\n"
     "\n"
-    "thumb_func_start func_080BCFAC\n"
-    "func_080BCFAC:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6}\n"
-    "sub sp, #4\n"
-    "mov sb, r0\n"
-    "movs r5, #1\n"
-    "rsbs r5, r5, #0\n"
-    "ldr r0, .Lharvesting_05_0098\n"
-    "mov r8, r0\n"
-    "movs r6, #0x80\n"
-    "lsls r6, r6, #4\n"
-    "adds r0, r5, #0\n"
-    "mov r1, r8\n"
-    "adds r2, r6, #0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r4, .Lharvesting_05_009c\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r4, #0\n"
-    "adds r2, r6, #0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r0, .Lharvesting_05_00a0\n"
-    "adds r1, r4, #0\n"
-    "bl Unpack\n"
-    "ldr r0, .Lharvesting_05_00a4\n"
-    "mov r1, r8\n"
-    "bl Unpack\n"
-    "ldr r0, .Lharvesting_05_00a8\n"
-    "movs r1, #0xc0\n"
-    "lsls r1, r1, #0x13\n"
-    "bl Unpack\n"
-    "ldr r0, .Lharvesting_05_00ac\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #0x13\n"
-    "movs r2, #0x80\n"
-    "lsls r2, r2, #2\n"
-    "bl CopyHardwareDma3\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "movs r3, #0xb2\n"
-    "lsls r3, r3, #5\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0]\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "ldr r3, .Lharvesting_05_00b0\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xa]\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "ldr r3, .Lharvesting_05_00b4\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xc]\n"
-    "add sp, #4\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lharvesting_05_0098: .word 0x600f000\n"
-    ".Lharvesting_05_009c: .word 0x600f800\n"
-    ".Lharvesting_05_00a0: .word gUiScene080BCFACLayer0TilemapLz\n"
-    ".Lharvesting_05_00a4: .word gUiScene080BCFACLayer1TilemapLz\n"
-    ".Lharvesting_05_00a8: .word gUiScene080BCFACTilesLz\n"
-    ".Lharvesting_05_00ac: .word gUiScene080BCFACPalette\n"
-    ".Lharvesting_05_00b0: .word 0x1e41\n"
-    ".Lharvesting_05_00b4: .word 0x1f42\n"
-    "\n"
+);
+
+extern "C" void LoadHarvestingMinigameGraphics(HarvestSpriteHarvestingCore * core)
+{
+    FillHardwareDma3(0xFFFFFFFF, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)), BG_SCREEN_SIZE);
+    FillHardwareDma3(0xFFFFFFFF, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)), BG_SCREEN_SIZE);
+    Unpack(gUiScene080BCFACLayer0TilemapLz, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)));
+    Unpack(gUiScene080BCFACLayer1TilemapLz, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)));
+    Unpack(gUiScene080BCFACTilesLz, reinterpret_cast<void *>(BG_CHAR_ADDR(0)));
+    CopyHardwareDma3(gUiScene080BCFACPalette, reinterpret_cast<void *>(BG_PLTT), BG_PLTT_SIZE);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetDisplayFlags(
+        DISPCNT_OBJ_1D_MAP | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(1,
+        BGCNT_PRIORITY(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(30));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(2,
+        BGCNT_PRIORITY(2) | BGCNT_MOSAIC | BGCNT_SCREENBASE(31));
+}
+
+asm_unified(
     "thumb_func_start func_080BD064\n"
     "func_080BD064:\n"
     "push {r4, r5, r6, r7, lr}\n"

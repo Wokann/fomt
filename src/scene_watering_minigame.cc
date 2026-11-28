@@ -4,6 +4,9 @@
 // The UI scene allocates its concrete minigame core.
 #include <new>
 #include "gbaio.h"
+#include "compression.hh"
+#include "hardware_dma.hh"
+#include "hardware_display_state.hh"
 #include "hardware_context.hh"
 
 asm_unified(
@@ -658,7 +661,7 @@ asm_unified(
     "adds r0, r7, #0\n"
     "bl func_080C3C18\n"
     "adds r0, r7, #0\n"
-    "bl func_080C160C\n"
+    "bl LoadWateringMinigameGraphics\n"
     "adds r0, r7, #0\n"
     "bl func_080C16D4\n"
     "movs r1, #0x81\n"
@@ -986,97 +989,26 @@ asm_unified(
     ".Lwatering_04_013c: .word 0x88c\n"
     ".Lwatering_04_0140: .word 0x894\n"
     "\n"
-    "thumb_func_start func_080C160C\n"
-    "func_080C160C:\n"
-    "push {r4, r5, r6, lr}\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6}\n"
-    "sub sp, #4\n"
-    "mov sb, r0\n"
-    "ldr r1, .Lwatering_05_00a0\n"
-    "movs r0, #0\n"
-    "movs r2, #0x20\n"
-    "bl FillHardwareDma3\n"
-    "movs r5, #1\n"
-    "rsbs r5, r5, #0\n"
-    "ldr r0, .Lwatering_05_00a4\n"
-    "mov r8, r0\n"
-    "movs r6, #0x80\n"
-    "lsls r6, r6, #4\n"
-    "adds r0, r5, #0\n"
-    "mov r1, r8\n"
-    "adds r2, r6, #0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r4, .Lwatering_05_00a8\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r4, #0\n"
-    "adds r2, r6, #0\n"
-    "bl FillHardwareDma3\n"
-    "ldr r0, .Lwatering_05_00ac\n"
-    "adds r1, r4, #0\n"
-    "bl Unpack\n"
-    "ldr r0, .Lwatering_05_00b0\n"
-    "mov r1, r8\n"
-    "bl Unpack\n"
-    "ldr r0, .Lwatering_05_00b4\n"
-#if defined(REGION_JP)
-    "movs r1, #(VRAM >> 19)\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "movs r1, #0xc0\n"
-#endif
-    "lsls r1, r1, #0x13\n"
-    "bl Unpack\n"
-    "ldr r0, .Lwatering_05_00b8\n"
-    "ldr r1, .Lwatering_05_00bc\n"
-#if defined(REGION_JP)
-    "movs r2, #(BG_PLTT_SIZE >> 2)\n"
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "movs r2, #0x80\n"
-#endif
-    "lsls r2, r2, #2\n"
-    "bl CopyHardwareDma3\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "movs r3, #0xb2\n"
-    "lsls r3, r3, #5\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0]\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "ldr r3, .Lwatering_05_00c0\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xa]\n"
-    "mov r0, sb\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "ldr r3, .Lwatering_05_00c4\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0, #0xc]\n"
-    "add sp, #4\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwatering_05_00a0: .word 0x6007fe0\n"
-    ".Lwatering_05_00a4: .word 0x600f000\n"
-    ".Lwatering_05_00a8: .word 0x600f800\n"
-    ".Lwatering_05_00ac: .word gUiScene080C160CLayer0TilemapLz\n"
-    ".Lwatering_05_00b0: .word gUiScene080C160CLayer1TilemapLz\n"
-    ".Lwatering_05_00b4: .word gUiScene080C160CTilesLz\n"
-    ".Lwatering_05_00b8: .word gUiScene080C160CPalette\n"
-    ".Lwatering_05_00bc: .word BG_PLTT + PLTT_SIZE_4BPP\n"
-    ".Lwatering_05_00c0: .word 0x1e41\n"
-    ".Lwatering_05_00c4: .word 0x1f42\n"
-    "\n"
+);
+
+extern "C" void LoadWateringMinigameGraphics(HarvestSpriteWateringCore * core)
+{
+    FillHardwareDma3(0, reinterpret_cast<void *>(BG_CHAR_ADDR(2) - TILE_SIZE_4BPP), TILE_SIZE_4BPP);
+    FillHardwareDma3(0xFFFFFFFF, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)), BG_SCREEN_SIZE);
+    FillHardwareDma3(0xFFFFFFFF, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)), BG_SCREEN_SIZE);
+    Unpack(gUiScene080C160CLayer0TilemapLz, reinterpret_cast<void *>(BG_SCREEN_ADDR(31)));
+    Unpack(gUiScene080C160CLayer1TilemapLz, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)));
+    Unpack(gUiScene080C160CTilesLz, reinterpret_cast<void *>(BG_CHAR_ADDR(0)));
+    CopyHardwareDma3(gUiScene080C160CPalette, reinterpret_cast<void *>(BG_PLTT + PLTT_SIZE_4BPP), BG_PLTT_SIZE);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetDisplayFlags(
+        DISPCNT_OBJ_1D_MAP | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(1,
+        BGCNT_PRIORITY(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(30));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(2,
+        BGCNT_PRIORITY(2) | BGCNT_MOSAIC | BGCNT_SCREENBASE(31));
+}
+
+asm_unified(
     "thumb_func_start func_080C16D4\n"
     "func_080C16D4:\n"
     "push {r4, r5, r6, r7, lr}\n"

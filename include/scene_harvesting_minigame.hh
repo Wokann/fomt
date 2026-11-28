@@ -136,4 +136,11 @@ extern char const gText_HarvestSpriteMiniGame_Harvest_ScoreSummary[];
 extern u16 const gUnk_080C09D8Values[11];
 extern u16 const gUnk_080C0B58Values[7];
 
+
+extern "C" void LoadHarvestingMinigameGraphics(HarvestSpriteHarvestingCore * core);
+extern u8 const gUiScene080BCFACLayer0TilemapLz[];
+extern u8 const gUiScene080BCFACLayer1TilemapLz[];
+extern u8 const gUiScene080BCFACTilesLz[];
+extern u8 const gUiScene080BCFACPalette[];
+
 #endif // SCENE_HARVESTING_MINIGAME_HH

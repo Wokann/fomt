@@ -4,6 +4,10 @@
 
 #include "hardware_context.hh"
 #include "hardware_input.hh"
+#include "hardware_display_state.hh"
+#include "hardware_dma.hh"
+#include "compression.hh"
+#include "gbaio.h"
 #include "game_state.hh"
 
 #include <new>
@@ -1269,129 +1273,33 @@ void UpdateIntroStoryUi(IntroStorySceneCore * core)
     }
 }
 
-asm_unified(
-    ".text\n"
-    ".align 2, 0\n"
-    "\n"
-    "\tthumb_func_start InitializeIntroStoryGraphics\n"
-    "InitializeIntroStoryGraphics: @ 0x0805FBB8\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #4\n"
-    "\tadds r6, r0, #0\n"
-    "\tldr r1, .L0805FCA0\n"
-    "\tmovs r0, #0\n"
-    "\tmovs r2, #TILE_SIZE_4BPP\n"
-    "\tbl FillHardwareDma3\n"
-    "\tldr r4, .L0805FCA4 @ =0x10661066\n"
-    "\tldr r1, .L0805FCA8\n"
-    "\tmovs r5, #(BG_SCREEN_SIZE >> 4)\n"
-    "\tlsls r5, r5, #4\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r2, r5, #0\n"
-    "\tbl FillHardwareDma3\n"
-    "\tldr r1, .L0805FCAC\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r2, r5, #0\n"
-    "\tbl FillHardwareDma3\n"
-    "\tldr r1, .L0805FCB0\n"
-    "\tadds r0, r4, #0\n"
-    "\tadds r2, r5, #0\n"
-    "\tbl FillHardwareDma3\n"
-    "\tldr r0, .L0805FCB4 @ =gUnk_08743058\n"
-    "\tmovs r1, #0xc0\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tbl Unpack\n"
-    "\tldr r0, .L0805FCB8 @ =gUnk_08747A14\n"
-    "\tmovs r4, #0xa0\n"
-    "\tlsls r4, r4, #0x13\n"
-    "\tadds r1, r4, #0\n"
-    "\tmovs r2, #0x40\n"
-    "\tbl CopyHardwareDma3\n"
-    "\tldr r1, .L0805FCBC @ =0x00007FFF\n"
-    "\tadds r0, r1, #0\n"
-    "\tstrh r0, [r4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r1, sp\n"
-    "\tmovs r3, #0xe2\n"
-    "\tlsls r3, r3, #5\n"
-    "\tadds r2, r3, #0\n"
-    "\tstrh r2, [r1]\n"
-    "\tmovs r4, #0\n"
-    "\tstrh r2, [r0]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r2, sp\n"
-    "\tldr r3, .L0805FCC0 @ =0x00001E43\n"
-    "\tadds r1, r3, #0\n"
-    "\tstrh r1, [r2]\n"
-    "\tstrh r1, [r0, #0xe]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r2, sp\n"
-    "\tldr r3, .L0805FCC4 @ =0x00001D42\n"
-    "\tadds r1, r3, #0\n"
-    "\tstrh r1, [r2]\n"
-    "\tstrh r1, [r0, #0xc]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r2, sp\n"
-    "\tldr r3, .L0805FCC8 @ =0x00001C41\n"
-    "\tadds r1, r3, #0\n"
-    "\tstrh r1, [r2]\n"
-    "\tstrh r1, [r0, #0xa]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r1, sp\n"
-    "\tstrh r4, [r1]\n"
-    "\tstrh r4, [r0, #0x18]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r1, sp\n"
-    "\tstrh r4, [r1]\n"
-    "\tstrh r4, [r0, #0x1a]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r1, sp\n"
-    "\tstrh r4, [r1]\n"
-    "\tstrh r4, [r0, #0x1c]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetHardwareDisplayState\n"
-    "\tmov r1, sp\n"
-    "\tstrh r4, [r1]\n"
-    "\tstrh r4, [r0, #0x1e]\n"
-    "\tadds r6, #0x20\n"
-    "\tldr r5, .L0805FCCC @ =gIntroStoryTilemapSources\n"
-    "\tmovs r4, #0x13\n"
-    ".L0805FC84:\n"
-    "\tldm r5!, {r0}\n"
-    "\tadds r1, r6, #0\n"
-    "\tbl Unpack\n"
-    "\tmovs r0, #0xa0\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r6, r6, r0\n"
-    "\tsubs r4, #1\n"
-    "\tcmp r4, #0\n"
-    "\tbge .L0805FC84\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L0805FCA0: .word VRAM + 1023 * TILE_SIZE_4BPP\n"
-    ".L0805FCA4: .word 0x10661066\n"
-    ".L0805FCA8: .word VRAM + 28 * BG_SCREEN_SIZE\n"
-    ".L0805FCAC: .word VRAM + 29 * BG_SCREEN_SIZE\n"
-    ".L0805FCB0: .word VRAM + 30 * BG_SCREEN_SIZE\n"
-    ".L0805FCB4: .word gUnk_08743058\n"
-    ".L0805FCB8: .word gUnk_08747A14\n"
-    ".L0805FCBC: .word 0x00007FFF\n"
-    ".L0805FCC0: .word 0x00001E43\n"
-    ".L0805FCC4: .word 0x00001D42\n"
-    ".L0805FCC8: .word 0x00001C41\n"
-    ".L0805FCCC: .word gIntroStoryTilemapSources\n"
-);
+extern u8 const gUnk_08743058[];
+extern u8 const gUnk_08747A14[];
 
+void InitializeIntroStoryGraphics(IntroStorySceneCore * core)
+{
+    FillHardwareDma3(0, reinterpret_cast<void *>(VRAM + 1023 * TILE_SIZE_4BPP), TILE_SIZE_4BPP);
+    FillHardwareDma3(0x10661066, reinterpret_cast<void *>(BG_SCREEN_ADDR(28)), BG_SCREEN_SIZE);
+    FillHardwareDma3(0x10661066, reinterpret_cast<void *>(BG_SCREEN_ADDR(29)), BG_SCREEN_SIZE);
+    FillHardwareDma3(0x10661066, reinterpret_cast<void *>(BG_SCREEN_ADDR(30)), BG_SCREEN_SIZE);
+    Unpack(gUnk_08743058, reinterpret_cast<void *>(BG_CHAR_ADDR(0)));
+    CopyHardwareDma3(gUnk_08747A14, reinterpret_cast<void *>(BG_PLTT), 2 * PLTT_SIZE_4BPP);
+    *reinterpret_cast<volatile u16 *>(BG_PLTT) = RGB(31, 31, 31);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetDisplayFlags(
+        DISPCNT_OBJ_1D_MAP | DISPCNT_BG2_ON | DISPCNT_BG3_ON | DISPCNT_OBJ_ON);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(3,
+        BGCNT_PRIORITY(3) | BGCNT_MOSAIC | BGCNT_SCREENBASE(30));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(2,
+        BGCNT_PRIORITY(2) | BGCNT_MOSAIC | BGCNT_SCREENBASE(29));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetBackgroundFlags(1,
+        BGCNT_PRIORITY(1) | BGCNT_MOSAIC | BGCNT_SCREENBASE(28));
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetHorizontalOffset(2, 0);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetVerticalOffset(2, 0);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetHorizontalOffset(3, 0);
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(core))->SetVerticalOffset(3, 0);
+    for (i32 i = 0; i < static_cast<i32>(ARRAY_COUNT(gIntroStoryTilemapSources)); ++i)
+        Unpack(gIntroStoryTilemapSources[i], core->background_tilemaps[i]);
+}
 
 inline IntroStoryCoreOwner::IntroStoryCoreOwner(GameStateSaveImage * saved)
     : value(new IntroStorySceneCore(saved)) {}
@@ -1423,17 +1331,17 @@ EXTERN_C
 
 // Ten pairs of compressed 32x20 BG tilemaps, in the loader's exact order.
 // They are map entries, not 4bpp pixels or OAM descriptors.
-u8 const * const gIntroStoryTilemapSources[10][2] = {
-    { gIntroStoryFrame00Bg3Tilemap, gIntroStoryFrame00Bg2Tilemap },
-    { gIntroStoryFrame01Bg3Tilemap, gIntroStoryFrame01Bg2Tilemap },
-    { gIntroStoryFrame02Bg3Tilemap, gIntroStoryFrame02Bg2Tilemap },
-    { gIntroStoryFrame03Bg3Tilemap, gIntroStoryFrame03Bg2Tilemap },
-    { gIntroStoryFrame04Bg3Tilemap, gIntroStoryFrame04Bg2Tilemap },
-    { gIntroStoryFrame05Bg3Tilemap, gIntroStoryFrame05Bg2Tilemap },
-    { gIntroStoryFrame06Bg3Tilemap, gIntroStoryFrame06Bg2Tilemap },
-    { gIntroStoryFrame07Bg3Tilemap, gIntroStoryFrame07Bg2Tilemap },
-    { gIntroStoryFrame08Bg3Tilemap, gIntroStoryFrame08Bg2Tilemap },
-    { gIntroStoryFrame09Bg3Tilemap, gIntroStoryFrame09Bg2Tilemap },
+u8 const * const gIntroStoryTilemapSources[20] = {
+    gIntroStoryFrame00Bg3Tilemap, gIntroStoryFrame00Bg2Tilemap,
+    gIntroStoryFrame01Bg3Tilemap, gIntroStoryFrame01Bg2Tilemap,
+    gIntroStoryFrame02Bg3Tilemap, gIntroStoryFrame02Bg2Tilemap,
+    gIntroStoryFrame03Bg3Tilemap, gIntroStoryFrame03Bg2Tilemap,
+    gIntroStoryFrame04Bg3Tilemap, gIntroStoryFrame04Bg2Tilemap,
+    gIntroStoryFrame05Bg3Tilemap, gIntroStoryFrame05Bg2Tilemap,
+    gIntroStoryFrame06Bg3Tilemap, gIntroStoryFrame06Bg2Tilemap,
+    gIntroStoryFrame07Bg3Tilemap, gIntroStoryFrame07Bg2Tilemap,
+    gIntroStoryFrame08Bg3Tilemap, gIntroStoryFrame08Bg2Tilemap,
+    gIntroStoryFrame09Bg3Tilemap, gIntroStoryFrame09Bg2Tilemap,
 };
 
 EXTERN_C_END

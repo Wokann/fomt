@@ -216,4 +216,11 @@ extern u8 const gUnk_0872BE64[];
 extern u8 const gUnk_0873D6D8[];
 #endif
 
+
+extern "C" void LoadWateringMinigameGraphics(HarvestSpriteWateringCore * core);
+extern u8 const gUiScene080C160CLayer0TilemapLz[];
+extern u8 const gUiScene080C160CLayer1TilemapLz[];
+extern u8 const gUiScene080C160CTilesLz[];
+extern u8 const gUiScene080C160CPalette[];
+
 #endif // SCENE_WATERING_MINIGAME_HH

@@ -187,4 +187,11 @@ extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues1[5];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues2[3];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues3[7];
 
+
+extern "C" void LoadAnimalCareMinigameGraphics(HarvestSpriteAnimalCareCore * core);
+extern u8 const gUiResourcePageMap0[];
+extern u8 const gUiResourcePageMap1[];
+extern u8 const gUiResourcePageTiles[];
+extern u8 const gUiResourcePagePalette[];
+
 #endif // SCENE_ANIMAL_CARE_MINIGAME_HH
