@@ -1,3 +1,7 @@
+## 页面导航的记录与生命周期（2026-11-28）
+
+两个ChangePage入口保存当前页滚动位置，调用既有ClearScrollMenuPage及SelectPage管理页面生命周期，再从目标记录读取有符号滚动位置。列表按真实count与记录类型取址；SelectPage之后重新读取selected_page，保留调用可能更改状态的原有数据流。上一页回绕只存最终页号，未添加防御性边界处理。四个完整对象的字节、数据、重定位及四版默认ROM通过baserom对照。
+
 ## 脚本容量、持有与动物查询的引用（2026-11-28）
 
 五个恢复入口直接引用GameStateSaveImage的farmer、farm与dog成员，不使用原地址算术。容量按空手／背包／家具顺序短路，持有查询按手持类型及ID／背包槽／家具槽顺序短路；可选冰箱和置物柜保留空指针判断。GetScriptAnimal按MaryAnimalKind调用原Horse、Barn、Coop接口，并保留原有有符号容量比较。跨可能改变状态的调用继续从engine读取存档指针，没有缓存改变原行为。所有调用重命名均具有相应重定位；完整对象和四版默认ROM通过baserom对照。

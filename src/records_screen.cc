@@ -9627,83 +9627,10 @@ void RecordsScreenCore::SelectPage(u32 page)
 
 asm_unified(
     "    .align 2, 0\n"
-    "    .global ChangePage__17RecordsScreenCorei\n"
-    "    .thumb_func\n"
-    "ChangePage__17RecordsScreenCorei: @ 0x080751B8\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    adds r6, r0, #0\n"
-    "    adds r7, r1, #0\n"
-    "    movs r0, #0x92\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r0, r0, r6\n"
-    "    mov r8, r0\n"
-    "    movs r1, #0xBC\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r5, r6, r1\n"
-    "    ldr r4, [r5]\n"
-    "    lsls r4, r4, #3\n"
-    "    adds r4, #4\n"
-    "    add r4, r8\n"
-    "    adds r0, r6, #0\n"
-    "    bl GetScrollMenuPosition\n"
-    "    strh r0, [r4, #4]\n"
-    "    adds r0, r6, #0\n"
-    "    bl ClearScrollMenuPage\n"
-    "    cmp r7, #0\n"
-    "    beq .Ljp_080751F0\n"
-    "    cmp r7, #1\n"
-    "    beq .Ljp_08075202\n"
-    "    b .Ljp_08075210\n"
-    ".Ljp_080751F0:\n"
-    "    ldr r0, [r5]\n"
-    "    adds r0, #1\n"
-    "    str r0, [r5]\n"
-    "    mov r2, r8\n"
-    "    ldr r1, [r2]\n"
-    "    cmp r0, r1\n"
-    "    bne .Ljp_08075210\n"
-    "    str r7, [r5]\n"
-    "    b .Ljp_08075210\n"
-    ".Ljp_08075202:\n"
-    "    ldr r0, [r5]\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_0807520C\n"
-    "    mov r1, r8\n"
-    "    ldr r0, [r1]\n"
-    ".Ljp_0807520C:\n"
-    "    subs r0, #1\n"
-    "    str r0, [r5]\n"
-    ".Ljp_08075210:\n"
-    "    movs r2, #0x92\n"
-    "    lsls r2, r2, #1\n"
-    "    adds r4, r6, r2\n"
-    "    movs r0, #0xBC\n"
-    "    lsls r0, r0, #1\n"
-    "    adds r5, r6, r0\n"
-    "    ldr r0, [r5]\n"
-    "    lsls r0, r0, #3\n"
-    "    adds r0, #4\n"
-    "    adds r0, r4, r0\n"
-    "    ldr r1, [r0]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SelectPage__17RecordsScreenCoreUi\n"
-    "    ldr r0, [r5]\n"
-    "    lsls r0, r0, #3\n"
-    "    adds r0, #4\n"
-    "    adds r4, r4, r0\n"
-    "    movs r2, #4\n"
-    "    ldrsh r1, [r4, r2]\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetScrollMenuPosition\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "\n"
 );
+
+
+
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "\n"
@@ -20149,82 +20076,34 @@ void RecordsScreenCore::SelectPage(u32 page)
 
 asm_unified(
     "    .align 2, 0\n"
-    "\tthumb_func_start ChangePage__17RecordsScreenCorei\n"
-    "ChangePage__17RecordsScreenCorei: @ 0x0807555C\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r7, r1, #0\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r0, r0, r6\n"
-    "\tmov r8, r0\n"
-    "\tmovs r1, #0xbc\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r5, r6, r1\n"
-    "\tldr r4, [r5]\n"
-    "\tlsls r4, r4, #3\n"
-    "\tadds r4, #4\n"
-    "\tadd r4, r8\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetScrollMenuPosition\n"
-    "\tstrh r0, [r4, #4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl ClearScrollMenuPage\n"
-    "\tcmp r7, #0\n"
-    "\tbeq .L08075594\n"
-    "\tcmp r7, #1\n"
-    "\tbeq .L080755A6\n"
-    "\tb .L080755B4\n"
-    ".L08075594:\n"
-    "\tldr r0, [r5]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r5]\n"
-    "\tmov r2, r8\n"
-    "\tldr r1, [r2]\n"
-    "\tcmp r0, r1\n"
-    "\tbne .L080755B4\n"
-    "\tstr r7, [r5]\n"
-    "\tb .L080755B4\n"
-    ".L080755A6:\n"
-    "\tldr r0, [r5]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080755B0\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    ".L080755B0:\n"
-    "\tsubs r0, #1\n"
-    "\tstr r0, [r5]\n"
-    ".L080755B4:\n"
-    "\tmovs r2, #0x92\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r4, r6, r2\n"
-    "\tmovs r0, #0xbc\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r5, r6, r0\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r0, r4, r0\n"
-    "\tldr r1, [r0]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SelectPage__17RecordsScreenCoreUi\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r4, r4, r0\n"
-    "\tmovs r2, #4\n"
-    "\tldrsh r1, [r4, r2]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SetScrollMenuPosition\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
 );
+
+
+
 #endif
+
+void RecordsScreenCore::ChangePage(i32 direction)
+{
+    pages[selected_page].scroll_position = GetScrollMenuPosition(this);
+    ClearScrollMenuPage(this);
+    switch (direction) {
+    case 0:
+        ++selected_page;
+        if (selected_page == pages.count)
+            selected_page = 0;
+        break;
+    case 1:
+    {
+        u32 previous = selected_page;
+        if (previous == 0)
+            previous = pages.count;
+        selected_page = previous - 1;
+        break;
+    }
+    }
+    SelectPage(pages[selected_page].page);
+    SetScrollMenuPosition(this, pages[selected_page].scroll_position);
+}
 
 RecordsScreenScene::RecordsScreenScene(SceneTransitionOwner next, GameStateSaveImage * image)
     : core(new RecordsScreenCore(image)), continuation(next)

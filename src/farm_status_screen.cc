@@ -21708,82 +21708,10 @@ asm_unified(
     "\t.align 2, 0\n"
     ".Ljp_08069C0C: .word 0x000009F4\n"
     ".Ljp_08069C10: .word 0x000005B4\n"
-    "\t.global ChangePage__20FarmStatusScreenCorei\n"
-    "\t.thumb_func\n"
-    "ChangePage__20FarmStatusScreenCorei:\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r7, r1, #0\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r0, r0, r6\n"
-    "\tmov r8, r0\n"
-    "\tmovs r1, #0xb0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r5, r6, r1\n"
-    "\tldr r4, [r5]\n"
-    "\tlsls r4, r4, #3\n"
-    "\tadds r4, #4\n"
-    "\tadd r4, r8\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetScrollMenuPosition\n"
-    "\tstrh r0, [r4, #4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl ClearScrollMenuPage\n"
-    "\tcmp r7, #0\n"
-    "\tbeq .Ljp_08069C4C\n"
-    "\tcmp r7, #1\n"
-    "\tbeq .Ljp_08069C5E\n"
-    "\tb .Ljp_08069C6C\n"
-    ".Ljp_08069C4C:\n"
-    "\tldr r0, [r5]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r5]\n"
-    "\tmov r2, r8\n"
-    "\tldr r1, [r2]\n"
-    "\tcmp r0, r1\n"
-    "\tbne .Ljp_08069C6C\n"
-    "\tstr r7, [r5]\n"
-    "\tb .Ljp_08069C6C\n"
-    ".Ljp_08069C5E:\n"
-    "\tldr r0, [r5]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .Ljp_08069C68\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    ".Ljp_08069C68:\n"
-    "\tsubs r0, #1\n"
-    "\tstr r0, [r5]\n"
-    ".Ljp_08069C6C:\n"
-    "\tmovs r2, #0x92\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r4, r6, r2\n"
-    "\tmovs r0, #0xb0\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r5, r6, r0\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r0, r4, r0\n"
-    "\tldr r1, [r0]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SelectPage__20FarmStatusScreenCoreUi\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r4, r4, r0\n"
-    "\tmovs r2, #4\n"
-    "\tldrsh r1, [r4, r2]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SetScrollMenuPosition\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
 );
+
+
+
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "\n"
@@ -43383,82 +43311,34 @@ asm_unified(
     ".L08069D7C: .word 0x000009F4\n"
     ".L08069D80: .word 0x000005B4\n"
     "\n"
-    "\tthumb_func_start ChangePage__20FarmStatusScreenCorei\n"
-    "ChangePage__20FarmStatusScreenCorei: @ 0x08069D84\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r7, r1, #0\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r0, r0, r6\n"
-    "\tmov r8, r0\n"
-    "\tmovs r1, #0xb0\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r5, r6, r1\n"
-    "\tldr r4, [r5]\n"
-    "\tlsls r4, r4, #3\n"
-    "\tadds r4, #4\n"
-    "\tadd r4, r8\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl GetScrollMenuPosition\n"
-    "\tstrh r0, [r4, #4]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl ClearScrollMenuPage\n"
-    "\tcmp r7, #0\n"
-    "\tbeq .L08069DBC\n"
-    "\tcmp r7, #1\n"
-    "\tbeq .L08069DCE\n"
-    "\tb .L08069DDC\n"
-    ".L08069DBC:\n"
-    "\tldr r0, [r5]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r5]\n"
-    "\tmov r2, r8\n"
-    "\tldr r1, [r2]\n"
-    "\tcmp r0, r1\n"
-    "\tbne .L08069DDC\n"
-    "\tstr r7, [r5]\n"
-    "\tb .L08069DDC\n"
-    ".L08069DCE:\n"
-    "\tldr r0, [r5]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L08069DD8\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    ".L08069DD8:\n"
-    "\tsubs r0, #1\n"
-    "\tstr r0, [r5]\n"
-    ".L08069DDC:\n"
-    "\tmovs r2, #0x92\n"
-    "\tlsls r2, r2, #1\n"
-    "\tadds r4, r6, r2\n"
-    "\tmovs r0, #0xb0\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r5, r6, r0\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r0, r4, r0\n"
-    "\tldr r1, [r0]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SelectPage__20FarmStatusScreenCoreUi\n"
-    "\tldr r0, [r5]\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r4, r4, r0\n"
-    "\tmovs r2, #4\n"
-    "\tldrsh r1, [r4, r2]\n"
-    "\tadds r0, r6, #0\n"
-    "\tbl SetScrollMenuPosition\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
 );
+
+
+
 #endif
+
+void FarmStatusScreenCore::ChangePage(i32 direction)
+{
+    pages[selected_page].scroll_position = GetScrollMenuPosition(this);
+    ClearScrollMenuPage(this);
+    switch (direction) {
+    case 0:
+        ++selected_page;
+        if (selected_page == pages.count)
+            selected_page = 0;
+        break;
+    case 1:
+    {
+        u32 previous = selected_page;
+        if (previous == 0)
+            previous = pages.count;
+        selected_page = previous - 1;
+        break;
+    }
+    }
+    SelectPage(pages[selected_page].page);
+    SetScrollMenuPosition(this, pages[selected_page].scroll_position);
+}
 
 FarmStatusScreenScene::FarmStatusScreenScene(SceneTransitionOwner next, GameStateSaveImage * image, u8 argument)
     : core(new FarmStatusScreenCore(image, argument)), continuation(next)

@@ -24,7 +24,11 @@ struct FarmStatusEntries {
         return reinterpret_cast<T *>(reinterpret_cast<u8 *>(this)
             + (sizeof(count) + count * sizeof(T)));
     }
-    T & operator[](u32 index) { return Begin()[index]; }
+    T & operator[](u32 index)
+    {
+        return *reinterpret_cast<T *>(reinterpret_cast<u8 *>(this)
+            + (sizeof(count) + index * sizeof(T)));
+    }
     ~FarmStatusEntries()
     {
         T * last = End();

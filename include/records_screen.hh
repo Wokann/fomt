@@ -38,6 +38,11 @@ struct RecordsScreenPageList {
     {
         return reinterpret_cast<RecordsScreenPageEntry *>(storage);
     }
+    RecordsScreenPageEntry & operator[](u32 index)
+    {
+        return *reinterpret_cast<RecordsScreenPageEntry *>(reinterpret_cast<u8 *>(this)
+            + (sizeof(count) + index * sizeof(RecordsScreenPageEntry)));
+    }
     RecordsScreenPageEntry * End()
     {
         return reinterpret_cast<RecordsScreenPageEntry *>(storage + count * sizeof(RecordsScreenPageEntry));
