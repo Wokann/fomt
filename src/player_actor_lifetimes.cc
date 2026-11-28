@@ -55,7 +55,7 @@ asm_unified(
     "    .word func_08028B50\n"
     "    .word ClearHeldItem__11PlayerActor\n"
 #endif
-    "    .word PlayerEatFood\n"
+    "    .word EatFood__11PlayerActorRC4Food\n"
 #if defined(REGION_JP)
     "    .word func_08028E68\n"
     "    .word func_080292EC\n"

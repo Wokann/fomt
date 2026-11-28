@@ -89,7 +89,7 @@ struct PACKED Food
     int GetFatigueGain() const;
     int GetStaminaBonus() const;
     int GetFatigueBonus() const;
-    bool IsDrink() const;
+    u32 IsDrink() const;
     char const * GetDesc() const;
     void AddBonuses(i8 stamina_amount, i8 fatigue_amount);
 

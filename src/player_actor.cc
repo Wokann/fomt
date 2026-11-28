@@ -4456,46 +4456,14 @@ void PlayerActor::CycleSelectedTool(bool front)
     }
 }
 
-#if defined(REGION_JP)
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global IsOnOverworld__C11PlayerActor\n"
-    "    .thumb_func\n"
-    "IsOnOverworld__C11PlayerActor: @ 0x08025AFC\n"
-    "    push {lr}\n"
-    "    ldrh r0, [r0, #4]\n"
-    "    cmp r0, #8\n"
-    "    ble .Ljp_0802589C\n"
-    "    movs r0, #0\n"
-    "    b .Ljp_0802589E\n"
-    ".Ljp_0802589C:\n"
-    "    movs r0, #1\n"
-    ".Ljp_0802589E:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start IsOnOverworld__C11PlayerActor\n"
-    "IsOnOverworld__C11PlayerActor: @ 0x08025AFC\n"
-    "    push {lr}\n"
-    "    ldrh r0, [r0, #4]\n"
-    "    cmp r0, #8\n"
-    "    ble .L08025B08\n"
-    "    movs r0, #0\n"
-    "    b .L08025B0A\n"
-    ".L08025B08:\n"
-    "    movs r0, #1\n"
-    ".L08025B0A:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    "\n"
-);
-#endif
+bool PlayerActor::IsOnOverworld() const
+{
+    i32 map = GetMap();
+    if (map <= static_cast<i32>(MAP_MOTHERS_HILL_SUMMIT))
+        return true;
+    return false;
+}
+
 
 u32 PlayerActor::GetToolFatiguePenalty() const
 {
@@ -19340,101 +19308,7 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "    .align 2, 0\n"
-    "    .global PlayerEatFood\n"
-    "    .thumb_func\n"
-    "PlayerEatFood: @ 0x0802A194\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sb\n"
-    "    mov r6, r8\n"
-    "    push {r6, r7}\n"
-    "    adds r6, r0, #0\n"
-    "    adds r7, r1, #0\n"
-    "    adds r0, #0xa4\n"
-    "    movs r1, #0\n"
-    "    mov r8, r1\n"
-    "    movs r2, #1\n"
-    "    mov sb, r2\n"
-    "    mov r1, sb\n"
-    "    strb r1, [r0]\n"
-    "    subs r0, #0x1c\n"
-    "    strb r1, [r0]\n"
-    "    mov r2, r8\n"
-    "    strb r2, [r0, #1]\n"
-    "    movs r1, #0xa8\n"
-    "    lsls r1, r1, #0xd\n"
-    "    mov r2, r8\n"
-    "    str r2, [r0, #4]\n"
-    "    str r2, [r0, #8]\n"
-    "    str r1, [r0, #0x14]\n"
-    "    ldr r5, [r6, #0x10]\n"
-    "    cmp r5, #0\n"
-    "    beq .Ljp_0802A1FE\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetIconId__C4Food\n"
-    "    adds r4, r0, #0\n"
-    "    lsls r4, r4, #0x10\n"
-    "    lsrs r4, r4, #0x10\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r1, [r0]\n"
-    "    ldr r1, [r1, #0x64]\n"
-    "    bl _call_via_r1\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0xb4\n"
-    "    adds r2, r4, #0\n"
-    "    bl InitializeIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0xc8\n"
-    "    mov r1, sb\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    mov r2, r8\n"
-    "    strb r2, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    ".Ljp_0802A1FE:\n"
-    "    ldr r5, [r6, #0x14]\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetStaminaGain__C4Food\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetFatigueGain__C4Food\n"
-    "    adds r2, r0, #0\n"
-    "    ldr r3, [r5, #0x64]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl _call_via_r3\n"
-    "    adds r0, r7, #0\n"
-    "    bl IsDrink__C4Food\n"
-    "    cmp r0, #0\n"
-    "    bne .Ljp_0802A22C\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x36\n"
-    "    b .Ljp_0802A232\n"
-    ".Ljp_0802A22C:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x37\n"
-    ".Ljp_0802A232:\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0xc0\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    movs r1, #0xa3\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    pop {r3, r4}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
+
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
@@ -21810,102 +21684,31 @@ asm_unified(
     "    bx r0\n"
     "    .align 2, 0\n"
     "\n"
-    "    thumb_func_start PlayerEatFood\n"
-    "PlayerEatFood: @ 0x0802A400\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, sb\n"
-    "    mov r6, r8\n"
-    "    push {r6, r7}\n"
-    "    adds r6, r0, #0\n"
-    "    adds r7, r1, #0\n"
-    "    adds r0, #0xa4\n"
-    "    movs r1, #0\n"
-    "    mov r8, r1\n"
-    "    movs r2, #1\n"
-    "    mov sb, r2\n"
-    "    mov r1, sb\n"
-    "    strb r1, [r0]\n"
-    "    subs r0, #0x1c\n"
-    "    strb r1, [r0]\n"
-    "    mov r2, r8\n"
-    "    strb r2, [r0, #1]\n"
-    "    movs r1, #0xa8\n"
-    "    lsls r1, r1, #0xd\n"
-    "    mov r2, r8\n"
-    "    str r2, [r0, #4]\n"
-    "    str r2, [r0, #8]\n"
-    "    str r1, [r0, #0x14]\n"
-    "    ldr r5, [r6, #0x10]\n"
-    "    cmp r5, #0\n"
-    "    beq .L0802A46A\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetIconId__C4Food\n"
-    "    adds r4, r0, #0\n"
-    "    lsls r4, r4, #0x10\n"
-    "    lsrs r4, r4, #0x10\n"
-    "    ldr r0, [r5]\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r1, [r0]\n"
-    "    ldr r1, [r1, #0x64]\n"
-    "    bl _call_via_r1\n"
-    "    adds r1, r0, #0\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0xb4\n"
-    "    adds r2, r4, #0\n"
-    "    bl InitializeIndexedResourceHandle\n"
-    "    adds r0, r5, #0\n"
-    "    adds r0, #0xc8\n"
-    "    mov r1, sb\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    mov r2, r8\n"
-    "    strb r2, [r0]\n"
-    "    adds r0, #1\n"
-    "    strb r1, [r0]\n"
-    ".L0802A46A:\n"
-    "    ldr r5, [r6, #0x14]\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetStaminaGain__C4Food\n"
-    "    adds r4, r0, #0\n"
-    "    adds r0, r7, #0\n"
-    "    bl GetFatigueGain__C4Food\n"
-    "    adds r2, r0, #0\n"
-    "    ldr r3, [r5, #0x64]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r1, r4, #0\n"
-    "    bl _call_via_r3\n"
-    "    adds r0, r7, #0\n"
-    "    bl IsDrink__C4Food\n"
-    "    cmp r0, #0\n"
-    "    bne .L0802A498\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x36\n"
-    "    b .L0802A49E\n"
-    ".L0802A498:\n"
-    "    adds r1, r6, #0\n"
-    "    adds r1, #0x3c\n"
-    "    movs r0, #0x37\n"
-    ".L0802A49E:\n"
-    "    strb r0, [r1]\n"
-    "    adds r0, r6, #0\n"
-    "    adds r0, #0xc0\n"
-    "    movs r1, #1\n"
-    "    strb r1, [r0]\n"
-    "    movs r1, #0xa3\n"
-    "    lsls r1, r1, #1\n"
-    "    adds r0, r6, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    pop {r3, r4}\n"
-    "    mov r8, r3\n"
-    "    mov sb, r4\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    "\n"
+
 );
 #endif
+
+void PlayerActor::EatFood(Food const & food)
+{
+    unk_A4 = 1;
+    PlayerHeldGraphic & graphic = held_graphic;
+    graphic.state = 1;
+    graphic.shadow_visible = false;
+    graphic.SetPosition(0, 0, 21 << 16);
+    PlayerSpriteController * controller = static_cast<PlayerSpriteController *>(unk_10.Get());
+    if (controller != nullptr) {
+        u16 icon_index = food.GetIconId();
+        controller->held_actor_sprite.SetResource(
+            controller->entity->GetGameObject()->vfunc_64(), icon_index);
+    }
+    ChangeStaminaAndFatigue(food.GetStaminaGain(), food.GetFatigueGain());
+    if (!food.IsDrink())
+        action_state = 54;
+    else
+        action_state = 55;
+    unk_C0 = 1;
+    SetAnim(ANIMATION_PLAYER_PREPARE_TO_HOLD_ITEM);
+}
 
 #if defined(REGION_JP)
 asm_unified(

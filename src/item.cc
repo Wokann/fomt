@@ -191,7 +191,7 @@ int Food::GetFatigueBonus() const
     return +100;
 }
 
-bool Food::IsDrink() const
+u32 Food::IsDrink() const
 {
     if (IsValidFoodId(id))
         return gFoodInfo[id].is_drink;
