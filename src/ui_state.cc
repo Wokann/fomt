@@ -3959,10 +3959,10 @@ EC void func_08050D80(void * const * object)
     ClearUiObjectStateIfNonzero(*object);
 }
 
-EC void func_08050D8C(void * const * object, u32 arg_r1)
+EC void func_08050D8C(void * const * object, char const * text)
 {
     static_cast<UiStatePayload *>(*object)->SetText(
-        reinterpret_cast<char const *>(arg_r1), 0x100, nullptr);
+        text, 0x100, nullptr);
 }
 
 EC void func_08050DA0(UiStateOwner const * object, char const * text,

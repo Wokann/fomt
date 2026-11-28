@@ -2,6 +2,8 @@
 #include "prelude.h"
 #include "scene_tool_chest.hh"
 
+extern "C" GameMenuItemIcon * func_080CC70C(GameMenuPanel *, u32);
+
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
@@ -3014,80 +3016,30 @@ asm_unified(
     ".Ltool_chest_8_1144: .word gUnk_086678A0\n"
 #endif
     "\n"
-    "thumb_func_start ShowCannotDiscard__18ToolChestSceneCorei\n"
-    "ShowCannotDiscard__18ToolChestSceneCorei:\n"
-    "push {r4, r5, r6, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r6, r0, #0x0\n"
-    "adds r5, r1, #0x0\n"
-    "mov r0, sp\n"
-    "bl InitializeMenuItemIcon\n"
-    "cmp r5, #0x0\n"
-    "bne .Ltool_chest_9_001a\n"
-    "ldr r0, [r6, #0x78]\n"
-    "bl GetMenuPanelHeaderIcon\n"
-    "b .Ltool_chest_9_0048\n"
-    ".Ltool_chest_9_001a:\n"
-    "cmp r5, #0x8\n"
-    "bgt .Ltool_chest_9_0034\n"
-    "ldr r4, [r6, #0x78]\n"
-    "adds r0, r6, #0x0\n"
-    "adds r1, r5, #0x0\n"
-    "movs r2, #0x0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0x0\n"
-    "adds r0, r4, #0x0\n"
-    "bl GetMenuPanelItemIcon\n"
-    "b .Ltool_chest_9_0048\n"
-    ".Ltool_chest_9_0034:\n"
-    "ldr r4, [r6, #0x7c]\n"
-    "adds r0, r6, #0x0\n"
-    "adds r1, r5, #0x0\n"
-    "movs r2, #0x0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0x0\n"
-    "adds r0, r4, #0x0\n"
-    "bl func_080CC70C\n"
-    ".Ltool_chest_9_0048:\n"
-    "mov r1, sp\n"
-    "ldm r0!, {r2, r3, r4}\n"
-    "stm r1!, {r2, r3, r4}\n"
-    "movs r1, #0x0\n"
-    "ldr r0, [sp, #0x4]\n"
-    "cmp r0, #0x0\n"
-    "beq .Ltool_chest_9_005c\n"
-    "ldr r0, [sp, #0x8]\n"
-    "cmp r0, #0x0\n"
-    "bne .Ltool_chest_9_005e\n"
-    ".Ltool_chest_9_005c:\n"
-    "movs r1, #0x1\n"
-    ".Ltool_chest_9_005e:\n"
-    "cmp r1, #0x0\n"
-    "bne .Ltool_chest_9_0086\n"
-    "adds r0, r6, #0x0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Ltool_chest_9_0090\n"
-    "ldr r1, [r1]\n"
-    "movs r2, #0x0\n"
-    "movs r3, #0x0\n"
-    "bl func_08050DC8\n"
-    "movs r0, #0x84\n"
-    "lsls r0, r0, #0x1\n"
-    "adds r1, r6, r0\n"
-    "movs r0, #0x1\n"
-    "str r0, [r1]\n"
-    "adds r0, r6, #0x0\n"
-    "adds r0, #0xc\n"
-    "movs r1, #0xc7\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    ".Ltool_chest_9_0086:\n"
-    "add sp, #0xc\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Ltool_chest_9_0090: .word gItemDiscardCannotDiscardTextRef\n"
-    "\n"
+);
+
+void ToolChestSceneCore::ShowCannotDiscard(i32 selection)
+{
+    GameMenuItemIcon icon;
+    InitializeMenuItemIcon(&icon);
+    if (selection == 0)
+        icon = *GetMenuPanelHeaderIcon(left_panel.value);
+    else if (selection <= 8)
+        icon = *GetMenuPanelItemIcon(left_panel.value, GetItemIndex(selection, 0));
+    else
+        icon = *func_080CC70C(right_panel.value, GetItemIndex(selection, 0));
+
+    bool empty = icon.tiles == nullptr || icon.palette == nullptr;
+    if (!empty) {
+        func_08050DC8(reinterpret_cast<void * const *>(&ui),
+            reinterpret_cast<u32>(gItemDiscardCannotDiscardTextRef), 0, 0);
+        phase = 1;
+        music.Start(0xC7);
+    }
+}
+
+asm_unified(
+    ".text\n"
     "thumb_func_start Run__18ToolChestSceneCore\n"
     "Run__18ToolChestSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"

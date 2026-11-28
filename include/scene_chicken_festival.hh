@@ -240,4 +240,8 @@ extern u16 const gUnk_080BB890LastValues[3];
 extern u32 const gUnk_080BC288Values[16];
 
 
+EXTERN_C
+void ShowChickenFestivalInstruction(ChickenFestivalMinigameCore * core, u32 instruction);
+EXTERN_C_END
+
 #endif // SCENE_CHICKEN_FESTIVAL_HH

@@ -74,15 +74,15 @@ void GameCubeLinkUiCore::Run()
                 switch (GetResult()) {
                 case 0: break;
                 case 1:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_QuitCommunication);
                     ui.ShowPortrait(0x38);
                     break;
                 case 2:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_OtherPlayerCanceled));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_OtherPlayerCanceled);
                     ui.ShowPortrait(0x3A);
                     break;
                 case 3:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_IncompatibleGameData));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_IncompatibleGameData);
                     ui.ShowPortrait(0x3A);
                     break;
                 }
@@ -93,7 +93,7 @@ void GameCubeLinkUiCore::Run()
         }
         switch (phase) {
         case 0:
-            func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_ExchangeRestriction));
+            func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_ExchangeRestriction);
             ui.ShowPortrait(0x38);
             SetPhase(1);
             break;
@@ -119,7 +119,7 @@ void GameCubeLinkUiCore::Run()
                     SetPhase(4);
                     break;
                 case 2:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_Declined));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_Declined);
                     ui.ShowPortrait(0x3A);
                     SetPhase(7);
                     result = GAMECUBE_LINK_RESULT_CANCELED_OR_FAILED;
@@ -144,7 +144,7 @@ void GameCubeLinkUiCore::Run()
             phase_changed = true;
             if (IsFinished()) {
                 if (GetResult() == 0) {
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_Complete));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_Complete);
                     ui.ShowPortrait(0x39);
                     SetPhase(7);
                     result = GAMECUBE_LINK_RESULT_SUCCESS;
@@ -168,13 +168,13 @@ void GameCubeLinkUiCore::Run()
             if (ui.GetState() == 3) {
                 switch (GetResult()) {
                 case 3:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_QuitCommunication);
                     ui.ShowPortrait(0x38);
                     SetPhase(7);
                     result = GAMECUBE_LINK_RESULT_INCOMPATIBLE_SAVE_DATA;
                     break;
                 case 2:
-                    func_08050D8C(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_LinkCommunication_QuitCommunication));
+                    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_QuitCommunication);
                     ui.ShowPortrait(0x38);
                     // fall through
                 default:

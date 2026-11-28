@@ -12775,6 +12775,7 @@ asm_unified(    "thumb_func_start func_080BA204\n"
     "\n"
 );
 
+
 extern "C" void func_080BA284(ChickenFestivalMinigameCore * self)
 {
     for (i32 i = 0; i <= 1; i++)
@@ -12948,7 +12949,7 @@ asm_unified(
     "adds r0, r7, r1\n"
     "ldrb r1, [r0]\n"
     "adds r0, r7, #0\n"
-    "bl func_080BA574\n"
+    "bl ShowChickenFestivalInstruction\n"
     "b .Lchicken_festival_6842\n"
     ".align 2, 0\n"
     ".Lchicken_festival_677c: .word 0xb3c\n"
@@ -13147,80 +13148,35 @@ asm_unified(
 #endif
     ".Lchicken_festival_68e0: .word 0xb34\n"
     "\n"
-    "thumb_func_start func_080BA574\n"
-    "func_080BA574:\n"
-    "push {lr}\n"
-    "adds r2, r0, #0\n"
-    "subs r0, r1, #1\n"
-    "cmp r0, #4\n"
-    "bhi .Lchicken_festival_696e\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lchicken_festival_68f8\n"
-    "adds r0, r0, r1\n"
-    "ldr r0, [r0]\n"
-    "mov pc, r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_68f8: .word .Lchicken_festival_68fc\n"
-    ".Lchicken_festival_68fc:\n"
-    ".word .Lchicken_festival_6910\n"
-    ".word .Lchicken_festival_6924\n"
-    ".word .Lchicken_festival_6938\n"
-    ".word .Lchicken_festival_694c\n"
-    ".word .Lchicken_festival_6960\n"
-    ".Lchicken_festival_6910:\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r2, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lchicken_festival_6920\n"
-    "bl func_08050D8C\n"
-    "b .Lchicken_festival_696e\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6920: .word gText_HarvestSpriteMiniGame_ChickenFestival_Introduction\n"
-    ".Lchicken_festival_6924:\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r2, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lchicken_festival_6934\n"
-    "bl func_08050D8C\n"
-    "b .Lchicken_festival_696e\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6934: .word gText_HarvestSpriteMiniGame_ChickenFestival_Rules\n"
-    ".Lchicken_festival_6938:\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r2, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lchicken_festival_6948\n"
-    "bl func_08050D8C\n"
-    "b .Lchicken_festival_696e\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6948: .word gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement\n"
-    ".Lchicken_festival_694c:\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r2, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lchicken_festival_695c\n"
-    "bl func_08050D8C\n"
-    "b .Lchicken_festival_696e\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_695c: .word gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge\n"
-    ".Lchicken_festival_6960:\n"
-    "movs r1, #0xe3\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r2, r1\n"
-    "ldr r0, [r0]\n"
-    "ldr r1, .Lchicken_festival_6974\n"
-    "bl func_08050D8C\n"
-    ".Lchicken_festival_696e:\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lchicken_festival_6974: .word gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing\n"
-    "\n"
+
 );
+
+void ShowChickenFestivalInstruction(ChickenFestivalMinigameCore * core, u32 instruction)
+{
+    switch (instruction) {
+    case 1:
+        func_08050D8C(reinterpret_cast<void * const *>(core->ui_state.value),
+            gText_HarvestSpriteMiniGame_ChickenFestival_Introduction);
+        break;
+    case 2:
+        func_08050D8C(reinterpret_cast<void * const *>(core->ui_state.value),
+            gText_HarvestSpriteMiniGame_ChickenFestival_Rules);
+        break;
+    case 3:
+        func_08050D8C(reinterpret_cast<void * const *>(core->ui_state.value),
+            gText_HarvestSpriteMiniGame_ChickenFestival_Encouragement);
+        break;
+    case 4:
+        func_08050D8C(reinterpret_cast<void * const *>(core->ui_state.value),
+            gText_HarvestSpriteMiniGame_ChickenFestival_CautionAtRingEdge);
+        break;
+    case 5:
+        func_08050D8C(reinterpret_cast<void * const *>(core->ui_state.value),
+            gText_HarvestSpriteMiniGame_ChickenFestival_CautionLeavingRing);
+        break;
+    }
+}
+
 
 extern "C" void func_080BA608(ChickenFestivalMinigameCore * self)
 {

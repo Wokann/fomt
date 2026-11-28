@@ -11,8 +11,7 @@ void SetShopMessageText(ShopScreenCore * core, char const * text)
     func_08050EBC(ui, 0x10);
     func_08050EBC(ui, 0x20);
 
-    func_08050D8C(reinterpret_cast<void * const *>(&ui),
-        reinterpret_cast<u32>(text));
+    func_08050D8C(reinterpret_cast<void * const *>(&ui), text);
 }
 
 #include "ui_state.hh"

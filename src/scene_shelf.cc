@@ -290,113 +290,33 @@ void ShelfSceneCore::ShowPreviousPage()
     DrawShelfPage(func_080CEBC0(tilemap.value));
 }
 
+void ShelfSceneCore::UpdateDescription(i32 selection)
+{
+    char const * text = nullptr;
+    item_description[0] = '\0';
+    if (selection == 0) {
+        if (!IsHeldItemEmpty(held_item))
+            text = FormatMenuHeldItemDescription(this, item_description, held_item);
+    } else if (selection <= 8) {
+        RucksackItem item = rucksack->GetItemAt(GetItemIndex(selection, 0));
+        if (!item.IsEmpty())
+            text = func_080CFA38(this, item_description, item);
+    } else {
+        u32 page = tilemap.value->unk_BC;
+        u32 index = page * 8 + GetItemIndex(selection, 0);
+        if (!shelf->GetArticleStackAt(index)->IsEmpty()) {
+            Article item = shelf->GetArticleStackAt(index)->GetArticle();
+            text = item.GetDesc();
+        }
+    }
+    if (text)
+        func_08050DC8(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(text), 0, 0);
+    else
+        func_08050DC8(reinterpret_cast<void * const *>(&ui), reinterpret_cast<u32>(gText_Shelf_EmptyDescription), 0, 0);
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start UpdateDescription__14ShelfSceneCorei\n"
-    "UpdateDescription__14ShelfSceneCorei:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #0xc\n"
-    "adds r5, r0, #0\n"
-    "movs r7, #0\n"
-    "adds r6, r5, #0\n"
-    "adds r6, #0x98\n"
-    "strb r7, [r6]\n"
-    "cmp r1, #0\n"
-    "bne .Lshelf_6_002e\n"
-    "adds r4, r5, #0\n"
-    "adds r4, #0xfc\n"
-    "ldr r0, [r4]\n"
-    "bl IsHeldItemEmpty\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lshelf_6_00ae\n"
-    "ldr r2, [r4]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "bl FormatMenuHeldItemDescription\n"
-    "b .Lshelf_6_00ac\n"
-    ".Lshelf_6_002e:\n"
-    "cmp r1, #8\n"
-    "bgt .Lshelf_6_0068\n"
-    "movs r2, #0x80\n"
-    "lsls r2, r2, #1\n"
-    "adds r0, r5, r2\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r4, #0\n"
-    "bl GetItemAt__8RucksackUi\n"
-    "ldr r0, [r0]\n"
-    "str r0, [sp]\n"
-    "mov r0, sp\n"
-    "bl IsEmpty__C12RucksackItem\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lshelf_6_00ae\n"
-    "ldr r2, [sp]\n"
-    "str r2, [sp, #4]\n"
-    "adds r0, r5, #0\n"
-    "adds r1, r6, #0\n"
-    "bl func_080CFA38\n"
-    "b .Lshelf_6_00ac\n"
-    ".Lshelf_6_0068:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x94\n"
-    "ldr r0, [r0]\n"
-    "adds r0, #0xbc\n"
-    "ldr r4, [r0]\n"
-    "adds r0, r5, #0\n"
-    "movs r2, #0\n"
-    "bl GetItemIndex__C23GameSceneMenuCorePrefixii\n"
-    "lsls r4, r4, #3\n"
-    "adds r6, r4, r0\n"
-    "movs r0, #0x82\n"
-    "lsls r0, r0, #1\n"
-    "adds r4, r5, r0\n"
-    "ldr r0, [r4]\n"
-    "adds r1, r6, #0\n"
-    "bl GetArticleStackAt__5ShelfUi\n"
-    "bl IsEmpty__C12ArticleStack\n"
-    "lsls r0, r0, #0x18\n"
-    "cmp r0, #0\n"
-    "bne .Lshelf_6_00ae\n"
-    "ldr r0, [r4]\n"
-    "adds r1, r6, #0\n"
-    "bl GetArticleStackAt__5ShelfUi\n"
-    "bl GetArticle__C12ArticleStack\n"
-    "adds r1, r0, #0\n"
-    "add r0, sp, #8\n"
-    "strb r1, [r0]\n"
-    "bl GetDesc__C7Article\n"
-    ".Lshelf_6_00ac:\n"
-    "adds r7, r0, #0\n"
-    ".Lshelf_6_00ae:\n"
-    "cmp r7, #0\n"
-    "beq .Lshelf_6_00c2\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "adds r1, r7, #0\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    "b .Lshelf_6_00d0\n"
-    ".Lshelf_6_00c2:\n"
-    "adds r0, r5, #0\n"
-    "adds r0, #0x80\n"
-    "ldr r1, .Lshelf_6_00d8\n"
-    "movs r2, #0\n"
-    "movs r3, #0\n"
-    "bl func_08050DC8\n"
-    ".Lshelf_6_00d0:\n"
-    "add sp, #0xc\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lshelf_6_00d8: .word gText_Shelf_EmptyDescription\n"
-    "\n"
+    ".text\n"
     "thumb_func_start ExchangeHeldItem__14ShelfSceneCoreiUi\n"
     "ExchangeHeldItem__14ShelfSceneCoreiUi:\n"
     "push {r4, r5, r6, r7, lr}\n"

@@ -153,7 +153,7 @@ extern "C" void ClearUiObjectStateIfNonzero(void * object);
 extern "C" void ClearUiActionStateFlag01DC(void * object);
 extern "C" void ClearUiActionStateFlag01F0(void * object);
 EC void func_08050D80(void * const * object);
-EC void func_08050D8C(void * const * object, u32 arg_r1);
+EC void func_08050D8C(void * const * object, char const * text);
 
 // Existing C adapter ABI. Message adapters pass encoded text, a u16 speed
 // and an optional variable store to the typed payload SetText method.

@@ -57,8 +57,7 @@ inline void GameCubeLinkUiCore::EnterRetry()
 {
     unk_3E0 = 0;
     dialogue_phase = 0;
-    func_08050D8C(reinterpret_cast<void * const *>(&ui),
-        reinterpret_cast<u32>(gText_LinkCommunication_DataExchangeFailed));
+    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_DataExchangeFailed);
     ui.ShowPortrait(0x3A);
 #if defined(BUGFIX) || defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
     // PollRetry runs before Run refreshes this cached window state.
@@ -72,8 +71,7 @@ inline void GameCubeLinkUiCore::ActPayload()
 
 inline void GameCubeLinkUiCore::EnterPayload()
 {
-    func_08050D8C(reinterpret_cast<void * const *>(&ui),
-        reinterpret_cast<u32>(gText_LinkCommunication_NowSendingData));
+    func_08050D8C(reinterpret_cast<void * const *>(&ui), gText_LinkCommunication_NowSendingData);
     ui.ShowPortrait(0x38);
 }
 
