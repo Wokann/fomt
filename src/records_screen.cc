@@ -4,160 +4,41 @@
 
 #include <new>
 
+inline void RecordsScreenPageList::Push(RecordsScreenPageEntry const & entry)
+{
+    if (count < CAPACITY) {
+        new (End()) RecordsScreenPageEntry(entry);
+        ++count;
+    }
+}
+
 asm_unified(
     ".text\n"
     ".include \"asm/macro.inc\"\n"
     ".include \"asm/gba.inc\"\n"
 );
+RecordsScreenCore::RecordsScreenCore(GameStateSaveImage * image)
+    : ScrollMenu(0), save(image), pages()
+{
+    RecordsScreenPageEntry entry;
+    entry.page = PAGE_SHIPPING;
+    pages.Push(entry);
+    entry.page = PAGE_FISHING;
+    pages.Push(entry);
+    entry.page = PAGE_OTHER;
+    pages.Push(entry);
+    selected_page = 0;
+    SelectPage(pages[0].page);
+}
+
+
+RecordsScreenPage::RecordsScreenPage(ScrollMenu * menu, GameStateSaveImage * image,
+    u32 rows, char const * title)
+    : ScrollMenuPage(menu, reinterpret_cast<u32>(image), rows, title)
+{
+}
+
 #if defined(REGION_JP)
-asm_unified(
-    "\t.global __17RecordsScreenCoreP18GameStateSaveImage\n"
-    "\t.thumb_func\n"
-    "__17RecordsScreenCoreP18GameStateSaveImage:\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tsub sp, #8\n"
-    "\tadds r5, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tmovs r1, #0\n"
-    "\tbl __10ScrollMenuUc\n"
-    "\tldr r0, .Ljp_0807087C\n"
-    "\tstr r0, [r5, #4]\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r5, r1\n"
-    "\tstr r4, [r0]\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r3, r5, r0\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r3]\n"
-    "\tmov r1, sp\n"
-    "\tstr r0, [sp]\n"
-    "\tstrh r0, [r1, #4]\n"
-    "\tstr r0, [sp]\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r2, r5, r1\n"
-    "\tcmp r2, #0\n"
-    "\tbeq .Ljp_0807080A\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r2]\n"
-    "\tstr r1, [r2, #4]\n"
-    ".Ljp_0807080A:\n"
-    "\tldr r0, [r3]\n"
-    "\tadds r1, r0, #1\n"
-    "\tstr r1, [r3]\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r2, r3, #0\n"
-    "\tcmp r1, #9\n"
-    "\tbhi .Ljp_08070832\n"
-    "\tlsls r0, r1, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r2, r2, r0\n"
-    "\tcmp r2, #0\n"
-    "\tbeq .Ljp_0807082C\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r2]\n"
-    "\tstr r1, [r2, #4]\n"
-    ".Ljp_0807082C:\n"
-    "\tldr r0, [r3]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r3]\n"
-    ".Ljp_08070832:\n"
-    "\tmovs r0, #2\n"
-    "\tstr r0, [sp]\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r2, r5, r0\n"
-    "\tldr r0, [r2]\n"
-    "\tcmp r0, #9\n"
-    "\tbhi .Ljp_0807085A\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r3, r2, r0\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .Ljp_08070854\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r3]\n"
-    "\tstr r1, [r3, #4]\n"
-    ".Ljp_08070854:\n"
-    "\tldr r0, [r2]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r2]\n"
-    ".Ljp_0807085A:\n"
-    "\tmovs r0, #0xbc\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r5, r0\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r1, [r0]\n"
-    "\tadds r0, r5, #0\n"
-    "\tbl SelectPage__17RecordsScreenCoreUi\n"
-    "\tadds r0, r5, #0\n"
-    "\tadd sp, #8\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    ".Ljp_0807087C: .word __vt_17RecordsScreenCore\n"
-    "\t.global __17RecordsScreenPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\t.thumb_func\n"
-    "__17RecordsScreenPageP10ScrollMenuP18GameStateSaveImageUiPCc:\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #4\n"
-    "\tadds r4, r0, #0\n"
-    "\tldr r0, [sp, #0x14]\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
-    "\tldr r0, .Ljp_080708D8\n"
-    "\tadds r1, r4, r0\n"
-    "\tldr r0, .Ljp_080708DC\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r0, #0xb7\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r1, r4, r0\n"
-    "\tmovs r3, #0x77\n"
-    "\tldr r0, .Ljp_080708E0\n"
-    "\tadds r6, r0, #0\n"
-    "\tmovs r2, #0\n"
-    "\tmovs r5, #1\n"
-    "\trsbs r5, r5, #0\n"
-    ".Ljp_080708AA:\n"
-    "\tldrh r0, [r1]\n"
-    "\torrs r0, r6\n"
-    "\tstrh r0, [r1]\n"
-    "\tstrb r2, [r1, #4]\n"
-    "\tstr r2, [r1, #0x24]\n"
-    "\tadds r0, r1, #0\n"
-    "\tadds r0, #0x28\n"
-    "\tstrb r2, [r0]\n"
-    "\tadds r1, #0x2c\n"
-    "\tsubs r3, #1\n"
-    "\tcmp r3, r5\n"
-    "\tbne .Ljp_080708AA\n"
-    "\tmovs r0, #7\n"
-    "\tmovs r1, #1\n"
-    "\trsbs r1, r1, #0\n"
-    ".Ljp_080708C8:\n"
-    "\tsubs r0, #1\n"
-    "\tcmp r0, r1\n"
-    "\tbne .Ljp_080708C8\n"
-    "\tadds r0, r4, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    ".Ljp_080708D8: .word 0x000005B4\n"
-    ".Ljp_080708DC: .word __vt_17RecordsScreenPage\n"
-    ".Ljp_080708E0: .word 0x0000FFFF\n"
-);
 
 RecordsScreenPage::~RecordsScreenPage()
 {
@@ -9607,15 +9488,15 @@ void RecordsScreenCore::SelectPage(u32 page)
 
     switch (static_cast<i32>(page))
     {
-    case 0:
+    case PAGE_SHIPPING:
         selected = new ShippingRecordsPage(this, this->save);
         break;
 
-    case 1:
+    case PAGE_FISHING:
         selected = new FishingRecordsPage(this, this->save);
         break;
 
-    case 2:
+    case PAGE_OTHER:
         selected = new OtherRecordsPage(this, this->save);
         break;
     }
@@ -9631,158 +9512,8 @@ asm_unified(
 
 
 
+
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "\n"
-    "\tthumb_func_start __17RecordsScreenCoreP18GameStateSaveImage\n"
-    "__17RecordsScreenCoreP18GameStateSaveImage: @ 0x08070B70\n"
-    "\tpush {r4, r5, lr}\n"
-    "\tsub sp, #8\n"
-    "\tadds r5, r0, #0\n"
-    "\tadds r4, r1, #0\n"
-    "\tmovs r1, #0\n"
-    "\tbl __10ScrollMenuUc\n"
-    "\tldr r0, .L08070C20 @ =__vt_17RecordsScreenCore\n"
-    "\tstr r0, [r5, #4]\n"
-    "\tmovs r1, #0x90\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r5, r1\n"
-    "\tstr r4, [r0]\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r3, r5, r0\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r3]\n"
-    "\tmov r1, sp\n"
-    "\tstr r0, [sp]\n"
-    "\tstrh r0, [r1, #4]\n"
-    "\tstr r0, [sp]\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r2, r5, r1\n"
-    "\tcmp r2, #0\n"
-    "\tbeq .L08070BAE\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r2]\n"
-    "\tstr r1, [r2, #4]\n"
-    ".L08070BAE:\n"
-    "\tldr r0, [r3]\n"
-    "\tadds r1, r0, #1\n"
-    "\tstr r1, [r3]\n"
-    "\tmovs r0, #1\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r2, r3, #0\n"
-    "\tcmp r1, #9\n"
-    "\tbhi .L08070BD6\n"
-    "\tlsls r0, r1, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r2, r2, r0\n"
-    "\tcmp r2, #0\n"
-    "\tbeq .L08070BD0\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r2]\n"
-    "\tstr r1, [r2, #4]\n"
-    ".L08070BD0:\n"
-    "\tldr r0, [r3]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r3]\n"
-    ".L08070BD6:\n"
-    "\tmovs r0, #2\n"
-    "\tstr r0, [sp]\n"
-    "\tmovs r0, #0x92\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r2, r5, r0\n"
-    "\tldr r0, [r2]\n"
-    "\tcmp r0, #9\n"
-    "\tbhi .L08070BFE\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r0, #4\n"
-    "\tadds r3, r2, r0\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .L08070BF8\n"
-    "\tldr r0, [sp]\n"
-    "\tldr r1, [sp, #4]\n"
-    "\tstr r0, [r3]\n"
-    "\tstr r1, [r3, #4]\n"
-    ".L08070BF8:\n"
-    "\tldr r0, [r2]\n"
-    "\tadds r0, #1\n"
-    "\tstr r0, [r2]\n"
-    ".L08070BFE:\n"
-    "\tmovs r0, #0xbc\n"
-    "\tlsls r0, r0, #1\n"
-    "\tadds r1, r5, r0\n"
-    "\tmovs r0, #0\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0x94\n"
-    "\tlsls r1, r1, #1\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r1, [r0]\n"
-    "\tadds r0, r5, #0\n"
-    "\tbl SelectPage__17RecordsScreenCoreUi\n"
-    "\tadds r0, r5, #0\n"
-    "\tadd sp, #8\n"
-    "\tpop {r4, r5}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L08070C20: .word __vt_17RecordsScreenCore\n"
-    "\n"
-    "\tthumb_func_start __17RecordsScreenPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "__17RecordsScreenPageP10ScrollMenuP18GameStateSaveImageUiPCc: @ 0x08070C24\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tsub sp, #4\n"
-    "\tadds r4, r0, #0\n"
-    "\tldr r0, [sp, #0x14]\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl __14ScrollMenuPageP10ScrollMenuUiUiPCc\n"
-    "\tldr r0, .L08070C7C @ =0x000005B4\n"
-    "\tadds r1, r4, r0\n"
-    "\tldr r0, .L08070C80 @ =__vt_17RecordsScreenPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r0, #0xb7\n"
-    "\tlsls r0, r0, #3\n"
-    "\tadds r1, r4, r0\n"
-    "\tmovs r3, #0x77\n"
-    "\tldr r0, .L08070C84 @ =0x0000FFFF\n"
-    "\tadds r6, r0, #0\n"
-    "\tmovs r2, #0\n"
-    "\tmovs r5, #1\n"
-    "\trsbs r5, r5, #0\n"
-    ".L08070C4E:\n"
-    "\tldrh r0, [r1]\n"
-    "\torrs r0, r6\n"
-    "\tstrh r0, [r1]\n"
-    "\tstrb r2, [r1, #4]\n"
-    "\tstr r2, [r1, #0x24]\n"
-    "\tadds r0, r1, #0\n"
-    "\tadds r0, #0x28\n"
-    "\tstrb r2, [r0]\n"
-    "\tadds r1, #0x2c\n"
-    "\tsubs r3, #1\n"
-    "\tcmp r3, r5\n"
-    "\tbne .L08070C4E\n"
-    "\tmovs r0, #7\n"
-    "\tmovs r1, #1\n"
-    "\trsbs r1, r1, #0\n"
-    ".L08070C6C:\n"
-    "\tsubs r0, #1\n"
-    "\tcmp r0, r1\n"
-    "\tbne .L08070C6C\n"
-    "\tadds r0, r4, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L08070C7C: .word 0x000005B4\n"
-    ".L08070C80: .word __vt_17RecordsScreenPage\n"
-    ".L08070C84: .word 0x0000FFFF\n"
-    "\n"
-);
 
 RecordsScreenPage::~RecordsScreenPage()
 {
@@ -20056,15 +19787,15 @@ void RecordsScreenCore::SelectPage(u32 page)
 
     switch (static_cast<i32>(page))
     {
-    case 0:
+    case PAGE_SHIPPING:
         selected = new ShippingRecordsPage(this, this->save);
         break;
 
-    case 1:
+    case PAGE_FISHING:
         selected = new FishingRecordsPage(this, this->save);
         break;
 
-    case 2:
+    case PAGE_OTHER:
         selected = new OtherRecordsPage(this, this->save);
         break;
     }

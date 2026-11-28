@@ -7,24 +7,29 @@
 #include "scene.hh"
 #include "scroll_menu.hh"
 #include "harvest_sprite.hh"
+#include "utility/fixed_str.hh"
 
 struct GameStateSaveImage;
 
 // These fixed-capacity records are RAM rendering state, not ROM strings.
 // The native constructor initializes 120 rows; a negative Y ends the used run.
 struct RecordsScreenTextRow {
+    RecordsScreenTextRow() : y(-1), text(), buffer_index(0), rendered(false) {}
+
     i16 y : 16;
-    char text[32] ALIGN(4);
+    FixedStr<31> text;
     u32 buffer_index;
     bool rendered;
 };
 
 struct RecordsScreenTextTileBuffer {
+    RecordsScreenTextTileBuffer() {}
     u32 unk_00;
     u8 tiles[20 * 2 * 32];
 };
 
 struct RecordsScreenPageEntry {
+    RecordsScreenPageEntry() : page(0), scroll_position(0) {}
     u32 page;
     i16 scroll_position;
 };
@@ -32,8 +37,11 @@ struct RecordsScreenPageEntry {
 // The native constructor adds only the active pages. Unused capacity is not
 // part of their lifetime; the original destructor visits count entries.
 struct RecordsScreenPageList {
+    enum { CAPACITY = 10 };
+    RecordsScreenPageList() : count(0) {}
+
     u32 count;
-    u8 storage[10 * sizeof(RecordsScreenPageEntry)];
+    u8 storage[CAPACITY * sizeof(RecordsScreenPageEntry)];
     RecordsScreenPageEntry * Data()
     {
         return reinterpret_cast<RecordsScreenPageEntry *>(storage);
@@ -47,6 +55,7 @@ struct RecordsScreenPageList {
     {
         return reinterpret_cast<RecordsScreenPageEntry *>(storage + count * sizeof(RecordsScreenPageEntry));
     }
+    void Push(RecordsScreenPageEntry const & entry);
     ~RecordsScreenPageList()
     {
         destroy_ptrs(Data(), End());
@@ -68,6 +77,12 @@ struct RecordsScreenScene : AScene
 };
 
 struct RecordsScreenCore : ScrollMenu {
+    enum Page {
+        PAGE_SHIPPING = 0,
+        PAGE_FISHING = 1,
+        PAGE_OTHER = 2,
+    };
+
     RecordsScreenCore(GameStateSaveImage * image);
     virtual void ChangePage(i32 direction);
     void SelectPage(u32 page);

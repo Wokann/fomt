@@ -8720,52 +8720,19 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r1}\n"
     "\tbx r1\n"
-    "\t.global func_08063E04\n"
-    "\t.thumb_func\n"
-    "func_08063E04:\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tsub sp, #0xc\n"
-    "\tadds r7, r2, #0\n"
-    "\tcmp r1, #0xf\n"
-    "\tbls .Ljp_08063B4A\n"
-    "\tmovs r0, #0\n"
-    "\tb .Ljp_08063B88\n"
-    ".Ljp_08063B4A:\n"
-    "\tlsls r4, r1, #1\n"
-    "\tadds r4, r4, r1\n"
-    "\tlsls r4, r4, #6\n"
-    "\tadds r4, r4, r1\n"
-    "\tlsls r4, r4, #2\n"
-    "\tadds r4, r4, r0\n"
-    "\tadd r1, sp, #4\n"
-    "\tmovs r5, #0xc\n"
-    "\tmovs r6, #2\n"
-    "\tadds r0, r1, #0\n"
-    "\tstrh r5, [r0]\n"
-    "\tstrh r6, [r1, #2]\n"
-    "\tldr r0, [sp, #4]\n"
-    "\tmovs r1, #0xd6\n"
-    "\tlsls r1, r1, #4\n"
-    "\tadds r4, r4, r1\n"
-    "\tadds r1, r4, #0\n"
-    "\tmovs r2, #0\n"
-    "\tbl Clear2DGfxBuffer\n"
-    "\tadd r0, sp, #8\n"
-    "\tstrh r5, [r0]\n"
-    "\tstrh r6, [r0, #2]\n"
-    "\tldr r0, [sp, #8]\n"
-    "\tstr r7, [sp]\n"
-    "\tadds r1, r4, #0\n"
-    "\tmovs r2, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawStringTo2DGfxBuffer\n"
-    "\tadds r0, r4, #0\n"
-    ".Ljp_08063B88:\n"
-    "\tadd sp, #0xc\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
 );
+
+u32 const * FarmStatusAnimalPage::DrawAnimalName(u32 index, char const * text)
+{
+    if (index < 16) {
+        NewGameTextTileBuffer<12> & buffer = name_tiles[index];
+        buffer.Clear();
+        buffer.DrawString(0, 0, text);
+        return buffer.TileData();
+    }
+    return nullptr;
+}
+
 
 u32 FarmStatusAnimalPage::Draw()
 {
@@ -9059,7 +9026,7 @@ asm_unified(
     "\tadds r2, r0, #0\n"
     "\tldr r0, [sp, #0x3c]\n"
     "\tldr r1, [sp, #0x40]\n"
-    "\tbl func_08063E04\n"
+    "\tbl DrawAnimalName__20FarmStatusAnimalPageUiPCc\n"
     "\tmov r4, r8\n"
     "\tstr r0, [r4, #4]\n"
     "\tmovs r0, #3\n"
@@ -30437,52 +30404,19 @@ asm_unified(
     "\tpop {r1}\n"
     "\tbx r1\n"
     "\n"
-    "\tthumb_func_start func_08063E04\n"
-    "func_08063E04: @ 0x08063E04\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tsub sp, #0xc\n"
-    "\tadds r7, r2, #0\n"
-    "\tcmp r1, #0xf\n"
-    "\tbls .L08063E12\n"
-    "\tmovs r0, #0\n"
-    "\tb .L08063E50\n"
-    ".L08063E12:\n"
-    "\tlsls r4, r1, #1\n"
-    "\tadds r4, r4, r1\n"
-    "\tlsls r4, r4, #6\n"
-    "\tadds r4, r4, r1\n"
-    "\tlsls r4, r4, #2\n"
-    "\tadds r4, r4, r0\n"
-    "\tadd r1, sp, #4\n"
-    "\tmovs r5, #0xc\n"
-    "\tmovs r6, #2\n"
-    "\tadds r0, r1, #0\n"
-    "\tstrh r5, [r0]\n"
-    "\tstrh r6, [r1, #2]\n"
-    "\tldr r0, [sp, #4]\n"
-    "\tmovs r1, #0x97\n"
-    "\tlsls r1, r1, #5\n"
-    "\tadds r4, r4, r1\n"
-    "\tadds r1, r4, #0\n"
-    "\tmovs r2, #0\n"
-    "\tbl Clear2DGfxBuffer\n"
-    "\tadd r0, sp, #8\n"
-    "\tstrh r5, [r0]\n"
-    "\tstrh r6, [r0, #2]\n"
-    "\tldr r0, [sp, #8]\n"
-    "\tstr r7, [sp]\n"
-    "\tadds r1, r4, #0\n"
-    "\tmovs r2, #0\n"
-    "\tmovs r3, #0\n"
-    "\tbl DrawStringTo2DGfxBuffer\n"
-    "\tadds r0, r4, #0\n"
-    ".L08063E50:\n"
-    "\tadd sp, #0xc\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
 );
+
+u32 const * FarmStatusAnimalPage::DrawAnimalName(u32 index, char const * text)
+{
+    if (index < 16) {
+        NewGameTextTileBuffer<12> & buffer = name_tiles[index];
+        buffer.Clear();
+        buffer.DrawString(0, 0, text);
+        return buffer.TileData();
+    }
+    return nullptr;
+}
+
 
 u32 FarmStatusAnimalPage::Draw()
 {
@@ -30775,7 +30709,7 @@ asm_unified(
     "\tadds r2, r0, #0\n"
     "\tldr r0, [sp, #0x3c]\n"
     "\tldr r1, [sp, #0x40]\n"
-    "\tbl func_08063E04\n"
+    "\tbl DrawAnimalName__20FarmStatusAnimalPageUiPCc\n"
     "\tmov r4, r8\n"
     "\tstr r0, [r4, #4]\n"
     "\tmovs r0, #3\n"

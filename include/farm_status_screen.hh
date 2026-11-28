@@ -11,6 +11,7 @@ struct GameStateSaveImage;
 #include "hardware_context.hh"
 #include "hardware_sprite_buffer.hh"
 #include "sprite_oam.h"
+#include "new_game_ui.hh"
 
 
 // Native insertion constructs only count entries. Capacity is storage, not
@@ -93,7 +94,13 @@ struct FarmStatusAnimalPage : ScrollMenuPage {
     FarmStatusAnimalPage(ScrollMenu * menu, GameStateSaveImage * image,
         u32 rows, char const * title);
     virtual u32 Draw();
-    u8 unk_5B8[0x431C - 0x5B8];
+    u32 const * DrawAnimalName(u32 index, char const * text);
+#if defined(REGION_JP)
+    u8 unk_5B8[0xD5C - 0x5B8];
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+    u8 unk_5B8[0x12DC - 0x5B8];
+#endif
+    NewGameTextTileBuffer<12> name_tiles[16];
 };
 
 struct FarmStatusChickenPage : FarmStatusAnimalPage {
