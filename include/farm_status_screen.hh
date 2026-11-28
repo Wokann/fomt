@@ -6,6 +6,7 @@
 #include "scene.hh"
 
 struct GameStateSaveImage;
+struct Livestock;
 
 #include "scroll_menu.hh"
 #include "hardware_context.hh"
@@ -95,6 +96,9 @@ struct FarmStatusAnimalPage : ScrollMenuPage {
         u32 rows, char const * title);
     virtual u32 Draw();
     u32 const * DrawAnimalName(u32 index, char const * text);
+    GameStateSaveImage const * GetSave() const;
+    void AddAnimalRow(u32 row, Livestock const & animal,
+        u8 const * tiles, u8 const * palette);
 #if defined(REGION_JP)
     u8 unk_5B8[0xD5C - 0x5B8];
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)

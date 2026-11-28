@@ -3,6 +3,36 @@
 #include <new>
 #include "animal.hh"
 #include <algorithm>
+#include "game_state.hh"
+#include "scroll_state.hh"
+extern "C" u8 const gUnk_08751B4C[];
+extern "C" u8 const gUnk_08751BCC[];
+extern "C" u8 const gUnk_08751BEC[];
+extern "C" u8 const gUnk_08751C6C[];
+extern "C" u8 const gUnk_08751C8C[];
+extern "C" u8 const gUnk_08751D0C[];
+extern "C" u8 const gUnk_08751D2C[];
+extern "C" u8 const gUnk_08751DAC[];
+extern "C" u8 const gUnk_08751DCC[];
+extern "C" u8 const gUnk_08751E4C[];
+extern "C" u8 const gUnk_0875268C[];
+extern "C" u8 const gUnk_0875270C[];
+extern "C" u8 const gUnk_0875272C[];
+extern "C" u8 const gUnk_087527AC[];
+extern "C" u8 const gUnk_0875320C[];
+extern "C" u8 const gUnk_0875328C[];
+extern "C" u8 const gUnk_087532AC[];
+extern "C" u8 const gUnk_0875332C[];
+extern "C" u8 const gUnk_0875334C[];
+extern "C" u8 const gUnk_087533CC[];
+extern "C" u8 const gUnk_087533EC[];
+extern "C" u8 const gUnk_0875346C[];
+
+inline GameStateSaveImage const * FarmStatusAnimalPage::GetSave() const
+{
+    return reinterpret_cast<GameStateSaveImage const *>(context);
+}
+
 
 asm_unified(
     ".text\n"
@@ -8774,9 +8804,9 @@ u32 func_08063E8C(Livestock const * animal)
 
 asm_unified(
     "    .align 2, 0\n"
-    "\t.global func_08063EB8\n"
+    "\t.global AddAnimalRow__20FarmStatusAnimalPageUiRC9LivestockPCUcT3\n"
     "\t.thumb_func\n"
-    "func_08063EB8:\n"
+    "AddAnimalRow__20FarmStatusAnimalPageUiRC9LivestockPCUcT3:\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
     "\tmov r7, sl\n"
     "\tmov r6, sb\n"
@@ -9355,342 +9385,116 @@ asm_unified(
     "\tpop {r4, r5, r6, r7}\n"
     "\tpop {r0}\n"
     "\tbx r0\n"
-    "\t.global __21FarmStatusChickenPageP10ScrollMenuP18GameStateSaveImage\n"
-    "\t.thumb_func\n"
-    "__21FarmStatusChickenPageP10ScrollMenuP18GameStateSaveImage: @ 0x08064320\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r5, r0, #0\n"
-    "\tldr r0, .Ljp_08064384 @ =gText_FarmStatus_ChickenList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r5, #0\n"
-    "\tmovs r3, #0x2d\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .Ljp_08064388 @ =0x000005B4\n"
-    "\tadds r1, r5, r0\n"
-    "\tldr r0, .Ljp_0806438C @ =__vt_21FarmStatusChickenPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r6, #0\n"
-    "\tmovs r7, #0\n"
-    "\tldr r1, .Ljp_08064390 @ =0x0000058C\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Coop\n"
-    "\tmov r8, r0\n"
-    "\tcmp r6, r8\n"
-    "\tbhs .Ljp_080643B4\n"
-    ".Ljp_08064358:\n"
-    "\tldr r1, .Ljp_08064390 @ =0x0000058C\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r1, r7, #0\n"
-    "\tbl GetChicken__C4CoopUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .Ljp_080643AE\n"
-    "\tbl GetGrowthStage__C7Chicken\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_0806439C\n"
-    "\tcmp r0, #1\n"
-    "\tbne .Ljp_0806439C\n"
-    "\tldr r3, .Ljp_08064394 @ =gUnk_0875268C\n"
-    "\tldr r0, .Ljp_08064398 @ =gUnk_0875270C\n"
-    "\tb .Ljp_080643A0\n"
-    "\t.align 2, 0\n"
-    ".Ljp_08064384: .word gText_FarmStatus_ChickenList\n"
-    ".Ljp_08064388: .word 0x000005B4\n"
-    ".Ljp_0806438C: .word __vt_21FarmStatusChickenPage\n"
-    ".Ljp_08064390: .word 0x0000058C\n"
-    ".Ljp_08064394: .word gUnk_0875268C\n"
-    ".Ljp_08064398: .word gUnk_0875270C\n"
-    ".Ljp_0806439C:\n"
-    "\tldr r3, .Ljp_080643D4 @ =gUnk_0875272C\n"
-    "\tldr r0, .Ljp_080643D8 @ =gUnk_087527AC\n"
-    ".Ljp_080643A0:\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r5, #0\n"
-    "\tadds r1, r6, #0\n"
-    "\tadds r2, r4, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tadds r6, #1\n"
-    ".Ljp_080643AE:\n"
-    "\tadds r7, #1\n"
-    "\tcmp r7, r8\n"
-    "\tblo .Ljp_08064358\n"
-    ".Ljp_080643B4:\n"
-    "\tldr r0, [r5, #4]\n"
-    "\tlsls r1, r6, #2\n"
-    "\tadds r1, r1, r6\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r5, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080643D4: .word gUnk_0875272C\n"
-    ".Ljp_080643D8: .word gUnk_087527AC\n"
-    "\n"
-    "\t.global __17FarmStatusCowPageP10ScrollMenuP18GameStateSaveImage\n"
-    "\t.thumb_func\n"
-    "__17FarmStatusCowPageP10ScrollMenuP18GameStateSaveImage: @ 0x080643DC\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r7, r0, #0\n"
-    "\tldr r0, .Ljp_08064458 @ =gText_FarmStatus_CattleList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0x55\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .Ljp_0806445C @ =0x000005B4\n"
-    "\tadds r1, r7, r0\n"
-    "\tldr r0, .Ljp_08064460 @ =__vt_17FarmStatusCowPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0\n"
-    "\tmov r8, r1\n"
-    "\tmov sb, r1\n"
-    "\tldr r2, .Ljp_08064464 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Barn\n"
-    "\tmov sl, r0\n"
-    "\tcmp r8, sl\n"
-    "\tbhs .Ljp_080644C2\n"
-    ".Ljp_0806441A:\n"
-    "\tldr r2, .Ljp_08064464 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tmov r1, sb\n"
-    "\tbl GetCow__C4BarnUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .Ljp_080644BA\n"
-    "\tbl GetGrowthStage__C3Cow\n"
-    "\tcmp r0, #1\n"
-    "\tbeq .Ljp_08064494\n"
-    "\tcmp r0, #1\n"
-    "\tblo .Ljp_080644A4\n"
-    "\tcmp r0, #2\n"
-    "\tbne .Ljp_080644A4\n"
-    "\tldr r6, .Ljp_08064468 @ =gUnk_08751B4C\n"
-    "\tldr r5, .Ljp_0806446C @ =gUnk_08751BCC\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsPregnant__C10BarnAnimal\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_08064478\n"
-    "\tldr r6, .Ljp_08064470 @ =gUnk_08751C8C\n"
-    "\tldr r5, .Ljp_08064474 @ =gUnk_08751D0C\n"
-    "\tb .Ljp_080644A8\n"
-    "\t.align 2, 0\n"
-    ".Ljp_08064458: .word gText_FarmStatus_CattleList\n"
-    ".Ljp_0806445C: .word 0x000005B4\n"
-    ".Ljp_08064460: .word __vt_17FarmStatusCowPage\n"
-    ".Ljp_08064464: .word 0x0000058C\n"
-    ".Ljp_08064468: .word gUnk_08751B4C\n"
-    ".Ljp_0806446C: .word gUnk_08751BCC\n"
-    ".Ljp_08064470: .word gUnk_08751C8C\n"
-    ".Ljp_08064474: .word gUnk_08751D0C\n"
-    ".Ljp_08064478:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl HasBeenMilked__C3Cow\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_080644A8\n"
-    "\tldr r6, .Ljp_0806448C @ =gUnk_08751DCC\n"
-    "\tldr r5, .Ljp_08064490 @ =gUnk_08751E4C\n"
-    "\tb .Ljp_080644A8\n"
-    "\t.align 2, 0\n"
-    ".Ljp_0806448C: .word gUnk_08751DCC\n"
-    ".Ljp_08064490: .word gUnk_08751E4C\n"
-    ".Ljp_08064494:\n"
-    "\tldr r6, .Ljp_0806449C @ =gUnk_08751BEC\n"
-    "\tldr r5, .Ljp_080644A0 @ =gUnk_08751C6C\n"
-    "\tb .Ljp_080644A8\n"
-    "\t.align 2, 0\n"
-    ".Ljp_0806449C: .word gUnk_08751BEC\n"
-    ".Ljp_080644A0: .word gUnk_08751C6C\n"
-    ".Ljp_080644A4:\n"
-    "\tldr r6, .Ljp_080644E8 @ =gUnk_08751D2C\n"
-    "\tldr r5, .Ljp_080644EC @ =gUnk_08751DAC\n"
-    ".Ljp_080644A8:\n"
-    "\tstr r5, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r4, #0\n"
-    "\tadds r3, r6, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tmovs r2, #1\n"
-    "\tadd r8, r2\n"
-    ".Ljp_080644BA:\n"
-    "\tmovs r0, #1\n"
-    "\tadd sb, r0\n"
-    "\tcmp sb, sl\n"
-    "\tblo .Ljp_0806441A\n"
-    ".Ljp_080644C2:\n"
-    "\tldr r0, [r7, #4]\n"
-    "\tmov r2, r8\n"
-    "\tlsls r1, r2, #2\n"
-    "\tadd r1, r8\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r7, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080644E8: .word gUnk_08751D2C\n"
-    ".Ljp_080644EC: .word gUnk_08751DAC\n"
-    "\n"
-    "\t.global __19FarmStatusSheepPageP10ScrollMenuP18GameStateSaveImage\n"
-    "\t.thumb_func\n"
-    "__19FarmStatusSheepPageP10ScrollMenuP18GameStateSaveImage: @ 0x080644F0\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r7, r0, #0\n"
-    "\tldr r0, .Ljp_08064568 @ =gText_FarmStatus_SheepList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0x55\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .Ljp_0806456C @ =0x000005B4\n"
-    "\tadds r1, r7, r0\n"
-    "\tldr r0, .Ljp_08064570 @ =__vt_19FarmStatusSheepPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0\n"
-    "\tmov r8, r1\n"
-    "\tmov sb, r1\n"
-    "\tldr r2, .Ljp_08064574 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Barn\n"
-    "\tmov sl, r0\n"
-    "\tcmp r8, sl\n"
-    "\tbhs .Ljp_080645C2\n"
-    ".Ljp_0806452E:\n"
-    "\tldr r2, .Ljp_08064574 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tmov r1, sb\n"
-    "\tbl GetSheep__C4BarnUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .Ljp_080645BA\n"
-    "\tbl GetGrowthStage__C5Sheep\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_080645A4\n"
-    "\tcmp r0, #1\n"
-    "\tbne .Ljp_080645A4\n"
-    "\tldr r6, .Ljp_08064578 @ =gUnk_0875320C\n"
-    "\tldr r5, .Ljp_0806457C @ =gUnk_0875328C\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsPregnant__C10BarnAnimal\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_08064588\n"
-    "\tldr r6, .Ljp_08064580 @ =gUnk_0875334C\n"
-    "\tldr r5, .Ljp_08064584 @ =gUnk_087533CC\n"
-    "\tb .Ljp_080645A8\n"
-    "\t.align 2, 0\n"
-    ".Ljp_08064568: .word gText_FarmStatus_SheepList\n"
-    ".Ljp_0806456C: .word 0x000005B4\n"
-    ".Ljp_08064570: .word __vt_19FarmStatusSheepPage\n"
-    ".Ljp_08064574: .word 0x0000058C\n"
-    ".Ljp_08064578: .word gUnk_0875320C\n"
-    ".Ljp_0806457C: .word gUnk_0875328C\n"
-    ".Ljp_08064580: .word gUnk_0875334C\n"
-    ".Ljp_08064584: .word gUnk_087533CC\n"
-    ".Ljp_08064588:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsSheared__C5Sheep\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .Ljp_080645A8\n"
-    "\tldr r6, .Ljp_0806459C @ =gUnk_087532AC\n"
-    "\tldr r5, .Ljp_080645A0 @ =gUnk_0875332C\n"
-    "\tb .Ljp_080645A8\n"
-    "\t.align 2, 0\n"
-    ".Ljp_0806459C: .word gUnk_087532AC\n"
-    ".Ljp_080645A0: .word gUnk_0875332C\n"
-    ".Ljp_080645A4:\n"
-    "\tldr r6, .Ljp_080645E8 @ =gUnk_087533EC\n"
-    "\tldr r5, .Ljp_080645EC @ =gUnk_0875346C\n"
-    ".Ljp_080645A8:\n"
-    "\tstr r5, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r4, #0\n"
-    "\tadds r3, r6, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tmovs r2, #1\n"
-    "\tadd r8, r2\n"
-    ".Ljp_080645BA:\n"
-    "\tmovs r0, #1\n"
-    "\tadd sb, r0\n"
-    "\tcmp sb, sl\n"
-    "\tblo .Ljp_0806452E\n"
-    ".Ljp_080645C2:\n"
-    "\tldr r0, [r7, #4]\n"
-    "\tmov r2, r8\n"
-    "\tlsls r1, r2, #2\n"
-    "\tadd r1, r8\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r7, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".Ljp_080645E8: .word gUnk_087533EC\n"
-    ".Ljp_080645EC: .word gUnk_0875346C\n"
-    "\n"
+
+);
+
+FarmStatusChickenPage::FarmStatusChickenPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Coop::MAX_CAPACITY * 5 + 5, gText_FarmStatus_ChickenList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.coop.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Chicken const * chicken = GetSave()->farm.coop.GetChicken(slot);
+        if (chicken) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (chicken->GetGrowthStage()) {
+            case Chicken::STAGE_1:
+                tiles = gUnk_0875268C;
+                palette = gUnk_0875270C;
+                break;
+            case Chicken::STAGE_0:
+            default:
+                tiles = gUnk_0875272C;
+                palette = gUnk_087527AC;
+                break;
+            }
+            AddAnimalRow(count, *chicken, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+FarmStatusCowPage::FarmStatusCowPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Barn::MAX_CAPACITY * 5 + 5, gText_FarmStatus_CattleList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.barn.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Cow const * cow = GetSave()->farm.barn.GetCow(slot);
+        if (cow) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (static_cast<u32>(cow->GetGrowthStage())) {
+            case Cow::STAGE_2:
+                tiles = gUnk_08751B4C;
+                palette = gUnk_08751BCC;
+                if (cow->IsPregnant()) {
+                    tiles = gUnk_08751C8C;
+                    palette = gUnk_08751D0C;
+                } else if (cow->HasBeenMilked()) {
+                    tiles = gUnk_08751DCC;
+                    palette = gUnk_08751E4C;
+                }
+                break;
+            case Cow::STAGE_1:
+                tiles = gUnk_08751BEC;
+                palette = gUnk_08751C6C;
+                break;
+            case Cow::STAGE_0:
+            default:
+                tiles = gUnk_08751D2C;
+                palette = gUnk_08751DAC;
+                break;
+            }
+            AddAnimalRow(count, *cow, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+FarmStatusSheepPage::FarmStatusSheepPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Barn::MAX_CAPACITY * 5 + 5, gText_FarmStatus_SheepList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.barn.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Sheep const * sheep = GetSave()->farm.barn.GetSheep(slot);
+        if (sheep) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (sheep->GetGrowthStage()) {
+            case Sheep::STAGE_1:
+                tiles = gUnk_0875320C;
+                palette = gUnk_0875328C;
+                if (sheep->IsPregnant()) {
+                    tiles = gUnk_0875334C;
+                    palette = gUnk_087533CC;
+                } else if (sheep->IsSheared()) {
+                    tiles = gUnk_087532AC;
+                    palette = gUnk_0875332C;
+                }
+                break;
+            case Sheep::STAGE_0:
+            default:
+                tiles = gUnk_087533EC;
+                palette = gUnk_0875346C;
+                break;
+            }
+            AddAnimalRow(count, *sheep, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\t.global __28FarmStatusHarvestSpritesPageP10ScrollMenuP18GameStateSaveImage\n"
     "\t.thumb_func\n"
     "__28FarmStatusHarvestSpritesPageP10ScrollMenuP18GameStateSaveImage: @ 0x080645F0\n"
@@ -30458,8 +30262,8 @@ u32 func_08063E8C(Livestock const * animal)
 
 asm_unified(
     "    .align 2, 0\n"
-    "\tthumb_func_start func_08063EB8\n"
-    "func_08063EB8: @ 0x08063EB8\n"
+    "\tthumb_func_start AddAnimalRow__20FarmStatusAnimalPageUiRC9LivestockPCUcT3\n"
+    "AddAnimalRow__20FarmStatusAnimalPageUiRC9LivestockPCUcT3: @ 0x08063EB8\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
     "\tmov r7, sl\n"
     "\tmov r6, sb\n"
@@ -31044,339 +30848,116 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start __21FarmStatusChickenPageP10ScrollMenuP18GameStateSaveImage\n"
-    "__21FarmStatusChickenPageP10ScrollMenuP18GameStateSaveImage: @ 0x08064320\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r5, r0, #0\n"
-    "\tldr r0, .L08064384 @ =gText_FarmStatus_ChickenList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r5, #0\n"
-    "\tmovs r3, #0x2d\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .L08064388 @ =0x000005B4\n"
-    "\tadds r1, r5, r0\n"
-    "\tldr r0, .L0806438C @ =__vt_21FarmStatusChickenPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r6, #0\n"
-    "\tmovs r7, #0\n"
-    "\tldr r1, .L08064390 @ =0x0000058C\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Coop\n"
-    "\tmov r8, r0\n"
-    "\tcmp r6, r8\n"
-    "\tbhs .L080643B4\n"
-    ".L08064358:\n"
-    "\tldr r1, .L08064390 @ =0x0000058C\n"
-    "\tadds r0, r5, r1\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0x82\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r1, r7, #0\n"
-    "\tbl GetChicken__C4CoopUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080643AE\n"
-    "\tbl GetGrowthStage__C7Chicken\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L0806439C\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L0806439C\n"
-    "\tldr r3, .L08064394 @ =gUnk_0875268C\n"
-    "\tldr r0, .L08064398 @ =gUnk_0875270C\n"
-    "\tb .L080643A0\n"
-    "\t.align 2, 0\n"
-    ".L08064384: .word gText_FarmStatus_ChickenList\n"
-    ".L08064388: .word 0x000005B4\n"
-    ".L0806438C: .word __vt_21FarmStatusChickenPage\n"
-    ".L08064390: .word 0x0000058C\n"
-    ".L08064394: .word gUnk_0875268C\n"
-    ".L08064398: .word gUnk_0875270C\n"
-    ".L0806439C:\n"
-    "\tldr r3, .L080643D4 @ =gUnk_0875272C\n"
-    "\tldr r0, .L080643D8 @ =gUnk_087527AC\n"
-    ".L080643A0:\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r5, #0\n"
-    "\tadds r1, r6, #0\n"
-    "\tadds r2, r4, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tadds r6, #1\n"
-    ".L080643AE:\n"
-    "\tadds r7, #1\n"
-    "\tcmp r7, r8\n"
-    "\tblo .L08064358\n"
-    ".L080643B4:\n"
-    "\tldr r0, [r5, #4]\n"
-    "\tlsls r1, r6, #2\n"
-    "\tadds r1, r1, r6\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r5, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080643D4: .word gUnk_0875272C\n"
-    ".L080643D8: .word gUnk_087527AC\n"
-    "\n"
-    "\tthumb_func_start __17FarmStatusCowPageP10ScrollMenuP18GameStateSaveImage\n"
-    "__17FarmStatusCowPageP10ScrollMenuP18GameStateSaveImage: @ 0x080643DC\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r7, r0, #0\n"
-    "\tldr r0, .L08064458 @ =gText_FarmStatus_CattleList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0x55\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .L0806445C @ =0x000005B4\n"
-    "\tadds r1, r7, r0\n"
-    "\tldr r0, .L08064460 @ =__vt_17FarmStatusCowPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0\n"
-    "\tmov r8, r1\n"
-    "\tmov sb, r1\n"
-    "\tldr r2, .L08064464 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Barn\n"
-    "\tmov sl, r0\n"
-    "\tcmp r8, sl\n"
-    "\tbhs .L080644C2\n"
-    ".L0806441A:\n"
-    "\tldr r2, .L08064464 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tmov r1, sb\n"
-    "\tbl GetCow__C4BarnUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080644BA\n"
-    "\tbl GetGrowthStage__C3Cow\n"
-    "\tcmp r0, #1\n"
-    "\tbeq .L08064494\n"
-    "\tcmp r0, #1\n"
-    "\tblo .L080644A4\n"
-    "\tcmp r0, #2\n"
-    "\tbne .L080644A4\n"
-    "\tldr r6, .L08064468 @ =gUnk_08751B4C\n"
-    "\tldr r5, .L0806446C @ =gUnk_08751BCC\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsPregnant__C10BarnAnimal\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L08064478\n"
-    "\tldr r6, .L08064470 @ =gUnk_08751C8C\n"
-    "\tldr r5, .L08064474 @ =gUnk_08751D0C\n"
-    "\tb .L080644A8\n"
-    "\t.align 2, 0\n"
-    ".L08064458: .word gText_FarmStatus_CattleList\n"
-    ".L0806445C: .word 0x000005B4\n"
-    ".L08064460: .word __vt_17FarmStatusCowPage\n"
-    ".L08064464: .word 0x0000058C\n"
-    ".L08064468: .word gUnk_08751B4C\n"
-    ".L0806446C: .word gUnk_08751BCC\n"
-    ".L08064470: .word gUnk_08751C8C\n"
-    ".L08064474: .word gUnk_08751D0C\n"
-    ".L08064478:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl HasBeenMilked__C3Cow\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080644A8\n"
-    "\tldr r6, .L0806448C @ =gUnk_08751DCC\n"
-    "\tldr r5, .L08064490 @ =gUnk_08751E4C\n"
-    "\tb .L080644A8\n"
-    "\t.align 2, 0\n"
-    ".L0806448C: .word gUnk_08751DCC\n"
-    ".L08064490: .word gUnk_08751E4C\n"
-    ".L08064494:\n"
-    "\tldr r6, .L0806449C @ =gUnk_08751BEC\n"
-    "\tldr r5, .L080644A0 @ =gUnk_08751C6C\n"
-    "\tb .L080644A8\n"
-    "\t.align 2, 0\n"
-    ".L0806449C: .word gUnk_08751BEC\n"
-    ".L080644A0: .word gUnk_08751C6C\n"
-    ".L080644A4:\n"
-    "\tldr r6, .L080644E8 @ =gUnk_08751D2C\n"
-    "\tldr r5, .L080644EC @ =gUnk_08751DAC\n"
-    ".L080644A8:\n"
-    "\tstr r5, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r4, #0\n"
-    "\tadds r3, r6, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tmovs r2, #1\n"
-    "\tadd r8, r2\n"
-    ".L080644BA:\n"
-    "\tmovs r0, #1\n"
-    "\tadd sb, r0\n"
-    "\tcmp sb, sl\n"
-    "\tblo .L0806441A\n"
-    ".L080644C2:\n"
-    "\tldr r0, [r7, #4]\n"
-    "\tmov r2, r8\n"
-    "\tlsls r1, r2, #2\n"
-    "\tadd r1, r8\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r7, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080644E8: .word gUnk_08751D2C\n"
-    ".L080644EC: .word gUnk_08751DAC\n"
-    "\n"
-    "\tthumb_func_start __19FarmStatusSheepPageP10ScrollMenuP18GameStateSaveImage\n"
-    "__19FarmStatusSheepPageP10ScrollMenuP18GameStateSaveImage: @ 0x080644F0\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, sl\n"
-    "\tmov r6, sb\n"
-    "\tmov r5, r8\n"
-    "\tpush {r5, r6, r7}\n"
-    "\tsub sp, #4\n"
-    "\tadds r7, r0, #0\n"
-    "\tldr r0, .L08064568 @ =gText_FarmStatus_SheepList\n"
-    "\tstr r0, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmovs r3, #0x55\n"
-    "\tbl __20FarmStatusAnimalPageP10ScrollMenuP18GameStateSaveImageUiPCc\n"
-    "\tldr r0, .L0806456C @ =0x000005B4\n"
-    "\tadds r1, r7, r0\n"
-    "\tldr r0, .L08064570 @ =__vt_19FarmStatusSheepPage\n"
-    "\tstr r0, [r1]\n"
-    "\tmovs r1, #0\n"
-    "\tmov r8, r1\n"
-    "\tmov sb, r1\n"
-    "\tldr r2, .L08064574 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tbl GetCapacity__C4Barn\n"
-    "\tmov sl, r0\n"
-    "\tcmp r8, sl\n"
-    "\tbhs .L080645C2\n"
-    ".L0806452E:\n"
-    "\tldr r2, .L08064574 @ =0x0000058C\n"
-    "\tadds r0, r7, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tmovs r1, #0xbe\n"
-    "\tlsls r1, r1, #3\n"
-    "\tadds r0, r0, r1\n"
-    "\tmov r1, sb\n"
-    "\tbl GetSheep__C4BarnUi\n"
-    "\tadds r4, r0, #0\n"
-    "\tcmp r4, #0\n"
-    "\tbeq .L080645BA\n"
-    "\tbl GetGrowthStage__C5Sheep\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080645A4\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080645A4\n"
-    "\tldr r6, .L08064578 @ =gUnk_0875320C\n"
-    "\tldr r5, .L0806457C @ =gUnk_0875328C\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsPregnant__C10BarnAnimal\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L08064588\n"
-    "\tldr r6, .L08064580 @ =gUnk_0875334C\n"
-    "\tldr r5, .L08064584 @ =gUnk_087533CC\n"
-    "\tb .L080645A8\n"
-    "\t.align 2, 0\n"
-    ".L08064568: .word gText_FarmStatus_SheepList\n"
-    ".L0806456C: .word 0x000005B4\n"
-    ".L08064570: .word __vt_19FarmStatusSheepPage\n"
-    ".L08064574: .word 0x0000058C\n"
-    ".L08064578: .word gUnk_0875320C\n"
-    ".L0806457C: .word gUnk_0875328C\n"
-    ".L08064580: .word gUnk_0875334C\n"
-    ".L08064584: .word gUnk_087533CC\n"
-    ".L08064588:\n"
-    "\tadds r0, r4, #0\n"
-    "\tbl IsSheared__C5Sheep\n"
-    "\tlsls r0, r0, #0x18\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080645A8\n"
-    "\tldr r6, .L0806459C @ =gUnk_087532AC\n"
-    "\tldr r5, .L080645A0 @ =gUnk_0875332C\n"
-    "\tb .L080645A8\n"
-    "\t.align 2, 0\n"
-    ".L0806459C: .word gUnk_087532AC\n"
-    ".L080645A0: .word gUnk_0875332C\n"
-    ".L080645A4:\n"
-    "\tldr r6, .L080645E8 @ =gUnk_087533EC\n"
-    "\tldr r5, .L080645EC @ =gUnk_0875346C\n"
-    ".L080645A8:\n"
-    "\tstr r5, [sp]\n"
-    "\tadds r0, r7, #0\n"
-    "\tmov r1, r8\n"
-    "\tadds r2, r4, #0\n"
-    "\tadds r3, r6, #0\n"
-    "\tbl func_08063EB8\n"
-    "\tmovs r2, #1\n"
-    "\tadd r8, r2\n"
-    ".L080645BA:\n"
-    "\tmovs r0, #1\n"
-    "\tadd sb, r0\n"
-    "\tcmp sb, sl\n"
-    "\tblo .L0806452E\n"
-    ".L080645C2:\n"
-    "\tldr r0, [r7, #4]\n"
-    "\tmov r2, r8\n"
-    "\tlsls r1, r2, #2\n"
-    "\tadd r1, r8\n"
-    "\tadds r1, #5\n"
-    "\tlsls r1, r1, #0x13\n"
-    "\tasrs r1, r1, #0x10\n"
-    "\tbl SetScrollBottomLimit\n"
-    "\tadds r0, r7, #0\n"
-    "\tadd sp, #4\n"
-    "\tpop {r3, r4, r5}\n"
-    "\tmov r8, r3\n"
-    "\tmov sb, r4\n"
-    "\tmov sl, r5\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L080645E8: .word gUnk_087533EC\n"
-    ".L080645EC: .word gUnk_0875346C\n"
-    "\n"
+
+);
+
+FarmStatusChickenPage::FarmStatusChickenPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Coop::MAX_CAPACITY * 5 + 5, gText_FarmStatus_ChickenList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.coop.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Chicken const * chicken = GetSave()->farm.coop.GetChicken(slot);
+        if (chicken) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (chicken->GetGrowthStage()) {
+            case Chicken::STAGE_1:
+                tiles = gUnk_0875268C;
+                palette = gUnk_0875270C;
+                break;
+            case Chicken::STAGE_0:
+            default:
+                tiles = gUnk_0875272C;
+                palette = gUnk_087527AC;
+                break;
+            }
+            AddAnimalRow(count, *chicken, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+FarmStatusCowPage::FarmStatusCowPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Barn::MAX_CAPACITY * 5 + 5, gText_FarmStatus_CattleList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.barn.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Cow const * cow = GetSave()->farm.barn.GetCow(slot);
+        if (cow) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (static_cast<u32>(cow->GetGrowthStage())) {
+            case Cow::STAGE_2:
+                tiles = gUnk_08751B4C;
+                palette = gUnk_08751BCC;
+                if (cow->IsPregnant()) {
+                    tiles = gUnk_08751C8C;
+                    palette = gUnk_08751D0C;
+                } else if (cow->HasBeenMilked()) {
+                    tiles = gUnk_08751DCC;
+                    palette = gUnk_08751E4C;
+                }
+                break;
+            case Cow::STAGE_1:
+                tiles = gUnk_08751BEC;
+                palette = gUnk_08751C6C;
+                break;
+            case Cow::STAGE_0:
+            default:
+                tiles = gUnk_08751D2C;
+                palette = gUnk_08751DAC;
+                break;
+            }
+            AddAnimalRow(count, *cow, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+FarmStatusSheepPage::FarmStatusSheepPage(ScrollMenu * menu, GameStateSaveImage * image)
+    : FarmStatusAnimalPage(menu, image, Barn::MAX_CAPACITY * 5 + 5, gText_FarmStatus_SheepList)
+{
+    u32 count = 0;
+    u32 slot = 0;
+    u32 capacity = GetSave()->farm.barn.GetCapacity();
+    for (; slot < capacity; ++slot) {
+        Sheep const * sheep = GetSave()->farm.barn.GetSheep(slot);
+        if (sheep) {
+            u8 const * tiles;
+            u8 const * palette;
+            switch (sheep->GetGrowthStage()) {
+            case Sheep::STAGE_1:
+                tiles = gUnk_0875320C;
+                palette = gUnk_0875328C;
+                if (sheep->IsPregnant()) {
+                    tiles = gUnk_0875334C;
+                    palette = gUnk_087533CC;
+                } else if (sheep->IsSheared()) {
+                    tiles = gUnk_087532AC;
+                    palette = gUnk_0875332C;
+                }
+                break;
+            case Sheep::STAGE_0:
+            default:
+                tiles = gUnk_087533EC;
+                palette = gUnk_0875346C;
+                break;
+            }
+            AddAnimalRow(count, *sheep, tiles, palette);
+            ++count;
+        }
+    }
+    SetScrollBottomLimit(scroll, (count * 5 + 5) * 8);
+}
+
+asm_unified(
+    "    .align 2, 0\n"
     "\tthumb_func_start __28FarmStatusHarvestSpritesPageP10ScrollMenuP18GameStateSaveImage\n"
     "__28FarmStatusHarvestSpritesPageP10ScrollMenuP18GameStateSaveImage: @ 0x080645F0\n"
     "\tpush {r4, r5, r6, r7, lr}\n"
