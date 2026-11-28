@@ -31,6 +31,7 @@ struct AnimalCareMinigameSprite {
 
 struct AnimalCareMinigameResourceHandleOwner {
     IndexedResourceHandle * value;
+    IndexedResourceHandle * Get() const { return value; }
     ~AnimalCareMinigameResourceHandleOwner() { delete value; }
 };
 

@@ -6240,75 +6240,27 @@ asm_unified(
     ".Lanimal_care_08_0228: .word 0x814\n"
 #endif
     "\n"
-    "thumb_func_start PauseAnimalCareAnimations\n"
-    "PauseAnimalCareAnimations:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r3, r0, #0\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r3, r1\n"
-    "ldr r1, [r0]\n"
-    "movs r0, #0\n"
-    "strh r0, [r1, #0x10]\n"
-    "movs r2, #0\n"
-    "movs r6, #0xc3\n"
-    "lsls r6, r6, #3\n"
-    "movs r4, #0\n"
-    "ldr r5, .Lanimal_care_09_0038\n"
-    ".Lanimal_care_09_001a:\n"
-    "lsls r1, r2, #2\n"
-    "adds r0, r1, r3\n"
-    "adds r0, r0, r6\n"
-    "ldr r0, [r0]\n"
-    "strh r4, [r0, #0x10]\n"
-    "adds r1, r1, r3\n"
-    "adds r1, r1, r5\n"
-    "ldr r0, [r1]\n"
-    "strh r4, [r0, #0x10]\n"
-    "adds r2, #1\n"
-    "cmp r2, #4\n"
-    "ble .Lanimal_care_09_001a\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_09_0038: .word 0x6f4\n"
-    "\n"
-    "thumb_func_start ResumeAnimalCareAnimations\n"
-    "ResumeAnimalCareAnimations:\n"
-    "push {r4, r5, r6, lr}\n"
-    "adds r3, r0, #0\n"
-    "movs r1, #0xa0\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r3, r1\n"
-    "ldr r0, [r0]\n"
-    "movs r1, #0x80\n"
-    "lsls r1, r1, #1\n"
-    "strh r1, [r0, #0x10]\n"
-    "movs r2, #0\n"
-    "movs r6, #0xc3\n"
-    "lsls r6, r6, #3\n"
-    "adds r4, r1, #0\n"
-    "ldr r5, .Lanimal_care_10_003c\n"
-    ".Lanimal_care_10_001c:\n"
-    "lsls r1, r2, #2\n"
-    "adds r0, r1, r3\n"
-    "adds r0, r0, r6\n"
-    "ldr r0, [r0]\n"
-    "strh r4, [r0, #0x10]\n"
-    "adds r1, r1, r3\n"
-    "adds r1, r1, r5\n"
-    "ldr r0, [r1]\n"
-    "strh r4, [r0, #0x10]\n"
-    "adds r2, #1\n"
-    "cmp r2, #4\n"
-    "ble .Lanimal_care_10_001c\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_10_003c: .word 0x6f4\n"
-    "\n"
+);
+
+extern "C" void PauseAnimalCareAnimations(HarvestSpriteAnimalCareCore * core)
+{
+    core->sprite_500.handle->SetScrollDelta(0);
+    for (i32 i = 0; i < 5; ++i) {
+        core->handles_618[i].Get()->SetScrollDelta(0);
+        core->handles_6F4[i].Get()->SetScrollDelta(0);
+    }
+}
+
+extern "C" void ResumeAnimalCareAnimations(HarvestSpriteAnimalCareCore * core)
+{
+    core->sprite_500.handle->SetScrollDelta(0x100);
+    for (i32 i = 0; i < 5; ++i) {
+        core->handles_618[i].Get()->SetScrollDelta(0x100);
+        core->handles_6F4[i].Get()->SetScrollDelta(0x100);
+    }
+}
+
+asm_unified(
     "thumb_func_start func_080B09B0\n"
     "func_080B09B0:\n"
     "push {r4, r5, lr}\n"
