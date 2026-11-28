@@ -437,305 +437,145 @@ asm_unified(
     "\tbx r1\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start EraseRedBlackTreeNode\n"
-    "EraseRedBlackTreeNode: \n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tadds r5, r0, #0\n"
-    "\tmov r8, r1\n"
-    "\tadds r7, r5, #0\n"
-    "\tldr r1, [r7, #8]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2624\n"
-    "\tldr r0, [r7, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E2618\n"
-    "\tadds r6, r1, #0\n"
-    "\tb .L080E2626\n"
-    ".L080E2618:\n"
-    "\tadds r7, r0, #0\n"
-    "\tb .L080E261E\n"
-    ".L080E261C:\n"
-    "\tldr r7, [r7, #8]\n"
-    ".L080E261E:\n"
-    "\tldr r0, [r7, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E261C\n"
-    ".L080E2624:\n"
-    "\tldr r6, [r7, #0xc]\n"
-    ".L080E2626:\n"
-    "\tcmp r7, r5\n"
-    "\tbeq .L080E267A\n"
-    "\tldr r0, [r5, #8]\n"
-    "\tstr r7, [r0, #4]\n"
-    "\tldr r0, [r5, #8]\n"
-    "\tstr r0, [r7, #8]\n"
-    "\tldr r0, [r5, #0xc]\n"
-    "\tcmp r7, r0\n"
-    "\tbeq .L080E264E\n"
-    "\tldr r4, [r7, #4]\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .L080E2640\n"
-    "\tstr r4, [r6, #4]\n"
-    ".L080E2640:\n"
-    "\tldr r0, [r7, #4]\n"
-    "\tstr r6, [r0, #8]\n"
-    "\tldr r0, [r5, #0xc]\n"
-    "\tstr r0, [r7, #0xc]\n"
-    "\tldr r0, [r5, #0xc]\n"
-    "\tstr r7, [r0, #4]\n"
-    "\tb .L080E2650\n"
-    ".L080E264E:\n"
-    "\tadds r4, r7, #0\n"
-    ".L080E2650:\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    "\tcmp r0, r5\n"
-    "\tbne .L080E265C\n"
-    "\tstr r7, [r1]\n"
-    "\tb .L080E266A\n"
-    ".L080E265C:\n"
-    "\tldr r1, [r5, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r0, r5\n"
-    "\tbne .L080E2668\n"
-    "\tstr r7, [r1, #8]\n"
-    "\tb .L080E266A\n"
-    ".L080E2668:\n"
-    "\tstr r7, [r1, #0xc]\n"
-    ".L080E266A:\n"
-    "\tldr r0, [r5, #4]\n"
-    "\tstr r0, [r7, #4]\n"
-    "\tldrb r1, [r7]\n"
-    "\tldrb r0, [r5]\n"
-    "\tstrb r0, [r7]\n"
-    "\tstrb r1, [r5]\n"
-    "\tadds r7, r5, #0\n"
-    "\tb .L080E26E4\n"
-    ".L080E267A:\n"
-    "\tldr r4, [r7, #4]\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .L080E2682\n"
-    "\tstr r4, [r6, #4]\n"
-    ".L080E2682:\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    "\tcmp r0, r7\n"
-    "\tbne .L080E268E\n"
-    "\tstr r6, [r1]\n"
-    "\tb .L080E269C\n"
-    ".L080E268E:\n"
-    "\tldr r1, [r7, #4]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r0, r7\n"
-    "\tbne .L080E269A\n"
-    "\tstr r6, [r1, #8]\n"
-    "\tb .L080E269C\n"
-    ".L080E269A:\n"
-    "\tstr r6, [r1, #0xc]\n"
-    ".L080E269C:\n"
-    "\tldr r0, [r2]\n"
-    "\tcmp r0, r5\n"
-    "\tbne .L080E26C0\n"
-    "\tldr r0, [r5, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E26AE\n"
-    "\tldr r0, [r5, #4]\n"
-    "\tstr r0, [r2]\n"
-    "\tb .L080E26C0\n"
-    ".L080E26AE:\n"
-    "\tadds r1, r6, #0\n"
-    "\tldr r0, [r6, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E26BE\n"
-    ".L080E26B6:\n"
-    "\tldr r1, [r1, #8]\n"
-    "\tldr r0, [r1, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E26B6\n"
-    ".L080E26BE:\n"
-    "\tstr r1, [r2]\n"
-    ".L080E26C0:\n"
-    "\tldr r0, [r3]\n"
-    "\tcmp r0, r5\n"
-    "\tbne .L080E26E4\n"
-    "\tldr r0, [r5, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E26D2\n"
-    "\tldr r0, [r5, #4]\n"
-    "\tstr r0, [r3]\n"
-    "\tb .L080E26E4\n"
-    ".L080E26D2:\n"
-    "\tadds r1, r6, #0\n"
-    "\tldr r0, [r6, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E26E2\n"
-    ".L080E26DA:\n"
-    "\tldr r1, [r1, #0xc]\n"
-    "\tldr r0, [r1, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E26DA\n"
-    ".L080E26E2:\n"
-    "\tstr r1, [r3]\n"
-    ".L080E26E4:\n"
-    "\tldrb r0, [r7]\n"
-    "\tcmp r0, #0\n"
-    "\tbne .L080E26EC\n"
-    "\tb .L080E27F0\n"
-    ".L080E26EC:\n"
-    "\tb .L080E27D6\n"
-    ".L080E26EE:\n"
-    "\tldr r0, [r4, #8]\n"
-    "\tcmp r6, r0\n"
-    "\tbne .L080E2760\n"
-    "\tldr r2, [r4, #0xc]\n"
-    "\tldrb r1, [r2]\n"
-    "\tcmp r1, #0\n"
-    "\tbne .L080E270C\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r2]\n"
-    "\tstrb r1, [r4]\n"
-    "\tadds r0, r4, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeLeft\n"
-    "\tldr r2, [r4, #0xc]\n"
-    ".L080E270C:\n"
-    "\tldr r3, [r2, #8]\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .L080E271A\n"
-    "\tldrb r0, [r3]\n"
-    "\tldr r1, [r2, #0xc]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080E2726\n"
-    ".L080E271A:\n"
-    "\tldr r1, [r2, #0xc]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2792\n"
-    "\tldrb r0, [r1]\n"
-    "\tcmp r0, #1\n"
-    "\tbeq .L080E2792\n"
-    ".L080E2726:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2730\n"
-    "\tldrb r0, [r1]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080E2746\n"
-    ".L080E2730:\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .L080E2738\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r3]\n"
-    ".L080E2738:\n"
-    "\tmovs r0, #0\n"
-    "\tstrb r0, [r2]\n"
-    "\tadds r0, r2, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeRight\n"
-    "\tldr r2, [r4, #0xc]\n"
-    ".L080E2746:\n"
-    "\tldrb r0, [r4]\n"
-    "\tstrb r0, [r2]\n"
-    "\tmovs r1, #1\n"
-    "\tstrb r1, [r4]\n"
-    "\tldr r0, [r2, #0xc]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E2756\n"
-    "\tstrb r1, [r0]\n"
-    ".L080E2756:\n"
-    "\tadds r0, r4, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeLeft\n"
-    "\tb .L080E27E8\n"
-    ".L080E2760:\n"
-    "\tadds r2, r0, #0\n"
-    "\tldrb r1, [r2]\n"
-    "\tcmp r1, #0\n"
-    "\tbne .L080E2778\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r2]\n"
-    "\tstrb r1, [r4]\n"
-    "\tadds r0, r4, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeRight\n"
-    "\tldr r2, [r4, #8]\n"
-    ".L080E2778:\n"
-    "\tldr r3, [r2, #0xc]\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .L080E2786\n"
-    "\tldrb r0, [r3]\n"
-    "\tldr r1, [r2, #8]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080E279C\n"
-    ".L080E2786:\n"
-    "\tldr r1, [r2, #8]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E2792\n"
-    "\tldrb r0, [r1]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080E279C\n"
-    ".L080E2792:\n"
-    "\tmovs r0, #0\n"
-    "\tstrb r0, [r2]\n"
-    "\tadds r6, r4, #0\n"
-    "\tldr r4, [r6, #4]\n"
-    "\tb .L080E27D6\n"
-    ".L080E279C:\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L080E27A6\n"
-    "\tldrb r0, [r1]\n"
-    "\tcmp r0, #1\n"
-    "\tbne .L080E27BC\n"
-    ".L080E27A6:\n"
-    "\tcmp r3, #0\n"
-    "\tbeq .L080E27AE\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r3]\n"
-    ".L080E27AE:\n"
-    "\tmovs r0, #0\n"
-    "\tstrb r0, [r2]\n"
-    "\tadds r0, r2, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeLeft\n"
-    "\tldr r2, [r4, #8]\n"
-    ".L080E27BC:\n"
-    "\tldrb r0, [r4]\n"
-    "\tstrb r0, [r2]\n"
-    "\tmovs r1, #1\n"
-    "\tstrb r1, [r4]\n"
-    "\tldr r0, [r2, #8]\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L080E27CC\n"
-    "\tstrb r1, [r0]\n"
-    ".L080E27CC:\n"
-    "\tadds r0, r4, #0\n"
-    "\tmov r1, r8\n"
-    "\tbl RotateRedBlackTreeRight\n"
-    "\tb .L080E27E8\n"
-    ".L080E27D6:\n"
-    "\tmov r1, r8\n"
-    "\tldr r0, [r1]\n"
-    "\tcmp r6, r0\n"
-    "\tbeq .L080E27E8\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .L080E26EE\n"
-    "\tldrb r0, [r6]\n"
-    "\tcmp r0, #1\n"
-    "\tbeq .L080E26EE\n"
-    ".L080E27E8:\n"
-    "\tcmp r6, #0\n"
-    "\tbeq .L080E27F0\n"
-    "\tmovs r0, #1\n"
-    "\tstrb r0, [r6]\n"
-    ".L080E27F0:\n"
-    "\tadds r0, r7, #0\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
 );
+
+RedBlackTreeNode * EraseRedBlackTreeNode(RedBlackTreeNode * node, RedBlackTreeNode *& root,
+    RedBlackTreeNode *& first, RedBlackTreeNode *& last)
+{
+    RedBlackTreeNode * removed = node;
+    RedBlackTreeNode * child;
+    RedBlackTreeNode * parent;
+    if (removed->left == nullptr)
+        child = removed->right;
+    else if (removed->right == nullptr)
+        child = removed->left;
+    else {
+        removed = removed->right;
+        while (removed->left != nullptr)
+            removed = removed->left;
+        child = removed->right;
+    }
+    if (removed != node) {
+        node->left->parent = removed;
+        removed->left = node->left;
+        if (removed != node->right) {
+            parent = removed->parent;
+            if (child != nullptr)
+                child->parent = removed->parent;
+            removed->parent->left = child;
+            removed->right = node->right;
+            node->right->parent = removed;
+        } else {
+            parent = removed;
+        }
+        if (root == node)
+            root = removed;
+        else if (node->parent->left == node)
+            node->parent->left = removed;
+        else
+            node->parent->right = removed;
+        removed->parent = node->parent;
+        bool black = removed->black;
+        removed->black = node->black;
+        node->black = black;
+        removed = node;
+    } else {
+        parent = removed->parent;
+        if (child != nullptr)
+            child->parent = removed->parent;
+        if (root == node)
+            root = child;
+        else if (node->parent->left == node)
+            node->parent->left = child;
+        else
+            node->parent->right = child;
+        if (first == node) {
+            if (node->right == nullptr)
+                first = node->parent;
+            else {
+                RedBlackTreeNode * minimum = child;
+                while (minimum->left != nullptr)
+                    minimum = minimum->left;
+                first = minimum;
+            }
+        }
+        if (last == node) {
+            if (node->left == nullptr)
+                last = node->parent;
+            else {
+                RedBlackTreeNode * maximum = child;
+                while (maximum->right != nullptr)
+                    maximum = maximum->right;
+                last = maximum;
+            }
+        }
+    }
+    if (removed->black != false) {
+        while (child != root && (child == nullptr || child->black == true)) {
+            if (child == parent->left) {
+                RedBlackTreeNode * sibling = parent->right;
+                if (sibling->black == false) {
+                    sibling->black = true;
+                    parent->black = false;
+                    RotateRedBlackTreeLeft(parent, root);
+                    sibling = parent->right;
+                }
+                if ((sibling->left == nullptr || sibling->left->black == true)
+                    && (sibling->right == nullptr || sibling->right->black == true)) {
+                    sibling->black = false;
+                    child = parent;
+                    parent = parent->parent;
+                } else {
+                    if (sibling->right == nullptr || sibling->right->black == true) {
+                        if (sibling->left != nullptr)
+                            sibling->left->black = true;
+                        sibling->black = false;
+                        RotateRedBlackTreeRight(sibling, root);
+                        sibling = parent->right;
+                    }
+                    sibling->black = parent->black;
+                    parent->black = true;
+                    if (sibling->right != nullptr)
+                        sibling->right->black = true;
+                    RotateRedBlackTreeLeft(parent, root);
+                    break;
+                }
+            } else {
+                RedBlackTreeNode * sibling = parent->left;
+                if (sibling->black == false) {
+                    sibling->black = true;
+                    parent->black = false;
+                    RotateRedBlackTreeRight(parent, root);
+                    sibling = parent->left;
+                }
+                if ((sibling->right == nullptr || sibling->right->black == true)
+                    && (sibling->left == nullptr || sibling->left->black == true)) {
+                    sibling->black = false;
+                    child = parent;
+                    parent = parent->parent;
+                } else {
+                    if (sibling->left == nullptr || sibling->left->black == true) {
+                        if (sibling->right != nullptr)
+                            sibling->right->black = true;
+                        sibling->black = false;
+                        RotateRedBlackTreeLeft(sibling, root);
+                        sibling = parent->left;
+                    }
+                    sibling->black = parent->black;
+                    parent->black = true;
+                    if (sibling->left != nullptr)
+                        sibling->left->black = true;
+                    RotateRedBlackTreeRight(parent, root);
+                    break;
+                }
+            }
+        }
+        if (child != nullptr)
+            child->black = true;
+    }
+    return removed;
+}
+
 
 extern "C" ResourceSpritePaletteIterator InsertResourceSpritePaletteNode(ResourceSpritePaletteCache * cache,
     RedBlackTreeNode * position, RedBlackTreeNode * parent_base,
