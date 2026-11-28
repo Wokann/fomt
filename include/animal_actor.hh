@@ -8,7 +8,7 @@ extern char const gCppRuntimeError_AnimalData[];
 extern char const gText_AnimalDataFallbackNone[];
 extern ActorBehaviorTiming const gUnk_080F0838[2][2][13];
 extern u16 const gDogBehaviorAnimations[2][13];
-extern ActorBehaviorTiming const gUnk_080F093C[28];
+extern ActorBehaviorTiming const gUnk_080F093C[2][2][7];
 extern u16 const gHorseBehaviorAnimations[2][7];
 extern ActorBehaviorTiming const gUnk_080F09C8[40];
 extern u16 const gChickenBehaviorAnimations[2][5];
@@ -115,10 +115,10 @@ struct HorseActor : AnimalActor {
     void SetBehavior(u32 behavior, u32 direction);
 
     Horse * horse;
-    i16 saved_x;
-    i16 saved_y;
+    i16 jump_target_x;
+    i16 jump_target_y;
     u8 last_behavior;
-    u8 unk_3D;
+    u8 jump_in_progress;
     u8 rider_mounted;
 };
 
