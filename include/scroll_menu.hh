@@ -45,7 +45,7 @@ struct ScrollMenuTransferRows
 #pragma interface "scroll_menu.hh"
 struct ScrollMenuPage
 {
-    ScrollMenuPage(ScrollMenu * menu, u32 unk_58c, u32 rows, char const * title);
+    ScrollMenuPage(ScrollMenu * menu, u32 context, u32 rows, char const * title);
     virtual ~ScrollMenuPage();
     virtual u32 Draw();
 
@@ -59,7 +59,7 @@ struct ScrollMenuPage
     u32 unk_08;
     // The title occupies 22 columns by two rows of 4bpp tiles.
     u8 title_tiles[22 * 2 * 32];
-    u32 unk_58C;
+    u32 context; // Borrowed caller context; the base page only stores the word.
     i16 scroll_position;
     ScrollMenuSpriteRows sprites;
     ScrollMenuTransferRows transfers;

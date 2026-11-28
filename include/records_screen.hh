@@ -6,6 +6,7 @@
 
 #include "scene.hh"
 #include "scroll_menu.hh"
+#include "harvest_sprite.hh"
 
 struct GameStateSaveImage;
 
@@ -76,6 +77,8 @@ struct RecordsScreenPage : ScrollMenuPage {
         u32 rows, char const * title);
     virtual ~RecordsScreenPage();
     virtual u32 Draw();
+
+    u32 GetBestMinigameSprite(HarvestSprite::Task task) const;
 
     RecordsScreenTextRow text_rows[120];
     RecordsScreenTextTileBuffer text_buffers[8];

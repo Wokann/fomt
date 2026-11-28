@@ -8773,32 +8773,10 @@ u32 FarmStatusAnimalPage::Draw()
     return 1;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "\t.global func_08063E64\n"
-    "\t.thumb_func\n"
-    "func_08063E64:\n"
-    "\tpush {lr}\n"
-    "\tsub sp, #8\n"
-    "\tmovs r1, #0xa\n"
-    "\tstr r1, [sp]\n"
-    "\tbl GetAffection__C6Animal\n"
-    "\tmovs r1, #0x19\n"
-    "\tbl __udivsi3\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r2, sp, #4\n"
-    "\tldr r1, [sp]\n"
-    "\tmov r3, sp\n"
-    "\tcmp r1, r0\n"
-    "\tbls .Ljp_08063BBC\n"
-    "\tadds r3, r2, #0\n"
-    ".Ljp_08063BBC:\n"
-    "\tldr r0, [r3]\n"
-    "\tadd sp, #8\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-);
+extern "C" u32 GetAnimalAffectionHearts(Animal const * animal)
+{
+    return std::min(10u, animal->GetAffection() / 25);
+}
 
 #include "livestock.hh"
 
@@ -9045,7 +9023,7 @@ asm_unified(
     "\tbl Fill2DGfxTilemapRect\n"
     ".Ljp_08063D7C:\n"
     "\tldr r0, [sp, #0x44]\n"
-    "\tbl func_08063E64\n"
+    "\tbl GetAnimalAffectionHearts\n"
     "\tadds r6, r0, #0\n"
     "\tmovs r4, #0\n"
     "\tcmp r4, r6\n"
@@ -30584,31 +30562,10 @@ u32 FarmStatusAnimalPage::Draw()
     return 1;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "\tthumb_func_start func_08063E64\n"
-    "func_08063E64: @ 0x08063E64\n"
-    "\tpush {lr}\n"
-    "\tsub sp, #8\n"
-    "\tmovs r1, #0xa\n"
-    "\tstr r1, [sp]\n"
-    "\tbl GetAffection__C6Animal\n"
-    "\tmovs r1, #0x19\n"
-    "\tbl __udivsi3\n"
-    "\tstr r0, [sp, #4]\n"
-    "\tadd r2, sp, #4\n"
-    "\tldr r1, [sp]\n"
-    "\tmov r3, sp\n"
-    "\tcmp r1, r0\n"
-    "\tbls .L08063E84\n"
-    "\tadds r3, r2, #0\n"
-    ".L08063E84:\n"
-    "\tldr r0, [r3]\n"
-    "\tadd sp, #8\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\n"
-);
+extern "C" u32 GetAnimalAffectionHearts(Animal const * animal)
+{
+    return std::min(10u, animal->GetAffection() / 25);
+}
 
 #include "livestock.hh"
 
@@ -30854,7 +30811,7 @@ asm_unified(
     "\tbl Fill2DGfxTilemapRect\n"
     ".L08064044:\n"
     "\tldr r0, [sp, #0x44]\n"
-    "\tbl func_08063E64\n"
+    "\tbl GetAnimalAffectionHearts\n"
     "\tadds r6, r0, #0\n"
     "\tmovs r4, #0\n"
     "\tcmp r4, r6\n"

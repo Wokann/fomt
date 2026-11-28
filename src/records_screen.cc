@@ -1,5 +1,6 @@
 #include "records_screen.hh"
 #include "config.h"
+#include "game_state.hh"
 
 #include <new>
 
@@ -4973,7 +4974,7 @@ asm_unified(
     "\tstr r5, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #0\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r5, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tldr r5, .Ljp_08073044\n"
@@ -5029,7 +5030,7 @@ asm_unified(
     "\tstr r7, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #2\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r7, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tadds r0, r0, r5\n"
@@ -5081,7 +5082,7 @@ asm_unified(
     "\tstr r7, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #1\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r7, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tadds r0, r0, r5\n"
@@ -9580,47 +9581,25 @@ asm_unified(
     "\tpop {r0}\n"
     "\tbx r0\n"
     "\t.align 2, 0\n"
-    "    .global func_08075450\n"
-    "    .thumb_func\n"
-    "func_08075450: @ 0x080750AC\n"
-    "    push {r4, r5, r6, r7, lr}\n"
-    "    mov r7, r8\n"
-    "    push {r7}\n"
-    "    mov r8, r0\n"
-    "    adds r7, r1, #0\n"
-    "    movs r5, #0\n"
-    "    movs r6, #0\n"
-    "    movs r4, #0\n"
-    ".Ljp_080750BC:\n"
-    "    ldr r0, .Ljp_080750F0 @ =0x0000058C\n"
-    "    add r0, r8\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r1, .Ljp_080750F4 @ =0x00001CD4\n"
-    "    adds r0, r0, r1\n"
-    "    adds r1, r4, #0\n"
-    "    bl GetHarvestSpriteByIndex__C13NpcCollectionUi\n"
-    "    cmp r0, #0\n"
-    "    beq .Ljp_080750DE\n"
-    "    adds r1, r7, #0\n"
-    "    bl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task\n"
-    "    cmp r5, r0\n"
-    "    bhs .Ljp_080750DE\n"
-    "    adds r6, r4, #0\n"
-    "    adds r5, r0, #0\n"
-    ".Ljp_080750DE:\n"
-    "    adds r4, #1\n"
-    "    cmp r4, #6\n"
-    "    ble .Ljp_080750BC\n"
-    "    adds r0, r6, #0\n"
-    "    pop {r3}\n"
-    "    mov r8, r3\n"
-    "    pop {r4, r5, r6, r7}\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "    .align 2, 0\n"
-    ".Ljp_080750F0: .word 0x0000058C\n"
-    ".Ljp_080750F4: .word 0x00001CD4\n"
 );
+
+u32 RecordsScreenPage::GetBestMinigameSprite(HarvestSprite::Task task) const
+{
+    u32 experience = 0;
+    u32 best = 0;
+    for (i32 i = 0; i < 7; ++i) {
+        GameStateSaveImage const * save = reinterpret_cast<GameStateSaveImage const *>(context);
+        HarvestSprite const * sprite = save->npcs.GetHarvestSpriteByIndex(i);
+        if (sprite != nullptr) {
+            u32 current = sprite->GetMinigameExp(task);
+            if (experience < current) {
+                best = i;
+                experience = current;
+            }
+        }
+    }
+    return best;
+}
 
 void RecordsScreenCore::SelectPage(u32 page)
 {
@@ -15187,7 +15166,7 @@ asm_unified(
     "\tstr r5, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #0\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r5, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tldr r5, .L080733F0 @ =gRecordsScreenMinigameTaskResources\n"
@@ -15243,7 +15222,7 @@ asm_unified(
     "\tstr r7, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #2\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r7, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tadds r0, r0, r5\n"
@@ -15300,7 +15279,7 @@ asm_unified(
     "\tstr r7, [sp, #0x20c]\n"
     "\tmov r0, sb\n"
     "\tmovs r1, #1\n"
-    "\tbl func_08075450\n"
+    "\tbl GetBestMinigameSprite__C17RecordsScreenPageQ213HarvestSprite4Task\n"
     "\tlsls r2, r7, #3\n"
     "\tlsls r0, r0, #3\n"
     "\tadds r0, r0, r5\n"
@@ -20124,47 +20103,25 @@ asm_unified(
     "\tbx r0\n"
     "\t.align 2, 0\n"
     "\n"
-    "\tthumb_func_start func_08075450\n"
-    "func_08075450: @ 0x08075450\n"
-    "\tpush {r4, r5, r6, r7, lr}\n"
-    "\tmov r7, r8\n"
-    "\tpush {r7}\n"
-    "\tmov r8, r0\n"
-    "\tadds r7, r1, #0\n"
-    "\tmovs r5, #0\n"
-    "\tmovs r6, #0\n"
-    "\tmovs r4, #0\n"
-    ".L08075460:\n"
-    "\tldr r0, .L08075494 @ =0x0000058C\n"
-    "\tadd r0, r8\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r1, .L08075498 @ =0x00001CD4\n"
-    "\tadds r0, r0, r1\n"
-    "\tadds r1, r4, #0\n"
-    "\tbl GetHarvestSpriteByIndex__C13NpcCollectionUi\n"
-    "\tcmp r0, #0\n"
-    "\tbeq .L08075482\n"
-    "\tadds r1, r7, #0\n"
-    "\tbl GetMinigameExp__C13HarvestSpriteQ213HarvestSprite4Task\n"
-    "\tcmp r5, r0\n"
-    "\tbhs .L08075482\n"
-    "\tadds r6, r4, #0\n"
-    "\tadds r5, r0, #0\n"
-    ".L08075482:\n"
-    "\tadds r4, #1\n"
-    "\tcmp r4, #6\n"
-    "\tble .L08075460\n"
-    "\tadds r0, r6, #0\n"
-    "\tpop {r3}\n"
-    "\tmov r8, r3\n"
-    "\tpop {r4, r5, r6, r7}\n"
-    "\tpop {r1}\n"
-    "\tbx r1\n"
-    "\t.align 2, 0\n"
-    ".L08075494: .word 0x0000058C\n"
-    ".L08075498: .word 0x00001CD4\n"
-    "\n"
 );
+
+u32 RecordsScreenPage::GetBestMinigameSprite(HarvestSprite::Task task) const
+{
+    u32 experience = 0;
+    u32 best = 0;
+    for (i32 i = 0; i < 7; ++i) {
+        GameStateSaveImage const * save = reinterpret_cast<GameStateSaveImage const *>(context);
+        HarvestSprite const * sprite = save->npcs.GetHarvestSpriteByIndex(i);
+        if (sprite != nullptr) {
+            u32 current = sprite->GetMinigameExp(task);
+            if (experience < current) {
+                best = i;
+                experience = current;
+            }
+        }
+    }
+    return best;
+}
 
 void RecordsScreenCore::SelectPage(u32 page)
 {

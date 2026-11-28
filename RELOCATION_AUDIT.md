@@ -1,3 +1,7 @@
+## 记录页上下文与角色指标访问（2026-11-28）
+
+ScrollMenuPage保存调用者提供的通用32位上下文，其构造ABI和存储不变；RecordsScreenPage将该值解释为实际传入的save指针，通过NpcCollection查七个精灵及其对应任务经验。动物爱心数通过Animal::GetAffection和标准min计算。原所有调用更新到具含义入口，两个完整对象及四版默认完整ROM通过各自baserom字节与SHA-1。
+
 ## 鸡祭状态槽位的取址与更新（2026-11-28）
 
 原两个裸函数入口统一到ChickenFestivalMinigameCore的具类型方法，原调用保留u8槽位参数，通过现有slots数组更新state与value。随机选项先计算后写入槽位，函数及全部调用重定位保持。没有为未知状态编造机制含义，完整对象与四版默认完整ROM通过原版对照。
