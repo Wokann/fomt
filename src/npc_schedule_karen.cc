@@ -1,243 +1,85 @@
 #include "npc_schedule_karen.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectKarenSchedule\n"
-    "SelectKarenSchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r9\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6, r7}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803DC7C\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr1, [r0, #0]\n"
-    "    movs\tr0, #12\n"
-    "    ands\tr0, r1\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DC80\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803DE08\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803DC7C: .word 0x000021CA\n"
-    ".Ljp_0803DC80:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr0, [r4, #1]\n"
-    "    mov\tr8, r0\n"
-    "    ldrb\tr7, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    mov\tr9, r4\n"
-    "    ldr r1, .Ljp_0803DCB4\n"
-    "    adds\tr4, r5, r1\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    adds\tr6, r0, #0\n"
-    "    cmp\tr6, #19\n"
-    "    bne .Ljp_0803DD5E\n"
-    "    mov\tr0, r8\n"
-    "    cmp\tr0, #2\n"
-    "    bne .Ljp_0803DCC0\n"
-    "    cmp\tr7, #9\n"
-    "    bne .Ljp_0803DCB8\n"
-    "    movs\tr0, #21\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DCB4: .word 0x00001CD4\n"
-    ".Ljp_0803DCB8:\n"
-    "    cmp\tr7, #13\n"
-    "    bne .Ljp_0803DCC0\n"
-    "    movs\tr0, #22\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DCC0:\n"
-    "    ldr r1, .Ljp_0803DCD4\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Ljp_0803DCD8\n"
-    "    movs\tr0, #23\n"
-    "    b .Ljp_0803DE08\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803DCD4: .word 0x0000216C\n"
-    ".Ljp_0803DCD8:\n"
-    "    ldr r1, .Ljp_0803DD10\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr6, [r0, #0]\n"
-    "    ldr r1, .Ljp_0803DD14\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    negs\tr1, r0\n"
-    "    orrs\tr1, r0\n"
-    "    lsrs\tr4, r1, #31\n"
-    "    mov\tr0, r8\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DD04\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #3\n"
-    "    beq .Ljp_0803DD04\n"
-    "    cmp\tr0, #4\n"
-    "    bne .Ljp_0803DD28\n"
-    ".Ljp_0803DD04:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803DD1C\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803DD18\n"
-    "    movs\tr0, #18\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD10: .word 0x00002148\n"
-    ".Ljp_0803DD14: .word 0x00001CD4\n"
-    ".Ljp_0803DD18:\n"
-    "    movs\tr0, #17\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD1C:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803DD24\n"
-    "    movs\tr0, #20\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD24:\n"
-    "    movs\tr0, #19\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD28:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803DD42\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DD36\n"
-    "    cmp\tr0, #2\n"
-    "    bne .Ljp_0803DD42\n"
-    ".Ljp_0803DD36:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803DD3E\n"
-    "    movs\tr0, #13\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD3E:\n"
-    "    movs\tr0, #16\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD42:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803DD52\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803DD4E\n"
-    "    movs\tr0, #12\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD4E:\n"
-    "    movs\tr0, #11\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD52:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .Ljp_0803DD5A\n"
-    "    movs\tr0, #15\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD5A:\n"
-    "    movs\tr0, #14\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD5E:\n"
-    "    ldr r1, .Ljp_0803DD7C\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetRivalEventCount__C12Bachelorette\n"
-    "    cmp\tr0, #4\n"
-    "    bls .Ljp_0803DD8E\n"
-    "    mov\tr0, r8\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DD80\n"
-    "    movs\tr0, #10\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD7C: .word 0x00001EB8\n"
-    ".Ljp_0803DD80:\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DD8A\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD8A:\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DD8E:\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #19\n"
-    "    bl GetBachelorette__C13NpcCollectionUi\n"
-    "    mov\tr1, r8\n"
-    "    cmp\tr1, #3\n"
-    "    bne .Ljp_0803DDCC\n"
-    "    cmp\tr7, #14\n"
-    "    bne .Ljp_0803DDCC\n"
-    "    cmp\tr6, #0\n"
-    "    bne .Ljp_0803DDCC\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DDCC\n"
-    "    bl GetLove__C12Bachelorette\n"
-    "    ldr r1, .Ljp_0803DDC4\n"
-    "    cmp\tr0, r1\n"
-    "    bls .Ljp_0803DDCC\n"
-    "    ldr r1, .Ljp_0803DDC8\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803DDCC\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DDC4: .word 0x0000270F\n"
-    ".Ljp_0803DDC8: .word 0x000021A4\n"
-    ".Ljp_0803DDCC:\n"
-    "    mov\tr0, r8\n"
-    "    adds\tr1, r7, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DDDE\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DDDE:\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DDE8\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DDE8:\n"
-    "    mov\tr1, r9\n"
-    "    cmp\tr1, #2\n"
-    "    bne .Ljp_0803DDFC\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803DDF8\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DDF8:\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DDFC:\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803DE06\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803DE08\n"
-    ".Ljp_0803DE06:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803DE08:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r3, r4}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-);
+extern "C" u32 SelectKarenSchedule(void const * context)
+{
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    u32 rival_wedding = static_cast<u32>(save.event_state.rick_and_karen_rival_wedding_routing_state)
+        | static_cast<u32>(save.event_state.popuri_and_kai_rival_wedding_routing_state);
+    if (rival_wedding != 0)
+        return 0;
+
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    u8 season = date.season;
+    u8 day = date.day;
+    u8 weekday = date.weekday;
+    NpcCollection const & characters = save.npcs;
+    u32 spouse = characters.GetSpouseCharacterId();
+    if (spouse == CHARACTER_KAREN) {
+        if (season == SEASON_FALL) {
+            if (day == DAY_09)
+                return 21;
+            if (day == DAY_13)
+                return 22;
+        }
+        if (save.event_state.karen_spouse_collapse_event_state == 1)
+            return 23;
+        u8 family_state = save.npcs.unk_474;
+        bool has_child = save.npcs.GetChild() != nullptr;
+        if (static_cast<u8>(IsNpcScheduleDateListed(season, day))
+            || save.clock.weather_today == WEATHER_TYPHOON
+            || save.clock.weather_today == WEATHER_SNOWSTORM) {
+            if (has_child) {
+                if (family_state != 0)
+                    return 18;
+                return 17;
+            }
+            if (family_state != 0)
+                return 20;
+            return 19;
+        }
+        if (family_state != 0 && (weekday == DAY_OF_WEEK_SUNDAY || weekday == DAY_OF_WEEK_TUESDAY)) {
+            if (has_child)
+                return 13;
+            return 16;
+        }
+        if (has_child) {
+            if (family_state != 0)
+                return 12;
+            return 11;
+        }
+        if (family_state != 0)
+            return 15;
+        return 14;
+    }
+    if (save.npcs.karen.GetRivalEventCount() > 4) {
+        if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+            return 10;
+        if (weekday == DAY_OF_WEEK_SUNDAY)
+            return 7;
+        return 6;
+    }
+    Bachelorette const * karen = characters.GetBachelorette(CHARACTER_KAREN);
+    if (season == SEASON_WINTER && day == DAY_14 && spouse == 0
+        && karen != nullptr && karen->GetLove() >= LOVE_HEART_PURPLE_MIN
+        && save.event_state.winter_thanksgiving_karen_visit_event_state != 2)
+        return 9;
+    if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+        return 8;
+    if (weekday == DAY_OF_WEEK_SUNDAY)
+        return 3;
+    if (weekday == DAY_OF_WEEK_TUESDAY) {
+        if (save.clock.weather_today == WEATHER_SUNNY)
+            return 4;
+        return 5;
+    }
+    if (save.clock.weather_today == WEATHER_SUNNY)
+        return 1;
+    else
+        return 2;
+}
+
 
 // This 24-choice selector follows immediately in ROM. The aggregate keeps
 // its table pointers, entries, payloads, and pointed detail records in their

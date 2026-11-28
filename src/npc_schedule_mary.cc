@@ -1,208 +1,70 @@
 #include "npc_schedule_mary.hh"
 #include "game_state.hh"
 
-asm_unified(
-    ".text\n"
-    ".include \"asm/macro.inc\"\n"
-    "    thumb_func_start SelectMarySchedule\n"
-    "SelectMarySchedule:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, r9\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6, r7}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    ldr r1, .Ljp_0803E130\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    cmp\tr0, #0\n"
-    "    bge .Ljp_0803E134\n"
-    "    movs\tr0, #0\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E130: .word 0x000021CA\n"
-    ".Ljp_0803E134:\n"
-    "    mov\tr4, sp\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr1, #16\n"
-    "    mov\tr0, sp\n"
-    "    bl DecodeGameDayDate\n"
-    "    ldrb\tr7, [r4, #1]\n"
-    "    ldrb\tr6, [r4, #2]\n"
-    "    ldrb\tr4, [r4, #3]\n"
-    "    mov\tr9, r4\n"
-    "    ldr r0, .Ljp_0803E164\n"
-    "    adds\tr4, r5, r0\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl GetSpouseCharacterId__C13NpcCollection\n"
-    "    mov\tr8, r0\n"
-    "    cmp\tr0, #12\n"
-    "    bne .Ljp_0803E1E2\n"
-    "    cmp\tr7, #2\n"
-    "    bne .Ljp_0803E170\n"
-    "    cmp\tr6, #9\n"
-    "    bne .Ljp_0803E168\n"
-    "    movs\tr0, #16\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E164: .word 0x00001CD4\n"
-    ".Ljp_0803E168:\n"
-    "    cmp\tr6, #13\n"
-    "    bne .Ljp_0803E170\n"
-    "    movs\tr0, #17\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E170:\n"
-    "    ldr r1, .Ljp_0803E184\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #25\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Ljp_0803E188\n"
-    "    movs\tr0, #18\n"
-    "    b .Ljp_0803E284\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803E184: .word 0x0000216C\n"
-    ".Ljp_0803E188:\n"
-    "    ldr r1, .Ljp_0803E1BC\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    negs\tr1, r0\n"
-    "    orrs\tr1, r0\n"
-    "    lsrs\tr4, r1, #31\n"
-    "    mov\tr8, r4\n"
-    "    adds\tr0, r7, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E1B0\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #3\n"
-    "    beq .Ljp_0803E1B0\n"
-    "    cmp\tr0, #4\n"
-    "    bne .Ljp_0803E1C4\n"
-    ".Ljp_0803E1B0:\n"
-    "    mov\tr0, r8\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E1C0\n"
-    "    movs\tr0, #14\n"
-    "    b .Ljp_0803E284\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803E1BC: .word 0x00001CD4\n"
-    ".Ljp_0803E1C0:\n"
-    "    movs\tr0, #15\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E1C4:\n"
-    "    mov\tr1, r9\n"
-    "    cmp\tr1, #1\n"
-    "    bne .Ljp_0803E1D6\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803E1D2\n"
-    "    movs\tr0, #11\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E1D2:\n"
-    "    movs\tr0, #13\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E1D6:\n"
-    "    cmp\tr4, #0\n"
-    "    beq .Ljp_0803E1DE\n"
-    "    movs\tr0, #10\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E1DE:\n"
-    "    movs\tr0, #12\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E1E2:\n"
-    "    ldr r1, .Ljp_0803E200\n"
-    "    adds\tr0, r5, r1\n"
-    "    bl GetRivalEventCount__C12Bachelorette\n"
-    "    cmp\tr0, #4\n"
-    "    bls .Ljp_0803E21C\n"
-    "    adds\tr0, r7, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E204\n"
-    "    movs\tr0, #9\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E200: .word 0x00001E28\n"
-    ".Ljp_0803E204:\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #4\n"
-    "    bne .Ljp_0803E218\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E214\n"
-    "    movs\tr0, #5\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E214:\n"
-    "    movs\tr0, #6\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E218:\n"
-    "    movs\tr0, #4\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E21C:\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #12\n"
-    "    bl GetBachelorette__C13NpcCollectionUi\n"
-    "    cmp\tr7, #3\n"
-    "    bne .Ljp_0803E25C\n"
-    "    cmp\tr6, #14\n"
-    "    bne .Ljp_0803E25C\n"
-    "    mov\tr1, r8\n"
-    "    cmp\tr1, #0\n"
-    "    bne .Ljp_0803E25C\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E25C\n"
-    "    bl GetLove__C12Bachelorette\n"
-    "    ldr r1, .Ljp_0803E254\n"
-    "    cmp\tr0, r1\n"
-    "    bls .Ljp_0803E25C\n"
-    "    ldr r1, .Ljp_0803E258\n"
-    "    adds\tr0, r5, r1\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #30\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #2\n"
-    "    beq .Ljp_0803E25C\n"
-    "    movs\tr0, #7\n"
-    "    b .Ljp_0803E284\n"
-    "    .align 2, 0\n"
-    ".Ljp_0803E254: .word 0x0000270F\n"
-    ".Ljp_0803E258: .word 0x000021A5\n"
-    ".Ljp_0803E25C:\n"
-    "    adds\tr0, r7, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    bl IsNpcScheduleDateListed\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Ljp_0803E26E\n"
-    "    movs\tr0, #8\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E26E:\n"
-    "    mov\tr0, r9\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Ljp_0803E282\n"
-    "    ldr\tr0, [r5, #8]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Ljp_0803E27E\n"
-    "    movs\tr0, #2\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E27E:\n"
-    "    movs\tr0, #3\n"
-    "    b .Ljp_0803E284\n"
-    ".Ljp_0803E282:\n"
-    "    movs\tr0, #1\n"
-    ".Ljp_0803E284:\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r3, r4}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-);
+extern "C" u32 SelectMarySchedule(void const * context)
+{
+    GameStateSaveImage const & save = *static_cast<GameStateSaveImage const *>(context);
+    if (save.event_state.mary_and_gray_rival_wedding_routing_state)
+        return 0;
+
+    GameDayDate date;
+    DecodeGameDayDate(&date, &save.clock.calendar);
+    u8 season = date.season;
+    u8 day = date.day;
+    u8 weekday = date.weekday;
+    NpcCollection const & characters = save.npcs;
+    u32 spouse = characters.GetSpouseCharacterId();
+    if (spouse == CHARACTER_MARY) {
+        if (season == SEASON_FALL) {
+            if (day == DAY_09)
+                return 16;
+            if (day == DAY_13)
+                return 17;
+        }
+        if (save.event_state.mary_spouse_collapse_event_state == 1)
+            return 18;
+        bool has_child = save.npcs.GetChild() != nullptr;
+        if (static_cast<u8>(IsNpcScheduleDateListed(season, day))
+            || save.clock.weather_today == WEATHER_TYPHOON
+            || save.clock.weather_today == WEATHER_SNOWSTORM) {
+            if (has_child)
+                return 14;
+            return 15;
+        }
+        if (weekday == DAY_OF_WEEK_MONDAY) {
+            if (has_child)
+                return 11;
+            return 13;
+        }
+        if (has_child)
+            return 10;
+        return 12;
+    }
+    if (save.npcs.mary.GetRivalEventCount() > 4) {
+        if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+            return 9;
+        if (weekday == DAY_OF_WEEK_THURSDAY) {
+            if (save.clock.weather_today == WEATHER_SUNNY)
+                return 5;
+            return 6;
+        }
+        return 4;
+    }
+    Bachelorette const * mary = characters.GetBachelorette(CHARACTER_MARY);
+    if (season == SEASON_WINTER && day == DAY_14 && spouse == 0
+        && mary != nullptr && mary->GetLove() >= LOVE_HEART_PURPLE_MIN
+        && save.event_state.winter_thanksgiving_mary_visit_event_state != 2)
+        return 7;
+    if (static_cast<u8>(IsNpcScheduleDateListed(season, day)))
+        return 8;
+    if (weekday == DAY_OF_WEEK_MONDAY) {
+        if (save.clock.weather_today == WEATHER_SUNNY)
+            return 2;
+        return 3;
+    }
+    return 1;
+}
+
 
 extern "C" MaryScheduleData const gMaryScheduleData = {
     // descriptor
