@@ -93,11 +93,11 @@ asm_unified(
     "    .word SetUpdateSuspended__11PlayerActorUc\n"
     "    .word GetUpdateSuspended__C11PlayerActor\n"
 #if defined(REGION_JP)
-    "    .word func_08024A08\n"
+    "    .word vfunc_A4__11PlayerActor\n"
     "    .word EnterHotSpringBathingState__11PlayerActor\n"
     "    .word ExitHotSpringBathingState__11PlayerActor\n"
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-    "    .word func_08024C74\n"
+    "    .word vfunc_A4__11PlayerActor\n"
     "    .word EnterHotSpringBathingState__11PlayerActor\n"
     "    .word ExitHotSpringBathingState__11PlayerActor\n"
 #endif

@@ -48,6 +48,8 @@ struct PlayerActor : PlayerActorBase {
     void ShowSelectedToolGraphic();
     void RefreshHeldItemGraphic();
     void HideHeldGraphic();
+    PlayerHeldGraphic * GetHeldGraphic();
+    u32 IsActionTargetEntityId(u32 entity_id) const;
     bool IsOnOverworld() const;
     /* vt+3C */ virtual u8 vfunc_3C() const;
     /* vt+40 */ virtual bool IsRidingHorse() const;
@@ -98,7 +100,8 @@ struct PlayerActor : PlayerActorBase {
 
     u8 action_state;
     u8 unk_3D;
-    u8 unk_3E[0x60 - 0x3E];
+    u8 unk_3E;
+    u8 unk_3F[0x60 - 0x3F];
     FishingCatchResult caught_fish;
     u8 unk_78;
     u8 unk_79;
@@ -107,7 +110,8 @@ struct PlayerActor : PlayerActorBase {
     u8 unk_7E[0x0A];
     PlayerHeldGraphic held_graphic;
     u8 unk_A4;
-    u8 unk_A5[0xA8 - 0xA5];
+    u8 unk_A5;
+    u16 unk_A6;
     MaryHeldItemKind presented_item_kind;
     i32 presented_item_id;
     bool presented_item_wrapped;

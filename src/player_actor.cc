@@ -1578,46 +1578,12 @@ void PlayerActor::ResumeNormalUpdates()
     StopActorSpriteEffect(*this);
 }
 
-#if defined(REGION_JP)
-
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global func_08024A08\n"
-    "    .thumb_func\n"
-    "func_08024A08:\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, #0x3c\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #0x68\n"
-    "    strh r1, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-
-);
-#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
-asm_unified(
-    "    .align 2, 0\n"
-    "\n"
-    "    thumb_func_start func_08024C74\n"
-    "func_08024C74: @ 0x08024C74\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, #0x3c\n"
-    "    movs r1, #0\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #2\n"
-    "    strb r1, [r0]\n"
-    "    adds r0, #0x68\n"
-    "    strh r1, [r0]\n"
-    "    bx lr\n"
-    "    .align 2, 0\n"
-    "\n"
-
-);
-#endif
+void PlayerActor::vfunc_A4()
+{
+    action_state = 0;
+    unk_3E = 0;
+    unk_A6 = 0;
+}
 
 void PlayerActor::EnterHotSpringBathingState()
 {
@@ -50598,12 +50564,46 @@ asm_unified(
     "    bx r1\n"
     "\n"
 );
+#elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
+asm_unified(
+    "    .align 2, 0\n"
+    "    .global sub_08031FA0\n"
+    "    .thumb_func\n"
+    "sub_08031FA0:\n"
+    "    push {lr}\n"
+    "    adds r2, r0, #0\n"
+    "    adds r0, #0xb2\n"
+    "    ldrb r3, [r0]\n"
+    "    movs r1, #0\n"
+    "    adds r0, r3, #0\n"
+    "    subs r0, #0x2b\n"
+    "    cmp r0, #0x1a\n"
+    "    bhi .L08031FB4\n"
+    "    movs r1, #1\n"
+    ".L08031FB4:\n"
+    "    cmp r1, #0\n"
+    "    bne .L08031FBC\n"
+    "    movs r0, #0\n"
+    "    b .L08031FC8\n"
+    ".L08031FBC:\n"
+    "    ldr r0, [r2]\n"
+    "    ldr r1, [r0]\n"
+    "    ldr r2, [r1, #0x40]\n"
+    "    adds r1, r3, #0\n"
+    "    bl _call_via_r2\n"
+    ".L08031FC8:\n"
+    "    pop {r1}\n"
+    "    bx r1\n"
+    "\n"
+);
+#endif
 
-extern "C" u32 sub_08031D60(u32 unused, u32 value)
+u32 PlayerActor::IsActionTargetEntityId(u32 entity_id) const
 {
-    return (u32)(value - 0x2B) <= 0x1A;
+    return entity_id - ENTITY_FARM_DOG <= ENTITY_BARN_ANIMAL_SLOT_16 - ENTITY_FARM_DOG;
 }
 
+#if defined(REGION_JP)
 asm_unified(
     "    .align 2, 0\n"
     "    .global sub_08031D70\n"
@@ -50643,56 +50643,10 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    .global sub_08031DA8\n"
-    "    .thumb_func\n"
-    "sub_08031DA8:\n"
-    "    adds r0, #0x88\n"
-    "    bx lr\n"
 );
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "    .align 2, 0\n"
-    "    .global sub_08031FA0\n"
-    "    .thumb_func\n"
-    "sub_08031FA0:\n"
-    "    push {lr}\n"
-    "    adds r2, r0, #0\n"
-    "    adds r0, #0xb2\n"
-    "    ldrb r3, [r0]\n"
-    "    movs r1, #0\n"
-    "    adds r0, r3, #0\n"
-    "    subs r0, #0x2b\n"
-    "    cmp r0, #0x1a\n"
-    "    bhi .L08031FB4\n"
-    "    movs r1, #1\n"
-    ".L08031FB4:\n"
-    "    cmp r1, #0\n"
-    "    bne .L08031FBC\n"
-    "    movs r0, #0\n"
-    "    b .L08031FC8\n"
-    ".L08031FBC:\n"
-    "    ldr r0, [r2]\n"
-    "    ldr r1, [r0]\n"
-    "    ldr r2, [r1, #0x40]\n"
-    "    adds r1, r3, #0\n"
-    "    bl _call_via_r2\n"
-    ".L08031FC8:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
-    "    .global sub_08031FCC\n"
-    "    .thumb_func\n"
-    "sub_08031FCC:\n"
-    "    push {lr}\n"
-    "    movs r0, #0\n"
-    "    subs r1, #0x2b\n"
-    "    cmp r1, #0x1a\n"
-    "    bhi .L08031FD8\n"
-    "    movs r0, #1\n"
-    ".L08031FD8:\n"
-    "    pop {r1}\n"
-    "    bx r1\n"
-    "\n"
     "    .global sub_08031FDC\n"
     "    .thumb_func\n"
     "sub_08031FDC:\n"
@@ -50730,13 +50684,13 @@ asm_unified(
     "    pop {r0}\n"
     "    bx r0\n"
     "\n"
-    "    .global sub_08032014\n"
-    "    .thumb_func\n"
-    "sub_08032014:\n"
-    "    adds r0, #0x88\n"
-    "    bx lr\n"
 );
 #endif
+
+PlayerHeldGraphic * PlayerActor::GetHeldGraphic()
+{
+    return &held_graphic;
+}
 
 u8 PlayerActor::GetUpdateSuspended() const
 {
