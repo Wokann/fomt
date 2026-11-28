@@ -1,3 +1,7 @@
+## 周期日期与漫游位置边界（2026-11-28）
+
+GameCalendar和EncodedGameYear只增加读取接口，原存储布局保持。GameWeekday是独立三位值表示，接收累计日数并按原规则归入0–6；不加入存档。两种南镇角色仍以原两位index调用对应ActorLocation初始化函数，复用AActorEntity::SetLocation及原动画接口。每版恢复348函数字节，另保留原4字节对齐；三个完整对象和四版默认ROM通过对照。统计见 [进度](PROGRESS.md)。
+
 ## 动物状态页边界与行资源（2026-11-28）
 
 鸡、牛、羊状态页构造沿用FarmStatusAnimalPage布局和各版实际分配大小，未增加成员或扩大缓冲。鸡舍／牛羊棚读取来自save.farm.coop、save.farm.barn；图标和调色板仍取原成长及产物状态分支的资源符号。显示行连续排列，空存档槽不占行。每版三个构造共720字节恢复为C++，其余类成员和行追加汇编边界保持。三个相关完整对象与四版默认ROM通过baserom对照。统计见 [进度](PROGRESS.md)。

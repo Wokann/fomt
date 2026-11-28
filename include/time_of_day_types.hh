@@ -36,8 +36,21 @@ struct PACKED EncodedGameYear
 
     explicit EncodedGameYear(u8 value) : encoded(value) {}
     u32 GetYear() const { return digits.quotient * 7 + digits.remainder; }
+    u32 GetCycleYear() const { return digits.remainder; }
 };
 
+
+// Calendar calculations retain a three-bit weekday value.
+struct PACKED GameWeekday {
+    explicit GameWeekday(u32 days)
+    {
+        if (days > DAY_OF_WEEK_SATURDAY)
+            days %= DAY_OF_WEEK_SATURDAY + 1;
+        value = static_cast<MaryDayOfWeek>(days);
+    }
+
+    MaryDayOfWeek value : 3;
+};
 
 // Stored at +0x10 in the save image. The first byte encodes the year as
 // seven times its high five bits plus its low three bits; the following
@@ -53,6 +66,15 @@ struct GameCalendar
 
     u32 GetYear() const { return year.GetYear(); }
     inline u32 GetYear(u32 maximum) const;
+    GameWeekday GetWeekday() const
+    {
+        u32 cycle_year = year.GetCycleYear();
+        u32 season = date.GetSeason();
+        u32 day = date.GetDay();
+        cycle_year += 6;
+        day += season * 30 + cycle_year * 120;
+        return GameWeekday(day);
+    }
 };
 
 

@@ -1,3 +1,7 @@
+## 漫游角色的日历与地图调用（2026-11-28）
+
+归位函数借用GameObject::GetClock返回的实际时钟，以calendar.time.clock_hour及GameCalendar::GetWeekday检查原出现条件。EncodedGameYear的周循环读取保留低三位原编码，包括值7；完整年读取接口未改。符合条件时按index构造ActorLocation、设置位置并选择行为0动画，不符合时调用已有PutOutOfTown。三个完整对象的真实字节和引用保持，四版默认ROM均通过baserom逐字节和SHA-1对照。
+
 ## 动物状态行的类型与资源绑定（2026-11-28）
 
 三个页面构造通过基页保存的上下文取得只读GameStateSaveImage，再调用const Coop／Barn查询，保持原版重载目标。AddAnimalRow接受Livestock const引用、行号及借用的图块／调色板字节，鸡牛羊的原追加入口统一为实际成员符号；未创建包装入口或地址别名。牛的成长分派保持原无符号判定；牛羊的怀孕状态分别优先于已挤奶／剪毛状态。三个相关完整对象及四版默认完整ROM的真实字节、重定位和边界通过对照。

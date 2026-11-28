@@ -3,6 +3,8 @@
 
 #include <new>
 #include "npc_locations.hh"
+#include "game_object.hh"
+#include "time_of_day_types.hh"
 #include FOMT_TEXT_INCLUDE(roaming_npc_actor.cc)
 // These weighted behavior-timing records share the animal-table layout.
 // The fourth byte remains unnamed until a caller establishes its meaning.
@@ -680,95 +682,25 @@ EntityVisualController * SouthTownRoamingNpc1::CreateVisualController()
     return new EntitySpriteController(this, 2, 9, 0, 7, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start ResetLocation__20SouthTownRoamingNpc1\n"
-    "ResetLocation__20SouthTownRoamingNpc1:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr5, r1, #0\n"
-    "    ldrb\tr0, [r1, #10]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    lsrs\tr0, r0, #27\n"
-    "    subs\tr0, #6\n"
-    "    cmp\tr0, #9\n"
-    "    bhi .Lus_08037600\n"
-    "    ldrb\tr2, [r1, #8]\n"
-    "    lsls\tr2, r2, #29\n"
-    "    lsrs\tr2, r2, #29\n"
-    "    ldrb\tr3, [r1, #9]\n"
-    "    lsls\tr0, r3, #30\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    lsls\tr3, r3, #25\n"
-    "    lsrs\tr3, r3, #27\n"
-    "    adds\tr2, #6\n"
-    "    lsls\tr1, r0, #4\n"
-    "    subs\tr1, r1, r0\n"
-    "    lsls\tr1, r1, #1\n"
-    "    lsls\tr0, r2, #4\n"
-    "    subs\tr0, r0, r2\n"
-    "    lsls\tr0, r0, #3\n"
-    "    adds\tr1, r1, r0\n"
-    "    adds\tr3, r3, r1\n"
-    "    cmp\tr3, #6\n"
-    "    bls .Lus_080375C2\n"
-    "    adds\tr0, r3, #0\n"
-    "    movs\tr1, #7\n"
-    "    bl __umodsi3\n"
-    "    adds\tr3, r0, #0\n"
-    ".Lus_080375C2:\n"
-    "    movs\tr0, #7\n"
-    "    ands\tr3, r0\n"
-    "    cmp\tr3, #0\n"
-    "    beq .Lus_08037600\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_08037600\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #68\t@ 0x44\n"
-    "    ldrb\tr1, [r0, #0]\n"
-    "    lsls\tr1, r1, #30\n"
-    "    lsrs\tr1, r1, #30\n"
-    "    mov\tr0, sp\n"
-    "    bl InitializeSouthTownNpcLocation1__FP13ActorLocationUi\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl SetLocation__12AActorEntityRC13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #0\n"
-    "    bl GetBehaviorAnimation__C20SouthTownRoamingNpc1Ui\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrh\tr0, [r4, #34]\t@ 0x22\n"
-    "    cmp\tr0, r1\n"
-    "    beq .Lus_0803760A\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    b .Lus_0803760A\n"
-    ".Lus_08037600:\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #141\t@ 0x8d\n"
-    "    lsls\tr1, r1, #2\n"
-    "    bl SetMap__7AEntityUi\n"
-    ".Lus_0803760A:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-);
+void SouthTownRoamingNpc1::ResetLocation()
+{
+    GameStateClock const & clock = *game_object->GetClock();
+    u32 hour = clock.calendar.time.clock_hour;
+    if (hour - 6 <= 9) {
+        GameWeekday weekday = clock.calendar.GetWeekday();
+        if (weekday.value != DAY_OF_WEEK_SUNDAY && clock.weather_today == WEATHER_SUNNY) {
+            ActorLocation location;
+            InitializeSouthTownNpcLocation1(&location, index);
+            SetLocation(location);
+            u32 animation = GetBehaviorAnimation(0);
+            if (anim_id != animation)
+                SetAnim(animation);
+            return;
+        }
+    }
+    PutOutOfTown();
+}
+
 
 u32 SouthTownRoamingNpc1::GetBehaviorAnimation(u32 behavior) const
 {
@@ -873,95 +805,25 @@ EntityVisualController * SouthTownRoamingNpc2::CreateVisualController()
     return new EntitySpriteController(this, 4, 12, 2, 12, 0, false);
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start ResetLocation__20SouthTownRoamingNpc2\n"
-    "ResetLocation__20SouthTownRoamingNpc2:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5}\n"
-    "    sub\tsp, #8\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    movs\tr2, #162\t@ 0xa2\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr1, r1, r2\n"
-    "    ldr\tr1, [r1, #0]\n"
-    "    bl _call_via_r1\n"
-    "    adds\tr1, r0, #0\n"
-    "    adds\tr5, r1, #0\n"
-    "    ldrb\tr0, [r1, #10]\n"
-    "    lsls\tr0, r0, #27\n"
-    "    lsrs\tr0, r0, #27\n"
-    "    subs\tr0, #6\n"
-    "    cmp\tr0, #9\n"
-    "    bhi .Lus_080377AC\n"
-    "    ldrb\tr2, [r1, #8]\n"
-    "    lsls\tr2, r2, #29\n"
-    "    lsrs\tr2, r2, #29\n"
-    "    ldrb\tr3, [r1, #9]\n"
-    "    lsls\tr0, r3, #30\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    lsls\tr3, r3, #25\n"
-    "    lsrs\tr3, r3, #27\n"
-    "    adds\tr2, #6\n"
-    "    lsls\tr1, r0, #4\n"
-    "    subs\tr1, r1, r0\n"
-    "    lsls\tr1, r1, #1\n"
-    "    lsls\tr0, r2, #4\n"
-    "    subs\tr0, r0, r2\n"
-    "    lsls\tr0, r0, #3\n"
-    "    adds\tr1, r1, r0\n"
-    "    adds\tr3, r3, r1\n"
-    "    cmp\tr3, #6\n"
-    "    bls .Lus_0803776E\n"
-    "    adds\tr0, r3, #0\n"
-    "    movs\tr1, #7\n"
-    "    bl __umodsi3\n"
-    "    adds\tr3, r0, #0\n"
-    ".Lus_0803776E:\n"
-    "    movs\tr0, #7\n"
-    "    ands\tr3, r0\n"
-    "    cmp\tr3, #1\n"
-    "    beq .Lus_080377AC\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .Lus_080377AC\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #68\t@ 0x44\n"
-    "    ldrb\tr1, [r0, #0]\n"
-    "    lsls\tr1, r1, #30\n"
-    "    lsrs\tr1, r1, #30\n"
-    "    mov\tr0, sp\n"
-    "    bl InitializeSouthTownNpcLocation2__FP13ActorLocationUi\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl SetLocation__12AActorEntityRC13ActorLocation\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #0\n"
-    "    bl GetBehaviorAnimation__C20SouthTownRoamingNpc2Ui\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrh\tr0, [r4, #34]\t@ 0x22\n"
-    "    cmp\tr0, r1\n"
-    "    beq .Lus_080377B6\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetAnim__12AActorEntityUi\n"
-    "    b .Lus_080377B6\n"
-    ".Lus_080377AC:\n"
-    "    adds\tr0, r4, #0\n"
-    "    movs\tr1, #141\t@ 0x8d\n"
-    "    lsls\tr1, r1, #2\n"
-    "    bl SetMap__7AEntityUi\n"
-    ".Lus_080377B6:\n"
-    "    add\tsp, #8\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-);
+void SouthTownRoamingNpc2::ResetLocation()
+{
+    GameStateClock const & clock = *game_object->GetClock();
+    u32 hour = clock.calendar.time.clock_hour;
+    if (hour - 6 <= 9) {
+        GameWeekday weekday = clock.calendar.GetWeekday();
+        if (weekday.value != DAY_OF_WEEK_MONDAY && clock.weather_today == WEATHER_SUNNY) {
+            ActorLocation location;
+            InitializeSouthTownNpcLocation2(&location, index);
+            SetLocation(location);
+            u32 animation = GetBehaviorAnimation(0);
+            if (anim_id != animation)
+                SetAnim(animation);
+            return;
+        }
+    }
+    PutOutOfTown();
+}
+
 
 u32 SouthTownRoamingNpc2::GetBehaviorAnimation(u32 behavior) const
 {
