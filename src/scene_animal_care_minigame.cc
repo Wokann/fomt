@@ -1,5 +1,6 @@
 #include "obj_palette_collection.hh"
 #include "prelude.h"
+#include "fomt_constants.hh"
 #include "scene_animal_care_minigame.hh"
 // The UI scene allocates its concrete minigame core.
 #include <new>
@@ -6235,8 +6236,8 @@ asm_unified(
     ".Lanimal_care_08_0228: .word 0x814\n"
 #endif
     "\n"
-    "thumb_func_start func_080B0934\n"
-    "func_080B0934:\n"
+    "thumb_func_start PauseAnimalCareAnimations\n"
+    "PauseAnimalCareAnimations:\n"
     "push {r4, r5, r6, lr}\n"
     "adds r3, r0, #0\n"
     "movs r1, #0xa0\n"
@@ -6269,8 +6270,8 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_09_0038: .word 0x6f4\n"
     "\n"
-    "thumb_func_start func_080B0970\n"
-    "func_080B0970:\n"
+    "thumb_func_start ResumeAnimalCareAnimations\n"
+    "ResumeAnimalCareAnimations:\n"
     "push {r4, r5, r6, lr}\n"
     "adds r3, r0, #0\n"
     "movs r1, #0xa0\n"
@@ -8481,7 +8482,7 @@ asm_unified(
     "str r6, [sp, #0x90]\n"
     ".Lanimal_care_14_0e4c:\n"
     "adds r0, r7, #0\n"
-    "bl func_080B3948\n"
+    "bl AdvanceAnimalCareSlotCounters\n"
     "adds r0, r7, #0\n"
     "bl func_080AF814\n"
     "ldr r1, .Lanimal_care_14_0e7c\n"
@@ -9334,7 +9335,7 @@ asm_unified(
     "adds r0, r6, #0\n"
     "bl func_080B36B4\n"
     "adds r0, r6, #0\n"
-    "bl func_080B3948\n"
+    "bl AdvanceAnimalCareSlotCounters\n"
     "ldr r5, [sp, #0x30]\n"
     "adds r5, #1\n"
     "str r5, [sp, #0x30]\n"
@@ -9354,7 +9355,7 @@ asm_unified(
     "cmp r1, #0\n"
     "beq .Lanimal_care_17_035a\n"
     "adds r0, r6, #0\n"
-    "bl func_080B3BA8\n"
+    "bl ToggleAnimalCareAnimationPause\n"
     ".Lanimal_care_17_035a:\n"
     "adds r0, r6, #0\n"
     "bl func_080AF814\n"
@@ -11160,7 +11161,7 @@ asm_unified(
     "str r0, [r6, #0xc]\n"
     ".Lanimal_care_18_0d9c:\n"
     "mov r0, sl\n"
-    "bl func_080B0934\n"
+    "bl PauseAnimalCareAnimations\n"
     "ldr r0, .Lanimal_care_18_0dd4\n"
     "add r0, sl\n"
     "ldr r2, .Lanimal_care_18_0dd8\n"
@@ -12183,7 +12184,7 @@ asm_unified(
     "cmp r0, #0\n"
     "beq .Lanimal_care_20_018e\n"
     "adds r0, r4, #0\n"
-    "bl func_080B3BA8\n"
+    "bl ToggleAnimalCareAnimationPause\n"
     ".Lanimal_care_20_018e:\n"
     "pop {r3}\n"
     "mov r8, r3\n"
@@ -12509,46 +12510,27 @@ asm_unified(
     ".Lanimal_care_21_028c: .word 0x91a\n"
     ".Lanimal_care_21_0290: .word 0x814\n"
     "\n"
-    "thumb_func_start func_080B3948\n"
-    "func_080B3948:\n"
-    "push {r4, r5, lr}\n"
-    "ldr r1, .Lanimal_care_22_0040\n"
-    "adds r2, r0, r1\n"
-    "ldr r3, .Lanimal_care_22_0044\n"
-    "adds r1, r0, r3\n"
-    "movs r5, #1\n"
-    "movs r4, #4\n"
-    ".Lanimal_care_22_000e:\n"
-    "ldr r0, [r2]\n"
-    "cmp r0, #2\n"
-    "bgt .Lanimal_care_22_002e\n"
-    "cmp r0, #1\n"
-    "blt .Lanimal_care_22_002e\n"
-    "ldrb r0, [r1]\n"
-    "adds r0, #1\n"
-    "movs r3, #0\n"
-    "strb r0, [r1]\n"
-    "lsls r0, r0, #0x18\n"
-    "lsrs r0, r0, #0x18\n"
-    "cmp r0, #0x3c\n"
-    "bne .Lanimal_care_22_002e\n"
-    "strb r3, [r1]\n"
-    "str r3, [r2]\n"
-    "strb r5, [r1, #0x19]\n"
-    ".Lanimal_care_22_002e:\n"
-    "adds r2, #4\n"
-    "adds r1, #1\n"
-    "subs r4, #1\n"
-    "cmp r4, #0\n"
-    "bge .Lanimal_care_22_000e\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_22_0040: .word 0x85c\n"
-    ".Lanimal_care_22_0044: .word 0x906\n"
-    "\n"
 );
+
+extern "C" void AdvanceAnimalCareSlotCounters(HarvestSpriteAnimalCareCore * core)
+{
+    for (i32 index = 0; index < static_cast<i32>(ARRAY_COUNT(core->timers)); ++index)
+    {
+        switch (core->timers[index])
+        {
+        case 1:
+        case 2:
+            ++core->counters[index];
+            if (core->counters[index] == 60)
+            {
+                core->counters[index] = 0;
+                core->timers[index] = 0;
+                core->phase_flags[index] = 1;
+            }
+            break;
+        }
+    }
+}
 
 u16 func_080B3990(HarvestSpriteAnimalCareCore * self)
 {
@@ -12766,38 +12748,22 @@ asm_unified(
     ".align 2, 0\n"
     ".Lanimal_care_28_017c: .word 0x91a\n"
     "\n"
-    "thumb_func_start func_080B3BA8\n"
-    "func_080B3BA8:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "ldr r1, .Lanimal_care_29_0024\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xb8\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "ldr r0, .Lanimal_care_29_0028\n"
-    "adds r1, r4, r0\n"
-    "ldr r0, [r1]\n"
-    "cmp r0, #0\n"
-    "bne .Lanimal_care_29_002c\n"
-    "movs r0, #1\n"
-    "str r0, [r1]\n"
-    "adds r0, r4, #0\n"
-    "bl func_080B0934\n"
-    "b .Lanimal_care_29_0036\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_29_0024: .word 0x818\n"
-    ".Lanimal_care_29_0028: .word 0x83c\n"
-    ".Lanimal_care_29_002c:\n"
-    "movs r0, #0\n"
-    "str r0, [r1]\n"
-    "adds r0, r4, #0\n"
-    "bl func_080B0970\n"
-    ".Lanimal_care_29_0036:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
 );
+
+extern "C" void ToggleAnimalCareAnimationPause(HarvestSpriteAnimalCareCore * core)
+{
+    core->music_players[3].Start(AUDIO_SFX_ATTENTION_CHIME);
+    if (core->animations_paused == 0)
+    {
+        core->animations_paused = 1;
+        PauseAnimalCareAnimations(core);
+    }
+    else
+    {
+        core->animations_paused = 0;
+        ResumeAnimalCareAnimations(core);
+    }
+}
 
 HarvestSpriteAnimalCareUiScene::HarvestSpriteAnimalCareUiScene(HarvestSpriteAnimalCareSetup const & setup)
 {

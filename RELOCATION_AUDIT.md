@@ -1,3 +1,7 @@
+## 动物照料计数及动画状态引用（2026-11-28）
+
+AdvanceAnimalCareSlotCounters对齐现有五个状态、计数字节和phase_flags；ToggleAnimalCareAnimationPause通过实际音乐槽及+0x83C状态调用原动画控制入口。暂停／恢复只更名，不计高级语言函数。完整对象真实字节、数据、重定位及四版默认完整ROM通过baserom对照。
+
 ## 铁匠铺目录到说明文本的引用（2026-11-28）
 
 UpdateDescription按BlacksmithCatalogEntry的有符号entry_kind选择原目录工具ID或说明指针，使用现有Tool::GetDesc与SetShopDescriptionText。没有硬编码字段偏移；完整对象的真实装载字节、数据、重定位和四版默认完整ROM均通过baserom对照。

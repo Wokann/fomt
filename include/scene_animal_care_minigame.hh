@@ -119,7 +119,9 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     HardwareMusicPlayerSlot music_players[5];
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
-    u32 unk_838[3];           /* +0x838, three zeroed words */
+    u32 unk_838;
+    u32 animations_paused;
+    u32 unk_840;
     u32 selection_index;      /* +0x844, indexes the husbandry selection values */
     u32 unk_848[5];           /* +0x848, five zeroed words */
     i32 timers[5];            /* +0x85C, state timer per slot (1..2 means running) */
@@ -173,6 +175,9 @@ extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreResultSuffix[
 extern char const gText_HarvestSpriteMiniGame_AnimalHusbandry_ScoreSummary[];
 extern u8 const gUnk_HarvestSpriteMiniGameAnimalHusbandryMatchValues[5];
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandrySelectionValues[4];
+
+extern "C" void PauseAnimalCareAnimations(HarvestSpriteAnimalCareCore * core);
+extern "C" void ResumeAnimalCareAnimations(HarvestSpriteAnimalCareCore * core);
 
 extern "C" u16 func_080B3990(HarvestSpriteAnimalCareCore * self);
 extern u16 const gUnk_HarvestSpriteMiniGameAnimalHusbandryIndexValues0[3];
