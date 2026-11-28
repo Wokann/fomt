@@ -50,6 +50,11 @@ struct PlayerActor : PlayerActorBase {
     void ShowSelectedToolGraphic();
     void RefreshHeldItemGraphic();
     void HideHeldGraphic();
+    void CycleRucksackWhileHolding(bool front);
+    void CycleRucksackWhileEmptyHanded(bool front);
+    void StoreHeldItemInRucksack();
+    bool IsSelectedToolCursed() const;
+    void CycleSelectedTool(bool front);
     PlayerHeldGraphic * GetHeldGraphic();
     u32 IsActionTargetEntityId(u32 entity_id) const;
     bool IsOnOverworld() const;

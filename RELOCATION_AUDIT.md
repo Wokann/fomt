@@ -1,3 +1,7 @@
+## 玩家切换操作的物品与音效引用（2026-11-28）
+
+背包切换继续调用 Farmer 的前／后循环；收纳通过 Rucksack::GetFirstFreeItemSlot 和 GetItemAt 写入真实 RucksackItem 值。诅咒限制读取当前 ToolStack，经 Farmer::GetUpgradedTool 得到 Tool，再检查六种原有诅咒工具编号。音效从 GameObject::GetSongPlayerPool 借用槽位，动作表及四版调用同步改为成员符号，无地址加数或输出修补。两个完整对象的装载内容、重定位和边界一致，四版默认 ROM 对照 baserom 逐字节及 SHA-1 通过。
+
 ## OAM 返回区与硬件字段（2026-11-28）
 
 InitializeMosaicSpriteOam 的调用者在调用后从临时返回区读取属性，再复制到精灵缓冲区，并不消费显式指针返回值。现恢复 HardwareSpriteOamEntry 按值返回，硬件坐标保留无符号环绕，归档坐标的原有符号解释不变。正常 C++ ABI 生成原隐藏返回参数和八字节复制；完整对象的装载内容、重定位和边界相同，四版默认 ROM 对照各自 baserom 的逐字节及 SHA-1 验收通过。
