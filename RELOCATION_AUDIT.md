@@ -1,3 +1,7 @@
+## 保存地图树的遍历入口（2026-11-29）
+
+两个遍历入口使用 SavedMapTree::state 的头节点链接与现有 SavedMapTreeIterator，继续向原调用者返回当前节点指针。未把节点或哨兵位置写成固定地址，也未改变原有迭代调用 ABI。四版完整 world_saved_map 对象的装载字节、符号边界及重定位保持，默认 ROM 与各自 baserom 逐字节及 SHA-1 一致。
+
 ## 玩家进食虚调用与食物返回接口（2026-11-29）
 
 玩家进食入口恢复为已声明的 EatFood 虚成员，虚表对应槽随成员名正常绑定。食物图标经现有资源接口加载，恢复量经 ChangeStaminaAndFatigue 虚调用应用；不使用固定 ROM 地址。IsDrink 的原调用者均以整个返回字判零，接口修正为 u32 后本体及其他既有代码保持匹配。四版 player_actor、player_actor_lifetimes、item 的装载字节、符号边界及重定位均保持；默认完整 ROM 与各自 baserom 逐字节及 SHA-1 一致。

@@ -9201,23 +9201,21 @@ asm_unified(
     "pop {r4, r5, r6, r7}\n"
     "pop {r1}\n"
     "bx r1\n"
-    "thumb_func_start GetFirstSavedMapTreeNode\n"
-    "GetFirstSavedMapTreeNode:\n"
-    "sub sp, #4\n"
-    "ldr r0, [r0, #0xc]\n"
-    "ldr r0, [r0, #8]\n"
-    "str r0, [sp]\n"
-    "add sp, #4\n"
-    "bx lr\n"
-    "thumb_func_start GetSavedMapTreeEnd\n"
-    "GetSavedMapTreeEnd:\n"
-    "sub sp, #4\n"
-    "ldr r0, [r0, #0xc]\n"
-    "str r0, [sp]\n"
-    "add sp, #4\n"
-    "bx lr\n"
-    ".align 2, 0\n"
+
 );
+
+extern "C" SavedMapTreeNode * GetFirstSavedMapTreeNode(SavedMapTree * tree)
+{
+    SavedMapTreeIterator position(tree->state.header->left);
+    return position.node;
+}
+
+extern "C" SavedMapTreeNode * GetSavedMapTreeEnd(SavedMapTree * tree)
+{
+    SavedMapTreeIterator position(tree->state.header);
+    return position.node;
+}
+
 
 // This packed nine-byte object follows the field-render resource data directly in ROM.
 FarmHouseStyleNibbleLookupData const gFarmHouseStyleNibbleLookupData ALIGN(1) = {
