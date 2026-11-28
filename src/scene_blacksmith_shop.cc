@@ -1313,58 +1313,28 @@ asm_unified(
     ".Lblacksmith_5_0170: .word gText_Blacksmith_InsufficientOreOrichalc\n"
     ".Lblacksmith_5_0174: .word 0x6a4\n"
     "\n"
-    "thumb_func_start UpdateDescription__23BlacksmithShopSceneCoreUi\n"
-    "UpdateDescription__23BlacksmithShopSceneCoreUi:\n"
-    "push {r4, r5, r6, lr}\n"
-    "sub sp, #0x18\n"
-    "adds r5, r0, #0\n"
-    "lsls r0, r1, #2\n"
-    "adds r0, r0, r1\n"
-    "lsls r0, r0, #2\n"
-    "ldr r1, .Lblacksmith_6_002c\n"
-    "adds r2, r0, r1\n"
-    "mov r1, sp\n"
-    "adds r0, r2, #0\n"
-    "ldm r0!, {r3, r4, r6}\n"
-    "stm r1!, {r3, r4, r6}\n"
-    "ldm r0!, {r3, r4}\n"
-    "stm r1!, {r3, r4}\n"
-    "ldr r0, [sp, #0xc]\n"
-    "cmp r0, #1\n"
-    "beq .Lblacksmith_6_0036\n"
-    "cmp r0, #1\n"
-    "bgt .Lblacksmith_6_0030\n"
-    "cmp r0, #0\n"
-    "beq .Lblacksmith_6_0050\n"
-    "b .Lblacksmith_6_0058\n"
-    ".align 2, 0\n"
-    ".Lblacksmith_6_002c: .word gBlacksmithCatalog\n"
-    ".Lblacksmith_6_0030:\n"
-    "cmp r0, #3\n"
-    "bgt .Lblacksmith_6_0058\n"
-    "b .Lblacksmith_6_0050\n"
-    ".Lblacksmith_6_0036:\n"
-    "add r4, sp, #0x14\n"
-    "ldr r1, [r2]\n"
-    "adds r0, r4, #0\n"
-    "bl __4ToolUi\n"
-    "adds r0, r4, #0\n"
-    "bl GetDesc__C4Tool\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r5, #0\n"
-    "bl SetShopDescriptionText\n"
-    "b .Lblacksmith_6_0058\n"
-    ".Lblacksmith_6_0050:\n"
-    "ldr r1, [sp, #0x10]\n"
-    "adds r0, r5, #0\n"
-    "bl SetShopDescriptionText\n"
-    ".Lblacksmith_6_0058:\n"
-    "add sp, #0x18\n"
-    "pop {r4, r5, r6}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
 );
+
+extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
+
+void BlacksmithShopSceneCore::UpdateDescription(u32 selection)
+{
+    BlacksmithCatalogEntry entry = gBlacksmithCatalog[selection];
+    switch (entry.entry_kind)
+    {
+    case 1:
+    {
+        Tool tool(gBlacksmithCatalog[selection].selection_id);
+        SetShopDescriptionText(this, tool.GetDesc());
+        break;
+    }
+    case 0:
+    case 2:
+    case 3:
+        SetShopDescriptionText(this, entry.detail_text);
+        break;
+    }
+}
 
 #include "game_state_types.hh"
 #include "farm.hh"

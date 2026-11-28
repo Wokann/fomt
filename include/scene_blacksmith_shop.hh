@@ -107,7 +107,7 @@ struct BlacksmithCatalogEntry
     u32 selection_id;
     char const * menu_text;
     u32 price;
-    u32 entry_kind;
+    i32 entry_kind;
     char const * detail_text;
 };
 

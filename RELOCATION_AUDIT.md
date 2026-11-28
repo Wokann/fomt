@@ -1,3 +1,7 @@
+## 铁匠铺目录到说明文本的引用（2026-11-28）
+
+UpdateDescription按BlacksmithCatalogEntry的有符号entry_kind选择原目录工具ID或说明指针，使用现有Tool::GetDesc与SetShopDescriptionText。没有硬编码字段偏移；完整对象的真实装载字节、数据、重定位和四版默认完整ROM均通过baserom对照。
+
 ## 繁殖资格的对象与短路调用（2026-11-28）
 
 CowActor／SheepActor的繁殖药谓词通过各自真实livestock成员访问存档动物，未怀孕才执行物种对应资格检查；不合并或删除原调用。完整动物对象的真实字节、数据、重定位及四版默认完整ROM均通过baserom对照。
