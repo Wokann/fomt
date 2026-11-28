@@ -24,59 +24,24 @@ WonShopSceneCore::~WonShopSceneCore()
 {
 }
 
+extern "C" void SetShopDescriptionText(ShopScreenCore * core, char const * text);
+
+void WonShopSceneCore::UpdateDescription(u32 selection)
+{
+    i32 index = catalog[selection];
+    char const * text;
+    bool is_article = index <= 2;
+    if (!is_article) {
+        Tool tool(gWonShopCatalog[index].item_id);
+        text = tool.GetDesc();
+    } else {
+        Article article(gWonShopCatalog[index].item_id);
+        text = article.GetDesc();
+    }
+    SetShopDescriptionText(this, text);
+}
+
 asm_unified(
-    "    .align 2, 0\n"
-    "thumb_func_start UpdateDescription__16WonShopSceneCoreUi\n"
-    "UpdateDescription__16WonShopSceneCoreUi:\n"
-    "push {r4, r5, lr}\n"
-    "sub sp, #4\n"
-    "adds r5, r0, #0\n"
-    "lsls r1, r1, #2\n"
-    "adds r1, r1, r5\n"
-    "movs r0, #0xaa\n"
-    "lsls r0, r0, #2\n"
-    "adds r1, r1, r0\n"
-    "ldr r2, [r1]\n"
-    "movs r0, #0\n"
-    "cmp r2, #2\n"
-    "bgt .Lwon_shop_2_001a\n"
-    "movs r0, #1\n"
-    ".Lwon_shop_2_001a:\n"
-    "cmp r0, #0\n"
-    "bne .Lwon_shop_2_0038\n"
-    "ldr r0, .Lwon_shop_2_0034\n"
-    "lsls r1, r2, #3\n"
-    "adds r1, r1, r0\n"
-    "ldr r1, [r1]\n"
-    "mov r0, sp\n"
-    "bl __4ToolUi\n"
-    "mov r0, sp\n"
-    "bl GetDesc__C4Tool\n"
-    "b .Lwon_shop_2_0050\n"
-    ".align 2, 0\n"
-    ".Lwon_shop_2_0034: .word gWonShopCatalog\n"
-    ".Lwon_shop_2_0038:\n"
-    "mov r4, sp\n"
-    "adds r4, #1\n"
-    "ldr r1, .Lwon_shop_2_0060\n"
-    "lsls r0, r2, #3\n"
-    "adds r0, r0, r1\n"
-    "ldr r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "bl __7ArticleUi\n"
-    "adds r0, r4, #0\n"
-    "bl GetDesc__C7Article\n"
-    ".Lwon_shop_2_0050:\n"
-    "adds r1, r0, #0\n"
-    "adds r0, r5, #0\n"
-    "bl SetShopDescriptionText\n"
-    "add sp, #4\n"
-    "pop {r4, r5}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lwon_shop_2_0060: .word gWonShopCatalog\n"
-    "\n"
     "thumb_func_start DrawCatalog__16WonShopSceneCore\n"
     "DrawCatalog__16WonShopSceneCore:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1779,6 +1744,7 @@ asm_unified(
     ".text\n"
     ".include \"asm/gba.inc\"\n"
 );
+
 
 bool WonShopSceneCore::IsArticle(i32 index) const
 {
