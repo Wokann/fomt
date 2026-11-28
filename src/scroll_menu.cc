@@ -1679,50 +1679,6 @@ void ClearScrollMenuPage(ScrollMenu * menu)
     menu->page = nullptr;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global SetScrollMenuPage\n"
-    "    .thumb_func\n"
-    "SetScrollMenuPage: @ 0x080767F4\n"
-    "    push {r4, r5, r6, lr}\n"
-    "    adds r4, r1, #0\n"
-    "    adds r6, r0, #0\n"
-    "    adds r6, #8\n"
-    "    ldr r2, [r4]\n"
-    "    movs r1, #0\n"
-    "    str r1, [r4]\n"
-    "    adds r5, r2, #0\n"
-    "    ldr r1, [r0, #8]\n"
-    "    cmp r5, r1\n"
-    "    beq .Ljp_0807681E\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_0807681E\n"
-    "    ldr r2, .Ljp_0807683C\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_0807681E:\n"
-    "    str r5, [r6]\n"
-    "    ldr r1, [r4]\n"
-    "    cmp r1, #0\n"
-    "    beq .Ljp_08076836\n"
-    "    ldr r2, .Ljp_0807683C\n"
-    "    adds r0, r1, r2\n"
-    "    ldr r0, [r0]\n"
-    "    ldr r2, [r0, #8]\n"
-    "    adds r0, r1, #0\n"
-    "    movs r1, #3\n"
-    "    bl _call_via_r2\n"
-    ".Ljp_08076836:\n"
-    "    pop {r4, r5, r6}\n"
-    "    pop {r0}\n"
-    "    bx r0\n"
-    "    .align 2, 0\n"
-    ".Ljp_0807683C: .word 0x000005B4\n"
-);
 #elif defined(REGION_US) || defined(REGION_EU) || defined(REGION_DE)
 asm_unified(
     "\n"
@@ -3398,51 +3354,12 @@ void ClearScrollMenuPage(ScrollMenu * menu)
     menu->page = nullptr;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "\tthumb_func_start SetScrollMenuPage\n"
-    "SetScrollMenuPage: @ 0x08076B94\n"
-    "\tpush {r4, r5, r6, lr}\n"
-    "\tadds r4, r1, #0\n"
-    "\tadds r6, r0, #0\n"
-    "\tadds r6, #8\n"
-    "\tldr r2, [r4]\n"
-    "\tmovs r1, #0\n"
-    "\tstr r1, [r4]\n"
-    "\tadds r5, r2, #0\n"
-    "\tldr r1, [r0, #8]\n"
-    "\tcmp r5, r1\n"
-    "\tbeq .L08076BBE\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08076BBE\n"
-    "\tldr r2, .L08076BDC @ =0x000005B4\n"
-    "\tadds r0, r1, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08076BBE:\n"
-    "\tstr r5, [r6]\n"
-    "\tldr r1, [r4]\n"
-    "\tcmp r1, #0\n"
-    "\tbeq .L08076BD6\n"
-    "\tldr r2, .L08076BDC @ =0x000005B4\n"
-    "\tadds r0, r1, r2\n"
-    "\tldr r0, [r0]\n"
-    "\tldr r2, [r0, #8]\n"
-    "\tadds r0, r1, #0\n"
-    "\tmovs r1, #3\n"
-    "\tbl _call_via_r2\n"
-    ".L08076BD6:\n"
-    "\tpop {r4, r5, r6}\n"
-    "\tpop {r0}\n"
-    "\tbx r0\n"
-    "\t.align 2, 0\n"
-    ".L08076BDC: .word 0x000005B4\n"
-    "\n"
-);
 #endif
+
+void SetScrollMenuPage(ScrollMenu * menu, ScrollMenuPageOwner page)
+{
+    menu->page = page;
+}
 
 void SetScrollMenuPosition(ScrollMenu * context, i16 scroll_position)
 {

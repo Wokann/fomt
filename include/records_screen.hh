@@ -8,6 +8,7 @@
 #include "scroll_menu.hh"
 #include "harvest_sprite.hh"
 #include "utility/fixed_str.hh"
+#include "new_game_ui.hh"
 
 struct GameStateSaveImage;
 
@@ -22,11 +23,7 @@ struct RecordsScreenTextRow {
     bool rendered;
 };
 
-struct RecordsScreenTextTileBuffer {
-    RecordsScreenTextTileBuffer() {}
-    u32 unk_00;
-    u8 tiles[20 * 2 * 32];
-};
+typedef NewGameTextTileBuffer<20> RecordsScreenTextTileBuffer;
 
 struct RecordsScreenPageEntry {
     RecordsScreenPageEntry() : page(0), scroll_position(0) {}

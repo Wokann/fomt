@@ -34,7 +34,6 @@ struct SmartPtr
 
     T * Get() const { return inner; }
 
-    // TODO
     T * Move()
     {
         T * tmp = inner;
@@ -42,9 +41,13 @@ struct SmartPtr
         return tmp;
     }
 
-private:
-    // TODO
-    SmartPtr(SmartPtr &) {}
+public:
+    SmartPtr(SmartPtr & other) : inner(other.Move()) {}
+
+    SmartPtr & operator=(SmartPtr & other)
+    {
+        return operator=(other.Move());
+    }
 
 private:
     /* +00 */ T * inner;

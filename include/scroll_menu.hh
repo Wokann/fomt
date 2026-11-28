@@ -99,7 +99,7 @@ EXTERN_C
 void UpdateScrollMenu(ScrollMenu * menu);
 void RunScrollMenu(ScrollMenu * menu);
 void ClearScrollMenuPage(ScrollMenu * menu);
-void SetScrollMenuPage(ScrollMenu * menu, ScrollMenuPage ** page);
+void SetScrollMenuPage(ScrollMenu * menu, ScrollMenuPageOwner page);
 void SetScrollMenuPosition(ScrollMenu * context, i16 scroll_position);
 i16 GetScrollMenuPosition(ScrollMenu const * context);
 
