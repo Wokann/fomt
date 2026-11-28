@@ -1,4 +1,5 @@
 
+#pragma implementation "roaming_npc_actor.cc"
 #include "roaming_npc_actor.hh"
 
 #include <new>
@@ -1058,188 +1059,17 @@ i32 InnSecondFloorRoamingNpc::GetBehaviorSpeed(u32 behavior) const
     }
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start CreateSouthTownRoamingNpc1\n"
-    "CreateSouthTownRoamingNpc1:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6}\n"
-    "    sub\tsp, #12\n"
-    "    adds\tr6, r0, #0\n"
-    "    mov\tr8, r1\n"
-    "    adds\tr4, r2, #0\n"
-    "    movs\tr0, #72\t@ 0x48\n"
-    "    bl __builtin_new\n"
-    "    adds\tr5, r0, #0\n"
-    "    movs\tr0, #0\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    mov\tr2, r8\n"
-    "    ldr r3, .Lus_08037AC8\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lus_08037ACC\n"
-    "    str\tr0, [r5, #20]\n"
-    "    adds\tr2, r5, #0\n"
-    "    adds\tr2, #68\t@ 0x44\n"
-    "    movs\tr0, #3\n"
-    "    ands\tr4, r0\n"
-    "    ldrb\tr1, [r2, #0]\n"
-    "    movs\tr0, #4\n"
-    "    negs\tr0, r0\n"
-    "    ands\tr0, r1\n"
-    "    orrs\tr0, r4\n"
-    "    strb\tr0, [r2, #0]\n"
-    "    add\tr2, sp, #4\n"
-    "    movs\tr1, #176\t@ 0xb0\n"
-    "    lsls\tr1, r1, #1\n"
-    "    movs\tr3, #216\t@ 0xd8\n"
-    "    adds\tr0, r2, #0\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    strh\tr3, [r2, #2]\n"
-    "    adds\tr1, #56\t@ 0x38\n"
-    "    strh\tr1, [r2, #4]\n"
-    "    movs\tr0, #232\t@ 0xe8\n"
-    "    strh\tr0, [r2, #6]\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr1, r2, #0\n"
-    "    bl SetAvoidanceBox__15RoamingNpcActorRC3Box\n"
-    "    adds\tr0, r5, #0\n"
-    "    add\tsp, #12\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lus_08037AC8: .word 0x0000071C\n"
-    ".Lus_08037ACC: .word __vt_20SouthTownRoamingNpc1\n"
-    "    thumb_func_start CreateSouthTownRoamingNpc2\n"
-    "CreateSouthTownRoamingNpc2:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    mov\tr6, r8\n"
-    "    push\t{r6}\n"
-    "    sub\tsp, #12\n"
-    "    adds\tr6, r0, #0\n"
-    "    mov\tr8, r1\n"
-    "    adds\tr4, r2, #0\n"
-    "    movs\tr0, #72\t@ 0x48\n"
-    "    bl __builtin_new\n"
-    "    adds\tr5, r0, #0\n"
-    "    movs\tr0, #11\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    mov\tr2, r8\n"
-    "    movs\tr3, #171\t@ 0xab\n"
-    "    lsls\tr3, r3, #2\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lus_08037B44\n"
-    "    str\tr0, [r5, #20]\n"
-    "    adds\tr2, r5, #0\n"
-    "    adds\tr2, #68\t@ 0x44\n"
-    "    movs\tr0, #3\n"
-    "    ands\tr4, r0\n"
-    "    ldrb\tr1, [r2, #0]\n"
-    "    movs\tr0, #4\n"
-    "    negs\tr0, r0\n"
-    "    ands\tr0, r1\n"
-    "    orrs\tr0, r4\n"
-    "    strb\tr0, [r2, #0]\n"
-    "    add\tr3, sp, #4\n"
-    "    movs\tr1, #230\t@ 0xe6\n"
-    "    lsls\tr1, r1, #2\n"
-    "    movs\tr2, #144\t@ 0x90\n"
-    "    lsls\tr2, r2, #1\n"
-    "    adds\tr0, r3, #0\n"
-    "    strh\tr1, [r0, #0]\n"
-    "    strh\tr2, [r3, #2]\n"
-    "    movs\tr0, #164\t@ 0xa4\n"
-    "    lsls\tr0, r0, #1\n"
-    "    adds\tr1, r1, r0\n"
-    "    strh\tr1, [r3, #4]\n"
-    "    adds\tr2, #8\n"
-    "    strh\tr2, [r3, #6]\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr1, r3, #0\n"
-    "    bl SetAvoidanceBox__15RoamingNpcActorRC3Box\n"
-    "    adds\tr0, r5, #0\n"
-    "    add\tsp, #12\n"
-    "    pop\t{r3}\n"
-    "    mov\tr8, r3\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lus_08037B44: .word __vt_20SouthTownRoamingNpc2\n"
-    "    thumb_func_start CreateYodelRanchHouseRoamingNpc\n"
-    "CreateYodelRanchHouseRoamingNpc:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr6, r1, #0\n"
-    "    movs\tr0, #68\t@ 0x44\n"
-    "    bl __builtin_new\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #12\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr2, r6, #0\n"
-    "    ldr r3, .Lus_08037B78\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lus_08037B7C\n"
-    "    str\tr0, [r4, #20]\n"
-    "    adds\tr0, r4, #0\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lus_08037B78: .word 0x00000379\n"
-    ".Lus_08037B7C: .word __vt_25YodelRanchHouseRoamingNpc\n"
-    "    thumb_func_start CreateInnSecondFloorRoamingNpc\n"
-    "CreateInnSecondFloorRoamingNpc:\n"
-    "    push\t{r4, r5, r6, lr}\n"
-    "    sub\tsp, #4\n"
-    "    adds\tr5, r0, #0\n"
-    "    adds\tr6, r1, #0\n"
-    "    movs\tr0, #68\t@ 0x44\n"
-    "    bl __builtin_new\n"
-    "    adds\tr4, r0, #0\n"
-    "    movs\tr0, #10\n"
-    "    str\tr0, [sp, #0]\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r5, #0\n"
-    "    adds\tr2, r6, #0\n"
-    "    ldr r3, .Lus_08037BB0\n"
-    "    bl __15RoamingNpcActorP10GameObjectP13ActorLocationUiUi\n"
-    "    ldr r0, .Lus_08037BB4\n"
-    "    str\tr0, [r4, #20]\n"
-    "    adds\tr0, r4, #0\n"
-    "    add\tsp, #4\n"
-    "    pop\t{r4, r5, r6}\n"
-    "    pop\t{r1}\n"
-    "    bx\tr1\n"
-    "    .align 2, 0\n"
-    ".Lus_08037BB0: .word 0x00000207\n"
-    ".Lus_08037BB4: .word __vt_24InnSecondFloorRoamingNpc\n"
-);
-
-InnSecondFloorRoamingNpc::InnSecondFloorRoamingNpc(GameObject * game_object,
-    ActorLocation * saved_location)
-    : RoamingNpcActor(game_object, saved_location, 0x207, 10)
+#pragma interface "roaming_npc_actor.cc"
+inline SouthTownRoamingNpc1::SouthTownRoamingNpc1(GameObject * game_object,
+    ActorLocation * saved_location, u32 index)
+    : RoamingNpcActor(game_object, saved_location, ANIMATION_CHICKEN_IDLE, 0),
+      index(index)
 {
+    SetAvoidanceBox(Box(0, 0, 56, 16, 352, 216));
 }
 
-YodelRanchHouseRoamingNpc::YodelRanchHouseRoamingNpc(GameObject * game_object,
-    ActorLocation * saved_location)
-    : RoamingNpcActor(game_object, saved_location, 0x379, 12)
-{
-}
 
-SouthTownRoamingNpc2::SouthTownRoamingNpc2(GameObject * game_object,
+inline SouthTownRoamingNpc2::SouthTownRoamingNpc2(GameObject * game_object,
     ActorLocation * saved_location, u32 index)
     : RoamingNpcActor(game_object, saved_location, ANIMATION_COW_IDLE, 11),
       index(index)
@@ -1247,10 +1077,41 @@ SouthTownRoamingNpc2::SouthTownRoamingNpc2(GameObject * game_object,
     SetAvoidanceBox(Box(0, 0, 328, 8, 920, 288));
 }
 
-SouthTownRoamingNpc1::SouthTownRoamingNpc1(GameObject * game_object,
-    ActorLocation * saved_location, u32 index)
-    : RoamingNpcActor(game_object, saved_location, ANIMATION_CHICKEN_IDLE, 0),
-      index(index)
+
+inline YodelRanchHouseRoamingNpc::YodelRanchHouseRoamingNpc(GameObject * game_object,
+    ActorLocation * saved_location)
+    : RoamingNpcActor(game_object, saved_location, 0x379, 12)
 {
-    SetAvoidanceBox(Box(0, 0, 56, 16, 352, 216));
+}
+
+
+inline InnSecondFloorRoamingNpc::InnSecondFloorRoamingNpc(GameObject * game_object,
+    ActorLocation * saved_location)
+    : RoamingNpcActor(game_object, saved_location, 0x207, 10)
+{
+}
+
+
+RoamingNpcActor * CreateSouthTownRoamingNpc1(GameObject * game_object,
+    ActorLocation * saved_location, u32 index)
+{
+    return new SouthTownRoamingNpc1(game_object, saved_location, index);
+}
+
+RoamingNpcActor * CreateSouthTownRoamingNpc2(GameObject * game_object,
+    ActorLocation * saved_location, u32 index)
+{
+    return new SouthTownRoamingNpc2(game_object, saved_location, index);
+}
+
+RoamingNpcActor * CreateYodelRanchHouseRoamingNpc(GameObject * game_object,
+    ActorLocation * saved_location)
+{
+    return new YodelRanchHouseRoamingNpc(game_object, saved_location);
+}
+
+RoamingNpcActor * CreateInnSecondFloorRoamingNpc(GameObject * game_object,
+    ActorLocation * saved_location)
+{
+    return new InnSecondFloorRoamingNpc(game_object, saved_location);
 }

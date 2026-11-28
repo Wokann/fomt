@@ -85,8 +85,7 @@ struct InnSecondFloorRoamingNpc : RoamingNpcActor
 
 EXTERN_C
 
-// The retained native factories allocate the original 0x48/0x44-byte objects.
-// Their allocation constants must change if the corresponding type grows.
+// Create an owned actor that borrows its saved location.
 RoamingNpcActor * CreateSouthTownRoamingNpc1(GameObject * game_object,
     ActorLocation * saved_location, u32 index);
 RoamingNpcActor * CreateSouthTownRoamingNpc2(GameObject * game_object,
