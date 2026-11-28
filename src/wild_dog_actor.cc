@@ -6,6 +6,7 @@
 #include <new>
 #include FOMT_TEXT_INCLUDE(wild_dog_actor.cc)
 #include "random.hh"
+#include <stdlib.h>
 extern "C" u16 const gWildDogMotionAnimations[] = {
     0x09BF, 0x09C3, 0x09C7, 0x09CB, 0x09CF,
 };
@@ -195,7 +196,7 @@ asm_unified(
     "    bl SetMap__7AEntityUi\n"
     "    add\tr1, sp, #12\n"
     "    mov\tr0, r8\n"
-    "    bl func_0809C098\n"
+    "    bl SetWildDogInactiveState\n"
     ".LwildDog_080392FC:\n"
     "    add\tsp, #24\n"
     "    pop\t{r3, r4, r5}\n"
@@ -212,700 +213,163 @@ u32 WildDogState1::GetMotion(WildDogActor const * actor) const
     return 1;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    thumb_func_start Update__13WildDogState2P12WildDogActorP19ActorMovementBounds\n"
-    "Update__13WildDogState2P12WildDogActorP19ActorMovementBounds:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, sl\n"
-    "    mov\tr6, r9\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5, r6, r7}\n"
-    "    sub\tsp, #44\t@ 0x2c\n"
-    "    adds\tr5, r1, #0\n"
-    "    str\tr2, [sp, #28]\n"
-    "    ldr\tr0, [r5, #52]\t@ 0x34\n"
-    "    str\tr0, [sp, #32]\n"
-    "    adds\tr0, #16\n"
-    "    mov\tr8, r0\n"
-    "    ldr\tr3, [r5, #0]\n"
-    "    ldrb\tr1, [r0, #6]\n"
-    "    str\tr1, [sp, #36]\t@ 0x24\n"
-    "    ldr\tr2, [sp, #32]\n"
-    "    ldrh\tr6, [r2, #16]\n"
-    "    cmp\tr6, #0\n"
-    "    beq .LwildDog_08039344\n"
-    "    subs\tr6, #1\n"
-    "    cmp\tr6, #0\n"
-    "    bne .LwildDog_08039344\n"
-    "    cmp\tr1, #0\n"
-    "    beq .LwildDog_08039344\n"
-    "    subs\tr1, #1\n"
-    "    str\tr1, [sp, #36]\t@ 0x24\n"
-    ".LwildDog_08039344:\n"
-    "    ldr\tr0, [r3, #0]\n"
-    "    mov\tr2, r8\n"
-    "    ldrb\tr1, [r2, #7]\n"
-    "    ldr\tr2, [r0, #64]\t@ 0x40\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #0\n"
-    "    bne .LwildDog_0803935A\n"
-    "    b .LwildDog_08039488\n"
-    ".LwildDog_0803935A:\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    ldrh\tr3, [r5, #4]\n"
-    "    cmp\tr0, r3\n"
-    "    beq .LwildDog_08039364\n"
-    "    b .LwildDog_08039488\n"
-    ".LwildDog_08039364:\n"
-    "    ldr\tr0, [r4, #20]\n"
-    "    ldr\tr1, [r0, #96]\t@ 0x60\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    bne .LwildDog_08039376\n"
-    "    b .LwildDog_08039488\n"
-    ".LwildDog_08039376:\n"
-    "    movs\tr0, #10\n"
-    "    ldrsh\tr2, [r5, r0]\n"
-    "    movs\tr1, #14\n"
-    "    ldrsh\tr7, [r5, r1]\n"
-    "    movs\tr0, #10\n"
-    "    ldrsh\tr3, [r4, r0]\n"
-    "    mov\tsl, r3\n"
-    "    movs\tr3, #14\n"
-    "    ldrsh\tr1, [r4, r3]\n"
-    "    mov\tr9, r1\n"
-    "    ldr\tr0, [sp, #36]\t@ 0x24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_08039444\n"
-    "    mov\tr1, sl\n"
-    "    subs\tr0, r1, r2\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_0803939A\n"
-    "    negs\tr0, r0\n"
-    ".LwildDog_0803939A:\n"
-    "    cmp\tr0, #15\n"
-    "    bgt .LwildDog_080393AC\n"
-    "    mov\tr3, r9\n"
-    "    subs\tr0, r3, r7\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_080393A8\n"
-    "    negs\tr0, r0\n"
-    ".LwildDog_080393A8:\n"
-    "    cmp\tr0, #15\n"
-    "    ble .LwildDog_08039444\n"
-    ".LwildDog_080393AC:\n"
-    "    cmp\tr6, #0\n"
-    "    beq .LwildDog_080393D4\n"
-    "    mov\tr1, r8\n"
-    "    movs\tr3, #2\n"
-    "    ldrsh\tr0, [r1, r3]\n"
-    "    subs\tr0, r0, r2\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_080393BE\n"
-    "    negs\tr0, r0\n"
-    ".LwildDog_080393BE:\n"
-    "    cmp\tr0, #15\n"
-    "    bgt .LwildDog_08039438\n"
-    "    mov\tr1, r8\n"
-    "    movs\tr3, #4\n"
-    "    ldrsh\tr0, [r1, r3]\n"
-    "    subs\tr0, r0, r7\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_080393D0\n"
-    "    negs\tr0, r0\n"
-    ".LwildDog_080393D0:\n"
-    "    cmp\tr0, #15\n"
-    "    bgt .LwildDog_08039438\n"
-    ".LwildDog_080393D4:\n"
-    "    adds\tr0, r2, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    str\tr2, [sp, #40]\t@ 0x28\n"
-    "    bl IsWildDogExitCorridor\n"
-    "    lsls\tr0, r0, #24\n"
-    "    ldr\tr2, [sp, #40]\t@ 0x28\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_08039400\n"
-    "    movs\tr1, #0\n"
-    "    cmp\tr7, r9\n"
-    "    blt .LwildDog_080393EE\n"
-    "    movs\tr1, #1\n"
-    ".LwildDog_080393EE:\n"
-    "    adds\tr0, r5, #0\n"
-    "    adds\tr0, #32\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    beq .LwildDog_08039426\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl SetAnimFacing__12AActorEntityUi\n"
-    "    b .LwildDog_08039426\n"
-    ".LwildDog_08039400:\n"
-    "    adds\tr4, r5, #0\n"
-    "    adds\tr4, #32\n"
-    "    ldrb\tr0, [r4, #0]\n"
-    "    ldr\tr6, [sp, #28]\n"
-    "    str\tr6, [sp, #0]\n"
-    "    str\tr0, [sp, #4]\n"
-    "    adds\tr0, r2, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    mov\tr2, sl\n"
-    "    mov\tr3, r9\n"
-    "    bl SelectApproachFacing\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrb\tr0, [r4, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    beq .LwildDog_08039426\n"
-    "    adds\tr0, r5, #0\n"
-    "    bl SetAnimFacing__12AActorEntityUi\n"
-    ".LwildDog_08039426:\n"
-    "    movs\tr0, #30\n"
-    "    bl RandomBelow\n"
-    "    adds\tr6, r0, #1\n"
-    "    mov\tr1, sl\n"
-    "    mov\tr0, r8\n"
-    "    strh\tr1, [r0, #2]\n"
-    "    mov\tr2, r9\n"
-    "    strh\tr2, [r0, #4]\n"
-    ".LwildDog_08039438:\n"
-    "    add\tr3, sp, #36\t@ 0x24\n"
-    "    ldrb\tr0, [r3, #0]\n"
-    "    mov\tr3, r8\n"
-    "    strb\tr0, [r3, #6]\n"
-    "    strh\tr6, [r3, #0]\n"
-    "    b .LwildDog_08039548\n"
-    ".LwildDog_08039444:\n"
-    "    ldr r1, .LwildDog_0803947C\n"
-    "    ldr\tr0, [sp, #8]\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #36\t@ 0x24\n"
-    "    orrs\tr0, r1\n"
-    "    ldr r1, .LwildDog_08039480\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #128\t@ 0x80\n"
-    "    lsls\tr1, r1, #9\n"
-    "    orrs\tr0, r1\n"
-    "    str\tr0, [sp, #8]\n"
-    "    mov\tr6, r8\n"
-    "    ldrb\tr1, [r6, #7]\n"
-    "    lsls\tr1, r1, #24\n"
-    "    ldr r2, .LwildDog_08039484\n"
-    "    ands\tr0, r2\n"
-    "    orrs\tr0, r1\n"
-    "    str\tr0, [sp, #8]\n"
-    "    ldr\tr0, [sp, #32]\n"
-    "    add\tr1, sp, #8\n"
-    "    bl func_0809C0BC\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr1, #171\t@ 0xab\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    "    b .LwildDog_08039548\n"
-    "    .align 2, 0\n"
-    ".LwildDog_0803947C: .word 0xFFFF0000\n"
-    ".LwildDog_08039480: .word 0xFF00FFFF\n"
-    ".LwildDog_08039484: .word 0x00FFFFFF\n"
-    ".LwildDog_08039488:\n"
-    "    ldr\tr4, [r5, #52]\t@ 0x34\n"
-    "    movs\tr6, #100\t@ 0x64\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C060\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_080394AA\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    ldrh\tr1, [r5, #4]\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r5, r3]\n"
-    "    movs\tr6, #14\n"
-    "    ldrsh\tr3, [r5, r6]\n"
-    "    bl FindNearestWildDogTarget\n"
-    "    adds\tr6, r0, #0\n"
-    "    b .LwildDog_080394B2\n"
-    ".LwildDog_080394AA:\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr1, #170\t@ 0xaa\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".LwildDog_080394B2:\n"
-    "    cmp\tr6, #100\t@ 0x64\n"
-    "    beq .LwildDog_08039534\n"
-    "    movs\tr0, #100\t@ 0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp\tr0, #69\t@ 0x45\n"
-    "    bhi .LwildDog_080394FC\n"
-    "    ldr r1, .LwildDog_080394F0\n"
-    "    ldr\tr0, [sp, #12]\n"
-    "    ands\tr0, r1\n"
-    "    str\tr0, [sp, #12]\n"
-    "    movs\tr0, #8\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #3\n"
-    "    lsls\tr0, r0, #24\n"
-    "    lsrs\tr0, r0, #8\n"
-    "    ldr r3, .LwildDog_080394F4\n"
-    "    add\tr1, sp, #12\n"
-    "    ldr\tr2, [r1, #4]\n"
-    "    ands\tr2, r3\n"
-    "    orrs\tr2, r0\n"
-    "    lsls\tr3, r6, #24\n"
-    "    ldr r0, .LwildDog_080394F8\n"
-    "    ands\tr2, r0\n"
-    "    orrs\tr2, r3\n"
-    "    str\tr2, [r1, #4]\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0AC\n"
-    "    b .LwildDog_08039548\n"
-    ".LwildDog_080394F0: .word 0xFFFF0000\n"
-    ".LwildDog_080394F4: .word 0xFF00FFFF\n"
-    ".LwildDog_080394F8: .word 0x00FFFFFF\n"
-    ".LwildDog_080394FC:\n"
-    "    movs\tr0, #60\t@ 0x3c\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #120\t@ 0x78\n"
-    "    lsls\tr0, r0, #16\n"
-    "    lsrs\tr0, r0, #16\n"
-    "    ldr r2, .LwildDog_08039528\n"
-    "    ldr\tr1, [sp, #20]\n"
-    "    ands\tr1, r2\n"
-    "    orrs\tr1, r0\n"
-    "    ldr r0, .LwildDog_0803952C\n"
-    "    ands\tr1, r0\n"
-    "    lsls\tr2, r6, #24\n"
-    "    ldr r0, .LwildDog_08039530\n"
-    "    ands\tr1, r0\n"
-    "    orrs\tr1, r2\n"
-    "    str\tr1, [sp, #20]\n"
-    "    add\tr1, sp, #20\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0BC\n"
-    "    b .LwildDog_08039548\n"
-    ".LwildDog_08039528: .word 0xFFFF0000\n"
-    ".LwildDog_0803952C: .word 0xFF00FFFF\n"
-    ".LwildDog_08039530: .word 0x00FFFFFF\n"
-    ".LwildDog_08039534:\n"
-    "    ldr r1, .LwildDog_08039558\n"
-    "    ldr\tr0, [sp, #24]\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #180\t@ 0xb4\n"
-    "    orrs\tr0, r1\n"
-    "    str\tr0, [sp, #24]\n"
-    "    add\tr1, sp, #24\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0A0\n"
-    ".LwildDog_08039548:\n"
-    "    add\tsp, #44\t@ 0x2c\n"
-    "    pop\t{r3, r4, r5}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    mov\tsl, r5\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    ".LwildDog_08039558: .word 0xFFFF0000\n"
-    "    thumb_func_start Update__13WildDogState3P12WildDogActorP19ActorMovementBounds\n"
-    "Update__13WildDogState3P12WildDogActorP19ActorMovementBounds:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, sl\n"
-    "    mov\tr6, r9\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5, r6, r7}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr5, r1, #0\n"
-    "    ldr\tr0, [r5, #52]\t@ 0x34\n"
-    "    mov\tr8, r0\n"
-    "    mov\tr6, r8\n"
-    "    adds\tr6, #16\n"
-    "    mov\tr1, r8\n"
-    "    ldrh\tr4, [r1, #16]\n"
-    "    cmp\tr4, #0\n"
-    "    beq .LwildDog_08039582\n"
-    "    subs\tr4, #1\n"
-    "    cmp\tr4, #0\n"
-    "    beq .LwildDog_08039582\n"
-    "    b .LwildDog_080396E2\n"
-    ".LwildDog_08039582:\n"
-    "    ldrb\tr0, [r6, #2]\n"
-    "    cmp\tr0, #0\n"
-    "    bne .LwildDog_0803958A\n"
-    "    b .LwildDog_080396D4\n"
-    ".LwildDog_0803958A:\n"
-    "    ldr\tr4, [r5, #0]\n"
-    "    ldrh\tr7, [r5, #4]\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r5, r3]\n"
-    "    mov\tr9, r2\n"
-    "    movs\tr1, #14\n"
-    "    ldrsh\tr0, [r5, r1]\n"
-    "    mov\tsl, r0\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r7, #0\n"
-    "    mov\tr3, sl\n"
-    "    bl FindNearestWildDogTarget\n"
-    "    adds\tr1, r0, #0\n"
-    "    cmp\tr1, #100\t@ 0x64\n"
-    "    bne .LwildDog_080395AC\n"
-    "    ldrb\tr1, [r6, #3]\n"
-    ".LwildDog_080395AC:\n"
-    "    ldr\tr0, [r4, #0]\n"
-    "    ldr\tr2, [r0, #64]\t@ 0x40\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds\tr4, r0, #0\n"
-    "    cmp\tr4, #0\n"
-    "    beq .LwildDog_08039602\n"
-    "    ldrh\tr0, [r4, #4]\n"
-    "    cmp\tr0, r7\n"
-    "    bne .LwildDog_08039602\n"
-    "    ldr\tr0, [r4, #20]\n"
-    "    ldr\tr1, [r0, #96]\t@ 0x60\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_08039602\n"
-    "    movs\tr2, #10\n"
-    "    ldrsh\tr0, [r4, r2]\n"
-    "    movs\tr3, #14\n"
-    "    ldrsh\tr1, [r4, r3]\n"
-    "    mov\tr6, r9\n"
-    "    subs\tr0, r0, r6\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_080395E4\n"
-    "    negs\tr0, r0\n"
-    ".LwildDog_080395E4:\n"
-    "    cmp\tr0, #15\n"
-    "    bgt .LwildDog_08039602\n"
-    "    mov\tr0, sl\n"
-    "    subs\tr3, r1, r0\n"
-    "    cmp\tr3, #0\n"
-    "    bge .LwildDog_080395F2\n"
-    "    negs\tr3, r3\n"
-    ".LwildDog_080395F2:\n"
-    "    cmp\tr3, #15\n"
-    "    bgt .LwildDog_08039602\n"
-    "    ldr\tr0, [r4, #20]\n"
-    "    adds\tr0, #128\t@ 0x80\n"
-    "    ldr\tr1, [r0, #0]\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl _call_via_r1\n"
-    ".LwildDog_08039602:\n"
-    "    mov\tr0, r8\n"
-    "    movs\tr1, #4\n"
-    "    bl func_0809C068\n"
-    "    ldr\tr4, [r5, #52]\t@ 0x34\n"
-    "    movs\tr6, #100\t@ 0x64\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C060\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_0803962C\n"
-    "    ldr\tr0, [r5, #0]\n"
-    "    ldrh\tr1, [r5, #4]\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r5, r3]\n"
-    "    movs\tr6, #14\n"
-    "    ldrsh\tr3, [r5, r6]\n"
-    "    bl FindNearestWildDogTarget\n"
-    "    adds\tr6, r0, #0\n"
-    "    b .LwildDog_08039634\n"
-    ".LwildDog_0803962C:\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr1, #170\t@ 0xaa\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".LwildDog_08039634:\n"
-    "    cmp\tr6, #100\t@ 0x64\n"
-    "    beq .LwildDog_080396B8\n"
-    "    movs\tr0, #100\t@ 0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp\tr0, #69\t@ 0x45\n"
-    "    bhi .LwildDog_08039680\n"
-    "    ldr r1, .LwildDog_08039674\n"
-    "    ldr\tr0, [sp, #0]\n"
-    "    ands\tr0, r1\n"
-    "    str\tr0, [sp, #0]\n"
-    "    movs\tr0, #8\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #3\n"
-    "    lsls\tr0, r0, #24\n"
-    "    lsrs\tr0, r0, #8\n"
-    "    ldr r2, .LwildDog_08039678\n"
-    "    ldr\tr1, [sp, #4]\n"
-    "    ands\tr1, r2\n"
-    "    orrs\tr1, r0\n"
-    "    lsls\tr2, r6, #24\n"
-    "    ldr r0, .LwildDog_0803967C\n"
-    "    ands\tr1, r0\n"
-    "    orrs\tr1, r2\n"
-    "    str\tr1, [sp, #4]\n"
-    "    adds\tr0, r4, #0\n"
-    "    mov\tr1, sp\n"
-    "    bl func_0809C0AC\n"
-    "    b .LwildDog_080396E4\n"
-    "    .align 2, 0\n"
-    ".LwildDog_08039674: .word 0xFFFF0000\n"
-    ".LwildDog_08039678: .word 0xFF00FFFF\n"
-    ".LwildDog_0803967C: .word 0x00FFFFFF\n"
-    ".LwildDog_08039680:\n"
-    "    movs\tr0, #60\t@ 0x3c\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #120\t@ 0x78\n"
-    "    lsls\tr0, r0, #16\n"
-    "    lsrs\tr0, r0, #16\n"
-    "    ldr r2, .LwildDog_080396AC\n"
-    "    ldr\tr1, [sp, #8]\n"
-    "    ands\tr1, r2\n"
-    "    orrs\tr1, r0\n"
-    "    ldr r0, .LwildDog_080396B0\n"
-    "    ands\tr1, r0\n"
-    "    lsls\tr2, r6, #24\n"
-    "    ldr r0, .LwildDog_080396B4\n"
-    "    ands\tr1, r0\n"
-    "    orrs\tr1, r2\n"
-    "    str\tr1, [sp, #8]\n"
-    "    add\tr1, sp, #8\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0BC\n"
-    "    b .LwildDog_080396E4\n"
-    ".LwildDog_080396AC: .word 0xFFFF0000\n"
-    ".LwildDog_080396B0: .word 0xFF00FFFF\n"
-    ".LwildDog_080396B4: .word 0x00FFFFFF\n"
-    ".LwildDog_080396B8:\n"
-    "    ldr r1, .LwildDog_080396D0\n"
-    "    ldr\tr0, [sp, #12]\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #180\t@ 0xb4\n"
-    "    orrs\tr0, r1\n"
-    "    str\tr0, [sp, #12]\n"
-    "    add\tr1, sp, #12\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0A0\n"
-    "    b .LwildDog_080396E4\n"
-    "    .align 2, 0\n"
-    ".LwildDog_080396D0: .word 0xFFFF0000\n"
-    ".LwildDog_080396D4:\n"
-    "    movs\tr4, #36\t@ 0x24\n"
-    "    movs\tr0, #1\n"
-    "    strb\tr0, [r6, #2]\n"
-    "    adds\tr0, r5, #0\n"
-    "    movs\tr1, #171\t@ 0xab\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".LwildDog_080396E2:\n"
-    "    strh\tr4, [r6, #0]\n"
-    ".LwildDog_080396E4:\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r3, r4, r5}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    mov\tsl, r5\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-);
+static inline void SelectNextWildDogState(WildDogActor * actor)
+{
+    Unk_Actor_0809BFE8 * saved = actor->saved_model;
+    u32 target = 100;
+    if (func_0809C060(*saved) != 0)
+        target = FindNearestWildDogTarget(actor->GetGameObject(), actor->GetMap(),
+            actor->GetQ16X() >> 16, actor->GetQ16Y() >> 16);
+    else
+        actor->RequestSound(0xAA);
+    if (target != 100) {
+        if (RandomBelow(100) < 70) {
+            WildDogChaseState state;
+            state.frames_remaining = 0;
+            state.attempts_remaining = RandomBelow(8) + 3;
+            state.target_entity = target;
+            SetWildDogChaseState(*saved, state);
+        } else {
+            WildDogAttackPayload state;
+            state.fields.frames_remaining = RandomBelow(60) + 120;
+            state.fields.attacking = 0;
+            state.fields.target_entity = target;
+            SetWildDogAttackState(*saved, state);
+        }
+    } else {
+        WildDogDeparturePayload state;
+        state.fields.retarget_frames = 180;
+        SetWildDogDepartureState(*saved, state);
+    }
+}
+
+void WildDogState2::Update(WildDogActor * actor, ActorMovementBounds * bounds)
+{
+    Unk_Actor_0809BFE8 * saved = actor->saved_model;
+    WildDogChaseState & state = saved->chase;
+    GameObject * world = actor->GetGameObject();
+    u32 attempts = state.attempts_remaining;
+    u32 remaining = state.frames_remaining;
+    if (remaining != 0) {
+        --remaining;
+        if (remaining == 0 && attempts != 0)
+            --attempts;
+    }
+    AnimalActor * animal = static_cast<AnimalActor *>(world->GetEntity(state.target_entity));
+    if (animal != nullptr && animal->GetMap() == actor->GetMap() && animal->CanBeAttackedByWildDog()) {
+        i32 x = actor->GetQ16X() >> 16;
+        i32 y = actor->GetQ16Y() >> 16;
+        i32 target_x = animal->GetQ16X() >> 16;
+        i32 target_y = animal->GetQ16Y() >> 16;
+        if (attempts != 0 && (abs(target_x - x) > 15 || abs(target_y - y) > 15)) {
+            if (remaining == 0 || (abs(state.last_target_x - x) <= 15 && abs(state.last_target_y - y) <= 15)) {
+                if (IsWildDogExitCorridor(x, y)) {
+                    u32 facing = y < target_y ? 0 : 1;
+                    if (actor->facing != facing)
+                        actor->SetAnimFacing(facing);
+                } else {
+                    u32 facing = actor->GetFacing();
+                    facing = SelectApproachFacing(x, y, target_x, target_y, *bounds, facing);
+                    actor->SetFacingIfChanged(facing);
+                }
+                remaining = RandomBelow(30) + 1;
+                state.last_target_x = target_x;
+                state.last_target_y = target_y;
+            }
+            state.attempts_remaining = attempts;
+            state.frames_remaining = remaining;
+            return;
+        }
+        WildDogAttackPayload attack;
+        attack.fields.frames_remaining = 36;
+        attack.fields.attacking = 1;
+        attack.fields.target_entity = state.target_entity;
+        SetWildDogAttackState(*saved, attack);
+        actor->RequestSound(0xAB);
+        return;
+    }
+    SelectNextWildDogState(actor);
+}
+
+
+
+void WildDogState3::Update(WildDogActor * actor, ActorMovementBounds * bounds)
+{
+    Unk_Actor_0809BFE8 * saved = actor->saved_model;
+    WildDogAttackState & state = saved->attack;
+    u32 remaining = state.frames_remaining;
+    if (remaining != 0)
+        --remaining;
+    if (remaining == 0) {
+        if (state.attacking != 0) {
+            GameObject * world = actor->GetGameObject();
+            u32 map = actor->GetMap();
+            i32 x = actor->GetQ16X() >> 16;
+            i32 y = actor->GetQ16Y() >> 16;
+            u32 target = FindNearestWildDogTarget(world, map, x, y);
+            if (target == 100)
+                target = state.target_entity;
+            AnimalActor * animal = static_cast<AnimalActor *>(world->GetEntity(target));
+            if (animal != nullptr && animal->GetMap() == map && animal->CanBeAttackedByWildDog()) {
+                i32 target_x = animal->GetQ16X() >> 16;
+                i32 target_y = animal->GetQ16Y() >> 16;
+                if (abs(target_x - x) <= 15 && abs(target_y - y) <= 15)
+                    animal->ReactToDogAttack();
+            }
+            func_0809C068(*saved, 4);
+            SelectNextWildDogState(actor);
+            return;
+        }
+        remaining = 36;
+        state.attacking = 1;
+        actor->RequestSound(0xAB);
+    }
+    state.frames_remaining = remaining;
+}
 
 u32 WildDogState3::GetMotion(WildDogActor const * actor) const
 {
     return actor->saved_model->attack.attacking ? 3 : 0;
 }
 
-asm_unified(
-    "    thumb_func_start Update__13WildDogState4P12WildDogActorP19ActorMovementBounds\n"
-    "Update__13WildDogState4P12WildDogActorP19ActorMovementBounds:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    mov\tr7, sl\n"
-    "    mov\tr6, r9\n"
-    "    mov\tr5, r8\n"
-    "    push\t{r5, r6, r7}\n"
-    "    sub\tsp, #24\n"
-    "    adds\tr6, r1, #0\n"
-    "    mov\tsl, r2\n"
-    "    ldr\tr0, [r6, #52]\t@ 0x34\n"
-    "    movs\tr1, #16\n"
-    "    adds\tr1, r1, r0\n"
-    "    mov\tr9, r1\n"
-    "    ldr\tr3, [r6, #0]\n"
-    "    ldrh\tr2, [r0, #16]\n"
-    "    mov\tr8, r2\n"
-    "    cmp\tr2, #0\n"
-    "    beq .LwildDog_08039730\n"
-    "    movs\tr4, #1\n"
-    "    negs\tr4, r4\n"
-    "    add\tr8, r4\n"
-    ".LwildDog_08039730:\n"
-    "    ldr\tr1, [r0, #16]\n"
-    "    lsls\tr0, r1, #9\n"
-    "    lsrs\tr7, r0, #25\n"
-    "    cmp\tr7, #0\n"
-    "    beq .LwildDog_0803973C\n"
-    "    subs\tr7, #1\n"
-    ".LwildDog_0803973C:\n"
-    "    mov\tr5, r9\n"
-    "    ldrb\tr4, [r5, #3]\n"
-    "    cmp\tr4, #0\n"
-    "    beq .LwildDog_08039746\n"
-    "    subs\tr4, #1\n"
-    ".LwildDog_08039746:\n"
-    "    mov\tr0, r8\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_080397C6\n"
-    "    ldr\tr2, [r3, #0]\n"
-    "    lsls\tr0, r1, #8\n"
-    "    movs\tr1, #0\n"
-    "    cmp\tr0, #0\n"
-    "    bge .LwildDog_08039758\n"
-    "    movs\tr1, #43\t@ 0x2b\n"
-    ".LwildDog_08039758:\n"
-    "    ldr\tr2, [r2, #64]\t@ 0x40\n"
-    "    adds\tr0, r3, #0\n"
-    "    bl _call_via_r2\n"
-    "    adds\tr3, r0, #0\n"
-    "    cmp\tr3, #0\n"
-    "    beq .LwildDog_080397C6\n"
-    "    ldrh\tr0, [r3, #4]\n"
-    "    ldrh\tr1, [r6, #4]\n"
-    "    cmp\tr0, r1\n"
-    "    bne .LwildDog_080397C6\n"
-    "    cmp\tr4, #0\n"
-    "    bne .LwildDog_080397AC\n"
-    "    movs\tr2, #10\n"
-    "    ldrsh\tr0, [r6, r2]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr1, [r6, r4]\n"
-    "    movs\tr5, #10\n"
-    "    ldrsh\tr2, [r3, r5]\n"
-    "    movs\tr4, #14\n"
-    "    ldrsh\tr3, [r3, r4]\n"
-    "    adds\tr5, r6, #0\n"
-    "    adds\tr5, #32\n"
-    "    ldrb\tr4, [r5, #0]\n"
-    "    mov\tip, r4\n"
-    "    mov\tr4, sl\n"
-    "    str\tr4, [sp, #0]\n"
-    "    mov\tr4, ip\n"
-    "    str\tr4, [sp, #4]\n"
-    "    bl SelectRetreatFacing\n"
-    "    adds\tr1, r0, #0\n"
-    "    ldrb\tr0, [r5, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    beq .LwildDog_080397A4\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl SetAnimFacing__12AActorEntityUi\n"
-    ".LwildDog_080397A4:\n"
-    "    movs\tr0, #30\n"
-    "    bl RandomBelow\n"
-    "    adds\tr4, r0, #1\n"
-    ".LwildDog_080397AC:\n"
-    "    mov\tr0, r8\n"
-    "    mov\tr5, r9\n"
-    "    strh\tr0, [r5, #0]\n"
-    "    movs\tr0, #127\t@ 0x7f\n"
-    "    ands\tr7, r0\n"
-    "    ldrb\tr1, [r5, #2]\n"
-    "    movs\tr0, #128\t@ 0x80\n"
-    "    negs\tr0, r0\n"
-    "    ands\tr0, r1\n"
-    "    orrs\tr0, r7\n"
-    "    strb\tr0, [r5, #2]\n"
-    "    strb\tr4, [r5, #3]\n"
-    "    b .LwildDog_0803988C\n"
-    ".LwildDog_080397C6:\n"
-    "    adds\tr0, r6, #0\n"
-    "    bl StopActorSpriteEffect\n"
-    "    ldr\tr4, [r6, #52]\t@ 0x34\n"
-    "    movs\tr5, #100\t@ 0x64\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C060\n"
-    "    cmp\tr0, #0\n"
-    "    beq .LwildDog_080397EE\n"
-    "    ldr\tr0, [r6, #0]\n"
-    "    ldrh\tr1, [r6, #4]\n"
-    "    movs\tr3, #10\n"
-    "    ldrsh\tr2, [r6, r3]\n"
-    "    movs\tr5, #14\n"
-    "    ldrsh\tr3, [r6, r5]\n"
-    "    bl FindNearestWildDogTarget\n"
-    "    adds\tr5, r0, #0\n"
-    "    b .LwildDog_080397F6\n"
-    ".LwildDog_080397EE:\n"
-    "    adds\tr0, r6, #0\n"
-    "    movs\tr1, #170\t@ 0xaa\n"
-    "    bl RequestSound__11AnimalActorUi\n"
-    ".LwildDog_080397F6:\n"
-    "    cmp\tr5, #100\t@ 0x64\n"
-    "    beq .LwildDog_08039878\n"
-    "    movs\tr0, #100\t@ 0x64\n"
-    "    bl RandomBelow\n"
-    "    cmp\tr0, #69\t@ 0x45\n"
-    "    bhi .LwildDog_08039840\n"
-    "    ldr r1, .LwildDog_08039834\n"
-    "    ldr\tr0, [sp, #8]\n"
-    "    ands\tr0, r1\n"
-    "    str\tr0, [sp, #8]\n"
-    "    movs\tr0, #8\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #3\n"
-    "    lsls\tr0, r0, #24\n"
-    "    lsrs\tr0, r0, #8\n"
-    "    ldr r2, .LwildDog_08039838\n"
-    "    ldr\tr1, [sp, #12]\n"
-    "    ands\tr1, r2\n"
-    "    orrs\tr1, r0\n"
-    "    lsls\tr2, r5, #24\n"
-    "    ldr r0, .LwildDog_0803983C\n"
-    "    ands\tr1, r0\n"
-    "    orrs\tr1, r2\n"
-    "    str\tr1, [sp, #12]\n"
-    "    adds\tr0, r4, #0\n"
-    "    add\tr1, sp, #8\n"
-    "    bl func_0809C0AC\n"
-    "    b .LwildDog_0803988C\n"
-    ".LwildDog_08039834: .word 0xFFFF0000\n"
-    ".LwildDog_08039838: .word 0xFF00FFFF\n"
-    ".LwildDog_0803983C: .word 0x00FFFFFF\n"
-    ".LwildDog_08039840:\n"
-    "    movs\tr0, #60\t@ 0x3c\n"
-    "    bl RandomBelow\n"
-    "    adds\tr0, #120\t@ 0x78\n"
-    "    lsls\tr0, r0, #16\n"
-    "    lsrs\tr0, r0, #16\n"
-    "    ldr r2, .LwildDog_0803986C\n"
-    "    ldr\tr1, [sp, #16]\n"
-    "    ands\tr1, r2\n"
-    "    orrs\tr1, r0\n"
-    "    ldr r0, .LwildDog_08039870\n"
-    "    ands\tr1, r0\n"
-    "    lsls\tr2, r5, #24\n"
-    "    ldr r0, .LwildDog_08039874\n"
-    "    ands\tr1, r0\n"
-    "    orrs\tr1, r2\n"
-    "    str\tr1, [sp, #16]\n"
-    "    add\tr1, sp, #16\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0BC\n"
-    "    b .LwildDog_0803988C\n"
-    ".LwildDog_0803986C: .word 0xFFFF0000\n"
-    ".LwildDog_08039870: .word 0xFF00FFFF\n"
-    ".LwildDog_08039874: .word 0x00FFFFFF\n"
-    ".LwildDog_08039878:\n"
-    "    ldr r1, .LwildDog_0803989C\n"
-    "    ldr\tr0, [sp, #20]\n"
-    "    ands\tr0, r1\n"
-    "    movs\tr1, #180\t@ 0xb4\n"
-    "    orrs\tr0, r1\n"
-    "    str\tr0, [sp, #20]\n"
-    "    add\tr1, sp, #20\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl func_0809C0A0\n"
-    ".LwildDog_0803988C:\n"
-    "    add\tsp, #24\n"
-    "    pop\t{r3, r4, r5}\n"
-    "    mov\tr8, r3\n"
-    "    mov\tr9, r4\n"
-    "    mov\tsl, r5\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    ".LwildDog_0803989C: .word 0xFFFF0000\n"
-);
+void WildDogState4::Update(WildDogActor * actor, ActorMovementBounds * bounds)
+{
+    AnimalReactionPayload & state = actor->saved_model->reaction;
+    GameObject & world = *actor->GetGameObject();
+    u32 remaining = state.bits.frames_remaining;
+    if (remaining != 0)
+        --remaining;
+    AnimalReactionPayload::WordBits const flags = state.word_bits;
+    u32 retreat = flags.retreat_frames;
+    if (retreat != 0)
+        --retreat;
+    u32 retarget = state.bits.retarget_frames;
+    if (retarget != 0)
+        --retarget;
+    if (remaining != 0) {
+        AEntity * target = world.GetEntity(flags.target_is_dog ? ENTITY_FARM_DOG : ENTITY_PLAYER);
+        if (target != nullptr && target->GetMap() == actor->GetMap()) {
+            if (retarget == 0) {
+                i32 x = actor->GetQ16X() >> 16;
+                i32 y = actor->GetQ16Y() >> 16;
+                i32 target_x = target->GetQ16X() >> 16;
+                i32 target_y = target->GetQ16Y() >> 16;
+                u32 facing = actor->GetFacing();
+                facing = SelectRetreatFacing(x, y, target_x, target_y, *bounds, facing);
+                actor->SetFacingIfChanged(facing);
+                retarget = RandomBelow(30) + 1;
+            }
+            state.bits.frames_remaining = remaining;
+            state.bits.retreat_frames = retreat;
+            state.bits.retarget_frames = retarget;
+            return;
+        }
+    }
+    StopActorSpriteEffect(*actor);
+    SelectNextWildDogState(actor);
+}
+
+
 
 u32 WildDogState4::GetMotion(WildDogActor const * actor) const
 {
@@ -921,7 +385,7 @@ WildDogActor::WildDogActor(GameObject * world, Unk_Actor_0809BFE8 * saved)
     behaviors[3] = new WildDogState3();
     behaviors[4] = new WildDogState4();
 
-    u32 motion = behaviors[saved_model->unk_0C]->GetMotion(this);
+    u32 motion = behaviors[saved_model->behavior_state]->GetMotion(this);
 
     SetMovementSpeed(GetWildDogMotionSpeed(this, motion));
     SetAnimIfChanged(GetWildDogMotionAnimation(this, motion));
@@ -1106,7 +570,7 @@ asm_unified(
     "    orrs\tr2, r3\n"
     "    str\tr2, [r1, #4]\n"
     "    ldr\tr0, [r7, #52]\t@ 0x34\n"
-    "    bl func_0809C0AC\n"
+    "    bl SetWildDogChaseState\n"
     "    adds\tr0, r7, #0\n"
     "    movs\tr1, #171\t@ 0xab\n"
     "    bl RequestSound__11AnimalActorUi\n"
@@ -1333,12 +797,12 @@ i32 GetWildDogMotionSpeed(WildDogActor const * actor, u32 motion)
 
 bool WildDogActor::CanBeHit() const
 {
-    return saved_model->unk_0C != 4;
+    return saved_model->behavior_state != WILD_DOG_STATE_REACTION;
 }
 
 void WildDogActor::ReactToToolHit()
 {
-    if (saved_model->unk_0C == 1)
+    if (saved_model->behavior_state == WILD_DOG_STATE_DEPARTURE)
         return;
 
     AnimalReactionPayload payload;
@@ -1348,7 +812,7 @@ void WildDogActor::ReactToToolHit()
     payload.bits.target_is_dog = 0;
     payload.bits.retarget_frames = 0;
 
-    func_0809C0C8(*saved_model, payload.raw);
+    SetWildDogReactionState(*saved_model, payload);
     func_0809C068(*saved_model, 15);
 
     StartActorSpriteEffect(*this, 2, false);
@@ -1358,7 +822,7 @@ void WildDogActor::ReactToToolHit()
 
 void WildDogActor::ReactToDogAttack()
 {
-    if (saved_model->unk_0C == 1)
+    if (saved_model->behavior_state == WILD_DOG_STATE_DEPARTURE)
         return;
 
     AnimalReactionPayload payload;
@@ -1368,7 +832,7 @@ void WildDogActor::ReactToDogAttack()
     payload.bits.target_is_dog = 1;
     payload.bits.retarget_frames = 0;
 
-    func_0809C0C8(*saved_model, payload.raw);
+    SetWildDogReactionState(*saved_model, payload);
     func_0809C068(*saved_model, 4);
 
     StartActorSpriteEffect(*this, 2, false);
@@ -1383,5 +847,5 @@ u32 WildDogState2::GetMotion(WildDogActor const * actor) const
 
 WildDogBehavior * GetCurrentWildDogBehavior(WildDogActor const * actor)
 {
-    return actor->behaviors[actor->saved_model->unk_0C].Get();
+    return actor->behaviors[actor->saved_model->behavior_state].Get();
 }

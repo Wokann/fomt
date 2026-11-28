@@ -1,7 +1,7 @@
 #include "actor_runtime_data.hh"
 
 Unk_Actor_0809BFE8::Unk_Actor_0809BFE8()
-    : Actor(ActorLocation(Location(MAP_NONE, 0, 0), 0)), unk_08_0(100), unk_0C(0)
+    : Actor(ActorLocation(Location(MAP_NONE, 0, 0), 0)), unk_08_0(100), behavior_state(WILD_DOG_STATE_INACTIVE)
 {
 }
 
@@ -22,36 +22,33 @@ extern "C" void func_0809C068(Unk_Actor_0809BFE8 & self, int arg_0)
     self.unk_08_0 = val;
 }
 
-extern "C" void func_0809C098(Unk_Actor_0809BFE8 & self, u32 const &)
+extern "C" void SetWildDogInactiveState(Unk_Actor_0809BFE8 & self, u32 const &)
 {
-    self.unk_0C = 0;
+    self.behavior_state = WILD_DOG_STATE_INACTIVE;
 }
 
-extern "C" void func_0809C0A0(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void SetWildDogDepartureState(Unk_Actor_0809BFE8 & self, WildDogDeparturePayload const & value)
 {
-    self.unk_10 = value;
-    self.unk_0C = 1;
+    self.unk_10 = value.raw;
+    self.behavior_state = WILD_DOG_STATE_DEPARTURE;
 }
 
-extern "C" void func_0809C0AC(Unk_Actor_0809BFE8 & self, Unk_Actor_0809C0AC const & value)
+extern "C" void SetWildDogChaseState(Unk_Actor_0809BFE8 & self, WildDogChaseState const & value)
 {
-    u32 const unk_04 = value.unk_04;
-
-    self.unk_10 = value.unk_00;
-    self.unk_14 = unk_04;
-    self.unk_0C = 2;
+    self.chase = value;
+    self.behavior_state = WILD_DOG_STATE_CHASE;
 }
 
-extern "C" void func_0809C0BC(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void SetWildDogAttackState(Unk_Actor_0809BFE8 & self, WildDogAttackPayload const & value)
 {
-    self.unk_10 = value;
-    self.unk_0C = 3;
+    self.unk_10 = value.raw;
+    self.behavior_state = WILD_DOG_STATE_ATTACK;
 }
 
-extern "C" void func_0809C0C8(Unk_Actor_0809BFE8 & self, u32 const & value)
+extern "C" void SetWildDogReactionState(Unk_Actor_0809BFE8 & self, AnimalReactionPayload const & value)
 {
-    self.unk_10 = value;
-    self.unk_0C = 4;
+    self.unk_10 = value.raw;
+    self.behavior_state = WILD_DOG_STATE_REACTION;
 }
 
 extern "C" void ResetActorRuntimeState(Unk_Actor_0809BFE8 & self)
@@ -60,6 +57,6 @@ extern "C" void ResetActorRuntimeState(Unk_Actor_0809BFE8 & self)
     u32 unused;
 
     self.SetLocation(location);
-    func_0809C098(self, unused);
+    SetWildDogInactiveState(self, unused);
     self.unk_08_0 = 100;
 }

@@ -32,6 +32,14 @@ union AnimalReactionPayload
         u8 target_is_dog : 1;
         u8 retarget_frames;
     } bits;
+    // Some consumers inspect both flags from a single captured state word.
+    struct WordBits
+    {
+        u32 frames_remaining : 16;
+        u32 retreat_frames : 7;
+        u32 target_is_dog : 1;
+        u32 retarget_frames : 8;
+    } word_bits;
 };
 
 // Call/bell response initializes both counters; target coordinates are
