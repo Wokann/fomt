@@ -43,10 +43,11 @@ struct ActorMovementBounds
           unk_10(false), unk_11(false), unk_12(false), unk_13(false),
           terrain(0, 0, 0), box(0, 0), max_distance(1), x_probe(0), y_probe(0) {}
     // Native movement probes fill the four flag bytes only when refreshed.
-    ActorMovementBounds(MapTerrainView const & terrain, Box const & box, i32 max_distance)
+    ActorMovementBounds(MapTerrainView const & terrain, Box const & box, i32 max_distance,
+        i32 x_probe = 0, i32 y_probe = 0)
         : down_limit(max_distance + 1), up_limit(-max_distance - 1),
           left_limit(-max_distance - 1), right_limit(max_distance + 1),
-          terrain(terrain), box(box), max_distance(max_distance), x_probe(0), y_probe(0) {}
+          terrain(terrain), box(box), max_distance(max_distance), x_probe(x_probe), y_probe(y_probe) {}
     static ActorMovementBounds Empty();
 
     // Clip against another box; a value of 1 also clears the affected probe flags.

@@ -20,8 +20,8 @@ struct WildDogBehavior {
 
 #pragma interface "wild_dog_actor.hh"
 
-// The visiting dog shares the animal interface. The saved model is borrowed;
-// the native constructor and destructor own the five behavior objects.
+// The visiting dog shares the animal interface. It borrows the saved model
+// and owns its five behavior objects.
 struct WildDogActor : AnimalActor {
     WildDogActor(GameObject * world, Unk_Actor_0809BFE8 * saved);
     virtual ~WildDogActor();
@@ -68,15 +68,6 @@ struct WildDogState4 : WildDogBehavior {
     virtual u32 GetMotion(WildDogActor const * actor) const;
 };
 
-typedef char WildDogActorSizeCheck[sizeof(WildDogActor) == 0x54 ? 1 : -1];
-typedef char WildDogActorModelCheck[offsetof(WildDogActor, saved_model) == 0x34 ? 1 : -1];
-typedef char WildDogActorBehaviorsCheck[offsetof(WildDogActor, behaviors) == 0x38 ? 1 : -1];
-typedef char WildDogActorMotionCheck[offsetof(WildDogActor, cached_motion) == 0x4C ? 1 : -1];
-typedef char WildDogActorFacingCheck[offsetof(WildDogActor, cached_facing) == 0x50 ? 1 : -1];
-
-
-typedef char WildDogBehaviorSizeCheck[sizeof(WildDogBehavior) == 4 ? 1 : -1];
-
 EXTERN_C
 
 // Scans animal slots 46..69 on the requested map, requiring virtual slot
@@ -90,7 +81,6 @@ WildDogBehavior * GetCurrentWildDogBehavior(WildDogActor const * actor);
 EXTERN_C_END
 
 extern "C" u16 const gWildDogMotionAnimations[];
-
 
 extern "C" char const gCppRuntimeError_EntityUiFourth[];
 

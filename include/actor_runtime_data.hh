@@ -13,6 +13,11 @@ enum WildDogBehaviorState
     WILD_DOG_STATE_REACTION,
 };
 
+struct WildDogDepartureState
+{
+    u16 retarget_frames;
+};
+
 struct WildDogAttackState
 {
     u16 frames_remaining;
@@ -57,6 +62,7 @@ struct Unk_Actor_0809BFE8 : Actor
     union {
         u32 unk_10;
         WildDogChaseState chase;
+        WildDogDepartureState departure;
         WildDogAttackState attack;
         AnimalReactionPayload reaction;
     };
