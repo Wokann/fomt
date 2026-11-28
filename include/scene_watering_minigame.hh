@@ -9,6 +9,11 @@
 #include "hardware_blend.hh"
 #include "resource_handle.hh"
 
+struct WateringMinigameCellPosition {
+    u8 x;
+    u8 y;
+};
+
 struct HarvestSpriteWateringSetup {
     HarvestSpriteWateringSetup() : sprite_variant(3), experience(15) {}
     u32 sprite_variant;
@@ -97,11 +102,21 @@ struct HarvestSpriteWateringUiScene : AScene {
 };
 
 struct HarvestSpriteWateringCore : HardwareContext {
+    enum MotionState {
+        MOTION_LEFT = 4,
+        MOTION_RIGHT = 5,
+        MOTION_UP = 6,
+        MOTION_DOWN = 7,
+    };
+
     ~HarvestSpriteWateringCore();
     HarvestSpriteWateringCore(HarvestSpriteWateringSetup const & setup);
     bool Succeeded();
     SceneTransitionOwner Run();
     void PrepareDisplay();
+    WateringMinigameCellPosition GetCellPosition(u8 index);
+    void TogglePause();
+    void UpdateDirection();
 
     // Four-by-two tile buffers: one timer and the result rows.
     // Drawing starts at +4 in each 0x104-byte buffer; the prefix stays unk.
@@ -140,9 +155,13 @@ struct HarvestSpriteWateringCore : HardwareContext {
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
     WateringMinigameTileHandles tiles;
-    u8 unk_89C[0x8BC - 0x89C];
-    u32 unk_8BC;
-    u8 unk_8C0[0x96A - 0x8C0];
+    u8 unk_89C[8];
+    u32 animations_paused;
+    u8 unk_8A8[0x8BC - 0x8A8];
+    i32 motion_state;
+    u32 unk_8C0;
+    u8 direction_changed;
+    u8 unk_8C5[0x96A - 0x8C5];
     bool succeeded;
     u8 unk_96B[0x974 - 0x96B];
     u32 unk_974;

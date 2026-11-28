@@ -71,6 +71,7 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     SceneTransitionOwner Run();
     void PrepareDisplay();
     void WaitForStart();
+    void TogglePause();
 
     // Four-by-two tile buffers: one timer and the result rows.
     // Drawing starts at +4 in each 0x104-byte buffer; the prefix stays unk.
@@ -98,7 +99,8 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
     u32 phase;
-    u8 unk_5A4[0x5B0 - 0x5A4];
+    i32 activity_state;
+    u8 unk_5A8[0x5B0 - 0x5A8];
     HarvestingMinigameTileHandles tiles;
     u8 unk_5F8[0x604 - 0x5F8];
     u32 unk_604;

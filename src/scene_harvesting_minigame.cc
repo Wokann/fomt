@@ -6800,7 +6800,7 @@ asm_unified(
     "cmp r4, #3\n"
     "bgt .Lharvesting_14_03e8\n"
     "adds r0, r5, #0\n"
-    "bl func_080C0CA4\n"
+    "bl TogglePause__27HarvestSpriteHarvestingCore\n"
     "b .Lharvesting_14_03e8\n"
     ".Lharvesting_14_030c:\n"
     "adds r0, r5, #0\n"
@@ -6837,7 +6837,7 @@ asm_unified(
     ".Lharvesting_14_0350: .word 0x609\n"
     ".Lharvesting_14_0354:\n"
     "adds r0, r5, #0\n"
-    "bl func_080C0CA4\n"
+    "bl TogglePause__27HarvestSpriteHarvestingCore\n"
     "adds r0, r5, #0\n"
     "bl GetHardwarePressedKeys\n"
     "movs r1, #8\n"
@@ -9590,12 +9590,11 @@ extern "C" u16 func_080C0B58(HarvestSpriteHarvestingCore * core)
     return gUnk_080C0B58Values[core->unk_618];
 }
 
-extern "C" void func_080C0CA4(HarvestSpriteHarvestingCore * core);
 extern "C" void func_080C0B94(HarvestSpriteHarvestingCore * core);
 extern "C" void func_080C0B70(HarvestSpriteHarvestingCore * core)
 {
     u32 keys = GetHardwarePressedKeys(reinterpret_cast<void * const *>(core));
-    func_080C0CA4(core);
+    core->TogglePause();
     if ((keys & START_BUTTON) == 0)
         func_080C0B94(core);
 }
@@ -9735,73 +9734,30 @@ asm_unified(
     ".Lharvesting_20_0108: .word 0x60e\n"
     ".Lharvesting_20_010c: .word 0x5fb\n"
     "\n"
-    "thumb_func_start func_080C0CA4\n"
-    "func_080C0CA4:\n"
-    "push {r4, lr}\n"
-    "adds r4, r0, #0\n"
-    "bl GetHardwarePressedKeys\n"
-    "movs r1, #8\n"
-    "ands r1, r0\n"
-    "cmp r1, #0\n"
-    "beq .Lharvesting_21_0070\n"
-    "ldr r1, .Lharvesting_21_0030\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xb8\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "ldr r0, .Lharvesting_21_0034\n"
-    "adds r1, r4, r0\n"
-    "ldr r0, [r1]\n"
-    "cmp r0, #1\n"
-    "beq .Lharvesting_21_0046\n"
-    "cmp r0, #1\n"
-    "bgt .Lharvesting_21_0038\n"
-    "cmp r0, #0\n"
-    "beq .Lharvesting_21_0042\n"
-    "b .Lharvesting_21_0070\n"
-    ".align 2, 0\n"
-    ".Lharvesting_21_0030: .word 0x584\n"
-    ".Lharvesting_21_0034: .word 0x5a4\n"
-    ".Lharvesting_21_0038:\n"
-    "cmp r0, #2\n"
-    "beq .Lharvesting_21_006c\n"
-    "cmp r0, #3\n"
-    "beq .Lharvesting_21_0058\n"
-    "b .Lharvesting_21_0070\n"
-    ".Lharvesting_21_0042:\n"
-    "movs r0, #2\n"
-    "b .Lharvesting_21_006e\n"
-    ".Lharvesting_21_0046:\n"
-    "movs r0, #3\n"
-    "str r0, [r1]\n"
-    "movs r1, #0x9b\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r4, r1\n"
-    "ldr r1, [r0]\n"
-    "movs r0, #0\n"
-    "strh r0, [r1, #0x10]\n"
-    "b .Lharvesting_21_0070\n"
-    ".Lharvesting_21_0058:\n"
-    "movs r0, #1\n"
-    "str r0, [r1]\n"
-    "movs r1, #0x9b\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r4, r1\n"
-    "ldr r1, [r0]\n"
-    "movs r0, #0x80\n"
-    "lsls r0, r0, #1\n"
-    "strh r0, [r1, #0x10]\n"
-    "b .Lharvesting_21_0070\n"
-    ".Lharvesting_21_006c:\n"
-    "movs r0, #0\n"
-    ".Lharvesting_21_006e:\n"
-    "str r0, [r1]\n"
-    ".Lharvesting_21_0070:\n"
-    "pop {r4}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
 );
+
+void HarvestSpriteHarvestingCore::TogglePause()
+{
+    if (GetHardwarePressedKeys(reinterpret_cast<void * const *>(this)) & START_BUTTON) {
+        music_players[3].Start(184);
+        switch (activity_state) {
+        case 0:
+            activity_state = 2;
+            break;
+        case 1:
+            activity_state = 3;
+            sprite_4D8.handle->SetScrollDelta(0);
+            break;
+        case 3:
+            activity_state = 1;
+            sprite_4D8.handle->SetScrollDelta(256);
+            break;
+        case 2:
+            activity_state = 0;
+            break;
+        }
+    }
+}
 
 HarvestSpriteHarvestingUiScene::HarvestSpriteHarvestingUiScene(HarvestSpriteHarvestingSetup const & setup)
 {
