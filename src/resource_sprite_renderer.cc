@@ -942,9 +942,9 @@ i32 FindResourceSpritePaletteBank(ResourceSpriteRenderer const * renderer,
 }
 
 void DrawResourceSprite(ResourceSpriteRenderer * renderer, HardwareSpriteBufferState * buffer,
-    IndexedResourceGroupResult const * group, i32 x, i32 y)
+    IndexedResourceGroupResult const & group, i32 x, i32 y)
 {
-    DrawCachedResourceSprites(renderer->storage, buffer, group, x, y);
+    DrawCachedResourceSprites(renderer->storage, buffer, &group, x, y);
 }
 
 u8 const gResourceSpritePackedCellSizes[] = {

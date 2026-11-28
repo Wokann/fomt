@@ -1,3 +1,7 @@
+## 地图标记绘制及临时资源描述（2026-11-28）
+
+农场和城镇地图共两条绘制入口恢复C++。两者以已有范围缓存首尾指针，经IndexedResourceHandle查询资源描述并传入DrawResourceSprite的只读引用参数；临时描述在完整绘制调用结束后销毁，不持有其地址。农场绘制按scroll_x／scroll_y除256得到像素偏移；城镇绘制仍受display_options.show_clock控制HUD。两入口272实际字节、六个完整对象和四版默认ROM均保持原版，统计见 [进度](PROGRESS.md)。
+
 ## 菜单绘制命令及所有者（2026-11-28）
 
 面板与场景各自的矩形填充和数字绘制入口恢复普通C++，创建既有FontTilemapRectCommand／FontTilemapSingleTileDecimalCommand，再插入同一节点格式的GameSceneMenuCommandQueue，最后加入硬件执行链表。场景绘制数据首字段为借用的菜单核心指针。四入口共542实际字节和原6字节对齐，布局保持；五个完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。
