@@ -16,6 +16,8 @@ struct Product;
 struct GameStateSaveImage;
 struct Farmer;
 struct MapTerrainView;
+struct AnimalActor;
+typedef bool (AnimalActor::*AnimalInteractionPredicate)() const;
 enum PlayerToolActionKind {
     PLAYER_TOOL_ACTION_SICKLE = 0,
     PLAYER_TOOL_ACTION_AXE = 1,
@@ -76,6 +78,10 @@ struct PlayerActor : PlayerActorBase {
     void BeginToolUse();
     void AdvanceToolCharge();
     void InitializeToolCharge();
+    void UpdateEmoteInput(HardwareInputState * input);
+    void UpdateToolSelectionInput(HardwareInputState * input);
+    void SelectNearestAnimal(AnimalInteractionPredicate predicate);
+    AnimalActor * GetSelectedAnimal() const;
     void PickUpDog();
     void PickUpChicken(u8 slot);
     void PickUpBasket();
@@ -163,10 +169,12 @@ struct PlayerActor : PlayerActorBase {
     i32 presented_item_id;
     bool presented_item_wrapped;
     u8 interacting_animal_index;
-    u8 unk_B2[0xC0 - 0xB2];
+    u8 selected_animal_entity_id;
+    u8 unk_B3[0xC0 - 0xB3];
     u8 unk_C0;
     u8 unk_C1;
     u8 update_suspended;
+    u8 unk_C3;
 
 private:
     PlayerActor();
@@ -236,15 +244,15 @@ extern "C" u32 const gUnk_080F0E88[];
 extern "C" u32 const gUnk_080F0F78[];
 extern "C" u16 const gUnk_080F0FCC[6][7];
 extern "C" EntityUiUnknownTableEntry const gUnk_080F1020[6][7];
-extern "C" u32 const gUnk_080F1170[];
+extern "C" AnimalInteractionPredicate const gAnimalToolHitPredicate;
 extern "C" u8 const gUnk_080F1178[];
 extern "C" u8 const gUnk_080F117F[];
-extern "C" u8 const gUnk_080F1184[];
-extern "C" u8 const gUnk_080F118C[];
-extern "C" u8 const gUnk_080F1194[];
-extern "C" u8 const gUnk_080F119C[];
-extern "C" u8 const gUnk_080F11A4[];
-extern "C" u8 const gUnk_080F11AC[];
+extern "C" AnimalInteractionPredicate const gCowMiraclePotionPredicate;
+extern "C" AnimalInteractionPredicate const gSheepMiraclePotionPredicate;
+extern "C" AnimalInteractionPredicate const gAnimalBrushPredicate;
+extern "C" AnimalInteractionPredicate const gAnimalMilkPredicate;
+extern "C" AnimalInteractionPredicate const gAnimalShearPredicate;
+extern "C" AnimalInteractionPredicate const gAnimalMedicinePredicate;
 extern "C" u8 const gWateringCanCapacityByTier[];
 extern "C" u32 const gSpringMineCollectionProducts[9];
 extern "C" u32 const gLakeMineCollectionProducts[14];
