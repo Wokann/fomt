@@ -48,13 +48,7 @@ extern template ScheduleEntry const * std::__upper_bound<
 #include "data/scripts/fomt_scripts.mary.h"
 
 #include FOMT_TEXT_INCLUDE(npc_entity.cc)
-// Update currently copies and scans exactly four records, totaling weight 100.
-extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[] ALIGN(4) = {
-    { 50, ANIMATION_CHILD_INFANT_SLEEPING },
-    { 20, ANIMATION_CHILD_NEWBORN },
-    { 20, ANIMATION_ID_0004 },
-    { 10, ANIMATION_ID_0000 },
-};
+
 
 static inline void TMP_ChangeAnim(ANpcEntity & self, u32 new_anim_id)
 {
@@ -5229,87 +5223,36 @@ EntityVisualController * ChildNpcActor::CreateVisualController()
     return nullptr;
 }
 
-asm_unified(
-    "    .align 2, 0\n"
-    "    .global Update__13ChildNpcActorRC19EntityUpdateContext\n"
-    "    .thumb_func\n"
-    "Update__13ChildNpcActorRC19EntityUpdateContext:\n"
-    "    push\t{r4, r5, r6, r7, lr}\n"
-    "    sub\tsp, #16\n"
-    "    adds\tr4, r0, #0\n"
-    "    adds\tr6, r1, #0\n"
-    "    ldr\tr0, [r4, #16]\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036FF2\n"
-    "    ldr\tr0, [r4, #52]\t@ 0x34\n"
-    "    ldr r1, .Lus_08036FA8\n"
-    "    adds\tr0, r0, r1\n"
-    "    bl GetChild__C13NpcCollection\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036FF2\n"
-    "    bl GetAgeDays__C5Child\n"
-    "    cmp\tr0, #59\t@ 0x3b\n"
-    "    bhi .Lus_08036FF2\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl IsNpcInUpperFarmhouseStrip\n"
-    "    lsls\tr0, r0, #24\n"
-    "    cmp\tr0, #0\n"
-    "    beq .Lus_08036FF2\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #72\t@ 0x48\n"
-    "    ldrh\tr1, [r0, #0]\n"
-    "    adds\tr5, r0, #0\n"
-    "    cmp\tr1, #0\n"
-    "    beq .Lus_08036FAC\n"
-    "    subs\tr0, r1, #1\n"
-    "    b .Lus_08036FF0\n"
-    ".Lus_08036FA8:\n"
-    "    .word 0x00001CD4\n"
-    ".Lus_08036FAC:\n"
-    "    mov\tr1, sp\n"
-    "    ldr r0, .Lus_08036FC8\n"
-    "    ldmia\tr0!, {r2, r3, r7}\n"
-    "    stmia\tr1!, {r2, r3, r7}\n"
-    "    ldr\tr0, [r0, #0]\n"
-    "    str\tr0, [r1, #0]\n"
-    "    bl rand\n"
-    "    movs\tr1, #100\t@ 0x64\n"
-    "    bl __modsi3\n"
-    "    movs\tr3, #0\n"
-    "    mov\tr2, sp\n"
-    "    b .Lus_08036FD2\n"
-    ".Lus_08036FC8:\n"
-    "    .word gChildIdleAnimationChoices\n"
-    ".Lus_08036FCC:\n"
-    "    subs\tr0, r0, r1\n"
-    "    adds\tr2, #4\n"
-    "    adds\tr3, #1\n"
-    ".Lus_08036FD2:\n"
-    "    cmp\tr3, #3\n"
-    "    bhi .Lus_08036FE4\n"
-    "    ldrb\tr1, [r2, #0]\n"
-    "    cmp\tr0, r1\n"
-    "    bcs .Lus_08036FCC\n"
-    "    ldrh\tr1, [r2, #2]\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    ".Lus_08036FE4:\n"
-    "    bl rand\n"
-    "    movs\tr1, #120\t@ 0x78\n"
-    "    bl __modsi3\n"
-    "    adds\tr0, #120\t@ 0x78\n"
-    ".Lus_08036FF0:\n"
-    "    strh\tr0, [r5, #0]\n"
-    ".Lus_08036FF2:\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr1, r6, #0\n"
-    "    bl Update__10ANpcEntityRC19EntityUpdateContext\n"
-    "    add\tsp, #16\n"
-    "    pop\t{r4, r5, r6, r7}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-);
+void ChildNpcActor::Update(EntityUpdateContext const & context)
+{
+    if (unk_10.Get() != nullptr) {
+        GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(schedule_context);
+        Child const * child = game->npcs.GetChild();
+        if (child != nullptr && child->GetAgeDays() < 60 && IsNpcInUpperFarmhouseStrip(*this)) {
+            if (idle_animation_countdown != 0) {
+                --idle_animation_countdown;
+            } else {
+                ChildIdleAnimationChoice choices[] = {
+                    { 50, ANIMATION_CHILD_INFANT_SLEEPING },
+                    { 20, ANIMATION_CHILD_NEWBORN },
+                    { 20, ANIMATION_ID_0004 },
+                    { 10, ANIMATION_ID_0000 },
+                };
+                u32 draw = rand() % 100;
+                for (u32 index = 0; index < ARRAY_COUNT(choices); ++index) {
+                    if (draw < choices[index].weight) {
+                        SetNpcIdleAnimation(*this, choices[index].animation);
+                        break;
+                    }
+                    draw -= choices[index].weight;
+                }
+                idle_animation_countdown = rand() % 120 + 120;
+            }
+        }
+    }
+    ANpcEntity::Update(context);
+}
+
 
 // This getter has its own native return boundary after the child actor update.
 void const * ANpcEntity::GetScheduleContext() const

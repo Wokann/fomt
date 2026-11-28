@@ -263,7 +263,6 @@ bool IsNpcInUpperFarmhouseStrip(ANpcEntity & self);
 
 EXTERN_C_END
 
-extern "C" ChildIdleAnimationChoice const gChildIdleAnimationChoices[];
 
 
 extern "C" char const gCppRuntimeError_EntityUiFirst[];
