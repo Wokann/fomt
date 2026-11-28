@@ -1,7 +1,6 @@
 
 #include "npc_entity.hh"
 extern "C" void func_08036E70(void * actor);
-extern "C" void func_08036768(void * actor);
 
 #include "npc.hh"
 #include "game_state_types.hh"
@@ -4856,56 +4855,31 @@ CliffNpcActor::CliffNpcActor(GameObject * world, Npc * npc, u32 context)
 {
 }
 
-asm_unified(
-    ".text\n"
-    ".global func_08036768\n"
-    "    .thumb_func\n"
-    "func_08036768:\n"
-    "    push\t{r4, r5, lr}\n"
-    "    adds\tr4, r0, #0\n"
-    "    ldr r1, .Lus_080367A0\n"
-    "    movs\tr5, #2\n"
-    "    ldr\tr0, [r4, #52]\t@ 0x34\n"
-    "    ldr r2, .Lus_080367A4\n"
-    "    adds\tr0, r0, r2\n"
-    "    ldrb\tr0, [r0, #0]\n"
-    "    lsls\tr0, r0, #30\n"
-    "    lsrs\tr0, r0, #30\n"
-    "    cmp\tr0, #1\n"
-    "    bne .Lus_08036784\n"
-    "    adds\tr1, #24\n"
-    "    movs\tr5, #1\n"
-    ".Lus_08036784:\n"
-    "    adds\tr0, r4, #0\n"
-    "    bl SetNpcIdleAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    ldr r1, .Lus_080367A8\n"
-    "    bl SetNpcWalkingAnimation\n"
-    "    adds\tr0, r4, #0\n"
-    "    adds\tr0, #33\t@ 0x21\n"
-    "    strb\tr5, [r0, #0]\n"
-    "    pop\t{r4, r5}\n"
-    "    pop\t{r0}\n"
-    "    bx\tr0\n"
-    "    .align 2, 0\n"
-    ".Lus_080367A0:\n"
-    "    .word 0x0000027B\n"
-    ".Lus_080367A4:\n"
-    "    .word 0x00002181\n"
-    ".Lus_080367A8:\n"
-    "    .word 0x0000027F\n"
-);
+EC void RefreshCliffNpcAnimations(ANpcEntity & self)
+{
+    u32 idle = ANIMATION_CLIFF_IDLE;
+    u32 walk = ANIMATION_CLIFF_WALK;
+    u32 priority = 2;
+    GameStateSaveImage const * game = static_cast<GameStateSaveImage const *>(self.schedule_context);
+    if (game->event_state.cliff_collapse_followup_event_state == EVENT_LIFECYCLE_IN_PROGRESS) {
+        idle = ANIMATION_CLIFF_HOSPITAL_BED_IDLE;
+        priority = 1;
+    }
+    SetNpcIdleAnimation(self, idle);
+    SetNpcWalkingAnimation(self, walk);
+    self.SetObjPriority(priority);
+}
 
 void CliffNpcActor::UpdateSchedule(i32 time)
 {
     ANpcEntity::UpdateSchedule(time);
     if (time > 1)
-        func_08036768(this);
+        RefreshCliffNpcAnimations(*this);
 }
 
 EntityVisualController * CliffNpcActor::CreateVisualController()
 {
-    func_08036768(this);
+    RefreshCliffNpcAnimations(*this);
     return new EntitySpriteController(this, 5, 27, 1, 0, 0, false);
 }
 

@@ -245,6 +245,7 @@ EXTERN_C
 bool IsChildScheduleOutsideFarmhouse(void const * context, GameTime const & time);
 
 void func_08035380(ANpcEntity & self);
+void RefreshCliffNpcAnimations(ANpcEntity & self);
 
 // Replace a configured animation; update the live animation only while it
 // still uses the previous value and IsNormalUpdateSuspended is false. Inputs remain u32;
