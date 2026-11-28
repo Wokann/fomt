@@ -74,7 +74,7 @@ public:
 // only the verified layout and command/resource cleanup are recovered here.
 // Do not allocate these views or assign meaning to untouched words.
 struct GameSceneMenuTilemapData {
-    u32 unk_00;
+    GameSceneMenuCorePrefix * core;
     ObjTileCollectionEntry unk_04;
     ObjTileCollectionEntry unk_0C;
     ObjPaletteCollectionEntry unk_14;
@@ -87,6 +87,11 @@ struct GameSceneMenuTilemapData {
 private:
     GameSceneMenuTilemapData();
 };
+
+extern "C" void QueueMenuTilemapRect(GameSceneMenuTilemapData *, u16 * destination,
+    u16 first_tile, u32 width, u32 height, u16 palette, u32 row_stride);
+extern "C" void QueueMenuTilemapDecimal(GameSceneMenuTilemapData *, u32 value,
+    u16 * right_tile, u16 base_tile, u16 palette, u32 row_stride);
 
 struct GameSceneMenuCursorData {
     GameSceneMenuCorePrefix * core;

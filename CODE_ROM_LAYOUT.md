@@ -1,3 +1,7 @@
+## 菜单绘制命令及所有者（2026-11-28）
+
+面板与场景各自的矩形填充和数字绘制入口恢复普通C++，创建既有FontTilemapRectCommand／FontTilemapSingleTileDecimalCommand，再插入同一节点格式的GameSceneMenuCommandQueue，最后加入硬件执行链表。场景绘制数据首字段为借用的菜单核心指针。四入口共542实际字节和原6字节对齐，布局保持；五个完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。
+
 ## 室内标记行的分配子对象（2026-11-28）
 
 FarmMapScreenIndoorMarkerRow保留原first、last指针，末尾Allocation由无状态Allocator和容量终点组成，原未初始化字节保持。三个行成员仍按原顺序构造和反向释放；父组构造恢复42字节C++，另2字节原对齐不计代码。三个完整对象及四版默认ROM通过原版对照，统计见 [进度](PROGRESS.md)。

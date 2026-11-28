@@ -40,6 +40,8 @@ struct GameSceneMenuCommandQueue {
         free(node);
         return GameSceneMenuCommandIterator(next);
     }
+    inline GameSceneMenuCommandIterator Insert(GameSceneMenuCommandIterator position,
+        HardwareLinkBase * const & command);
     ~GameSceneMenuCommandQueue()
     {
         ClearNodes();

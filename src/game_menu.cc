@@ -1,3 +1,6 @@
+#include "game_menu_command_queue_ops.hh"
+#include "font_draw.hh"
+#include "font_decimal.hh"
 #include "obj_palette_collection.hh"
 #include "prelude.h"
 #include "game_state.hh"
@@ -1486,147 +1489,26 @@ GameSceneMenuTilemapData::~GameSceneMenuTilemapData()
         delete *current;
 }
 
+extern "C" void QueueMenuTilemapRect(GameSceneMenuTilemapData * data, u16 * destination,
+    u16 first_tile, u32 width, u32 height, u16 palette, u32 row_stride)
+{
+    FontTilemapRectCommand * command = new FontTilemapRectCommand(destination,
+        first_tile, width, height, palette, row_stride);
+    data->commands.Insert(data->commands.End(), command);
+    GetHardwareCommandList(reinterpret_cast<void * const *>(data->core))->Append(command);
+}
+
+extern "C" void QueueMenuTilemapDecimal(GameSceneMenuTilemapData * data, u32 value,
+    u16 * right_tile, u16 base_tile, u16 palette, u32 row_stride)
+{
+    FontTilemapSingleTileDecimalCommand * command = new FontTilemapSingleTileDecimalCommand(
+        value, right_tile, base_tile, palette, row_stride);
+    data->commands.Insert(data->commands.End(), command);
+    GetHardwareCommandList(reinterpret_cast<void * const *>(data->core))->Append(command);
+}
+
 asm_unified(
     ".text\n"
-    "thumb_func_start func_080CE480\n"
-    "func_080CE480:\n"
-    ".align 2, 0\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sl\n"
-    "mov r6, sb\n"
-    "mov r5, r8\n"
-    "push {r5, r6, r7}\n"
-    "sub sp, #0x14\n"
-    "mov sl, r0\n"
-    "mov r8, r1\n"
-    "adds r5, r2, #0\n"
-    "mov sb, r3\n"
-    "ldr r6, [sp, #0x34]\n"
-    "ldr r4, [sp, #0x38]\n"
-    "ldr r7, [sp, #0x3c]\n"
-    "lsls r5, r5, #0x10\n"
-    "lsrs r5, r5, #0x10\n"
-    "lsls r4, r4, #0x10\n"
-    "lsrs r4, r4, #0x10\n"
-    "movs r0, #0x20\n"
-    "bl __builtin_new\n"
-    "str r6, [sp]\n"
-    "str r4, [sp, #4]\n"
-    "str r7, [sp, #8]\n"
-    "mov r1, r8\n"
-    "adds r2, r5, #0\n"
-    "mov r3, sb\n"
-    "bl __22FontTilemapRectCommandPUsUsUiUiUsUi\n"
-    "adds r4, r0, #0\n"
-    "mov r0, sl\n"
-    "adds r0, #0xc0\n"
-    "ldr r0, [r0, #4]\n"
-    "str r0, [sp, #0x10]\n"
-    "movs r0, #0xc\n"
-    "bl malloc\n"
-    "adds r2, r0, #0\n"
-    "cmp r2, #0\n"
-    "bne .Lmenu_9_0_0056\n"
-    "movs r0, #0xc\n"
-    "bl RetryMemoryAllocation\n"
-    "adds r2, r0, #0\n"
-    ".Lmenu_9_0_0056:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #8\n"
-    "cmp r0, #0\n"
-    "beq .Lmenu_9_0_0060\n"
-    "str r4, [r2, #8]\n"
-    ".Lmenu_9_0_0060:\n"
-    "ldr r0, [sp, #0x10]\n"
-    "ldr r1, [r0, #4]\n"
-    "str r0, [r2]\n"
-    "str r1, [r2, #4]\n"
-    "str r2, [r1]\n"
-    "str r2, [r0, #4]\n"
-    "str r2, [sp, #0xc]\n"
-    "mov r1, sl\n"
-    "ldr r0, [r1]\n"
-    "bl GetHardwareCommandList\n"
-    "ldr r1, [r0, #8]\n"
-    "ldr r2, [r1, #0x10]\n"
-    "adds r1, r4, #0\n"
-    "bl _call_via_r2\n"
-    "add sp, #0x14\n"
-    "pop {r3, r4, r5}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "mov sl, r5\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
-    "thumb_func_start func_080CE510\n"
-    "func_080CE510:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "mov r7, sb\n"
-    "mov r6, r8\n"
-    "push {r6, r7}\n"
-    "sub sp, #0x10\n"
-    "adds r7, r0, #0\n"
-    "mov r8, r1\n"
-    "mov sb, r2\n"
-    "adds r5, r3, #0\n"
-    "ldr r4, [sp, #0x2c]\n"
-    "ldr r6, [sp, #0x30]\n"
-    "lsls r5, r5, #0x10\n"
-    "lsrs r5, r5, #0x10\n"
-    "lsls r4, r4, #0x10\n"
-    "lsrs r4, r4, #0x10\n"
-    "movs r0, #0x1c\n"
-    "bl __builtin_new\n"
-    "str r4, [sp]\n"
-    "str r6, [sp, #4]\n"
-    "mov r1, r8\n"
-    "mov r2, sb\n"
-    "adds r3, r5, #0\n"
-    "bl __35FontTilemapSingleTileDecimalCommandUiPUsUsUsUi\n"
-    "adds r4, r0, #0\n"
-    "adds r0, r7, #0\n"
-    "adds r0, #0xc0\n"
-    "ldr r0, [r0, #4]\n"
-    "str r0, [sp, #0xc]\n"
-    "movs r0, #0xc\n"
-    "bl malloc\n"
-    "adds r2, r0, #0\n"
-    "cmp r2, #0\n"
-    "bne .Lmenu_9_1_0050\n"
-    "movs r0, #0xc\n"
-    "bl RetryMemoryAllocation\n"
-    "adds r2, r0, #0\n"
-    ".Lmenu_9_1_0050:\n"
-    "adds r0, r2, #0\n"
-    "adds r0, #8\n"
-    "cmp r0, #0\n"
-    "beq .Lmenu_9_1_005a\n"
-    "str r4, [r2, #8]\n"
-    ".Lmenu_9_1_005a:\n"
-    "ldr r0, [sp, #0xc]\n"
-    "ldr r1, [r0, #4]\n"
-    "str r0, [r2]\n"
-    "str r1, [r2, #4]\n"
-    "str r2, [r1]\n"
-    "str r2, [r0, #4]\n"
-    "str r2, [sp, #8]\n"
-    "ldr r0, [r7]\n"
-    "bl GetHardwareCommandList\n"
-    "ldr r1, [r0, #8]\n"
-    "ldr r2, [r1, #0x10]\n"
-    "adds r1, r4, #0\n"
-    "bl _call_via_r2\n"
-    "add sp, #0x10\n"
-    "pop {r3, r4}\n"
-    "mov r8, r3\n"
-    "mov sb, r4\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    "\n"
     "thumb_func_start func_080CE598\n"
     "func_080CE598:\n"
     "push {r4, r5, r6, r7, lr}\n"
@@ -1862,7 +1744,7 @@ asm_unified(
     "str r4, [sp, #4]\n"
     "adds r0, r6, #0\n"
     "movs r3, #0x20\n"
-    "bl func_080CE510\n"
+    "bl QueueMenuTilemapDecimal\n"
     "ldr r1, .Lmenu_9_2_01f0\n"
     "movs r0, #1\n"
     "str r0, [sp]\n"
@@ -1871,14 +1753,14 @@ asm_unified(
     "adds r0, r6, #0\n"
     "movs r2, #0x2d\n"
     "movs r3, #1\n"
-    "bl func_080CE480\n"
+    "bl QueueMenuTilemapRect\n"
     "ldr r2, .Lmenu_9_2_01f4\n"
     "str r5, [sp]\n"
     "str r4, [sp, #4]\n"
     "adds r0, r6, #0\n"
     "movs r1, #8\n"
     "movs r3, #0x20\n"
-    "bl func_080CE510\n"
+    "bl QueueMenuTilemapDecimal\n"
     "add sp, #0x60\n"
     "pop {r3, r4, r5}\n"
     "mov r8, r3\n"
@@ -2413,18 +2295,12 @@ asm_unified(
     "\n"
 );
 
-extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
-    void * destination, u16 size, i32 a, i32 b);
-
 extern "C" void func_080CEB5C(GameSceneMenuTilemapData * data, u32 frame)
 {
     data->unk_BC = frame;
 
-    func_080CE510(data, frame + 1, (void *)0x0600F0F6, 32, 0, 32);
+    QueueMenuTilemapDecimal(data, frame + 1, (u16 *)0x0600F0F6, 32, 0, 32);
 }
-
-extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
-    void * destination, u16 size, i32 a, i32 b);
 
 extern "C" u32 func_080CEB80(GameSceneMenuTilemapData * data)
 {
@@ -2433,13 +2309,10 @@ extern "C" u32 func_080CEB80(GameSceneMenuTilemapData * data)
     else
         data->unk_BC = 0;
 
-    func_080CE510(data, data->unk_BC + 1, (void *)0x0600F0F6, 32, 0, 32);
+    QueueMenuTilemapDecimal(data, data->unk_BC + 1, (u16 *)0x0600F0F6, 32, 0, 32);
 
     return data->unk_BC;
 }
-
-extern "C" void func_080CE510(GameSceneMenuTilemapData * data, i32 frame,
-    void * destination, u16 size, i32 a, i32 b);
 
 extern "C" u32 func_080CEBC0(GameSceneMenuTilemapData * data)
 {
@@ -2448,7 +2321,7 @@ extern "C" u32 func_080CEBC0(GameSceneMenuTilemapData * data)
     else
         data->unk_BC = 7;
 
-    func_080CE510(data, data->unk_BC + 1, (void *)0x0600F0F6, 32, 0, 32);
+    QueueMenuTilemapDecimal(data, data->unk_BC + 1, (u16 *)0x0600F0F6, 32, 0, 32);
 
     return data->unk_BC;
 }

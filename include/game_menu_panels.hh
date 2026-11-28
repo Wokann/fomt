@@ -89,6 +89,10 @@ struct GameMenuSpritePanel : GameMenuPanel {
 
 
 extern "C" {
+void QueueMenuPanelTilemapRect(GameMenuPanel *, u16 * destination, u16 first_tile,
+    u32 width, u32 height, u16 palette, u32 row_stride);
+void QueueMenuPanelDecimal(GameMenuPanel *, u32 value, u16 * right_tile,
+    u16 base_tile, u16 palette, u32 row_stride);
 void func_080CB090(GameMenuTilemapPanel *);
 void func_080CC310(GameMenuSpritePanel *);
 void func_080CCDEC(GameMenuSpritePanel *, u32 index);
