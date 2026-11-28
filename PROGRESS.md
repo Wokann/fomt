@@ -1,3 +1,20 @@
+## 脚本道具查询与动物解析恢复C++（2026-11-28）
+
+四版各恢复5函数680有效字节及4字节原对齐：CanStoreScriptFood、CanStoreScriptArticle、HasScriptArticle、HasScriptFood、GetScriptAnimal。容量查询依次检查空手、背包空格和已购家具容量；物品查询依次检查手持、背包和对应家具，保留原无槽位返回值及可选家具空指针判断。动物解析使用现有MaryAnimalKind、农场／畜舍／鸡舍接口和Dog成员，保持原有有符号容量比较。
+
+使用真实HeldItem、Article、Food、Fridge、Shelf、Animal与存档成员；保留跨调用重新读取engine保存指针的行为。将已高级化的工具容量查询和仍为汇编的工具持有查询分别命名CanStoreScriptTool和HasScriptTool，后者不计新增高级化进度。四版相同查询逻辑合并，资源和运行库文本未改。
+
+完整script_engine对象的装载字节、数据、重定位及所有符号边界保持；原Makefile `make -j16` 四版默认完整ROM通过各自baserom逐字节及SHA-1。无工具链、LDS、构建参数或比较对象修改。
+
+| 版本 | 函数／独立例程 | C | C++ | 汇编 | 其中底层排除 | 待高级化 | C/C++ 函数字节 |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| JP | 3,964 | 110 | 3,163 | 691 | 91 | 600 | 298,368 |
+| US | 3,973 | 110 | 3,167 | 696 | 91 | 605 | 299,140 |
+| EU | 3,973 | 110 | 3,167 | 696 | 91 | 605 | 299,218 |
+| DE | 3,973 | 110 | 3,167 | 696 | 91 | 605 | 299,250 |
+
+函数分母、91个底层排除、两个JoyBus独立例程保持；整函数纯字节候选为零。
+
 ## 霍安商店道具说明恢复C++（2026-11-28）
 
 四版各恢复1函数100字节：WonShopSceneCore::UpdateDescription。以现有catalog列表取得索引，前三项为Article、其余为Tool，使用实际道具对象读取说明，最终共用SetShopDescriptionText。保留既有独立IsArticle查询及其位置；无新增分类包装或工具链调整。

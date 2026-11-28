@@ -1,3 +1,7 @@
+## 脚本容量、持有与动物查询的引用（2026-11-28）
+
+五个恢复入口直接引用GameStateSaveImage的farmer、farm与dog成员，不使用原地址算术。容量按空手／背包／家具顺序短路，持有查询按手持类型及ID／背包槽／家具槽顺序短路；可选冰箱和置物柜保留空指针判断。GetScriptAnimal按MaryAnimalKind调用原Horse、Barn、Coop接口，并保留原有有符号容量比较。跨可能改变状态的调用继续从engine读取存档指针，没有缓存改变原行为。所有调用重命名均具有相应重定位；完整对象和四版默认ROM通过baserom对照。
+
 ## 霍安商店目录到道具说明的引用（2026-11-28）
 
 选择行先读取catalog的实际索引；索引0–2创建Article，其他索引创建Tool，由各自GetDesc读取说明并统一交给SetShopDescriptionText。目录表与道具引用继续使用已有符号，没有新增裸地址、类型视图或固定偏移。完整对象及四版默认ROM通过baserom对照。
