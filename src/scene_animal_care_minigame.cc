@@ -4,6 +4,10 @@
 #include "scene_animal_care_minigame.hh"
 // The UI scene allocates its concrete minigame core.
 #include <new>
+#include "hardware_display_state.hh"
+#include "gbaio.h"
+
+extern "C" void func_080AF814(HarvestSpriteAnimalCareCore *);
 
 // Native implementations in physical ROM order. The owning class layout is
 // partially recovered; the individual methods still retain their instructions.
@@ -761,7 +765,7 @@ asm_unified(
     "b .Lanimal_care_02_00e6\n"
     ".Lanimal_care_02_00d0:\n"
     "adds r0, r7, #0\n"
-    "bl func_080B1D34\n"
+    "bl WaitForStart__27HarvestSpriteAnimalCareCore\n"
     "b .Lanimal_care_02_00e6\n"
     ".Lanimal_care_02_00d8:\n"
     "adds r0, r7, #0\n"
@@ -8862,54 +8866,24 @@ asm_unified(
     ".Lanimal_care_15_01f0: .word 0x838\n"
 #endif
     "\n"
-    "thumb_func_start func_080B1D34\n"
-    "func_080B1D34:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "movs r6, #0\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "movs r3, #0xb2\n"
-    "lsls r3, r3, #5\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "bl func_080AF814\n"
-    "ldr r1, .Lanimal_care_16_0058\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xbb\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "ldr r3, .Lanimal_care_16_005c\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #2\n"
-    "bne .Lanimal_care_16_0050\n"
-    "adds r5, r4, r3\n"
-    "movs r7, #3\n"
-    ".Lanimal_care_16_0036:\n"
-    "adds r0, r4, #0\n"
-    "bl UpdateHardwareFrame\n"
-    "adds r0, r4, #0\n"
-    "bl func_080AF814\n"
-    "adds r6, #1\n"
-    "cmp r6, #0x78\n"
-    "ble .Lanimal_care_16_004a\n"
-    "str r7, [r5]\n"
-    ".Lanimal_care_16_004a:\n"
-    "ldr r0, [r5]\n"
-    "cmp r0, #2\n"
-    "beq .Lanimal_care_16_0036\n"
-    ".Lanimal_care_16_0050:\n"
-    "add sp, #4\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    ".align 2, 0\n"
-    ".Lanimal_care_16_0058: .word 0x814\n"
-    ".Lanimal_care_16_005c: .word 0x838\n"
-    "\n"
+);
+
+void HarvestSpriteAnimalCareCore::WaitForStart()
+{
+    i32 frames = 0;
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->SetDisplayFlags(
+        DISPCNT_OBJ_1D_MAP | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
+    func_080AF814(this);
+    music_players[2].Start(187);
+    while (phase == 2) {
+        UpdateHardwareFrame(this);
+        func_080AF814(this);
+        if (++frames > 120)
+            phase = 3;
+    }
+}
+
+asm_unified(
     "thumb_func_start func_080B1D94\n"
     "func_080B1D94:\n"
     "push {r4, r5, r6, r7, lr}\n"

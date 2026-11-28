@@ -3,6 +3,10 @@
 #include "scene_harvesting_minigame.hh"
 // The UI scene allocates its concrete minigame core.
 #include <new>
+#include "hardware_display_state.hh"
+#include "gbaio.h"
+
+extern "C" void func_080BDF40(HarvestSpriteHarvestingCore *);
 
 asm_unified(
     ".text\n"
@@ -538,7 +542,7 @@ asm_unified(
     "b .Lharvesting_02_00e6\n"
     ".Lharvesting_02_00d0:\n"
     "adds r0, r7, #0\n"
-    "bl func_080BF2EC\n"
+    "bl WaitForStart__27HarvestSpriteHarvestingCore\n"
     "b .Lharvesting_02_00e6\n"
     ".Lharvesting_02_00d8:\n"
     "adds r0, r7, #0\n"
@@ -6362,53 +6366,24 @@ asm_unified(
     "pop {r0}\n"
     "bx r0\n"
     "\n"
-    "thumb_func_start func_080BF2EC\n"
-    "func_080BF2EC:\n"
-    "push {r4, r5, r6, r7, lr}\n"
-    "sub sp, #4\n"
-    "adds r4, r0, #0\n"
-    "movs r6, #0\n"
-    "bl GetHardwareDisplayState\n"
-    "mov r2, sp\n"
-    "movs r3, #0xb2\n"
-    "lsls r3, r3, #5\n"
-    "adds r1, r3, #0\n"
-    "strh r1, [r2]\n"
-    "strh r1, [r0]\n"
-    "adds r0, r4, #0\n"
-    "bl func_080BDF40\n"
-    "movs r1, #0xb0\n"
-    "lsls r1, r1, #3\n"
-    "adds r0, r4, r1\n"
-    "movs r1, #0xbb\n"
-    "bl Start__23HardwareMusicPlayerSlotUs\n"
-    "movs r3, #0xb4\n"
-    "lsls r3, r3, #3\n"
-    "adds r0, r4, r3\n"
-    "ldr r0, [r0]\n"
-    "cmp r0, #2\n"
-    "bne .Lharvesting_13_0054\n"
-    "adds r5, r4, r3\n"
-    "movs r7, #3\n"
-    ".Lharvesting_13_003a:\n"
-    "adds r0, r4, #0\n"
-    "bl UpdateHardwareFrame\n"
-    "adds r0, r4, #0\n"
-    "bl func_080BDF40\n"
-    "adds r6, #1\n"
-    "cmp r6, #0x78\n"
-    "ble .Lharvesting_13_004e\n"
-    "str r7, [r5]\n"
-    ".Lharvesting_13_004e:\n"
-    "ldr r0, [r5]\n"
-    "cmp r0, #2\n"
-    "beq .Lharvesting_13_003a\n"
-    ".Lharvesting_13_0054:\n"
-    "add sp, #4\n"
-    "pop {r4, r5, r6, r7}\n"
-    "pop {r0}\n"
-    "bx r0\n"
-    "\n"
+);
+
+void HarvestSpriteHarvestingCore::WaitForStart()
+{
+    i32 frames = 0;
+    GetHardwareDisplayState(reinterpret_cast<void * const *>(this))->SetDisplayFlags(
+        DISPCNT_OBJ_1D_MAP | DISPCNT_BG1_ON | DISPCNT_BG2_ON | DISPCNT_OBJ_ON);
+    func_080BDF40(this);
+    music_players[2].Start(187);
+    while (phase == 2) {
+        UpdateHardwareFrame(this);
+        func_080BDF40(this);
+        if (++frames > 120)
+            phase = 3;
+    }
+}
+
+asm_unified(
     "thumb_func_start func_080BF348\n"
     "func_080BF348:\n"
     "push {r4, r5, r6, r7, lr}\n"

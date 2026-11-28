@@ -82,6 +82,7 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     bool Succeeded();
     SceneTransitionOwner Run();
     void RunInstructions();
+    void WaitForStart();
 
     // Four-by-two tile buffers: one timer and the result rows.
     // Drawing starts at +4 in each 0x104-byte buffer; the prefix stays unk.
@@ -119,7 +120,7 @@ struct HarvestSpriteAnimalCareCore : HardwareContext {
     HardwareMusicPlayerSlot music_players[5];
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
-    u32 unk_838;
+    u32 phase;
     u32 animations_paused;
     u32 unk_840;
     u32 selection_index;      /* +0x844, indexes the husbandry selection values */

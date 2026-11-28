@@ -70,6 +70,7 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     bool Succeeded();
     SceneTransitionOwner Run();
     void PrepareDisplay();
+    void WaitForStart();
 
     // Four-by-two tile buffers: one timer and the result rows.
     // Drawing starts at +4 in each 0x104-byte buffer; the prefix stays unk.
@@ -96,7 +97,8 @@ struct HarvestSpriteHarvestingCore : HardwareContext {
     HardwareMusicPlayerSlot music_players[4];
     HardwareSoundVSyncCommand sound_vsync;
     HardwareSoundMainCommand sound_main;
-    u8 unk_5A0[0x5B0 - 0x5A0];
+    u32 phase;
+    u8 unk_5A4[0x5B0 - 0x5A4];
     HarvestingMinigameTileHandles tiles;
     u8 unk_5F8[0x604 - 0x5F8];
     u32 unk_604;
